@@ -3,87 +3,180 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>QR Generator - Choose Version | My Tools</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<title>Basic QR Generator | My Tools</title>
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{
-  font-family:'Poppins',sans-serif;
-  background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
-  color:#fff;min-height:100vh;padding:20px
-}
-.header{padding:15px 0;margin-bottom:20px}
+body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);color:#fff;min-height:100vh;padding:20px}
+.header{padding:15px 0;margin-bottom:10px;display:flex;align-items:center;gap:15px}
 .back-btn{color:#fff;text-decoration:none;font-size:16px;font-weight:600}
-.header-center{text-align:center;margin-top:20px}
-.header-center .icon{font-size:60px;margin-bottom:10px}
-.header-center h1{font-size:2rem;font-weight:800}
+.header h1{font-size:1.5rem}
 
-.container{max-width:600px;margin:30px auto}
-.version-card{
-  background:rgba(255,255,255,0.08);backdrop-filter:blur(20px);
-  border:1px solid rgba(255,255,255,0.1);border-radius:25px;
-  padding:30px;margin-bottom:25px;text-align:center;transition:0.3s
-}
-.version-card:hover{transform:translateY(-5px);background:rgba(255,255,255,0.12)}
-.status-dot{display:inline-block;width:12px;height:12px;background:#22c55e;border-radius:50%;margin-right:8px}
-.version-card h2{font-size:1.5rem;margin:10px 0;font-weight:700}
-.version-card p{opacity:0.8;margin-bottom:20px}
+.container{max-width:900px;margin:20px auto;background:rgba(255,255,255,0.08);backdrop-filter:blur(20px);border-radius:25px;padding:30px;border:1px solid rgba(255,255,255,0.1);margin-bottom:20px}
+.input-group{margin-bottom:20px}
+.input-group label{display:block;margin-bottom:8px;font-weight:600}
+.input-group input{width:100%;padding:14px 18px;border-radius:12px;border:2px solid transparent;background:rgba(255,255,255,0.1);color:#fff;font-size:1rem;outline:none}
 
-.btn-free{
-  width:100%;padding:16px;border:none;border-radius:15px;
-  background:#22c55e;color:#000;font-weight:700;font-size:1.1rem;
-  cursor:pointer;text-decoration:none;display:block;transition:0.3s
-}
-.btn-free:hover{transform:scale(1.02);box-shadow:0 10px 30px rgba(34,197,94,0.4)}
+.btn{width:100%;padding:16px;border:none;border-radius:12px;background:linear-gradient(135deg,#22c55e,#16a34a);color:#000;font-weight:700;font-size:1.1rem;cursor:pointer;margin-bottom:20px}
 
-.btn-pro{
-  width:100%;padding:16px;border:none;border-radius:15px;
-  background:linear-gradient(135deg,#f97316,#f59e0b);color:#fff;
-  font-weight:700;font-size:1.1rem;cursor:not-allowed;text-decoration:none;display:block
-}
+.qr-wrapper{background:#fff;padding:20px;border-radius:15px;display:flex;justify-content:center;align-items:center;flex-direction:column;min-height:320px;color:#000}
+.watermark{margin-top:12px;font-size:14px;color:#444;font-weight:700}
+.action-btns{display:flex;gap:10px}
+.btn-secondary{flex:1;padding:12px;border:2px solid #22c55e;background:transparent;color:#22c55e;border-radius:10px;cursor:pointer;font-weight:600;display:none}
+.tag{display:inline-block;background:rgba(34,197,94,0.2);padding:5px 12px;border-radius:20px;font-size:12px;margin-bottom:15px}
 
-.feature-list{list-style:none;text-align:left;margin:20px 0}
-.feature-list li{margin:12px 0;font-size:15px}
-.feature-list li::before{content:"✓ ";color:#22c55e;font-weight:bold;margin-right:8px}
-.lock-icon{font-size:50px;margin-bottom:10px}
+/* Features Grid */
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:15px}
+.feature-card{background:rgba(255,255,255,0.05);padding:20px;border-radius:15px;border:1px solid rgba(255,255,255,0.1)}
+.feature-card h3{color:#22c55e;margin-bottom:8px;font-size:1.1rem}
+.section-title{font-size:1.3rem;margin-bottom:15px}
+.section-box ul{list-style:none}
+.section-box ul li{padding:8px 0;padding-left:25px;position:relative}
+.section-box ul li:before{content:'✓';position:absolute;left:0;color:#22c55e;font-weight:700}
+.footer{text-align:center;padding:20px;opacity:0.7;font-size:14px}
 </style>
 </head>
 <body>
 
 <div class="header">
-  <a href="index.html" class="back-btn">← Back</a>
+  <a href="qr.html" class="back-btn">← Back</a>
+  <h1>📱 Basic QR Generator</h1>
 </div>
 
-<div class="header-center">
-  <div class="icon">📱</div>
-  <h1>QR Code Generator</h1>
-</div>
-
+<!-- MAIN TOOL -->
 <div class="container">
-
-  <!-- FREE VERSION CARD -->
-  <div class="version-card">
-    <span class="status-dot"></span><b>Free Version</b>
-    <h2>Basic QR Generator</h2>
-    <p>URL to QR Code with Download</p>
-    <a href="qr-generator.html" class="btn-free">Open Free</a>
+  <span class="tag">Free Version</span>
+  
+  <div class="input-group">
+    <label>Enter URL or Text</label>
+    <input type="text" id="qrInput" placeholder="https://google.com or Hello World">
   </div>
 
-  <!-- PRO VERSION CARD -->
-  <div class="version-card">
-    <div class="lock-icon">🔒</div>
-    <h2>QR Generator Pro</h2>
-    <ul class="feature-list">
-      <li>WiFi QR - Auto Connect</li>
-      <li>WhatsApp Direct Chat QR</li>
-      <li>Custom Colors + Logo</li>
-      <li>Batch QR Generator</li>
-      <li>No Watermark + HD Export</li>
-    </ul>
-    <button class="btn-pro">🚧 Unlock Soon</button>
-  </div>
+  <button class="btn" onclick="generateQR()">Generate QR Code</button>
 
+  <div id="qrWrapper" class="qr-wrapper">
+    <p style="opacity:0.5">Your QR will appear here</p>
+  </div>
+  
+  <div class="action-btns" style="margin-top:15px">
+    <button id="downloadBtn" class="btn-secondary" onclick="downloadPNG()">📥 Download</button>
+    <button id="copyBtn" class="btn-secondary" onclick="copyQR()">📋 Copy</button>
+  </div>
 </div>
+
+<!-- 6 FEATURES -->
+<div class="container">
+  <h2 class="section-title">⭐ 6 Powerful Features</h2>
+  <div class="features-grid">
+    <div class="feature-card">
+      <h3>1. URL to QR</h3>
+      <p>Any website link ke QR e convert koro. Scan korlei website open hobe.</p>
+    </div>
+    <div class="feature-card">
+      <h3>2. Text to QR</h3>
+      <p>Any text, message, note QR baniye share koro.</p>
+    </div>
+    <div class="feature-card">
+      <h3>3. Instant Generate</h3>
+      <p>1 click e QR toiri. Kono wait nei, instant result.</p>
+    </div>
+    <div class="feature-card">
+      <h3>4. Download PNG</h3>
+      <p>HD PNG te download koro "Mujahar" watermark soho.</p>
+    </div>
+    <div class="feature-card">
+      <h3>5. Copy QR</h3>
+      <p>QR ke direct clipboard e copy kore jekhane khusi paste koro.</p>
+    </div>
+    <div class="feature-card">
+      <h3>6. Mobile Friendly</h3>
+      <p>100% Responsive. Mobile, Tablet, Desktop sob jaygay perfect.</p>
+    </div>
+  </div>
+</div>
+
+<!-- HOW TO USE -->
+<div class="container">
+  <h2 class="section-title">📖 How to Use</h2>
+  <ul>
+    <li>Enter your URL or Text in the box above.</li>
+    <li>Click the <b>Generate QR Code</b> button.</li>
+    <li>Your QR Code will appear instantly with "Mujahar" watermark.</li>
+    <li>Click <b>Download</b> or <b>Copy</b> to save the QR.</li>
+  </ul>
+</div>
+
+<!-- FAQ -->
+<div class="container">
+  <h2 class="section-title">❓ Frequently Asked Questions</h2>
+  <ul>
+    <li><b>Is this QR Generator free?</b><br>Yes. 100% free to use with Mujahar watermark.</li>
+    <li><b>Does it work on mobile?</b><br>Yes. Fully responsive for all devices.</li>
+    <li><b>Is my data stored?</b><br>No. Everything runs in your browser. 100% private.</li>
+    <li><b>Can I remove watermark?</b><br>No. For no watermark use Pro Version.</li>
+  </ul>
+</div>
+
+<!-- RELATED TOOLS -->
+<div class="container">
+  <h2 class="section-title">🔗 Related Tools</h2>
+  <ul>
+    <li><a href="age-calculator.html" style="color:#22c55e">Age Calculator</a></li>
+    <li><a href="password-generator.html" style="color:#22c55e">Password Generator</a></li>
+    <li><a href="pdf-to-jpg.html" style="color:#22c55e">PDF to JPG</a></li>
+    <li><a href="index.html" style="color:#22c55e">Home</a></li>
+  </ul>
+</div>
+
+<div class="footer">© 2026 My Tools • Basic QR Generator by Mujahar</div>
+
+<script>
+let currentQRCanvas;
+const BRAND_NAME = "Mujahar";
+
+function generateQR(){
+  const input = document.getElementById('qrInput').value;
+  if(!input){ alert("Please enter URL or Text"); return; }
+  
+  document.getElementById('qrWrapper').innerHTML = '';
+  
+  QRCode.toCanvas(input, { width: 280 }, function (error, canvas) {
+    if (error) { console.error(error); return; }
+    currentQRCanvas = canvas;
+    document.getElementById('qrWrapper').appendChild(canvas);
+    
+    const wm = document.createElement('div');
+    wm.className = 'watermark';
+    wm.innerText = `© ${BRAND_NAME}`;
+    document.getElementById('qrWrapper').appendChild(wm);
+    
+    document.getElementById('downloadBtn').style.display = 'block';
+    document.getElementById('copyBtn').style.display = 'block';
+  });
+}
+
+function downloadPNG(){
+  if(!currentQRCanvas) return;
+  const finalCanvas = document.createElement('canvas');
+  const ctx = finalCanvas.getContext('2d');
+  finalCanvas.width = 280; finalCanvas.height = 320;
+  ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, finalCanvas.width, finalCanvas.height);
+  ctx.drawImage(currentQRCanvas, 0, 0);
+  ctx.fillStyle = '#444'; ctx.font = 'bold 16px Poppins'; ctx.textAlign = 'center';
+  ctx.fillText(`© ${BRAND_NAME}`, finalCanvas.width/2, 305);
+  const link = document.createElement('a');
+  link.download = 'qr-by-mujahar.png'; link.href = finalCanvas.toDataURL(); link.click();
+}
+
+function copyQR(){
+  if(!currentQRCanvas) return;
+  currentQRCanvas.toBlob(blob => {
+    navigator.clipboard.write([new ClipboardItem({[blob.type]: blob})]);
+    alert('QR Copied to Clipboard!');
+  });
+}
+</script>
 
 </body>
   </html>
