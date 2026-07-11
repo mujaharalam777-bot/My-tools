@@ -3,8 +3,83 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Tools - Free Online Tools</title>
-<link rel="stylesheet" href="style.css">
+<title>My Tools</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#0f172a;
+color:white;
+}
+
+header{
+background:linear-gradient(90deg,#2563eb,#7c3aed);
+padding:25px;
+text-align:center;
+}
+
+header h1{
+font-size:40px;
+}
+
+header p{
+margin-top:8px;
+font-size:18px;
+opacity:.9;
+}
+
+.search{
+padding:20px;
+}
+
+.search input{
+width:100%;
+padding:15px;
+border:none;
+border-radius:12px;
+font-size:18px;
+}
+
+.container{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+gap:18px;
+padding:20px;
+}
+
+.card{
+background:#1e293b;
+border-radius:15px;
+padding:25px;
+text-align:center;
+transition:.3s;
+cursor:pointer;
+}
+
+.card:hover{
+transform:scale(1.05);
+background:#334155;
+}
+
+.card span{
+font-size:40px;
+display:block;
+margin-bottom:10px;
+}
+
+footer{
+padding:25px;
+text-align:center;
+opacity:.7;
+}
+</style>
+
 </head>
 
 <body>
@@ -14,21 +89,61 @@
 <p>100+ Free Online Tools</p>
 </header>
 
-<section class="tools">
+<div class="search">
+<input type="text" id="search" placeholder="Search Tools...">
+</div>
 
-<a class="card" href="#">Age Calculator</a>
+<div class="container" id="tools">
 
-<a class="card" href="#">BMI Calculator</a>
+<div class="card"><span>🎂</span>Age Calculator</div>
 
-<a class="card" href="#">QR Generator</a>
+<div class="card"><span>⚖️</span>BMI Calculator</div>
 
-<a class="card" href="#">Password Generator</a>
+<div class="card"><span>🔐</span>Password Generator</div>
 
-<a class="card" href="#">Image Resizer</a>
+<div class="card"><span>📱</span>QR Generator</div>
 
-<a class="card" href="#">Word Counter</a>
+<div class="card"><span>🖼️</span>Image Resizer</div>
 
-</section>
+<div class="card"><span>📄</span>PDF Tools</div>
+
+<div class="card"><span>🔤</span>Word Counter</div>
+
+<div class="card"><span>🎨</span>Color Picker</div>
+
+<div class="card"><span>🌍</span>Translator</div>
+
+<div class="card"><span>🧮</span>Calculator</div>
+
+<div class="card"><span>💰</span>EMI Calculator</div>
+
+<div class="card"><span>📏</span>Unit Converter</div>
+
+</div>
+
+<footer>
+Made with ❤️ by Mujahar
+</footer>
+
+<script>
+let input=document.getElementById("search");
+
+input.onkeyup=function(){
+
+let filter=input.value.toLowerCase();
+
+let cards=document.querySelectorAll(".card");
+
+cards.forEach(function(card){
+
+let text=card.innerText.toLowerCase();
+
+card.style.display=text.includes(filter)?"block":"none";
+
+});
+
+}
+</script>
 
 </body>
-</html>
+                    </html>
