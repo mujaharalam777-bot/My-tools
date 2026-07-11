@@ -1,1 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BMI Calculator | My Tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif;}
+body{background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);color:#fff;min-height:100vh;padding:20px;text-align:center;}
+.back{position:absolute;top:20px;left:20px;color:#fff;text-decoration:none;font-size:16px;}
+.header{margin-bottom:30px;padding-top:50px;}
+.header .icon{font-size:50px;margin-bottom:10px;}
+.header h1{font-size:28px;font-weight:700;}
+.card{background:rgba(255,255,255,.08);backdrop-filter:blur(20px);border-radius:22px;padding:28px 20px;margin:20px auto;max-width:420px;border:1px solid rgba(255,255,255,.1);}
+.free-badge{display:flex;align-items:center;justify-content:center;gap:10px;font-size:20px;font-weight:bold;margin-bottom:8px;}
+.dot{width:14px;height:14px;background:#00ff88;border-radius:50%;box-shadow:0 0 12px #00ff88;}
+.card p.subtitle{opacity:.8;margin-bottom:20px;font-size:15px;}
+.btn{width:100%;padding:15px;border-radius:14px;font-size:17px;font-weight:700;border:none;cursor:pointer;text-decoration:none;display:block;transition:.3s;}
+.btn-free{background:linear-gradient(90deg,#00ff88,#00e676);color:#000;}
+.btn-free:hover{transform:scale(1.03);}
+.lock-icon{font-size:65px;margin-bottom:12px;}
+.card h2{font-size:22px;margin-bottom:15px;}
+.features{list-style:none;text-align:left;margin:15px 20px 20px 20px;}
+.features li{margin:10px 0;font-size:15px;opacity:.9;}
+.features li:before{content:"✓ ";color:#00ff88;font-weight:bold;font-size:18px;margin-right:5px;}
+.btn-locked{background:linear-gradient(90deg,#ff9500,#ff7b00);color:#fff;}
+</style>
+</head>
+<body>
 
+<a href="index.html" class="back">← Back</a>
+
+<div class="header">
+  <div class="icon">⚖️</div>
+  <h1>BMI Calculator</h1>
+</div>
+
+<!-- FREE VERSION CARD -->
+<div class="card">
+  <div class="free-badge"><span class="dot"></span> Free Version</div>
+  <p class="subtitle">Basic BMI Calculator</p>
+  <a href="bmi-free.html" class="btn btn-free">Open Free</a>
+</div>
+
+<!-- PRO VERSION CARD -->
+<div class="card">
+  <div class="lock-icon">🔒</div>
+  <h2>BMI Calculator Pro</h2>
+  <ul class="features">
+    <li>Body Fat % Calculator</li>
+    <li>Diet & Workout Plan</li>
+    <li>Progress Graph</li>
+    <li>Export PDF Report</li>
+  </ul>
+  <a href="bmi-pro.html" class="btn btn-locked">🚧 Unlock Soon</a>
+</div>
+
+</body>
+</html>
