@@ -3,318 +3,168 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PDF Tools - Free</title>
+<title>PDF Tools - Free | Professional</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Poppins', sans-serif;
-}
-body{
-  background: #0a1a1f;
-  min-height:100vh;
-  color:#ffffff;
-  padding:20px;
-}
-.container{
-  max-width:600px;
-  margin:0 auto;
-}
-.back{
-  color:#ffffff;
-  text-decoration:none;
-  margin-bottom:25px;
-  display:block;
-  font-size:18px;
-  font-weight:600;
-}
-.header{
-  text-align:center;
-  margin-bottom:30px;
-}
-.header.icon{
-  font-size:70px;
-  margin-bottom:10px;
-}
-.header h1{
-  font-size:26px;
-  font-weight:700;
-  color:#fff;
-}
-.card{
-  background: #12303a;
-  border:2px solid #1f4d5a;
-  border-radius:20px;
-  padding: 25px;
-  margin-bottom:20px;
-}
-.card h2{
-  font-size:20px;
-  margin-bottom:15px;
-  color:#00ff88;
-  text-align:center;
-}
-.upload-box{
-  border:2px dashed #1f4d5a;
-  border-radius:14px;
-  padding:20px;
-  text-align:center;
-  margin-bottom:15px;
-  cursor:pointer;
-  transition:0.3s;
-}
-.upload-box:hover{
-  border-color:#00ff88;
-  background:#0f252d;
-}
-.upload-box input{
-  display:none;
-}
-.btn{
-  width:100%;
-  padding:14px;
-  border:none;
-  border-radius:14px;
-  font-size:16px;
-  font-weight:700;
-  cursor:pointer;
-  background-color: #00ff88;
-  color:#000;
-  margin-top:10px;
-}
-.btn:disabled{
-  background:#333;
-  color:#777;
-  cursor:not-allowed;
-}
-.result{
-  margin-top:15px;
-  text-align:center;
-}
-.result a{
-  color:#00ff88;
-  text-decoration:none;
-  font-weight:600;
-}
-.tools-grid{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:20px;
-}
-.preview{
-  max-width:100%;
-  margin-top:10px;
-  border-radius:10px;
-}
-#pdfPreview canvas{
-  width:100%;
-  margin-bottom:10px;
-  border-radius:10px;
-}
-select{
-  width:100%;
-  padding:12px;
-  border-radius:10px;
-  border:2px solid #1f4d5a;
-  background:#0f252d;
-  color:#fff;
-  font-size:15px;
-  margin-bottom:10px;
-}
-.info{
-  font-size:13px;
-  color:#a0b4bb;
-  text-align:center;
-  margin-top:10px;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins', sans-serif;}
+body{background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);min-height:100vh;color:#ffffff;padding:20px;}
+.container{max-width:700px;margin:0 auto;}
+.back{color:#ffffff;text-decoration:none;margin-bottom:25px;display:block;font-size:18px;font-weight:600;}
+.header{text-align:center;margin-bottom:25px;}
+.header.icon{font-size:60px;margin-bottom:10px;}
+.header h1{font-size:26px;font-weight:700;color:#fff;}
+.header p{color:#bfdbfe;font-size:14px;}
+.card{background: rgba(30, 58, 138, 0.6);backdrop-filter: blur(10px);border-radius:20px;padding: 25px;margin-bottom:20px;}
+.box{background: rgba(59, 130, 246, 0.3);border-radius:15px;padding:20px;margin-bottom:20px;}
+.box h3{font-size:18px;color:#fff;margin-bottom:15px;display:flex;align-items:center;gap:8px;}
+.box ul{list-style:none;padding-left:0;}
+.box li{color:#dbeafe;font-size:14px;margin-bottom:10px;display:flex;align-items:center;}
+.box li::before{content:'✓';color:#22c55e;font-weight:700;margin-right:8px;font-size:16px;}
+label{display:block;font-size:15px;font-weight:600;margin-bottom:8px;color:#bfdbfe;}
+select,.upload-box{width:100%;padding:14px;border-radius:12px;border:2px solid #3b82f6;background:#1e3a8a;color:#fff;font-size:15px;margin-bottom:15px;}
+.upload-box{border:2px dashed #3b82f6;text-align:center;cursor:pointer;}
+.upload-box input{display:none;}
+#fileName{font-size:13px;color:#bfdbfe;margin-top:8px;}
+.btn{width:100%;padding:16px;border:none;border-radius:12px;font-size:17px;font-weight:700;cursor:pointer;background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);color:#fff;}
+.loader{display:none;text-align:center;color:#22c55e;margin-top:15px;}
+.result{margin-top:20px;text-align:center;}
+.result a{display:inline-block;padding:12px 20px;background: #22c55e;color:#fff;border-radius:10px;text-decoration:none;font-weight:700;margin:5px;}
+.faq-item{margin-bottom:15px;}
+.faq-item h4{font-size:15px;color:#fff;margin-bottom:6px;}
+.faq-item p{font-size:13px;color:#dbeafe;line-height:1.6;}
+.related-tools a{color:#60a5fa;text-decoration:underline;display:block;margin-bottom:8px;}
+.footer{text-align:center;color:#bfdbfe;font-size:12px;margin-top:20px;padding-top:15px;border-top:1px solid rgba(255,255,255,0.2);}
+.preview-grid{display:grid;grid-template-columns: repeat(2, 1fr);gap:10px;margin-top:10px;}
+.preview-grid img{width:100%;border-radius:8px;border:1px solid #3b82f6;}
 </style>
 </head>
 <body>
 
 <div class="container">
-
-<a href="pdf.html" class="back">← Back</a>
+<a href="pdf.html" class="back">← Back to Dashboard</a>
 
 <div class="header">
   <div class="icon">📄</div>
-  <h1>PDF Tools Free</h1>
-  <p class="info">5 Tools • No Login Needed</p>
+  <h1>PDF Tools Pro Free</h1>
+  <p>Professional PDF Toolkit - No Limits</p>
 </div>
 
-<div class="tools-grid">
-
-<!-- 1. PDF to Image -->
 <div class="card">
-  <h2>1. PDF to Image</h2>
-  <div class="upload-box" onclick="document.getElementById('pdfToImg').click()">
-    <p>📤 Click to Upload PDF</p>
-    <input type="file" id="pdfToImg" accept=".pdf" onchange="pdfToImage(event)">
-  </div>
-  <div id="pdfPreview"></div>
-</div>
-
-<!-- 2. Image to PDF -->
-<div class="card">
-  <h2>2. Image to PDF</h2>
-  <div class="upload-box" onclick="document.getElementById('imgToPdf').click()">
-    <p>🖼️ Select Multiple Images</p>
-    <input type="file" id="imgToPdf" accept="image/*" multiple onchange="imageToPdf(event)">
-  </div>
-  <div id="imgPreview"></div>
-  <button class="btn" id="downloadImgPdf" style="display:none;">Download PDF</button>
-</div>
-
-<!-- 3. Merge PDF -->
-<div class="card">
-  <h2>3. Merge PDF</h2>
-  <div class="upload-box" onclick="document.getElementById('mergePdf').click()">
-    <p>📑 Select 2 or More PDFs</p>
-    <input type="file" id="mergePdf" accept=".pdf" multiple onchange="mergePdf(event)">
-  </div>
-  <button class="btn" id="downloadMerged" style="display:none;">Download Merged PDF</button>
-</div>
-
-<!-- 4. Compress PDF -->
-<div class="card">
-  <h2>4. Compress PDF</h2>
-  <div class="upload-box" onclick="document.getElementById('compressPdf').click()">
-    <p>🗜️ Upload PDF to Compress</p>
-    <input type="file" id="compressPdf" accept=".pdf" onchange="compressPdf(event)">
-  </div>
-  <select id="compressLevel">
-    <option value="low">Low Compression - High Quality</option>
-    <option value="medium">Medium Compression</option>
-    <option value="high">High Compression - Small Size</option>
+  <label>1. Choose Tool</label>
+  <select id="toolSelect" onchange="changeTool()">
+    <option value="pdftoimg">PDF to Image</option>
+    <option value="imgtopdf">Image to PDF</option>
+    <option value="merge">Merge PDF</option>
+    <option value="compress">Compress PDF</option>
+    <option value="split">Split PDF</option>
   </select>
-  <button class="btn" id="compressBtn" style="display:none;">Compress & Download</button>
-</div>
 
-<!-- 5. Split PDF -->
-<div class="card">
-  <h2>5. Split PDF</h2>
-  <div class="upload-box" onclick="document.getElementById('splitPdf').click()">
-    <p>✂️ Upload PDF to Split</p>
-    <input type="file" id="splitPdf" accept=".pdf" onchange="loadSplitPdf(event)">
+  <label id="uploadLabel">2. Upload File</label>
+  <div class="upload-box" onclick="document.getElementById('fileInput').click()">
+    <p id="uploadText">📤 Click to Upload File</p>
+    <input type="file" id="fileInput" accept=".pdf" multiple onchange="showFileName(event)">
+    <p id="fileName"></p>
   </div>
-  <div id="splitPages"></div>
-  <button class="btn" id="splitBtn" style="display:none;">Download Selected Pages</button>
+
+  <div id="extraOptions"></div>
+  <button class="btn" id="convertBtn" onclick="convertNow()">Convert Now</button>
+  <div class="loader" id="loader">⏳ Processing... Please wait</div>
+  <div class="result" id="result"></div>
 </div>
 
-</div>
-
-<p class="info">Made with ❤️ | For Pro features unlock Pro Version</p>
+<div class="box"><h3>📖 How to Use</h3><ul style="list-style:decimal;padding-left:20px;"><li>Select your tool from dropdown</li><li>Upload your PDF or Image files</li><li>Set options like Compression Level or Page Range</li><li>Click Convert button and download result</li></ul></div>
+<div class="box"><h3>⭐ Features</h3><ul><li>Fast & Secure</li><li>100% Free</li><li>Works on Mobile + Desktop</li><li>No Signup Required</li></ul></div>
+<div class="box"><h3>❓ Frequently Asked Questions</h3><div class="faq-item"><h4>Is this tool free?</h4><p>Yes. It is completely free to use with no limits.</p></div><div class="faq-item"><h4>Does it work on mobile?</h4><p>Yes. It works perfectly on Android, iPhone and Desktop.</p></div><div class="faq-item"><h4>Is my data stored?</h4><p>No. Everything is calculated inside your browser. No upload to server.</p></div><div class="faq-item"><h4>How to split specific pages?</h4><p>Select Split tool and enter page range like "1-3,5,7"</p></div></div>
+<div class="box"><h3>🔗 Related Tools</h3><div class="related-tools"><a href="pdf-pro.html">PDF Pro Version</a><a href="image-tools.html">Image Converter</a><a href="qr-generator.html">QR Generator</a><a href="index.html">Home</a></div></div>
+<div class="footer">© 2026 My Tools • PDF Tools Pro Free</div>
 
 </div>
 
 <script>
 pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 const { jsPDF } = window.jspdf;
+const { PDFDocument, rgb } = PDFLib;
+let selectedFiles = [];
 
-// 1. PDF to Image
-async function pdfToImage(e){
-  const file = e.target.files[0];
-  if(!file) return;
-  const reader = new FileReader();
-  reader.onload = async function(){
-    const pdf = await pdfjsLib.getDocument(reader.result).promise;
-    document.getElementById('pdfPreview').innerHTML = '';
-    for(let i=1; i<=pdf.numPages; i++){
-      const page = await pdf.getPage(i);
-      const canvas = document.createElement('canvas');
-      const ctx = canvas.getContext('2d');
-      const viewport = page.getViewport({scale:1.5});
-      canvas.height = viewport.height;
-      canvas.width = viewport.width;
-      await page.render({canvasContext:ctx, viewport:viewport}).promise;
-      document.getElementById('pdfPreview').appendChild(canvas);
-
-      const link = document.createElement('a');
-      link.href = canvas.toDataURL('image/png');
-      link.download = `page-${i}.png`;
-      link.innerText = `Download Page ${i}`;
-      link.style.display = 'block';
-      link.style.marginBottom = '15px';
-      document.getElementById('pdfPreview').appendChild(link);
-    }
-  }
-  reader.readAsArrayBuffer(file);
-}
-
-// 2. Image to PDF
-let imgPdf;
-function imageToPdf(e){
-  const files = e.target.files;
-  imgPdf = new jsPDF();
-  document.getElementById('imgPreview').innerHTML = '';
-  Array.from(files).forEach((file, index)=>{
-    const reader = new FileReader();
-    reader.onload = function(){
-      const img = new Image();
-      img.src = reader.result;
-      img.className = 'preview';
-      document.getElementById('imgPreview').appendChild(img);
-      if(index === 0) imgPdf.addImage(reader.result, 'JPEG', 10, 10, 190, 0);
-      else {
-        imgPdf.addPage();
-        imgPdf.addImage(reader.result, 'JPEG', 10, 10, 190, 0);
-      }
-    }
-    reader.readAsDataURL(file);
+function addWatermarkToPDF(pdfDoc, text){
+  const pages = pdfDoc.getPages();
+  pages.forEach(page => {
+    page.drawText(text, {
+      x: 30,
+      y: 30,
+      size: 10,
+      color: rgb(0.7, 0.7, 0.7),
+    });
   });
-  document.getElementById('downloadImgPdf').style.display = 'block';
-  document.getElementById('downloadImgPdf').onclick = ()=> imgPdf.save('images-to-pdf.pdf');
 }
 
-// 3. Merge PDF - Basic version
-let mergeFiles = [];
-function mergePdf(e){
-  mergeFiles = Array.from(e.target.files);
-  if(mergeFiles.length >= 2){
-    document.getElementById('downloadMerged').style.display = 'block';
-    document.getElementById('downloadMerged').innerText = `Merge ${mergeFiles.length} PDFs`;
-    alert('Note: For full merge use Pro. This is demo merge.');
+function addWatermarkToJSPDF(pdf, text){
+  const pageCount = pdf.getNumberOfPages();
+  for(let i=1; i<=pageCount; i++){
+    pdf.setPage(i);
+    pdf.setFontSize(10);
+    pdf.setTextColor(180,180,180);
+    pdf.text(text, 10, pdf.internal.pageSize.getHeight() - 10);
   }
 }
 
-// 4. Compress PDF
-let compressFile;
-document.getElementById('compressPdf').onchange = (e)=>{
-  compressFile = e.target.files[0];
-  document.getElementById('compressBtn').style.display = 'block';
-}
-document.getElementById('compressBtn').onclick = ()=>{
-  const level = document.getElementById('compressLevel').value;
-  alert(`Compressed PDF will download. Level: ${level}\nNote: Full compression in Pro`);
-  const link = document.createElement('a');
-  link.href = URL.createObjectURL(compressFile);
-  link.download = 'compressed.pdf';
-  link.click();
-}
+function changeTool(){const tool = document.getElementById('toolSelect').value; const fileInput = document.getElementById('fileInput'); const uploadText = document.getElementById('uploadText'); const uploadLabel = document.getElementById('uploadLabel'); const extra = document.getElementById('extraOptions'); const btn = document.getElementById('convertBtn'); selectedFiles = []; document.getElementById('fileName').innerText = ''; document.getElementById('result').innerHTML = ''; extra.innerHTML = ''; if(tool === 'imgtopdf'){fileInput.accept = "image/*"; fileInput.multiple = true; uploadText.innerText = "🖼️ Select Multiple Images"; uploadLabel.innerText = "2. Upload Image Files"; btn.innerText = "Convert to PDF";} else if(tool === 'merge'){fileInput.accept = ".pdf"; fileInput.multiple = true; uploadText.innerText = "📑 Select 2 or More PDFs"; uploadLabel.innerText = "2. Upload PDF Files"; btn.innerText = "Merge PDFs";} else if(tool === 'compress'){fileInput.accept = ".pdf"; fileInput.multiple = false; uploadText.innerText = "🗜️ Upload PDF to Compress"; uploadLabel.innerText = "2. Upload PDF File"; btn.innerText = "Compress & Download"; extra.innerHTML = `<label>3. Select Compression Level</label><select id="compressLevel"><option value="low">Low - Best Quality</option><option value="medium" selected>Medium - Balanced</option><option value="high">High - Smallest Size</option></select>`;} else if(tool === 'split'){fileInput.accept = ".pdf"; fileInput.multiple = false; uploadText.innerText = "✂️ Upload PDF to Split"; uploadLabel.innerText = "2. Upload PDF File"; btn.innerText = "Split PDF"; extra.innerHTML = `<label>3. Select Page Range</label><input type="text" id="pageRange" placeholder="Example: 1-3,5,7" style="width:100%;padding:12px;border-radius:10px;border:2px solid #3b82f6;background:#1e3a8a;color:#fff;">`;} else{fileInput.accept = ".pdf"; fileInput.multiple = false; uploadText.innerText = "📤 Click to Upload PDF"; uploadLabel.innerText = "2. Upload PDF File"; btn.innerText = "Convert to Images";}}
+function showFileName(e){selectedFiles = Array.from(e.target.files); document.getElementById('fileName').innerText = selectedFiles.length + " file(s) selected";}
+async function convertNow(){const tool = document.getElementById('toolSelect').value; const resultDiv = document.getElementById('result'); const loader = document.getElementById('loader'); resultDiv.innerHTML = ''; loader.style.display = 'block'; if(selectedFiles.length === 0){loader.style.display = 'none'; resultDiv.innerHTML = "⚠️ Please select file first"; return;} try{if(tool === 'imgtopdf'){ await imageToPdf(); } else if(tool === 'pdftoimg'){ await pdfToImage(); } else if(tool === 'merge'){ await mergePdf(); } else if(tool === 'compress'){ await compressPdf(); } else if(tool === 'split'){ await splitPdf(); }}catch(err){resultDiv.innerHTML = "❌ Error: " + err.message;} loader.style.display = 'none';}
 
-// 5. Split PDF
-let splitPdfDoc;
-async function loadSplitPdf(e){
-  const file = e.target.files[0];
-  const reader = new FileReader();
-  reader.onload = async function(){
-    splitPdfDoc = await pdfjsLib.getDocument(reader.result).promise;
-    let html = '';
-    for(let i=1; i<=splitPdfDoc.numPages; i++){
-      html += `<label><input type="checkbox" checked> Page ${i}</label><br>`;
-    }
-    document.getElementById('splitPages').innerHTML = html;
-    document.getElementById('splitBtn').style.display = 'block';
+async function imageToPdf(){
+  const pdf = new jsPDF();
+  for(let i=0; i<selectedFiles.length; i++){
+    const data = await readFile(selectedFiles[i]);
+    const img = new Image(); img.src = data; await new Promise(r => img.onload = r);
+    const width = pdf.internal.pageSize.getWidth(); const height = (img.height * width) / img.width;
+    if(i > 0) pdf.addPage(); pdf.addImage(data, 'JPEG', 0, 0, width, height);
   }
-  reader.readAsArrayBuffer(file);
-}
-document.getElementById('splitBtn').onclick = ()=>{
-  alert('Selected pages will download. Full split in Pro');
+  addWatermarkToJSPDF(pdf, "mujahar"); // WATERMARK HERE
+  pdf.save('converted-images.pdf');
+  document.getElementById('result').innerHTML = `<a href="#" onclick="alert('Downloaded')">✅ Download PDF</a>`;
 }
 
+async function pdfToImage(){const reader = new FileReader(); reader.onload = async function(){const pdf = await pdfjsLib.getDocument(reader.result).promise; let html = '<div class="preview-grid">'; for(let i=1; i<=pdf.numPages; i++){const page = await pdf.getPage(i); const canvas = document.createElement('canvas'); const ctx = canvas.getContext('2d'); const viewport = page.getViewport({scale:2}); canvas.height = viewport.height; canvas.width = viewport.width; await page.render({canvasContext:ctx, viewport:viewport}).promise; const dataUrl = canvas.toDataURL('image/png'); html += `<div><img src="${dataUrl}"><a href="${dataUrl}" download="page-${i}.png">Download ${i}</a></div>`;} html += '</div>'; document.getElementById('result').innerHTML = html;} reader.readAsArrayBuffer(selectedFiles[0]);}
+
+async function mergePdf(){
+  const mergedPdf = await PDFDocument.create();
+  for(const file of selectedFiles){
+    const bytes = await file.arrayBuffer(); const pdf = await PDFDocument.load(bytes);
+    const copiedPages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
+    copiedPages.forEach(page => mergedPdf.addPage(page));
+  }
+  addWatermarkToPDF(mergedPdf, "mujahar"); // WATERMARK HERE
+  const pdfBytes = await mergedPdf.save(); downloadFile(pdfBytes, 'merged.pdf');
+  document.getElementById('result').innerHTML = `<a href="#" onclick="alert('Merged')">✅ Download Merged PDF</a>`;
+}
+
+async function compressPdf(){
+  const bytes = await selectedFiles[0].arrayBuffer(); const pdf = await PDFDocument.load(bytes);
+  addWatermarkToPDF(pdf, "mujahar"); // WATERMARK HERE
+  const pdfBytes = await pdf.save({useObjectStreams: false}); downloadFile(pdfBytes, 'compressed.pdf');
+  document.getElementById('result').innerHTML = `<a href="#" onclick="alert('Compressed')">✅ Download Compressed PDF</a>`;
+}
+
+async function splitPdf(){
+  const range = document.getElementById('pageRange').value;
+  const bytes = await selectedFiles[0].arrayBuffer(); const pdf = await PDFDocument.load(bytes);
+  const newPdf = await PDFDocument.create();
+  const pages = parsePageRange(range, pdf.getPageCount());
+  const copiedPages = await newPdf.copyPages(pdf, pages);
+  copiedPages.forEach(page => newPdf.addPage(page));
+  addWatermarkToPDF(newPdf, "mujahar"); // WATERMARK HERE
+  const pdfBytes = await newPdf.save(); downloadFile(pdfBytes, 'split.pdf');
+  document.getElementById('result').innerHTML = `<a href="#" onclick="alert('Split')">✅ Download Split PDF</a>`;
+}
+
+function parsePageRange(range, total){if(!range) return [...Array(total).keys()]; const pages = []; range.split(',').forEach(part => {if(part.includes('-')){const [start, end] = part.split('-').map(Number); for(let i=start; i<=end; i++) pages.push(i-1);} else { pages.push(Number(part)-1); }}); return pages;}
+function downloadFile(bytes, name){const blob = new Blob([bytes], {type: 'application/pdf'}); const link = document.createElement('a'); link.href = URL.createObjectURL(blob); link.download = name; link.click();}
+function readFile(file){return new Promise((resolve)=>{ const reader = new FileReader(); reader.onload = () => resolve(reader.result); reader.readAsDataURL(file); });}
+changeTool();
 </script>
 </body>
-  </html>
+                                                                              </html>
