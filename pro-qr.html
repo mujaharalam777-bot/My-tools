@@ -1,1 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
 
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Pro QR Generator | My Tools</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="qr-pro.css">
+
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<header class="header">
+
+<a href="qr.html" class="back-btn">
+⬅ Back
+</a>
+
+<div class="logo">
+🚀 Pro QR Generator
+</div>
+
+</header>
+
+<div class="main">
+
+<!-- LEFT PANEL -->
+
+<div class="left-panel">
+
+<h2 class="panel-title">
+Generate Professional QR Code
+</h2>
+
+<div class="tabs">
+
+<button class="active">
+URL
+</button>
+
+<button>
+TEXT
+</button>
+
+<button>
+WiFi
+</button>
+
+<button>
+EMAIL
+</button>
+
+<button>
+PHONE
+</button>
+
+<button>
+SMS
+</button>
+
+<button>
+WhatsApp
+</button>
+
+</div>
+<!-- URL -->
+
+<div class="input-group">
+<label>Website URL</label>
+<input
+type="text"
+id="urlInput"
+placeholder="https://example.com">
+</div>
+
+<!-- TEXT -->
+
+<div class="input-group">
+<label>Text</label>
+<textarea
+id="textInput"
+rows="4"
+placeholder="Write anything..."></textarea>
+</div>
+
+<!-- WIFI -->
+
+<div class="input-group">
+<label>WiFi Name (SSID)</label>
+<input
+type="text"
+id="wifiName"
+placeholder="Home WiFi">
+</div>
+
+<div class="input-group">
+<label>Password</label>
+<input
+type="password"
+id="wifiPassword"
+placeholder="Password">
+</div>
+
+<!-- EMAIL -->
+
+<div class="input-group">
+<label>Email Address</label>
+<input
+type="email"
+id="emailInput"
+placeholder="example@gmail.com">
+</div>
+
+<div class="input-group">
+<label>Email Subject</label>
+<input
+type="text"
+id="emailSubject"
+placeholder="Subject">
+</div>
+
+<!-- PHONE -->
+
+<div class="input-group">
+<label>Phone Number</label>
+<input
+type="tel"
+id="phoneInput"
+placeholder="+91XXXXXXXXXX">
+</div>
+
+<!-- SMS -->
+
+<div class="input-group">
+<label>SMS Number</label>
+<input
+type="tel"
+id="smsNumber"
+placeholder="+91XXXXXXXXXX">
+</div>
+
+<div class="input-group">
+<label>SMS Message</label>
+<textarea
+id="smsMessage"
+rows="3"
+placeholder="Type message..."></textarea>
+</div>
+
+<!-- WHATSAPP -->
+
+<div class="input-group">
+<label>WhatsApp Number</label>
+<input
+type="tel"
+id="waNumber"
+placeholder="91XXXXXXXXXX">
+</div>
+
+<div class="input-group">
+<label>WhatsApp Message</label>
+<textarea
+id="waMessage"
+rows="3"
+placeholder="Hello..."></textarea>
+</div>
+
+<button
+class="generate-btn"
+id="generateBtn">
+
+Generate Pro QR
+
+</button>
+
+</div>
+
+<!-- RIGHT PANEL -->
+
+<div class="right-panel">
+
+<h2 class="panel-title">
+QR Preview
+</h2>
+
+<div
+class="preview-box"
+id="previewBox">
+
+<div class="preview-placeholder">
+
+QR Preview will appear here
+
+</div>
+
+  </div>
+  <div class="download-group">
+
+<button id="pngBtn" class="download-btn">
+📥 Download PNG
+</button>
+
+<button id="svgBtn" class="download-btn">
+📥 Download SVG
+</button>
+
+<button id="pdfBtn" class="download-btn">
+📄 Download PDF
+</button>
+
+<button id="copyBtn" class="download-btn">
+📋 Copy QR
+</button>
+
+</div>
+
+<div class="info-card">
+
+<h3>QR Information</h3>
+
+<p id="qrInfo">
+
+No QR Generated Yet.
+
+</p>
+
+</div>
+
+<div class="info-card">
+
+<h3>History</h3>
+
+<div id="historyList">
+
+No History Available
+
+</div>
+
+</div>
+
+<div class="info-card">
+
+<h3>Favorites</h3>
+
+<div id="favoriteList">
+
+No Favorite QR
+
+</div>
+
+</div>
+
+<div class="stats-grid">
+
+<div class="stat-box">
+<h2 id="totalQR">0</h2>
+<span>Total QR</span>
+</div>
+
+<div class="stat-box">
+<h2 id="todayQR">0</h2>
+<span>Today</span>
+</div>
+
+<div class="stat-box">
+<h2 id="downloadQR">0</h2>
+<span>Downloads</span>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<footer class="footer">
+
+© 2026 My Tools • Pro QR Generator
+
+</footer>
+<!-- JavaScript Files -->
+
+<script src="qr-types.js"></script>
+
+<script src="download.js"></script>
+
+<script src="history.js"></script>
+
+<script src="premium.js"></script>
+
+</body>
+</html>
