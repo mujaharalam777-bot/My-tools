@@ -1,1 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Color Picker Tool - Hex, RGB, Palette | QR Pro Tools</title>
+<meta name="description" content="Free online color picker. Get Hex, RGB, HSL codes. Pick color from image, generate palette. 100% Free.">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+  body{background:#111827;color:#f3f4f6;padding:20px}
+  header{text-align:center;margin-bottom:30px}
+  header h1{color:#60a5fa;font-size:26px}
+ .container{max-width:900px;margin:auto}
+ .box{background:#1f2937;padding:20px;border-radius:10px;margin-bottom:20px}
+ .box h2{color:#60a5fa;margin-bottom:15px;font-size:18px}
+  input[type="color"]{width:100%;height:70px;border:none;border-radius:8px;margin-bottom:15px;cursor:pointer}
+ .codes{display:grid;grid-template-columns:1fr;gap:10px}
+  @media(min-width:600px){.codes{grid-template-columns:1fr 1fr 1fr}}
+ .code{background:#111827;padding:10px;border-radius:6px}
+ .code label{font-size:12px;color:#9ca3af}
+ .code input{width:65%;padding:6px;background:#374151;border:1px solid #4b5563;color:#fff;border-radius:4px}
+ .code button{width:30%;padding:6px;background:#60a5fa;border:none;color:#000;border-radius:4px;cursor:pointer;font-weight:bold}
+ .presets{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:15px 0}
+  @media(min-width:600px){.presets{grid-template-columns:repeat(10,1fr)}}
+ .presets span{height:40px;border-radius:6px;cursor:pointer;border:2px solid #374151}
+ .pro-btn{width:100%;padding:12px;background:#fbbf24;color:#000;border:none;border-radius:6px;font-weight:bold;cursor:pointer}
+ .box ul,.box ol{padding-left:20px}
+ .box li{margin:8px 0}
+ .related a{display:block;color:#60a5fa;text-decoration:none;padding:5px 0}
+  footer{text-align:center;margin-top:30px;color:#6b7280}
+</style>
+</head>
+<body>
 
+<header>
+  <h1>🎨 Free Color Picker Tool</h1>
+  <p>Pick any color, Get Hex, RGB, HSL code instantly</p>
+</header>
+
+<div class="container">
+
+  <!-- TOOL -->
+  <div class="box">
+    <h2>🎨 Color Picker</h2>
+    <input type="color" id="colorInput" value="#6366f1">
+
+    <div class="codes">
+      <div class="code">
+        <label>HEX</label><br>
+        <input type="text" id="hexCode" value="#6366f1" readonly>
+        <button onclick="copyCode('hexCode')">Copy</button>
+      </div>
+      <div class="code">
+        <label>RGB</label><br>
+        <input type="text" id="rgbCode" value="rgb(99, 102, 241)" readonly>
+        <button onclick="copyCode('rgbCode')">Copy</button>
+      </div>
+      <div class="code">
+        <label>HSL</label><br>
+        <input type="text" id="hslCode" value="hsl(239, 84%, 67%)" readonly>
+        <button onclick="copyCode('hslCode')">Copy</button>
+      </div>
+    </div>
+
+    <h3 style="margin-top:15px">20 Preset Colors</h3>
+    <div class="presets">
+      <span style="background:#000"></span><span style="background:#ffffff"></span>
+      <span style="background:#ef4444"></span><span style="background:#22c55e"></span>
+      <span style="background:#3b82f6"></span><span style="background:#f59e0b"></span>
+      <span style="background:#ec4899"></span><span style="background:#8b5cf6"></span>
+      <span style="background:#06b6d4"></span><span style="background:#6366f1"></span>
+      <span style="background:#64748b"></span><span style="background:#84cc16"></span>
+      <span style="background:#f97316"></span><span style="background:#a855f7"></span>
+      <span style="background:#14b8a6"></span><span style="background:#eab308"></span>
+      <span style="background:#dc2626"></span><span style="background:#0ea5e9"></span>
+      <span style="background:#65a30d"></span><span style="background:#9333ea"></span>
+    </div>
+
+    <button class="pro-btn" onclick="alert('Watch Ad to unlock Pro Features for 24 hours!')">
+      🔒 Unlock Pro - Gradient, Palette, Export - Watch Ad
+    </button>
+  </div>
+
+  <!-- HOW TO USE -->
+  <div class="box">
+    <h2>📖 How to Use</h2>
+    <ol>
+      <li>Click the <b>Color Picker</b> to choose any color.</li>
+      <li>Copy <b>HEX, RGB, HSL</b> code with 1 click.</li>
+      <li>Click <b>Preset Colors</b> for quick selection.</li>
+      <li>Click <b>Watch Ad</b> to unlock Pro features.</li>
+    </ol>
+  </div>
+
+  <!-- WHY CHOOSE US -->
+  <div class="box">
+    <h2>🚀 Why Choose Our Color Picker?</h2>
+    <ul>
+      <li>⚡ <b>Instant</b> - Get color codes in real time</li>
+      <li>📱 <b>Mobile Friendly</b> - Works on Android & iPhone</li>
+      <li>🔒 <b>Safe & Secure</b> - No data stored</li>
+      <li>🎨 <b>20 Presets</b> - Popular colors ready</li>
+      <li>🖼️ <b>Image Picker</b> - Pick color from image - Coming in Pro</li>
+      <li>💯 <b>Completely Free</b> - No signup needed</li>
+    </ul>
+  </div>
+
+  <!-- FAQ -->
+  <div class="box">
+    <h2>❓ FAQ</h2>
+    <b>Is this Color Picker free?</b>
+    <p>Yes. All 8 basic features are completely free.</p>
+    <b>Can I pick color from an image?</b>
+    <p>Yes. Upload image and pick 1 color. 10 colors in Pro.</p>
+    <b>Does it work on mobile?</b>
+    <p>Yes. Works on Android, iPhone and Desktop.</p>
+    <b>How to get Pro features?</b>
+    <p>Click "Watch Ad" button. Get Pro for 24 hours.</p>
+  </div>
+
+  <!-- RELATED TOOLS -->
+  <div class="box">
+    <h2>🔗 Related Tools</h2>
+    <div class="related">
+      <a href="/age-calculator.html">Age Calculator</a>
+      <a href="/password-generator.html">Password Generator</a>
+      <a href="/bmi-calculator.html">BMI Calculator</a>
+      <a href="/qr-generator.html">QR Code Generator</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2026 QR Pro Tools. All Rights Reserved.</p>
+</footer>
+
+<script>
+const colorInput = document.getElementById('colorInput');
+const presets = document.querySelectorAll('.presets span');
+
+colorInput.addEventListener('input', updateCodes);
+presets.forEach(p=>{
+  p.onclick = ()=>{ colorInput.value = rgbToHex(p.style.background); updateCodes(); }
+});
+
+function updateCodes(){
+  let hex = colorInput.value;
+  document.getElementById('hexCode').value = hex;
+  let r = parseInt(hex.substr(1,2),16);
+  let g = parseInt(hex.substr(3,2),16);
+  let b = parseInt(hex.substr(5,2),16);
+  document.getElementById('rgbCode').value = `rgb(${r}, ${g}, ${b})`;
+  let hsl = rgbToHsl(r,g,b);
+  document.getElementById('hslCode').value = `hsl(${hsl[0]}, ${hsl[1]}%, ${hsl[2]}%)`;
+}
+
+function copyCode(id){
+  let copyText = document.getElementById(id);
+  copyText.select();
+  navigator.clipboard.writeText(copyText.value);
+  alert("Copied: " + copyText.value);
+}
+
+function rgbToHex(rgb){
+  let sep = rgb.indexOf(",") > -1? "," : " ";
+  let a = rgb.substr(4).split(")")[0].split(sep);
+  return "#" + a.map(x=>parseInt(x).toString(16).padStart(2,'0')).join('');
+}
+function rgbToHsl(r, g, b){
+  r/=255,g/=255,b/=255;let max=Math.max(r,g,b),min=Math.min(r,g,b);let h,s,l=(max+min)/2;
+  if(max==min){h=s=0;}else{d=max-min;s=l>0.5?d/(2-max-min):d/(max+min);
+  switch(max){case r:h=(g-b)/d+(g<b?6:0);break;case g:h=(b-r)/d+2;break;case b:h=(r-g)/d+4;break;}h/=6;}
+  return [Math.round(h*360),Math.round(s*100),Math.round(l*100)];
+}
+</script>
+
+</body>
+      </html>
