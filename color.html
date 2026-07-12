@@ -3,25 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pocker Tool</title>
+<title>Color Picker Tool</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 body{
-background: #0f2027; /* FIX: ekdom solid dark */
+background-color: #0f2027;
 min-height:100vh;
 padding:20px;
 font-family:'Poppins', sans-serif;
 color:#ffffff;
+margin:0;
 }
 .container{max-width:600px; margin:20px auto;}
-.back{color:#ffffff; text-decoration:none; margin-bottom:25px; display:block; font-size:17px;}
+.back{color:#ffffff; text-decoration:none; margin-bottom:25px; display:block; font-size:17px; font-weight:600;}
 
 .header{text-align:center; margin-bottom:30px;}
 .header .icon{font-size:60px;}
 .header h1{font-size:28px; font-weight:700; margin-top:10px;}
 
 .card{
-background: #203a43; /* FIX: solid card bg */
+background-color: #203a43;
 border:2px solid #2c5364;
 border-radius:20px;
 padding:25px;
@@ -30,8 +31,8 @@ text-align:center;
 }
 
 .status{display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:10px;}
-.dot{width:12px; height:12px; background:#00ff88; border-radius:50%;}
-.status h2{font-size:21px; font-weight:700; color:#fff;}
+.dot{width:12px; height:12px; background-color:#00ff88; border-radius:50%;}
+.status h2{font-size:21px; font-weight:700; color:#fff; margin:0;}
 .card p{color:#b0bec5; font-size:15px; margin-bottom:20px;}
 
 .btn{
@@ -42,17 +43,17 @@ border-radius:14px;
 font-size:17px;
 font-weight:700;
 cursor:pointer;
+text-decoration:none;
+display:block;
 }
 
-/* FREE BUTTON */
 .btn-free{
-background: #00ff88;
+background-color: #00ff88;
 color:#000;
 }
 
-/* PRO BUTTON */
 .btn-pro{
-background: #ff9500;
+background-color: #ff9500;
 color:#fff;
 }
 
@@ -74,28 +75,26 @@ font-size:15px;
 <a href="index.html" class="back">← Back</a>
 
 <div class="header">
-<div class="icon">🎯</div>
-<h1>Pocker Tool</h1>
+<div class="icon">🎨</div>
+<h1>Color Picker Tool</h1>
 </div>
 
-<!-- FREE VERSION CARD -->
 <div class="card">
 <div class="status">
 <span class="dot"></span>
 <h2>Free Version</h2>
 </div>
-<p>Basic Pocker</p>
-<a href="pocker-free.html"><button class="btn btn-free">Open Free</button></a>
+<p>Basic Color Picker</p>
+<a href="color-picker-free.html" class="btn btn-free">Open Free</a>
 </div>
 
-<!-- PRO VERSION CARD -->
 <div class="card">
 <div class="lock-icon">🔒</div>
-<h2>Pocker Pro</h2>
+<h2>Color Picker Pro</h2>
 <ul class="features">
-<li>Advanced Features</li>
-<li>Save & Load Data</li>
-<li>Export Report</li>
+<li>Gradient Generator</li>
+<li>Save Color Palette</li>
+<li>Export CSS Code</li>
 <li>No Ads</li>
 </ul>
 <button class="btn btn-pro">🚧 Unlock Soon</button>
