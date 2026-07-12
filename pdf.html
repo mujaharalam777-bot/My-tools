@@ -1,1 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PDF Tools | Free & Pro</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{background:linear-gradient(135deg,#0b1220,#1e293b);color:white;min-height:100vh;padding:30px 20px;}
+.container{max-width:650px;margin:auto;}
+.back{color:#94a3b8;text-decoration:none;font-size:16px;margin-bottom:20px;display:inline-block;}
+.back:hover{color:white;}
+.header{text-align:center;margin-bottom:30px;}
+.header img{width:60px;margin-bottom:10px;}
+.header h1{font-size:28px;font-weight:800;}
 
+.card{background:rgba(255,255,255,.05);backdrop-filter:blur(15px);border:1px solid rgba(255,255,255,.1);border-radius:22px;padding:25px;margin-bottom:20px;}
+.card-header{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.dot{width:10px;height:10px;border-radius:50%;background:#22c55e;}
+.card h2{font-size:22px;font-weight:700;}
+.card p{color:#cbd5e1;font-size:14px;margin-bottom:15px;}
+.btn{width:100%;padding:16px;border:none;border-radius:14px;font-size:16px;font-weight:700;cursor:pointer;transition:0.3s;}
+.btn-free{background:#22c55e;color:#000;}
+.btn-free:hover{background:#16a34a;transform:translateY(-2px);}
+.lock-icon{font-size:45px;text-align:center;margin-bottom:10px;}
+.features{list-style:none;margin:15px 0;}
+.features li{margin-bottom:10px;color:#cbd5e1;font-size:14px;display:flex;align-items:center;gap:8px;}
+.features li::before{content:'✓';color:#22c55e;font-weight:800;}
+.btn-pro{background:#f59e0b;color:#000;}
+.btn-pro:hover{background:#d97706;transform:translateY(-2px);}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <a href="index.html" class="back">← Back</a>
+  
+  <div class="header">
+    <img src="https://cdn-icons-png.flaticon.com/512/4726/4726019.png" alt="PDF">
+    <h1>PDF Tools</h1>
+  </div>
+
+  <!-- CARD 1: FREE -->
+  <div class="card">
+    <div class="card-header">
+      <div class="dot"></div>
+      <h2>Free Version</h2>
+    </div>
+    <p>15 Basic PDF Tools</p>
+    <button class="btn btn-free" onclick="window.location.href='pdf-free.html'">Open Free</button>
+  </div>
+
+  <!-- CARD 2: PRO -->
+  <div class="card">
+    <div class="lock-icon">🔒</div>
+    <h2 style="text-align:center;margin-bottom:15px;">PDF Tools Pro</h2>
+    
+    <ul class="features">
+      <li>Word, Excel, PPT Convert</li>
+      <li>OCR - Text Extract</li>
+      <li>Batch Process 20 Files</li>
+      <li>Digital Signature</li>
+      <li>Remove Watermark</li>
+    </ul>
+
+    <button class="btn btn-pro" onclick="alert('Coming Soon')">🚧 Unlock Soon</button>
+  </div>
+
+</div>
+</body>
+  </html>
