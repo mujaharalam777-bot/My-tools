@@ -5,38 +5,49 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>QR Code Generator</title>
 <style>
-  body {
-    background: linear-gradient(180deg, #1a2a32 0%, #0d1a1f 100%);
-    color: white;
-    font-family: Arial, sans-serif;
-    padding: 15px;
+    * {
+    box-sizing: border-box;
     margin: 0;
+    padding: 0;
+  }
+  body {
+    background: linear-gradient(180deg, #162028 0%, #0a1216 100%);
+    color: white;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    padding: 20px 15px;
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .container {
+    width: 100%;
+    max-width: 420px; /* Mobile er jonno center e rakhbe */
   }
   .back {
     font-size: 16px;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     cursor: pointer;
+    color: #ddd;
   }
   .icon {
-    font-size: 50px;
+    font-size: 60px;
     text-align: center;
-    margin: 15px 0;
+    margin: 10px 0 15px 0;
   }
   h1 {
     text-align: center;
-    font-size: 26px;
-    margin-bottom: 25px;
-    font-weight: 600;
+    font-size: 28px;
+    margin-bottom: 30px;
+    font-weight: 700;
   }
   .card {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 20px;
+    background: #1f2a33;
+    border: 1px solid #2e3a44;
+    border-radius: 18px;
     padding: 25px 20px;
-    margin: 20px 0;
+    margin-bottom: 20px;
     text-align: center;
-    backdrop-filter: blur(10px);
   }
   .green-dot {
     width: 10px;
@@ -48,23 +59,23 @@
   }
   .card-title {
     font-size: 20px;
-    font-weight: bold;
-    margin: 5px 0 10px 0;
+    font-weight: 700;
+    margin: 8px 0 6px 0;
   }
   .card-sub {
-    color: #aaa;
+    color: #8a9aa5;
     font-size: 14px;
     margin-bottom: 20px;
   }
   .btn {
     background: #00ff88;
-    color: black;
+    color: #000;
     border: none;
     padding: 16px;
     width: 100%;
-    border-radius: 15px;
+    border-radius: 14px;
     font-size: 18px;
-    font-weight: bold;
+    font-weight: 700;
     cursor: pointer;
     text-decoration: none;
     display: block;
@@ -73,52 +84,52 @@
     background: #ff9500;
     color: white;
   }
-  .btn:hover {
-    opacity: 0.9;
+  .lock-icon {
+    font-size: 55px;
+    margin: 5px 0 10px 0;
   }
   .feature {
     text-align: left;
-    margin: 12px 0;
-    color: #ddd;
+    margin: 14px 0;
+    color: #cbd5e1;
     font-size: 15px;
     display: flex;
     align-items: center;
+    justify-content: flex-start;
   }
   .feature span {
     color: #00ff88;
-    margin-right: 10px;
+    margin-right: 12px;
     font-size: 18px;
     font-weight: bold;
-  }
-  .lock-icon {
-    font-size: 50px;
-    margin: 10px 0;
   }
 </style>
 </head>
 <body>
 
-<div class="back">← Back</div>
+<div class="container">
+  <div class="back">← Back</div>
 
-<div class="icon">🔲</div>
-<h1>QR Code Generator</h1>
+  <div class="icon">⬜</div>
+  <h1>QR Code Generator</h1>
 
-<!-- Card 1: Free -->
-<div class="card">
-  <p><span class="green-dot"></span> <span class="card-title">Free Version</span></p>
-  <p class="card-sub">Basic QR Generator</p>
-  <a href="qr-generator.html" class="btn">Open Free</a>  <!-- Ekhane link -->
-</div>
+  <!-- Card 1: Free -->
+  <div class="card">
+    <p><span class="green-dot"></span> <span class="card-title">Free Version</span></p>
+    <p class="card-sub">Basic QR Generator</p>
+    <a href="qr-generator.html" class="btn">Open Free</a>
+  </div>
 
-<!-- Card 2: Pro -->
-<div class="card">
-  <div class="lock-icon">🔒</div>
-  <h2 class="card-title">QR Generator Pro</h2>
-  <div class="feature"><span>✓</span> Logo add kora</div>
-  <div class="feature"><span>✓</span> Color & Gradient</div>
-  <div class="feature"><span>✓</span> QR Scan kora</div>
-  <div class="feature"><span>✓</span> HD Download</div>
-  <a href="#" class="btn btn-pro">🚧 Unlock Soon</a>
+  <!-- Card 2: Pro -->
+  <div class="card">
+    <div class="lock-icon">🔒</div>
+    <h2 class="card-title">QR Generator Pro</h2>
+    <div class="feature"><span>✓</span> Logo add kora</div>
+    <div class="feature"><span>✓</span> Color & Gradient</div>
+    <div class="feature"><span>✓</span> QR Scan kora</div>
+    <div class="feature"><span>✓</span> HD Download</div>
+    <a href="#" class="btn btn-pro">🏁 Unlock Soon</a>
+  </div>
 </div>
 
 </body>
