@@ -6,69 +6,128 @@
 <title>Color Picker Tool</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-body{
-background-color: #0f2027;
-min-height:100vh 
-  .box{
-  padding: 20px;
-font-family:'Poppins', sans-serif;
-color:#ffffff;
-margin:0;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins', sans-serif;
 }
-.container{max-width:600px; margin:20px auto;}
-.back{color:#ffffff; text-decoration:none; margin-bottom:25px; display:block; font-size:17px; font-weight:600;}
+body{
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); /* tor moto gradient */
+  min-height:100vh;
+  color:#ffffff;
+  padding:20px;
+}
+.container{
+  max-width:600px; 
+  margin:0 auto;
+}
+.back{
+  color:#ffffff; 
+  text-decoration:none; 
+  margin-bottom:25px; 
+  display:block; 
+  font-size:17px; 
+  font-weight:600;
+}
 
-.header{text-align:center; margin-bottom:30px;}
-.header .icon{font-size:60px;}
-.header h1{font-size:28px; font-weight:700; margin-top:10px;}
+.header{
+  text-align:center; 
+  margin-bottom:30px;
+}
+.header .icon{
+  font-size:60px;
+}
+.header h1{
+  font-size:28px; 
+  font-weight:700; 
+  margin-top:10px;
+}
 
 .card{
-background-color: #203a43;
-border:2px solid #2c5364;
-border-radius:20px;
-.box{
-.box{
-padding: 20px;
-margin-bottom:20px;
-text-align:center;
+  background: rgba(255, 255, 255, 0.08); /* glass effect */
+  backdrop-filter: blur(10px);
+  border:1px solid rgba(255, 255, 255, 0.2);
+  border-radius:20px;
+  padding: 25px;
+  margin-bottom:20px;
+  text-align:center;
 }
 
-.status{display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:10px;}
-.dot{width:12px; height:12px; background-color:#00ff88; border-radius:50%;}
-.status h2{font-size:21px; font-weight:700; color:#fff; margin:0;}
-.card p{color:#b0bec5; font-size:15px; margin-bottom:20px;}
+.status{
+  display:flex; 
+  align-items:center; 
+  justify-content:center; 
+  gap:10px; 
+  margin-bottom:10px;
+}
+.dot{
+  width:12px; 
+  height:12px; 
+  background-color:#00ff88; 
+  border-radius:50%;
+  box-shadow: 0 0 10px #00ff88;
+}
+.status h2{
+  font-size:21px; 
+  font-weight:700; 
+  color:#fff; 
+  margin:0;
+}
+.card p{
+  color:#b0bec5; 
+  font-size:15px; 
+  margin-bottom:20px;
+}
 
 .btn{
-width:100%;
-padding:16px;
-border:none;
-border-radius:14px;
-font-size:17px;
-font-weight:700;
-cursor:pointer;
-text-decoration:none;
-display:block;
+  width:100%;
+  padding:16px;
+  border:none;
+  border-radius:14px;
+  font-size:17px;
+  font-weight:700;
+  cursor:pointer;
+  text-decoration:none;
+  display:block;
+  transition:0.3s;
+}
+.btn:hover{
+  transform: scale(1.02);
 }
 
 .btn-free{
-background-color: #00ff88;
-color:#000;
+  background-color: #00ff88;
+  color:#000;
 }
 
 .btn-pro{
-background-color: #ff9500;
-color:#fff;
+  background-color: #ff9500;
+  color:#fff;
 }
 
-.features{list-style:none; text-align:left; margin:20px 0; padding-left:0;}
+.features{
+  list-style:none; 
+  text-align:left; 
+  margin:20px 0; 
+  padding-left:0;
+}
 .features li{
-margin-bottom:12px;
-color:#e0e0e0;
-font-size:15px;
+  margin-bottom:12px;
+  color:#e0e0e0;
+  font-size:15px;
 }
-.features li::before{content:'✓ '; color:#00ff88; font-weight:700; margin-right:8px;}
+.features li::before{
+  content:'✓ '; 
+  color:#00ff88; 
+  font-weight:700; 
+  margin-right:8px;
+}
 
-.lock-icon{font-size:60px;}
+.lock-icon{
+  font-size:60px;
+  margin-bottom:10px;
+}
 </style>
 </head>
 <body>
@@ -78,29 +137,29 @@ font-size:15px;
 <a href="index.html" class="back">← Back</a>
 
 <div class="header">
-<div class="icon">🎨</div>
-<h1>Color Picker Tool</h1>
+  <div class="icon">🎨</div>
+  <h1>Color Picker Tool</h1>
 </div>
 
 <div class="card">
-<div class="status">
-<span class="dot"></span>
-<h2>Free Version</h2>
-</div>
-<p>Basic Color Picker</p>
-<a href="color-picker-free.html" class="btn btn-free">Open Free</a>
+  <div class="status">
+    <span class="dot"></span>
+    <h2>Free Version</h2>
+  </div>
+  <p>Basic Color Picker</p>
+  <a href="color-picker-free.html" class="btn btn-free">Open Free</a>
 </div>
 
 <div class="card">
-<div class="lock-icon">🔒</div>
-<h2>Color Picker Pro</h2>
-<ul class="features">
-<li>Gradient Generator</li>
-<li>Save Color Palette</li>
-<li>Export CSS Code</li>
-<li>No Ads</li>
-</ul>
-<button class="btn btn-pro">🚧 Unlock Soon</button>
+  <div class="lock-icon">🔒</div>
+  <h2>Color Picker Pro</h2>
+  <ul class="features">
+    <li>Gradient Generator</li>
+    <li>Save Color Palette</li>
+    <li>Export CSS Code</li>
+    <li>No Ads</li>
+  </ul>
+  <button class="btn btn-pro">🚧 Unlock Soon</button>
 </div>
 
 </div>
