@@ -1,189 +1,227 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- URL -->
 
-<title>QR Generator | My Tools</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-<style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
-}
-
-body{
-background:linear-gradient(135deg,#0f172a,#1e293b,#2563eb);
-min-height:100vh;
-color:#fff;
-display:flex;
-justify-content:center;
-align-items:center;
-padding:20px;
-}
-
-.container{
-width:100%;
-max-width:900px;
-}
-
-.header{
-text-align:center;
-margin-bottom:35px;
-}
-
-.header h1{
-font-size:42px;
-margin-bottom:10px;
-}
-
-.header p{
-opacity:.8;
-}
-
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-gap:25px;
-}
-
-.card{
-display:block;
-text-decoration:none;
-background:rgba(255,255,255,.08);
-backdrop-filter:blur(20px);
-border-radius:25px;
-padding:35px;
-color:white;
-transition:.3s;
-border:2px solid rgba(255,255,255,.08);
-}
-
-.card:hover{
-transform:translateY(-8px);
-border-color:#22c55e;
-}
-
-.icon{
-font-size:70px;
-margin-bottom:20px;
-}
-
-.card h2{
-margin-bottom:15px;
-font-size:28px;
-}
-
-.card p{
-opacity:.8;
-line-height:1.8;
-}
-
-.badge{
-display:inline-block;
-margin-top:20px;
-padding:8px 18px;
-border-radius:30px;
-font-size:14px;
-font-weight:bold;
-}
-
-.free{
-background:#22c55e;
-color:#000;
-}
-
-.pro{
-background:#f59e0b;
-color:#000;
-}
-
-.back{
-display:inline-block;
-margin-top:35px;
-color:#fff;
-text-decoration:none;
-font-weight:bold;
-}
-
-footer{
-text-align:center;
-margin-top:40px;
-opacity:.7;
-}
-
-@media(max-width:700px){
-
-.header h1{
-font-size:30px;
-}
-
-}
-
-</style>
-</head>
-
-<body>
-
-<div class="container">
-
-<div class="header">
-<h1>📱 QR Generator</h1>
-<p>Choose Your Version</p>
+<div class="input-group">
+<label>Website URL</label>
+<input
+type="text"
+id="urlInput"
+placeholder="https://example.com">
 </div>
 
-<div class="grid">
+<!-- TEXT -->
 
-<a href="qr-generator.html" class="card">
+<div class="input-group">
+<label>Text</label>
+<textarea
+id="textInput"
+rows="4"
+placeholder="Write anything..."></textarea>
+</div>
 
-<div class="icon">📱</div>
+<!-- WIFI -->
 
-<h2>Basic QR Generator</h2>
+<div class="input-group">
+<label>WiFi Name (SSID)</label>
+<input
+type="text"
+id="wifiName"
+placeholder="Home WiFi">
+</div>
 
-<p>
-Free QR Generator for URL and Text.
-Simple, Fast and Mobile Friendly.
+<div class="input-group">
+<label>Password</label>
+<input
+type="password"
+id="wifiPassword"
+placeholder="Password">
+</div>
+
+<!-- EMAIL -->
+
+<div class="input-group">
+<label>Email Address</label>
+<input
+type="email"
+id="emailInput"
+placeholder="example@gmail.com">
+</div>
+
+<div class="input-group">
+<label>Email Subject</label>
+<input
+type="text"
+id="emailSubject"
+placeholder="Subject">
+</div>
+
+<!-- PHONE -->
+
+<div class="input-group">
+<label>Phone Number</label>
+<input
+type="tel"
+id="phoneInput"
+placeholder="+91XXXXXXXXXX">
+</div>
+
+<!-- SMS -->
+
+<div class="input-group">
+<label>SMS Number</label>
+<input
+type="tel"
+id="smsNumber"
+placeholder="+91XXXXXXXXXX">
+</div>
+
+<div class="input-group">
+<label>SMS Message</label>
+<textarea
+id="smsMessage"
+rows="3"
+placeholder="Type message..."></textarea>
+</div>
+
+<!-- WHATSAPP -->
+
+<div class="input-group">
+<label>WhatsApp Number</label>
+<input
+type="tel"
+id="waNumber"
+placeholder="91XXXXXXXXXX">
+</div>
+
+<div class="input-group">
+<label>WhatsApp Message</label>
+<textarea
+id="waMessage"
+rows="3"
+placeholder="Hello..."></textarea>
+</div>
+
+<button
+class="generate-btn"
+id="generateBtn">
+
+Generate Pro QR
+
+</button>
+
+</div>
+
+<!-- RIGHT PANEL -->
+
+<div class="right-panel">
+
+<h2 class="panel-title">
+QR Preview
+</h2>
+
+<div
+class="preview-box"
+id="previewBox">
+
+<div class="preview-placeholder">
+
+QR Preview will appear here
+
+</div>
+
+</div>
+<div class="download-group">
+
+<button id="pngBtn" class="download-btn">
+📥 Download PNG
+</button>
+
+<button id="svgBtn" class="download-btn">
+📥 Download SVG
+</button>
+
+<button id="pdfBtn" class="download-btn">
+📄 Download PDF
+</button>
+
+<button id="copyBtn" class="download-btn">
+📋 Copy QR
+</button>
+
+</div>
+
+<div class="info-card">
+
+<h3>QR Information</h3>
+
+<p id="qrInfo">
+
+No QR Generated Yet.
+
 </p>
 
-<span class="badge free">FREE</span>
+</div>
 
-</a>
-<a href="pro-qr.html" class="card">
+<div class="info-card">
 
-<div class="icon">🚀</div>
+<h3>History</h3>
 
-<h2>Pro QR Generator</h2>
+<div id="historyList">
 
-<p>
-Premium Features.
-Logo, WiFi QR, WhatsApp QR,
-Batch QR, SVG Download and more.
-</p>
-
-<span class="badge pro">🔒 UNLOCK SOON</span>
-
-</a>
+No History Available
 
 </div>
 
-<div style="text-align:center">
+</div>
 
-<a href="index.html" class="back">⬅ Back to Home</a>
+<div class="info-card">
+
+<h3>Favorites</h3>
+
+<div id="favoriteList">
+
+No Favorite QR
 
 </div>
 
-<footer>
+</div>
 
-<p>© 2026 My Tools • QR Generator</p>
+<div class="stats-grid">
+
+<div class="stat-box">
+<h2 id="totalQR">0</h2>
+<span>Total QR</span>
+</div>
+
+<div class="stat-box">
+<h2 id="todayQR">0</h2>
+<span>Today</span>
+</div>
+
+<div class="stat-box">
+<h2 id="downloadQR">0</h2>
+<span>Downloads</span>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<footer class="footer">
+
+© 2026 My Tools • Pro QR Generator
 
 </footer>
+<!-- JavaScript Files -->
 
-</div>
+<script src="qr-types.js"></script>
+
+<script src="download.js"></script>
+
+<script src="history.js"></script>
+
+<script src="premium.js"></script>
 
 </body>
 </html>
