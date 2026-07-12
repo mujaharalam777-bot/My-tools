@@ -6,41 +6,39 @@
 <title>Pocker Tool</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box; margin:0; padding:0;}
 body{
-background: linear-gradient(180deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+background: #0f2027; /* FIX: ekdom solid dark */
 min-height:100vh;
 padding:20px;
 font-family:'Poppins', sans-serif;
-color:#fff;
+color:#ffffff;
 }
-.container{max-width:600px; margin:0 auto;}
-.back{color:#e2e8f0; text-decoration:none; margin-bottom:25px; display:block; font-size:17px; font-weight:600;}
+.container{max-width:600px; margin:20px auto;}
+.back{color:#ffffff; text-decoration:none; margin-bottom:25px; display:block; font-size:17px;}
 
 .header{text-align:center; margin-bottom:30px;}
-.header .icon{font-size:60px; margin-bottom:15px;}
-.header h1{font-size:28px; font-weight:700;}
+.header .icon{font-size:60px;}
+.header h1{font-size:28px; font-weight:700; margin-top:10px;}
 
 .card{
-background: #1e3a47; /* FIX: solid color dilam */
-border:1px solid rgba(255,255,255,0.2);
-border-radius:24px;
-padding:28px 25px;
+background: #203a43; /* FIX: solid card bg */
+border:2px solid #2c5364;
+border-radius:20px;
+padding:25px;
 margin-bottom:20px;
 text-align:center;
-box-shadow: 0 8px 30px rgba(0,0,0,0.3); /* shadow add korlam */
 }
 
 .status{display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:10px;}
-.dot{width:12px; height:12px; background:#00ff88; border-radius:50%; box-shadow: 0 0 12px #00ff88;}
-.status h2{font-size:21px; font-weight:700;}
-.card p{color:#cbd5e1; font-size:15px; margin-bottom:22px;}
+.dot{width:12px; height:12px; background:#00ff88; border-radius:50%;}
+.status h2{font-size:21px; font-weight:700; color:#fff;}
+.card p{color:#b0bec5; font-size:15px; margin-bottom:20px;}
 
 .btn{
 width:100%;
-padding:17px;
+padding:16px;
 border:none;
-border-radius:16px;
+border-radius:14px;
 font-size:17px;
 font-weight:700;
 cursor:pointer;
@@ -48,28 +46,25 @@ cursor:pointer;
 
 /* FREE BUTTON */
 .btn-free{
-background: linear-gradient(90deg, #00ff88, #00d977);
+background: #00ff88;
 color:#000;
 }
 
 /* PRO BUTTON */
 .btn-pro{
-background: linear-gradient(90deg, #ff9500, #ff7700);
+background: #ff9500;
 color:#fff;
 }
 
-.features{list-style:none; text-align:left; margin:22px 0;}
+.features{list-style:none; text-align:left; margin:20px 0; padding-left:0;}
 .features li{
-margin-bottom:14px;
-color:#e2e8f0;
+margin-bottom:12px;
+color:#e0e0e0;
 font-size:15px;
-display:flex;
-align-items:center;
-gap:10px;
 }
-.features li::before{content:'✓'; color:#00ff88; font-weight:700; font-size:18px;}
+.features li::before{content:'✓ '; color:#00ff88; font-weight:700; margin-right:8px;}
 
-.lock-icon{font-size:65px; margin-bottom:15px;}
+.lock-icon{font-size:60px;}
 </style>
 </head>
 <body>
