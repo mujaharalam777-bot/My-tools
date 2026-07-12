@@ -1,1 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Word Counter - Free & Pro</title>
+<link rel="stylesheet" href="style.css">
+<style>
+body{
+background: linear-gradient(180deg, #0a0f14 0%, #1e3a8a 100%);
+min-height:100vh;
+}
+.word-container{
+max-width:500px;
+margin:40px auto;
+padding:20px;
+}
+.header-title{
+text-align:center;
+margin-bottom:30px;
+}
+.header-title h1{
+font-size:28px;
+font-weight:700;
+margin-top:10px;
+}
+.card{
+background: rgba(255,255,255,0.08);
+backdrop-filter: blur(10px);
+border:1px solid rgba(255,255,255,0.1);
+border-radius:20px;
+padding:25px;
+text-align:center;
+margin-bottom:20px;
+}
+.card .dot{
+width:18px;
+height:18px;
+background:#22c55e;
+border-radius:50%;
+display:inline-block;
+margin-right:8px;
+box-shadow: 0 0 15px #22c55e;
+}
+.card h2{
+font-size:22px;
+margin-bottom:5px;
+display:inline;
+}
+.card p{
+color:#cbd5e1;
+font-size:14px;
+margin-bottom:20px;
+}
+.btn-free{
+background: #22c55e;
+color:#fff;
+padding:14px 40px;
+border-radius:12px;
+border:none;
+font-size:16px;
+font-weight:600;
+cursor:pointer;
+width:100%;
+transition: all 0.3s ease;
+}
+.btn-free:hover{
+transform: translateY(-3px);
+box-shadow: 0 8px 20px rgba(34,197,94,0.4);
+}
+.card-pro h2{
+font-size:22px;
+margin-bottom:15px;
+}
+.feature{
+text-align:left;
+margin:8px 0;
+color:#e2e8f0;
+font-size:15px;
+}
+.feature::before{
+content:'✓';
+color:#22c55e;
+margin-right:8px;
+font-weight:700;
+}
+.btn-pro{
+background: linear-gradient(90deg, #f97316, #fb923c);
+color:#fff;
+padding:14px 40px;
+border-radius:12px;
+border:none;
+font-size:16px;
+font-weight:600;
+cursor:pointer;
+width:100%;
+margin-top:15px;
+transition: all 0.3s ease;
+}
+.btn-pro:hover{
+transform: translateY(-3px);
+box-shadow: 0 8px 20px rgba(249,115,22,0.4);
+}
+</style>
+</head>
+<body>
 
+<div class="word-container">
+
+<div class="header-title">
+<div style="font-size:45px;">📝</div>
+<h1>Word Counter</h1>
+</div>
+
+<div class="card">
+<span class="dot"></span>
+<h2>Free Version</h2>
+<p>Basic Word Counter</p>
+<button class="btn-free" onclick="window.location.href='word-counter-free.html'">
+Open Free
+</button>
+</div>
+
+<div class="card card-pro">
+<div style="font-size:50px; margin-bottom:10px;">🔒</div>
+<h2>Word Counter Pro</h2>
+<div class="feature">Keyword Density</div>
+<div class="feature">Reading Time</div>
+<div class="feature">Export PDF</div>
+<div class="feature">Remove Ads</div>
+<button class="btn-pro" onclick="alert('Pro version coming soon!')">
+🚧 Unlock Soon
+</button>
+</div>
+
+</div>
+
+</body>
+  </html>
