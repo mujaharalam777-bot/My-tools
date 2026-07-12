@@ -1,257 +1,529 @@
-// =======================================
-// premium.js
-// Part 1
-// Premium Features Manager
-// =======================================
+/* ==========================================
+   PRO QR GENERATOR CSS
+   Part 1
+   ========================================== */
 
-// Premium Status
+:root{
 
-let premiumUser = true;
+--primary:#22c55e;
+--secondary:#2563eb;
+--warning:#f59e0b;
+--danger:#ef4444;
 
-// Check Premium
+--bg1:#0f172a;
+--bg2:#1e293b;
+--bg3:#334155;
 
-function isPremiumUser() {
-    return premiumUser;
-}
+--white:#ffffff;
+--text:#e2e8f0;
+--card:rgba(255,255,255,.08);
 
-// Unlock Premium
-
-function unlockPremium() {
-    premiumUser = true;
-    localStorage.setItem("premiumUser", "true");
-}
-
-// Lock Premium
-
-function lockPremium() {
-    premiumUser = false;
-    localStorage.setItem("premiumUser", "false");
-}
-
-// Restore Premium
-
-const savedPremium = localStorage.getItem("premiumUser");
-
-if (savedPremium === "true") {
-    premiumUser = true;
-}
-
-// Logo Upload
-
-function selectLogo(input) {
-
-    if (!input.files.length) return;
-
-    const file = input.files[0];
-
-    const reader = new FileReader();
-
-    reader.onload = function (e) {
-
-        qrSettings.logo = e.target.result;
-
-        alert("Logo Uploaded Successfully");
-
-    };
-
-    reader.readAsDataURL(file);
+--radius:20px;
 
 }
 
-// Remove Logo
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
 
-function removeLogo() {
+html{
+scroll-behavior:smooth;
+}
 
-    qrSettings.logo = null;
+body{
 
-    alert("Logo Removed");
+background:
+linear-gradient(135deg,
+var(--bg1),
+var(--bg2),
+var(--bg3));
+
+color:var(--text);
+
+min-height:100vh;
 
 }
 
-// Dark / Light Theme
+.container{
 
-function toggleDarkMode() {
+width:95%;
 
-    document.body.classList.toggle("light-mode");
+max-width:1450px;
 
-}
+margin:auto;
 
-// QR Size
-
-function increaseQRSize() {
-
-    qrSettings.size += 50;
+padding:25px;
 
 }
 
-function decreaseQRSize() {
+.header{
 
-    if (qrSettings.size > 150) {
+display:flex;
 
-        qrSettings.size -= 50;
+justify-content:space-between;
 
-    }
+align-items:center;
 
-}
-
-// Reset Settings
-
-function resetQRSettings() {
-
-    qrSettings.size = 350;
-
-    qrSettings.foreground = "#000000";
-
-    qrSettings.background = "#ffffff";
-
-    qrSettings.logo = null;
-
-    qrSettings.gradient = false;
-
-    qrSettings.rounded = false;
-
-    qrSettings.frame = false;
-
-}
-// =======================================
-// premium.js
-// Part 2 (Final)
-// =======================================
-
-// Premium Badge
-
-function showPremiumBadge(){
-
-const badge=document.getElementById("premiumBadge");
-
-if(!badge) return;
-
-badge.style.display=isPremiumUser()?"inline-block":"none";
+margin-bottom:30px;
 
 }
 
-// Welcome
+.logo{
 
-function showWelcome(){
+font-size:34px;
 
-if(isPremiumUser()){
+font-weight:700;
 
-console.log("🚀 Pro QR Generator Ready");
-
-}else{
-
-console.log("Free Version");
+color:var(--primary);
 
 }
 
+.back-btn{
+
+text-decoration:none;
+
+color:white;
+
+padding:12px 24px;
+
+border-radius:12px;
+
+background:rgba(255,255,255,.08);
+
+transition:0.3s;
+
 }
 
-// Save Settings
+.back-btn:hover{
 
-function saveSettings(){
+background:var(--primary);
 
-localStorage.setItem(
-
-"qrSettings",
-
-JSON.stringify(qrSettings)
-
-);
+color:#000;
 
 }
 
-// Load Settings
+.main{
 
-function loadSettings(){
+display:grid;
 
-const data=localStorage.getItem("qrSettings");
+grid-template-columns:420px 1fr;
 
-if(!data) return;
+gap:30px;
 
-try{
+align-items:start;
 
-const settings=JSON.parse(data);
+}
 
-Object.assign(qrSettings,settings);
+.left-panel{
 
-}catch(e){
+background:var(--card);
 
-console.log(e);
+border-radius:var(--radius);
+
+padding:25px;
+
+backdrop-filter:blur(20px);
+-webkit-backdrop-filter:blur(20px);
+
+}
+
+.right-panel{
+
+background:var(--card);
+
+border-radius:var(--radius);
+
+padding:25px;
+
+backdrop-filter:blur(20px);
+-webkit-backdrop-filter:blur(20px);
+
+}
+
+@media(max-width:1000px){
+
+.main{
+
+grid-template-columns:1fr;
+
+}
+
+.left-panel,
+.right-panel{
+
+width:100%;
 
 }
 
 }
+/* ==========================================
+   PART 2 - FORM & BUTTONS
+========================================== */
 
-// Restore Theme
+.panel-title{
+font-size:24px;
+font-weight:700;
+margin-bottom:20px;
+color:var(--primary);
+}
 
-function restoreTheme(){
+.input-group{
+margin-bottom:18px;
+}
 
-const theme=localStorage.getItem("theme");
+.input-group label{
+display:block;
+margin-bottom:8px;
+font-size:14px;
+font-weight:600;
+}
 
-if(theme==="light"){
+.input-group input,
+.input-group textarea,
+.input-group select{
 
-document.body.classList.add("light-mode");
+width:100%;
+
+padding:14px 16px;
+
+background:rgba(255,255,255,.08);
+
+border:2px solid transparent;
+
+border-radius:14px;
+
+color:#fff;
+
+font-size:15px;
+
+outline:none;
+
+transition:0.3s;
 
 }
 
-}
+.input-group input:focus,
+.input-group textarea:focus,
+.input-group select:focus{
 
-// Save Theme
+border-color:var(--primary);
 
-function saveTheme(){
-
-const light=document.body.classList.contains("light-mode");
-
-localStorage.setItem(
-
-"theme",
-
-light?"light":"dark"
-
-);
+box-shadow:0 0 15px rgba(34,197,94,.3);
 
 }
 
-// Toggle Theme
+.tabs{
 
-const oldToggle=toggleDarkMode;
+display:flex;
 
-toggleDarkMode=function(){
+gap:10px;
 
-oldToggle();
+flex-wrap:wrap;
 
-saveTheme();
-
-}
-
-// Reset Premium
-
-function resetPremium(){
-
-lockPremium();
-
-localStorage.removeItem("qrSettings");
-
-alert("Premium Reset Complete");
+margin-bottom:25px;
 
 }
 
-// Initialization
+.tabs button{
 
-window.addEventListener("load",()=>{
+padding:10px 18px;
 
-loadSettings();
+border:none;
 
-restoreTheme();
+border-radius:12px;
 
-showPremiumBadge();
+cursor:pointer;
 
-showWelcome();
+font-weight:600;
 
-});
+background:rgba(255,255,255,.08);
 
-window.addEventListener("beforeunload",()=>{
+color:white;
 
-saveSettings();
+transition:0.3s;
 
-});
+}
+
+.tabs button:hover{
+
+background:var(--primary);
+
+color:#000;
+
+}
+
+.tabs button.active{
+
+background:var(--primary);
+
+color:#000;
+
+}
+
+.generate-btn{
+
+width:100%;
+
+padding:16px;
+
+margin-top:20px;
+
+border:none;
+
+border-radius:15px;
+
+background:linear-gradient(135deg,#22c55e,#16a34a);
+
+color:#000;
+
+font-size:18px;
+
+font-weight:700;
+
+cursor:pointer;
+
+transition:0.3s;
+
+}
+
+.generate-btn:hover{
+
+transform:translateY(-3px);
+
+box-shadow:0 10px 25px rgba(34,197,94,.35);
+
+}
+
+.secondary-btn{
+
+width:100%;
+
+padding:14px;
+
+margin-top:12px;
+
+border:2px solid var(--primary);
+
+border-radius:14px;
+
+background:transparent;
+
+color:var(--primary);
+
+cursor:pointer;
+
+font-weight:600;
+
+transition:0.3s;
+
+}
+
+.secondary-btn:hover{
+
+background:var(--primary);
+
+color:#000;
+
+}
+/* ==========================================
+   PART 3 - PREVIEW, DOWNLOAD & STATS
+========================================== */
+
+.preview-box{
+
+background:#ffffff;
+
+border-radius:20px;
+
+padding:30px;
+
+min-height:460px;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+flex-direction:column;
+
+color:#111;
+
+box-shadow:0 15px 35px rgba(0,0,0,.25);
+
+}
+
+.preview-box canvas{
+
+max-width:100%;
+
+height:auto;
+
+border-radius:16px;
+
+transition:0.35s;
+
+}
+
+.preview-placeholder{
+
+opacity:.45;
+
+font-size:17px;
+
+text-align:center;
+
+line-height:1.7;
+
+}
+
+.download-group{
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:12px;
+
+margin-top:20px;
+
+}
+
+.download-btn{
+
+padding:14px;
+
+border:none;
+
+border-radius:14px;
+
+cursor:pointer;
+
+font-weight:700;
+
+background:linear-gradient(135deg,#2563eb,#1d4ed8);
+
+color:#fff;
+
+transition:0.3s;
+
+}
+
+.download-btn:hover{
+
+transform:translateY(-3px);
+
+}
+
+.info-card{
+
+margin-top:22px;
+
+padding:18px;
+
+background:rgba(255,255,255,.08);
+
+border-radius:16px;
+
+border:1px solid rgba(255,255,255,.08);
+
+}
+
+.info-card h3{
+
+margin-bottom:12px;
+
+color:var(--primary);
+
+}
+
+.info-card p{
+
+line-height:1.8;
+
+font-size:14px;
+
+opacity:.9;
+
+}
+
+.stats-grid{
+
+display:grid;
+
+grid-template-columns:repeat(3,1fr);
+
+gap:15px;
+
+margin-top:20px;
+
+}
+
+.stat-box{
+
+background:rgba(255,255,255,.08);
+
+padding:20px;
+
+border-radius:16px;
+
+text-align:center;
+
+}
+
+.stat-box h2{
+
+font-size:30px;
+color:var(--primary);
+margin-bottom:8px;
+
+}
+
+.stat-box span{
+
+font-size:14px;
+
+opacity:.8;
+
+}
+
+.footer{
+
+margin-top:40px;
+
+text-align:center;
+
+opacity:.75;
+
+font-size:14px;
+
+padding:20px 0;
+
+}
+
+@media(max-width:768px){
+
+.download-group{
+
+grid-template-columns:1fr;
+
+}
+
+.stats-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.preview-box{
+
+padding:20px;
+
+min-height:320px;
+
+}
+
+    }.
