@@ -1,26 +1,7 @@
-/* ==========================================
-   PRO QR GENERATOR CSS
-   Part 1
-   ========================================== */
-
-:root{
-
---primary:#22c55e;
---secondary:#2563eb;
---warning:#f59e0b;
---danger:#ef4444;
-
---bg1:#0f172a;
---bg2:#1e293b;
---bg3:#334155;
-
---white:#ffffff;
---text:#e2e8f0;
---card:rgba(255,255,255,.08);
-
---radius:20px;
-
-}
+/* =======================================
+   Pro QR Generator
+   qr-pro.css
+======================================= */
 
 *{
 margin:0;
@@ -29,146 +10,97 @@ box-sizing:border-box;
 font-family:'Poppins',sans-serif;
 }
 
-html{
-scroll-behavior:smooth;
-}
-
 body{
-
-background:
-linear-gradient(135deg,
-var(--bg1),
-var(--bg2),
-var(--bg3));
-
-color:var(--text);
-
+background:linear-gradient(135deg,#0f172a,#1e293b,#2563eb);
+color:#fff;
 min-height:100vh;
-
+padding:25px;
 }
 
 .container{
-
-width:95%;
-
-max-width:1450px;
-
+max-width:1400px;
 margin:auto;
-
-padding:25px;
-
 }
 
 .header{
-
 display:flex;
-
 justify-content:space-between;
-
 align-items:center;
-
 margin-bottom:30px;
-
+flex-wrap:wrap;
+gap:15px;
 }
 
-.logo{
-
-font-size:34px;
-
+.header h1{
+font-size:38px;
 font-weight:700;
+}
 
-color:var(--primary);
-
+.header p{
+opacity:.8;
+margin-top:5px;
 }
 
 .back-btn{
-
 text-decoration:none;
-
-color:white;
-
-padding:12px 24px;
-
+color:#fff;
+padding:12px 22px;
 border-radius:12px;
-
-background:rgba(255,255,255,.08);
-
-transition:0.3s;
-
+background:rgba(255,255,255,.1);
+transition:.3s;
 }
 
 .back-btn:hover{
-
-background:var(--primary);
-
+background:#22c55e;
 color:#000;
-
 }
 
-.main{
-
+.main-layout{
 display:grid;
-
-grid-template-columns:420px 1fr;
-
+grid-template-columns:1fr 420px;
 gap:30px;
-
-align-items:start;
-
-}
-
-.left-panel{
-
-background:var(--card);
-
-border-radius:var(--radius);
-
-padding:25px;
-
-backdrop-filter:blur(20px);
--webkit-backdrop-filter:blur(20px);
-
-}
-
-.right-panel{
-
-background:var(--card);
-
-border-radius:var(--radius);
-
-padding:25px;
-
-backdrop-filter:blur(20px);
--webkit-backdrop-filter:blur(20px);
-
-}
-
-@media(max-width:1000px){
-
-.main{
-
-grid-template-columns:1fr;
-
 }
 
 .left-panel,
 .right-panel{
-
-width:100%;
-
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(18px);
+padding:25px;
+border-radius:22px;
+border:1px solid rgba(255,255,255,.12);
 }
 
-}
-/* ==========================================
-   PART 2 - FORM & BUTTONS
-========================================== */
-
-.panel-title{
-font-size:24px;
-font-weight:700;
+.left-panel h2,
+.right-panel h2{
 margin-bottom:20px;
-color:var(--primary);
 }
+
+.tabs{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+margin-bottom:25px;
+}
+
+.tabs button{
+padding:10px 18px;
+border:none;
+border-radius:12px;
+cursor:pointer;
+background:#334155;
+color:#fff;
+font-weight:600;
+transition:.3s;
+}
+
+.tabs button.active,
+.tabs button:hover{
+background:#22c55e;
+color:#000;
+}
+/* =======================================
+   Input Fields
+======================================= */
 
 .input-group{
 margin-bottom:18px;
@@ -177,8 +109,8 @@ margin-bottom:18px;
 .input-group label{
 display:block;
 margin-bottom:8px;
-font-size:14px;
 font-weight:600;
+font-size:15px;
 }
 
 .input-group input,
@@ -186,329 +118,246 @@ font-weight:600;
 .input-group select{
 
 width:100%;
-
 padding:14px 16px;
-
-background:rgba(255,255,255,.08);
-
-border:2px solid transparent;
-
-border-radius:14px;
-
-color:#fff;
-
-font-size:15px;
-
+border:none;
 outline:none;
+border-radius:14px;
+background:rgba(255,255,255,.10);
+color:#fff;
+font-size:15px;
+transition:.3s;
 
-transition:0.3s;
+}
+
+.input-group input::placeholder,
+.input-group textarea::placeholder{
+
+color:#cbd5e1;
 
 }
 
 .input-group input:focus,
-.input-group textarea:focus,
-.input-group select:focus{
+.input-group textarea:focus{
 
-border-color:var(--primary);
-
-box-shadow:0 0 15px rgba(34,197,94,.3);
+border:2px solid #22c55e;
+background:rgba(255,255,255,.15);
 
 }
 
-.tabs{
-
-display:flex;
-
-gap:10px;
-
-flex-wrap:wrap;
-
-margin-bottom:25px;
-
-}
-
-.tabs button{
-
-padding:10px 18px;
-
-border:none;
-
-border-radius:12px;
-
-cursor:pointer;
-
-font-weight:600;
-
-background:rgba(255,255,255,.08);
-
-color:white;
-
-transition:0.3s;
-
-}
-
-.tabs button:hover{
-
-background:var(--primary);
-
-color:#000;
-
-}
-
-.tabs button.active{
-
-background:var(--primary);
-
-color:#000;
-
-}
+/* =======================================
+   Generate Button
+======================================= */
 
 .generate-btn{
 
 width:100%;
-
 padding:16px;
-
-margin-top:20px;
-
+margin-top:15px;
 border:none;
-
-border-radius:15px;
-
-background:linear-gradient(135deg,#22c55e,#16a34a);
-
-color:#000;
-
-font-size:18px;
-
+border-radius:14px;
+font-size:17px;
 font-weight:700;
-
 cursor:pointer;
-
-transition:0.3s;
+background:linear-gradient(135deg,#22c55e,#16a34a);
+color:#000;
+transition:.3s;
 
 }
 
 .generate-btn:hover{
 
 transform:translateY(-3px);
-
-box-shadow:0 10px 25px rgba(34,197,94,.35);
-
-}
-
-.secondary-btn{
-
-width:100%;
-
-padding:14px;
-
-margin-top:12px;
-
-border:2px solid var(--primary);
-
-border-radius:14px;
-
-background:transparent;
-
-color:var(--primary);
-
-cursor:pointer;
-
-font-weight:600;
-
-transition:0.3s;
+box-shadow:0 12px 25px rgba(34,197,94,.35);
 
 }
 
-.secondary-btn:hover{
-
-background:var(--primary);
-
-color:#000;
-
-}
-/* ==========================================
-   PART 3 - PREVIEW, DOWNLOAD & STATS
-========================================== */
+/* =======================================
+   Preview
+======================================= */
 
 .preview-box{
 
-background:#ffffff;
-
-border-radius:20px;
-
-padding:30px;
-
-min-height:460px;
-
+min-height:360px;
 display:flex;
-
 justify-content:center;
-
 align-items:center;
-
 flex-direction:column;
-
-color:#111;
-
-box-shadow:0 15px 35px rgba(0,0,0,.25);
+background:#fff;
+border-radius:18px;
+padding:20px;
+color:#000;
+margin-bottom:20px;
 
 }
 
 .preview-box canvas{
 
 max-width:100%;
-
 height:auto;
 
-border-radius:16px;
-
-transition:0.35s;
-
 }
 
-.preview-placeholder{
+/* =======================================
+   Action Buttons
+======================================= */
 
-opacity:.45;
-
-font-size:17px;
-
-text-align:center;
-
-line-height:1.7;
-
-}
-
-.download-group{
+.action-buttons{
 
 display:grid;
-
 grid-template-columns:repeat(2,1fr);
-
 gap:12px;
-
-margin-top:20px;
+margin-bottom:20px;
 
 }
 
-.download-btn{
+.action-btn{
 
 padding:14px;
-
 border:none;
-
-border-radius:14px;
-
+border-radius:12px;
 cursor:pointer;
-
-font-weight:700;
-
-background:linear-gradient(135deg,#2563eb,#1d4ed8);
-
+font-weight:600;
+font-size:15px;
+background:#2563eb;
 color:#fff;
-
-transition:0.3s;
-
-}
-
-.download-btn:hover{
-
-transform:translateY(-3px);
+transition:.3s;
 
 }
+
+.action-btn:hover{
+
+background:#22c55e;
+color:#000;
+transform:translateY(-2px);
+
+}
+/* =======================================
+   Cards
+======================================= */
 
 .info-card{
 
-margin-top:22px;
-
-padding:18px;
-
+margin-top:20px;
+padding:20px;
+border-radius:18px;
 background:rgba(255,255,255,.08);
-
-border-radius:16px;
-
-border:1px solid rgba(255,255,255,.08);
+border:1px solid rgba(255,255,255,.12);
 
 }
 
 .info-card h3{
 
-margin-bottom:12px;
+margin-bottom:15px;
+font-size:18px;
+color:#22c55e;
 
-color:var(--primary);
+}
+
+#historyList,
+#favoriteList{
+
+max-height:220px;
+overflow-y:auto;
+padding-right:6px;
 
 }
 
-.info-card p{
+.history-item{
 
-line-height:1.8;
-
-font-size:14px;
-
-opacity:.9;
+padding:12px;
+margin-bottom:10px;
+background:rgba(255,255,255,.06);
+border-radius:12px;
+border:1px solid rgba(255,255,255,.08);
 
 }
+
+.history-item button{
+
+margin-top:8px;
+margin-right:8px;
+padding:8px 12px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+background:#2563eb;
+color:#fff;
+
+}
+
+.history-item button:hover{
+
+background:#22c55e;
+color:#000;
+
+}
+
+/* =======================================
+   Statistics
+======================================= */
 
 .stats-grid{
 
 display:grid;
-
 grid-template-columns:repeat(3,1fr);
-
 gap:15px;
-
 margin-top:20px;
 
 }
 
 .stat-box{
 
-background:rgba(255,255,255,.08);
-
-padding:20px;
-
-border-radius:16px;
-
 text-align:center;
+padding:20px;
+border-radius:16px;
+background:rgba(255,255,255,.08);
+border:1px solid rgba(255,255,255,.10);
 
 }
 
 .stat-box h2{
 
-font-size:30px;
-color:var(--primary);
+font-size:32px;
+color:#22c55e;
 margin-bottom:8px;
 
 }
 
-.stat-box span{
-
-font-size:14px;
+.stat-box p{
 
 opacity:.8;
+font-size:14px;
 
 }
+
+/* =======================================
+   Footer
+======================================= */
 
 .footer{
 
-margin-top:40px;
-
+margin-top:35px;
 text-align:center;
-
-opacity:.75;
-
-font-size:14px;
-
-padding:20px 0;
+opacity:.7;
+padding:20px;
 
 }
 
-@media(max-width:768px){
+/* =======================================
+   Mobile Responsive
+======================================= */
 
-.download-group{
+@media(max-width:900px){
+
+.main-layout{
 
 grid-template-columns:1fr;
+
+}
+
+.right-panel{
+
+margin-top:20px;
 
 }
 
@@ -518,11 +367,58 @@ grid-template-columns:1fr;
 
 }
 
-.preview-box{
+.action-buttons{
 
-padding:20px;
+grid-template-columns:1fr;
 
-min-height:320px;
+}
+
+.tabs{
+
+justify-content:center;
+
+}
+
+.header{
+
+flex-direction:column;
+text-align:center;
+
+}
+
+.header h1{
+
+font-size:30px;
+
+}
+
+}
+
+@media(max-width:500px){
+
+body{
+
+padding:15px;
+
+}
+
+.left-panel,
+.right-panel{
+
+padding:18px;
+
+}
+
+.input-group input,
+.input-group textarea{
+
+font-size:14px;
+
+}
+
+.generate-btn{
+
+font-size:15px;
 
 }
 
