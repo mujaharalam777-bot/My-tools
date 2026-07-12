@@ -3,17 +3,40 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Tools - 100+ Free Online Tools</title>
+<title>My Tools</title>
+<link rel="stylesheet" href="style.css">
 <style>
-*{margin:0; padding:0; box-sizing:border-box; font-family:Arial, sans-serif;}
-body{background:#0e1a24; min-height:100vh; color:#fff; padding:20px;}
-.header{text-align:center; margin-bottom:20px;}
-.header h1{font-size:24px; margin-bottom:5px;}
-.grid{display:grid; grid-template-columns:repeat(2, 1fr); gap:12px;}
-.card{background:#1e2d3a; padding:20px 10px; border-radius:15px; text-align:center; text-decoration:none; color:#fff; display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:120px;}
-.card:active{background:#2a3d4d;}
-.icon{font-size:40px; margin-bottom:10px;}
-.card p{font-size:14px; font-weight:600;}
+/* style.css ke override korar jonno */
+body{background:#0e1a24 !important;}
+.container{padding:10px !important;}
+.grid{
+    display:grid !important; 
+    grid-template-columns:repeat(2, 1fr) !important; 
+    gap:10px !important;
+    padding:10px !important;
+}
+.card{
+    background:#1e2d3a !important;
+    border-radius:12px !important;
+    padding:15px 10px !important;
+    text-align:center !important;
+    text-decoration:none !important;
+    color:#fff !important;
+    display:block !important;
+    min-height:110px !important;
+}
+.icon{
+    font-size:38px !important; 
+    display:block !important; 
+    margin-bottom:8px !important;
+}
+.card p{
+    font-size:13px !important; 
+    font-weight:600 !important;
+    color:#fff !important;
+}
+.header{text-align:center !important; padding:20px !important;}
+.header h1{font-size:22px !important; color:#fff !important;}
 </style>
 </head>
 <body>
@@ -22,101 +45,27 @@ body{background:#0e1a24; min-height:100vh; color:#fff; padding:20px;}
     <h1>🚀 My Tools</h1>
 </div>
 
-<div class="grid">
-    
-    <!-- Purono 6 ta -->
-    <a href="age.html" class="card">
-        <span class="icon">🎂</span>
-        <p>Age Calculator</p>
-    </a>
-
-    <a href="bmi.html" class="card">
-        <span class="icon">⚖️</span>
-        <p>BMI Calculator</p>
-    </a>
-
-    <a href="qr.html" class="card">
-        <span class="icon">📱</span>
-        <p>QR Generator</p>
-    </a>
-
-    <a href="pdf.html" class="card">
-        <span class="icon">📄</span>
-        <p>PDF Tools</p>
-    </a>
-
-    <a href="word.html" class="card">
-        <span class="icon">abc</span>
-        <p>Word Counter</p>
-    </a>
-
-    <a href="color.html" class="card">
-        <span class="icon">🎨</span>
-        <p>Color Picker</p>
-    </a>
-
-    <!-- Notun 12 ta - ekhon ager gulor motoi dekhabe -->
-    <a href="password.html" class="card">
-        <span class="icon">🔑</span>
-        <p>Strong Password Generator</p>
-    </a>
-
-    <a href="resize.html" class="card">
-        <span class="icon">🖼️</span>
-        <p>Image Resizer</p>
-    </a>
-
-    <a href="percentage.html" class="card">
-        <span class="icon">%</span>
-        <p>Percentage Calculator</p>
-    </a>
-
-    <a href="love.html" class="card">
-        <span class="icon">❤️</span>
-        <p>Love Calculator</p>
-    </a>
-
-    <a href="case.html" class="card">
-        <span class="icon">Aa</span>
-        <p>Case Converter</p>
-    </a>
-
-    <a href="slug.html" class="card">
-        <span class="icon">🔗</span>
-        <p>Text to Slug Generator</p>
-    </a>
-
-    <a href="remove.html" class="card">
-        <span class="icon">📝</span>
-        <p>Remove Duplicate Lines</p>
-    </a>
-
-    <a href="compound.html" class="card">
-        <span class="icon">💰</span>
-        <p>Compound Interest Calculator</p>
-    </a>
-
-    <a href="gradient.html" class="card">
-        <span class="icon">🎨</span>
-        <p>CSS Gradient Generator</p>
-    </a>
-
-    <a href="favicon.html" class="card">
-        <span class="icon">⭐</span>
-        <p>Favicon Generator</p>
-    </a>
-
-    <a href="base64.html" class="card">
-        <span class="icon">{}</span>
-        <p>Base64 Encoder/Decoder</p>
-    </a>
-
-    <a href="hash.html" class="card">
-        <span class="icon">#</span>
-        <p>MD5/SHA256 Hash Generator</p>
-    </a>
-
+<div class="container">
+    <div class="grid">
+        <a href="age.html" class="card"><span class="icon">🎂</span><p>Age Calculator</p></a>
+        <a href="bmi.html" class="card"><span class="icon">⚖️</span><p>BMI Calculator</p></a>
+        <a href="qr.html" class="card"><span class="icon">📱</span><p>QR Generator</p></a>
+        <a href="pdf.html" class="card"><span class="icon">📄</span><p>PDF Tools</p></a>
+        <a href="word.html" class="card"><span class="icon">abc</span><p>Word Counter</p></a>
+        <a href="color.html" class="card"><span class="icon">🎨</span><p>Color Picker</p></a>
+        <a href="password.html" class="card"><span class="icon">🔑</span><p>Strong Password Generator</p></a>
+        <a href="resize.html" class="card"><span class="icon">🖼️</span><p>Image Resizer</p></a>
+        <a href="percentage.html" class="card"><span class="icon">%</span><p>Percentage Calculator</p></a>
+        <a href="love.html" class="card"><span class="icon">❤️</span><p>Love Calculator</p></a>
+        <a href="case.html" class="card"><span class="icon">Aa</span><p>Case Converter</p></a>
+        <a href="slug.html" class="card"><span class="icon">🔗</span><p>Text to Slug Generator</p></a>
+        <a href="remove.html" class="card"><span class="icon">📝</span><p>Remove Duplicate Lines</p></a>
+        <a href="compound.html" class="card"><span class="icon">💰</span><p>Compound Interest Calculator</p></a>
+        <a href="gradient.html" class="card"><span class="icon">🎨</span><p>CSS Gradient Generator</p></a>
+        <a href="favicon.html" class="card"><span class="icon">⭐</span><p>Favicon Generator</p></a>
+        <a href="base64.html" class="card"><span class="icon">{}</span><p>Base64 Encoder/Decoder</p></a>
+        <a href="hash.html" class="card"><span class="icon">#</span><p>MD5/SHA256 Hash Generator</p></a>
+    </div>
 </div>
-
 </body>
-    </html>
+</html>
