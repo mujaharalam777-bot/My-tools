@@ -3,46 +3,62 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PDF Tools - Free | Professional Toolkit</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<title>PDF Tools Pro - Free Professional Toolkit</title>
+<meta name="description" content="Free PDF Tools: PDF to Image, Image to PDF, Merge, Compress, Split. 100% Client Side. Add Custom Watermark.">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
 <style>
+:root{
+  --primary: #3b82f6;
+  --primary-dark: #2563eb;
+  --success: #22c55e;
+  --bg1: #1e3a8a;
+  --bg2: #1e40af;
+  --card-bg: rgba(30, 58, 138, 0.7);
+  --box-bg: rgba(59, 130, 246, 0.25);
+}
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins', sans-serif;}
-body{background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);min-height:100vh;color:#ffffff;padding:20px;}
-.container{max-width:750px;margin:0 auto;}
-.back{color:#ffffff;text-decoration:none;margin-bottom:25px;display:block;font-size:18px;font-weight:600;}
-.header{text-align:center;margin-bottom:30px;}
-.header.icon{font-size:65px;margin-bottom:10px;}
-.header h1{font-size:28px;font-weight:700;color:#fff;}
+body{background: linear-gradient(135deg, var(--bg1) 0%, var(--bg2) 100%);min-height:100vh;color:#ffffff;padding:20px;}
+.container{max-width:800px;margin:0 auto;}
+.back{color:#ffffff;text-decoration:none;margin-bottom:25px;display:inline-flex;align-items:center;gap:8px;font-size:16px;font-weight:600;transition:0.3s;}
+.back:hover{color:#bfdbfe;}
+.header{text-align:center;margin-bottom:35px;}
+.header.icon{font-size:70px;margin-bottom:12px;}
+.header h1{font-size:30px;font-weight:700;color:#fff;margin-bottom:5px;}
 .header p{color:#bfdbfe;font-size:15px;}
-.card{background: rgba(30, 58, 138, 0.7);backdrop-filter: blur(12px);border-radius:20px;padding: 30px;margin-bottom:25px;box-shadow: 0 8px 32px rgba(0,0,0,0.2);}
-.box{background: rgba(59, 130, 246, 0.25);border-radius:15px;padding:22px;margin-bottom:20px;border:1px solid rgba(255,255,255,0.1);}
-.box h3{font-size:18px;color:#fff;margin-bottom:15px;display:flex;align-items:center;gap:10px;}
+.card{background: var(--card-bg);backdrop-filter: blur(12px);border-radius:20px;padding: 32px;margin-bottom:25px;box-shadow: 0 8px 32px rgba(0,0,0,0.2);border:1px solid rgba(255,255,255,0.1);}
+.box{background: var(--box-bg);border-radius:16px;padding:24px;margin-bottom:20px;border:1px solid rgba(255,255,255,0.1);}
+.box h3{font-size:18px;color:#fff;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
 .box ul{list-style:none;padding-left:0;}
-.box li{color:#dbeafe;font-size:14px;margin-bottom:10px;display:flex;align-items:flex-start;}
-.box li::before{content:'✓';color:#22c55e;font-weight:700;margin-right:10px;font-size:16px;margin-top:2px;}
+.box li{color:#dbeafe;font-size:14px;margin-bottom:10px;display:flex;align-items:flex-start;line-height:1.6;}
+.box li::before{content:'✓';color:var(--success);font-weight:700;margin-right:10px;font-size:16px;margin-top:2px;}
 label{display:block;font-size:15px;font-weight:600;margin-bottom:10px;color:#bfdbfe;}
-select,.upload-box,input[type="text"]{width:100%;padding:14px;border-radius:12px;border:2px solid #3b82f6;background:#1e3a8a;color:#fff;font-size:15px;margin-bottom:15px;outline:none;}
-.upload-box{border:2px dashed #3b82f6;text-align:center;cursor:pointer;transition:0.3s;}
+select,input[type="text"]{width:100%;padding:14px;border-radius:12px;border:2px solid var(--primary);background:#1e3a8a;color:#fff;font-size:15px;margin-bottom:15px;outline:none;transition:0.3s;}
+select:focus,input[type="text"]:focus{border-color:#60a5fa;box-shadow:0 0 0 3px rgba(59,130,246,0.3);}
+.upload-box{width:100%;padding:24px;border-radius:12px;border:2px dashed var(--primary);background:rgba(59,130,246,0.1);text-align:center;cursor:pointer;transition:0.3s;margin-bottom:15px;}
 .upload-box:hover{background: rgba(59, 130, 246, 0.3);border-color:#60a5fa;}
 .upload-box input{display:none;}
-#fileName{font-size:13px;color:#bfdbfe;margin-top:8px;}
-.btn{width:100%;padding:16px;border:none;border-radius:12px;font-size:17px;font-weight:700;cursor:pointer;background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);color:#fff;transition:0.3s;box-shadow: 0 4px 15px rgba(34,197,94,0.3);}
+.upload-box p{font-weight:600;font-size:15px;}
+#fileName{font-size:13px;color:#93c5fd;margin-top:8px;}
+.btn{width:100%;padding:16px;border:none;border-radius:12px;font-size:17px;font-weight:700;cursor:pointer;background: linear-gradient(135deg, var(--success) 0%, #16a34a 100%);color:#fff;transition:0.3s;box-shadow: 0 4px 15px rgba(34,197,94,0.3);}
 .btn:hover{transform: translateY(-2px);box-shadow: 0 6px 20px rgba(34,197,94,0.4);}
-.loader{display:none;text-align:center;color:#22c55e;margin-top:15px;font-weight:600;}
+.btn:disabled{opacity:0.6;cursor:not-allowed;transform:none;}
+.loader{display:none;text-align:center;color:var(--success);margin-top:15px;font-weight:600;}
 .result{margin-top:20px;text-align:center;}
-.result a{display:inline-block;padding:12px 24px;background: #22c55e;color:#fff;border-radius:10px;text-decoration:none;font-weight:700;margin:5px;transition:0.3s;}
+.result a{display:inline-block;padding:12px 24px;background: var(--success);color:#fff;border-radius:10px;text-decoration:none;font-weight:700;margin:5px;transition:0.3s;}
 .result a:hover{background:#16a34a;}
-.faq-item{margin-bottom:15px;}
+.error{color:#f87171;font-weight:600;margin-top:10px;}
+.success{color:var(--success);font-weight:600;margin-top:10px;}
+.faq-item{margin-bottom:16px;}
 .faq-item h4{font-size:15px;color:#fff;margin-bottom:6px;}
 .faq-item p{font-size:13px;color:#dbeafe;line-height:1.6;}
-.related-tools a{color:#60a5fa;text-decoration:none;display:block;margin-bottom:10px;font-weight:500;}
-.related-tools a:hover{text-decoration:underline;}
+.related-tools a{color:#60a5fa;text-decoration:none;display:block;margin-bottom:10px;font-weight:500;transition:0.3s;}
+.related-tools a:hover{color:#93c5fd;text-decoration:underline;}
 .footer{text-align:center;color:#bfdbfe;font-size:12px;margin-top:25px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.2);}
-.preview-grid{display:grid;grid-template-columns: repeat(2, 1fr);gap:12px;margin-top:15px;}
-.preview-grid img{width:100%;border-radius:8px;border:2px solid #3b82f6;}
+.preview-grid{display:grid;grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));gap:12px;margin-top:15px;}
+.preview-grid img{width:100%;border-radius:8px;border:2px solid var(--primary);}
 .preview-grid a{display:block;text-align:center;margin-top:8px;color:#60a5fa;text-decoration:none;font-size:13px;font-weight:600;}
 .small-text{font-size:12px;color:#93c5fd;margin-top:-10px;margin-bottom:15px;}
 </style>
@@ -88,9 +104,10 @@ select,.upload-box,input[type="text"]{width:100%;padding:14px;border-radius:12px
 <div class="box">
   <h3>📖 How to Use</h3>
   <ul style="list-style:decimal;padding-left:20px;">
-    <li>Select your desired tool from the dropdown</li>
+    <li>Select your desired tool from the dropdown menu</li>
     <li>Enter your name/brand for watermark or leave blank</li>
     <li>Upload PDF or Image files from your device</li>
+    <li>Configure additional options like page range or compression</li>
     <li>Click "Convert Now" and download your processed file</li>
   </ul>
 </div>
@@ -102,8 +119,9 @@ select,.upload-box,input[type="text"]{width:100%;padding:14px;border-radius:12px
     <li>Custom Watermark - Add your own name/brand to every output PDF</li>
     <li>100% Client-Side Processing - Your files never leave your device</li>
     <li>Smart Page Selection - Choose specific pages while splitting</li>
+    <li>Multiple Compression Levels - Balance quality vs file size</li>
     <li>Mobile & Desktop Friendly - Fully Responsive Design</li>
-    <li>Completely Free - No Limits, No Ads, No Signup</li>
+    <li>Completely Free - No Limits, No Ads, No Signup Required</li>
   </ul>
 </div>
 
@@ -111,53 +129,59 @@ select,.upload-box,input[type="text"]{width:100%;padding:14px;border-radius:12px
   <h3>❓ Frequently Asked Questions</h3>
   <div class="faq-item">
     <h4>Is this tool really free?</h4>
-    <p>Yes. All 5 tools are completely free with no usage limits or hidden charges.</p>
+    <p>Yes. All 5 tools are completely free with no usage limits, watermarks or hidden charges.</p>
   </div>
   <div class="faq-item">
-    <h4>Is my data secure?</h4>
-    <p>Absolutely. All processing happens in your browser. We never upload your files to any server.</p>
+    <h4>Is my data secure and private?</h4>
+    <p>Absolutely. All processing happens directly in your browser. We never upload your files to any server.</p>
   </div>
   <div class="faq-item">
     <h4>How does the watermark work?</h4>
-    <p>Enter your name in the watermark box. It will be added at the bottom of every output PDF. Leave blank to remove watermark.</p>
+    <p>Enter your name in the watermark box. It will be added at the bottom of every output PDF. Leave blank to remove watermark completely.</p>
   </div>
   <div class="faq-item">
     <h4>Can I select specific pages to split?</h4>
-    <p>Yes. Use the dropdown to select All, First, Last pages or enter a custom range like "1-3,5".</p>
+    <p>Yes. Use the dropdown to select All, First 3, Last 2 pages or enter a custom range like "1-3,5,7".</p>
   </div>
 </div>
 
 <div class="box">
   <h3>🔗 Related Tools</h3>
   <div class="related-tools">
-    <a href="pdf-pro.html">→ PDF Pro Version - Add Password Protection</a>
-    <a href="image-tools.html">→ Image Converter & Compressor</a>
-    <a href="qr-generator.html">→ QR Code Generator</a>
+    <a href="pdf-pro.html">→ PDF Pro Version - Add Password Protection & Digital Signature</a>
+    <a href="image-tools.html">→ Image Converter, Resizer & Compressor</a>
+    <a href="qr-generator.html">→ QR Code Generator & Scanner</a>
     <a href="index.html">→ Back to Home</a>
   </div>
 </div>
 
-<div class="footer">© 2026 My Tools • PDF Tools Pro Free</div>
+<div class="footer">© 2026 My Tools • PDF Tools Pro Free • Made with ❤️</div>
 
 </div>
 
 <script>
 pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 const { jsPDF } = window.jspdf;
-const { PDFDocument, rgb } = PDFLib;
+const { PDFDocument, rgb, StandardFonts } = PDFLib;
 let selectedFiles = [];
 let totalPages = 0;
 
 function addWatermarkToPDF(pdfDoc, text){
-  if(!text) return; // faka thakle watermark debe na
+  if(!text || text.trim() === '') return;
   const pages = pdfDoc.getPages();
   pages.forEach(page => {
-    page.drawText(text, { x: 30, y: 30, size: 10, color: rgb(0.6, 0.6, 0.6), });
+    const { width, height } = page.getSize();
+    page.drawText(text, {
+      x: 30,
+      y: 30,
+      size: 10,
+      color: rgb(0.6, 0.6, 0.6),
+    });
   });
 }
 
 function addWatermarkToJSPDF(pdf, text){
-  if(!text) return; // faka thakle watermark debe na
+  if(!text || text.trim() === '') return;
   const pageCount = pdf.getNumberOfPages();
   for(let i=1; i<=pageCount; i++){
     pdf.setPage(i);
@@ -178,6 +202,7 @@ function changeTool(){
   document.getElementById('fileName').innerText = '';
   document.getElementById('result').innerHTML = '';
   extra.innerHTML = '';
+  btn.disabled = false;
 
   if(tool === 'imgtopdf'){
     fileInput.accept = "image/*"; fileInput.multiple = true;
@@ -229,7 +254,7 @@ function toggleCustomRange(){
 
 function showFileName(e){
   selectedFiles = Array.from(e.target.files);
-  document.getElementById('fileName').innerText = selectedFiles.length + " file(s) selected";
+  document.getElementById('fileName').innerText = selectedFiles.length + " file(s) selected: " + selectedFiles.map(f=>f.name).join(', ');
 }
 
 async function convertNow(){
@@ -237,11 +262,12 @@ async function convertNow(){
   const watermarkText = document.getElementById('watermarkInput').value.trim();
   const resultDiv = document.getElementById('result');
   const loader = document.getElementById('loader');
-  resultDiv.innerHTML = ''; loader.style.display = 'block';
+  const btn = document.getElementById('convertBtn');
+  resultDiv.innerHTML = ''; loader.style.display = 'block'; btn.disabled = true;
 
   if(selectedFiles.length === 0){
-    loader.style.display = 'none';
-    resultDiv.innerHTML = "⚠️ Please select a file first";
+    loader.style.display = 'none'; btn.disabled = false;
+    resultDiv.innerHTML = `<p class="error">⚠️ Please select a file first</p>`;
     return;
   }
 
@@ -252,9 +278,9 @@ async function convertNow(){
     else if(tool === 'compress'){ await compressPdf(watermarkText); }
     else if(tool === 'split'){ await splitPdf(watermarkText); }
   }catch(err){
-    resultDiv.innerHTML = "❌ Error: " + err.message;
+    resultDiv.innerHTML = `<p class="error">❌ Error: ${err.message}</p>`;
   }
-  loader.style.display = 'none';
+  loader.style.display = 'none'; btn.disabled = false;
 }
 
 async function imageToPdf(watermarkText){
@@ -267,7 +293,7 @@ async function imageToPdf(watermarkText){
   }
   addWatermarkToJSPDF(pdf, watermarkText);
   pdf.save('converted-images.pdf');
-  document.getElementById('result').innerHTML = `<a href="#" onclick="alert('Downloaded')">✅ PDF Downloaded Successfully</a>`;
+  document.getElementById('result').innerHTML = `<p class="success">✅ PDF Created Successfully with ${selectedFiles.length} page(s)</p>`;
 }
 
 async function pdfToImage(){
@@ -286,28 +312,39 @@ async function pdfToImage(){
       html += `<div><img src="${dataUrl}"><a href="${dataUrl}" download="page-${i}.png">Download Page ${i}</a></div>`;
     }
     html += '</div>';
-    document.getElementById('result').innerHTML = html;
+    document.getElementById('result').innerHTML = html + `<p class="success">✅ ${pdf.numPages} Images Generated</p>`;
   }
   reader.readAsArrayBuffer(selectedFiles[0]);
 }
 
 async function mergePdf(watermarkText){
+  if(selectedFiles.length < 2){
+    throw new Error("Please select at least 2 PDF files to merge");
+  }
   const mergedPdf = await PDFDocument.create();
   for(const file of selectedFiles){
-    const bytes = await file.arrayBuffer(); const pdf = await PDFDocument.load(bytes);
+    const bytes = await file.arrayBuffer();
+    const pdf = await PDFDocument.load(bytes);
     const copiedPages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
     copiedPages.forEach(page => mergedPdf.addPage(page));
   }
   addWatermarkToPDF(mergedPdf, watermarkText);
-  const pdfBytes = await mergedPdf.save(); downloadFile(pdfBytes, 'merged.pdf');
-  document.getElementById('result').innerHTML = `<a href="#" onclick="alert('Merged')">✅ Merged PDF Downloaded Successfully</a>`;
+  const pdfBytes = await mergedPdf.save();
+  downloadFile(pdfBytes, 'merged.pdf');
+  document.getElementById('result').innerHTML = `<p class="success">✅ ${selectedFiles.length} PDFs Merged Successfully</p>`;
 }
 
 async function compressPdf(watermarkText){
-  const bytes = await selectedFiles[0].arrayBuffer(); const pdf = await PDFDocument.load(bytes);
+  const bytes = await selectedFiles[0].arrayBuffer();
+  const pdf = await PDFDocument.load(bytes);
   addWatermarkToPDF(pdf, watermarkText);
-  const pdfBytes = await pdf.save({useObjectStreams: false}); downloadFile(pdfBytes, 'compressed.pdf');
-  document.getElementById('result').innerHTML = `<a href="#" onclick="alert('Compressed')">✅ Compressed PDF Downloaded Successfully</a>`;
+  const level = document.getElementById('compressLevel').value;
+  const pdfBytes = await pdf.save({
+    useObjectStreams: level!== 'low',
+    addDefaultPage: false
+  });
+  downloadFile(pdfBytes, 'compressed.pdf');
+  document.getElementById('result').innerHTML = `<p class="success">✅ PDF Compressed Successfully - Level: ${level}</p>`;
 }
 
 async function splitPdf(watermarkText){
@@ -318,21 +355,32 @@ async function splitPdf(watermarkText){
   const newPdf = await PDFDocument.create();
   let pages = [];
 
-  if(option === 'all') pages = [...Array(totalPages).keys()];
-  if(option === 'first3') pages = [...Array(Math.min(3, totalPages)).keys()];
-  if(option === 'last2') pages = [...Array(Math.min(2, totalPages)).keys()].map(i => totalPages - 2 + i);
-  if(option === 'custom'){
+  if(option === 'all') {
+    pages = Array.from({length: totalPages}, (_, i) => i);
+  }
+  else if(option === 'first3') {
+    pages = Array.from({length: Math.min(3, totalPages)}, (_, i) => i);
+  }
+  else if(option === 'last2') {
+    let start = Math.max(0, totalPages - 2);
+    pages = Array.from({length: totalPages - start}, (_, i) => start + i);
+  }
+  else if(option === 'custom'){
     const range = document.getElementById('pageRange').value;
-    if(!range){alert("⚠️ Please enter page range"); return;}
+    if(!range){throw new Error("Please enter page range");}
     pages = parsePageRange(range, totalPages);
   }
 
-  if(pages.length === 0){alert("⚠️ Invalid Page Selection"); return;}
+  if(pages.length === 0){
+    throw new Error(`Selected pages not available. This PDF has only ${totalPages} page(s)`);
+  }
+
   const copiedPages = await newPdf.copyPages(pdf, pages);
   copiedPages.forEach(page => newPdf.addPage(page));
   addWatermarkToPDF(newPdf, watermarkText);
-  const pdfBytes = await newPdf.save(); downloadFile(pdfBytes, 'split.pdf');
-  document.getElementById('result').innerHTML = `<a href="#" onclick="alert('Split')">✅ Split PDF Downloaded Successfully</a>`;
+  const pdfBytes = await newPdf.save();
+  downloadFile(pdfBytes, `split-${pages.length}pages.pdf`);
+  document.getElementById('result').innerHTML = `<p class="success">✅ ${pages.length} Page(s) Split Successfully from ${totalPages} total pages</p>`;
 }
 
 function parsePageRange(range, total){
@@ -348,20 +396,24 @@ function parsePageRange(range, total){
       if(p>0 && p<=total) pages.push(p-1);
     }
   });
-  return [...new Set(pages)];
+  return [...new Set(pages)].sort((a,b)=>a-b);
 }
 
 function downloadFile(bytes, name){
   const blob = new Blob([bytes], {type: 'application/pdf'});
   const link = document.createElement('a');
   link.href = URL.createObjectURL(blob);
-  link.download = name; link.click();
+  link.download = name;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
 }
 
 function readFile(file){
-  return new Promise((resolve)=>{
+  return new Promise((resolve, reject)=>{
     const reader = new FileReader();
     reader.onload = () => resolve(reader.result);
+    reader.onerror = reject;
     reader.readAsDataURL(file);
   });
 }
