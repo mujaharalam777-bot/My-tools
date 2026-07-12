@@ -1,1 +1,1399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pro QR Generator | My Tools</title>
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--primary:#22c55e;--bg1:#0f2027;--bg2:#203a43;--bg3:#2c5364}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg3));color:#fff;min-height:100vh;padding:20px}
+.header{padding:15px 0;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between}
+.back-btn{color:#fff;text-decoration:none;font-size:16px;font-weight:600}
+.header h1{font-size:1.8rem;background:linear-gradient(135deg,#22c55e,#facc15);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 
+.main-grid{display:grid;grid-template-columns:1fr 400px;gap:25px;max-width:1400px;margin:0 auto}
+@media(max-width:1100px){.main-grid{grid-template-columns:1fr}}
+
+.left-panel,.right-panel{background:rgba(255,255,255,0.08);backdrop-filter:blur(20px);border-radius:25px;padding:25px;border:1px solid rgba(255,255,255,0.1)}
+
+.tabs{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap}
+.tab-btn{padding:10px 18px;border-radius:10px;background:rgba(255,255,255,0.1);border:2px solid transparent;color:#fff;cursor:pointer;font-weight:600;transition:0.3s}
+.tab-btn.active{background:var(--primary);color:#000;border-color:var(--primary)}
+.tab-content{display:none}
+.tab-content.active{display:block}
+
+.input-group{margin-bottom:18px}
+.input-group label{display:block;margin-bottom:8px;font-weight:600;font-size:14px}
+.input-group input,.input-group textarea,.input-group select{width:100%;padding:12px 16px;border-radius:10px;border:2px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.1);color:#fff;font-size:0.95rem;outline:none}
+.input-group input:focus{border-color:var(--primary)}
+
+.color-pickers{display:flex;gap:15px}
+.color-pickers div{flex:1}
+input[type="color"]{width:100%;height:45px;border:none;border-radius:8px;cursor:pointer}
+
+.btn{width:100%;padding:15px;border:none;border-radius:12px;background:linear-gradient(135deg,var(--primary),#16a34a);color:#000;font-weight:700;font-size:1.05rem;cursor:pointer;transition:0.3s}
+.btn:hover{transform:translateY(-2px)}
+.btn-secondary{width:100%;padding:12px;border:2px solid var(--primary);background:transparent;color:var(--primary);border-radius:10px;cursor:pointer;font-weight:600;margin-top:10px}
+
+.qr-preview{background:#fff;padding:25px;border-radius:15px;display:flex;justify-content:center;align-items:center;flex-direction:column;min-height:400px;color:#000;position:relative}
+.qr-preview canvas{border-radius:10px}
+.action-btns{display:flex;gap:10px;margin-top:15px}
+
+.pro-badge{display:inline-block;background:linear-gradient(135deg,#facc15,#f59e0b);color:#000;padding:5px 12px;border-radius:20px;font-size:12px;font-weight:700;margin-bottom:15px}
+
+.logo-upload{border:2px dashed rgba(255,255,255,0.3);padding:20px;border-radius:10px;text-align:center;cursor:pointer}
+.logo-upload:hover{border-color:var(--primary)}
+
+.batch-area{margin-top:15px}
+.batch-list{max-height:200px;overflow-y:auto;background:rgba(0,0,0,0.2);padding:10px;border-radius:8px;margin-top:10px}
+
+.section-box{margin-top:30px}
+.section-title{font-size:1.3rem;margin-bottom:15px;display:flex;align-items:center;gap:10px}
+.section-box ul{list-style:none}
+.section-box ul li{padding:8px 0;padding-left:25px;position:relative}
+.section-box ul li:before{content:'✓';position:absolute;left:0;color:var(--primary);font-weight:700}
+.footer{text-align:center;padding:20px;opacity:0.7;font-size:14px}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <a href="qr.html" class="back-btn">← Back</a>
+  <h1>🚀 Pro QR Generator</h1>
+</div>
+
+<div class="main-grid">
+  <!-- LEFT PANEL: CONTROLS -->
+  <div class="left-panel">
+    <span class="pro-badge">PRO VERSION - No Watermark</span>
+
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('url')">URL</button>
+      <button class="tab-btn" onclick="switchTab('text')">Text</button>
+      <button class="tab-btn" onclick="switchTab('wifi')">WIFI</button>
+      <button class="tab-btn" onclick="switchTab('whatsapp')">WhatsApp</button>
+      <button class="tab-btn" onclick="switchTab('batch')">Batch</button>
+    </div>
+
+    <!-- URL TAB -->
+    <div id="url" class="tab-content active">
+      <div class="input-group">
+        <label>Website URL</label>
+        <input type="text" id="urlInput" placeholder="https://google.com">
+      </div>
+    </div>
+
+    <!-- TEXT TAB -->
+    <div id="text" class="tab-content">
+      <div class="input-group">
+        <label>Enter Text</label>
+        <textarea id="textInput" rows="3" placeholder="Hello World"></textarea>
+      </div>
+    </div>
+
+    <!-- WIFI TAB -->
+    <div id="wifi" class="tab-content">
+      <div class="input-group">
+        <label>WiFi Name (SSID)</label>
+        <input type="text" id="wifiSSID" placeholder="MyHomeWiFi">
+      </div>
+      <div class="input-group">
+        <label>Password</label>
+        <input type="text" id="wifiPass" placeholder="password123">
+      </div>
+      <div class="input-group">
+        <label>Encryption</label>
+        <select id="wifiEnc">
+          <option value="WPA">WPA/WPA2</option>
+          <option value="WEP">WEP</option>
+          <option value="nopass">No Password</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- WHATSAPP TAB -->
+    <div id="whatsapp" class="tab-content">
+      <div class="input-group">
+        <label>Phone Number with Country Code</label>
+        <input type="text" id="waNumber" placeholder="919876543210">
+      </div>
+      <div class="input-group">
+        <label>Pre-filled Message (Optional)</label>
+        <textarea id="waMsg" rows="2" placeholder="Hello, I want to know more"></textarea>
+      </div>
+    </div>
+
+    <!-- BATCH TAB -->
+    <div id="batch" class="tab-content">
+      <div class="input-group">
+        <label>Upload CSV File</label>
+        <input type="file" id="csvFile" accept=".csv">
+        <small>Format: name,url</small>
+      </div>
+      <div id="batchList" class="batch-list"></div>
+    </div>
+
+    <!-- CUSTOMIZATION -->
+    <h3 style="margin:20px 0 10px 0">🎨 Customization</h3>
+    <div class="color-pickers">
+      <div class="input-group">
+        <label>QR Color</label>
+        <input type="color" id="qrColor" value="#000">
+      </div>
+      <div class="input-group">
+        <label>BG Color</label>
+        <input type="color" id="bgColor" value="#FFFFFF">
+      </div>
+    </div>
+
+    <div class="input-group">
+      <label>Add Logo</label>
+      <div class="logo-upload" onclick="document.getElementById('logoFile').click()">
+        <input type="file" id="logoFile" accept="image/*" style="display:none">
+        <p>📷 Click to Upload Logo</p>
+        <small>Logo will be in center</small>
+      </div>
+    </div>
+
+    <div class="input-group">
+      <label>QR Size</label>
+      <input type="range" id="qrSize" min="200" max="600" value="300">
+    </div>
+
+    <button class="btn" onclick="generateProQR()">Generate Pro QR</button>
+  </div>
+
+  <!-- RIGHT PANEL: PREVIEW -->
+  <div class="right-panel">
+    <h3 style="margin-bottom:15px">Preview</h3>
+    <div id="qrPreview" class="qr-preview">
+      <p style="opacity:0.5">Your Pro QR will appear here</p>
+    </div>
+    <div class="action-btns">
+      <button class="btn-secondary" onclick="downloadProPNG()">📥 Download PNG</button>
+      <button class="btn-secondary" onclick="downloadSVG()">📥 Download SVG</button>
+    </div>
+  </div>
+</div>
+
+<!-- HOW TO USE -->
+<div class="container section-box" style="max-width:1400px;margin:30px auto">
+  <h2 class="section-title">📖 How to Use</h2>
+  <ul>
+    <li>Select QR Type: URL, Text, WIFI, WhatsApp or Batch.</li>
+    <li>Fill the required details and customize colors.</li>
+    <li>Upload logo if you want branding in center.</li>
+    <li>Click Generate and Download HD PNG or SVG.</li>
+  </ul>
+</div>
+
+<!-- FEATURES -->
+<div class="container section-box" style="max-width:1400px;margin:20px auto">
+  <h2 class="section-title">⭐ Pro Features</h2>
+  <ul>
+    <li>WIFI QR - One scan and connect to WiFi</li>
+    <li>WhatsApp QR - Direct chat with pre-filled message</li>
+    <li>Custom Colors - QR and Background color picker</li>
+    <li>Logo in Center - Add your brand logo</li>
+    <li>Batch Generate - Create 100 QR from CSV</li>
+    <li>HD Download - PNG and SVG both available</li>
+    <li>No Watermark - 100% Clean Professional QR</li>
+  </ul>
+</div>
+
+<!-- FAQ -->
+<div class="container section-box" style="max-width:1400px;margin:20px auto">
+  <h2 class="section-title">❓ FAQ</h2>
+  <p><b>Is this Pro version free?</b><br>No. This is for premium users. Contact Mujahar for access.</p>
+  <p style="margin-top:12px"><b>Can I use logo?</b><br>Yes. Upload PNG logo and it will appear in center.</p>
+  <p style="margin-top:12px"><b>Batch QR how works?</b><br>Upload CSV with name,url and download all QR in zip.</p>
+</div>
+
+<div class="footer">© 2026 My Tools Pro • Made by Mujahar</div>
+
+<script>
+let proQR;
+let logoImg = null;
+
+function switchTab(tab){
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById(tab).classList.add('active');
+}
+
+document.getElementById('logoFile').onchange = function(e){
+  const file = e.target.files[0];
+  if(file){
+    const reader = new FileReader();
+    reader.onload = function(event){ logoImg = event.target.result; }
+    reader.readAsDataURL(file);
+  }
+}
+
+document.getElementById('csvFile').onchange = function(e){
+  Papa.parse(e.target.files[0], {
+    header: true,
+    complete: function(results){
+      const list = document.getElementById('batchList');
+      list.innerHTML = results.data.map(r=>`<div>${r.name} - ${r.url}</div>`).join('');
+    }
+  });
+}
+
+function getQRData(){
+  const activeTab = document.querySelector('.tab-content.active').id;
+  if(activeTab=='url') return document.getElementById('urlInput').value;
+  if(activeTab=='text') return document.getElementById('textInput').value;
+  if(activeTab=='wifi'){
+    const ssid=document.getElementById('wifiSSID').value;
+    const pass=document.getElementById('wifiPass').value;
+    const enc=document.getElementById('wifiEnc').value;
+    return `WIFI:T:${enc};S:${ssid};P:${pass};;`;
+  }
+  if(activeTab=='whatsapp'){
+    const num=document.getElementById('waNumber').value;
+    const msg=document.getElementById('waMsg').value;
+    return `https://wa.me/${num}?text=${encodeURIComponent(msg)}`;
+  }
+  return '';
+}
+
+function generateProQR(){
+  const data = getQRData();
+  if(!data){ alert("Please enter data"); return; }
+
+  const size = document.getElementById('qrSize').value;
+  const fg = document.getElementById('qrColor').value;
+  const bg = document.getElementById('bgColor').value;
+
+  document.getElementById('qrPreview').innerHTML = '';
+
+  QRCode.toCanvas(data, {
+    width: parseInt(size),
+    color: { dark: fg, light: bg },
+    margin: 2
+  }, function(err, canvas){
+    if(err) console.error(err);
+    document.getElementById('qrPreview').appendChild(canvas);
+    proQR = canvas;
+
+    // Add logo if uploaded
+    if(logoImg){
+      const ctx = canvas.getContext('2d');
+      const img = new Image();
+      img.onload = function(){
+        const logoSize = size/5;
+        ctx.drawImage(img, (size-logoSize)/2, (size-logoSize)/2, logoSize, logoSize);
+      }
+      img.src = logoImg;
+    }
+  });
+}
+
+function downloadProPNG(){
+  if(!proQR) return;
+  const link = document.createElement('a');
+  link.download = 'pro-qr.png';
+  link.href = proQR.toDataURL('image/png', 1.0);
+  link.click();
+}
+
+function downloadSVG(){
+  alert("SVG download - Coming in next update");
+}
+</script>
+
+</body>
+</html>
+<div class="custom-section">
+
+<h2 style="margin-bottom:20px;">
+🎨 Customize QR
+</h2>
+
+<label>QR Color</label>
+
+<input
+type="color"
+id="qrColor"
+value="#000000"
+style="width:100%;height:50px;margin:10px 0 20px;">
+
+<label>Background Color</label>
+
+<input
+type="color"
+id="bgColor"
+value="#ffffff"
+style="width:100%;height:50px;margin:10px 0 20px;">
+
+<label>QR Size</label>
+
+<input
+type="range"
+id="qrSize"
+min="200"
+max="700"
+value="300"
+style="width:100%;margin:15px 0;">
+
+<p id="sizeText">
+
+300 PX
+
+</p>
+
+<label style="margin-top:20px;display:block;">
+
+Upload Logo
+
+</label>
+
+<input
+type="file"
+id="logoInput"
+accept="image/*">
+
+<button
+style="
+margin-top:25px;
+width:100%;
+padding:15px;
+border:none;
+border-radius:12px;
+background:#2563eb;
+color:#fff;
+font-size:16px;
+cursor:pointer;"
+id="downloadBtn">
+
+Download PNG
+
+</button>
+
+<button
+style="
+margin-top:15px;
+width:100%;
+padding:15px;
+border:none;
+border-radius:12px;
+background:#7c3aed;
+color:#fff;
+font-size:16px;
+cursor:pointer;">
+
+Download SVG
+
+</button>
+
+<button
+style="
+margin-top:15px;
+width:100%;
+padding:15px;
+border:none;
+border-radius:12px;
+background:#f59e0b;
+color:#000;
+font-size:16px;
+cursor:pointer;">
+
+Download PDF
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<div
+style="
+margin-top:35px;
+background:rgba(255,255,255,.08);
+padding:25px;
+border-radius:20px;">
+
+<h2>
+
+⭐ Supported QR Types
+
+</h2>
+
+<div
+style="
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:15px;
+margin-top:20px;">
+
+<div>🌐 URL</div>
+<div>📝 Text</div>
+<div>📶 WiFi</div>
+<div>📧 Email</div>
+<div>📞 Phone</div>
+<div>💬 SMS</div>
+<div>🟢 WhatsApp</div>
+<div>👤 Contact</div>
+<div>📍 Location</div>
+<div>📅 Event</div>
+<div>▶ YouTube</div>
+<div>📸 Instagram</div>
+<div>👍 Facebook</div>
+<div>❌ X</div>
+<div>💼 LinkedIn</div>
+<div>🎵 Spotify</div>
+<div>💳 UPI</div>
+<div>₿ Crypto</div>
+<div>📄 PDF Link</div>
+<div>📱 App Link</div>
+
+</div>
+
+</div>
+
+<script>
+
+const qrType=document.getElementById("qrType");
+const dynamic=document.getElementById("dynamicInput");
+const size=document.getElementById("qrSize");
+const sizeText=document.getElementById("sizeText");
+
+size.oninput=()=>{
+
+sizeText.innerHTML=size.value+" PX";
+
+};
+
+</script>
+<script>
+
+// ----------------------------
+// Search QR Type
+// ----------------------------
+
+const searchBox = document.getElementById("searchType");
+
+searchBox.addEventListener("keyup",function(){
+
+const value=this.value.toLowerCase();
+
+const options=qrType.options;
+
+for(let i=0;i<options.length;i++){
+
+const text=options[i].text.toLowerCase();
+
+options[i].hidden=!text.includes(value);
+
+}
+
+});
+
+// ----------------------------
+// Change Input Box
+// ----------------------------
+
+function updateInput(){
+
+const type=qrType.value;
+
+let html="";
+
+switch(type){
+
+case "url":
+
+html=`
+<label>Website URL</label>
+<input id="mainInput"
+type="url"
+placeholder="https://example.com">
+`;
+
+break;
+
+case "text":
+
+html=`
+<label>Enter Text</label>
+<textarea
+id="mainInput"
+rows="5"
+placeholder="Write anything..."></textarea>
+`;
+
+break;
+
+case "wifi":
+
+html=`
+
+<label>WiFi Name</label>
+
+<input id="wifiName"
+placeholder="My WiFi">
+
+<label style="margin-top:15px;">
+Password
+</label>
+
+<input
+id="wifiPass"
+placeholder="Password">
+
+<label style="margin-top:15px;">
+Security
+</label>
+
+<select id="wifiSecurity">
+
+<option>WPA</option>
+
+<option>WEP</option>
+
+<option>NOPASS</option>
+
+</select>
+
+`;
+
+break;
+
+case "email":
+
+html=`
+
+<label>Email</label>
+
+<input
+id="emailInput"
+placeholder="example@gmail.com">
+
+<label style="margin-top:15px;">
+Subject
+</label>
+
+<input
+id="emailSubject">
+
+<label style="margin-top:15px;">
+Message
+</label>
+
+<textarea
+id="emailBody"></textarea>
+
+`;
+
+break;
+
+case "phone":
+
+html=`
+
+<label>Phone Number</label>
+
+<input
+id="phoneInput"
+placeholder="+91XXXXXXXXXX">
+
+`;
+
+break;
+
+case "sms":
+
+html=`
+
+<label>Phone Number</label>
+
+<input
+id="smsPhone">
+
+<label style="margin-top:15px;">
+Message
+</label>
+
+<textarea
+id="smsText"></textarea>
+
+`;
+
+break;
+
+case "whatsapp":
+
+html=`
+
+<label>WhatsApp Number</label>
+
+<input
+id="waPhone">
+
+<label style="margin-top:15px;">
+Message
+</label>
+
+<textarea
+id="waText"></textarea>
+
+`;
+
+break;
+
+default:
+
+html=`
+
+<label>Input</label>
+
+<input
+id="mainInput">
+
+`;
+
+}
+
+dynamic.innerHTML=html;
+
+}
+
+qrType.addEventListener("change",updateInput);
+
+updateInput();
+
+</script>
+<script>
+
+// ----------------------------
+// Generate QR
+// ----------------------------
+
+let qrCanvas = null;
+
+document.querySelector(".generate").addEventListener("click", generateQR);
+
+function generateQR(){
+
+const type = qrType.value;
+
+let data = "";
+
+switch(type){
+
+case "url":
+
+data = document.getElementById("mainInput").value.trim();
+
+break;
+
+case "text":
+
+data = document.getElementById("mainInput").value;
+
+break;
+
+case "wifi":
+
+data =
+`WIFI:T:${document.getElementById("wifiSecurity").value};
+S:${document.getElementById("wifiName").value};
+P:${document.getElementById("wifiPass").value};;`;
+
+break;
+
+case "email":
+
+data =
+`mailto:${document.getElementById("emailInput").value}?subject=${encodeURIComponent(document.getElementById("emailSubject").value)}&body=${encodeURIComponent(document.getElementById("emailBody").value)}`;
+
+break;
+
+case "phone":
+
+data =
+`tel:${document.getElementById("phoneInput").value}`;
+
+break;
+
+case "sms":
+
+data =
+`sms:${document.getElementById("smsPhone").value}?body=${encodeURIComponent(document.getElementById("smsText").value)}`;
+
+break;
+
+case "whatsapp":
+
+data =
+`https://wa.me/${document.getElementById("waPhone").value}?text=${encodeURIComponent(document.getElementById("waText").value)}`;
+
+break;
+
+default:
+
+data = document.getElementById("mainInput").value;
+
+}
+
+if(data===""){
+
+alert("Please enter data.");
+
+return;
+
+}
+
+const preview = document.getElementById("preview");
+
+preview.innerHTML="";
+
+const canvas = document.createElement("canvas");
+
+preview.appendChild(canvas);
+
+QRCode.toCanvas(canvas,data,{
+
+width:parseInt(document.getElementById("qrSize").value),
+
+margin:2,
+
+color:{
+dark:document.getElementById("qrColor").value,
+light:document.getElementById("bgColor").value
+}
+
+},function(error){
+
+if(error){
+
+console.log(error);
+
+return;
+
+}
+
+qrCanvas = canvas;
+
+});
+
+}
+
+// ----------------------------
+// Download PNG
+// ----------------------------
+
+document.getElementById("downloadBtn").addEventListener("click",function(){
+
+if(!qrCanvas){
+
+alert("Generate QR First");
+
+return;
+
+}
+
+const link=document.createElement("a");
+
+link.download="pro-qr.png";
+
+link.href=qrCanvas.toDataURL("image/png");
+
+link.click();
+
+});
+
+</script>
+<script>
+
+// =============================
+// Copy QR
+// =============================
+
+async function copyQR(){
+
+if(!qrCanvas){
+alert("Generate QR First");
+return;
+}
+
+qrCanvas.toBlob(async(blob)=>{
+
+try{
+
+await navigator.clipboard.write([
+new ClipboardItem({
+"image/png":blob
+})
+]);
+
+alert("QR Copied Successfully");
+
+}catch{
+
+alert("Copy Not Supported");
+
+}
+
+});
+
+}
+
+// =============================
+// Share QR
+// =============================
+
+async function shareQR(){
+
+if(!qrCanvas){
+alert("Generate QR First");
+return;
+}
+
+qrCanvas.toBlob(async(blob)=>{
+
+const file=new File(
+[blob],
+"Pro-QR.png",
+{type:"image/png"}
+);
+
+if(navigator.canShare && navigator.canShare({files:[file]})){
+
+navigator.share({
+
+title:"Pro QR Code",
+
+text:"Generated using My Tools",
+
+files:[file]
+
+});
+
+}else{
+
+alert("Sharing Not Supported");
+
+}
+
+});
+
+}
+
+// =============================
+// Logo Upload
+// =============================
+
+let logoImage=null;
+
+document.getElementById("logoInput").addEventListener("change",function(e){
+
+const file=e.target.files[0];
+
+if(!file) return;
+
+const reader=new FileReader();
+
+reader.onload=function(ev){
+
+logoImage=new Image();
+
+logoImage.src=ev.target.result;
+
+};
+
+reader.readAsDataURL(file);
+
+});
+
+// =============================
+// Draw Logo
+// =============================
+
+function drawLogo(){
+
+if(!logoImage || !qrCanvas) return;
+
+const ctx=qrCanvas.getContext("2d");
+
+const size=qrCanvas.width/5;
+
+ctx.fillStyle="#fff";
+
+ctx.beginPath();
+
+ctx.arc(
+qrCanvas.width/2,
+qrCanvas.height/2,
+size/2+6,
+0,
+Math.PI*2
+);
+
+ctx.fill();
+
+ctx.drawImage(
+
+logoImage,
+
+(qrCanvas.width-size)/2,
+
+(qrCanvas.height-size)/2,
+
+size,
+
+size
+
+);
+
+}
+
+</script>
+<script>
+
+// ==============================
+// Favorites
+// ==============================
+
+let favorites = JSON.parse(localStorage.getItem("qrFavorites") || "[]");
+
+function addFavorite(type,data){
+
+favorites.unshift({
+
+type:type,
+
+data:data,
+
+time:new Date().toLocaleString()
+
+});
+
+localStorage.setItem(
+
+"qrFavorites",
+
+JSON.stringify(favorites)
+
+);
+
+alert("⭐ Added To Favorites");
+
+}
+
+// ==============================
+// Gradient Colors
+// ==============================
+
+let gradientMode=false;
+
+function toggleGradient(){
+
+gradientMode=!gradientMode;
+
+alert(
+
+gradientMode
+
+?
+
+"🌈 Gradient Enabled"
+
+:
+
+"Gradient Disabled"
+
+);
+
+}
+
+// ==============================
+// Rounded Style
+// ==============================
+
+let roundedMode=false;
+
+function toggleRounded(){
+
+roundedMode=!roundedMode;
+
+alert(
+
+roundedMode
+
+?
+
+"⭕ Rounded Style Enabled"
+
+:
+
+"Rounded Style Disabled"
+
+);
+
+}
+
+// ==============================
+// Frame
+// ==============================
+
+function addFrame(){
+
+if(!qrCanvas)return;
+
+const ctx=qrCanvas.getContext("2d");
+
+ctx.font="bold 24px Poppins";
+
+ctx.fillStyle="#000";
+
+ctx.textAlign="center";
+
+ctx.fillText(
+
+"SCAN ME",
+
+qrCanvas.width/2,
+
+30
+
+);
+
+}
+
+// ==============================
+// Update Generate Function
+// ==============================
+
+const oldGenerateQR=generateQR;
+
+generateQR=function(){
+
+oldGenerateQR();
+
+setTimeout(()=>{
+
+if(qrCanvas){
+
+if(logoImage){
+
+drawLogo();
+
+}
+
+if(roundedMode){
+
+qrCanvas.style.borderRadius="30px";
+
+}else{
+
+qrCanvas.style.borderRadius="0";
+
+}
+
+if(gradientMode){
+
+qrCanvas.style.boxShadow="0 0 35px #22c55e";
+
+}
+
+addFrame();
+
+updateStats();
+
+saveHistory(
+
+qrType.value,
+
+document.getElementById("mainInput")
+
+?
+
+document.getElementById("mainInput").value
+
+:
+
+""
+
+);
+
+}
+
+},150);
+
+};
+
+</script>
+<script>
+
+// =====================================
+// Extra QR Types
+// =====================================
+
+const oldUpdateInput = updateInput;
+
+updateInput = function(){
+
+oldUpdateInput();
+
+const type = qrType.value;
+
+switch(type){
+
+case "location":
+
+dynamic.innerHTML=`
+
+<label>Google Maps Link</label>
+
+<input id="mainInput"
+
+placeholder="https://maps.google.com/...">
+
+`;
+
+break;
+
+case "youtube":
+
+dynamic.innerHTML=`
+
+<label>YouTube URL</label>
+
+<input id="mainInput"
+
+placeholder="https://youtube.com/...">
+
+`;
+
+break;
+
+case "instagram":
+
+dynamic.innerHTML=`
+
+<label>Instagram Profile URL</label>
+
+<input id="mainInput"
+
+placeholder="https://instagram.com/username">
+
+`;
+
+break;
+
+case "facebook":
+
+dynamic.innerHTML=`
+
+<label>Facebook URL</label>
+
+<input id="mainInput"
+
+placeholder="https://facebook.com/...">
+
+`;
+
+break;
+
+case "linkedin":
+
+dynamic.innerHTML=`
+
+<label>LinkedIn URL</label>
+
+<input id="mainInput"
+
+placeholder="https://linkedin.com/in/...">
+
+`;
+
+break;
+
+case "spotify":
+
+dynamic.innerHTML=`
+
+<label>Spotify Link</label>
+
+<input id="mainInput"
+
+placeholder="https://open.spotify.com/...">
+
+`;
+
+break;
+
+case "pdf":
+
+dynamic.innerHTML=`
+
+<label>PDF Link</label>
+
+<input id="mainInput"
+
+placeholder="https://example.com/file.pdf">
+
+`;
+
+break;
+
+case "app":
+
+dynamic.innerHTML=`
+
+<label>Play Store / App Store Link</label>
+
+<input id="mainInput"
+
+placeholder="https://play.google.com/...">
+
+`;
+
+break;
+
+case "crypto":
+
+dynamic.innerHTML=`
+
+<label>Wallet Address</label>
+
+<input id="mainInput"
+
+placeholder="Bitcoin / USDT Wallet">
+
+`;
+
+break;
+
+case "upi":
+
+dynamic.innerHTML=`
+
+<label>UPI ID</label>
+
+<input id="mainInput"
+
+placeholder="name@upi">
+
+`;
+
+break;
+
+}
+
+};
+
+qrType.removeEventListener("change",updateInput);
+
+qrType.addEventListener("change",updateInput);
+
+updateInput();
+
+</script>
+<script>
+
+// ==============================
+// Copy Button
+// ==============================
+
+const copyBtn=document.createElement("button");
+
+copyBtn.className="generate";
+
+copyBtn.style.marginTop="15px";
+
+copyBtn.innerHTML="📋 Copy QR";
+
+copyBtn.onclick=copyQR;
+
+document.querySelector(".custom-section").appendChild(copyBtn);
+
+// ==============================
+// Share Button
+// ==============================
+
+const shareBtn=document.createElement("button");
+
+shareBtn.className="generate";
+
+shareBtn.style.marginTop="15px";
+
+shareBtn.style.background="#2563eb";
+
+shareBtn.style.color="#fff";
+
+shareBtn.innerHTML="📤 Share QR";
+
+shareBtn.onclick=shareQR;
+
+document.querySelector(".custom-section").appendChild(shareBtn);
+
+// ==============================
+// JPG Button
+// ==============================
+
+const jpgBtn=document.createElement("button");
+
+jpgBtn.className="generate";
+
+jpgBtn.style.marginTop="15px";
+
+jpgBtn.style.background="#f97316";
+
+jpgBtn.style.color="#fff";
+
+jpgBtn.innerHTML="🖼 Download JPG";
+
+jpgBtn.onclick=downloadJPG;
+
+document.querySelector(".custom-section").appendChild(jpgBtn);
+
+// ==============================
+// Print Button
+// ==============================
+
+const printBtn=document.createElement("button");
+
+printBtn.className="generate";
+
+printBtn.style.marginTop="15px";
+
+printBtn.style.background="#7c3aed";
+
+printBtn.style.color="#fff";
+
+printBtn.innerHTML="🖨 Print QR";
+
+printBtn.onclick=printQR;
+
+document.querySelector(".custom-section").appendChild(printBtn);
+
+// ==============================
+// Footer
+// ==============================
+
+const footer=document.createElement("div");
+
+footer.style.marginTop="40px";
+footer.style.textAlign="center";
+footer.style.opacity=".7";
+footer.style.padding="20px";
+
+footer.innerHTML="© 2026 My Tools • Pro QR Generator • Made by Mujahar";
+
+document.body.appendChild(footer);
+
+</script>
+
+</body>
+</html>
