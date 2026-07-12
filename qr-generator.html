@@ -1,180 +1,519 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Basic QR Generator | My Tools</title>
-<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<meta name="description" content="Generate QR Codes instantly for URLs and Text. Download high-quality QR codes for free.">
+
+<meta name="keywords" content="QR Generator, Free QR Code, URL QR, Text QR">
+
+<script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
 body{
-  font-family:'Poppins',sans-serif;
-  background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
-  color:#fff;min-height:100vh;padding:20px
+background:linear-gradient(135deg,#0f172a,#1e293b,#2563eb);
+min-height:100vh;
+color:#fff;
 }
-.header{padding:15px 0;margin-bottom:10px;display:flex;align-items:center;gap:15px}
-.back-btn{color:#fff;text-decoration:none;font-size:16px;font-weight:600}
-.header h1{font-size:1.5rem}
 
-.container{max-width:700px;margin:20px auto;background:rgba(255,255,255,0.08);backdrop-filter:blur(20px);border-radius:25px;padding:30px;border:1px solid rgba(255,255,255,0.1);margin-bottom:20px}
-.input-group{margin-bottom:20px}
-.input-group label{display:block;margin-bottom:8px;font-weight:600}
-.input-group input{
-  width:100%;padding:14px 18px;border-radius:12px;border:2px solid transparent;
-  background:rgba(255,255,255,0.1);color:#fff;font-size:1rem;outline:none
+header{
+padding:40px 20px;
+text-align:center;
 }
-.input-group input:focus{border-color:#22c55e}
 
-.btn{
-  width:100%;padding:16px;border:none;border-radius:12px;
-  background:linear-gradient(135deg,#22c55e,#16a34a);color:#000;
-  font-weight:700;font-size:1.1rem;cursor:pointer;margin-bottom:20px;transition:0.3s
+header h1{
+font-size:40px;
+margin-bottom:10px;
 }
-.btn:hover{transform:translateY(-2px)}
 
-.qr-wrapper{background:#fff;padding:20px;border-radius:15px;display:flex;justify-content:center;align-items:center;flex-direction:column;min-height:320px;color:#000}
-.qr-wrapper p{opacity:0.5}
-.watermark{margin-top:12px;font-size:14px;color:#444;font-weight:700}
-.action-btns{display:flex;gap:10px}
-.btn-secondary{
-  flex:1;padding:12px;border:2px solid #22c55e;background:transparent;
-  color:#22c55e;border-radius:10px;cursor:pointer;font-weight:600;display:none
+header p{
+font-size:18px;
+opacity:.8;
 }
-.btn-secondary:hover{background:#22c55e;color:#000}
-.tag{display:inline-block;background:rgba(34,197,94,0.2);padding:5px 12px;border-radius:20px;font-size:12px;margin-bottom:15px}
 
-.section-title{font-size:1.3rem;margin-bottom:15px;display:flex;align-items:center;gap:10px}
-.section-box ul{list-style:none}
-.section-box ul li{padding:8px 0;padding-left:25px;position:relative}
-.section-box ul li:before{content:'✓';position:absolute;left:0;color:#22c55e;font-weight:700}
-.section-box a{color:#22c55e;text-decoration:none}
-.section-box a:hover{text-decoration:underline}
-.footer{text-align:center;padding:20px;opacity:0.7;font-size:14px}
+.container{
+width:95%;
+max-width:1000px;
+margin:auto;
+padding:20px;
+}
+
+.box{
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(20px);
+padding:25px;
+border-radius:20px;
+box-shadow:0 0 25px rgba(0,0,0,.3);
+}
+
+select,
+input{
+
+width:100%;
+padding:16px;
+margin-top:15px;
+border:none;
+border-radius:12px;
+font-size:18px;
+outline:none;
+
+}
+
+button{
+
+width:100%;
+padding:16px;
+margin-top:18px;
+border:none;
+border-radius:12px;
+background:#00c853;
+color:white;
+font-size:18px;
+cursor:pointer;
+transition:.3s;
+
+}
+
+button:hover{
+
+background:#00e676;
+
+}
+
+#qrcode{
+
+margin-top:30px;
+text-align:center;
+
+}
+
+canvas{
+
+background:white;
+padding:15px;
+border-radius:15px;
+
+}
+
+.info{
+
+margin-top:18px;
+text-align:center;
+color:#ffd54f;
+
+}
+
+.download,
+.copy{
+
+display:none;
+
+}
+
+.section{
+
+margin-top:40px;
+background:rgba(255,255,255,.08);
+padding:25px;
+border-radius:20px;
+
+}
+
+.section h2{
+
+margin-bottom:15px;
+
+}
+
+.section li{
+
+margin:12px 0;
+
+}
+
+table{
+
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+
+}
+
+th,
+td{
+
+border:1px solid rgba(255,255,255,.2);
+padding:14px;
+text-align:left;
+
+}
+
+th{
+
+background:#1d4ed8;
+
+}
+
+footer{
+
+text-align:center;
+padding:30px;
+opacity:.7;
+
+}
+
+@media(max-width:700px){
+
+header h1{
+
+font-size:30px;
+
+}
+
+}
+
 </style>
+
 </head>
+
 <body>
 
-<div class="header">
-  <a href="qr.html" class="back-btn">← Back</a>
-  <h1>📱 Basic QR Generator</h1>
-</div>
+<header>
 
-<!-- Main Tool -->
+<h1>📱 Basic QR Generator</h1>
+
+<p>Create QR Codes Instantly for Text & URLs</p>
+
+</header>
+
 <div class="container">
-  <span class="tag">Free Version</span>
-  
-  <div class="input-group">
-    <label>Enter URL or Text</label>
-    <input type="text" id="qrInput" placeholder="https://google.com or Hello World">
-  </div>
 
-  <button class="btn" onclick="generateQR()">Generate QR Code</button>
+<div class="box">
 
-  <div id="qrWrapper" class="qr-wrapper">
-    <p>Your QR will appear here</p>
-  </div>
-  
-  <div class="action-btns" style="margin-top:15px">
-    <button id="downloadBtn" class="btn-secondary" onclick="downloadPNG()">📥 Download</button>
-    <button id="copyBtn" class="btn-secondary" onclick="copyQR()">📋 Copy</button>
-  </div>
+<select id="type">
+
+<option value="text">Text to QR</option>
+
+<option value="url">URL to QR</option>
+
+</select>
+
+<input
+type="text"
+id="data"
+placeholder="Enter Text or Website URL">
+
+<p class="info">
+
+⚡ Instant QR Generation • 100% Secure • No Data Stored
+
+</p>
+
+<button onclick="generateQR()">
+
+Generate QR Code
+
+</button>
+
+<div id="qrcode"></div>
+
+<button
+id="downloadBtn"
+class="download">
+
+Download PNG
+
+</button>
+
+<button
+id="copyBtn"
+class="copy">
+
+Copy QR
+
+</button>
+
 </div>
 
-<!-- How to Use -->
-<div class="container section-box">
-  <h2 class="section-title">📖 How to Use</h2>
-  <ul>
-    <li>Enter your URL or Text in the box above.</li>
-    <li>Click the <b>Generate QR Code</b> button.</li>
-    <li>Your QR Code will appear instantly with "Mujahar" watermark.</li>
-    <li>Click <b>Download</b> or <b>Copy</b> to save the QR.</li>
-  </ul>
+<div class="section">
+
+<h2>⭐ Free Features</h2>
+
+<table>
+
+<tr>
+
+<th>Feature</th>
+
+<th>Status</th>
+
+</tr>
+
+<tr>
+<td>Text to QR</td>
+<td>✅</td>
+</tr>
+
+<tr>
+<td>URL to QR</td>
+<td>✅</td>
+</tr>
+
+<tr>
+<td>Instant Generate</td>
+<td>✅</td>
+</tr>
+
+<tr>
+<td>Download PNG</td>
+<td>✅</td>
+</tr>
+
+<tr>
+<td>Copy QR</td>
+<td>✅</td>
+</tr>
+
+<tr>
+<td>Mobile Friendly</td>
+<td>✅</td>
+</tr>
+
+<tr>
+<td>How to Use</td>
+<td>✅</td>
+</tr>
+
+<tr>
+<td>FAQ</td>
+<td>✅</td>
+</tr>
+
+<tr>
+<td>Related Tools</td>
+<td>✅</td>
+</tr>
+
+</table>
+
+</div>
+<div class="section">
+
+<h2>📖 How to Use</h2>
+
+<ol>
+
+<li>Select <b>Text</b> or <b>URL</b>.</li>
+
+<li>Enter your text or website link.</li>
+
+<li>Click <b>Generate QR Code</b>.</li>
+
+<li>Download the QR as PNG or Copy the content.</li>
+
+</ol>
+
 </div>
 
-<!-- Features -->
-<div class="container section-box">
-  <h2 class="section-title">⭐ Features</h2>
-  <ul>
-    <li>URL to QR - Any website link</li>
-    <li>Text to QR - Any message or text</li>
-    <li>Instant Generate - One click result</li>
-    <li>Download PNG - Save with watermark</li>
-    <li>Copy QR - Copy to clipboard</li>
-    <li>Mobile Friendly - Works on all devices</li>
-    <li>100% Free & Secure</li>
-  </ul>
+<div class="section">
+
+<h2>🚀 Why Choose Our QR Generator?</h2>
+
+<ul>
+
+<li>⚡ Instant QR Generation</li>
+
+<li>📱 Mobile Friendly</li>
+
+<li>🔒 Safe & Secure</li>
+
+<li>🖼 High Quality PNG Download</li>
+
+<li>🌐 Supports Text & URL</li>
+
+<li>💯 Completely Free</li>
+
+</ul>
+
 </div>
 
-<!-- FAQ -->
-<div class="container section-box">
-  <h2 class="section-title">❓ Frequently Asked Questions</h2>
-  <p><b>Is this QR Generator free?</b><br>Yes. It is completely free to use with Mujahar watermark.</p>
-  <p style="margin-top:12px"><b>Does it work on mobile?</b><br>Yes. It works perfectly on Android, iPhone and Desktop.</p>
-  <p style="margin-top:12px"><b>Is my data stored?</b><br>No. Everything is generated inside your browser. 100% private.</p>
-  <p style="margin-top:12px"><b>Can I remove the watermark?</b><br>No. For watermark free QR, use Pro Version.</p>
+<div class="section">
+
+<h2>❓ Frequently Asked Questions</h2>
+
+<h3>Is this QR Generator free?</h3>
+
+<p>Yes. It is completely free to use.</p>
+
+<br>
+
+<h3>Can I generate QR codes for websites?</h3>
+
+<p>Yes. Simply choose URL and enter your website address.</p>
+
+<br>
+
+<h3>Does it work on mobile?</h3>
+
+<p>Yes. It works perfectly on Android, iPhone and Desktop.</p>
+
+<br>
+
+<h3>Is my data stored?</h3>
+
+<p>No. Everything is generated inside your browser.</p>
+
 </div>
 
-<!-- Related Tools -->
-<div class="container section-box">
-  <h2 class="section-title">🔗 Related Tools</h2>
-  <ul>
-    <li><a href="age-calculator.html">Age Calculator</a></li>
-    <li><a href="password-generator.html">Password Generator</a></li>
-    <li><a href="pdf-to-jpg.html">PDF to JPG</a></li>
-    <li><a href="index.html">Home</a></li>
-  </ul>
+<div class="section">
+
+<h2>🔗 Related Tools</h2>
+
+<ul>
+
+<li><a href="age.html">Age Calculator</a></li>
+
+<li><a href="password.html">Password Generator</a></li>
+
+<li><a href="bmi.html">BMI Calculator</a></li>
+
+<li><a href="index.html">Home</a></li>
+
+</ul>
+
 </div>
-
-<div class="footer">© 2026 My Tools • Basic QR Generator by Mujahar</div>
-
 <script>
-let currentQRCanvas;
-const BRAND_NAME = "Mujahar";
 
 function generateQR(){
-  const input = document.getElementById('qrInput').value;
-  if(!input){ alert("Please enter URL or Text"); return; }
-  
-  document.getElementById('qrWrapper').innerHTML = '';
-  
-  QRCode.toCanvas(input, { width: 280, margin: 2 }, function (error, canvas) {
-    if (error) { console.error(error); return; }
-    currentQRCanvas = canvas;
-    document.getElementById('qrWrapper').appendChild(canvas);
-    
-    const wm = document.createElement('div');
-    wm.className = 'watermark';
-    wm.innerText = `© ${BRAND_NAME}`;
-    document.getElementById('qrWrapper').appendChild(wm);
-    
-    document.getElementById('downloadBtn').style.display = 'block';
-    document.getElementById('copyBtn').style.display = 'block';
-  });
+
+let text=document.getElementById("data").value.trim();
+
+if(text==""){
+
+alert("Please enter Text or URL.");
+
+return;
+
 }
 
-function downloadPNG(){
-  if(!currentQRCanvas) return;
-  const finalCanvas = document.createElement('canvas');
-  const ctx = finalCanvas.getContext('2d');
-  finalCanvas.width = 280; finalCanvas.height = 320;
-  ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, finalCanvas.width, finalCanvas.height);
-  ctx.drawImage(currentQRCanvas, 0, 0);
-  ctx.fillStyle = '#444'; ctx.font = 'bold 16px Poppins'; ctx.textAlign = 'center';
-  ctx.fillText(`© ${BRAND_NAME}`, finalCanvas.width/2, 305);
-  const link = document.createElement('a');
-  link.download = 'qr-by-mujahar.png'; link.href = finalCanvas.toDataURL(); link.click();
+let qr=document.getElementById("qrcode");
+
+qr.innerHTML="<h3>Generating QR Code...</h3>";
+
+QRCode.toCanvas(text,{
+
+width:300,
+
+margin:2,
+
+color:{
+dark:"#000000",
+light:"#ffffff"
 }
 
-function copyQR(){
-  if(!currentQRCanvas) return;
-  currentQRCanvas.toBlob(blob => {
-    navigator.clipboard.write([new ClipboardItem({[blob.type]: blob})]);
-    alert('QR Copied to Clipboard!');
-  });
+},function(err,canvas){
+
+if(err){
+
+alert("Something went wrong!");
+
+return;
+
 }
+
+qr.innerHTML="";
+
+qr.appendChild(canvas);
+
+document.getElementById("downloadBtn").style.display="block";
+
+document.getElementById("copyBtn").style.display="block";
+
+document.getElementById("downloadBtn").onclick=function(){
+
+let link=document.createElement("a");
+
+link.download="qr-code.png";
+
+link.href=canvas.toDataURL("image/png");
+
+link.click();
+
+};
+
+document.getElementById("copyBtn").onclick=async function(){
+
+try{
+
+await navigator.clipboard.writeText(text);
+
+alert("Copied Successfully!");
+
+}catch{
+
+alert("Copy not supported.");
+
+}
+
+};
+
+});
+
+}
+
 </script>
+<div class="section">
+
+<h2>📊 Supported QR Types</h2>
+
+<ul>
+
+<li>🌐 Website URL</li>
+
+<li>📝 Plain Text</li>
+
+</ul>
+
+</div>
+
+<div class="section">
+
+<h2>💡 Tips</h2>
+
+<ul>
+
+<li>✔ Always use a valid website address for URL QR Codes.</li>
+
+<li>✔ Short text creates cleaner QR Codes.</li>
+
+<li>✔ Download the QR in PNG format for the best quality.</li>
+
+<li>✔ Test your QR before sharing it.</li>
+
+</ul>
+
+</div>
+
+</div>
+
+<footer>
+
+<p>© 2026 My Tools • Basic QR Generator</p>
+
+</footer>
 
 </body>
-</html>
 
+</html>
