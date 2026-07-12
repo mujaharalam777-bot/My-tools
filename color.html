@@ -13,7 +13,7 @@
   font-family:'Poppins', sans-serif;
 }
 body{
-  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); /* tor moto gradient */
+  background: #0a1a1f; /* dark bg tor 2nd pic er moto */
   min-height:100vh;
   color:#ffffff;
   padding:20px;
@@ -27,7 +27,7 @@ body{
   text-decoration:none; 
   margin-bottom:25px; 
   display:block; 
-  font-size:17px; 
+  font-size:18px; 
   font-weight:600;
 }
 
@@ -36,18 +36,18 @@ body{
   margin-bottom:30px;
 }
 .header .icon{
-  font-size:60px;
+  font-size:70px;
+  margin-bottom:10px;
 }
 .header h1{
-  font-size:28px; 
+  font-size:26px; 
   font-weight:700; 
-  margin-top:10px;
+  color:#fff;
 }
 
 .card{
-  background: rgba(255, 255, 255, 0.08); /* glass effect */
-  backdrop-filter: blur(10px);
-  border:1px solid rgba(255, 255, 255, 0.2);
+  background: #12303a; /* card er color */
+  border:2px solid #1f4d5a;
   border-radius:20px;
   padding: 25px;
   margin-bottom:20px;
@@ -59,23 +59,22 @@ body{
   align-items:center; 
   justify-content:center; 
   gap:10px; 
-  margin-bottom:10px;
+  margin-bottom:12px;
 }
 .dot{
   width:12px; 
   height:12px; 
   background-color:#00ff88; 
   border-radius:50%;
-  box-shadow: 0 0 10px #00ff88;
 }
 .status h2{
-  font-size:21px; 
+  font-size:22px; 
   font-weight:700; 
   color:#fff; 
   margin:0;
 }
 .card p{
-  color:#b0bec5; 
+  color:#a0b4bb; 
   font-size:15px; 
   margin-bottom:20px;
 }
@@ -90,32 +89,31 @@ body{
   cursor:pointer;
   text-decoration:none;
   display:block;
-  transition:0.3s;
-}
-.btn:hover{
-  transform: scale(1.02);
 }
 
 .btn-free{
-  background-color: #00ff88;
+  background-color: #00ff88; /* sobuj button */
   color:#000;
 }
 
 .btn-pro{
   background-color: #ff9500;
   color:#fff;
+  width:100%;
 }
 
 .features{
   list-style:none; 
   text-align:left; 
   margin:20px 0; 
-  padding-left:0;
+  padding-left:20px;
 }
 .features li{
   margin-bottom:12px;
   color:#e0e0e0;
   font-size:15px;
+  position: relative;
+  padding-left: 10px;
 }
 .features li::before{
   content:'✓ '; 
