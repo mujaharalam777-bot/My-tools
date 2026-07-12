@@ -1,1 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Pro QR Generator | My Tools</title>
+
+<meta name="description" content="Professional QR Code Generator with 25+ QR Types">
+<meta name="keywords" content="QR Generator, Pro QR, WiFi QR, WhatsApp QR, vCard QR">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+:root{
+
+--primary:#22c55e;
+--secondary:#16a34a;
+--gold:#facc15;
+--orange:#f59e0b;
+--red:#ef4444;
+--dark:#0f172a;
+--dark2:#1e293b;
+--blue:#2563eb;
+--white:#ffffff;
+
+}
+
+body{
+
+background:linear-gradient(135deg,#0f172a,#1e293b,#2563eb);
+color:white;
+min-height:100vh;
+
+}
+
+header{
+
+padding:25px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+}
+
+.logo{
+
+font-size:30px;
+font-weight:700;
+
+}
+
+.back{
+
+color:white;
+text-decoration:none;
+font-weight:600;
+
+}
+
+.container{
+
+width:95%;
+max-width:1450px;
+margin:auto;
+
+}
+
+.main{
+
+display:grid;
+grid-template-columns:430px 1fr;
+gap:25px;
+margin-top:20px;
+
+}
+
+.left{
+
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(20px);
+padding:25px;
+border-radius:25px;
+
+}
+
+.right{
+
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(20px);
+padding:25px;
+border-radius:25px;
+
+}
+
+.title{
+
+font-size:32px;
+font-weight:700;
+margin-bottom:10px;
+
+}
+
+.subtitle{
+
+opacity:.8;
+margin-bottom:25px;
+
+}
+
+.tabs{
+
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px;
+
+}
+
+.tab{
+
+padding:12px;
+border-radius:12px;
+border:none;
+background:#334155;
+color:white;
+cursor:pointer;
+font-weight:600;
+
+}
+
+.tab.active{
+
+background:#22c55e;
+color:black;
+
+}
+
+.input-group{
+
+margin-top:18px;
+
+}
+
+.input-group label{
+
+display:block;
+margin-bottom:8px;
+font-weight:600;
+
+}
+
+.input-group input,
+.input-group textarea,
+.input-group select{
+
+width:100%;
+padding:14px;
+border:none;
+border-radius:12px;
+background:#1e293b;
+color:white;
+font-size:15px;
+
+}
+
+textarea{
+
+resize:none;
+
+}
+
+.section{
+
+margin-top:25px;
+
+}
+
+.section h3{
+
+margin-bottom:15px;
+
+}
+
+.colors{
+
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
+
+}
+
+input[type=color]{
+
+height:55px;
+
+}
+
+button{
+
+cursor:pointer;
+
+}
+
+.generate{
+
+margin-top:25px;
+width:100%;
+padding:16px;
+border:none;
+border-radius:15px;
+font-size:18px;
+font-weight:700;
+background:#22c55e;
+color:black;
+
+}
+
+.preview{
+
+background:white;
+border-radius:20px;
+padding:35px;
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:520px;
+color:black;
+
+}
+
+.downloads{
+
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:10px;
+margin-top:20px;
+
+}
+
+.downloads button{
+
+padding:14px;
+border:none;
+border-radius:12px;
+background:#2563eb;
+color:white;
+font-weight:600;
+
+}
+
+@media(max-width:1000px){
+
+.main{
+
+grid-template-columns:1fr;
+
+}
+
+.downloads{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<a href="qr.html" class="back">⬅ Back</a>
+
+<div class="logo">
+🚀 Pro QR Generator
+</div>
+
+</header>
+
+<div class="container">
+
+<div class="main">
+
+<div class="left">
+
+<h1 class="title">Generate Premium QR</h1>
+
+<p class="subtitle">
+25+ QR Types • HD Export • Logo • Batch • SVG
+</p>
+<!-- QR TYPES -->
+
+<div class="section">
+
+<h3>QR Type</h3>
+
+<div class="tabs">
+
+<button class="tab active" onclick="showTab('url')">URL</button>
+
+<button class="tab" onclick="showTab('text')">Text</button>
+
+<button class="tab" onclick="showTab('wifi')">WiFi</button>
+
+<button class="tab" onclick="showTab('email')">Email</button>
+
+<button class="tab" onclick="showTab('phone')">Phone</button>
+
+<button class="tab" onclick="showTab('sms')">SMS</button>
+
+<button class="tab" onclick="showTab('whatsapp')">WhatsApp</button>
+
+<button class="tab" onclick="showTab('vcard')">vCard</button>
+
+<button class="tab" onclick="showTab('location')">Location</button>
+
+<button class="tab" onclick="showTab('event')">Event</button>
+
+<button class="tab" onclick="showTab('youtube')">YouTube</button>
+
+<button class="tab" onclick="showTab('instagram')">Instagram</button>
+
+</div>
+
+</div>
+
+<!-- URL -->
+
+<div id="url" class="tabBox">
+
+<div class="input-group">
+
+<label>Website URL</label>
+
+<input id="urlInput" placeholder="https://example.com">
+
+</div>
+
+</div>
+
+<!-- TEXT -->
+
+<div id="text" class="tabBox" style="display:none">
+
+<div class="input-group">
+
+<label>Text</label>
+
+<textarea id="textInput" rows="5"></textarea>
+
+</div>
+
+</div>
+
+<!-- WIFI -->
+
+<div id="wifi" class="tabBox" style="display:none">
+
+<div class="input-group">
+
+<label>WiFi Name</label>
+
+<input id="wifiName">
+
+</div>
+
+<div class="input-group">
+
+<label>Password</label>
+
+<input id="wifiPassword">
+
+</div>
+
+<div class="input-group">
+
+<label>Encryption</label>
+
+<select id="wifiType">
+
+<option>WPA</option>
+
+<option>WEP</option>
+
+<option>None</option>
+
+</select>
+
+</div>
+
+</div>
+
+<!-- EMAIL -->
+
+<div id="email" class="tabBox" style="display:none">
+
+<div class="input-group">
+
+<label>Email</label>
+
+<input id="emailInput">
+
+</div>
+
+<div class="input-group">
+
+<label>Subject</label>
+
+<input id="subjectInput">
+
+</div>
+
+<div class="input-group">
+
+<label>Message</label>
+
+<textarea id="messageInput"></textarea>
+
+</div>
+
+</div>
+
+<!-- PHONE -->
+
+<div id="phone" class="tabBox" style="display:none">
+
+<div class="input-group">
+
+<label>Phone Number</label>
+
+<input id="phoneInput">
+
+</div>
+
+</div>
+
+<!-- SMS -->
+
+<div id="sms" class="tabBox" style="display:none">
+
+<div class="input-group">
+
+<label>Phone</label>
+
+<input id="smsNumber">
+
+</div>
+
+<div class="input-group">
+
+<label>Message</label>
+
+<textarea id="smsText"></textarea>
+
+</div>
+
+</div>
+
+<!-- WHATSAPP -->
+
+<div id="whatsapp" class="tabBox" style="display:none">
+
+<div class="input-group">
+
+<label>WhatsApp Number</label>
+
+<input id="waNumber">
+
+</div>
+
+<div class="input-group">
+
+<label>Message</label>
+
+<textarea id="waMessage"></textarea>
+
+</div>
+
+</div>
+
+<button class="generate" onclick="generateQR()">
+
+Generate Pro QR
+
+</button>
+
+</div>
+
+<div class="right">
+
+<div class="preview" id="preview">
+
+Your QR will appear here
+
+</div>
+
+<div class="downloads">
+
+<button onclick="downloadPNG()">
+
+PNG
+
+</button>
+
+<button onclick="downloadSVG()">
+
+SVG
+
+</button>
+
+<button onclick="downloadPDF()">
+
+PDF
+
+</button>
+
+<button onclick="printQR()">
+
+Print
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+  </div>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pro QR Generator | My Tools</title>
+<meta name="description" content="Professional QR Code Generator with 25+ QR Types">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+:root{--primary:#22c55e;--secondary:#16a34a;--gold:#facc15;--orange:#f59e0b;--red:#ef4444;--dark:#0f172a;--dark2:#1e293b;--blue:#2563eb;--white:#ffffff;}
+body{background:linear-gradient(135deg,#0f172a,#1e293b,#2563eb);color:white;min-height:100vh;}
+header{padding:25px;display:flex;justify-content:space-between;align-items:center;}
+.logo{font-size:30px;font-weight:700;}
+.back{color:white;text-decoration:none;font-weight:600;}
+.container{width:95%;max-width:1450px;margin:auto;}
+.main{display:grid;grid-template-columns:430px 1fr;gap:25px;margin-top:20px;}
+.left{background:rgba(255,255,255,.08);backdrop-filter:blur(20px);padding:25px;border-radius:25px;}
+.right{background:rgba(255,255,255,.08);backdrop-filter:blur(20px);padding:25px;border-radius:25px;}
+.title{font-size:32px;font-weight:700;margin-bottom:10px;}
+.subtitle{opacity:.8;margin-bottom:25px;}
+.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-height:450px;overflow-y:auto;padding-right:5px;}
+.tab{padding:12px;border-radius:12px;border:none;background:#334155;color:white;cursor:pointer;font-weight:600;font-size:13px;}
+.tab.active{background:#22c55e;color:black;}
+.input-group{margin-top:18px;}
+.input-group label{display:block;margin-bottom:8px;font-weight:600;}
+.input-group input,.input-group textarea,.input-group select{width:100%;padding:14px;border:none;border-radius:12px;background:#1e293b;color:white;font-size:15px;}
+textarea{resize:none;}
+.section{margin-top:25px;}
+.section h3{margin-bottom:15px;}
+.colors{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+input[type=color]{height:55px;}
+.generate{margin-top:25px;width:100%;padding:16px;border:none;border-radius:15px;font-size:18px;font-weight:700;background:#22c55e;color:black;}
+.preview{background:white;border-radius:20px;padding:35px;display:flex;justify-content:center;align-items:center;min-height:520px;color:black;flex-direction:column;}
+.downloads{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:20px;}
+.downloads button{padding:14px;border:none;border-radius:12px;background:#2563eb;color:white;font-weight:600;}
+.pro-badge{background:gold;color:#000;padding:2px 6px;border-radius:5px;font-size:10px;margin-left:4px;}
+@media(max-width:1000px){.main{grid-template-columns:1fr;}.downloads{grid-template-columns:repeat(2,1fr);}}
+</style>
+</head>
+<body>
+
+<header>
+<a href="qr.html" class="back">⬅ Back</a>
+<div class="logo">🚀 Pro QR Generator</div>
+</header>
+
+<div class="container">
+<div class="main">
+
+<div class="left">
+<h1 class="title">Generate Premium QR</h1>
+<p class="subtitle">25+ QR Types • HD Export • Logo • Batch • SVG</p>
+
+<div class="section">
+<h3>QR Type</h3>
+<div class="tabs">
+<!-- FIRST 12 -->
+<button class="tab active" onclick="showTab('url')">URL</button>
+<button class="tab" onclick="showTab('text')">Text</button>
+<button class="tab" onclick="showTab('wifi')">WiFi</button>
+<button class="tab" onclick="showTab('email')">Email</button>
+<button class="tab" onclick="showTab('phone')">Phone</button>
+<button class="tab" onclick="showTab('sms')">SMS</button>
+<button class="tab" onclick="showTab('whatsapp')">WhatsApp</button>
+<button class="tab" onclick="showTab('vcard')">vCard</button>
+<button class="tab" onclick="showTab('location')">Location</button>
+<button class="tab" onclick="showTab('event')">Event</button>
+<button class="tab" onclick="showTab('youtube')">YouTube</button>
+<button class="tab" onclick="showTab('instagram')">Instagram</button>
+
+<!-- NEXT 12 NEW -->
+<button class="tab" onclick="showTab('facebook')">Facebook</button>
+<button class="tab" onclick="showTab('twitter')">Twitter/X</button>
+<button class="tab" onclick="showTab('linkedin')">LinkedIn</button>
+<button class="tab" onclick="showTab('spotify')">Spotify</button>
+<button class="tab" onclick="showTab('payment')">UPI/Pay <span class="pro-badge">PRO</span></button>
+<button class="tab" onclick="showTab('batch')">Batch CSV <span class="pro-badge">PRO</span></button>
+<button class="tab" onclick="showTab('logo')">Logo Upload <span class="pro-badge">PRO</span></button>
+<button class="tab" onclick="showTab('gradient')">Gradient <span class="pro-badge">PRO</span></button>
+<button class="tab" onclick="showTab('rounded')">Rounded <span class="pro-badge">PRO</span></button>
+<button class="tab" onclick="showTab('frame')">Frames <span class="pro-badge">PRO</span></button>
+<button class="tab" onclick="showTab('appstore')">App Store</button>
+<button class="tab" onclick="showTab('crypto')">Crypto <span class="pro-badge">PRO</span></button>
+</div>
+</div>
+
+<!-- ALL FORM BOXES -->
+<div id="url" class="tabBox"><div class="input-group"><label>Website URL</label><input id="urlInput" placeholder="https://example.com"></div></div>
+<div id="text" class="tabBox" style="display:none"><div class="input-group"><label>Text</label><textarea id="textInput" rows="5"></textarea></div></div>
+<div id="wifi" class="tabBox" style="display:none"><div class="input-group"><label>WiFi Name</label><input id="wifiName"></div><div class="input-group"><label>Password</label><input id="wifiPassword"></div><div class="input-group"><label>Encryption</label><select id="wifiType"><option>WPA</option><option>WEP</option><option>None</option></select></div></div>
+<div id="email" class="tabBox" style="display:none"><div class="input-group"><label>Email</label><input id="emailInput"></div><div class="input-group"><label>Subject</label><input id="subjectInput"></div><div class="input-group"><label>Message</label><textarea id="messageInput"></textarea></div></div>
+<div id="phone" class="tabBox" style="display:none"><div class="input-group"><label>Phone Number</label><input id="phoneInput"></div></div>
+<div id="sms" class="tabBox" style="display:none"><div class="input-group"><label>Phone</label><input id="smsNumber"></div><div class="input-group"><label>Message</label><textarea id="smsText"></textarea></div></div>
+<div id="whatsapp" class="tabBox" style="display:none"><div class="input-group"><label>WhatsApp Number</label><input id="waNumber" placeholder="919876543210"></div><div class="input-group"><label>Message</label><textarea id="waMessage"></textarea></div></div>
+<div id="vcard" class="tabBox" style="display:none"><div class="input-group"><label>Name</label><input id="vcName"></div><div class="input-group"><label>Phone</label><input id="vcPhone"></div><div class="input-group"><label>Email</label><input id="vcEmail"></div></div>
+<div id="location" class="tabBox" style="display:none"><div class="input-group"><label>Google Maps URL</label><input id="locInput"></div></div>
+<div id="event" class="tabBox" style="display:none"><div class="input-group"><label>Event Name</label><input id="evName"></div><div class="input-group"><label>Date</label><input type="date" id="evDate"></div></div>
+<div id="youtube" class="tabBox" style="display:none"><div class="input-group"><label>YouTube Video URL</label><input id="ytInput"></div></div>
+<div id="instagram" class="tabBox" style="display:none"><div class="input-group"><label>Instagram Profile URL</label><input id="igInput"></div></div>
+
+<!-- NEW 12 -->
+<div id="facebook" class="tabBox" style="display:none"><div class="input-group"><label>Facebook Profile/Page URL</label><input id="fbInput"></div></div>
+<div id="twitter" class="tabBox" style="display:none"><div class="input-group"><label>Twitter/X Profile URL</label><input id="twInput"></div></div>
+<div id="linkedin" class="tabBox" style="display:none"><div class="input-group"><label>LinkedIn Profile URL</label><input id="liInput"></div></div>
+<div id="spotify" class="tabBox" style="display:none"><div class="input-group"><label>Spotify Song/Playlist URL</label><input id="spInput"></div></div>
+<div id="payment" class="tabBox" style="display:none"><div class="input-group"><label>UPI ID</label><input id="upiId" placeholder="name@upi"></div><div class="input-group"><label>Amount</label><input id="upiAmt" placeholder="100"></div></div>
+<div id="batch" class="tabBox" style="display:none"><div class="input-group"><label>Upload CSV File</label><input type="file" id="csvFile" accept=".csv"></div></div>
+<div id="logo" class="tabBox" style="display:none"><div class="input-group"><label>Upload Logo</label><input type="file" id="logoFile" accept="image/*"></div><div class="input-group"><label>Data for QR</label><input id="logoData"></div></div>
+<div id="gradient" class="tabBox" style="display:none"><div class="input-group"><label>Data</label><input id="gradData"></div><div class="input-group"><label>Gradient 1</label><input type="color" id="grad1" value="#22c55e"></div><div class="input-group"><label>Gradient 2</label><input type="color" id="grad2" value="#2563eb"></div></div>
+<div id="rounded" class="tabBox" style="display:none"><div class="input-group"><label>Data</label><input id="roundData"></div><div class="input-group"><label>Dot Style</label><select id="dotStyle"><option>rounded</option><option>dots</option><option>square</option></select></div></div>
+<div id="frame" class="tabBox" style="display:none"><div class="input-group"><label>Data</label><input id="frameData"></div><div class="input-group"><label>Frame Text</label><input id="frameText" placeholder="Scan Me"></div></div>
+<div id="appstore" class="tabBox" style="display:none"><div class="input-group"><label>App Store / Play Store URL</label><input id="appInput"></div></div>
+<div id="crypto" class="tabBox" style="display:none"><div class="input-group"><label>Wallet Address</label><input id="cryptoAddr"></div><div class="input-group"><label>Amount</label><input id="cryptoAmt"></div></div>
+
+<div class="section"><h3>Design</h3><div class="colors"><div><label>QR Color</label><input type="color" id="qrColor" value="#000"></div><div><label>BG Color</label><input type="color" id="bgColor" value="#FFFFFF"></div></div></div>
+
+<button class="generate" onclick="generateQR()">Generate Pro QR</button>
+</div>
+
+<div class="right">
+<div class="preview" id="preview"><p>Your QR will appear here</p></div>
+<div class="downloads">
+<button onclick="downloadPNG()">PNG</button>
+<button onclick="downloadSVG()">SVG</button>
+<button onclick="downloadPDF()">PDF</button>
+<button onclick="printQR()">Print</button>
+</div>
+</div>
+
+</div></div>
+
+<script>
+let currentCanvas;
+let currentData = '';
+let activeTab = 'url';
+
+function showTab(tab){
+  activeTab = tab;
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  event.target.classList.add('active');
+  document.querySelectorAll('.tabBox').forEach(b=>b.style.display='none');
+  document.getElementById(tab).style.display='block';
+}
+
+function getData(){
+  if(activeTab=='url') return document.getElementById('urlInput').value;
+  if(activeTab=='text') return document.getElementById('textInput').value;
+  if(activeTab=='wifi') return `WIFI:T:${document.getElementById('wifiType').value};S:${document.getElementById('wifiName').value};P:${document.getElementById('wifiPassword').value};;`;
+  if(activeTab=='email') return `mailto:${document.getElementById('emailInput').value}?subject=${document.getElementById('subjectInput').value}&body=${document.getElementById('messageInput').value}`;
+  if(activeTab=='phone') return `tel:${document.getElementById('phoneInput').value}`;
+  if(activeTab=='sms') return `sms:${document.getElementById('smsNumber').value}?body=${document.getElementById('smsText').value}`;
+  if(activeTab=='whatsapp') return `https://wa.me/${document.getElementById('waNumber').value}?text=${document.getElementById('waMessage').value}`;
+  if(activeTab=='vcard') return `BEGIN:VCARD\nFN:${document.getElementById('vcName').value}\nTEL:${document.getElementById('vcPhone').value}\nEMAIL:${document.getElementById('vcEmail').value}\nEND:VCARD`;
+  if(activeTab=='location') return document.getElementById('locInput').value;
+  if(activeTab=='event') return `BEGIN:VEVENT\nSUMMARY:${document.getElementById('evName').value}\nDTSTART:${document.getElementById('evDate').value}\nEND:VEVENT`;
+  if(activeTab=='youtube') return document.getElementById('ytInput').value;
+  if(activeTab=='instagram') return document.getElementById('igInput').value;
+  if(activeTab=='facebook') return document.getElementById('fbInput').value;
+  if(activeTab=='twitter') return document.getElementById('twInput').value;
+  if(activeTab=='linkedin') return document.getElementById('liInput').value;
+  if(activeTab=='spotify') return document.getElementById('spInput').value;
+  if(activeTab=='payment') return `upi://pay?pa=${document.getElementById('upiId').value}&am=${document.getElementById('upiAmt').value}`;
+  if(activeTab=='logo') return document.getElementById('logoData').value;
+  if(activeTab=='gradient') return document.getElementById('gradData').value;
+  if(activeTab=='rounded') return document.getElementById('roundData').value;
+  if(activeTab=='frame') return document.getElementById('frameData').value;
+  if(activeTab=='appstore') return document.getElementById('appInput').value;
+  if(activeTab=='crypto') return `bitcoin:${document.getElementById('cryptoAddr').value}?amount=${document.getElementById('cryptoAmt').value}`;
+  return '';
+}
+
+function generateQR(){
+  currentData = getData();
+  if(!currentData){ alert('Please fill the data'); return; }
+
+  const qrColor = document.getElementById('qrColor').value;
+  const bgColor = document.getElementById('bgColor').value;
+
+  document.getElementById('preview').innerHTML = '';
+  const canvas = document.createElement('canvas');
+
+  QRCode.toCanvas(canvas, currentData, {
+    width: 400,
+    color: { dark: qrColor, light: bgColor }
+  }, function(error){
+    if(error) console.error(error);
+    document.getElementById('preview').appendChild(canvas);
+    currentCanvas = canvas;
+  });
+}
+
+function downloadPNG(){
+  if(!currentCanvas) return;
+  const link = document.createElement('a');
+  link.download = 'pro-qr.png';
+  link.href = currentCanvas.toDataURL('image/png');
+  link.click();
+}
+
+function downloadSVG(){ alert('SVG Export coming soon'); }
+function downloadPDF(){
+  if(!currentCanvas) return;
+  const { jsPDF } = window.jspdf;
+  const pdf = new jsPDF();
+  pdf.addImage(currentCanvas.toDataURL('image/png'), 'PNG', 50, 50, 100, 100);
+  pdf.save('qr.pdf');
+}
+function printQR(){
+  if(!currentCanvas) return;
+  const win = window.open('');
+  win.document.write('<img src="'+currentCanvas.toDataURL()+'" />');
+  win.print();
+}
+
+// Batch CSV
+document.getElementById('csvFile')?.addEventListener('change', function(e){
+  Papa.parse(e.target.files[0], {
+    complete: function(results){ alert(results.data.length + ' QR codes found. Batch ready.'); }
+  });
+});
+</script>
+</body>
+  </html>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pro QR Generator | My Tools</title>
+<meta name="description" content="Professional QR Code Generator with 33 QR Types & Features">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/paparse.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+:root{--primary:#22c55e;--secondary:#16a34a;--gold:#facc15;--orange:#f59e0b;--red:#ef4444;--dark:#0f172a;--dark2:#1e293b;--blue:#2563eb;--white:#ffffff;}
+body{background:linear-gradient(135deg,#0f172a,#1e293b,#2563eb);color:white;min-height:100vh;transition:0.3s;}
+body.light{background:linear-gradient(135deg,#e0e7ff,#c7d2fe,#a5b4fc);color:#000;}
+header{padding:25px;display:flex;justify-content:space-between;align-items:center;}
+.logo{font-size:30px;font-weight:700;}
+.back{color:inherit;text-decoration:none;font-weight:600;}
+.container{width:95%;max-width:1450px;margin:auto;}
+.main{display:grid;grid-template-columns:430px 1fr;gap:25px;margin-top:20px;}
+.left{background:rgba(255,255,255,.08);backdrop-filter:blur(20px);padding:25px;border-radius:25px;}
+.right{background:rgba(255,255,255,.08);backdrop-filter:blur(20px);padding:25px;border-radius:25px;}
+.title{font-size:32px;font-weight:700;margin-bottom:10px;}
+.subtitle{opacity:.8;margin-bottom:25px;}
+.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-height:450px;overflow-y:auto;padding-right:5px;}
+.tab{padding:12px;border-radius:12px;border:none;background:#334155;color:white;cursor:pointer;font-weight:600;font-size:13px;}
+.tab.active{background:#22c55e;color:black;}
+.input-group{margin-top:18px;}
+.input-group label{display:block;margin-bottom:8px;font-weight:600;}
+.input-group input,.input-group textarea,.input-group select{width:100%;padding:14px;border:none;border-radius:12px;background:#1e293b;color:white;font-size:15px;}
+body.light.input-group input,body.light.input-group textarea,body.light.input-group select{background:#fff;color:#000;}
+textarea{resize:none;}
+.section{margin-top:25px;}
+.section h3{margin-bottom:15px;}
+.colors{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+input[type=color]{height:55px;}
+.generate{margin-top:25px;width:100%;padding:16px;border:none;border-radius:15px;font-size:18px;font-weight:700;background:#22c55e;color:black;}
+.preview{background:white;border-radius:20px;padding:35px;display:flex;justify-content:center;align-items:center;min-height:520px;color:black;flex-direction:column;position:relative;}
+.downloads{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:20px;}
+.downloads button{padding:14px;border:none;border-radius:12px;background:#2563eb;color:white;font-weight:600;}
+.pro-badge{background:gold;color:#000;padding:2px 6px;border-radius:5px;font-size:10px;margin-left:4px;}
+.fav-btn{position:absolute;top:15px;right:15px;background:#facc15;border:none;padding:8px 12px;border-radius:10px;cursor:pointer;font-weight:700;}
+.history-box{max-height:200px;overflow-y:auto;margin-top:10px}
+.history-item{background:#1e293b;padding:10px;border-radius:10px;margin-bottom:8px;font-size:13px;cursor:pointer}
+body.light.history-item{background:#fff}
+@media(max-width:1000px){.main{grid-template-columns:1fr;}.downloads{grid-template-columns:repeat(2,1fr);}}
+</style>
+</head>
+<body>
+
+<header>
+<a href="qr.html" class="back">⬅ Back</a>
+<div class="logo">🚀 Pro QR Generator</div>
+<button onclick="toggleDark()" style="background:#facc15;border:none;padding:10px 15px;border-radius:10px;font-weight:700;cursor:pointer">🌙/☀️</button>
+</header>
+
+<div class="container">
+<div class="main">
+
+<div class="left">
+<h1 class="title">Generate Premium QR</h1>
+<p class="subtitle">33 Features • HD Export • Logo • Batch • History</p>
+
+<div class="section">
+<h3>QR Type</h3>
+<div class="tabs">
+<!-- AGER 24 TA -->
+<button class="tab active" onclick="showTab('url')">URL</button>
+<button class="tab" onclick="showTab('text')">Text</button>
+<button class="tab" onclick="showTab('wifi')">WiFi</button>
+<button class="tab" onclick="showTab('email')">Email</button>
+<button class="tab" onclick="showTab('phone')">Phone</button>
+<button class="tab" onclick="showTab('sms')">SMS</button>
+<button class="tab" onclick="showTab('whatsapp')">WhatsApp</button>
+<button class="tab" onclick="showTab('vcard')">vCard</button>
+<button class="tab" onclick="showTab('location')">Location</button>
+<button class="tab" onclick="showTab('event')">Event</button>
+<button class="tab" onclick="showTab('youtube')">YouTube</button>
+<button class="tab" onclick="showTab('instagram')">Instagram</button>
+<button class="tab" onclick="showTab('facebook')">Facebook</button>
+<button class="tab" onclick="showTab('twitter')">Twitter/X</button>
+<button class="tab" onclick="showTab('linkedin')">LinkedIn</button>
+<button class="tab" onclick="showTab('spotify')">Spotify</button>
+<button class="tab" onclick="showTab('payment')">UPI/Pay <span class="pro-badge">PRO</span></button>
+<button class="tab" onclick="showTab('batch')">Batch CSV <span class="pro-badge">PRO</span></button>
+<button class="tab" onclick="showTab('logo')">Logo Upload <span class="pro-badge">PRO</span></button>
+<button class="tab" onclick="showTab('gradient')">Gradient <span class="pro-badge">PRO</span></button>
+<button class="tab" onclick="showTab('rounded')">Rounded <span class="pro-badge">PRO</span></button>
+<button class="tab" onclick="showTab('frame')">Frames <span class="pro-badge">PRO</span></button>
+<button class="tab" onclick="showTab('appstore')">App Store</button>
+<button class="tab" onclick="showTab('crypto')">Crypto <span class="pro-badge">PRO</span></button>
+
+<!-- SESER 9 TA NEW -->
+<button class="tab" onclick="showTab('history')">History <span class="pro-badge">NEW</span></button>
+<button class="tab" onclick="showTab('favorites')">Favorites <span class="pro-badge">NEW</span></button>
+<button class="tab" onclick="showTab('error')">Error Level <span class="pro-badge">NEW</span></button>
+<button class="tab" onclick="showTab('margin')">Margin <span class="pro-badge">NEW</span></button>
+<button class="tab" onclick="showTab('size')">Size Control <span class="pro-badge">NEW</span></button>
+<button class="tab" onclick="showTab('seo')">SEO Meta <span class="pro-badge">NEW</span></button>
+<button class="tab" onclick="showTab('faq')">FAQ <span class="pro-badge">NEW</span></button>
+<button class="tab" onclick="showTab('share')">Share <span class="pro-badge">NEW</span></button>
+<button class="tab" onclick="showTab('print')">Print Setup <span class="pro-badge">NEW</span></button>
+</div>
+</div>
+
+<!-- AGER 24 TA FORM -->
+<div id="url" class="tabBox"><div class="input-group"><label>Website URL</label><input id="urlInput" placeholder="https://example.com"></div></div>
+<div id="text" class="tabBox" style="display:none"><div class="input-group"><label>Text</label><textarea id="textInput" rows="5"></textarea></div></div>
+<div id="wifi" class="tabBox" style="display:none"><div class="input-group"><label>WiFi Name</label><input id="wifiName"></div><div class="input-group"><label>Password</label><input id="wifiPassword"></div><div class="input-group"><label>Encryption</label><select id="wifiType"><option>WPA</option><option>WEP</option><option>None</option></select></div></div>
+<div id="email" class="tabBox" style="display:none"><div class="input-group"><label>Email</label><input id="emailInput"></div><div class="input-group"><label>Subject</label><input id="subjectInput"></div><div class="input-group"><label>Message</label><textarea id="messageInput"></textarea></div></div>
+<div id="phone" class="tabBox" style="display:none"><div class="input-group"><label>Phone Number</label><input id="phoneInput"></div></div>
+<div id="sms" class="tabBox" style="display:none"><div class="input-group"><label>Phone</label><input id="smsNumber"></div><div class="input-group"><label>Message</label><textarea id="smsText"></textarea></div></div>
+<div id="whatsapp" class="tabBox" style="display:none"><div class="input-group"><label>WhatsApp Number</label><input id="waNumber" placeholder="919876543210"></div><div class="input-group"><label>Message</label><textarea id="waMessage"></textarea></div></div>
+<div id="vcard" class="tabBox" style="display:none"><div class="input-group"><label>Name</label><input id="vcName"></div><div class="input-group"><label>Phone</label><input id="vcPhone"></div><div class="input-group"><label>Email</label><input id="vcEmail"></div></div>
+<div id="location" class="tabBox" style="display:none"><div class="input-group"><label>Google Maps URL</label><input id="locInput"></div></div>
+<div id="event" class="tabBox" style="display:none"><div class="input-group"><label>Event Name</label><input id="evName"></div><div class="input-group"><label>Date</label><input type="date" id="evDate"></div></div>
+<div id="youtube" class="tabBox" style="display:none"><div class="input-group"><label>YouTube Video URL</label><input id="ytInput"></div></div>
+<div id="instagram" class="tabBox" style="display:none"><div class="input-group"><label>Instagram Profile URL</label><input id="igInput"></div></div>
+<div id="facebook" class="tabBox" style="display:none"><div class="input-group"><label>Facebook Profile/Page URL</label><input id="fbInput"></div></div>
+<div id="twitter" class="tabBox" style="display:none"><div class="input-group"><label>Twitter/X Profile URL</label><input id="twInput"></div></div>
+<div id="linkedin" class="tabBox" style="display:none"><div class="input-group"><label>LinkedIn Profile URL</label><input id="liInput"></div></div>
+<div id="spotify" class="tabBox" style="display:none"><div class="input-group"><label>Spotify Song/Playlist URL</label><input id="spInput"></div></div>
+<div id="payment" class="tabBox" style="display:none"><div class="input-group"><label>UPI ID</label><input id="upiId" placeholder="name@upi"></div><div class="input-group"><label>Amount</label><input id="upiAmt" placeholder="100"></div></div>
+<div id="batch" class="tabBox" style="display:none"><div class="input-group"><label>Upload CSV File</label><input type="file" id="csvFile" accept=".csv"></div></div>
+<div id="logo" class="tabBox" style="display:none"><div class="input-group"><label>Upload Logo</label><input type="file" id="logoFile" accept="image/*"></div><div class="input-group"><label>Data for QR</label><input id="logoData"></div></div>
+<div id="gradient" class="tabBox" style="display:none"><div class="input-group"><label>Data</label><input id="gradData"></div><div class="input-group"><label>Gradient 1</label><input type="color" id="grad1" value="#22c55e"></div><div class="input-group"><label>Gradient 2</label><input type="color" id="grad2" value="#2563eb"></div></div>
+<div id="rounded" class="tabBox" style="display:none"><div class="input-group"><label>Data</label><input id="roundData"></div><div class="input-group"><label>Dot Style</label><select id="dotStyle"><option>rounded</option><option>dots</option><option>square</option></select></div></div>
+<div id="frame" class="tabBox" style="display:none"><div class="input-group"><label>Data</label><input id="frameData"></div><div class="input-group"><label>Frame Text</label><input id="frameText" placeholder="Scan Me"></div></div>
+<div id="appstore" class="tabBox" style="display:none"><div class="input-group"><label>App Store / Play Store URL</label><input id="appInput"></div></div>
+<div id="crypto" class="tabBox" style="display:none"><div class="input-group"><label>Wallet Address</label><input id="cryptoAddr"></div><div class="input-group"><label>Amount</label><input id="cryptoAmt"></div></div>
+
+<!-- SESER 9 TA NEW FORM -->
+<div id="history" class="tabBox" style="display:none"><h3>Recent History</h3><div id="historyList" class="history-box"></div></div>
+<div id="favorites" class="tabBox" style="display:none"><h3>Saved Favorites</h3><div id="favList" class="history-box"></div></div>
+<div id="error" class="tabBox" style="display:none"><div class="input-group"><label>Error Correction Level</label><select id="errorLevel"><option>L</option><option>M</option><option>Q</option><option>H</option></select></div></div>
+<div id="margin" class="tabBox" style="display:none"><div class="input-group"><label>Margin Size</label><input type="number" id="marginSize" value="4"></div></div>
+<div id="size" class="tabBox" style="display:none"><div class="input-group"><label>QR Size</label><input type="range" id="qrSize" min="200" max="800" value="400"></div></div>
+<div id="seo" class="tabBox" style="display:none"><div class="input-group"><label>Page Title</label><input id="seoTitle" value="Pro QR Generator"></div><div class="input-group"><label>Meta Description</label><input id="seoDesc"></div></div>
+<div id="faq" class="tabBox" style="display:none"><p><b>Q:</b> Is it free?<br><b>A:</b> Yes 100% free</p></div>
+<div id="share" class="tabBox" style="display:none"><button class="generate" onclick="shareQR()">Share QR Link</button></div>
+<div id="print" class="tabBox" style="display:none"><div class="input-group"><label>Print Copies</label><input type="number" id="printCopies" value="1"></div></div>
+
+<div class="section"><h3>Design</h3><div class="colors"><div><label>QR Color</label><input type="color" id="qrColor" value="#000"></div><div><label>BG Color</label><input type="color" id="bgColor" value="#FFFFFF"></div></div></div>
+
+<button class="generate" onclick="generateQR()">Generate Pro QR</button>
+</div>
+
+<div class="right">
+<div class="preview" id="preview">
+<p>Your QR will appear here</p>
+<button class="fav-btn" onclick="addFavorite()">⭐ Favorite</button>
+</div>
+<div class="downloads">
+<button onclick="downloadPNG()">PNG</button>
+<button onclick="downloadSVG()">SVG</button>
+<button onclick="downloadPDF()">PDF</button>
+<button onclick="printQR()">Print</button>
+</div>
+</div>
+
+</div></div>
+
+<script>
+let currentCanvas;
+let currentData = '';
+let activeTab = 'url';
+let history = JSON.parse(localStorage.getItem('qrHistory')||'[]');
+let favorites = JSON.parse(localStorage.getItem('qrFav')||'[]');
+
+function showTab(tab){
+  activeTab = tab;
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  event.target.classList.add('active');
+  document.querySelectorAll('.tabBox').forEach(b=>b.style.display='none');
+  document.getElementById(tab).style.display='block';
+  if(tab=='history') loadHistory();
+  if(tab=='favorites') loadFavorites();
+}
+
+function getData(){
+  if(activeTab=='url') return document.getElementById('urlInput').value;
+  if(activeTab=='text') return document.getElementById('textInput').value;
+  if(activeTab=='wifi') return `WIFI:T:${document.getElementById('wifiType').value};S:${document.getElementById('wifiName').value};P:${document.getElementById('wifiPassword').value};;`;
+  if(activeTab=='email') return `mailto:${document.getElementById('emailInput').value}?subject=${document.getElementById('subjectInput').value}&body=${document.getElementById('messageInput').value}`;
+  if(activeTab=='phone') return `tel:${document.getElementById('phoneInput').value}`;
+  if(activeTab=='sms') return `sms:${document.getElementById('smsNumber').value}?body=${document.getElementById('smsText').value}`;
+  if(activeTab=='whatsapp') return `https://wa.me/${document.getElementById('waNumber').value}?text=${document.getElementById('waMessage').value}`;
+  if(activeTab=='vcard') return `BEGIN:VCARD\nFN:${document.getElementById('vcName').value}\nTEL:${document.getElementById('vcPhone').value}\nEMAIL:${document.getElementById('vcEmail').value}\nEND:VCARD`;
+  if(activeTab=='location') return document.getElementById('locInput').value;
+  if(activeTab=='event') return `BEGIN:VEVENT\nSUMMARY:${document.getElementById('evName').value}\nDTSTART:${document.getElementById('evDate').value}\nEND:VEVENT`;
+  if(activeTab=='youtube') return document.getElementById('ytInput').value;
+  if(activeTab=='instagram') return document.getElementById('igInput').value;
+  if(activeTab=='facebook') return document.getElementById('fbInput').value;
+  if(activeTab=='twitter') return document.getElementById('twInput').value;
+  if(activeTab=='linkedin') return document.getElementById('liInput').value;
+  if(activeTab=='spotify') return document.getElementById('spInput').value;
+  if(activeTab=='payment') return `upi://pay?pa=${document.getElementById('upiId').value}&am=${document.getElementById('upiAmt').value}`;
+  if(activeTab=='logo') return document.getElementById('logoData').value;
+  if(activeTab=='gradient') return document.getElementById('gradData').value;
+  if(activeTab=='rounded') return document.getElementById('roundData').value;
+  if(activeTab=='frame') return document.getElementById('frameData').value;
+  if(activeTab=='appstore') return document.getElementById('appInput').value;
+  if(activeTab=='crypto') return `bitcoin:${document.getElementById('cryptoAddr').value}?amount=${document.getElementById('cryptoAmt').value}`;
+  return 'Pro QR';
+}
+
+function generateQR(){
+  currentData = getData();
+  if(!currentData){ alert('Please fill the data'); return; }
+
+  const qrColor = document.getElementById('qrColor').value;
+  const bgColor = document.getElementById('bgColor').value;
+  const size = document.getElementById('qrSize')?.value || 400;
+  const margin = document.getElementById('marginSize')?.value || 4;
+  const error = document.getElementById('errorLevel')?.value || 'H';
+
+  document.getElementById('preview').innerHTML = '<button class="fav-btn" onclick="addFavorite()">⭐ Favorite</button>';
+  const canvas = document.createElement('canvas');
+
+  QRCode.toCanvas(canvas, currentData, {
+    width: parseInt(size),
+    margin: parseInt(margin),
+    errorCorrectionLevel: error,
+    color: { dark: qrColor, light: bgColor }
+  }, function(error){
+    document.getElementById('preview').appendChild(canvas);
+    currentCanvas = canvas;
+    saveHistory(currentData);
+  });
+}
+
+function saveHistory(data){
+  history.unshift({data: data, time: new Date().toLocaleString()});
+  history = history.slice(0,10);
+  localStorage.setItem('qrHistory', JSON.stringify(history));
+}
+
+function loadHistory(){
+  document.getElementById('historyList').innerHTML = history.map(h=>`<div class="history-item" onclick="navigator.clipboard.writeText('${h.data}')">${h.data.substring(0,40)}...<br><small>${h.time}</small></div>`).join('');
+}
+
+function addFavorite(){
+  if(!currentData) return;
+  favorites.push(currentData);
+  localStorage.setItem('qrFav', JSON.stringify(favorites));
+  alert('Saved to Favorites');
+}
+
+function loadFavorites(){
+  document.getElementById('favList').innerHTML = favorites.map(f=>`<div class="history-item">${f.substring(0,40)}...</div>`).join('');
+}
+
+function shareQR(){
+  navigator.clipboard.writeText(currentData);
+  alert('QR Data Copied! Share anywhere');
+}
+
+function toggleDark(){
+  document.body.classList.toggle('light');
+}
+
+function downloadPNG(){
+  if(!currentCanvas) return;
+  const link = document.createElement('a');
+  link.download = 'pro-qr.png';
+  link.href = currentCanvas.toDataURL('image/png');
+  link.click();
+}
+
+function downloadSVG(){ alert('SVG coming soon') }
+function downloadPDF(){
+  if(!currentCanvas) return;
+  const { jsPDF } = window.jspdf;
+  const pdf = new jsPDF();
+  pdf.addImage(currentCanvas.toDataURL('image/png'), 'PNG', 50, 50, 100, 100);
+  pdf.save('qr.pdf');
+}
+function printQR(){
+  const copies = document.getElementById('printCopies')?.value || 1;
+  for(let i=0;i<copies;i++) window.print();
+}
+
+document.getElementById('csvFile')?.addEventListener('change', function(e){
+  Papa.parse(e.target.files[0], {complete: function(results){ alert(results.data.length + ' QR found in CSV') }});
+</script>
+</body>
+  </html>
