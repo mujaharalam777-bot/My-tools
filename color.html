@@ -1,1 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pocker Tool</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box; margin:0; padding:0;}
+body{
+background: linear-gradient(180deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+min-height:100vh;
+padding:20px;
+font-family:'Poppins', sans-serif;
+color:#fff;
+}
+.container{max-width:600px; margin:0 auto;}
+.back{color:#e2e8f0; text-decoration:none; margin-bottom:25px; display:block; font-size:17px; font-weight:600;}
 
+.header{text-align:center; margin-bottom:30px;}
+.header .icon{font-size:60px; margin-bottom:15px;}
+.header h1{font-size:28px; font-weight:700;}
+
+.card{
+background: rgba(255,255,255,0.08);
+backdrop-filter: blur(20px);
+border:1px solid rgba(255,255,255,0.15);
+border-radius:24px;
+padding:28px 25px;
+margin-bottom:20px;
+text-align:center;
+}
+
+.status{display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:10px;}
+.dot{width:12px; height:12px; background:#00ff88; border-radius:50%; box-shadow: 0 0 12px #00ff88;}
+.status h2{font-size:21px; font-weight:700;}
+.card p{color:#cbd5e1; font-size:15px; margin-bottom:22px;}
+
+.btn{
+width:100%;
+padding:17px;
+border:none;
+border-radius:16px;
+font-size:17px;
+font-weight:700;
+cursor:pointer;
+}
+
+/* FREE BUTTON */
+.btn-free{
+background: linear-gradient(90deg, #00ff88, #00d977);
+color:#000;
+}
+
+/* PRO BUTTON */
+.btn-pro{
+background: linear-gradient(90deg, #ff9500, #ff7700);
+color:#fff;
+}
+
+.features{list-style:none; text-align:left; margin:22px 0;}
+.features li{
+margin-bottom:14px;
+color:#e2e8f0;
+font-size:15px;
+display:flex;
+align-items:center;
+gap:10px;
+}
+.features li::before{content:'✓'; color:#00ff88; font-weight:700; font-size:18px;}
+
+.lock-icon{font-size:65px; margin-bottom:15px;}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<a href="index.html" class="back">← Back</a>
+
+<div class="header">
+<div class="icon">🎯</div>
+<h1>Pocker Tool</h1>
+</div>
+
+<!-- FREE VERSION CARD -->
+<div class="card">
+<div class="status">
+<span class="dot"></span>
+<h2>Free Version</h2>
+</div>
+<p>Basic Pocker</p>
+<a href="pocker-free.html"><button class="btn btn-free">Open Free</button></a>
+</div>
+
+<!-- PRO VERSION CARD -->
+<div class="card">
+<div class="lock-icon">🔒</div>
+<h2>Pocker Pro</h2>
+<ul class="features">
+<li>Advanced Features</li>
+<li>Save & Load Data</li>
+<li>Export Report</li>
+<li>No Ads</li>
+</ul>
+<button class="btn btn-pro">🚧 Unlock Soon</button>
+</div>
+
+</div>
+
+</body>
+                             </html>
