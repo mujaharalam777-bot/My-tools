@@ -95,7 +95,7 @@ alert("Copied Successfully");
 });
 
 }
-// =======================================
+}// =======================================
 // download.js
 // Part 2
 // PDF, SVG, Print & Share
@@ -173,6 +173,14 @@ printedQR();
 
 async function shareQRCode(){
 
+if(!qrCanvas){
+
+alert("Generate a QR Code first.");
+
+return;
+
+}
+
 if(!navigator.share){
 
 alert("Your browser doesn't support Share.");
@@ -219,6 +227,7 @@ console.log(e);
 
 });
 
+}
 }
 
 // Download JPG
