@@ -3,251 +3,128 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>My Tools - 100+ Free Online Tools</title>
-
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Segoe UI',Arial,sans-serif;
-}
-
-body{
-background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
-color:#fff;
-min-height:100vh;
-}
-
-header{
-background:linear-gradient(90deg,#2563eb,#7c3aed);
-padding:35px 20px;
-text-align:center;
-}
-
-header h1{
-font-size:32px;
-margin-bottom:8px;
-}
-
-header p{
-opacity:.85;
-font-size:16px;
-}
-
-.container{
-width:95%;
-max-width:1200px;
-margin:25px auto;
-padding:10px;
-}
-
-.search-box{
-width:100%;
-padding:14px 18px;
-border:none;
-border-radius:14px;
-font-size:16px;
-margin-bottom:25px;
-outline:none;
-background:rgba(255,255,255,.1);
-color:#fff;
-}
-
-.search-box::placeholder{
-color:#bbb;
-}
-
-.tools-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-gap:18px;
-}
-
-.card{
-display:block;
-text-decoration:none;
-text-align:center;
-color:#fff;
-padding:25px 15px;
-border-radius:18px;
-background:rgba(255,255,255,.08);
-backdrop-filter:blur(15px);
-border:1px solid rgba(255,255,255,.1);
-transition:.3s;
-}
-
-.card:hover{
-transform:translateY(-8px);
-background:rgba(255,255,255,.15);
-box-shadow:0 10px 30px rgba(0,0,0,.3);
-}
-
-.icon{
-display:block;
-font-size:42px;
-margin-bottom:12px;
-}
-
-.card p{
-font-size:15px;
-font-weight:600;
-}
+*{margin:0; padding:0; box-sizing:border-box; font-family:Arial, sans-serif;}
+body{background:linear-gradient(135deg,#0f2027,#203a43,#2c5364); min-height:100vh; color:#fff;}
+.header{background:linear-gradient(90deg,#667eea,#764ba2); padding:30px 20px; text-align:center;}
+.header h1{font-size:28px; margin-bottom:5px;}
+.header p{font-size:14px; opacity:0.9;}
+.container{padding:20px; max-width:800px; margin:auto;}
+.search-box{width:100%; padding:12px; border-radius:10px; border:none; background:rgba(255,255,255,0.1); color:#fff; font-size:16px; margin-bottom:20px;}
+.search-box::placeholder{color:#ccc;}
+.grid{display:grid; grid-template-columns:repeat(2, 1fr); gap:15px;}
+.card{background:rgba(255,255,255,0.1); backdrop-filter:blur(10px); padding:20px; border-radius:15px; text-align:center; text-decoration:none; color:#fff; transition:0.3s;}
+.card:hover{transform:translateY(-5px); background:rgba(255,255,255,0.2);}
+.icon{font-size:35px; margin-bottom:10px; display:block;}
+.card p{font-size:14px; font-weight:600;}
 </style>
-
 </head>
 <body>
 
-<header>
-<h1>🚀 My Tools</h1>
-<p>100+ Free Online Tools For You</p>
-</header>
+<div class="header">
+    <h1>🚀 My Tools</h1>
+    <p>100+ Free Online Tools For You</p>
+</div>
 
 <div class="container">
+    <input type="text" class="search-box" placeholder="Search Tools...">
+    
+    <div class="grid">
+        
+        <!-- Purono 6 ta -->
+        <a href="age.html" class="card">
+            <span class="icon">🎂</span>
+            <p>Age Calculator</p>
+        </a>
 
-<input type="text" class="search-box" placeholder="Search Tools...">
+        <a href="bmi.html" class="card">
+            <span class="icon">⚖️</span>
+            <p>BMI Calculator</p>
+        </a>
 
-<div class="tools-grid">
+        <a href="qr.html" class="card">
+            <span class="icon">📱</span>
+            <p>QR Generator</p>
+        </a>
 
-<a href="age.html" class="card">
-<span class="icon">🎂</span>
-<p>Age Calculator</p>
-</a>
+        <a href="pdf.html" class="card">
+            <span class="icon">📄</span>
+            <p>PDF Tools</p>
+        </a>
 
-<a href="bmi.html" class="card">
-<span class="icon">⚖️</span>
-<p>BMI Calculator</p>
-</a>
+        <a href="word.html" class="card">
+            <span class="icon">abc</span>
+            <p>Word Counter</p>
+        </a>
 
-<a href="qr.html" class="card">
-<span class="icon">📱</span>
-<p>QR Generator</p>
-</a>
+        <a href="color.html" class="card">
+            <span class="icon">🎨</span>
+            <p>Color Picker</p>
+        </a>
 
-<a href="pdf.html" class="card">
-<span class="icon">📄</span>
-<p>PDF Tools</p>
-</a>
+        <!-- Notun 12 ta -->
+        <a href="password.html" class="card">
+            <span class="icon">🔑</span>
+            <p>Strong Password Generator</p>
+        </a>
 
-<a href="word.html" class="card">
-<span class="icon">🔤</span>
-<p>Word Counter</p>
-</a>
+        <a href="resize.html" class="card">
+            <span class="icon">🖼️</span>
+            <p>Image Resizer</p>
+        </a>
 
-<a href="color.html" class="card">
-<span class="icon">🎨</span>
-<p>Color Picker</p>
-</a>
-</div>
-  
-<a href="password.html" class="card">
-    <span class="icon">🔑</span>
-    <p>Strong Password Generator</p>
-    <div style="display:flex; gap:6px; margin-top:8px; justify-content:center;">
-        <span style="font-size:10px;background:#22c55e;color:#000;padding:3px 8px;border-radius:20px;font-weight:600;">FREE</span>
-        <span style="font-size:10px;background:#f59e0b;color:#000;padding:3px 8px;border-radius:20px;font-weight:600;">PRO</span>
+        <a href="percentage.html" class="card">
+            <span class="icon">%</span>
+            <p>Percentage Calculator</p>
+        </a>
+
+        <a href="love.html" class="card">
+            <span class="icon">❤️</span>
+            <p>Love Calculator</p>
+        </a>
+
+        <a href="case.html" class="card">
+            <span class="icon">Aa</span>
+            <p>Case Converter</p>
+        </a>
+
+        <a href="slug.html" class="card">
+            <span class="icon">🔗</span>
+            <p>Text to Slug Generator</p>
+        </a>
+
+        <a href="remove.html" class="card">
+            <span class="icon">📝</span>
+            <p>Remove Duplicate Lines</p>
+        </a>
+
+        <a href="compound.html" class="card">
+            <span class="icon">💰</span>
+            <p>Compound Interest Calculator</p>
+        </a>
+
+        <a href="gradient.html" class="card">
+            <span class="icon">🎨</span>
+            <p>CSS Gradient Generator</p>
+        </a>
+
+        <a href="favicon.html" class="card">
+            <span class="icon">⭐</span>
+            <p>Favicon Generator</p>
+        </a>
+
+        <a href="base64.html" class="card">
+            <span class="icon">{}</span>
+            <p>Base64 Encoder/Decoder</p>
+        </a>
+
+        <a href="hash.html" class="card">
+            <span class="icon">#</span>
+            <p>MD5/SHA256 Hash Generator</p>
+        </a>
+
     </div>
-</a>
-
-<a href="resize.html" class="card">
-    <span class="icon">🖼️</span>
-    <p>Image Resizer</p>
-    <div style="display:flex; gap:6px; margin-top:8px; justify-content:center;">
-        <span style="font-size:10px;background:#22c55e;color:#000;padding:3px 8px;border-radius:20px;font-weight:600;">FREE</span>
-        <span style="font-size:10px;background:#f59e0b;color:#000;padding:3px 8px;border-radius:20px;font-weight:600;">PRO</span>
-    </div>
-</a>
-
-<a href="percentage.html" class="card">
-    <span class="icon">%</span>
-    <p>Percentage Calculator</p>
-    <div style="display:flex; gap:6px; margin-top:8px; justify-content:center;">
-        <span style="font-size:10px;background:#22c55e;color:#000;padding:3px 8px;border-radius:20px;font-weight:600;">FREE</span>
-        <span style="font-size:10px;background:#f59e0b;color:#000;padding:3px 8px;border-radius:20px;font-weight:600;">PRO</span>
-    </div>
-</a>
-
-<a href="love.html" class="card">
-    <span class="icon">❤️</span>
-    <p>Love Calculator</p>
-    <div style="display:flex; gap:6px; margin-top:8px; justify-content:center;">
-        <span style="font-size:10px;background:#22c55e;color:#000;padding:3px 8px;border-radius:20px;font-weight:600;">FREE</span>
-        <span style="font-size:10px;background:#f59e0b;color:#000;padding:3px 8px;border-radius:20px;font-weight:600;">PRO</span>
-    </div>
-</a>
-
-<a href="case.html" class="card">
-    <span class="icon">Aa</span>
-    <p>Case Converter</p>
-    <div style="display:flex; gap:6px; margin-top:8px; justify-content:center;">
-        <span style="font-size:10px;background:#22c55e;color:#000;padding:3px 8px;border-radius:20px;font-weight:600;">FREE</span>
-        <span style="font-size:10px;background:#f59e0b;color:#000;padding:3px 8px;border-radius:20px;font-weight:600;">PRO</span>
-    </div>
-</a>
-
-<a href="slug.html" class="card">
-    <span class="icon">🔗</span>
-    <p>Text to Slug Generator</p>
-    <div style="display:flex; gap:6px; margin-top:8px; justify-content:center;">
-        <span style="font-size:10px;background:#22c55e;color:#000;padding:3px 8px;border-radius:20px;font-weight:600;">FREE</span>
-        <span style="font-size:10px;background:#f59e0b;color:#000;padding:3px 8px;border-radius:20px;font-weight:600;">PRO</span>
-    </div>
-</a>
-
-<a href="remove.html" class="card">
-    <span class="icon">📝</span>
-    <p>Remove Duplicate Lines</p>
-    <div style="display:flex; gap:6px; margin-top:8px; justify-content:center;">
-        <span style="font-size:10px;background:#22c55e;color:#000;padding:3px 8px;border-radius:20px;font-weight:600;">FREE</span>
-        <span style="font-size:10px;background:#f59e0b;color:#000;padding:3px 8px;border-radius:20px;font-weight:600;">PRO</span>
-    </div>
-</a>
-
-<a href="compound.html" class="card">
-    <span class="icon">💰</span>
-    <p>Compound Interest Calculator</p>
-    <div style="display:flex; gap:6px; margin-top:8px; justify-content:center;">
-        <span style="font-size:10px;background:#22c55e;color:#000;padding:3px 8px;border-radius:20px;font-weight:600;">FREE</span>
-        <span style="font-size:10px;background:#f59e0b;color:#000;padding:3px 8px;border-radius:20px;font-weight:600;">PRO</span>
-    </div>
-</a>
-
-<a href="gradient.html" class="card">
-    <span class="icon">🎨</span>
-    <p>CSS Gradient Generator</p>
-    <div style="display:flex; gap:6px; margin-top:8px; justify-content:center;">
-        <span style="font-size:10px;background:#22c55e;color:#000;padding:3px 8px;border-radius:20px;font-weight:600;">FREE</span>
-        <span style="font-size:10px;background:#f59e0b;color:#000;padding:3px 8px;border-radius:20px;font-weight:600;">PRO</span>
-    </div>
-</a>
-
-<a href="favicon.html" class="card">
-    <span class="icon">⭐</span>
-    <p>Favicon Generator</p>
-    <div style="display:flex; gap:6px; margin-top:8px; justify-content:center;">
-        <span style="font-size:10px;background:#22c55e;color:#000;padding:3px 8px;border-radius:20px;font-weight:600;">FREE</span>
-        <span style="font-size:10px;background:#f59e0b;color:#000;padding:3px 8px;border-radius:20px;font-weight:600;">PRO</span>
-    </div>
-</a>
-
-<a href="base64.html" class="card">
-    <span class="icon">{}</span>
-    <p>Base64 Encoder/Decoder</p>
-    <div style="display:flex; gap:6px; margin-top:8px; justify-content:center;">
-        <span style="font-size:10px;background:#22c55e;color:#000;padding:3px 8px;border-radius:20px;font-weight:600;">FREE</span>
-        <span style="font-size:10px;background:#f59e0b;color:#000;padding:3px 8px;border-radius:20px;font-weight:600;">PRO</span>
-    </div>
-</a>
-
-<a href="hash.html" class="card">
-    <span class="icon">#</span>
-    <p>MD5/SHA256 Hash Generator</p>
-    <div style="display:flex; gap:6px; margin-top:8px; justify-content:center;">
-        <span style="font-size:10px;background:#22c55e;color:#000;padding:3px 8px;border-radius:20px;font-weight:600;">FREE</span>
-        <span style="font-size:10px;background:#f59e0b;color:#000;padding:3px 8px;border-radius:20px;font-weight:600;">PRO</span>
-    </div>
-      </a>
 </div>
 
 </body>
