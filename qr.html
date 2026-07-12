@@ -3,170 +3,187 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Basic QR Generator | My Tools</title>
+
+<title>QR Generator | My Tools</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);color:#fff;min-height:100vh;padding:20px}
-.header{padding:15px 0;margin-bottom:10px;display:flex;align-items:center;gap:15px}
-.back-btn{color:#fff;text-decoration:none;font-size:16px;font-weight:600}
-.container{max-width:900px;margin:20px auto;background:rgba(255,255,255,0.08);backdrop-filter:blur(20px);border-radius:25px;padding:30px;border:1px solid rgba(255,255,255,0.1);margin-bottom:20px}
-.input-group{margin-bottom:20px}
-.input-group label{display:block;margin-bottom:8px;font-weight:600}
-.input-group input{width:100%;padding:14px 18px;border-radius:12px;border:2px solid transparent;background:rgba(255,255,255,0.1);color:#fff;font-size:1rem;outline:none}
-.btn{width:100%;padding:16px;border:none;border-radius:12px;background:linear-gradient(135deg,#22c55e,#16a34a);color:#000;font-weight:700;font-size:1.1rem;cursor:pointer;margin-bottom:20px}
-.qr-wrapper{background:#fff;padding:20px;border-radius:15px;display:flex;justify-content:center;align-items:center;flex-direction:column;min-height:320px;color:#000}
-.watermark{margin-top:12px;font-size:14px;color:#444;font-weight:700}
-.action-btns{display:flex;gap:10px}
-.btn-secondary{flex:1;padding:12px;border:2px solid #22c55e;background:transparent;color:#22c55e;border-radius:10px;cursor:pointer;font-weight:600;display:none}
-.tag{display:inline-block;background:rgba(34,197,94,0.2);padding:5px 12px;border-radius:20px;font-size:12px;margin-bottom:15px}
-.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:15px}
-.feature-card{background:rgba(255,255,255,0.05);padding:20px;border-radius:15px;border:1px solid rgba(255,255,255,0.1)}
-.feature-card h3{color:#22c55e;margin-bottom:8px;font-size:1.1rem}
-.section-title{font-size:1.3rem;margin-bottom:15px}
-.section-box ul{list-style:none}
-.section-box ul li{padding:8px 0;padding-left:25px;position:relative}
-.section-box ul li:before{content:'✓';position:absolute;left:0;color:#22c55e;font-weight:700}
-.footer{text-align:center;padding:20px;opacity:0.7;font-size:14px}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#0f172a,#1e293b,#2563eb);
+min-height:100vh;
+color:#fff;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+.container{
+width:100%;
+max-width:900px;
+}
+
+.header{
+text-align:center;
+margin-bottom:35px;
+}
+
+.header h1{
+font-size:42px;
+margin-bottom:10px;
+}
+
+.header p{
+opacity:.8;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:25px;
+}
+
+.card{
+display:block;
+text-decoration:none;
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(20px);
+border-radius:25px;
+padding:35px;
+color:white;
+transition:.3s;
+border:2px solid rgba(255,255,255,.08);
+}
+
+.card:hover{
+transform:translateY(-8px);
+border-color:#22c55e;
+}
+
+.icon{
+font-size:70px;
+margin-bottom:20px;
+}
+
+.card h2{
+margin-bottom:15px;
+font-size:28px;
+}
+
+.card p{
+opacity:.8;
+line-height:1.8;
+}
+
+.badge{
+display:inline-block;
+margin-top:20px;
+padding:8px 18px;
+border-radius:30px;
+font-size:14px;
+font-weight:bold;
+}
+
+.free{
+background:#22c55e;
+color:#000;
+}
+
+.pro{
+background:#f59e0b;
+color:#000;
+}
+
+.back{
+display:inline-block;
+margin-top:35px;
+color:#fff;
+text-decoration:none;
+font-weight:bold;
+}
+
+footer{
+text-align:center;
+margin-top:40px;
+opacity:.7;
+}
+
+@media(max-width:700px){
+
+.header h1{
+font-size:30px;
+}
+
+}
+
 </style>
 </head>
+
 <body>
 
+<div class="container">
+
 <div class="header">
-  <a href="qr.html" class="back-btn">← Back</a>
-  <h1>📱 Basic QR Generator</h1>
+<h1>📱 QR Generator</h1>
+<p>Choose Your Version</p>
 </div>
 
-<!-- MAIN TOOL -->
-<div class="container">
-  <span class="tag">Free Version</span>
-  
-  <div class="input-group">
-    <label>Enter URL or Text</label>
-    <input type="text" id="qrInput" placeholder="https://google.com or Hello World">
-  </div>
+<div class="grid">
 
-  <button class="btn" onclick="generateQR()">Generate QR Code</button>
+<a href="qr-generator.html" class="card">
 
-  <div id="qrWrapper" class="qr-wrapper">
-    <p style="opacity:0.5">Your QR will appear here</p>
-  </div>
-  
-  <div class="action-btns" style="margin-top:15px">
-    <button id="downloadBtn" class="btn-secondary" onclick="downloadPNG()">📥 Download</button>
-    <button id="copyBtn" class="btn-secondary" onclick="copyQR()">📋 Copy</button>
-  </div>
+<div class="icon">📱</div>
+
+<h2>Basic QR Generator</h2>
+
+<p>
+Free QR Generator for URL and Text.
+Simple, Fast and Mobile Friendly.
+</p>
+
+<span class="badge free">FREE</span>
+
+</a>
+<a href="pro-qr.html" class="card">
+
+<div class="icon">🚀</div>
+
+<h2>Pro QR Generator</h2>
+
+<p>
+Premium Features.
+Logo, WiFi QR, WhatsApp QR,
+Batch QR, SVG Download and more.
+</p>
+
+<span class="badge pro">🔒 UNLOCK SOON</span>
+
+</a>
+
 </div>
 
-<!-- 6 FEATURES -->
-<div class="container">
-  <h2 class="section-title">⭐ 6 Powerful Features</h2>
-  <div class="features-grid">
-    <div class="feature-card"><h3>1. URL to QR</h3><p>Any website link ke QR e convert koro.</p></div>
-    <div class="feature-card"><h3>2. Text to QR</h3><p>Any text, message, note QR baniye share koro.</p></div>
-    <div class="feature-card"><h3>3. Instant Generate</h3><p>1 click e QR toiri. Kono wait nei.</p></div>
-    <div class="feature-card"><h3>4. Download PNG</h3><p>HD PNG te download koro watermark soho.</p></div>
-    <div class="feature-card"><h3>5. Copy QR</h3><p>QR ke direct clipboard e copy koro.</p></div>
-    <div class="feature-card"><h3>6. Mobile Friendly</h3><p>100% Responsive. Sob device e perfect.</p></div>
-  </div>
+<div style="text-align:center">
+
+<a href="index.html" class="back">⬅ Back to Home</a>
+
 </div>
 
-<!-- HOW TO USE -->
-<div class="container">
-  <h2 class="section-title">📖 How to Use</h2>
-  <ul>
-    <li>Enter your URL or Text in the box above.</li>
-    <li>Click the <b>Generate QR Code</b> button.</li>
-    <li>Download with <b>Mujahar</b> watermark.</li>
-  </ul>
+<footer>
+
+<p>© 2026 My Tools • QR Generator</p>
+
+</footer>
+
 </div>
 
-<!-- FAQ -->
-<div class="container">
-  <h2 class="section-title">❓ FAQ</h2>
-  <ul>
-    <li><b>Is this free?</b><br>Yes. 100% free with watermark.</li>
-    <li><b>Mobile e kaj korbe?</b><br>Yes. Fully responsive.</li>
-  </ul>
-</div>
-
-<!-- RELATED TOOLS -->
-<div class="container">
-  <h2 class="section-title">🔗 Related Tools</h2>
-  <ul>
-    <li><a href="age-calculator.html" style="color:#22c55e">Age Calculator</a></li>
-    <li><a href="password-generator.html" style="color:#22c55e">Password Generator</a></li>
-    <li><a href="index.html" style="color:#22c55e">Home</a></li>
-  </ul>
-</div>
-
-<div class="footer">© 2026 My Tools • Basic QR Generator by Mujahar</div>
-
-<!-- QR LIBRARY INSIDE - NO CDN -->
-<script>
-// Simple QR Code Generator - No CDN needed
-!function(){function e(e,t){this._typeNumber=e,this._errorCorrectLevel=t,this._modules=null,this._moduleCount=0,this._dataCache=null,this._dataList=[]}function t(e,t){this._typeNumber=e,this._errorCorrectLevel=t,this._modules=null,this._moduleCount=0,this._dataCache=null,this._dataList=[]}function n(e){if("string"==typeof e){var t=new Array(e.length);for(var n=0;n<e.length;n++)t[n]=e.charCodeAt(n);return t}return e}
-var r={L:1,M:0,Q:3,H:2};
-function o(e,t){this._width=t,this._height=t,this._data=new Array(t*t),this._maskPattern=0,this._dataList=[]}
-o.prototype={get:function(e,t){return this._data[e*this._width+t]},set:function(e,t,n){this._data[e*this._width+t]=n}};
-var i={PATTERN0:function(e,t){return(e+t)%2==0},PATTERN1:function(e,t){return e%2==0},PATTERN2:function(e,t){return t%3==0},PATTERN3:function(e,t){return(e+t)%3==0},PATTERN4:function(e,t){return(Math.floor(e/2)+Math.floor(t/3))%2==0},PATTERN5:function(e,t){return e*t%2+e*t%3==0},PATTERN6:function(e,t){return(e*t%2+e*t%3)%2==0},PATTERN7:function(e,t){return((e+t)%2+e*t%3)%2==0}};
-function a(e,t){for(var n=0;n<t.length;n++)if(t[n]==e)return!0;return!1}
-function s(e){for(var t=0,n=0;n<e.length;n++)t+=e[n];return t}
-function l(e,t,n){var r=new Array(n);for(var o=0;o<n;o++)r[o]=new Array(n);return r}
-var u={getBCHTypeInfo:function(e){for(var t=e<<10,n=0x537;n<1<<10;){var r=Math.floor(Math.log(n)/Math.log(2))-10;t^=n<<r;n<<=1}n=0x537;for(var r=Math.floor(Math.log(t)/Math.log(2))-10;r>=0;r--)t^=n<<r;return(e<<10|t)^0x5412},getBCHTypeNumber:function(e){for(var t=e<<12,n=0x1f25;n<1<<12;){var r=Math.floor(Math.log(n)/Math.log(2))-12;t^=n<<r;n<<=1}n=0x1f25;for(var r=Math.floor(Math.log(t)/Math.log(2))-12;r>=0;r--)t^=n<<r;return e<<12|t},getPatternPosition:function(e){return[6,18][e-1]},getMask:function(e,t,n){switch(e){case 0:return(t+n)%2==0;case 1:return t%2==0;case 2:return n%3==0;case 3:return(t+n)%3==0;case 4:return(Math.floor(t/2)+Math.floor(n/3))%2==0;case 5:return t*n%2+t*n%3==0;case 6:return(t*n%2+t*n%3)%2==0;case 7:return((t+n)%2+t*n%3)%2==0}},getErrorCorrectPolynomial:function(e){for(var t=new o(0,e),n=0;n<e;n++)t.set(0,n,1);for(var n=0;n<e;n++){var r=t.get(0,0);if(0!=r){t.set(0,0,0);for(var i=0;i<e;i++)t.set(0,i+1,t.get(0,i+1)^this.gexp(this.glog(r)+n)%255)}else t.set(0,0,0)}return t},gexp:function(e){for(var t=0;t<256;t++)if(this.EXP_TABLE[t]==e)return t},glog:function(e){if(e<1)throw new Error("glog("+e+")");return this.LOG_TABLE[e]},EXP_TABLE:new Array(256),LOG_TABLE:new Array(256)};
-for(var c=0;c<8;c++)u.EXP_TABLE[c]=1<<c;for(var c=8;c<256;c++)u.EXP_TABLE[c]=u.EXP_TABLE[c-4]^u.EXP_TABLE[c-5]^u.EXP_TABLE[c-6]^u.EXP_TABLE[c-8];for(var c=0;c<255;c++)u.LOG_TABLE[u.EXP_TABLE[c]]=c;
-function d(e,t){this._typeNumber=1,this._errorCorrectLevel=t,this._modules=null,this._moduleCount=0,this._dataCache=null,this._dataList=[new h(n(e))]}
-d.prototype={addData:function(e){this._dataList.push(new h(n(e)))},isDark:function(e,t){if(0>e||this._moduleCount<=e||0>t||this._moduleCount<=t)throw new Error(e+","+t);return this._modules[e][t]},getModuleCount:function(){return this._moduleCount},make:function(){this._make()},_make:function(){this._moduleCount=21;for(var e=new Array(this._moduleCount),t=0;t<this._moduleCount;t++){e[t]=new Array(this._moduleCount);for(var n=0;n<this._moduleCount;n++)e[t][n]=null}this._modules=e;this._setupPositionProbePattern(0,0),this._setupPositionProbePattern(this._moduleCount-7,0),this._setupPositionProbePattern(0,this._moduleCount-7),this._setupTimingPattern(),this._setupData(),this._setupTypeInfo(!1,0)},_setupPositionProbePattern:function(e,t){for(var n=-1;n<=7;n++)if(!(e+n<=-1||this._moduleCount<=e+n))for(var r=-1;r<=7;r++)t+r<=-1||this._moduleCount<=t+r||(this._modules[e+n][t+r]=0<=n&&n<=6&&(0==r||6==r)||0<=r&&r<=6&&(0==n||6==n)||2<=n&&n<=4&&2<=r&&r<=4)},_setupTimingPattern:function(){for(var e=8;e<this._moduleCount-8;e++)null==this._modules[e][6]&&(this._modules[e][6]=e%2==0);for(var e=8;e<this._moduleCount-8;e++)null==this._modules[6][e]&&(this._modules[6][e]=e%2==0)},_setupData:function(){for(var e=-1,t=this._moduleCount-1,n=this._moduleCount-1,r=7,i=0;0<i;){for(;t>=0;){for(var a=0;a<2;a++)if(null==this._modules[t][n-a]){var s=!1;0==i&&(s=!0),this._modules[t][n-a]=s}if(t--,t<0){t=0;break}}n-=2,e=-e;for(;t>=0&&t<this._moduleCount;){for(var a=0;a<2;a++)if(null==this._modules[t][n-a]){var s=!1;0==i&&(s=!0),this._modules[t][n-a]=s}t+=e}if(t<0||this._moduleCount<=t)n-=2,e=-e}t=0,i++},_setupTypeInfo:function(e,t){}};
-function h(e){this._mode=4,this._data=e}
-h.prototype={getLength:function(){return this._data.length},write:function(e){for(var t=0;t<this._data.length;t++)e.put(this._data[t],8)}};
-window.QRCode=function(e,t){var n=new d(t.text, r.M);n.make();var i=e;if("string"==typeof e)i=document.getElementById(e);var a=document.createElement("canvas");a.width=280,a.height=280;var s=a.getContext("2d"),l=280/n.getModuleCount();for(var u=0;u<n.getModuleCount();u++)for(var c=0;c<n.getModuleCount();c++)s.fillStyle=n.isDark(u,c)?"#000":"#fff",s.fillRect(u*l,c*l,l);i.appendChild(a);return a};
-}();
-</script>
-
-<script>
-let currentQRCanvas;
-const BRAND_NAME = "Mujahar";
-
-function generateQR(){
-  const input = document.getElementById('qrInput').value.trim();
-  if(!input){ alert("Please enter URL or Text"); return; }
-  
-  document.getElementById('qrWrapper').innerHTML = '';
-  
-  // Ebar CDN lagbe na. Library uporei ache
-  const canvas = QRCode(document.getElementById('qrWrapper'), {text: input});
-  currentQRCanvas = canvas;
-  
-  const wm = document.createElement('div');
-  wm.className = 'watermark';
-  wm.innerText = `© ${BRAND_NAME}`;
-  document.getElementById('qrWrapper').appendChild(wm);
-  
-  document.getElementById('downloadBtn').style.display = 'block';
-  document.getElementById('copyBtn').style.display = 'block';
-}
-
-function downloadPNG(){
-  if(!currentQRCanvas) return;
-  const finalCanvas = document.createElement('canvas');
-  const ctx = finalCanvas.getContext('2d');
-  finalCanvas.width = 280; finalCanvas.height = 320;
-  ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, finalCanvas.width, finalCanvas.height);
-  ctx.drawImage(currentQRCanvas, 0, 0);
-  ctx.fillStyle = '#444'; ctx.font = 'bold 16px Poppins'; ctx.textAlign = 'center';
-  ctx.fillText(`© ${BRAND_NAME}`, finalCanvas.width/2, 305);
-  const link = document.createElement('a');
-  link.download = 'qr-by-mujahar.png'; link.href = finalCanvas.toDataURL(); link.click();
-}
-
-function copyQR(){
-  if(!currentQRCanvas) return;
-  currentQRCanvas.toBlob(blob => {
-    navigator.clipboard.write([new ClipboardItem({[blob.type]: blob})]);
-    alert('QR Copied to Clipboard!');
-  });
-}
-</script>
 </body>
 </html>
-    
