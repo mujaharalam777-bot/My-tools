@@ -43,9 +43,9 @@ function generateQR(){
 
             data =
             document
-            .getElementById("urlInput")
-            .value
-            .trim();
+          .getElementById("urlInput")
+          .value
+          .trim();
 
         break;
 
@@ -53,9 +53,9 @@ function generateQR(){
 
             data =
             document
-            .getElementById("textInput")
-            .value
-            .trim();
+          .getElementById("textInput")
+          .value
+          .trim();
 
         break;
 
@@ -63,13 +63,13 @@ function generateQR(){
 
             const wifi =
             document
-            .getElementById("wifiName")
-            .value;
+          .getElementById("wifiName")
+          .value;
 
             const pass =
             document
-            .getElementById("wifiPassword")
-            .value;
+          .getElementById("wifiPassword")
+          .value;
 
             data =
             `WIFI:T:WPA;S:${wifi};P:${pass};;`;
@@ -80,13 +80,13 @@ function generateQR(){
 
             const email =
             document
-            .getElementById("emailInput")
-            .value;
+          .getElementById("emailInput")
+          .value;
 
             const subject =
             document
-            .getElementById("emailSubject")
-            .value;
+          .getElementById("emailSubject")
+          .value;
 
             data =
             `mailto:${email}?subject=${encodeURIComponent(subject)}`;
@@ -97,8 +97,8 @@ function generateQR(){
 
             const phone =
             document
-            .getElementById("phoneInput")
-            .value;
+          .getElementById("phoneInput")
+          .value;
 
             data =
             `tel:${phone}`;
@@ -109,13 +109,13 @@ function generateQR(){
 
             const sms =
             document
-            .getElementById("smsNumber")
-            .value;
+          .getElementById("smsNumber")
+          .value;
 
             const msg =
             document
-            .getElementById("smsMessage")
-            .value;
+          .getElementById("smsMessage")
+          .value;
 
             data =
             `sms:${sms}?body=${encodeURIComponent(msg)}`;
@@ -126,13 +126,13 @@ function generateQR(){
 
             const wa =
             document
-            .getElementById("waNumber")
-            .value;
+          .getElementById("waNumber")
+          .value;
 
             const waMsg =
             document
-            .getElementById("waMessage")
-            .value;
+          .getElementById("waMessage")
+          .value;
 
             data =
             `https://wa.me/${wa}?text=${encodeURIComponent(waMsg)}`;
@@ -178,7 +178,7 @@ function createQRCode(data){
 
             color:{
 
-                dark:"#000000",
+                dark:"#000",
 
                 light:"#ffffff"
 
@@ -224,8 +224,7 @@ document
 <b>Status:</b> Successfully Generated
 `;
 
-              }
-// =======================================
+}// =======================================
 // qr-types.js
 // Part 2
 // More QR Types
@@ -400,8 +399,7 @@ return localStorage.getItem(
 
 );
 
-}
-// =======================================
+}// =======================================
 // qr-types.js
 // Part 3
 // Payment, Crypto & History
@@ -554,8 +552,7 @@ saveLastQR(data);
 
 };
 
-showHistory();
-// =======================================
+showHistory();// =======================================
 // qr-types.js
 // Part 4
 // Favorites, Share & Utilities
@@ -740,8 +737,7 @@ isMobile()
 
 "Desktop Device"
 
-);
-// =====================================
+);// =====================================
 // qr-types.js
 // Part 5
 // Premium Design Features
@@ -753,7 +749,7 @@ let qrSettings = {
 
 size:350,
 
-foreground:"#000000",
+foreground:"#000",
 
 background:"#ffffff",
 
@@ -933,8 +929,7 @@ updateInfo(data);
 
 );
 
-};
-// =====================================
+};// =====================================
 // qr-types.js
 // Part 6
 // Advanced Premium Features
@@ -1044,8 +1039,6 @@ y,
 
 }
 
-}
-
 // ---------- Rounded QR ----------
 
 function applyRounded(canvas){
@@ -1130,6 +1123,8 @@ ctx.fill();
 
 }
 
+}
+
 // ---------- Scan Frame ----------
 
 function addFrame(canvas){
@@ -1194,8 +1189,7 @@ drawLogo(qrCanvas);
 
 },100);
 
-};
-// =====================================
+};// =====================================
 // qr-types.js
 // Part 7
 // Download & Export Features
@@ -1321,8 +1315,6 @@ files:[file]
 
 });
 
-});
-
 }
 
 // ---------- Print ----------
@@ -1361,8 +1353,7 @@ function downloadPDF(){
 
 alert("PDF Export Ready in Final Build");
 
-}
-// =====================================
+}// =====================================
 // qr-types.js
 // Part 8
 // Batch QR + Advanced Features
@@ -1556,8 +1547,7 @@ alert("Invalid JSON");
 
 }
 
-}
-// =====================================
+}// =====================================
 // qr-types.js
 // Part 9 (Final)
 // Premium Final Features
