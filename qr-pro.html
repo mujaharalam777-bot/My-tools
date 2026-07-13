@@ -26,6 +26,7 @@ body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,var(--bg
 .input-group{margin-bottom:18px}
 .input-group label{display:block;margin-bottom:8px;font-weight:600;font-size:14px}
 .input-group input,.input-group textarea,.input-group select{width:100%;padding:12px 16px;border-radius:10px;border:2px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.1);color:#fff;font-size:0.95rem;outline:none}
+.input-group input::placeholder,.input-group textarea::placeholder{color:rgba(255,255,255,0.5)}
 .color-pickers{display:flex;gap:15px}
 .color-pickers div{flex:1}
 input[type="color"]{width:100%;height:45px;border:none;border-radius:8px;cursor:pointer}
@@ -87,7 +88,7 @@ input[type="color"]{width:100%;height:45px;border:none;border-radius:8px;cursor:
     <div id="dynamicInput"></div>
     <h3 style="margin:20px 0 10px 0">🎨 Customization</h3>
     <div class="color-pickers">
-      <div class="input-group"><label>QR Color</label><input type="color" id="qrColor" value="#000"></div>
+      <div class="input-group"><label>QR Color</label><input type="color" id="qrColor" value="#000000"></div>
       <div class="input-group"><label>BG Color</label><input type="color" id="bgColor" value="#FFFFFF"></div>
     </div>
     <div class="input-group">
@@ -164,36 +165,43 @@ let proQR
 let logoImg=null
 let currentType='url'
 let qrDataString=''
-document.querySelectorAll('.type-btn').forEach(btn=>{
-  btn.onclick=function(){
-    document.querySelectorAll('.type-btn').forEach(b=>b.classList.remove('active'))
-    this.classList.add('active')
-    currentType=this.dataset.type
-    updateInput()
-  }
+
+document.addEventListener('DOMContentLoaded', function(){
+  document.querySelectorAll('.type-btn').forEach(btn=>{
+    btn.addEventListener('click', function(){
+      document.querySelectorAll('.type-btn').forEach(b=>b.classList.remove('active'))
+      this.classList.add('active')
+      currentType=this.getAttribute('data-type')
+      updateInput()
+    })
+  })
+  updateInput()
 })
+
 document.getElementById('qrSize').oninput=function(){document.getElementById('sizeText').innerText=this.value}
 document.getElementById('logoFile').onchange=function(e){const f=e.target.files[0];if(f){const r=new FileReader();r.onload=e=>{logoImg=e.target.result};r.readAsDataURL(f)}}
+
 function updateInput(){
   const d=document.getElementById('dynamicInput')
   let h=''
   if(currentType=='url')h=`<div class="input-group"><label>Website URL</label><input type="text" id="mainInput" placeholder="https://google.com"></div>`
-  if(currentType=='text')h=`<div class="input-group"><label>Enter Text</label><textarea id="mainInput" rows="3"></textarea></div>`
-  if(currentType=='wifi')h=`<div class="input-group"><label>WiFi Name</label><input id="wifiSSID"></div><div class="input-group"><label>Password</label><input id="wifiPass"></div><div class="input-group"><label>Encryption</label><select id="wifiEnc"><option>WPA</option><option>WEP</option><option>nopass</option></select></div>`
-  if(currentType=='email')h=`<div class="input-group"><label>Email</label><input id="emailTo"></div><div class="input-group"><label>Subject</label><input id="emailSub"></div><div class="input-group"><label>Body</label><textarea id="emailBody"></textarea></div>`
-  if(currentType=='phone')h=`<div class="input-group"><label>Phone</label><input id="mainInput" placeholder="+91..."></div>`
-  if(currentType=='sms')h=`<div class="input-group"><label>Phone</label><input id="smsPhone"></div><div class="input-group"><label>Message</label><textarea id="smsMsg"></textarea></div>`
-  if(currentType=='whatsapp')h=`<div class="input-group"><label>Phone with Country Code</label><input id="waNumber"></div><div class="input-group"><label>Message</label><textarea id="waMsg"></textarea></div>`
-  if(currentType=='contact')h=`<div class="input-group"><label>Name</label><input id="cName"></div><div class="input-group"><label>Phone</label><input id="cPhone"></div><div class="input-group"><label>Email</label><input id="cEmail"></div>`
-  if(currentType=='location')h=`<div class="input-group"><label>Latitude</label><input id="lat"></div><div class="input-group"><label>Longitude</label><input id="lng"></div>`
-  if(currentType=='event')h=`<div class="input-group"><label>Event Title</label><input id="eventTitle"></div><div class="input-group"><label>Date</label><input type="date" id="eventDate"></div>`
+  if(currentType=='text')h=`<div class="input-group"><label>Enter Text</label><textarea id="mainInput" rows="3" placeholder="Write here your text"></textarea></div>`
+  if(currentType=='wifi')h=`<div class="input-group"><label>WiFi Name SSID</label><input id="wifiSSID" placeholder="My Home WiFi"></div><div class="input-group"><label>Password</label><input id="wifiPass" placeholder="Enter password"></div><div class="input-group"><label>Encryption</label><select id="wifiEnc"><option>WPA</option><option>WEP</option><option>nopass</option></select></div>`
+  if(currentType=='email')h=`<div class="input-group"><label>Email Address</label><input id="emailTo" placeholder="example@email.com"></div><div class="input-group"><label>Subject</label><input id="emailSub" placeholder="Subject here"></div><div class="input-group"><label>Body</label><textarea id="emailBody" placeholder="Write your message"></textarea></div>`
+  if(currentType=='phone')h=`<div class="input-group"><label>Phone Number</label><input id="mainInput" placeholder="+919876543210"></div>`
+  if(currentType=='sms')h=`<div class="input-group"><label>Phone Number</label><input id="smsPhone" placeholder="+919876543210"></div><div class="input-group"><label>Message</label><textarea id="smsMsg" placeholder="Write SMS here"></textarea></div>`
+  if(currentType=='whatsapp')h=`<div class="input-group"><label>Phone with Country Code</label><input id="waNumber" placeholder="919876543210"></div><div class="input-group"><label>Message</label><textarea id="waMsg" placeholder="Hello"></textarea></div>`
+  if(currentType=='contact')h=`<div class="input-group"><label>Full Name</label><input id="cName" placeholder="John Doe"></div><div class="input-group"><label>Phone</label><input id="cPhone" placeholder="+919876543210"></div><div class="input-group"><label>Email</label><input id="cEmail" placeholder="john@email.com"></div>`
+  if(currentType=='location')h=`<div class="input-group"><label>Latitude</label><input id="lat" placeholder="22.5726"></div><div class="input-group"><label>Longitude</label><input id="lng" placeholder="88.3639"></div>`
+  if(currentType=='event')h=`<div class="input-group"><label>Event Title</label><input id="eventTitle" placeholder="Birthday Party"></div><div class="input-group"><label>Date</label><input type="date" id="eventDate"></div>`
   if(['youtube','instagram','facebook','x','linkedin','spotify','pdf','app'].includes(currentType))h=`<div class="input-group"><label>Enter Link</label><input id="mainInput" placeholder="https://..."></div>`
-  if(currentType=='upi')h=`<div class="input-group"><label>UPI ID</label><input id="upiID" placeholder="name@upi"></div><div class="input-group"><label>Amount</label><input id="upiAmt"></div>`
-  if(currentType=='crypto')h=`<div class="input-group"><label>Wallet Address</label><input id="mainInput"></div>`
-  if(currentType=='batch')h=`<div class="input-group"><label>Upload CSV</label><input type="file" id="csvFile" accept=".csv"></div><div id="batchList" class="batch-list"></div>`
+  if(currentType=='upi')h=`<div class="input-group"><label>UPI ID</label><input id="upiID" placeholder="name@upi"></div><div class="input-group"><label>Amount</label><input id="upiAmt" placeholder="100"></div>`
+  if(currentType=='crypto')h=`<div class="input-group"><label>Wallet Address</label><input id="mainInput" placeholder="bc1qxy..."></div>`
+  if(currentType=='batch')h=`<div class="input-group"><label>Upload CSV File</label><input type="file" id="csvFile" accept=".csv"></div><div id="batchList" class="batch-list"></div>`
   d.innerHTML=h
   if(currentType=='batch')document.getElementById('csvFile').onchange=e=>{Papa.parse(e.target.files[0],{header:true,complete:r=>{document.getElementById('batchList').innerHTML=r.data.map(x=>`<div>${x.name} - ${x.url}</div>`).join('')}})}
 }
+
 function getQRData(){
   if(['url','text','phone','youtube','instagram','facebook','x','linkedin','spotify','pdf','app','crypto'].includes(currentType))return document.getElementById('mainInput')?.value||''
   if(currentType=='wifi')return `WIFI:T:${wifiEnc.value};S:${wifiSSID.value};P:${wifiPass.value};;`
@@ -206,6 +214,7 @@ function getQRData(){
   if(currentType=='contact')return `BEGIN:VCARD\nFN:${cName.value}\nTEL:${cPhone.value}\nEMAIL:${cEmail.value}\nEND:VCARD`
   return ''
 }
+
 function generateProQR(){
   qrDataString=getQRData()
   if(!qrDataString&&currentType!='batch'){alert("Please enter data");return}
@@ -220,11 +229,11 @@ function generateProQR(){
     if(logoImg){const ctx=canvas.getContext('2d');const img=new Image();img.onload=()=>{const ls=size/5;ctx.drawImage(img,(size-ls)/2,(size-ls)/2,ls,ls)};img.src=logoImg}
   })
 }
+
 function downloadProPNG(){if(!proQR)return alert("Generate First");const a=document.createElement('a');a.download='pro-qr.png';a.href=proQR.toDataURL('image/png');a.click()}
 function downloadSVG(){if(!qrDataString)return alert("Generate First");QRCode.toString(qrDataString,{type:'svg',width:parseInt(qrSize.value),color:{dark:qrColor.value,light:bgColor.value}},(e,svg)=>{const b=new Blob([svg],{type:'image/svg+xml'});const a=document.createElement('a');a.download='pro-qr.svg';a.href=URL.createObjectURL(b);a.click()})}
 function downloadPDF(){if(!proQR)return alert("Generate First");const {jsPDF}=window.jspdf;const pdf=new jsPDF();pdf.addImage(proQR.toDataURL('image/png'),'PNG',50,40,110,110);pdf.text("Pro QR Code",105,20,{align:'center'});pdf.save("pro-qr.pdf")}
 async function copyQR(){if(!proQR)return alert("Generate First");proQR.toBlob(async b=>{try{await navigator.clipboard.write([new ClipboardItem({"image/png":b})]);alert("Copied!")}catch{alert("Not Supported")})}
-updateInput()
 </script>
 </body>
-          </html>
+        </html>
