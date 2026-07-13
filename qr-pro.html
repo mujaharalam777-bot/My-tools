@@ -6,6 +6,7 @@
 <title>Pro QR Generator | My Tools</title>
 <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/paparse.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--primary:#22c55e;--bg1:#0f2027;--bg2:#203a43;--bg3:#2c5364}
@@ -14,48 +15,36 @@ body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,var(--bg
 .header{padding:15px 0;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between}
 .back-btn{color:#fff;text-decoration:none;font-size:16px;font-weight:600}
 .header h1{font-size:1.8rem;background:linear-gradient(135deg,#22c55e,#facc15);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-
 .main-grid{display:grid;grid-template-columns:1fr 400px;gap:25px;max-width:1400px;margin:0 auto}
 @media(max-width:1100px){.main-grid{grid-template-columns:1fr}}
-
 .left-panel,.right-panel{background:rgba(255,255,255,0.08);backdrop-filter:blur(20px);border-radius:25px;padding:25px;border:1px solid rgba(255,255,255,0.1)}
-
-.tabs{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap}
-.tab-btn{padding:10px 18px;border-radius:10px;background:rgba(255,255,255,0.1);border:2px solid transparent;color:#fff;cursor:pointer;font-weight:600;transition:0.3s}
-.tab-btn.active{background:var(--primary);color:#000;border-color:var(--primary)}
-.tab-content{display:none}
-.tab-content.active{display:block}
-
+.qr-types{margin-bottom:20px}
+.qr-types h3{margin-bottom:12px}
+.type-grid{display:grid;grid-template-columns:repeat(3, 1fr);gap:10px}
+.type-btn{padding:10px;border-radius:10px;background:rgba(255,255,255,0.1);border:2px solid transparent;color:#fff;cursor:pointer;font-weight:600;transition:0.3s;font-size:0.85rem}
+.type-btn.active{background:var(--primary);color:#000;border-color:var(--primary)}
 .input-group{margin-bottom:18px}
 .input-group label{display:block;margin-bottom:8px;font-weight:600;font-size:14px}
 .input-group input,.input-group textarea,.input-group select{width:100%;padding:12px 16px;border-radius:10px;border:2px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.1);color:#fff;font-size:0.95rem;outline:none}
-.input-group input:focus{border-color:var(--primary)}
-
 .color-pickers{display:flex;gap:15px}
 .color-pickers div{flex:1}
 input[type="color"]{width:100%;height:45px;border:none;border-radius:8px;cursor:pointer}
-
-.btn{width:100%;padding:15px;border:none;border-radius:12px;background:linear-gradient(135deg,var(--primary),#16a34a);color:#000;font-weight:700;font-size:1.05rem;cursor:pointer;transition:0.3s}
-.btn:hover{transform:translateY(-2px)}
+.btn{width:100%;padding:15px;border:none;border-radius:12px;background:linear-gradient(135deg,var(--primary),#16a34a);color:#000;font-weight:700;font-size:1.05rem;cursor:pointer;margin-top:10px}
 .btn-secondary{width:100%;padding:12px;border:2px solid var(--primary);background:transparent;color:var(--primary);border-radius:10px;cursor:pointer;font-weight:600;margin-top:10px}
-
-.qr-preview{background:#fff;padding:25px;border-radius:15px;display:flex;justify-content:center;align-items:center;flex-direction:column;min-height:400px;color:#000;position:relative}
+.qr-preview{background:#fff;padding:25px;border-radius:15px;display:flex;justify-content:center;align-items:center;flex-direction:column;min-height:400px;color:#000}
 .qr-preview canvas{border-radius:10px}
-.action-btns{display:flex;gap:10px;margin-top:15px}
-
+.action-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:15px}
 .pro-badge{display:inline-block;background:linear-gradient(135deg,#facc15,#f59e0b);color:#000;padding:5px 12px;border-radius:20px;font-size:12px;font-weight:700;margin-bottom:15px}
-
 .logo-upload{border:2px dashed rgba(255,255,255,0.3);padding:20px;border-radius:10px;text-align:center;cursor:pointer}
-.logo-upload:hover{border-color:var(--primary)}
-
-.batch-area{margin-top:15px}
 .batch-list{max-height:200px;overflow-y:auto;background:rgba(0,0,0,0.2);padding:10px;border-radius:8px;margin-top:10px}
-
-.section-box{margin-top:30px}
+.section-box{margin-top:30px;background:rgba(255,255,255,0.08);padding:25px;border-radius:20px}
 .section-title{font-size:1.3rem;margin-bottom:15px;display:flex;align-items:center;gap:10px}
 .section-box ul{list-style:none}
 .section-box ul li{padding:8px 0;padding-left:25px;position:relative}
 .section-box ul li:before{content:'✓';position:absolute;left:0;color:var(--primary);font-weight:700}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px;margin-top:15px}
+.related-card{background:rgba(255,255,255,0.05);padding:15px;border-radius:12px;text-align:center;text-decoration:none;color:#fff;transition:0.3s}
+.related-card:hover{background:var(--primary);color:#000}
 .footer{text-align:center;padding:20px;opacity:0.7;font-size:14px}
 </style>
 </head>
@@ -67,246 +56,175 @@ input[type="color"]{width:100%;height:45px;border:none;border-radius:8px;cursor:
 </div>
 
 <div class="main-grid">
-  <!-- LEFT PANEL: CONTROLS -->
   <div class="left-panel">
     <span class="pro-badge">PRO VERSION - No Watermark</span>
-
-    <div class="tabs">
-      <button class="tab-btn active" onclick="switchTab('url', event)">URL</button>
-      <button class="tab-btn" onclick="switchTab('text', event)">Text</button>
-      <button class="tab-btn" onclick="switchTab('wifi', event)">WIFI</button>
-      <button class="tab-btn" onclick="switchTab('whatsapp', event)">WhatsApp</button>
-      <button class="tab-btn" onclick="switchTab('batch', event)">Batch</button>
-    </div>
-
-    <!-- URL TAB -->
-    <div id="url" class="tab-content active">
-      <div class="input-group">
-        <label>Website URL</label>
-        <input type="text" id="urlInput" placeholder="https://google.com">
+    <div class="qr-types">
+      <h3>⭐ Select QR Type - 21 Tools</h3>
+      <div class="type-grid">
+        <button class="type-btn active" data-type="url">🌐 URL</button>
+        <button class="type-btn" data-type="text">📝 Text</button>
+        <button class="type-btn" data-type="wifi">📶 WiFi</button>
+        <button class="type-btn" data-type="email">📧 Email</button>
+        <button class="type-btn" data-type="phone">📞 Phone</button>
+        <button class="type-btn" data-type="sms">💬 SMS</button>
+        <button class="type-btn" data-type="whatsapp">🟢 WhatsApp</button>
+        <button class="type-btn" data-type="contact">👤 Contact</button>
+        <button class="type-btn" data-type="location">📍 Location</button>
+        <button class="type-btn" data-type="event">📅 Event</button>
+        <button class="type-btn" data-type="youtube">▶ YouTube</button>
+        <button class="type-btn" data-type="instagram">📸 Instagram</button>
+        <button class="type-btn" data-type="facebook">👍 Facebook</button>
+        <button class="type-btn" data-type="x">❌ X</button>
+        <button class="type-btn" data-type="linkedin">💼 LinkedIn</button>
+        <button class="type-btn" data-type="spotify">🎵 Spotify</button>
+        <button class="type-btn" data-type="upi">💳 UPI</button>
+        <button class="type-btn" data-type="crypto">₿ Crypto</button>
+        <button class="type-btn" data-type="pdf">📄 PDF Link</button>
+        <button class="type-btn" data-type="app">📱 App Link</button>
+        <button class="type-btn" data-type="batch">📦 Batch</button>
       </div>
     </div>
-
-    <!-- TEXT TAB -->
-    <div id="text" class="tab-content">
-      <div class="input-group">
-        <label>Enter Text</label>
-        <textarea id="textInput" rows="3" placeholder="Hello World"></textarea>
-      </div>
-    </div>
-
-    <!-- WIFI TAB -->
-    <div id="wifi" class="tab-content">
-      <div class="input-group">
-        <label>WiFi Name (SSID)</label>
-        <input type="text" id="wifiSSID" placeholder="MyHomeWiFi">
-      </div>
-      <div class="input-group">
-        <label>Password</label>
-        <input type="text" id="wifiPass" placeholder="password123">
-      </div>
-      <div class="input-group">
-        <label>Encryption</label>
-        <select id="wifiEnc">
-          <option value="WPA">WPA/WPA2</option>
-          <option value="WEP">WEP</option>
-          <option value="nopass">No Password</option>
-        </select>
-      </div>
-    </div>
-
-    <!-- WHATSAPP TAB -->
-    <div id="whatsapp" class="tab-content">
-      <div class="input-group">
-        <label>Phone Number with Country Code</label>
-        <input type="text" id="waNumber" placeholder="919876543210">
-      </div>
-      <div class="input-group">
-        <label>Pre-filled Message (Optional)</label>
-        <textarea id="waMsg" rows="2" placeholder="Hello, I want to know more"></textarea>
-      </div>
-    </div>
-
-    <!-- BATCH TAB -->
-    <div id="batch" class="tab-content">
-      <div class="input-group">
-        <label>Upload CSV File</label>
-        <input type="file" id="csvFile" accept=".csv">
-        <small>Format: name,url</small>
-      </div>
-      <div id="batchList" class="batch-list"></div>
-    </div>
-
-    <!-- CUSTOMIZATION -->
+    <div id="dynamicInput"></div>
     <h3 style="margin:20px 0 10px 0">🎨 Customization</h3>
     <div class="color-pickers">
-      <div class="input-group">
-        <label>QR Color</label>
-        <input type="color" id="qrColor" value="#000">
-      </div>
-      <div class="input-group">
-        <label>BG Color</label>
-        <input type="color" id="bgColor" value="#FFFFFF">
-      </div>
+      <div class="input-group"><label>QR Color</label><input type="color" id="qrColor" value="#000"></div>
+      <div class="input-group"><label>BG Color</label><input type="color" id="bgColor" value="#FFFFFF"></div>
     </div>
-
     <div class="input-group">
       <label>Add Logo</label>
       <div class="logo-upload" onclick="document.getElementById('logoFile').click()">
         <input type="file" id="logoFile" accept="image/*" style="display:none">
         <p>📷 Click to Upload Logo</p>
-        <small>Logo will be in center</small>
       </div>
     </div>
-
     <div class="input-group">
-      <label>QR Size</label>
-      <input type="range" id="qrSize" min="200" max="600" value="300">
+      <label>QR Size: <span id="sizeText">300</span> PX</label>
+      <input type="range" id="qrSize" min="200" max="700" value="300">
     </div>
-
     <button class="btn" onclick="generateProQR()">Generate Pro QR</button>
   </div>
-
-  <!-- RIGHT PANEL: PREVIEW -->
   <div class="right-panel">
     <h3 style="margin-bottom:15px">Preview</h3>
-    <div id="qrPreview" class="qr-preview">
-      <p style="opacity:0.5">Your Pro QR will appear here</p>
-    </div>
+    <div id="qrPreview" class="qr-preview"><p style="opacity:0.5">Your Pro QR will appear here</p></div>
     <div class="action-btns">
-      <button class="btn-secondary" onclick="downloadProPNG()">📥 Download PNG</button>
-      <button class="btn-secondary" onclick="downloadSVG()">📥 Download SVG</button>
+      <button class="btn-secondary" onclick="downloadProPNG()">📥 PNG</button>
+      <button class="btn-secondary" onclick="downloadSVG()">📥 SVG</button>
+      <button class="btn-secondary" onclick="downloadPDF()">📥 PDF</button>
+      <button class="btn-secondary" onclick="copyQR()">📋 Copy</button>
     </div>
   </div>
 </div>
 
-<!-- HOW TO USE -->
-<div class="container section-box" style="max-width:1400px;margin:30px auto">
-  <h2 class="section-title">📖 How to Use</h2>
+<div class="section-box" style="max-width:1400px;margin:30px auto">
+  <h2 class="section-title">📖 How to Use Pro QR Generator</h2>
   <ul>
-    <li>Select QR Type: URL, Text, WIFI, WhatsApp or Batch.</li>
-    <li>Fill the required details and customize colors.</li>
-    <li>Upload logo if you want branding in center.</li>
-    <li>Click Generate and Download HD PNG or SVG.</li>
+    <li>Upore theke apnar proyojon moto QR Type select korun</li>
+    <li>Form er ghore sob tothyo thik thak diye fill korun</li>
+    <li>QR er color, background color ebong size nijer moto set korun</li>
+    <li>Jodi chan tahole majhkhane logo upload korte paren</li>
+    <li>Generate Pro QR button e click korar por QR toiri hoye jabe</li>
+    <li>Tarpor PNG, SVG ba PDF format e download kore nin</li>
   </ul>
 </div>
 
-<!-- FEATURES -->
-<div class="container section-box" style="max-width:1400px;margin:20px auto">
+<div class="section-box" style="max-width:1400px;margin:20px auto">
   <h2 class="section-title">⭐ Pro Features</h2>
   <ul>
-    <li>WIFI QR - One scan and connect to WiFi</li>
-    <li>WhatsApp QR - Direct chat with pre-filled message</li>
-    <li>Custom Colors - QR and Background color picker</li>
-    <li>Logo in Center - Add your brand logo</li>
-    <li>Batch Generate - Create 100 QR from CSV</li>
-    <li>HD Download - PNG and SVG both available</li>
-    <li>No Watermark - 100% Clean Professional QR</li>
+    <li>21 dhoroner QR toiri kora jay. URL theke UPI sob ache</li>
+    <li>QR er color, background color ebong size full customize</li>
+    <li>Company logo majhkhane add korar subidha</li>
+    <li>CSV file upload kore ek sathe onek QR banano jay</li>
+    <li>HD PNG, Vector SVG ebong Print ready PDF download</li>
+    <li>Kono watermark nei. Business er jonno ekdom perfect</li>
   </ul>
 </div>
 
-<!-- FAQ -->
-<div class="container section-box" style="max-width:1400px;margin:20px auto">
+<div class="section-box" style="max-width:1400px;margin:20px auto">
   <h2 class="section-title">❓ FAQ</h2>
-  <p><b>Is this Pro version free?</b><br>No. This is for premium users. Contact Mujahar for access.</p>
-  <p style="margin-top:12px"><b>Can I use logo?</b><br>Yes. Upload PNG logo and it will appear in center.</p>
-  <p style="margin-top:12px"><b>Batch QR how works?</b><br>Upload CSV with name,url and download all QR in zip.</p>
+  <p><b>Pro version ki free te pawa jabe?</b><br>Na. Eta premium feature. Access er jonno Mujahar er sathe jogajog korun.</p>
+  <p style="margin-top:12px"><b>Logo add korle QR scan hobe to?</b><br>Haan. Logo choto thake tai 99% khetre scan hoye jay.</p>
+  <p style="margin-top:12px"><b>Batch QR er jonno CSV format ki hobe?</b><br>Prothom column name ebong ditio column url hote hobe.</p>
+  <p style="margin-top:12px"><b>SVG download kore ki korbo?</b><br>SVG vector file. Banner, poster e boro korleo phatbe na.</p>
 </div>
 
-<div class="footer">© 2026 My Tools Pro • Made by Mujahar</div>
+<div class="section-box" style="max-width:1400px;margin:20px auto">
+  <h2 class="section-title">🔗 Related Tools</h2>
+  <div class="related-grid">
+    <a href="qr.html" class="related-card">🌐 Free QR Generator</a>
+    <a href="pdf.html" class="related-card">📄 PDF to Word Converter</a>
+    <a href="image.html" class="related-card">🖼 Image Background Remover</a>
+    <a href="text.html" class="related-card">📝 Text to PDF Converter</a>
+  </div>
+</div>
+
+<div class="footer">© 2026 My Tools Pro • Made by Mujahar • All Rights Reserved</div>
 
 <script>
-let proQR;
-let logoImg = null;
-
-function switchTab(tab, event){
-  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-  document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
-  event.target.classList.add('active');
-  document.getElementById(tab).classList.add('active');
-}
-
-document.getElementById('logoFile').onchange = function(e){
-  const file = e.target.files[0];
-  if(file){
-    const reader = new FileReader();
-    reader.onload = function(event){ logoImg = event.target.result; }
-    reader.readAsDataURL(file);
+let proQR
+let logoImg=null
+let currentType='url'
+let qrDataString=''
+document.querySelectorAll('.type-btn').forEach(btn=>{
+  btn.onclick=function(){
+    document.querySelectorAll('.type-btn').forEach(b=>b.classList.remove('active'))
+    this.classList.add('active')
+    currentType=this.dataset.type
+    updateInput()
   }
+})
+document.getElementById('qrSize').oninput=function(){document.getElementById('sizeText').innerText=this.value}
+document.getElementById('logoFile').onchange=function(e){const f=e.target.files[0];if(f){const r=new FileReader();r.onload=e=>{logoImg=e.target.result};r.readAsDataURL(f)}}
+function updateInput(){
+  const d=document.getElementById('dynamicInput')
+  let h=''
+  if(currentType=='url')h=`<div class="input-group"><label>Website URL</label><input type="text" id="mainInput" placeholder="https://google.com"></div>`
+  if(currentType=='text')h=`<div class="input-group"><label>Enter Text</label><textarea id="mainInput" rows="3"></textarea></div>`
+  if(currentType=='wifi')h=`<div class="input-group"><label>WiFi Name</label><input id="wifiSSID"></div><div class="input-group"><label>Password</label><input id="wifiPass"></div><div class="input-group"><label>Encryption</label><select id="wifiEnc"><option>WPA</option><option>WEP</option><option>nopass</option></select></div>`
+  if(currentType=='email')h=`<div class="input-group"><label>Email</label><input id="emailTo"></div><div class="input-group"><label>Subject</label><input id="emailSub"></div><div class="input-group"><label>Body</label><textarea id="emailBody"></textarea></div>`
+  if(currentType=='phone')h=`<div class="input-group"><label>Phone</label><input id="mainInput" placeholder="+91..."></div>`
+  if(currentType=='sms')h=`<div class="input-group"><label>Phone</label><input id="smsPhone"></div><div class="input-group"><label>Message</label><textarea id="smsMsg"></textarea></div>`
+  if(currentType=='whatsapp')h=`<div class="input-group"><label>Phone with Country Code</label><input id="waNumber"></div><div class="input-group"><label>Message</label><textarea id="waMsg"></textarea></div>`
+  if(currentType=='contact')h=`<div class="input-group"><label>Name</label><input id="cName"></div><div class="input-group"><label>Phone</label><input id="cPhone"></div><div class="input-group"><label>Email</label><input id="cEmail"></div>`
+  if(currentType=='location')h=`<div class="input-group"><label>Latitude</label><input id="lat"></div><div class="input-group"><label>Longitude</label><input id="lng"></div>`
+  if(currentType=='event')h=`<div class="input-group"><label>Event Title</label><input id="eventTitle"></div><div class="input-group"><label>Date</label><input type="date" id="eventDate"></div>`
+  if(['youtube','instagram','facebook','x','linkedin','spotify','pdf','app'].includes(currentType))h=`<div class="input-group"><label>Enter Link</label><input id="mainInput" placeholder="https://..."></div>`
+  if(currentType=='upi')h=`<div class="input-group"><label>UPI ID</label><input id="upiID" placeholder="name@upi"></div><div class="input-group"><label>Amount</label><input id="upiAmt"></div>`
+  if(currentType=='crypto')h=`<div class="input-group"><label>Wallet Address</label><input id="mainInput"></div>`
+  if(currentType=='batch')h=`<div class="input-group"><label>Upload CSV</label><input type="file" id="csvFile" accept=".csv"></div><div id="batchList" class="batch-list"></div>`
+  d.innerHTML=h
+  if(currentType=='batch')document.getElementById('csvFile').onchange=e=>{Papa.parse(e.target.files[0],{header:true,complete:r=>{document.getElementById('batchList').innerHTML=r.data.map(x=>`<div>${x.name} - ${x.url}</div>`).join('')}})}
 }
-
-document.getElementById('csvFile').onchange = function(e){
-  Papa.parse(e.target.files[0], {
-    header: true,
-    complete: function(results){
-      const list = document.getElementById('batchList');
-      list.innerHTML = results.data.map(r=>`<div>${r.name} - ${r.url}</div>`).join('');
-    }
-  });
-}
-
 function getQRData(){
-  const activeTab = document.querySelector('.tab-content.active').id;
-  if(activeTab=='url') return document.getElementById('urlInput').value;
-  if(activeTab=='text') return document.getElementById('textInput').value;
-  if(activeTab=='wifi'){
-    const ssid=document.getElementById('wifiSSID').value;
-    const pass=document.getElementById('wifiPass').value;
-    const enc=document.getElementById('wifiEnc').value;
-    return `WIFI:T:${enc};S:${ssid};P:${pass};;`;
-  }
-  if(activeTab=='whatsapp'){
-    const num=document.getElementById('waNumber').value;
-    const msg=document.getElementById('waMsg').value;
-    return `https://wa.me/${num}?text=${encodeURIComponent(msg)}`;
-  }
-  return '';
+  if(['url','text','phone','youtube','instagram','facebook','x','linkedin','spotify','pdf','app','crypto'].includes(currentType))return document.getElementById('mainInput')?.value||''
+  if(currentType=='wifi')return `WIFI:T:${wifiEnc.value};S:${wifiSSID.value};P:${wifiPass.value};;`
+  if(currentType=='email')return `mailto:${emailTo.value}?subject=${encodeURIComponent(emailSub.value)}&body=${encodeURIComponent(emailBody.value)}`
+  if(currentType=='sms')return `sms:${smsPhone.value}?body=${encodeURIComponent(smsMsg.value)}`
+  if(currentType=='whatsapp')return `https://wa.me/${waNumber.value}?text=${encodeURIComponent(waMsg.value)}`
+  if(currentType=='location')return `geo:${lat.value},${lng.value}`
+  if(currentType=='event')return `BEGIN:VEVENT\nSUMMARY:${eventTitle.value}\nDTSTART:${eventDate.value}\nEND:VEVENT`
+  if(currentType=='upi')return `upi://pay?pa=${upiID.value}&am=${upiAmt.value}`
+  if(currentType=='contact')return `BEGIN:VCARD\nFN:${cName.value}\nTEL:${cPhone.value}\nEMAIL:${cEmail.value}\nEND:VCARD`
+  return ''
 }
-
 function generateProQR(){
-  const data = getQRData();
-  if(!data){ alert("Please enter data"); return; }
-
-  const size = document.getElementById('qrSize').value;
-  const fg = document.getElementById('qrColor').value;
-  const bg = document.getElementById('bgColor').value;
-
-  document.getElementById('qrPreview').innerHTML = '';
-
-  QRCode.toCanvas(data, {
-    width: parseInt(size),
-    color: { dark: fg, light: bg },
-    margin: 2
-  }, function(err, canvas){
-    if(err) console.error(err);
-    document.getElementById('qrPreview').appendChild(canvas);
-    proQR = canvas;
-
-    // Add logo if uploaded
-    if(logoImg){
-      const ctx = canvas.getContext('2d');
-      const img = new Image();
-      img.onload = function(){
-        const logoSize = size/5;
-        ctx.drawImage(img, (size-logoSize)/2, (size-logoSize)/2, logoSize, logoSize);
-      }
-      img.src = logoImg;
-    }
-  });
+  qrDataString=getQRData()
+  if(!qrDataString&&currentType!='batch'){alert("Please enter data");return}
+  const size=qrSize.value
+  const fg=qrColor.value
+  const bg=bgColor.value
+  document.getElementById('qrPreview').innerHTML=''
+  QRCode.toCanvas(qrDataString,{width:parseInt(size),color:{dark:fg,light:bg},margin:2},(e,canvas)=>{
+    if(e)return console.error(e)
+    document.getElementById('qrPreview').appendChild(canvas)
+    proQR=canvas
+    if(logoImg){const ctx=canvas.getContext('2d');const img=new Image();img.onload=()=>{const ls=size/5;ctx.drawImage(img,(size-ls)/2,(size-ls)/2,ls,ls)};img.src=logoImg}
+  })
 }
-
-function downloadProPNG(){
-  if(!proQR) return alert("Generate QR First");
-  const link = document.createElement('a');
-  link.download = 'pro-qr.png';
-  link.href = proQR.toDataURL('image/png', 1.0);
-  link.click();
-}
-
-function downloadSVG(){
-  alert("SVG download - Coming in next update");
-}
+function downloadProPNG(){if(!proQR)return alert("Generate First");const a=document.createElement('a');a.download='pro-qr.png';a.href=proQR.toDataURL('image/png');a.click()}
+function downloadSVG(){if(!qrDataString)return alert("Generate First");QRCode.toString(qrDataString,{type:'svg',width:parseInt(qrSize.value),color:{dark:qrColor.value,light:bgColor.value}},(e,svg)=>{const b=new Blob([svg],{type:'image/svg+xml'});const a=document.createElement('a');a.download='pro-qr.svg';a.href=URL.createObjectURL(b);a.click()})}
+function downloadPDF(){if(!proQR)return alert("Generate First");const {jsPDF}=window.jspdf;const pdf=new jsPDF();pdf.addImage(proQR.toDataURL('image/png'),'PNG',50,40,110,110);pdf.text("Pro QR Code",105,20,{align:'center'});pdf.save("pro-qr.pdf")}
+async function copyQR(){if(!proQR)return alert("Generate First");proQR.toBlob(async b=>{try{await navigator.clipboard.write([new ClipboardItem({"image/png":b})]);alert("Copied!")}catch{alert("Not Supported")})}
+updateInput()
 </script>
-
 </body>
-</html>
+          </html>
