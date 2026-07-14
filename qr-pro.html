@@ -1,526 +1,2629 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Pro QR Generator | My Tools</title>
+
 <meta name="description" content="Professional QR Code Generator with Logo, SVG, PDF, Batch QR and UPI QR.">
 
 <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/paparse.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-:root {
-    --primary: #22c55e;
-    --primary-dark: #16a34a;
-    --bg1: #0f2027;
-    --bg2: #203a43;
-    --bg3: #2c5364;
-    --white: #ffffff;
-    --black: #000;
+
+:root{
+ --primary:#22c55e;
+ --primary-dark:#16a34a;
+ --bg1:#0f2027;
+ --bg2:#203a43;
+ --bg3:#2c5364;
+ --white:#ffffff;
+ --black:#000000;
 }
+
 body.light-theme{
-  --bg1:#f0f0f0;--bg2:#e0e0e0;--bg3:#d0d0d0;--white:#000;--black:#fff
+ --bg1:#f0f0f0;
+ --bg2:#e0e0e0;
+ --bg3:#d0d0d0;
+ --white:#000;
+ --black:#fff;
 }
-body.light-theme input::placeholder, body.light-theme textarea::placeholder{ color:#555; }
-body.light-theme select option{ background:white; color:black; }
 
-* {margin: 0;padding: 0;box-sizing: border-box;}
-body {font-family: 'Poppins', sans-serif;background: linear-gradient(135deg, var(--bg1), var(--bg2), var(--bg3));color: var(--white);min-height: 100vh;padding: 20px;transition: 0.3s;}
+body.light-theme input::placeholder,
+body.light-theme textarea::placeholder{
+ color:#555;
+}
 
-.header {padding: 15px 0;margin-bottom: 10px;display: flex;align-items: center;justify-content: space-between;}
-.back-btn {color: var(--white);text-decoration: none;font-size: 16px;font-weight: 600;transition: 0.3s;}
-.back-btn:hover {color: var(--primary);}
-.header h1 {font-size: 1.8rem;background: linear-gradient(135deg, #22c55e, #facc15);-webkit-background-clip: text;-webkit-text-fill-color: transparent;font-weight: 800;}
-.theme-toggle{background:rgba(255,255,255,0.1);border:none;color:var(--white);padding:8px 15px;border-radius:8px;cursor:pointer;font-weight:600}
+body.light-theme select option{
+ background:white;
+ color:black;
+}
 
-.main-grid {display: grid;grid-template-columns: 1fr 400px;gap: 25px;max-width: 1400px;margin: 0 auto;}
-@media(max-width: 1100px) {.main-grid {grid-template-columns: 1fr;}}
-@media(max-width:600px){.type-grid{ grid-template-columns:repeat(2,1fr); } }
 
-.left-panel,.right-panel {background: rgba(255, 255, 255, 0.08);backdrop-filter: blur(20px);border-radius: 25px;padding: 25px;border: 1px solid rgba(255, 255, 255, 0.1);box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);}
+*{
+ margin:0;
+ padding:0;
+ box-sizing:border-box;
+}
 
-.qr-types {margin-bottom: 20px;}
-.qr-types h3 {margin-bottom: 12px;font-size: 1.1rem;font-weight: 700;}
-.type-grid {display: grid;grid-template-columns: repeat(3, 1fr);gap: 10px;}
-.type-btn {padding: 10px;border-radius: 10px;background: rgba(255, 255, 255, 0.1);border: 2px solid transparent;color: var(--white);cursor: pointer;font-weight: 600;transition: 0.3s;font-size: 0.85rem;}
-.type-btn:hover {background: rgba(255, 255, 255, 0.2);}
-.type-btn.active {background: var(--primary);color: var(--black);border-color: var(--primary);}
 
-.input-group {margin-bottom: 18px;}
-.input-group label {display: block;margin-bottom: 8px;font-weight: 600;font-size: 14px;}
-.input-group input,.input-group textarea,.input-group select {width: 100%;padding: 12px 16px;border-radius: 10px;border: 2px solid rgba(255, 255, 255, 0.2);background: rgba(255, 255, 255, 0.1);color: var(--white);font-size: 0.95rem;outline: none;transition: 0.3s;}
-select option{ background:#203a43; color:white; }
-.input-group input:focus,.input-group textarea:focus,.input-group select:focus {border-color: var(--primary);}
-.input-group input::placeholder,.input-group textarea::placeholder {color: rgba(255, 255, 255, 0.5);}
+body{
+ font-family:'Poppins',sans-serif;
+ background:linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg3));
+ color:var(--white);
+ min-height:100vh;
+ padding:20px;
+ transition:.3s;
+}
 
-.color-pickers {display: flex;gap: 15px;}
-.color-pickers div {flex: 1;}
-input[type="color"] {width: 100%;height: 45px;border: none;border-radius: 8px;cursor: pointer;}
 
-.logo-controls {display: none;gap: 10px;margin-top: 10px;}
-.logo-controls.show {display: flex;}
-.logo-controls input[type="range"] {width: 100%;}
+.header{
+ padding:15px 0;
+ margin-bottom:10px;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+}
 
-.btn {width: 100%;padding: 15px;border: none;border-radius: 12px;background: linear-gradient(135deg, var(--primary), var(--primary-dark));color: var(--black);font-weight: 700;font-size: 1.05rem;cursor: pointer;margin-top: 10px;transition: 0.3s;}
-.btn:hover {transform: translateY(-2px);}
-.btn:disabled{opacity:0.6;cursor:not-allowed}
 
-.btn-secondary {width: 100%;padding: 12px;border: 2px solid var(--primary);background: transparent;color: var(--primary);border-radius: 10px;cursor: pointer;font-weight: 600;margin-top: 10px;transition: 0.3s;}
-.btn-secondary:hover {background: var(--primary);color: var(--black);}
-.btn-secondary:disabled {opacity: 0.4;cursor: not-allowed;border-color: rgba(255, 255, 255, 0.2);color: rgba(255, 255, 255, 0.4);}
-.btn-secondary:disabled:hover {background: transparent;color: rgba(255, 255, 255, 0.4);}
+.back-btn{
+ color:var(--white);
+ text-decoration:none;
+ font-size:16px;
+ font-weight:600;
+}
 
-.qr-preview {background: var(--white);padding: 25px;border-radius: 15px;display: flex;justify-content: center;align-items: center;flex-direction: column;min-height: 400px;color: var(--black);}
-.qr-preview canvas {border-radius: 10px;max-width: 100%;}
 
-.action-btns {display: grid;grid-template-columns: 1fr 1fr;gap: 10px;margin-top: 15px;}
+.back-btn:hover{
+ color:var(--primary);
+}
 
-.history-list{max-height:150px;overflow-y:auto;margin-top:10px;background:rgba(0,0,0,0.2);padding:10px;border-radius:8px}
-.history-item{padding:5px;cursor:pointer;font-size:12px;border-bottom:1px solid rgba(255,255,255,0.1)}
-.history-item:hover{background:rgba(255,255,255,0.1)}
 
-.pro-badge {display: inline-block;background: linear-gradient(135deg, #facc15, #f59e0b);color: var(--black);padding: 5px 12px;border-radius: 20px;font-size: 12px;font-weight: 700;margin-bottom: 15px;}
-.logo-upload {border: 2px dashed rgba(255, 255, 255, 0.3);padding: 20px;border-radius: 10px;text-align: center;cursor: pointer;transition: 0.3s;}
-.logo-upload:hover {border-color: var(--primary);}
-.batch-list {max-height: 200px;overflow-y: auto;background: rgba(0, 0, 0, 0.2);padding: 10px;border-radius: 8px;margin-top: 10px;}
-.section-box {margin-top: 30px;background: rgba(255, 255, 255, 0.08);padding: 25px;border-radius: 20px;}
-.section-title {font-size: 1.3rem;margin-bottom: 15px;display: flex;align-items: center;gap: 10px;font-weight: 700;}
-.section-box ul {list-style: none;}
-.section-box ul li {padding: 8px 0;padding-left: 25px;position: relative;}
-.section-box ul li:before {content: '✓';position: absolute;left: 0;color: var(--primary);font-weight: 700;}
-.footer {text-align: center;padding: 20px;opacity: 0.7;font-size: 14px;}
-.loading {font-weight: 600;color: var(--primary);font-size: 16px;}
-.error-text {color: red;font-weight: 600;}
+.header h1{
+ font-size:1.8rem;
+ background:linear-gradient(135deg,#22c55e,#facc15);
+ -webkit-background-clip:text;
+ -webkit-text-fill-color:transparent;
+ font-weight:800;
+}
 
-.spinner{ width:40px; height:40px; border:5px solid rgba(255,255,255,.2); border-top:5px solid #22c55e; border-radius:50%; animation:spin 1s linear infinite; margin-bottom:10px }
-@keyframes spin{ 100%{ transform:rotate(360deg); } }
+
+.theme-toggle{
+ background:rgba(255,255,255,.1);
+ border:none;
+ color:var(--white);
+ padding:8px 15px;
+ border-radius:8px;
+ cursor:pointer;
+ font-weight:600;
+}
+
+
+.main-grid{
+ display:grid;
+ grid-template-columns:1fr 400px;
+ gap:25px;
+ max-width:1400px;
+ margin:auto;
+}
+
+
+@media(max-width:1100px){
+ .main-grid{
+  grid-template-columns:1fr;
+ }
+}
+
+
+@media(max-width:600px){
+ .type-grid{
+  grid-template-columns:repeat(2,1fr);
+ }
+}
+<style>
+
+.left-panel,
+.right-panel{
+ background:rgba(255,255,255,0.08);
+ backdrop-filter:blur(20px);
+ border-radius:25px;
+ padding:25px;
+ border:1px solid rgba(255,255,255,0.1);
+ box-shadow:0 8px 32px rgba(0,0,0,0.2);
+}
+
+
+.qr-types{
+ margin-bottom:20px;
+}
+
+
+.qr-types h3{
+ margin-bottom:12px;
+ font-size:1.1rem;
+ font-weight:700;
+}
+
+
+.type-grid{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:10px;
+}
+
+
+.type-btn{
+ padding:10px;
+ border-radius:10px;
+ background:rgba(255,255,255,0.1);
+ border:2px solid transparent;
+ color:var(--white);
+ cursor:pointer;
+ font-weight:600;
+ transition:.3s;
+ font-size:.85rem;
+}
+
+
+.type-btn:hover{
+ background:rgba(255,255,255,0.2);
+}
+
+
+.type-btn.active{
+ background:var(--primary);
+ color:var(--black);
+ border-color:var(--primary);
+}
+
+
+.input-group{
+ margin-bottom:18px;
+}
+
+
+.input-group label{
+ display:block;
+ margin-bottom:8px;
+ font-weight:600;
+ font-size:14px;
+}
+
+
+.input-group input,
+.input-group textarea,
+.input-group select{
+ width:100%;
+ padding:12px 16px;
+ border-radius:10px;
+ border:2px solid rgba(255,255,255,0.2);
+ background:rgba(255,255,255,0.1);
+ color:var(--white);
+ font-size:.95rem;
+ outline:none;
+ transition:.3s;
+}
+
+
+select option{
+ background:#203a43;
+ color:white;
+}
+
+
+.input-group input:focus,
+.input-group textarea:focus,
+.input-group select:focus{
+ border-color:var(--primary);
+}
+
+
+.input-group input::placeholder,
+.input-group textarea::placeholder{
+ color:rgba(255,255,255,.5);
+}
+
+
+.color-pickers{
+ display:flex;
+ gap:15px;
+}
+
+
+.color-pickers div{
+ flex:1;
+}
+
+
+input[type="color"]{
+ width:100%;
+ height:45px;
+ border:none;
+ border-radius:8px;
+ cursor:pointer;
+}
+
+
+.logo-controls{
+ display:none;
+ gap:10px;
+ margin-top:10px;
+}
+
+
+.logo-controls.show{
+ display:flex;
+}
+
+
+.logo-controls input[type="range"]{
+ width:100%;
+}
+
+
+.btn{
+ width:100%;
+ padding:15px;
+ border:none;
+ border-radius:12px;
+ background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+ color:var(--black);
+ font-weight:700;
+ font-size:1.05rem;
+ cursor:pointer;
+ margin-top:10px;
+ transition:.3s;
+}
+
+
+.btn:hover{
+ transform:translateY(-2px);
+}
+
+
+.btn:disabled{
+ opacity:.6;
+ cursor:not-allowed;
+}
+
+
+.btn-secondary{
+ width:100%;
+ padding:12px;
+ border:2px solid var(--primary);
+ background:transparent;
+ color:var(--primary);
+ border-radius:10px;
+ cursor:pointer;
+ font-weight:600;
+ margin-top:10px;
+ transition:.3s;
+}
+
+
+.btn-secondary:hover{
+ background:var(--primary);
+ color:var(--black);
+}
+
+
+.btn-secondary:disabled{
+ opacity:.4;
+ cursor:not-allowed;
+}
+
+
+.qr-preview{
+ background:var(--white);
+ padding:25px;
+ border-radius:15px;
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ flex-direction:column;
+ min-height:400px;
+ color:var(--black);
+}
+
+
+.qr-preview canvas{
+ border-radius:10px;
+ max-width:100%;
+}
+
+
+.action-btns{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:10px;
+ margin-top:15px;
+}
+.history-list{
+ max-height:150px;
+ overflow-y:auto;
+ margin-top:10px;
+ background:rgba(0,0,0,0.2);
+ padding:10px;
+ border-radius:8px;
+}
+
+
+.history-item{
+ padding:5px;
+ cursor:pointer;
+ font-size:12px;
+ border-bottom:1px solid rgba(255,255,255,0.1);
+}
+
+
+.history-item:hover{
+ background:rgba(255,255,255,0.1);
+}
+
+
+.pro-badge{
+ display:inline-block;
+ background:linear-gradient(135deg,#facc15,#f59e0b);
+ color:var(--black);
+ padding:5px 12px;
+ border-radius:20px;
+ font-size:12px;
+ font-weight:700;
+ margin-bottom:15px;
+}
+
+
+.logo-upload{
+ border:2px dashed rgba(255,255,255,0.3);
+ padding:20px;
+ border-radius:10px;
+ text-align:center;
+ cursor:pointer;
+ transition:.3s;
+}
+
+
+.logo-upload:hover{
+ border-color:var(--primary);
+}
+
+
+.batch-list{
+ max-height:200px;
+ overflow-y:auto;
+ background:rgba(0,0,0,0.2);
+ padding:10px;
+ border-radius:8px;
+ margin-top:10px;
+}
+
+
+.section-box{
+ margin-top:30px;
+ background:rgba(255,255,255,0.08);
+ padding:25px;
+ border-radius:20px;
+}
+
+
+.section-title{
+ font-size:1.3rem;
+ margin-bottom:15px;
+ display:flex;
+ align-items:center;
+ gap:10px;
+ font-weight:700;
+}
+
+
+.section-box ul{
+ list-style:none;
+}
+
+
+.section-box ul li{
+ padding:8px 0;
+ padding-left:25px;
+ position:relative;
+}
+
+
+.section-box ul li:before{
+ content:'✓';
+ position:absolute;
+ left:0;
+ color:var(--primary);
+ font-weight:700;
+}
+
+
+.footer{
+ text-align:center;
+ padding:20px;
+ opacity:.7;
+ font-size:14px;
+}
+
+
+.loading{
+ font-weight:600;
+ color:var(--primary);
+ font-size:16px;
+}
+
+
+.error-text{
+ color:red;
+ font-weight:600;
+}
+
+
+.spinner{
+ width:40px;
+ height:40px;
+ border:5px solid rgba(255,255,255,.2);
+ border-top:5px solid #22c55e;
+ border-radius:50%;
+ animation:spin 1s linear infinite;
+ margin-bottom:10px;
+}
+
+
+@keyframes spin{
+ 100%{
+  transform:rotate(360deg);
+ }
+}
+
 </style>
+
 </head>
+
 <body>
 
+
 <div class="header">
-  <a href="qr.html" class="back-btn">← Back</a>
-  <h1>🚀 Pro QR Generator</h1>
-  <button class="theme-toggle" onclick="toggleTheme()">🌙 Theme</button>
+
+<a href="qr.html" class="back-btn">← Back</a>
+
+<h1>🚀 Pro QR Generator</h1>
+
+<button class="theme-toggle" onclick="toggleTheme()">
+🌙 Theme
+</button>
+
 </div>
+
 
 <div class="main-grid">
-  <div class="left-panel">
-    <span class="pro-badge">PRO VERSION - No Watermark</span>
-    <div class="qr-types">
-      <h3>⭐ Select QR Type - 21 Tools</h3>
-      <div class="type-grid">
-        <button class="type-btn active" data-type="url">🌐 URL</button>
-        <button class="type-btn" data-type="text">📝 Text</button>
-        <button class="type-btn" data-type="wifi">📶 WiFi</button>
-        <button class="type-btn" data-type="email">📧 Email</button>
-        <button class="type-btn" data-type="phone">📞 Phone</button>
-        <button class="type-btn" data-type="sms">💬 SMS</button>
-        <button class="type-btn" data-type="whatsapp">🟢 WhatsApp</button>
-        <button class="type-btn" data-type="contact">👤 Contact</button>
-        <button class="type-btn" data-type="location">📍 Location</button>
-        <button class="type-btn" data-type="event">📅 Event</button>
-        <button class="type-btn" data-type="youtube">▶ YouTube</button>
-        <button class="type-btn" data-type="instagram">📸 Instagram</button>
-        <button class="type-btn" data-type="facebook">👍 Facebook</button>
-        <button class="type-btn" data-type="x">❌ X</button>
-        <button class="type-btn" data-type="linkedin">💼 LinkedIn</button>
-        <button class="type-btn" data-type="spotify">🎵 Spotify</button>
-        <button class="type-btn" data-type="upi">💳 UPI</button>
-        <button class="type-btn" data-type="crypto">₿ Crypto</button>
-        <button class="type-btn" data-type="pdf">📄 PDF Link</button>
-        <button class="type-btn" data-type="app">📱 App Link</button>
-        <button class="type-btn" data-type="batch">📦 Batch</button>
-      </div>
-    </div>
-    <div id="dynamicInput"></div>
-    <h3 style="margin:20px 0 10px 0">🎨 Customization</h3>
-    <div class="color-pickers">
-      <div class="input-group"><label>QR Color</label><input type="color" id="qrColor" value="#000" oninput="autoUpdate()"></div>
-      <div class="input-group"><label>BG Color</label><input type="color" id="bgColor" value="#FFFFFF" oninput="autoUpdate()"></div>
-    </div>
-    <div class="input-group">
-      <label>Add Logo</label>
-      <div class="logo-upload" onclick="document.getElementById('logoFile').click()">
-        <input type="file" id="logoFile" accept="image/*" style="display:none">
-        <p>📷 Click to Upload Logo</p>
-      </div>
-      <div class="logo-controls" id="logoControls">
-        <div style="flex:1"><label>Logo Size: <span id="logoSizeText">20</span>%</label><input type="range" id="logoSize" min="10" max="30" value="20" oninput="autoUpdate()"></div>
-      </div>
-    </div>
-    <div class="input-group"><label>QR Size: <span id="sizeText">300</span> PX</label><input type="range" id="qrSize" min="200" max="700" value="300" oninput="autoUpdate()"></div>
-    <button class="btn" id="genBtn" onclick="generateProQR()">Generate Pro QR</button>
-    <h3 style="margin:20px 0 10px 0">📜 History</h3>
-    <div id="historyList" class="history-list">No History</div>
-  </div>
-  <div class="right-panel">
-    <h3 style="margin-bottom:15px">Preview</h3>
-    <div id="qrPreview" class="qr-preview"><p style="opacity:0.5">Your Pro QR will appear here</p></div>
-    <div class="action-btns">
-      <button class="btn-secondary" onclick="downloadProPNG()">📥 PNG</button>
-      <button class="btn-secondary" onclick="downloadSVG()">📥 SVG</button>
-      <button class="btn-secondary" onclick="downloadPDF()">📥 PDF</button>
-      <button class="btn-secondary" onclick="copyQR()">📋 Copy</button>
-      <button class="btn-secondary" onclick="downloadBatchZIP()" id="zipBtn" style="display:none;grid-column:1/3">📦 Download All ZIP</button>
-      <button class="btn-secondary" onclick="downloadBatchPDF()" id="pdfBatchBtn" style="display:none;grid-column:1/3">📄 Download All PDF</button>
-    </div>
-  </div>
+
+
+<div class="left-panel">
+
+<span class="pro-badge">
+PRO VERSION - No Watermark
+</span>
+
+
+<div class="qr-types">
+
+<h3>
+⭐ Select QR Type - 21 Tools
+</h3>
+
+
+<div class="type-grid">
+
+<button class="type-btn active" data-type="url">
+🌐 URL
+</button>
+
+<button class="type-btn" data-type="text">
+📝 Text
+</button>
+
+<button class="type-btn" data-type="wifi">
+📶 WiFi
+</button>
+
+<button class="type-btn" data-type="email">
+📧 Email
+</button>
+
+<button class="type-btn" data-type="phone">
+📞 Phone
+</button>
+
+<button class="type-btn" data-type="sms">
+💬 SMS
+</button>
+
+<button class="type-btn" data-type="whatsapp">
+🟢 WhatsApp
+</button>
+
+<button class="type-btn" data-type="contact">
+👤 Contact
+</button>
+<button class="type-btn" data-type="location">
+📍 Location
+</button>
+
+<button class="type-btn" data-type="event">
+📅 Event
+</button>
+
+<button class="type-btn" data-type="youtube">
+▶ YouTube
+</button>
+
+<button class="type-btn" data-type="instagram">
+📸 Instagram
+</button>
+
+<button class="type-btn" data-type="facebook">
+👍 Facebook
+</button>
+
+<button class="type-btn" data-type="x">
+❌ X
+</button>
+
+<button class="type-btn" data-type="linkedin">
+💼 LinkedIn
+</button>
+
+<button class="type-btn" data-type="spotify">
+🎵 Spotify
+</button>
+
+<button class="type-btn" data-type="upi">
+💳 UPI
+</button>
+
+<button class="type-btn" data-type="crypto">
+₿ Crypto
+</button>
+
+<button class="type-btn" data-type="pdf">
+📄 PDF Link
+</button>
+
+<button class="type-btn" data-type="app">
+📱 App Link
+</button>
+
+<button class="type-btn" data-type="batch">
+📦 Batch
+</button>
+
 </div>
 
-<div class="section-box" style="max-width:1400px;margin:30px auto">
-  <h2 class="section-title">📖 How to Use Pro QR Generator</h2>
-  <ul>
-    <li>Upore theke apnar proyojon moto QR Type select korun</li>
-    <li>Form er ghore sob tothyo thik thak diye fill korun</li>
-    <li>QR er color, background color ebong size nijer moto set korun</li>
-    <li>Jodi chan tahole majhkhane logo upload korte paren</li>
-    <li>Generate Pro QR button e click korar por QR toiri hoye jabe</li>
-    <li>Tarpor PNG, SVG ba PDF format e download kore nin</li>
-  </ul>
 </div>
+
+
+<div id="dynamicInput"></div>
+
+
+<h3 style="margin:20px 0 10px 0">
+🎨 Customization
+</h3>
+
+
+<div class="color-pickers">
+
+<div class="input-group">
+
+<label>
+QR Color
+</label>
+
+<input type="color" id="qrColor" value="#000000" oninput="autoUpdate()">
+
+</div>
+
+
+<div class="input-group">
+
+<label>
+BG Color
+</label>
+
+<input type="color" id="bgColor" value="#FFFFFF" oninput="autoUpdate()">
+
+</div>
+
+
+</div>
+
+
+<div class="input-group">
+
+<label>
+Add Logo
+</label>
+
+
+<div class="logo-upload" onclick="document.getElementById('logoFile').click()">
+
+<input type="file" id="logoFile" accept="image/*" style="display:none">
+
+
+<p>
+📷 Click to Upload Logo
+</p>
+
+
+</div>
+
+
+<div class="logo-controls" id="logoControls">
+
+<div style="flex:1">
+
+<label>
+Logo Size:
+<span id="logoSizeText">
+20
+</span>%
+</label>
+
+
+<input type="range" id="logoSize" min="10" max="30" value="20" oninput="autoUpdate()">
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+<div class="input-group">
+
+<label>
+QR Size:
+<span id="sizeText">
+300
+</span> PX
+</label>
+
+
+<input type="range" id="qrSize" min="200" max="700" value="300">
+
+</div>
+
+
+<button class="btn" id="genBtn" onclick="generateProQR()">
+
+Generate Pro QR
+
+</button>
+
+
+<h3 style="margin:20px 0 10px 0">
+
+📜 History
+
+</h3>
+
+
+<div id="historyList" class="history-list">
+
+No History
+
+</div>
+
+
+</div>
+
+
+<div class="right-panel">
+
+<h3 style="margin-bottom:15px">
+Preview
+</h3>
+
+
+<div id="qrPreview" class="qr-preview">
+
+<p style="opacity:0.5">
+Your Pro QR will appear here
+</p>
+
+</div>
+
+
+<div class="action-btns">
+
+<button class="btn-secondary" onclick="downloadProPNG()">
+📥 PNG
+</button>
+
+
+<button class="btn-secondary" onclick="downloadSVG()">
+📥 SVG
+</button>
+
+
+<button class="btn-secondary" onclick="downloadPDF()">
+📥 PDF
+</button>
+
+
+<button class="btn-secondary" onclick="copyQR()">
+📋 Copy
+</button>
+
+
+<button class="btn-secondary" id="zipBtn" onclick="downloadBatchZIP()" style="display:none;grid-column:1/3">
+📦 Download All ZIP
+</button>
+
+
+<button class="btn-secondary" id="pdfBatchBtn" onclick="downloadBatchPDF()" style="display:none;grid-column:1/3">
+📄 Download All PDF
+</button>
+
+
+</div>
+
+</div>
+
+</div>
+<div class="section-box" style="max-width:1400px;margin:30px auto">
+
+<h2 class="section-title">
+📖 How to Use Pro QR Generator
+</h2>
+
+
+<ul>
+
+<li>
+Upore theke apnar proyojon moto QR Type select korun
+</li>
+
+<li>
+Form er ghore sob tothyo thik thak diye fill korun
+</li>
+
+<li>
+QR er color, background color ebong size nijer moto set korun
+</li>
+
+<li>
+Jodi chan tahole majhkhane logo upload korte paren
+</li>
+
+<li>
+Generate Pro QR button e click korar por QR toiri hoye jabe
+</li>
+
+<li>
+Tarpor PNG, SVG ba PDF format e download kore nin
+</li>
+
+</ul>
+
+</div>
+
+
 
 <div class="section-box" style="max-width:1400px;margin:20px auto">
-  <h2 class="section-title">⭐ Pro Features</h2>
-  <ul>
-    <li>21 dhoroner QR toiri kora jay. URL theke UPI sob ache</li>
-    <li>QR er color, background color ebong size full customize</li>
-    <li>Company logo majhkhane add korar subidha</li>
-    <li>CSV file upload kore ek sathe onek QR banano jay</li>
-    <li>HD PNG, Vector SVG ebong Print ready PDF download</li>
-    <li>Kono watermark nei. Business er jonno ekdom perfect</li>
-  </ul>
+
+
+<h2 class="section-title">
+⭐ Pro Features
+</h2>
+
+
+<ul>
+
+<li>
+21 dhoroner QR toiri kora jay. URL theke UPI sob ache
+</li>
+
+<li>
+QR er color, background color ebong size full customize
+</li>
+
+<li>
+Company logo majhkhane add korar subidha
+</li>
+
+<li>
+CSV file upload kore ek sathe onek QR banano jay
+</li>
+
+<li>
+HD PNG, Vector SVG ebong Print ready PDF download
+</li>
+
+<li>
+Kono watermark nei. Business er jonno ekdom perfect
+</li>
+
+
+</ul>
+
+
 </div>
 
-<div class="footer">© <span id="year"></span> My Tools Pro • Made by Mujahar • All Rights Reserved</div>
+
+
+<div class="footer">
+
+© <span id="year"></span> My Tools Pro • Made by Mujahar • All Rights Reserved
+
+</div>
+
+
 
 <script>
+
+
 let proQR = null;
+
 let logoImg = null;
+
 let currentType = "url";
+
 let qrDataString = "";
+
 let batchData = [];
+
 let batchCanvases = [];
+
 let logoSizePercent = 20;
+
 let qrHistory = [];
 
+
+
 function saveSettings(){
-  try{
-    localStorage.setItem("qrSettings", JSON.stringify({
-      qrColor:document.getElementById("qrColor").value,
-      bgColor:document.getElementById("bgColor").value,
-      logoSize:logoSizePercent,
-      qrSize:document.getElementById("qrSize").value,
-      theme:document.body.classList.contains("light-theme")?"light":"dark"
-    }));
-  }catch(e){}
-}
-function loadSettings(){
-  try{
-    const s = JSON.parse(localStorage.getItem("qrSettings"));
-    if(s){
-      document.getElementById("qrColor").value=s.qrColor;
-      document.getElementById("bgColor").value=s.bgColor;
-      document.getElementById("logoSize").value=s.logoSize; logoSizePercent=s.logoSize;
-      document.getElementById("qrSize").value=s.qrSize;
-      document.getElementById("sizeText").innerText=s.qrSize;
-      document.getElementById("logoSizeText").innerText=s.logoSize;
-      if(s.theme==="light") document.body.classList.add("light-theme");
-    }
-  }catch(e){}
-}
 
-document.addEventListener('DOMContentLoaded', function(){
-  document.getElementById("year").textContent= new Date().getFullYear();
-  loadSettings();
-  document.querySelectorAll(".btn-secondary").forEach(btn=>{ btn.disabled=true; });
-  document.querySelectorAll('.type-btn').forEach(btn=>{
-    btn.addEventListener('click', function(){
-      document.querySelectorAll('.type-btn').forEach(b=>b.classList.remove('active'))
-      this.classList.add('active')
-      currentType = this.getAttribute('data-type')
-      updateInput()
-    })
-  })
-  updateInput()
-  loadHistory()
+try{
+
+localStorage.setItem(
+"qrSettings",
+JSON.stringify({
+
+qrColor:
+document.getElementById("qrColor").value,
+
+
+bgColor:
+document.getElementById("bgColor").value,
+
+
+logoSize:
+logoSizePercent,
+
+
+qrSize:
+document.getElementById("qrSize").value,
+
+
+theme:
+document.body.classList.contains("light-theme")
+?
+"light"
+:
+"dark"
+
 })
+);
 
-function autoUpdate(){ if(proQR){ generateProQR(); } saveSettings(); }
-document.getElementById('qrSize').oninput = function(){ document.getElementById('sizeText').innerText = this.value; autoUpdate(); }
-document.getElementById('logoSize').oninput = function(){ logoSizePercent = parseInt(this.value); document.getElementById('logoSizeText').innerText = this.value; autoUpdate(); }
+}catch(e){}
 
-document.getElementById('logoFile').onchange = function(e){
-  const f = e.target.files[0];
-  if(!f) return;
-  if(f.size>2097152){ alert("Logo Max 2MB"); return; }
-  const r = new FileReader();
-  r.onload = e => { logoImg = e.target.result; document.getElementById('logoControls').classList.add('show'); if(proQR){ generateProQR(); } }
-  r.readAsDataURL(f)
 }
+
+
+
+function loadSettings(){
+
+try{
+
+const s =
+JSON.parse(localStorage.getItem("qrSettings"));
+
+
+if(s){
+
+document.getElementById("qrColor").value=s.qrColor;
+
+
+document.getElementById("bgColor").value=s.bgColor;
+
+
+document.getElementById("logoSize").value=s.logoSize;
+
+
+logoSizePercent=s.logoSize;
+
+
+document.getElementById("qrSize").value=s.qrSize;
+
+
+document.getElementById("sizeText").innerText=s.qrSize;
+
+
+document.getElementById("logoSizeText").innerText=s.logoSize;
+
+
+if(s.theme==="light")
+document.body.classList.add("light-theme");
+
+}
+
+}catch(e){}
+
+}
+
+
+
+document.addEventListener(
+'DOMContentLoaded',
+function(){
+
+
+document.getElementById("year").textContent =
+new Date().getFullYear();
+
+
+loadSettings();
+
+
+document.querySelectorAll(".btn-secondary")
+.forEach(btn=>{
+
+btn.disabled=true;
+
+});
+
+
+document.querySelectorAll('.type-btn')
+.forEach(btn=>{
+
+
+btn.addEventListener('click',function(){
+
+
+document.querySelectorAll('.type-btn')
+.forEach(b=>b.classList.remove('active'));
+
+
+this.classList.add('active');
+
+
+currentType =
+this.getAttribute('data-type');
+
+
+updateInput();
+
+
+});
+
+
+});
+
+
+updateInput();
+
+
+loadHistory();
+
+
+});
+function autoUpdate(){
+
+if(proQR){
+
+generateProQR();
+
+}
+
+saveSettings();
+
+}
+
+
+
+document.getElementById('qrSize').oninput=function(){
+
+document.getElementById('sizeText').innerText=this.value;
+
+autoUpdate();
+
+}
+
+
+
+document.getElementById('logoSize').oninput=function(){
+
+logoSizePercent=parseInt(this.value);
+
+document.getElementById('logoSizeText').innerText=this.value;
+
+autoUpdate();
+
+}
+
+
+
+document.getElementById('logoFile').onchange=function(e){
+
+
+const f=e.target.files[0];
+
+
+if(!f)return;
+
+
+if(f.size>2097152){
+
+alert("Logo Max 2MB");
+
+return;
+
+}
+
+
+const r=new FileReader();
+
+
+r.onload=e=>{
+
+
+logoImg=e.target.result;
+
+
+document.getElementById('logoControls')
+.classList.add('show');
+
+
+if(proQR){
+
+generateProQR();
+
+}
+
+
+}
+
+
+r.readAsDataURL(f);
+
+
+}
+
+
+
 
 function updateInput(){
-  const d = document.getElementById("dynamicInput"); let h = "";
-  switch(currentType){
-    case "url": h = `<div class="input-group"><label>Website URL</label><input type="text" id="mainInput" placeholder="example: google.com" oninput="autoUpdate()"></div>`; break;
-    case "text": h = `<div class="input-group"><label>Text</label><textarea id="mainInput" rows="5" placeholder="Write your text here" oninput="autoUpdate()"></textarea></div>`; break;
-    case "wifi": h = `<div class="input-group"><label>WiFi Name (SSID)</label><input id="wifiSSID" placeholder="Enter WiFi name" oninput="autoUpdate()"></div><div class="input-group"><label>Password</label><input id="wifiPass" placeholder="Enter WiFi password" oninput="autoUpdate()"></div><div class="input-group"><label>Security</label><select id="wifiEnc" onchange="autoUpdate()"><option value="WPA">WPA/WPA2</option><option value="WEP">WEP</option><option value="nopass">No Password</option></select></div>`; break;
-    case "email": h = `<div class="input-group"><label>Email Address</label><input id="emailTo" placeholder="example@gmail.com" oninput="autoUpdate()"></div><div class="input-group"><label>Subject</label><input id="emailSub" placeholder="Enter subject" oninput="autoUpdate()"></div><div class="input-group"><label>Message</label><textarea id="emailBody" rows="4" placeholder="Write your message here" oninput="autoUpdate()"></textarea></div>`; break;
-    case "phone": h = `<div class="input-group"><label>Phone Number</label><input id="mainInput" placeholder="Enter phone number with country code" oninput="autoUpdate()"></div>`; break;
-    case "sms": h = `<div class="input-group"><label>Phone Number</label><input id="smsPhone" placeholder="Enter phone number" oninput="autoUpdate()"></div><div class="input-group"><label>SMS Message</label><textarea id="smsMsg" rows="4" placeholder="Write your SMS here" oninput="autoUpdate()"></textarea></div>`; break;
-    case "whatsapp": h = `<div class="input-group"><label>WhatsApp Number</label><input id="waNumber" placeholder="Country code + Number. Ex: 919876543210" oninput="autoUpdate()"></div><div class="input-group"><label>Message</label><textarea id="waMsg" rows="4" placeholder="Write your message here" oninput="autoUpdate()"></textarea></div>`; break;
-    case "contact": h = `<div class="input-group"><label>Full Name</label><input id="cName" placeholder="John Doe" oninput="autoUpdate()"></div><div class="input-group"><label>Phone Number</label><input id="cPhone" placeholder="+91XXXXXXXXXX" oninput="autoUpdate()"></div><div class="input-group"><label>Email</label><input id="cEmail" placeholder="example@gmail.com" oninput="autoUpdate()"></div>`; break;
-    case "location": h = `<div class="input-group"><label>Latitude</label><input id="lat" placeholder="22.5726" oninput="autoUpdate()"></div><div class="input-group"><label>Longitude</label><input id="lng" placeholder="88.3639" oninput="autoUpdate()"></div>`; break;
-    case "event": h = `<div class="input-group"><label>Event Title</label><input id="eventTitle" placeholder="Birthday Party" oninput="autoUpdate()"></div><div class="input-group"><label>Event Date</label><input type="date" id="eventDate" onchange="autoUpdate()"></div>`; break;
-    case "youtube": case "instagram": case "facebook": case "x": case "linkedin": case "spotify": case "pdf": case "app": case "crypto": h = `<div class="input-group"><label>Link</label><input id="mainInput" placeholder="Paste your link here" oninput="autoUpdate()"></div>`; break;
-    case "upi": h = `<div class="input-group"><label>UPI ID</label><input id="upiID" placeholder="name@upi" oninput="autoUpdate()"></div><div class="input-group"><label>Receiver Name</label><input id="upiName" placeholder="John Doe" oninput="autoUpdate()"></div><div class="input-group"><label>Amount</label><input id="upiAmt" type="number" placeholder="100" oninput="autoUpdate()"></div><div class="input-group"><label>Note (Optional)</label><input id="upiNote" placeholder="Payment for order" oninput="autoUpdate()"></div>`; break;
-    case "batch": h = `<div class="input-group"><label>Upload CSV File</label><input type="file" id="csvFile" accept=".csv"><small>CSV Format: name,url</small></div><div id="batchList" class="batch-list">No CSV Loaded</div>`; break;
-    default: h = `<div class="input-group"><label>Link / Data</label><input id="mainInput" placeholder="Paste your link here" oninput="autoUpdate()"></div>`;
-  }
-  d.innerHTML = h;
-  if(currentType == "batch"){
-    document.getElementById("csvFile").addEventListener("change", function(e){
-      const file = e.target.files[0]; if(!file) return;
-      Papa.parse(file, {header: true, skipEmptyLines: true, complete: function(result){
-          batchData = result.data; let html = "";
-          batchData.forEach((item, index) => { if(!item.name||!item.url){ return; } html += `<div style="padding:8px;border-bottom:1px solid rgba(255,255,255,.15)"><b>${index+1}.</b> ${item.name}<br><small>${item.url}</small></div>`;});
-          document.getElementById("batchList").innerHTML = html;
-      }});
-    });
-  }
+
+
+const d=document.getElementById("dynamicInput");
+
+let h="";
+
+
+switch(currentType){
+
+
+case "url":
+
+h=`
+
+<div class="input-group">
+
+<label>
+Website URL
+</label>
+
+
+<input type="text" id="mainInput" placeholder="example: google.com" oninput="autoUpdate()">
+
+</div>
+
+`;
+
+break;
+
+
+
+case "text":
+
+h=`
+
+<div class="input-group">
+
+<label>
+Text
+</label>
+
+
+<textarea id="mainInput" rows="5" placeholder="Write your text here" oninput="autoUpdate()"></textarea>
+
+
+</div>
+
+`;
+
+break;
+
+
+
+case "wifi":
+
+h=`
+
+<div class="input-group">
+
+<label>
+WiFi Name (SSID)
+</label>
+
+
+<input id="wifiSSID" placeholder="Enter WiFi name" oninput="autoUpdate()">
+
+
+</div>
+
+
+<div class="input-group">
+
+<label>
+Password
+</label>
+
+
+<input id="wifiPass" placeholder="Enter WiFi password" oninput="autoUpdate()">
+
+
+</div>
+
+
+<div class="input-group">
+
+<label>
+Security
+</label>
+
+
+<select id="wifiEnc" onchange="autoUpdate()">
+
+
+<option value="WPA">
+WPA/WPA2
+</option>
+
+
+<option value="WEP">
+WEP
+</option>
+
+
+<option value="nopass">
+No Password
+</option>
+
+
+</select>
+
+
+</div>
+
+`;
+
+break;
+
+
+
+case "email":
+
+h=`
+
+<div class="input-group">
+
+<label>
+Email Address
+</label>
+
+
+<input id="emailTo" placeholder="example@gmail.com" oninput="autoUpdate()">
+
+
+
+</div>
+
+
+
+<div class="input-group">
+
+<label>
+Subject
+</label>
+
+
+<input id="emailSub" placeholder="Enter subject" oninput="autoUpdate()">
+
+
+
+</div>
+
+
+
+<div class="input-group">
+
+<label>
+Message
+</label>
+
+
+<textarea id="emailBody" rows="4" placeholder="Write your message here" oninput="autoUpdate()"></textarea>
+
+
+</div>
+
+`;
+
+break;
+
+
+
+case "phone":
+
+h=`
+
+<div class="input-group">
+
+<label>
+Phone Number
+</label>
+
+
+<input id="mainInput" placeholder="Enter phone number with country code" oninput="autoUpdate()">
+
+
+
+</div>
+
+`;
+
+break;
+
+
+case "sms":
+
+h=`
+
+<div class="input-group">
+
+<label>
+Phone Number
+</label>
+
+
+<input id="smsPhone" placeholder="Enter phone number" oninput="autoUpdate()">
+
+
+
+</div>
+
+
+<div class="input-group">
+
+<label>
+SMS Message
+</label>
+
+
+<textarea id="smsMsg" rows="4" placeholder="Write your SMS here" oninput="autoUpdate()"></textarea>
+
+
+</div>
+
+`;
+
+break;
+case "whatsapp":
+
+h=`
+
+<div class="input-group">
+
+<label>
+WhatsApp Number
+</label>
+
+<input id="waNumber" placeholder="Country code + Number. Ex: 919876543210" oninput="autoUpdate()">
+
+</div>
+
+
+<div class="input-group">
+
+<label>
+Message
+</label>
+
+<textarea id="waMsg" rows="4" placeholder="Write your message here" oninput="autoUpdate()"></textarea>
+
+</div>
+
+`;
+
+break;
+
+
+
+case "contact":
+
+h=`
+
+<div class="input-group">
+
+<label>
+Full Name
+</label>
+
+<input id="cName" placeholder="John Doe" oninput="autoUpdate()">
+
+</div>
+
+
+<div class="input-group">
+
+<label>
+Phone Number
+</label>
+
+<input id="cPhone" placeholder="+91XXXXXXXXXX" oninput="autoUpdate()">
+
+</div>
+
+
+<div class="input-group">
+
+<label>
+Email
+</label>
+
+<input id="cEmail" placeholder="example@gmail.com" oninput="autoUpdate()">
+
+</div>
+
+`;
+
+break;
+
+
+
+case "location":
+
+h=`
+
+<div class="input-group">
+
+<label>
+Latitude
+</label>
+
+<input id="lat" placeholder="22.5726" oninput="autoUpdate()">
+
+</div>
+
+
+<div class="input-group">
+
+<label>
+Longitude
+</label>
+
+<input id="lng" placeholder="88.3639" oninput="autoUpdate()">
+
+</div>
+
+`;
+
+break;
+
+
+
+case "event":
+
+h=`
+
+<div class="input-group">
+
+<label>
+Event Title
+</label>
+
+<input id="eventTitle" placeholder="Birthday Party" oninput="autoUpdate()">
+
+</div>
+
+
+<div class="input-group">
+
+<label>
+Event Date
+</label>
+
+<input type="date" id="eventDate" onchange="autoUpdate()">
+
+</div>
+
+`;
+
+break;
+
+
+
+case "youtube":
+
+case "instagram":
+
+case "facebook":
+
+case "x":
+
+case "linkedin":
+
+case "spotify":
+
+case "pdf":
+
+case "app":
+
+case "crypto":
+
+
+h=`
+
+<div class="input-group">
+
+<label>
+Link
+</label>
+
+<input id="mainInput" placeholder="Paste your link here" oninput="autoUpdate()">
+
+</div>
+
+`;
+
+break;
+
+
+
+case "upi":
+
+h=`
+
+<div class="input-group">
+
+<label>
+UPI ID
+</label>
+
+<input id="upiID" placeholder="name@upi" oninput="autoUpdate()">
+
+</div>
+
+
+<div class="input-group">
+
+<label>
+Receiver Name
+</label>
+
+<input id="upiName" placeholder="John Doe" oninput="autoUpdate()">
+
+</div>
+
+
+<div class="input-group">
+
+<label>
+Amount
+</label>
+
+<input id="upiAmt" type="number" placeholder="100" oninput="autoUpdate()">
+
+</div>
+
+
+<div class="input-group">
+
+<label>
+Note (Optional)
+</label>
+
+<input id="upiNote" placeholder="Payment for order" oninput="autoUpdate()">
+
+</div>
+
+`;
+
+break;
+
+
+
+case "batch":
+
+h=`
+
+<div class="input-group">
+
+<label>
+Upload CSV File
+</label>
+
+<input type="file" id="csvFile" accept=".csv">
+
+
+<small>
+CSV Format: name,url
+</small>
+
+
+</div>
+
+
+<div id="batchList" class="batch-list">
+No CSV Loaded
+</div>
+
+`;
+
+break;
+
+
+
+default:
+
+h=`
+
+<div class="input-group">
+
+<label>
+Link / Data
+</label>
+
+<input id="mainInput" placeholder="Paste your link here" oninput="autoUpdate()">
+
+</div>
+
+`;
+
 }
 
-function getQRData(){
-  switch(currentType){
-    case "url": return document.getElementById("mainInput").value.trim();
-    case "text": return document.getElementById("mainInput").value;
-    case "wifi": return `WIFI:T:${document.getElementById("wifiEnc").value};S:${document.getElementById("wifiSSID").value};P:${document.getElementById("wifiPass").value};;`;
-    case "email": return `mailto:${document.getElementById("emailTo").value}?subject=${encodeURIComponent(document.getElementById("emailSub").value)}&body=${encodeURIComponent(document.getElementById("emailBody").value)}`;
-    case "phone": return `tel:${document.getElementById("mainInput").value}`;
-    case "sms": return `sms:${document.getElementById("smsPhone").value}?body=${encodeURIComponent(document.getElementById("smsMsg").value)}`;
-    case "whatsapp": return `https://wa.me/${document.getElementById("waNumber").value}?text=${encodeURIComponent(document.getElementById("waMsg").value)}`;
-    case "contact": return `BEGIN:VCARD\nVERSION:3.0\nFN:${document.getElementById("cName").value}\nTEL:${document.getElementById("cPhone").value}\nEMAIL:${document.getElementById("cEmail").value}\nEND:VCARD`;
-    case "location": return `geo:${document.getElementById("lat").value},${document.getElementById("lng").value}`;
-    case "event": return `BEGIN:VEVENT\nSUMMARY:${document.getElementById("eventTitle").value}\nDTSTART:${document.getElementById("eventDate").value.replace(/-/g,"")}\nEND:VEVENT`;
-    case "youtube": case "instagram": case "facebook": case "x": case "linkedin": case "spotify": case "pdf": case "app": case "crypto": return document.getElementById("mainInput").value.trim();
-    case "upi": return `upi://pay?pa=${document.getElementById("upiID").value}&pn=${encodeURIComponent(document.getElementById("upiName").value)}&am=${document.getElementById("upiAmt").value}&tn=${encodeURIComponent(document.getElementById("upiNote").value)}`;
-    case "batch": return "";
-    default: return "";
-  }
+
+d.innerHTML=h;
+
+
+
+if(currentType=="batch"){
+
+
+document.getElementById("csvFile")
+.addEventListener("change",function(e){
+
+
+const file=e.target.files[0];
+
+
+if(!file)return;
+
+
+Papa.parse(file,{
+
+header:true,
+
+skipEmptyLines:true,
+
+
+complete:function(result){
+
+
+batchData=result.data;
+
+
+let html="";
+
+
+batchData.forEach((item,index)=>{
+
+
+if(!item.name||!item.url)return;
+
+
+html+=`
+
+<div style="padding:8px;border-bottom:1px solid rgba(255,255,255,.15)">
+
+<b>${index+1}.</b> ${item.name}
+
+<br>
+
+<small>${item.url}</small>
+
+</div>
+
+`;
+
+});
+
+
+document.getElementById("batchList").innerHTML=html;
+
+
 }
+
+});
+
+
+});
+
+
+}
+
+
+}
+function getQRData(){
+
+switch(currentType){
+
+
+case "url":
+
+return document.getElementById("mainInput").value.trim();
+
+
+
+case "text":
+
+return document.getElementById("mainInput").value;
+
+
+
+case "wifi":
+
+return `WIFI:T:${document.getElementById("wifiEnc").value};S:${document.getElementById("wifiSSID").value};P:${document.getElementById("wifiPass").value};;`;
+
+
+
+case "email":
+
+return `mailto:${document.getElementById("emailTo").value}?subject=${encodeURIComponent(document.getElementById("emailSub").value)}&body=${encodeURIComponent(document.getElementById("emailBody").value)}`;
+
+
+
+case "phone":
+
+return `tel:${document.getElementById("mainInput").value}`;
+
+
+
+case "sms":
+
+return `sms:${document.getElementById("smsPhone").value}?body=${encodeURIComponent(document.getElementById("smsMsg").value)}`;
+
+
+
+case "whatsapp":
+
+return `https://wa.me/${document.getElementById("waNumber").value}?text=${encodeURIComponent(document.getElementById("waMsg").value)}`;
+
+
+
+case "contact":
+
+return `BEGIN:VCARD
+VERSION:3.0
+FN:${document.getElementById("cName").value}
+TEL:${document.getElementById("cPhone").value}
+EMAIL:${document.getElementById("cEmail").value}
+END:VCARD`;
+
+
+
+case "location":
+
+return `geo:${document.getElementById("lat").value},${document.getElementById("lng").value}`;
+
+
+
+case "event":
+
+return `BEGIN:VEVENT
+SUMMARY:${document.getElementById("eventTitle").value}
+DTSTART:${document.getElementById("eventDate").value.replace(/-/g,"")}
+END:VEVENT`;
+
+
+
+case "youtube":
+
+case "instagram":
+
+case "facebook":
+
+case "x":
+
+case "linkedin":
+
+case "spotify":
+
+case "pdf":
+
+case "app":
+
+case "crypto":
+
+return document.getElementById("mainInput").value.trim();
+
+
+
+case "upi":
+
+return `upi://pay?pa=${document.getElementById("upiID").value}&pn=${encodeURIComponent(document.getElementById("upiName").value)}&am=${document.getElementById("upiAmt").value}&tn=${encodeURIComponent(document.getElementById("upiNote").value)}`;
+
+
+
+case "batch":
+
+return "";
+
+
+
+default:
+
+return "";
+
+}
+
+}
+
+
 
 function validateFields(){
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const phoneRegex = /^\+?[0-9]{10,15}$/;
-  if(currentType == "url" && document.getElementById("mainInput").value &&!document.getElementById("mainInput").value.includes(".")){ alert("Warning: Please enter a valid URL like google.com"); }
-  if(currentType == "email" &&!document.getElementById("emailTo").value){ alert("Please Enter Email Address"); return false; }
-  if(currentType == "email" &&!emailRegex.test(document.getElementById("emailTo").value)){ alert("Please Enter Valid Email"); return false; }
-  if(currentType == "phone" &&!document.getElementById("mainInput").value){ alert("Please Enter Phone Number"); return false; }
-  if(currentType == "phone" &&!phoneRegex.test(document.getElementById("mainInput").value)){ alert("Please Enter Valid Phone Number"); return false; }
-  if(currentType == "sms" &&!document.getElementById("smsPhone").value){ alert("Please Enter Phone Number"); return false; }
-  if(currentType == "whatsapp" &&!document.getElementById("waNumber").value){ alert("Please Enter WhatsApp Number"); return false; }
-  if(currentType == "upi" &&!document.getElementById("upiID").value){ alert("Please Enter UPI ID"); return false; }
-  if(currentType == "wifi" &&!document.getElementById("wifiSSID").value){ alert("Please Enter WiFi Name"); return false; }
-  return true;
+
+
+const emailRegex=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+const phoneRegex=/^\+?[0-9]{10,15}$/;
+
+
+
+if(currentType=="url" &&
+document.getElementById("mainInput").value &&
+!document.getElementById("mainInput").value.includes(".")){
+
+alert("Warning: Please enter a valid URL like google.com");
+
 }
 
-function drawLogoOnCanvas(canvas, logoSrc, size){
-  return new Promise((resolve) => {
-    const ctx = canvas.getContext("2d"); const img = new Image();
-    img.onload = function(){
-      const logoSize = Math.min(size * (logoSizePercent / 100), 80); const x = (size - logoSize) / 2; const y = (size - logoSize) / 2;
-      ctx.shadowBlur=10; ctx.shadowColor="rgba(0,0,0,.3)";
-      ctx.beginPath(); ctx.arc(size/2, size/2, logoSize/2 + 6, 0, Math.PI*2); ctx.fillStyle = "#FFFFFF"; ctx.fill(); ctx.closePath();
-      ctx.save(); ctx.beginPath(); ctx.arc(size/2, size/2, logoSize/2, 0, Math.PI*2); ctx.clip(); ctx.drawImage(img, x, y, logoSize, logoSize); ctx.restore(); ctx.shadowBlur=0; resolve();
-    };
-    img.src = logoSrc;
-  });
+
+
+if(currentType=="email" &&
+!document.getElementById("emailTo").value){
+
+alert("Please Enter Email Address");
+
+return false;
+
 }
 
-function generateSVGWithLogo(data, size, darkColor, lightColor, logoSrc){
-  return new Promise((resolve) => {
-    QRCode.toString(data, {type:"svg", width:size, margin:2, color:{dark:darkColor, light:lightColor}}, function(err, svg){
-      if(err ||!logoSrc){ resolve(svg); return; }
-      const logoSize = Math.min(size * (logoSizePercent / 100), 80); const x = (size - logoSize) / 2; const y = (size - logoSize) / 2;
-      const logoElement = `<g><circle cx="${size/2}" cy="${size/2}" r="${logoSize/2 + 6}" fill="#FFFFFF"/><clipPath id="logoClip"><circle cx="${size/2}" cy="${size/2}" r="${logoSize/2}"/></clipPath><image href="${logoSrc}" x="${x}" y="${y}" width="${logoSize}" height="${logoSize}" clip-path="url(#logoClip)"/></g>`;
-      const svgWithLogo = svg.replace('</svg>', logoElement + '</svg>'); resolve(svgWithLogo);
-    });
-  });
+
+
+if(currentType=="email" &&
+!emailRegex.test(document.getElementById("emailTo").value)){
+
+alert("Please Enter Valid Email");
+
+return false;
+
 }
 
-function saveHistory(data){ if(qrHistory[0]?.data!==data){ qrHistory.unshift({data:data,type:currentType,time:new Date().toLocaleTimeString()}); if(qrHistory.length>10) qrHistory.pop(); try{ localStorage.setItem("qrHistory",JSON.stringify(qrHistory)); }catch(e){} loadHistory(); } }
-function loadHistory(){ try{ qrHistory=JSON.parse(localStorage.getItem("qrHistory"))||[]; }catch(e){qrHistory=[]} let html=""; qrHistory.forEach((item,i)=>{html+=`<div class="history-item" onclick="loadFromHistory(${i})">${item.type}: ${item.data.substring(0,30)}... - ${item.time}</div>`}) document.getElementById("historyList").innerHTML=html||"No History"; }
+
+
+if(currentType=="phone" &&
+!document.getElementById("mainInput").value){
+
+alert("Please Enter Phone Number");
+
+return false;
+
+}
+
+
+
+if(currentType=="phone" &&
+!phoneRegex.test(document.getElementById("mainInput").value)){
+
+alert("Please Enter Valid Phone Number");
+
+return false;
+
+}
+
+
+
+if(currentType=="sms" &&
+!document.getElementById("smsPhone").value){
+
+alert("Please Enter Phone Number");
+
+return false;
+
+}
+
+
+
+if(currentType=="whatsapp" &&
+!document.getElementById("waNumber").value){
+
+alert("Please Enter WhatsApp Number");
+
+return false;
+
+}
+
+
+
+if(currentType=="upi" &&
+!document.getElementById("upiID").value){
+
+alert("Please Enter UPI ID");
+
+return false;
+
+}
+
+
+
+if(currentType=="wifi" &&
+!document.getElementById("wifiSSID").value){
+
+alert("Please Enter WiFi Name");
+
+return false;
+
+}
+
+
+return true;
+
+}
+function drawLogoOnCanvas(canvas,logoSrc,size){
+
+return new Promise((resolve)=>{
+
+
+const ctx=canvas.getContext("2d");
+
+const img=new Image();
+
+
+img.onload=function(){
+
+
+const logoSize=Math.min(
+size*(logoSizePercent/100),
+80
+);
+
+
+const x=(size-logoSize)/2;
+
+const y=(size-logoSize)/2;
+
+
+
+ctx.shadowBlur=10;
+
+ctx.shadowColor="rgba(0,0,0,.3)";
+
+
+
+ctx.beginPath();
+
+ctx.arc(
+size/2,
+size/2,
+logoSize/2+6,
+0,
+Math.PI*2
+);
+
+
+ctx.fillStyle="#FFFFFF";
+
+ctx.fill();
+
+ctx.closePath();
+
+
+
+ctx.save();
+
+ctx.beginPath();
+
+ctx.arc(
+size/2,
+size/2,
+logoSize/2,
+0,
+Math.PI*2
+);
+
+
+ctx.clip();
+
+
+ctx.drawImage(
+img,
+x,
+y,
+logoSize,
+logoSize
+);
+
+
+ctx.restore();
+
+
+ctx.shadowBlur=0;
+
+
+resolve();
+
+
+};
+
+
+img.src=logoSrc;
+
+
+});
+
+
+}
+
+
+
+function generateSVGWithLogo(
+data,
+size,
+darkColor,
+lightColor,
+logoSrc
+){
+
+
+return new Promise((resolve)=>{
+
+
+QRCode.toString(
+data,
+{
+type:"svg",
+width:size,
+margin:2,
+color:{
+dark:darkColor,
+light:lightColor
+}
+},
+
+function(err,svg){
+
+
+if(err || !logoSrc){
+
+resolve(svg);
+
+return;
+
+}
+
+
+
+const logoSize=Math.min(
+size*(logoSizePercent/100),
+80
+);
+
+
+const x=(size-logoSize)/2;
+
+const y=(size-logoSize)/2;
+
+
+
+const logoElement=`
+
+<g>
+
+<circle cx="${size/2}" cy="${size/2}" r="${logoSize/2+6}" fill="#FFFFFF"/>
+
+<clipPath id="logoClip">
+
+<circle cx="${size/2}" cy="${size/2}" r="${logoSize/2}"/>
+
+</clipPath>
+
+
+<image href="${logoSrc}"
+x="${x}"
+y="${y}"
+width="${logoSize}"
+height="${logoSize}"
+clip-path="url(#logoClip)"/>
+
+
+</g>
+
+`;
+
+
+
+const svgWithLogo=
+svg.replace(
+"</svg>",
+logoElement+"</svg>"
+);
+
+
+
+resolve(svgWithLogo);
+
+
+}
+
+);
+
+
+});
+
+
+}
+
+
+
+function saveHistory(data){
+
+
+if(qrHistory[0]?.data!==data){
+
+
+qrHistory.unshift({
+
+data:data,
+
+type:currentType,
+
+time:new Date().toLocaleTimeString()
+
+});
+
+
+if(qrHistory.length>10){
+
+qrHistory.pop();
+
+}
+
+
+try{
+
+localStorage.setItem(
+"qrHistory",
+JSON.stringify(qrHistory)
+);
+
+}catch(e){}
+
+
+
+loadHistory();
+
+
+}
+
+
+}
+
+
+
+function loadHistory(){
+
+
+try{
+
+qrHistory=
+JSON.parse(
+localStorage.getItem("qrHistory")
+)||[];
+
+
+}catch(e){
+
+qrHistory=[];
+
+}
+
+
+
+let html="";
+
+
+qrHistory.forEach((item,i)=>{
+
+
+html+=`
+
+<div class="history-item"
+onclick="loadFromHistory(${i})">
+
+${item.type}: 
+${item.data.substring(0,30)}...
+- ${item.time}
+
+</div>
+
+`;
+
+
+});
+
+
+
+document.getElementById("historyList").innerHTML=
+html || "No History";
+
+
+}
+
+
 function loadFromHistory(i){
-  const item = qrHistory[i];
-  currentType = item.type;
-  document.querySelectorAll(".type-btn").forEach(btn=>{
-    btn.classList.remove("active");
-    if(btn.dataset.type===currentType){ btn.classList.add("active"); }
-  });
-  updateInput();
-  setTimeout(()=>{
-    const input = document.getElementById("mainInput");
-    if(input) input.value = item.data;
-    generateProQR();
-  },100);
+
+
+const item=qrHistory[i];
+
+
+currentType=item.type;
+
+
+
+document.querySelectorAll(".type-btn")
+.forEach(btn=>{
+
+
+btn.classList.remove("active");
+
+
+if(btn.dataset.type===currentType){
+
+btn.classList.add("active");
+
 }
+
+
+});
+
+
+updateInput();
+
+
+setTimeout(()=>{
+
+
+const input=
+document.getElementById("mainInput");
+
+
+if(input){
+
+input.value=item.data;
+
+}
+
+
+generateProQR();
+
+
+},100);
+
+
+}
+
+
+
 function toggleTheme(){
-  document.body.classList.toggle("light-theme");
-  saveSettings();
-}
 
+document.body.classList.toggle("light-theme");
+
+saveSettings();
+
+}
 async function generateProQR(){
-    const btn=document.getElementById("genBtn"); btn.disabled=true; btn.innerText="Generating...";
-    document.getElementById("qrPreview").innerHTML = "<div class='spinner'></div><p class='loading'>Generating QR...</p>";
-    batchCanvases = []; document.getElementById("zipBtn").style.display = "none"; document.getElementById("pdfBatchBtn").style.display = "none";
 
-    qrDataString = getQRData();
-    if(!validateFields()) { document.getElementById("qrPreview").innerHTML = "<p style='opacity:0.5'>Your Pro QR will appear here</p>"; btn.disabled=false; btn.innerText="Generate Pro QR"; return; }
+const btn=document.getElementById("genBtn");
 
-    if(currentType==="url"){
-      try{
-        new URL(qrDataString.startsWith("http")? qrDataString : "https://"+qrDataString);
-      }catch{
-        alert("Please enter a valid website URL");
-        btn.disabled=false;
-        btn.innerText="Generate Pro QR";
-        return;
-      }
-    }
+btn.disabled=true;
 
-    if(currentType == "batch"){
-        if(batchData.length === 0){ alert("Please upload CSV file first."); btn.disabled=false; btn.innerText="Generate Pro QR"; return; }
-        document.getElementById("qrPreview").innerHTML = ""; let size = parseInt(document.getElementById("qrSize").value); let completed = 0;
-        batchData.forEach((item,idx) => {
-            const box = document.createElement("div"); box.style.marginBottom = "30px"; box.style.textAlign = "center";
-            const title = document.createElement("p"); title.innerHTML = "<b>" + item.name + "</b>"; const canvas = document.createElement("canvas");
-            box.appendChild(title); box.appendChild(canvas); document.getElementById("qrPreview").appendChild(box);
-            let url = item.url.trim(); if(!url.startsWith("http")){ url = "https://" + url; }
-            QRCode.toCanvas(canvas, url, {width:size, margin:2, errorCorrectionLevel:"H", color:{dark:document.getElementById("qrColor").value, light:document.getElementById("bgColor").value}}, async function(err){
-                if(err){ console.log("Batch QR Error:", err); return; }
-                if(logoImg){ await drawLogoOnCanvas(canvas, logoImg, size); }
-                batchCanvases.push({canvas:canvas, name:item.name}); completed++;
-                if(completed == batchData.length){
-                  document.querySelectorAll(".btn-secondary").forEach(btn=>{ btn.disabled = false; });
-                  document.getElementById("zipBtn").style.display = "grid"; document.getElementById("pdfBatchBtn").style.display = "grid"; btn.disabled=false; btn.innerText="Generate Pro QR";
-                }
-            });
-        });
-        return;
-    }
-    if(qrDataString.trim() == ""){ alert("Please enter data"); document.getElementById("qrPreview").innerHTML = "<p style='opacity:0.5'>Your Pro QR will appear here</p>"; btn.disabled=false; btn.innerText="Generate Pro QR"; return; }let size = parseInt(document.getElementById("qrSize").value); const canvas = document.createElement("canvas");
-    QRCode.toCanvas(canvas, qrDataString, {width:size, margin:2, errorCorrectionLevel:"H", color:{dark:document.getElementById("qrColor").value, light:document.getElementById("bgColor").value}}, async function(err){
-        if(err){ console.error(err); alert("QR Generate Failed"); document.getElementById("qrPreview").innerHTML = "<p class='error-text'>Error Generating QR</p>"; btn.disabled=false; btn.innerText="Generate Pro QR"; return; }
-        if(logoImg){ await drawLogoOnCanvas(canvas, logoImg, size); }
-        proQR = canvas; const preview = document.getElementById("qrPreview"); preview.innerHTML = ""; preview.appendChild(canvas);
-        document.querySelectorAll(".btn-secondary").forEach(btn=>{ btn.disabled = false; }); btn.disabled=false; btn.innerText="Generate Pro QR";
-        saveHistory(qrDataString);
-        trackScan();
-    });
+btn.innerText="Generating...";
+
+
+document.getElementById("qrPreview").innerHTML=
+"<div class='spinner'></div><p class='loading'>Generating QR...</p>";
+
+
+batchCanvases=[];
+
+document.getElementById("zipBtn").style.display="none";
+
+document.getElementById("pdfBatchBtn").style.display="none";
+
+
+
+qrDataString=getQRData();
+
+
+
+if(!validateFields()){
+
+document.getElementById("qrPreview").innerHTML=
+"<p style='opacity:0.5'>Your Pro QR will appear here</p>";
+
+btn.disabled=false;
+
+btn.innerText="Generate Pro QR";
+
+return;
+
 }
+
+
+
+if(currentType==="url"){
+
+try{
+
+new URL(
+qrDataString.startsWith("http")
+?
+qrDataString
+:
+"https://"+qrDataString
+);
+
+
+}catch{
+
+
+alert("Please enter a valid website URL");
+
+btn.disabled=false;
+
+btn.innerText="Generate Pro QR";
+
+return;
+
+}
+
+}
+
+
+
+if(qrDataString.trim()==""){
+
+alert("Please enter data");
+
+document.getElementById("qrPreview").innerHTML=
+"<p style='opacity:0.5'>Your Pro QR will appear here</p>";
+
+btn.disabled=false;
+
+btn.innerText="Generate Pro QR";
+
+return;
+
+}
+
+
+
+let size=parseInt(
+document.getElementById("qrSize").value
+);
+
+
+
+const canvas=document.createElement("canvas");
+
+
+
+QRCode.toCanvas(
+
+canvas,
+
+qrDataString,
+
+{
+
+width:size,
+
+margin:2,
+
+errorCorrectionLevel:"H",
+
+color:{
+
+dark:document.getElementById("qrColor").value,
+
+light:document.getElementById("bgColor").value
+
+}
+
+},
+
+async function(err){
+
+
+if(err){
+
+alert("QR Generate Failed");
+
+btn.disabled=false;
+
+btn.innerText="Generate Pro QR";
+
+return;
+
+}
+
+
+
+if(logoImg){
+
+await drawLogoOnCanvas(
+canvas,
+logoImg,
+size
+);
+
+}
+
+
+
+proQR=canvas;
+
+
+const preview=
+document.getElementById("qrPreview");
+
+
+preview.innerHTML="";
+
+
+preview.appendChild(canvas);
+
+
+
+document.querySelectorAll(".btn-secondary")
+.forEach(btn=>{
+
+btn.disabled=false;
+
+});
+
+
+btn.disabled=false;
+
+btn.innerText="Generate Pro QR";
+
+
+saveHistory(qrDataString);
+
+
+}
+
+);
+
+
+}
+
+
 
 function getDateStr(){
-  const d = new Date();
-  return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+
+const d=new Date();
+
+
+return d.getFullYear()+"-"+
+String(d.getMonth()+1).padStart(2,"0")+"-"+
+String(d.getDate()).padStart(2,"0");
+
 }
+
+
 
 function downloadProPNG(){
-  if(!proQR){ alert("Generate QR First"); return; }
-  const date = getDateStr();
-  const link = document.createElement("a");
-  link.download = `mytools-${currentType}-${date}.png`;
-  proQR.toBlob(function(blob){ link.href = URL.createObjectURL(blob); link.click(); }, "image/png", 1);
+
+
+if(!proQR){
+
+alert("Generate QR First");
+
+return;
+
 }
+
+
+const link=document.createElement("a");
+
+
+link.download=
+`mytools-${currentType}-${getDateStr()}.png`;
+
+
+proQR.toBlob(function(blob){
+
+
+link.href=URL.createObjectURL(blob);
+
+link.click();
+
+
+},"image/png",1);
+
+
+}
+
+
+
 async function downloadSVG(){
-  if(!qrDataString){ alert("Generate QR First"); return; }
-  let size = parseInt(document.getElementById("qrSize").value);
-  const svg = await generateSVGWithLogo(qrDataString, size, document.getElementById("qrColor").value, document.getElementById("bgColor").value, logoImg);
-  const blob = new Blob([svg], {type: "image/svg+xml"}); const url = URL.createObjectURL(blob); const a = document.createElement("a");
-  const date = getDateStr();
-  a.href = url; a.download = `mytools-${currentType}-${date}.svg`; a.click(); URL.revokeObjectURL(url);
+
+
+if(!qrDataString){
+
+alert("Generate QR First");
+
+return;
+
 }
+
+
+const svg=await generateSVGWithLogo(
+qrDataString,
+parseInt(document.getElementById("qrSize").value),
+document.getElementById("qrColor").value,
+document.getElementById("bgColor").value,
+logoImg
+);
+
+
+
+const blob=new Blob(
+[svg],
+{type:"image/svg+xml"}
+);
+
+
+
+const a=document.createElement("a");
+
+a.href=URL.createObjectURL(blob);
+
+a.download=
+`mytools-${currentType}-${getDateStr()}.svg`;
+
+a.click();
+
+
+}
+
+
+
 async function downloadPDF(){
-  if(!proQR){ alert("Generate QR First"); return; }
-  const {jsPDF} = window.jspdf; const pdf = new jsPDF();
-  const now = new Date().toLocaleString();
-  const date = getDateStr();
-  pdf.setFillColor(34,197,94); pdf.rect(0,0,210,20,"F"); pdf.setTextColor(255,255,255); pdf.setFontSize(20);
-  pdf.text("My Tools Pro QR Code", 105, 13, {align:"center"});
-  pdf.addImage(proQR.toDataURL("image/png"), "PNG", 40, 35, 130, 130);
-  pdf.setTextColor(0,0,0); pdf.setFontSize(10);
-  pdf.text(`Generated: ${now}`, 20, 175);
-  pdf.text(`Type: ${currentType.toUpperCase()}`, 20, 182);
-  pdf.save(`mytools-${currentType}-${date}.pdf`);
+
+
+if(!proQR){
+
+alert("Generate QR First");
+
+return;
+
 }
+
+
+const {jsPDF}=window.jspdf;
+
+
+const pdf=new jsPDF();
+
+
+pdf.text(
+"My Tools Pro QR Code",
+105,
+20,
+{
+align:"center"
+}
+);
+
+
+pdf.addImage(
+proQR.toDataURL("image/png"),
+"PNG",
+40,
+40,
+130,
+130
+);
+
+
+
+pdf.save(
+`mytools-${currentType}-${getDateStr()}.pdf`
+);
+
+
+}
+
+
+
 async function copyQR(){
-  if(!proQR){ alert("Generate QR First"); return; }
-  if(typeof ClipboardItem==="undefined"){ downloadProPNG(); return; }
-  proQR.toBlob(async function(blob){
-    try{await navigator.clipboard.write([new ClipboardItem({"image/png": blob})]);alert("QR Copied Successfully");}catch(e){downloadProPNG();}});
-}
-async function downloadBatchZIP(){
-  if(batchCanvases.length == 0){ alert("Generate Batch First"); return; }
-  const zip = new JSZip();
-  for(let i = 0; i < batchCanvases.length; i++){
-    const item = batchCanvases[i];
-    const dataUrl = item.canvas.toDataURL("image/png");
-    zip.file((i+1)+"_"+item.name+".png", dataUrl.split(",")[1], {base64: true});
-  }
-  const content = await zip.generateAsync({type:"blob"});
-  const link = document.createElement("a");
-  link.href = URL.createObjectURL(content);
-  link.download = "mytools-batch-qr.zip";
-  link.click();
+
+
+if(!proQR){
+
+alert("Generate QR First");
+
+return;
+
 }
 
-async function downloadBatchPDF(){
-  if(batchCanvases.length == 0){ alert("Generate Batch First"); return; }
-  const {jsPDF} = window.jspdf;
-  const pdf = new jsPDF();
-  let y = 20;
-  let page = 1;
-  const now = new Date().toLocaleString();
 
-  pdf.setFillColor(34,197,94);
-  pdf.rect(0,0,210,15,"F");
-  pdf.setTextColor(255,255,255);
-  pdf.setFontSize(16);
-  pdf.text("My Tools Pro - Batch QR", 105, 11, {align:"center"});
+downloadProPNG();
 
-  for(let i = 0; i < batchCanvases.length; i++){
-    const item = batchCanvases[i];
-    if(y > 250){
-      pdf.addPage();
-      y = 20;
-      page++;
-      pdf.setFillColor(34,197,94);
-      pdf.rect(0,0,210,15,"F");
-      pdf.setTextColor(255,255,255);
-      pdf.setFontSize(16);
-      pdf.text("My Tools Pro - Batch QR Page "+page, 105, 11, {align:"center"});
-    }
-    pdf.setTextColor(0,0,0);
-    pdf.setFontSize(12);
-    pdf.text(item.name, 20, y);
-    pdf.addImage(item.canvas.toDataURL("image/png"), "PNG", 20, y+5, 50, 50);
-    pdf.setFontSize(8);
-    pdf.text(`Generated: ${now} | Type: ${currentType}`, 75, y+25);
-    y += 65;
-  }
-  pdf.save("mytools-batch-qr.pdf");
+
 }
 
-// Scan Analytics
-let scanCount = localStorage.getItem("qrScanCount") || 0;
+
+
+let scanCount=
+localStorage.getItem("qrScanCount")||0;
+
+
 function trackScan(){
-  scanCount++;
-  localStorage.setItem("qrScanCount", scanCount);
-  console.log("QR Scanned: "+scanCount+" times");
+
+scanCount++;
+
+localStorage.setItem(
+"qrScanCount",
+scanCount
+);
+
 }
+
 </script>
+
 </body>
-          </html>
+
+ </html>
