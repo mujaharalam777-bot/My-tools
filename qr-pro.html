@@ -1,187 +1,953 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" class="dark">
 <head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Pro QR Generator | My Tools</title>
-
-<meta name="description" content="Create professional QR codes instantly. Generate URL, Text, WiFi, WhatsApp, UPI, Contact and more QR codes with customization options.">
-
-<meta name="keywords" content="QR Generator, Free QR Code Maker, Pro QR Generator, Online QR Tool">
-
-<meta name="author" content="My Tools">
-
-
-<!-- QR Library -->
-<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
-
-
-<!-- PDF -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
-
-<!-- ZIP -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-
-
-<!-- CSV -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
-
-
-<!-- Font -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-
-<style>
-
-
-:root{
-
---primary:#22c55e;
-
---primary-dark:#16a34a;
-
---bg1:#0f2027;
-
---bg2:#203a43;
-
---bg3:#2c5364;
-
---card:rgba(255,255,255,0.12);
-
---text:#ffffff;
-
---black:#000000;
-
-}
-
-
-
-body.light{
-
---bg1:#ffffff;
-
---bg2:#eeeeee;
-
---bg3:#dddddd;
-
---card:rgba(0,0,0,0.08);
-
---text:#111111;
-
-}
-
-
-
-*{
-
-margin:0;
-
-padding:0;
-
-box-sizing:border-box;
-
-}
-
-
-
-body{
-
-font-family:'Poppins',sans-serif;
-
-background:linear-gradient(
-135deg,
-var(--bg1),
-var(--bg2),
-var(--bg3)
-);
-
-color:var(--text);
-
-min-height:100vh;
-
-padding:20px;
-
-transition:.3s;
-
-}
-
-
-
-button{
-
-font-family:inherit;
-
-}
-
-
-
-.container{
-
-max-width:1400px;
-
-margin:auto;
-
-}
-
-
-
-.glass{
-
-background:var(--card);
-
-backdrop-filter:blur(20px);
-
-border-radius:25px;
-
-border:1px solid rgba(255,255,255,.2);
-
-padding:25px;
-
-}
-
-
-
-</style>
-
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Feature 41: SEO Features -->
+    <title>Ultimate QR Code Generator Suite Pro</title>
+    <meta name="description" content="Generate instant, customized QR codes for Wi-Fi, UPI, WhatsApp, Text, and more with batch processing and custom logos.">
+    <!-- Tailwind CSS & FontAwesome Icons -->
+    <script src="https://tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cloudflare.com">
+    <!-- QR Code Library & PDF Library -->
+    <script src="https://cloudflare.com"></script>
+    <script src="https://cloudflare.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: { darkBg: '#0f172a', glassDark: 'rgba(30, 41, 59, 0.7)', glassLight: 'rgba(255, 255, 255, 0.7)' }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-effect { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+    </style>
 </head>
+<body class="bg-slate-50 dark:bg-darkBg text-slate-800 dark:text-slate-100 min-h-screen font-sans transition-colors duration-300">
 
+    <!-- Top Navigation Bar -->
+    <nav class="sticky top-0 z-50 border-b border-slate-200/50 dark:border-slate-700/50 bg-white/70 dark:bg-slate-900/70 glass-effect px-4 py-3 flex justify-between items-center">
+        <div class="flex items-center space-x-2">
+            <div class="bg-gradient-to-tr from-blue-600 to-indigo-600 text-white p-2 rounded-xl shadow-md shadow-blue-500/20">
+                <i class="fa-solid fa-qrcode text-xl animate-pulse"></i>
+            </div>
+            <span class="text-xl font-bold bg-gradient-to-r from-blue-600 to-indigo-500 dark:from-blue-400 dark:to-indigo-300 bg-clip-text text-transparent">QR Suite Pro</span>
+        </div>
+        
+        <!-- Feature 38 & 39: Light/Dark Mode Switcher -->
+        <button id="themeToggle" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:scale-105 active:scale-95 transition-all border border-slate-200 dark:border-slate-700">
+            <i class="fa-solid fa-moon dark:hidden"></i>
+            <i class="fa-solid fa-sun hidden dark:block"></i>
+        </button>
+    </nav>
 
+    <!-- Main Dynamic Application Container -->
+    <main class="max-w-7xl mx-auto p-4 lg:p-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
+        
+        <!-- Left & Middle: Input Configurations & Form States (Takes 2 Columns on Desktop) -->
+        <div class="lg:col-span-2 space-y-6">
+            
+            <!-- Dynamic QR Type Tabs Segment -->
+            <div class="bg-white/80 dark:bg-glassDark border border-slate-200/60 dark:border-slate-700/50 rounded-2xl p-4 glass-effect shadow-xl shadow-slate-200/10 dark:shadow-none">
+                <h2 class="text-sm font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-3">Select QR Code Type</h2>
+                <div id="typeTabs" class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-7 gap-2">
+                    <!-- Tabs will be rendered here dynamically in next part -->
+                </div>
+            </div>
 
-<body>
+            <!-- Contextual Active Input Form Area -->
+            <div class="bg-white/80 dark:bg-glassDark border border-slate-200/60 dark:border-slate-700/50 rounded-2xl p-5 lg:p-6 glass-effect shadow-xl shadow-slate-200/10 dark:shadow-none">
+                <div id="dynamicFormContainer" class="space-y-4">
+                    <!-- Dynamic inputs will appear here -->
+                </div>
+            </div>
+            <!-- Feature 13, 14, 15, 16, 17: QR Customization Control Panel -->
+            <div class="bg-white/80 dark:bg-glassDark border border-slate-200/60 dark:border-slate-700/50 rounded-2xl p-5 glass-effect shadow-xl shadow-slate-200/10 dark:shadow-none space-y-5">
+                <h3 class="text-lg font-bold flex items-center space-x-2 text-slate-800 dark:text-slate-100">
+                    <i class="fa-solid fa-palette text-blue-500"></i>
+                    <span>QR Code Customization</span>
+                </h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Feature 13: Foreground Color -->
+                    <div>
+                        <label class="block text-sm font-medium text-slate-600 dark:text-slate-400 mb-1.5">QR Pattern Color</label>
+                        <div class="flex items-center space-x-2">
+                            <input type="color" id="qrColor" value="#000000" class="w-10 h-10 rounded-lg cursor-pointer border border-slate-200 dark:border-slate-700 bg-transparent">
+                            <input type="text" id="qrColorHex" value="#000000" class="w-full bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 text-sm uppercase font-mono">
+                        </div>
+                    </div>
 
+                    <!-- Feature 14: Background Color -->
+                    <div>
+                        <label class="block text-sm font-medium text-slate-600 dark:text-slate-400 mb-1.5">Background Color</label>
+                        <div class="flex items-center space-x-2">
+                            <input type="color" id="bgColor" value="#ffffff" class="w-10 h-10 rounded-lg cursor-pointer border border-slate-200 dark:border-slate-700 bg-transparent">
+                            <input type="text" id="bgColorHex" value="#ffffff" class="w-full bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 text-sm uppercase font-mono">
+                        </div>
+                    </div>
+                </div>
 
-<div class="container">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+                    <!-- Feature 15: Size Controller -->
+                    <div>
+                        <div class="flex justify-between items-center mb-1.5">
+                            <label class="block text-sm font-medium text-slate-600 dark:text-slate-400">QR Code Dimension</label>
+                            <span id="sizeValue" class="text-xs font-bold bg-blue-50 dark:bg-blue-950 text-blue-600 dark:text-blue-400 px-2 py-0.5 rounded-md">256 x 256 px</span>
+                        </div>
+                        <input type="range" id="qrSize" min="128" max="512" step="16" value="256" class="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-blue-600">
+                    </div>
 
+                    <!-- Feature 16 & 17: Custom Logo Upload & Branding Support -->
+                    <div>
+                        <label class="block text-sm font-medium text-slate-600 dark:text-slate-400 mb-1.5">Center Brand Logo</label>
+                        <div class="relative flex items-center justify-center w-full">
+                            <label for="logoUpload" class="flex flex-col items-center justify-center w-full h-11 border border-dashed border-slate-300 dark:border-slate-600 rounded-xl cursor-pointer bg-slate-50 dark:bg-slate-900/30 hover:bg-slate-100 dark:hover:bg-slate-900/60 transition-colors">
+                                <div class="flex items-center space-x-2 text-slate-500 dark:text-slate-400">
+                                    <i class="fa-solid fa-cloud-arrow-up text-sm"></i>
+                                    <span id="logoStatus" class="text-xs font-medium">Upload PNG or JPG logo</span>
+                                </div>
+                                <input id="logoUpload" type="file" accept="image/png, image/jpeg" class="hidden" />
+                            </label>
+                            <button id="removeLogo" class="hidden absolute right-2 top-2 text-red-500 hover:text-red-600 bg-white dark:bg-slate-800 p-1 rounded-md text-xs shadow">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-<!-- Header will come in Part 2 -->
+            <!-- Feature 21: Batch QR Code Generator Interface Segment -->
+            <div class="bg-white/80 dark:bg-glassDark border border-slate-200/60 dark:border-slate-700/50 rounded-2xl p-5 glass-effect shadow-xl shadow-slate-200/10 dark:shadow-none space-y-4">
+                <div class="flex justify-between items-center">
+                    <h3 class="text-lg font-bold flex items-center space-x-2 text-slate-800 dark:text-slate-100">
+                        <i class="fa-solid fa-layer-group text-indigo-500"></i>
+                        <span>Batch QR Generator (CSV)</span>
+                    </h3>
+                    <button id="downloadSampleCsv" class="text-xs text-blue-600 dark:text-blue-400 hover:underline">
+                        <i class="fa-solid fa-download mr-1"></i>Sample CSV
+                    </button>
+                </div>
+                <div class="flex items-center justify-center w-full">
+                    <label for="csvUpload" class="flex flex-col items-center justify-center w-full h-24 border-2 border-dashed border-slate-300 dark:border-slate-600 rounded-2xl cursor-pointer bg-slate-50 dark:bg-slate-900/20 hover:bg-slate-100 dark:hover:bg-slate-900/40 transition-colors">
+                        <div class="flex flex-col items-center justify-center pt-4 pb-4">
+                            <i class="fa-solid fa-file-csv text-2xl text-indigo-500 mb-1"></i>
+                            <p id="csvStatus" class="text-xs text-slate-500 dark:text-slate-400">Click to upload your data CSV file</p>
+                        </div>
+                        <input id="csvUpload" type="file" accept=".csv" class="hidden" />
+                    </label>
+                </div>
+                <div id="csvPreviewArea" class="hidden max-h-40 overflow-y-auto border border-slate-200 dark:border-slate-700 rounded-xl text-xs divide-y divide-slate-100 dark:divide-slate-800">
+                    <!-- Batch items preview grid -->
+                </div>
+            </div>
 
+        </div> <!-- End of Left Column -->
+      <!-- Right Column: Live QR Preview, Instant Generator Engine & Download Actions (Takes 1 Column on Desktop) -->
+        <div class="space-y-6">
+            
+            <div class="sticky top-24 space-y-6">
+                
+                <!-- Feature 1 & 2: Main Real-time Output & Rendering Preview Canvas Wrapper -->
+                <div class="bg-white/80 dark:bg-glassDark border border-slate-200/60 dark:border-slate-700/50 rounded-2xl p-6 glass-effect shadow-xl shadow-slate-200/10 dark:shadow-none flex flex-col items-center justify-center text-center">
+                    <h3 class="text-sm font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-4 self-start">Live QR Output</h3>
+                    
+                    <!-- Dynamic Live Core Canvas Frame -->
+                    <div class="relative bg-white p-4 rounded-2xl shadow-inner border border-slate-100 dark:border-slate-800/80 mb-6 group transition-all duration-300">
+                        <div id="qrCanvasContainer" class="flex items-center justify-center overflow-hidden min-w-[128px] min-h-[128px]">
+                            <!-- Real-time QR Engine will instantly injection here without any loading screen -->
+                        </div>
+                        <!-- Canvas overlay for dynamic logo injection layer -->
+                        <canvas id="hiddenMergeCanvas" class="hidden"></canvas>
+                    </div>
 
-<div class="glass">
+                    <!-- Action Trigger Interfaces: Download & Clipboard Copy Matrix -->
+                    <div class="w-full space-y-2.5">
+                        <!-- Feature 18: Download as High Quality PNG Image -->
+                        <button id="downloadPngBtn" class="w-full flex items-center justify-center space-x-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold py-2.5 px-4 rounded-xl shadow-md shadow-blue-500/10 hover:shadow-lg hover:shadow-blue-500/20 active:scale-[0.99] transition-all text-sm">
+                            <i class="fa-solid fa-file-image"></i>
+                            <span>Download PNG Image</span>
+                        </button>
 
+                        <div class="grid grid-cols-2 gap-2">
+                            <!-- Feature 19: Export Layout to PDF Document Formats -->
+                            <button id="downloadPdfBtn" class="flex items-center justify-center space-x-1.5 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-medium py-2.5 px-3 rounded-xl border border-slate-200/60 dark:border-slate-700/60 transition-all text-xs">
+                                <i class="fa-solid fa-file-pdf text-red-500"></i>
+                                <span>Export PDF</span>
+                            </button>
 
-<h1>
-🚀 Pro QR Generator
-</h1>
+                            <!-- Feature 20: Copy Digital QR Raw Stream Directly to System Clipboard -->
+                            <button id="copyQrBtn" class="flex items-center justify-center space-x-1.5 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-medium py-2.5 px-3 rounded-xl border border-slate-200/60 dark:border-slate-700/60 transition-all text-xs">
+                                <i class="fa-solid fa-copy text-blue-500"></i>
+                                <span id="copyBtnText">Copy Image</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
 
+                <!-- Feature 22 & 23: Dashboard Storage Memory Component (History logs) -->
+                <div class="bg-white/80 dark:bg-glassDark border border-slate-200/60 dark:border-slate-700/50 rounded-2xl p-5 glass-effect shadow-xl shadow-slate-200/10 dark:shadow-none space-y-3.5">
+                    <div class="flex justify-between items-center">
+                        <h4 class="text-sm font-bold flex items-center space-x-2 text-slate-700 dark:text-slate-300">
+                            <i class="fa-solid fa-clock-rotate-left text-amber-500"></i>
+                            <span>Recent History Logs</span>
+                        </h4>
+                        <button id="clearHistoryBtn" class="text-[11px] font-medium text-red-500 dark:text-red-400/80 hover:underline hidden">Clear All</button>
+                    </div>
+                    <div id="historyLogsContainer" class="space-y-2 max-h-48 overflow-y-auto pr-1 text-xs">
+                        <p class="text-slate-400 dark:text-slate-500 text-center py-4">No recent QR codes saved locally</p>
+                    </div>
+                </div>
 
-<p>
-Professional QR Code Generator
-</p>
+            </div>
 
+        </div> <!-- End of Right Column -->
+    </main>
+    <!-- Informative Website Sections & Auxiliary Navigation Layout Elements -->
+    <div class="max-w-7xl mx-auto p-4 lg:p-6 border-t border-slate-200/50 dark:border-slate-800/80 mt-6 space-y-12">
+        
+        <!-- Feature 34: Step-by-Step Documentation (How To Use Section) -->
+        <section class="bg-white/40 dark:bg-slate-900/20 rounded-2xl p-6 border border-slate-200/40 dark:border-slate-800/40">
+            <h3 class="text-xl font-bold mb-6 flex items-center space-x-2">
+                <i class="fa-solid fa-circle-info text-blue-500"></i>
+                <span>How To Use Ultimate QR Suite Pro</span>
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="space-y-2">
+                    <div class="w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400 font-bold flex items-center justify-center text-sm">1</div>
+                    <h4 class="font-semibold text-sm">Select Category Type</h4>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Choose your targeted format from Text, Wi-Fi, UPI Payment, WhatsApp link, or or matching dynamic datasets.</p>
+                </div>
+                <div class="space-y-2">
+                    <div class="w-8 h-8 rounded-lg bg-indigo-100 dark:bg-indigo-950/50 text-indigo-600 dark:text-indigo-400 font-bold flex items-center justify-center text-sm">2</div>
+                    <h4 class="font-semibold text-sm">Fill Configuration Form</h4>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Input standard contextual variables like credentials, addresses or direct text strings into the auto-rendered forms.</p>
+                </div>
+                <div class="space-y-2">
+                    <div class="w-8 h-8 rounded-lg bg-purple-100 dark:bg-purple-950/50 text-purple-600 dark:text-purple-400 font-bold flex items-center justify-center text-sm">3</div>
+                    <h4 class="font-semibold text-sm">Stylize the Canvas Output</h4>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Tailor color arrays, adjust dimensions, upload custom logos or adjust configurations in perfect real-time views.</p>
+                </div>
+                <div class="space-y-2">
+                    <div class="w-8 h-8 rounded-lg bg-emerald-100 dark:bg-emerald-950/50 text-emerald-600 dark:text-emerald-400 font-bold flex items-center justify-center text-sm">4</div>
+                    <h4 class="font-semibold text-sm">Download or Export Log</h4>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Download high-definition PNG matrices, print to native vector PDFs or seamlessly copy to system clippboards.</p>
+                </div>
+            </div>
+        </section>
 
-</div>
+        <!-- Feature 35: Features Architecture Specification Grid -->
+        <section class="space-y-6">
+            <h3 class="text-xl font-bold flex items-center space-x-2">
+                <i class="fa-solid fa-wand-magic-sparkles text-indigo-500"></i>
+                <span>Advanced Ecosystem Key Highlights</span>
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800/80 p-5 rounded-xl space-y-2">
+                    <i class="fa-solid fa-bolt text-amber-500 text-lg"></i>
+                    <h4 class="font-semibold text-sm">Zero Loading Screen Lag</h4>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Engineered with local script calculations. No server calls, providing instant real-time vector matrix computations inside milliseconds.</p>
+                </div>
+                <div class="bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800/80 p-5 rounded-xl space-y-2">
+                    <i class="fa-solid fa-shield-halved text-emerald-500 text-lg"></i>
+                    <h4 class="font-semibold text-sm">100% Secure Local Execution</h4>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">All data transformations, batch executions and logo styling computations are kept inside your secure sandbox browser framework.</p>
+                </div>
+                <div class="bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800/80 p-5 rounded-xl space-y-2">
+                    <i class="fa-solid fa-file-invoice-dollar text-blue-500 text-lg"></i>
+                    <h4 class="font-semibold text-sm">Standard Smart UPI Formatting</h4>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Fully compatible with standard national architectures including GPay, PhonePe and Paytm parameters instantly.</p>
+                </div>
+            </div>
+        </section>
 
+        <!-- Feature 36: FAQ Accordion Panel Component -->
+        <section class="max-w-3xl mx-auto space-y-4">
+            <h3 class="text-xl font-bold text-center mb-6">Frequently Asked Questions</h3>
+            
+            <div class="bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800/80 rounded-xl overflow-hidden">
+                <details class="group p-4" open>
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none text-sm">
+                        <span>Are these QR codes permanent or will they expire?</span>
+                        <span class="transition group-open:rotate-180"><i class="fa-solid fa-chevron-down text-xs"></i></span>
+                    </summary>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-3 leading-relaxed">These are absolute static code formats. They directly house the textual configurations or endpoints you embedded. Since there are no redirection servers involved, they never expire and remain fully functional forever.</p>
+                </details>
+            </div>
 
-</div>
+            <div class="bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800/80 rounded-xl overflow-hidden">
+                <details class="group p-4">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none text-sm">
+                        <span>How does the Batch CSV generation work securely?</span>
+                        <span class="transition group-open:rotate-180"><i class="fa-solid fa-chevron-down text-xs"></i></span>
+                    </summary>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-3 leading-relaxed">Simply compile a simple standard CSV containing a clean string column block. Once verified, our browser framework loops calculations into sequential file pack arrays safely without parsing data outwards.</p>
+                </details>
+            </div>
+        </section>
 
+        <!-- Feature 37: Cross Interlinked Application Utility Navigation Hub -->
+        <footer class="border-t border-slate-200/60 dark:border-slate-800/80 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-400">
+            <div class="flex items-center space-x-2">
+                <span>© 2026 QR Suite Pro Systems. Absolute Offline Utility.</span>
+            </div>
+            
+            <!-- Exact Match Interlinking requirements map -->
+            <div class="flex flex-wrap gap-4 items-center justify-center">
+                <span class="font-semibold text-slate-500 uppercase tracking-wider text-[10px]">Related Utility Tools Matrix:</span>
+                <a href="qr.html" class="px-2.5 py-1 bg-blue-500/10 text-blue-500 rounded-md font-medium hover:bg-blue-500/20 transition-all border border-blue-500/20">QR Generator</a>
+                <a href="age.html" class="hover:text-slate-600 dark:hover:text-slate-200 transition-colors">Age Calculator</a>
+                <a href="write.html" class="hover:text-slate-600 dark:hover:text-slate-200 transition-colors">AI Writer Engine</a>
+                <a href="bmi.html" class="hover:text-slate-600 dark:hover:text-slate-200 transition-colors">BMI Fitness Meter</a>
+            </div>
+        </footer>
+    </div>
+    <!-- Core Application JavaScript Logics Architecture Grid Engine Layer -->
+    <script>
+        // Core Reactive Global Configuration Application State
+        const AppState = {
+            currentType: 'text',
+            qrCodeInstance: null,
+            uploadedLogoBase64: null,
+            batchItems: [],
+            history: JSON.parse(localStorage.getItem('qr_suite_history')) || []
+        };
 
+        // Complete 100% Structural Metadata Mapping Matrix for Forms Generation
+        const QR_TYPES_MAP = {
+            text: {
+                label: 'Text', icon: 'fa-align-left',
+                fields: [{ id: 'text_content', label: 'Plain Text Message', type: 'textarea', placeholder: 'Type your secure text data strings here...', required: true }]
+            },
+            url: {
+                label: 'URL', icon: 'fa-globe',
+                fields: [{ id: 'url_link', label: 'Website Destination URL', type: 'url', placeholder: 'https://example.com', required: true }]
+            },
+            wifi: {
+                label: 'Wi-Fi', icon: 'fa-wifi',
+                fields: [
+                    { id: 'wifi_ssid', label: 'Network SSID (Name)', type: 'text', placeholder: 'Home_WiFi_Network', required: true },
+                    { id: 'wifi_pass', label: 'Network Password', type: 'password', placeholder: '••••••••', required: false },
+                    { id: 'wifi_type', label: 'Network Security Encription', type: 'select', options: [{v:'WPA', l:'WPA/WPA2'}, {v:'WEP', l:'WEP'}, {v:'nopass', l:'Unsecured (Open)'}], required: true }
+                ]
+            },
+            phone: {
+                label: 'Phone', icon: 'fa-phone',
+                fields: [{ id: 'phone_num', label: 'Phone Number (with Country Code)', type: 'tel', placeholder: '+1234567890', required: true }]
+            },
+            email: {
+                label: 'Email', icon: 'fa-envelope',
+                fields: [
+                    { id: 'email_to', label: 'Recipient Email Address', type: 'email', placeholder: 'target@domain.com', required: true },
+                    { id: 'email_sub', label: 'Default Subject Line', type: 'text', placeholder: 'Inquiry from QR Suite Code', required: false },
+                    { id: 'email_body', label: 'Pre-filled Email Body Text Message', type: 'textarea', placeholder: 'Write email text standard paragraphs...', required: false }
+                ]
+            },
+            whatsapp: {
+                label: 'WhatsApp', icon: 'fa-whatsapp',
+                fields: [
+                    { id: 'wa_phone', label: 'WhatsApp Number (with Country Code, No +)', type: 'text', placeholder: '8801700000000', required: true },
+                    { id: 'wa_msg', label: 'Pre-filled Custom Chat Message text', type: 'textarea', placeholder: 'Hello! I am scanned your generated QR code...', required: false }
+                ]
+            },
+            upi: {
+                label: 'UPI Pay', icon: 'fa-credit-card',
+                fields: [
+                    { id: 'upi_vpa', label: 'Payee UPI ID (VPA Address)', type: 'text', placeholder: 'merchant@upi', required: true },
+                    { id: 'upi_name', label: 'Payee Official Name', type: 'text', placeholder: 'John Doe Enterprise', required: true },
+                    { id: 'upi_amt', label: 'Requested Exact Amount (Optional INR)', type: 'number', placeholder: '0.00 (Leave blank for user input)', required: false },
+                    { id: 'upi_note', label: 'Transaction Memo/Reference Note', type: 'text', placeholder: 'Invoice Payment ref 9021', required: false }
+                ]
+            },
+            contact: {
+                label: 'Contact', icon: 'fa-address-card',
+                fields: [
+                    { id: 'v_name', label: 'Full Personal Name', type: 'text', placeholder: 'Alexander Pierce', required: true },
+                    { id: 'v_org', label: 'Company / Organization Title', type: 'text', placeholder: 'Global Tech Systems Ltd', required: false },
+                    { id: 'v_cell', label: 'Mobile Cellular Number', type: 'tel', placeholder: '+15550199', required: false },
+                    { id: 'v_email', label: 'Work Electronic Mail Address', type: 'email', placeholder: 'alex@company.com', required: false },
+                    { id: 'v_url', label: 'Portfolio Website URL link', type: 'url', placeholder: 'https://alexdev.io', required: false }
+                ]
+            }
+        };
 
+        // Render Dynamic Navigation Tab Controls Matrix Layout
+        function renderTabs() {
+            const container = document.getElementById('typeTabs');
+            container.innerHTML = '';
+            
+            Object.keys(QR_TYPES_MAP).forEach(typeKey => {
+                const item = QR_TYPES_MAP[typeKey];
+                const isActive = AppState.currentType === typeKey;
+                
+                const btn = document.createElement('button');
+                btn.className = `flex flex-col items-center justify-center p-2.5 rounded-xl border font-medium text-xs transition-all duration-200 ${
+                    isActive 
+                    ? 'bg-blue-600 border-blue-600 text-white shadow-md shadow-blue-500/20 scale-[1.03]' 
+                    : 'bg-slate-50 dark:bg-slate-900/40 border-slate-200/60 dark:border-slate-800/80 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/50'
+                }`;
+                btn.onclick = () => switchTypeChannel(typeKey);
+                btn.innerHTML = `<i class="fa-brands ${item.icon} fa-solid ${item.icon} text-base mb-1"></i><span>${item.label}</span>`;
+                container.appendChild(btn);
+            });
+        }
+
+        // Handle Dynamic State Switching Mechanism Channels
+        function switchTypeChannel(targetTypeKey) {
+            AppState.currentType = targetTypeKey;
+            renderTabs();
+            renderDynamicFormStructure();
+            triggerInstantGenerationEngine();
+        }
+      // Render Dynamic Input UI Forms based on Selected Data Model Mapping Meta
+        function renderDynamicFormStructure() {
+            const container = document.getElementById('dynamicFormContainer');
+            container.innerHTML = '';
+            
+            const currentConfig = QR_TYPES_MAP[AppState.currentType];
+            
+            currentConfig.fields.forEach(field => {
+                const formGroup = document.createElement('div');
+                formGroup.className = 'space-y-1.5';
+                
+                const labelStr = `<label class="block text-xs font-semibold text-slate-600 dark:text-slate-400 uppercase tracking-wider">${field.label}${field.required ? ' <span class="text-red-500">*</span>' : ''}</label>`;
+                let inputHtml = '';
+                
+                if (field.type === 'textarea') {
+                    inputHtml = `<textarea id="${field.id}" placeholder="${field.placeholder}" ${field.required ? 'required' : ''} class="qr-input w-full bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-700/80 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all min-h-[80px] text-slate-800 dark:text-slate-100"></textarea>`;
+                } else if (field.type === 'select') {
+                    const optionsHtml = field.options.map(opt => `<option value="${opt.v}">${opt.l}</option>`).join('');
+                    inputHtml = `<select id="${field.id}" class="qr-input w-full bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-700/80 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-slate-800 dark:text-slate-100">${optionsHtml}</select>`;
+                } else {
+                    inputHtml = `<input type="${field.type}" id="${field.id}" placeholder="${field.placeholder}" ${field.required ? 'required' : ''} class="qr-input w-full bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-700/80 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-slate-800 dark:text-slate-100">`;
+                }
+                
+                formGroup.innerHTML = labelStr + inputHtml;
+                container.appendChild(formGroup);
+            });
+
+            // Bind Event Listeners for Instant Input State Reflections across Form elements
+            document.querySelectorAll('.qr-input').forEach(element => {
+                element.addEventListener('input', triggerInstantGenerationEngine);
+                element.addEventListener('change', triggerInstantGenerationEngine);
+            });
+        }
+
+        // Synchronize Color Picker Data Interfaces with Mono Hex Inputs
+        function bindCustomizationEventListeners() {
+            const qrColor = document.getElementById('qrColor');
+            const qrColorHex = document.getElementById('qrColorHex');
+            const bgColor = document.getElementById('bgColor');
+            const bgColorHex = document.getElementById('bgColorHex');
+            const qrSize = document.getElementById('qrSize');
+            const sizeValue = document.getElementById('sizeValue');
+
+            qrColor.addEventListener('input', (e) => {
+                qrColorHex.value = e.target.value.toUpperCase();
+                triggerInstantGenerationEngine();
+            });
+            qrColorHex.addEventListener('input', (e) => {
+                if(/^#[0-9A-F]{6}$/i.test(e.target.value)) {
+                    qrColor.value = e.target.value;
+                    triggerInstantGenerationEngine();
+                }
+            });
+
+            bgColor.addEventListener('input', (e) => {
+                bgColorHex.value = e.target.value.toUpperCase();
+                triggerInstantGenerationEngine();
+            });
+            bgColorHex.addEventListener('input', (e) => {
+                if(/^#[0-9A-F]{6}$/i.test(e.target.value)) {
+                    bgColor.value = e.target.value;
+                    triggerInstantGenerationEngine();
+                }
+            });
+
+            qrSize.addEventListener('input', (e) => {
+                sizeValue.innerText = `${e.target.value} x ${e.target.value} px`;
+                triggerInstantGenerationEngine();
+            });
+      }
+      // Compile Contextual Raw Form Input Inputs Into Standards-Compliant Protocol Strings
+        function compileDataPayloadString() {
+            const type = AppState.currentType;
+            
+            try {
+                if (type === 'text') {
+                    return document.getElementById('text_content')?.value || 'Ultimate QR Suite';
+                }
+                
+                if (type === 'url') {
+                    let url = document.getElementById('url_link')?.value || 'https://example.com';
+                    if (!/^https?:\/\//i.test(url) && url.length > 0) url = 'https://' + url;
+                    return url;
+                }
+                
+                if (type === 'wifi') {
+                    const ssid = document.getElementById('wifi_ssid')?.value || 'Default_SSID';
+                    const pass = document.getElementById('wifi_pass')?.value || '';
+                    const encryption = document.getElementById('wifi_type')?.value || 'WPA';
+                    return `WIFI:T:${encryption};S:${ssid};P:${pass};;`;
+                }
+                
+                if (type === 'phone') {
+                    const num = document.getElementById('phone_num')?.value || '';
+                    return `tel:${num}`;
+                }
+                
+                if (type === 'email') {
+                    const to = document.getElementById('email_to')?.value || '';
+                    const sub = encodeURIComponent(document.getElementById('email_sub')?.value || '');
+                    const body = encodeURIComponent(document.getElementById('email_body')?.value || '');
+                    return `mailto:${to}?subject=${sub}&body=${body}`;
+                }
+                
+                if (type === 'whatsapp') {
+                    const phone = document.getElementById('wa_phone')?.value || '';
+                    const msg = encodeURIComponent(document.getElementById('wa_msg')?.value || '');
+                    return `https://wa.me{phone}${msg ? '?text=' + msg : ''}`;
+                }
+                
+                if (type === 'upi') {
+                    const vpa = document.getElementById('upi_vpa')?.value || '';
+                    const name = encodeURIComponent(document.getElementById('upi_name')?.value || '');
+                    const amt = document.getElementById('upi_amt')?.value || '';
+                    const note = encodeURIComponent(document.getElementById('upi_note')?.value || '');
+                    if(!vpa) return 'upi://pay';
+                    return `upi://pay?pa=${vpa}&pn=${name}${amt ? '&am=' + amt : ''}&cu=INR${note ? '&tn=' + note : ''}`;
+                }
+                
+                if (type === 'contact') {
+                    const name = document.getElementById('v_name')?.value || 'Name';
+                    const org = document.getElementById('v_org')?.value || '';
+                    const cell = document.getElementById('v_cell')?.value || '';
+                    const email = document.getElementById('v_email')?.value || '';
+                    const url = document.getElementById('v_url')?.value || '';
+                    
+                    return `BEGIN:VCARD\nVERSION:3.0\nN:${name}\nORG:${org}\ TEL:${cell}\nEMAIL:${email}\nURL:${url}\nEND:VCARD`;
+                }
+            } catch (err) {
+                return 'Error parsing payload';
+            }
+            return 'Ultimate QR Suite';
+        }
+
+        // Core Generation Pipeline Execution Module (Instant Real-time Trigger Engine)
+        function triggerInstantGenerationEngine() {
+            const container = document.getElementById('qrCanvasContainer');
+            if (!container) return;
+            
+            container.innerHTML = ''; // Instantly clear previous outputs with zero visual flash lag
+            
+            const payload = compileDataPayloadString();
+            const size = parseInt(document.getElementById('qrSize')?.value || '256');
+            const colorDark = document.getElementById('qrColor')?.value || '#000000';
+            const colorLight = document.getElementById('bgColor')?.value || '#ffffff';
+            
+            // Core Native Multi-Format Rendering Engine Canvas Node Factory
+            AppState.qrCodeInstance = new QRCode(container, {
+                text: payload,
+                width: size,
+                height: size,
+                colorDark: colorDark,
+                colorLight: colorLight,
+                correctLevel: QRCode.CorrectLevel.H // High fault tolerance recovery matrix profile to allow logo styling safely
+            });
+
+            // Set delay micro-ticks loop execution parameters to securely map post-processing canvas operations
+            setTimeout(() => {
+                const qrImg = container.querySelector('img');
+                if (qrImg && AppState.uploadedLogoBase64) {
+                    injectLogoOverloadedCanvas(qrImg, size);
+                }
+            }, 50);
+      }
+     // Logo Upload Stream Reader Handler Implementation
+        function setupLogoProcessingControls() {
+            const fileInput = document.getElementById('logoUpload');
+            const statusLabel = document.getElementById('logoStatus');
+            const removeBtn = document.getElementById('removeLogo');
+
+            if (!fileInput) return;
+
+            fileInput.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (!file) return;
+
+                // Validate Uploaded Asset Integrity Configurations
+                if (!file.type.match('image/png') && !file.type.match('image/jpeg')) {
+                    alert('Invalid configuration format. Please select a valid PNG or JPG file.');
+                    return;
+                }
+
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    AppState.uploadedLogoBase64 = event.target.result;
+                    statusLabel.innerText = file.name.substring(0, 15) + '...';
+                    removeBtn.classList.remove('hidden');
+                    triggerInstantGenerationEngine(); // Instantly re-render with branding layer
+                };
+                reader.readAsDataURL(file);
+            });
+
+            removeBtn.addEventListener('click', () => {
+                AppState.uploadedLogoBase64 = null;
+                fileInput.value = '';
+                statusLabel.innerText = 'Upload PNG or JPG logo';
+                removeBtn.classList.add('hidden');
+                triggerInstantGenerationEngine(); // Instantly restore plain vector QR state
+            });
+        }
+
+        // Feature 17: Advanced Composite Rendering Layer Matrix (Inject Logo Center)
+        function injectLogoOverloadedCanvas(qrImgElement, qrSize) {
+            const hiddenCanvas = document.getElementById('hiddenMergeCanvas');
+            if (!hiddenCanvas) return;
+
+            const ctx = hiddenCanvas.getContext('2d');
+            hiddenCanvas.width = qrSize;
+            hiddenCanvas.height = qrSize;
+
+            // Draw Base Vector QR Output onto Composite Workspace Canvas
+            ctx.drawImage(qrImgElement, 0, 0, qrSize, qrSize);
+
+            // Load and Process Target Center Branding Logo Asset
+            const logo = new Image();
+            logo.src = AppState.uploadedLogoBase64;
+            logo.onload = () => {
+                // Core Branding Safe Ratio Computation (Target 22% of total matrix to keep readability)
+                const logoSize = qrSize * 0.22;
+                const positionOffset = (qrSize - logoSize) / 2;
+
+                // Create a Safe Solid Background Shield for Logo to isolate from QR noise patterns
+                ctx.fillStyle = document.getElementById('bgColor')?.value || '#ffffff';
+                ctx.beginPath();
+                // Smooth rounded box clip area matrix definition
+                const radius = logoSize * 0.2;
+                ctx.roundRect(positionOffset - 2, positionOffset - 2, logoSize + 4, logoSize + 4, radius);
+                ctx.fill();
+
+                // Draw Branding Image Node into the calculated Center Grid Intersection points
+                ctx.drawImage(logo, positionOffset, positionOffset, logoSize, logoSize);
+
+                // Overwrite the Display Output Node directly with the newly created Composite Channel
+                qrImgElement.src = hiddenCanvas.toDataURL('image/png');
+            };
+      }
+      // Feature 18, 19 & 20: Export Actions Processing Center
+        function setupExportActionsCore() {
+            const pngBtn = document.getElementById('downloadPngBtn');
+            const pdfBtn = document.getElementById('downloadPdfBtn');
+            const copyBtn = document.getElementById('copyQrBtn');
+
+            // Helper to get active stream data url from container target nodes
+            const getActiveImageDataUrl = () => {
+                const qrImg = document.getElementById('qrCanvasContainer')?.querySelector('img');
+                if (!qrImg) return null;
+                return qrImg.src;
+            };
+
+            // Feature 18: Download Engine as Native PNG
+            pngBtn.addEventListener('click', () => {
+                const imgData = getActiveImageDataUrl();
+                if (!imgData) return alert('Please input valid parameters first');
+
+                const link = document.createElement('a');
+                link.download = `QR_Suite_Export_${Date.now()}.png`;
+                link.href = imgData;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                pushItemToHistoryLogs(); // Automatically log successful user download iterations
+            });
+
+            // Feature 19: Export Layout to high-density PDF formats via jsPDF Framework Node
+            pdfBtn.addEventListener('click', () => {
+                const imgData = getActiveImageDataUrl();
+                if (!imgData) return alert('Please input valid parameters first');
+
+                try {
+                    const { jsPDF } = window.jspdf;
+                    const pdfDoc = new jsPDF('p', 'mm', 'a4');
+                    
+                    // Layout placement computations for centering the QR neatly on A4 template
+                    pdfDoc.text("Ultimate QR Code Generator Export Log", 20, 20);
+                    pdfDoc.addImage(imgData, 'PNG', 55, 40, 100, 100);
+                    pdfDoc.setFontSize(10);
+                    pdfDoc.setTextColor(120, 120, 120);
+                    pdfDoc.text(`Generated Security Content: ${compileDataPayloadString().substring(0, 60)}...`, 20, 150);
+                    pdfDoc.text("System Protocol Verified. 100% Offline Static Valid Schema.", 20, 156);
+                    
+                    pdfDoc.save(`QR_Document_Suite_${Date.now()}.pdf`);
+                    pushItemToHistoryLogs();
+                } catch(err) {
+                    alert('PDF calculation error framework mismatch');
+                }
+            });
+
+            // Feature 20: Advanced Raw Channel Copy To Device OS System Clipboards (Async Blob Stream API)
+            copyBtn.addEventListener('click', async () => {
+                const imgData = getActiveImageDataUrl();
+                if (!imgData) return alert('No image output detected');
+
+                const btnText = document.getElementById('copyBtnText');
+
+                try {
+                    // Fetch stream data and structure directly into native Canvas Context blob frames
+                    const response = await fetch(imgData);
+                    const blob = await response.blob();
+                    
+                    await navigator.clipboard.write([
+                        new ClipboardItem({ [blob.type]: blob })
+                    ]);
+                    
+                    // Dynamic Action success interface toggle feedback loops
+                    btnText.innerText = "Copied Success!";
+                    copyBtn.classList.remove('bg-slate-100', 'dark:bg-slate-800');
+                    copyBtn.classList.add('bg-emerald-500', 'text-white');
+                    
+                    setTimeout(() => {
+                        btnText.innerText = "Copy Image";
+                        copyBtn.classList.add('bg-slate-100', 'dark:bg-slate-800');
+                        copyBtn.classList.remove('bg-emerald-500', 'text-white');
+                    }, 2000);
+                } catch (err) {
+                    alert('Browser security restriction block. Unable to export blob streaming clipboard pipeline directly.');
+                }
+            });
+      }
+      // Feature 21: Batch CSV Upload, Processing & Array Compiler Engine
+        function setupBatchCsvGeneratorEngine() {
+            const csvInput = document.getElementById('csvUpload');
+            const csvStatus = document.getElementById('csvStatus');
+            const previewArea = document.getElementById('csvPreviewArea');
+            const downloadSample = document.getElementById('downloadSampleCsv');
+
+            if (!csvInput) return;
+
+            // Generate and trigger download for a standard Sample CSV template
+            downloadSample.addEventListener('click', (e) => {
+                e.preventDefault();
+                const csvContent = "data:text/csv;charset=utf-8,QR_Data_Column\nhttps://google.com\nhttps://github.com\nWiFi_SSID_Network\n+15550199\nPlain Text Batch Data";
+                const encodedUri = encodeURI(csvContent);
+                const link = document.createElement("a");
+                link.setAttribute("href", encodedUri);
+                link.setAttribute("download", "qr_suite_batch_sample.csv");
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            });
+
+            csvInput.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (!file) return;
+
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    const text = event.target.result;
+                    processRawCsvDataTextStrings(text);
+                };
+                reader.readAsText(file);
+            });
+
+            function processRawCsvDataTextStrings(csvText) {
+                // Split records via system line break carriage controls safely
+                const lines = csvText.split(/\r?\n/);
+                AppState.batchItems = [];
+
+                // Filter data matrix boundaries, skipping the header line
+                for (let i = 1; i < lines.length; i++) {
+                    const rowData = lines[i].trim();
+                    if (rowData) {
+                        AppState.batchItems.push(rowData);
+                    }
+                }
+
+                if (AppState.batchItems.length === 0) {
+                    csvStatus.innerText = "Error: No data rows found inside CSV.";
+                    previewArea.classList.add('hidden');
+                    return;
+                }
+
+                // Update configuration status layout views
+                csvStatus.innerHTML = `<span class="text-emerald-500 font-bold"><i class="fa-solid fa-circle-check"></i> Found ${AppState.batchItems.length} rows loaded successfully</span>`;
+                renderBatchItemsPreviewGrid();
+            }
+
+            function renderBatchItemsPreviewGrid() {
+                previewArea.innerHTML = '';
+                previewArea.classList.remove('hidden');
+
+                AppState.batchItems.forEach((item, index) => {
+                    const row = document.createElement('div');
+                    row.className = 'flex justify-between items-center p-2 bg-slate-50/50 dark:bg-slate-900/40 hover:bg-slate-100 dark:hover:bg-slate-800/40 transition-colors text-[11px]';
+                    row.innerHTML = `
+                        <span class="truncate max-w-[70%] font-mono text-slate-500 dark:text-slate-400">#${index + 1}: ${item}</span>
+                        <button onclick="triggerSingleBatchItemDownload('${btoa(encodeURIComponent(item))}', ${index})" class="text-xs text-indigo-500 hover:text-indigo-600 font-medium flex items-center space-x-1">
+                            <i class="fa-solid fa-download"></i> <span>Get QR</span>
+                        </button>
+                    `;
+                    previewArea.appendChild(row);
+                });
+            }
+        }
+
+        // Dedicated External Window Node Handler to process single isolated Batch CSV download items safely
+        window.triggerSingleBatchItemDownload = function(base64PayloadStr, itemIndex) {
+            try {
+                const clearPayload = decodeURIComponent(atob(base64PayloadStr));
+                const tempDiv = document.createElement('div');
+                
+                const size = parseInt(document.getElementById('qrSize')?.value || '256');
+                const colorDark = document.getElementById('qrColor')?.value || '#000000';
+                const colorLight = document.getElementById('bgColor')?.value || '#ffffff';
+
+                // Core isolated render pipeline
+                const tempQr = new QRCode(tempDiv, {
+                    text: clearPayload,
+                    width: size,
+                    height: size,
+                    colorDark: colorDark,
+                    colorLight: colorLight,
+                    correctLevel: QRCode.CorrectLevel.M
+                });
+
+                setTimeout(() => {
+                    const img = tempDiv.querySelector('img');
+                    if (img) {
+                        const link = document.createElement('a');
+                        link.download = `Batch_QR_Item_${itemIndex + 1}.png`;
+                        link.href = img.src;
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                    }
+                }, 50);
+            } catch (err) {
+                alert('Batch loop index computation tracking exception.');
+            }
+        };
+      // Feature 22 & 23: Local Storage History Logs Controller Array Architecture
+        function pushItemToHistoryLogs() {
+            const currentPayload = compileDataPayloadString();
+            if(!currentPayload || currentPayload === 'Ultimate QR Suite' || currentPayload === 'upi://pay') return;
+
+            const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            const logItem = {
+                id: Date.now(),
+                type: AppState.currentType.toUpperCase(),
+                payload: currentPayload.length > 35 ? currentPayload.substring(0, 35) + '...' : currentPayload,
+                raw: currentPayload,
+                time: timestamp
+            };
+
+            // Avoid logging duplicates sequentially
+            if (AppState.history.length > 0 && AppState.history[0].raw === currentPayload) return;
+
+            AppState.history.unshift(logItem);
+            if (AppState.history.length > 10) AppState.history.pop(); // Keep top 10 logs locally
+
+            localStorage.setItem('qr_suite_history', JSON.stringify(AppState.history));
+            renderHistoryLogsViewUI();
+        }
+
+        function renderHistoryLogsViewUI() {
+            const container = document.getElementById('historyLogsContainer');
+            const clearBtn = document.getElementById('clearHistoryBtn');
+            if (!container) return;
+
+            if (AppState.history.length === 0) {
+                container.innerHTML = '<p class="text-slate-400 dark:text-slate-500 text-center py-4">No recent QR codes saved locally</p>';
+                clearBtn?.classList.add('hidden');
+                return;
+            }
+
+            clearBtn?.classList.remove('hidden');
+            container.innerHTML = '';
+
+            AppState.history.forEach(item => {
+                const row = document.createElement('div');
+                row.className = 'flex items-center justify-between p-2 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-100 dark:border-slate-800/60 hover:border-blue-500/30 transition-all group';
+                row.innerHTML = `
+                    <div class="flex flex-col max-w-[75%]">
+                        <div class="flex items-center space-x-1.5">
+                            <span class="font-bold text-[10px] text-blue-600 dark:text-blue-400 uppercase bg-blue-50 dark:bg-blue-950/50 px-1.5 py-0.5 rounded">${item.type}</span>
+                            <span class="text-[10px] text-slate-400 font-mono">${item.time}</span>
+                        </div>
+                        <span class="text-[11px] font-mono text-slate-600 dark:text-slate-300 truncate mt-1">${item.payload}</span>
+                    </div>
+                    <button onclick="loadHistoryItemBackToActiveEngine('${btoa(encodeURIComponent(item.raw))}', '${item.type.toLowerCase()}')" class="p-1.5 text-slate-400 hover:text-blue-500 rounded-md hover:bg-white dark:hover:bg-slate-800 shadow-sm opacity-80 group-hover:opacity-100 transition-all">
+                        <i class="fa-solid fa-folder-open text-xs"></i>
+                    </button>
+                `;
+                container.appendChild(row);
+            });
+        }
+
+        window.loadHistoryItemBackToActiveEngine = function(base64Raw, targetType) {
+            try {
+                const clearRaw = decodeURIComponent(atob(base64Raw));
+                switchTypeChannel(targetType);
+                
+                // Map the active structural field instantly back to view
+                const primaryField = QR_TYPES_MAP[targetType].fields[0].id;
+                const inputElement = document.getElementById(primaryField);
+                if (inputElement) {
+                    inputElement.value = clearRaw;
+                    triggerInstantGenerationEngine();
+                }
+            } catch(e) {
+                alert('History trace mapping error.');
+            }
+        };
+
+        // Theme Toggle Architecture Event Router Configuration
+        function setupThemeConfigurationRouter() {
+            const btn = document.getElementById('themeToggle');
+            const htmlNode = document.documentElement;
+
+            btn.addEventListener('click', () => {
+                if (htmlNode.classList.contains('dark')) {
+                    htmlNode.classList.remove('dark');
+                    localStorage.setItem('qr_theme_pref', 'light');
+                } else {
+                    htmlNode.classList.add('dark');
+                    localStorage.setItem('qr_theme_pref', 'dark');
+                }
+                triggerInstantGenerationEngine(); // Quick update calculations for background color matching
+            });
+
+            // Initialize saved preferences
+            const savedPref = localStorage.getItem('qr_theme_pref');
+            if (savedPref === 'light') htmlNode.classList.remove('dark');
+        }
+
+        // Global Orchestration Initialization Core Pipeline Entry Point
+        window.addEventListener('DOMContentLoaded', () => {
+            renderTabs();
+            renderDynamicFormStructure();
+            bindCustomizationEventListeners();
+            setupLogoProcessingControls();
+            setupExportActionsCore();
+            setupBatchCsvGeneratorEngine();
+            setupThemeConfigurationRouter();
+            renderHistoryLogsViewUI();
+
+            // Clear all history trigger implementation
+            document.getElementById('clearHistoryBtn')?.addEventListener('click', () => {
+                AppState.history = [];
+                localStorage.removeItem('qr_suite_history');
+                renderHistoryLogsViewUI();
+            });
+
+            // Run first calculation instantly without lag frames
+            triggerInstantGenerationEngine();
+        });
+    </script>
 </body>
-
 </html>
