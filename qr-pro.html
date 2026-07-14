@@ -4,9 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ultimate QR Generator Pro | 21 QR Types Free Online</title>
+<meta name="description" content="Generate 21 Types of QR Codes: Text, URL, WiFi, UPI, WhatsApp, SMS, Maps, Contact with Logo, Color, PNG, SVG, PDF, Batch CSV. Free and Fast.">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode/1.5.3/qrcode.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/paparse.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 
@@ -127,32 +128,35 @@ function toggleTheme(){
     document.body.classList.toggle("light");
 }
 
-document.querySelectorAll('.type-btn').forEach(btn=>{
-  btn.onclick=function(){
-    document.querySelectorAll('.type-btn').forEach(b=>b.classList.remove('active'));
-    this.classList.add('active');
-    currentType=this.dataset.type;
+/* SOB EVENT EK SATHE WINDOW ONLOAD ER BHETOR - EITAI FIX */
+window.onload = function(){
+    alert("Script Loaded"); // Debug er jonno
+
     updateInput();
-  }
-});
+    loadHistory();
 
-document.getElementById('qrSize').oninput=function(){
-    document.getElementById('sizeText').innerText=this.value;
+    document.querySelectorAll('.type-btn').forEach(btn=>{
+      btn.onclick=function(){
+        document.querySelectorAll('.type-btn').forEach(b=>b.classList.remove('active'));
+        this.classList.add('active');
+        currentType=this.dataset.type;
+        updateInput();
+      }
+    });
+
+    document.getElementById('qrSize').oninput=function(){
+        document.getElementById('sizeText').innerText=this.value;
+    }
+
+    document.getElementById('logoInput').onchange=function(e){
+        const r=new FileReader();
+        r.onload=ev=>{
+            logoImg=new Image();
+            logoImg.src=ev.target.result;
+        };
+        r.readAsDataURL(e.target.files[0]);
+    }
 }
-
-document.getElementById('logoInput').onchange=function(e){
-    const r=new FileReader();
-    r.onload=ev=>{
-        logoImg=new Image();
-        logoImg.src=ev.target.result;
-    };
-    r.readAsDataURL(e.target.files[0]);
-}
-
-/* Initial Load */
-updateInput();
-loadHistory();
-alert("Script Loaded"); // TEST 1
 
 function updateInput(){
   const d=document.getElementById("dynamicInput");
@@ -199,9 +203,8 @@ function getQRData(){
   return "";
 }
 
-/* Function: Generate QR Code - DEBUG ADDED */
 function generateQR(){
-    alert("Generate button clicked"); // TEST 2
+    alert("Generate button clicked"); // Debug er jonno
     const data = getQRData();
     if(!data){
         alert("Please write your data here");
@@ -218,7 +221,7 @@ function generateQR(){
         }
     },function(err,canvas){
         if(err){
-            alert("QR Generation Error");
+            alert("QR Generation Error: "+err);
             console.log(err);
             return;
         }
@@ -247,4 +250,4 @@ function saveHistory(data){let h=JSON.parse(localStorage.getItem("qrH")||"[]");h
 function loadHistory(){let h=JSON.parse(localStorage.getItem("qrH")||"[]");document.getElementById("historyList").innerHTML=h.length?h.map(x=>`<div class="history-item" onclick="alert('${x.data}')">${x.type.toUpperCase()}: ${x.data.substring(0,25)}</div>`).join(""):"No History Yet";}
 </script>
 </body>
-</html>
+                                                  </html>
