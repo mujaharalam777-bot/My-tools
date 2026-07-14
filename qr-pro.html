@@ -257,20 +257,51 @@ function getQRData(){
 
 /* Function: Generate QR Code */
 function generateQR(){
-  const data=getQRData();
-  if(!data){alert("Please write your data here");return;}
-  const size=parseInt(document.getElementById("qrSize").value);
-  const canvas=document.createElement("canvas");
-  QRCode.toCanvas(canvas,data,{width:size,margin:2,errorCorrectionLevel:"H",color:{dark:document.getElementById("qrColor").value,light:document.getElementById("bgColor").value}},function(err){
-    if(err){alert("QR Generation Error");return;}
-    const ctx=canvas.getContext("2d");
-    if(logoImg){const ls=size/5;ctx.drawImage(logoImg,(size-ls)/2,(size-ls)/2,ls,ls);}
-    proQR=canvas;
-    document.getElementById("qrPreview").innerHTML="";
-    document.getElementById("qrPreview").appendChild(canvas);
-    document.querySelectorAll(".action-btn").forEach(b=>b.disabled=false);
-    saveHistory(data);
-  });
+
+    const data = getQRData();
+
+    if(!data){
+        alert("Please write your data here");
+        return;
+    }
+
+    const size = parseInt(document.getElementById("qrSize").value);
+
+    QRCode.toCanvas(data,{
+        width:size,
+        margin:2,
+        errorCorrectionLevel:"H",
+        color:{
+            dark:document.getElementById("qrColor").value,
+            light:document.getElementById("bgColor").value
+        }
+    },function(err,canvas){
+
+        if(err){
+            alert("QR Generation Error");
+            console.log(err);
+            return;
+        }
+
+        if(logoImg && logoImg.complete){
+            const ctx = canvas.getContext("2d");
+            const ls = size/5;
+            ctx.drawImage(logoImg,(size-ls)/2,(size-ls)/2,ls,ls);
+        }
+
+        proQR = canvas;
+
+        document.getElementById("qrPreview").innerHTML = "";
+        document.getElementById("qrPreview").appendChild(canvas);
+
+        document.querySelector(".action-grid").querySelectorAll(".action-btn").forEach(btn=>{
+            btn.disabled = false;
+        });
+
+        saveHistory(data);
+
+    });
+
 }
 
 /* Function: Download PNG */
