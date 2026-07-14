@@ -4,12 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ultimate QR Generator Pro | 21 QR Types Free Online</title>
-<meta name="description" content="Generate 21 Types of QR Codes: Text, URL, WiFi, UPI, WhatsApp, SMS, Maps, Contact with Logo, Color, PNG, SVG, PDF, Batch CSV. Free and Fast.">
-<meta name="keywords" content="QR Generator, 21 QR Types, Free QR Code, UPI QR, WiFi QR, WhatsApp QR, Batch QR">
-<meta name="author" content="Mujahar">
-<!-- ============================================ -->
-<!-- PART 1: CDN LINKS AND FONTS -->
-<!-- ============================================ -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode/1.5.3/qrcode.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
@@ -17,38 +11,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 
 <style>
-/* Root color variables for Dark Mode */
-:root{
-    --primary:#22c55e;
-    --bg1:#0f2027;
-    --bg2:#203a43;
-    --bg3:#2c5364;
-    --card:rgba(255,255,255,.08);
-    --border:rgba(255,255,255,.12);
-    --white:#fff;
-}
-
-/* Light Mode color variables */
-body.light{
-    --bg1:#f5f7fa;
-    --bg2:#e8edf3;
-    --bg3:#dfe6ee;
-    --card:rgba(255,255,255,.9);
-    --border:#ddd;
-    --white:#111;
-}
-
-/* Reset and Base */
+:root{--primary:#22c55e;--bg1:#0f2027;--bg2:#203a43;--bg3:#2c5364;--card:rgba(255,255,255,.08);--border:rgba(255,255,255,.12);--white:#fff;}
+body.light{--bg1:#f5f7fa;--bg2:#e8edf3;--bg3:#dfe6ee;--card:rgba(255,255,255,.9);--border:#ddd;--white:#111;}
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;scroll-behavior:smooth;}
-body{
-    background:linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg3));
-    color:var(--white);
-    min-height:100vh;
-    padding:20px;
-    transition:.3s;
-}
-
-/* HEADER TO FOOTER SOB SAME */
+body{background:linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg3));color:var(--white);min-height:100vh;padding:20px;transition:.3s;}
 .header{max-width:1400px;margin:auto;display:flex;justify-content:space-between;align-items:center;margin-bottom:25px;}
 .header h1{font-size:2rem;font-weight:800;background:linear-gradient(135deg,#22c55e,#facc15);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
 .theme-btn{padding:10px 18px;border:none;border-radius:10px;background:var(--primary);color:#000;font-weight:700;cursor:pointer;}
@@ -146,22 +112,6 @@ body{
 <div class="info-section">
   <h2>How To Use</h2>
   <p>1. Select any of the 21 QR Types from the button grid<br>2. Fill your data in the input fields<br>3. Customize Color, Size and Upload Logo<br>4. Click "Generate QR" button<br>5. Download as PNG, SVG, PDF or Copy to clipboard</p>
-
-  <h2 style="margin-top:25px;">Why Choose Us</h2>
-  <div class="why-grid">
-    <div class="why-card"><h3>⚡ Instant</h3><p>No loading. QR generates in 1 second.</p></div>
-    <div class="why-card"><h3>🔒 100% Private</h3><p>Your data never leaves your browser.</p></div>
-    <div class="why-card"><h3>🎨 Full Control</h3><p>Color, Logo, Size, Everything customizable.</p></div>
-    <div class="why-card"><h3>📦 Batch Power</h3><p>Generate 1000 QR from 1 CSV file.</p></div>
-  </div>
-
-  <h2 style="margin-top:25px;">FAQ</h2>
-  <div class="faq-item"><b>Q: Is it really free?</b><br>A: Yes. 100% Free. No signup, No watermark.</div>
-  <div class="faq-item"><b>Q: Is my data safe?</b><br>A: Yes. All QR generation happens in your browser. We don't save anything.</div>
-  <div class="faq-item"><b>Q: Can I use logo in QR?</b><br>A: Yes. Upload any logo and it will be placed in center automatically.</div>
-
-  <h2 style="margin-top:25px;">Related Tools</h2>
-  <a href="age.html">Age Calculator</a> | <a href="bmi.html">BMI Calculator</a> | <a href="write.html">Text Tools</a> | <a href="qr.html">Basic QR</a>
 </div>
 
 <div class="footer">© 2026 Ultimate QR Pro | Made with ❤️</div>
@@ -173,12 +123,10 @@ let proQR=null;
 let logoImg=null;
 let batchCanvases=[];
 
-/* Function: Toggle Dark/Light Theme */
 function toggleTheme(){
     document.body.classList.toggle("light");
 }
 
-/* Event: QR Type Button Click */
 document.querySelectorAll('.type-btn').forEach(btn=>{
   btn.onclick=function(){
     document.querySelectorAll('.type-btn').forEach(b=>b.classList.remove('active'));
@@ -188,12 +136,10 @@ document.querySelectorAll('.type-btn').forEach(btn=>{
   }
 });
 
-/* Event: QR Size Slider */
 document.getElementById('qrSize').oninput=function(){
     document.getElementById('sizeText').innerText=this.value;
 }
 
-/* Event: Logo Upload */
 document.getElementById('logoInput').onchange=function(e){
     const r=new FileReader();
     r.onload=ev=>{
@@ -206,8 +152,8 @@ document.getElementById('logoInput').onchange=function(e){
 /* Initial Load */
 updateInput();
 loadHistory();
+alert("Script Loaded"); // TEST 1
 
-/* Function: Update Input Fields Based on QR Type */
 function updateInput(){
   const d=document.getElementById("dynamicInput");
   const inputs={
@@ -236,7 +182,6 @@ function updateInput(){
   d.innerHTML=inputs[currentType];
 }
 
-/* Function: Get QR Data String */
 function getQRData(){
   try{
   if(["text","url","youtube","twitter","instagram","facebook","linkedin","paypal","bitcoin","facetime","zoom"].includes(currentType)) return document.getElementById("mainInput").value;
@@ -254,8 +199,9 @@ function getQRData(){
   return "";
 }
 
-/* Function: Generate QR Code - TOR DEWA NEW FUNCTION */
+/* Function: Generate QR Code - DEBUG ADDED */
 function generateQR(){
+    alert("Generate button clicked"); // TEST 2
     const data = getQRData();
     if(!data){
         alert("Please write your data here");
@@ -291,80 +237,14 @@ function generateQR(){
     });
 }
 
-/* Function: Download PNG */
-function downloadPNG(){
-    const a=document.createElement("a");
-    a.download="QRCode.png";
-    a.href=proQR.toDataURL("image/png");
-    a.click();
-}
-
-/* Function: Download SVG */
-function downloadSVG(){
-    const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300"><image href="${proQR.toDataURL()}"/></svg>`;
-    const a=document.createElement("a");
-    a.download="QR.svg";
-    a.href="data:image/svg+xml;base64,"+btoa(svg);
-    a.click();
-}
-
-/* Function: Copy QR */
-function copyQR(){
-    proQR.toBlob(b=>{
-        navigator.clipboard.write([new ClipboardItem({[b.type]:b})]);
-        alert("QR Copied to Clipboard!")
-    });
-}
-
-/* Function: Download PDF */
-function downloadPDF(){
-    const {jsPDF}=window.jspdf;
-    const pdf=new jsPDF();
-    pdf.addImage(proQR.toDataURL("image/png"),'PNG',15,40,180,180);
-    pdf.text("Ultimate QR Pro",15,20);
-    pdf.save("QRCode.pdf");
-}
-
-/* Function: Batch Generate */
-function batchGenerate(){
-  const file=document.getElementById("csvInput").files[0];
-  if(!file){alert("Please upload CSV file");return;}
-  Papa.parse(file,{complete:function(res){
-    batchCanvases=[];
-    res.data.forEach((row,i)=>{
-      if(row[0]){const c=document.createElement("canvas");QRCode.toCanvas(c,row[0],{width:300});batchCanvases.push(c);}
-    });
-    alert(batchCanvases.length+" QR Generated Successfully");
-  }});
-}
-
-/* Function: Download ZIP */
-function downloadZIP(){
-  if(batchCanvases.length==0){alert("Generate Batch QR first");return;}
-  const zip=new JSZip();
-  batchCanvases.forEach((c,i)=>{zip.file(`QR_${i+1}.png`,c.toDataURL("image/png").split(",")[1],{base64:true});});
-  zip.generateAsync({type:"blob"}).then(c=>{
-      const a=document.createElement("a");
-      a.href=URL.createObjectURL(c);
-      a.download="Batch_QR.zip";
-      a.click();
-  });
-}
-
-/* Function: Save History to LocalStorage */
-function saveHistory(data){
-    let h=JSON.parse(localStorage.getItem("qrH")||"[]");
-    h.unshift({type:currentType,data:data,time:new Date().toLocaleString()});
-    h=h.slice(0,10);
-    localStorage.setItem("qrH",JSON.stringify(h));
-    loadHistory();
-}
-
-/* Function: Load History */
-function loadHistory(){
-    let h=JSON.parse(localStorage.getItem("qrH")||"[]");
-    document.getElementById("historyList").innerHTML=h.length?h.map(x=>`<div class="history-item" onclick="alert('${x.data}')">${x.type.toUpperCase()}: ${x.data.substring(0,25)}</div>`).join(""):"No History Yet";
-}
+function downloadPNG(){const a=document.createElement("a");a.download="QRCode.png";a.href=proQR.toDataURL("image/png");a.click();}
+function downloadSVG(){const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300"><image href="${proQR.toDataURL()}"/></svg>`;const a=document.createElement("a");a.download="QR.svg";a.href="data:image/svg+xml;base64,"+btoa(svg);a.click();}
+function copyQR(){proQR.toBlob(b=>{navigator.clipboard.write([new ClipboardItem({[b.type]:b})]);alert("QR Copied to Clipboard!")});}
+function downloadPDF(){const {jsPDF}=window.jspdf;const pdf=new jsPDF();pdf.addImage(proQR.toDataURL("image/png"),'PNG',15,40,180,180);pdf.text("Ultimate QR Pro",15,20);pdf.save("QRCode.pdf");}
+function batchGenerate(){const file=document.getElementById("csvInput").files[0];if(!file){alert("Please upload CSV file");return;}Papa.parse(file,{complete:function(res){batchCanvases=[];res.data.forEach((row,i)=>{if(row[0]){const c=document.createElement("canvas");QRCode.toCanvas(c,row[0],{width:300});batchCanvases.push(c);}});alert(batchCanvases.length+" QR Generated Successfully");}});}
+function downloadZIP(){if(batchCanvases.length==0){alert("Generate Batch QR first");return;}const zip=new JSZip();batchCanvases.forEach((c,i)=>{zip.file(`QR_${i+1}.png`,c.toDataURL("image/png").split(",")[1],{base64:true});});zip.generateAsync({type:"blob"}).then(c=>{const a=document.createElement("a");a.href=URL.createObjectURL(c);a.download="Batch_QR.zip";a.click();});}
+function saveHistory(data){let h=JSON.parse(localStorage.getItem("qrH")||"[]");h.unshift({type:currentType,data:data,time:new Date().toLocaleString()});h=h.slice(0,10);localStorage.setItem("qrH",JSON.stringify(h));loadHistory();}
+function loadHistory(){let h=JSON.parse(localStorage.getItem("qrH")||"[]");document.getElementById("historyList").innerHTML=h.length?h.map(x=>`<div class="history-item" onclick="alert('${x.data}')">${x.type.toUpperCase()}: ${x.data.substring(0,25)}</div>`).join(""):"No History Yet";}
 </script>
 </body>
-    </html>
+</html>
