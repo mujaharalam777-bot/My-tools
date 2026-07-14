@@ -11,12 +11,11 @@
 <!-- PART 1: CDN LINKS AND FONTS -->
 <!-- ============================================ -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode/1.5.3/qrcode.min.js"></script> <!-- EITAI CHANGE KORLAM -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode/1.5.3/qrcode.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 
-<!-- BAKI SOB CODE EKDOM SAME THAKBE -->
 <style>
 /* Root color variables for Dark Mode */
 :root{
@@ -255,18 +254,14 @@ function getQRData(){
   return "";
 }
 
-/* Function: Generate QR Code */
+/* Function: Generate QR Code - TOR DEWA NEW FUNCTION */
 function generateQR(){
-
     const data = getQRData();
-
     if(!data){
         alert("Please write your data here");
         return;
     }
-
     const size = parseInt(document.getElementById("qrSize").value);
-
     QRCode.toCanvas(data,{
         width:size,
         margin:2,
@@ -276,32 +271,24 @@ function generateQR(){
             light:document.getElementById("bgColor").value
         }
     },function(err,canvas){
-
         if(err){
             alert("QR Generation Error");
             console.log(err);
             return;
         }
-
         if(logoImg && logoImg.complete){
             const ctx = canvas.getContext("2d");
             const ls = size/5;
             ctx.drawImage(logoImg,(size-ls)/2,(size-ls)/2,ls,ls);
         }
-
         proQR = canvas;
-
         document.getElementById("qrPreview").innerHTML = "";
         document.getElementById("qrPreview").appendChild(canvas);
-
         document.querySelector(".action-grid").querySelectorAll(".action-btn").forEach(btn=>{
             btn.disabled = false;
         });
-
         saveHistory(data);
-
     });
-
 }
 
 /* Function: Download PNG */
