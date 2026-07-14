@@ -7,7 +7,7 @@
 <meta name="description" content="Generate 21 Types of QR Codes: Text, URL, WiFi, UPI, WhatsApp, SMS, Maps, Contact with Logo, Color, PNG, SVG, PDF, Batch CSV. Free and Fast.">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode/1.5.3/qrcode.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/paparse.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 
@@ -128,9 +128,8 @@ function toggleTheme(){
     document.body.classList.toggle("light");
 }
 
-/* SOB EVENT EK SATHE WINDOW ONLOAD ER BHETOR - EITAI FIX */
+/* SOB EVENT EK SATHE WINDOW ONLOAD ER BHETOR */
 window.onload = function(){
-    alert("Script Loaded"); // Debug er jonno
 
     updateInput();
     loadHistory();
@@ -204,7 +203,6 @@ function getQRData(){
 }
 
 function generateQR(){
-    alert("Generate button clicked"); // Debug er jonno
     const data = getQRData();
     if(!data){
         alert("Please write your data here");
@@ -250,4 +248,4 @@ function saveHistory(data){let h=JSON.parse(localStorage.getItem("qrH")||"[]");h
 function loadHistory(){let h=JSON.parse(localStorage.getItem("qrH")||"[]");document.getElementById("historyList").innerHTML=h.length?h.map(x=>`<div class="history-item" onclick="alert('${x.data}')">${x.type.toUpperCase()}: ${x.data.substring(0,25)}</div>`).join(""):"No History Yet";}
 </script>
 </body>
-                                                  </html>
+                                                                </html>
