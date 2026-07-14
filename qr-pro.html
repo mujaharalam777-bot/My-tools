@@ -7,6 +7,7 @@
 <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/paparse.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--primary:#22c55e;--bg1:#0f2027;--bg2:#203a43;--bg3:#2c5364}
@@ -31,7 +32,8 @@ body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,var(--bg
 .color-pickers div{flex:1}
 input[type="color"]{width:100%;height:45px;border:none;border-radius:8px;cursor:pointer}
 .btn{width:100%;padding:15px;border:none;border-radius:12px;background:linear-gradient(135deg,var(--primary),#16a34a);color:#000;font-weight:700;font-size:1.05rem;cursor:pointer;margin-top:10px}
-.btn-secondary{width:100%;padding:12px;border:2px solid var(--primary);background:transparent;color:var(--primary);border-radius:10px;cursor:pointer;font-weight:600;margin-top:10px}
+.btn-secondary{width:100%;padding:12px;border:2px solid var(--primary);background:transparent;color:var(--primary);border-radius:10px;cursor:pointer;font-weight:600;margin-top:10px;transition:0.3s}
+.btn-secondary:disabled{opacity:0.4;cursor:not-allowed;border-color:rgba(255,255,255,0.2);color:rgba(255,255,255,0.4)}
 .qr-preview{background:#fff;padding:25px;border-radius:15px;display:flex;justify-content:center;align-items:center;flex-direction:column;min-height:400px;color:#000}
 .qr-preview canvas{border-radius:10px}
 .action-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:15px}
@@ -47,6 +49,7 @@ input[type="color"]{width:100%;height:45px;border:none;border-radius:8px;cursor:
 .related-card{background:rgba(255,255,255,0.05);padding:15px;border-radius:12px;text-align:center;text-decoration:none;color:#fff;transition:0.3s}
 .related-card:hover{background:var(--primary);color:#000}
 .footer{text-align:center;padding:20px;opacity:0.7;font-size:14px}
+.loading{font-weight:600;color:var(--primary)}
 </style>
 </head>
 <body>
@@ -88,7 +91,7 @@ input[type="color"]{width:100%;height:45px;border:none;border-radius:8px;cursor:
     <div id="dynamicInput"></div>
     <h3 style="margin:20px 0 10px 0">🎨 Customization</h3>
     <div class="color-pickers">
-      <div class="input-group"><label>QR Color</label><input type="color" id="qrColor" value="#000000"></div>
+      <div class="input-group"><label>QR Color</label><input type="color" id="qrColor" value="#000"></div>
       <div class="input-group"><label>BG Color</label><input type="color" id="bgColor" value="#FFFFFF"></div>
     </div>
     <div class="input-group">
@@ -112,6 +115,7 @@ input[type="color"]{width:100%;height:45px;border:none;border-radius:8px;cursor:
       <button class="btn-secondary" onclick="downloadSVG()">📥 SVG</button>
       <button class="btn-secondary" onclick="downloadPDF()">📥 PDF</button>
       <button class="btn-secondary" onclick="copyQR()">📋 Copy</button>
+      <button class="btn-secondary" onclick="downloadBatchZIP()" id="zipBtn" style="display:none;grid-column:1/3">📦 Download All ZIP</button>
     </div>
   </div>
 </div>
@@ -128,49 +132,7 @@ input[type="color"]{width:100%;height:45px;border:none;border-radius:8px;cursor:
   </ul>
 </div>
 
-<div class="section-box" style="max-width:1400px;margin:20px auto">
-  <h2 class="section-title">⭐ Pro Features</h2>
-  <ul>
-    <li>21 dhoroner QR toiri kora jay. URL theke UPI sob ache</li>
-    <li>QR er color, background color ebong size full customize</li>
-    <li>Company logo majhkhane add korar subidha</li>
-    <li>CSV file upload kore ek sathe onek QR banano jay</li>
-    <li>HD PNG, Vector SVG ebong Print ready PDF download</li>
-    <li>Kono watermark nei. Business er jonno ekdom perfect</li>
-  </ul>
-</div>
-
-<!-- 3. FAQ -->
-<div class="section-box" style="max-width:1400px;margin:20px auto">
-  <h2 class="section-title">❓ FAQ</h2>
-
-  <p><b>Q: Is the Pro version free?</b><br>
-  A: No. This is a premium feature. Contact Mujahar to get access.</p>
-
-  <p style="margin-top:12px"><b>Q: Will the QR code still scan after adding a logo?</b><br>
-  A: Yes. The logo is small and placed in the center, so 99% of scanners can read it easily.</p>
-
-  <p style="margin-top:12px"><b>Q: What is the CSV format for Batch QR?</b><br>
-  A: The first column should be "name" and the second column should be "url".</p>
-
-  <p style="margin-top:12px"><b>Q: What can I use the SVG download for?</b><br>
-  A: SVG is a vector file. You can use it in banners and posters. It will not lose quality when resized.</p>
-</div>
-
-<div class="section-box" style="max-width:1400px;margin:20px auto">
-  <h2 class="section-title">🔗 Related Tools</h2>
-
-  <div class="related-grid">
-    <a href="qr.html" class="related-card">🌐 Free QR Generator</a>
-    <a href="pdf.html" class="related-card">📄 PDF to Word Converter</a>
-    <a href="image.html" class="related-card">🖼 Image Background Remover</a>
-    <a href="text.html" class="related-card">📝 Text to PDF Converter</a>
-  </div>
-</div>
-
-<div class="footer">
-  © 2026 My Tools Pro • Made by Mujahar • All Rights Reserved
-</div>
+<div class="footer">© 2026 My Tools Pro • Made by Mujahar • All Rights Reserved</div>
 
 <script>
 
@@ -179,8 +141,10 @@ let logoImg=null;
 let currentType="url";
 let qrDataString="";
 let batchData=[];
-  
+let batchCanvases=[]; // 10. Batch ZIP er jonno
+
 document.addEventListener('DOMContentLoaded', function(){
+  document.querySelectorAll(".btn-secondary").forEach(btn=>{ btn.disabled=true; });
   document.querySelectorAll('.type-btn').forEach(btn=>{
     btn.addEventListener('click', function(){
       document.querySelectorAll('.type-btn').forEach(b=>b.classList.remove('active'))
@@ -190,566 +154,231 @@ document.addEventListener('DOMContentLoaded', function(){
     })
   })
   updateInput()
+
+  // 5. Auto Generate
+  document.addEventListener("input",()=>{
+    const mainInput=document.getElementById("mainInput");
+    if(mainInput && mainInput.value.trim()!=""){
+      clearTimeout(window.autoGenTimer);
+      window.autoGenTimer=setTimeout(()=>generateProQR(),800);
+    }
+  });
 })
 
 document.getElementById('qrSize').oninput=function(){document.getElementById('sizeText').innerText=this.value}
 document.getElementById('logoFile').onchange=function(e){const f=e.target.files[0];if(f){const r=new FileReader();r.onload=e=>{logoImg=e.target.result};r.readAsDataURL(f)}}
 
 function updateInput(){
-
-const d=document.getElementById("dynamicInput");
-let h="";
-
+const d=document.getElementById("dynamicInput");let h="";
 switch(currentType){
-
-case "url":
-h=`
-<div class="input-group">
-<label>Website URL</label>
-<input type="url" id="mainInput" placeholder="Enter website URL here">
-</div>`;
-break;
-
-case "text":
-h=`
-<div class="input-group">
-<label>Text</label>
-<textarea id="mainInput" rows="5" placeholder="Write your text here"></textarea>
-</div>`;
-break;
-
-case "wifi":
-h=`
-<div class="input-group">
-<label>WiFi Name (SSID)</label>
-<input id="wifiSSID" placeholder="Enter WiFi name">
-</div>
-
-<div class="input-group">
-<label>Password</label>
-<input id="wifiPass" placeholder="Enter WiFi password">
-</div>
-
-<div class="input-group">
-<label>Security</label>
-<select id="wifiEnc">
-<option value="WPA">WPA/WPA2</option>
-<option value="WEP">WEP</option>
-<option value="nopass">No Password</option>
-</select>
-</div>`;
-break;
-
-case "email":
-h=`
-<div class="input-group">
-<label>Email Address</label>
-<input id="emailTo" placeholder="example@gmail.com">
-</div>
-
-<div class="input-group">
-<label>Subject</label>
-<input id="emailSub" placeholder="Enter subject">
-</div>
-
-<div class="input-group">
-<label>Message</label>
-<textarea id="emailBody" rows="4" placeholder="Write your message here"></textarea>
-</div>`;
-break;
-
-case "phone":
-h=`
-<div class="input-group">
-<label>Phone Number</label>
-<input id="mainInput" placeholder="Enter phone number">
-</div>`;
-break;
-
-case "sms":
-h=`
-<div class="input-group">
-<label>Phone Number</label>
-<input id="smsPhone" placeholder="Enter phone number">
-</div>
-
-<div class="input-group">
-<label>SMS Message</label>
-<textarea id="smsMsg" rows="4" placeholder="Write your SMS here"></textarea>
-</div>`;
-break;
-
-case "whatsapp":
-h=`
-<div class="input-group">
-<label>WhatsApp Number</label>
-<input id="waNumber" placeholder="Country code + Number">
-</div>
-
-<div class="input-group">
-<label>Message</label>
-<textarea id="waMsg" rows="4" placeholder="Write your message here"></textarea>
-</div>`;
-break;
-
-case "contact":
-h=`
-<div class="input-group">
-<label>Full Name</label>
-<input id="cName" placeholder="John Doe">
-</div>
-
-<div class="input-group">
-<label>Phone Number</label>
-<input id="cPhone" placeholder="+91XXXXXXXXXX">
-</div>
-
-<div class="input-group">
-<label>Email</label>
-<input id="cEmail" placeholder="example@gmail.com">
-</div>`;
-break;
-
-case "location":
-h=`
-<div class="input-group">
-<label>Latitude</label>
-<input id="lat" placeholder="22.5726">
-</div>
-
-<div class="input-group">
-<label>Longitude</label>
-<input id="lng" placeholder="88.3639">
-</div>`;
-break;
-
-case "event":
-h=`
-<div class="input-group">
-<label>Event Title</label>
-<input id="eventTitle" placeholder="Birthday Party">
-</div>
-
-<div class="input-group">
-<label>Event Date</label>
-<input type="date" id="eventDate">
-</div>`;
-break;
-    case "upi":
-h=`
-<div class="input-group">
-<label>UPI ID</label>
-<input id="upiID" placeholder="name@upi">
-</div>
-
-<div class="input-group">
-<label>Receiver Name</label>
-<input id="upiName" placeholder="John Doe">
-</div>
-
-<div class="input-group">
-<label>Amount</label>
-<input id="upiAmt" type="number" placeholder="100">
-</div>
-
-<div class="input-group">
-<label>Note (Optional)</label>
-<input id="upiNote" placeholder="Payment for order">
-</div>`;
-break;
-case "batch":
-h=`
-<div class="input-group">
-<label>Upload CSV File</label>
-
-<input
-type="file"
-id="csvFile"
-accept=".csv">
-
-<small>CSV Format: name,url</small>
-
-</div>
-
-<div
-id="batchList"
-class="batch-list">
-
-No CSV Loaded
-
-</div>`;
-break;
-default:
-h=`
-<div class="input-group">
-<label>Link / Data</label>
-<input id="mainInput" placeholder="Paste your link here">
-</div>`;
-
+case "url":h=`<div class="input-group"><label>Website URL</label><input type="url" id="mainInput" placeholder="Enter website URL here"></div>`;break;
+case "text":h=`<div class="input-group"><label>Text</label><textarea id="mainInput" rows="5" placeholder="Write your text here"></textarea></div>`;break;
+case "wifi":h=`<div class="input-group"><label>WiFi Name (SSID)</label><input id="wifiSSID" placeholder="Enter WiFi name"></div><div class="input-group"><label>Password</label><input id="wifiPass" placeholder="Enter WiFi password"></div><div class="input-group"><label>Security</label><select id="wifiEnc"><option value="WPA">WPA/WPA2</option><option value="WEP">WEP</option><option value="nopass">No Password</option></select></div>`;break;
+case "email":h=`<div class="input-group"><label>Email Address</label><input id="emailTo" placeholder="example@gmail.com"></div><div class="input-group"><label>Subject</label><input id="emailSub" placeholder="Enter subject"></div><div class="input-group"><label>Message</label><textarea id="emailBody" rows="4" placeholder="Write your message here"></textarea></div>`;break;
+case "phone":h=`<div class="input-group"><label>Phone Number</label><input id="mainInput" placeholder="Enter phone number"></div>`;break;
+case "sms":h=`<div class="input-group"><label>Phone Number</label><input id="smsPhone" placeholder="Enter phone number"></div><div class="input-group"><label>SMS Message</label><textarea id="smsMsg" rows="4" placeholder="Write your SMS here"></textarea></div>`;break;
+case "whatsapp":h=`<div class="input-group"><label>WhatsApp Number</label><input id="waNumber" placeholder="Country code + Number"></div><div class="input-group"><label>Message</label><textarea id="waMsg" rows="4" placeholder="Write your message here"></textarea></div>`;break;
+case "contact":h=`<div class="input-group"><label>Full Name</label><input id="cName" placeholder="John Doe"></div><div class="input-group"><label>Phone Number</label><input id="cPhone" placeholder="+91XXXXXXXXXX"></div><div class="input-group"><label>Email</label><input id="cEmail" placeholder="example@gmail.com"></div>`;break;
+case "location":h=`<div class="input-group"><label>Latitude</label><input id="lat" placeholder="22.5726"></div><div class="input-group"><label>Longitude</label><input id="lng" placeholder="88.3639"></div>`;break;
+case "event":h=`<div class="input-group"><label>Event Title</label><input id="eventTitle" placeholder="Birthday Party"></div><div class="input-group"><label>Event Date</label><input type="date" id="eventDate"></div>`;break;
+case "youtube":h=`<div class="input-group"><label>YouTube Link</label><input id="mainInput" placeholder="https://youtube.com/..."></div>`;break;
+case "instagram":h=`<div class="input-group"><label>Instagram Profile Link</label><input id="mainInput" placeholder="https://instagram.com/..."></div>`;break;
+case "facebook":h=`<div class="input-group"><label>Facebook Link</label><input id="mainInput" placeholder="https://facebook.com/..."></div>`;break;
+case "x":h=`<div class="input-group"><label>X (Twitter) Link</label><input id="mainInput" placeholder="https://x.com/..."></div>`;break;
+case "linkedin":h=`<div class="input-group"><label>LinkedIn Profile</label><input id="mainInput" placeholder="https://linkedin.com/in/..."></div>`;break;
+case "spotify":h=`<div class="input-group"><label>Spotify Link</label><input id="mainInput" placeholder="https://open.spotify.com/..."></div>`;break;
+case "pdf":h=`<div class="input-group"><label>PDF URL</label><input id="mainInput" placeholder="https://example.com/file.pdf"></div>`;break;
+case "app":h=`<div class="input-group"><label>App Link</label><input id="mainInput" placeholder="Play Store / App Store Link"></div>`;break;
+case "crypto":h=`<div class="input-group"><label>Wallet Address</label><input id="mainInput" placeholder="Enter Crypto Wallet Address"></div>`;break;
+case "upi":h=`<div class="input-group"><label>UPI ID</label><input id="upiID" placeholder="name@upi"></div><div class="input-group"><label>Receiver Name</label><input id="upiName" placeholder="John Doe"></div><div class="input-group"><label>Amount</label><input id="upiAmt" type="number" placeholder="100"></div><div class="input-group"><label>Note (Optional)</label><input id="upiNote" placeholder="Payment for order"></div>`;break;
+case "batch":h=`<div class="input-group"><label>Upload CSV File</label><input type="file" id="csvFile" accept=".csv"><small>CSV Format: name,url</small></div><div id="batchList" class="batch-list">No CSV Loaded</div>`;break;
+default:h=`<div class="input-group"><label>Link / Data</label><input id="mainInput" placeholder="Paste your link here"></div>`;
 }
-
 d.innerHTML=h;
-  
 if(currentType=="batch"){
-
 document.getElementById("csvFile").addEventListener("change",function(e){
-
-const file=e.target.files[0];
-
-if(!file) return;
-
-Papa.parse(file,{
-header:true,
-skipEmptyLines:true,
-
-complete:function(result){
-
-batchData=result.data;
-
-let html="";
-
-batchData.forEach((item,index)=>{
-
-html+=`
-<div style="padding:8px;border-bottom:1px solid rgba(255,255,255,.15)">
-<b>${index+1}.</b> ${item.name}<br>
-<small>${item.url}</small>
-</div>
-`;
-
-});
-
+const file=e.target.files[0];if(!file) return;
+Papa.parse(file,{header:true,skipEmptyLines:true,complete:function(result){
+batchData=result.data;let html="";
+batchData.forEach((item,index)=>{html+=`<div style="padding:8px;border-bottom:1px solid rgba(255,255,255,.15)"><b>${index+1}.</b> ${item.name}<br><small>${item.url}</small></div>`;});
 document.getElementById("batchList").innerHTML=html;
-
-}
-
+}});
 });
-
-});
-
 }
-  }
-
+}
 
 function getQRData(){
-
 switch(currentType){
-
-case "url":
-return document.getElementById("mainInput").value.trim();
-
-case "text":
-return document.getElementById("mainInput").value;
-
-case "wifi":
-return `WIFI:T:${document.getElementById("wifiEnc").value};S:${document.getElementById("wifiSSID").value};P:${document.getElementById("wifiPass").value};;`;
-
-case "email":
-return `mailto:${document.getElementById("emailTo").value}?subject=${encodeURIComponent(document.getElementById("emailSub").value)}&body=${encodeURIComponent(document.getElementById("emailBody").value)}`;
-
-case "phone":
-return `tel:${document.getElementById("mainInput").value}`;
-
-case "sms":
-return `sms:${document.getElementById("smsPhone").value}?body=${encodeURIComponent(document.getElementById("smsMsg").value)}`;
-
-case "whatsapp":
-return `https://wa.me/${document.getElementById("waNumber").value}?text=${encodeURIComponent(document.getElementById("waMsg").value)}`;
-
-case "contact":
-return `BEGIN:VCARD
-VERSION:3.0
-FN:${document.getElementById("cName").value}
-TEL:${document.getElementById("cPhone").value}
-EMAIL:${document.getElementById("cEmail").value}
-END:VCARD`;
-
-case "location":
-return `geo:${document.getElementById("lat").value},${document.getElementById("lng").value}`;
-
-case "event":
-return `BEGIN:VEVENT
-SUMMARY:${document.getElementById("eventTitle").value}
-DTSTART:${document.getElementById("eventDate").value.replace(/-/g,"")}
-END:VEVENT`;
-
-case "youtube":
-case "instagram":
-case "facebook":
-case "x":
-case "linkedin":
-case "spotify":
-case "pdf":
-case "app":
-case "crypto":
-return document.getElementById("mainInput").value.trim();
-
-case "upi":
-return `upi://pay?pa=${document.getElementById("upiID").value}&pn=${encodeURIComponent(document.getElementById("upiName").value)}&am=${document.getElementById("upiAmt").value}&tn=${encodeURIComponent(document.getElementById("upiNote").value)}`;
-
-case "batch":
-return "";
-
-default:
-return "";
-
+case "url":return document.getElementById("mainInput").value.trim();
+case "text":return document.getElementById("mainInput").value;
+case "wifi":return `WIFI:T:${document.getElementById("wifiEnc").value};S:${document.getElementById("wifiSSID").value};P:${document.getElementById("wifiPass").value};;`;
+case "email":return `mailto:${document.getElementById("emailTo").value}?subject=${encodeURIComponent(document.getElementById("emailSub").value)}&body=${encodeURIComponent(document.getElementById("emailBody").value)}`;
+case "phone":return `tel:${document.getElementById("mainInput").value}`;
+case "sms":return `sms:${document.getElementById("smsPhone").value}?body=${encodeURIComponent(document.getElementById("smsMsg").value)}`;
+case "whatsapp":return `https://wa.me/${document.getElementById("waNumber").value}?text=${encodeURIComponent(document.getElementById("waMsg").value)}`;
+case "contact":return `BEGIN:VCARD\nVERSION:3.0\nFN:${document.getElementById("cName").value}\nTEL:${document.getElementById("cPhone").value}\nEMAIL:${document.getElementById("cEmail").value}\nEND:VCARD`;
+case "location":return `geo:${document.getElementById("lat").value},${document.getElementById("lng").value}`;
+case "event":return `BEGIN:VEVENT\nSUMMARY:${document.getElementById("eventTitle").value}\nDTSTART:${document.getElementById("eventDate").value.replace(/-/g,"")}\nEND:VEVENT`;
+case "youtube":case "instagram":case "facebook":case "x":case "linkedin":case "spotify":case "pdf":case "app":case "crypto":return document.getElementById("mainInput").value.trim();
+case "upi":return `upi://pay?pa=${document.getElementById("upiID").value}&pn=${encodeURIComponent(document.getElementById("upiName").value)}&am=${document.getElementById("upiAmt").value}&tn=${encodeURIComponent(document.getElementById("upiNote").value)}`;
+case "batch":return "";
+default:return "";
+}
 }
 
+// 7. Empty Field Validation
+function validateFields(){
+  if(currentType=="email" &&!document.getElementById("emailTo").value){alert("Enter Email");return false;}
+  if(currentType=="phone" &&!document.getElementById("mainInput").value){alert("Enter Phone Number");return false;}
+  if(currentType=="sms" &&!document.getElementById("smsPhone").value){alert("Enter Phone Number");return false;}
+  if(currentType=="whatsapp" &&!document.getElementById("waNumber").value){alert("Enter WhatsApp Number");return false;}
+  if(currentType=="upi" &&!document.getElementById("upiID").value){alert("Enter UPI ID");return false;}
+  if(currentType=="wifi" &&!document.getElementById("wifiSSID").value){alert("Enter WiFi Name");return false;}
+  return true;
 }
 
 function generateProQR(){
+    document.getElementById("qrPreview").innerHTML="<p class='loading'>Generating QR...</p>"; // 8. Loading Animation
+    batchCanvases=[]; // Reset batch
+    document.getElementById("zipBtn").style.display="none";
 
-qrDataString = getQRData();
-// ===========================
-// Batch QR Generate
-// ===========================
+    qrDataString = getQRData();
+    if(!validateFields()) return; // 7. Validation
 
-if(currentType=="batch"){
+    if(currentType=="url" && qrDataString &&!qrDataString.startsWith("http")){
+        qrDataString="https://"+qrDataString;
+    }
 
-if(batchData.length===0){
+    if(currentType=="batch"){
+        if(batchData.length===0){alert("Please upload CSV file first.");return;}
+        document.getElementById("qrPreview").innerHTML="";
+        const size=parseInt(document.getElementById("qrSize").value);
+        let completed=0;
+        batchData.forEach((item)=>{
+            const box=document.createElement("div");
+            box.style.marginBottom="30px";box.style.textAlign="center";
+            const title=document.createElement("p");title.innerHTML="<b>"+item.name+"</b>";
+            const canvas=document.createElement("canvas");
+            box.appendChild(title);box.appendChild(canvas);
+            document.getElementById("qrPreview").appendChild(box);
 
-alert("Please upload CSV file first.");
+            let url=item.url.trim(); if(!url.startsWith("http")){ url="https://"+url; } // 1. Batch URL Validation
 
-return;
+            QRCode.toCanvas(canvas,url,{width:size,margin:2,errorCorrectionLevel:"H",color:{dark:document.getElementById("qrColor").value,light:document.getElementById("bgColor").value}}, function(err){
+                if(err) return;
+                batchCanvases.push({canvas:canvas,name:item.name}); // 10. Store for ZIP
+                if(logoImg){
+                    const ctx=canvas.getContext("2d");
+                    const img=new Image();
+                    img.onload=function(){
+                        const logoSize = Math.min(size * 0.22, 70);
+                        ctx.imageSmoothingEnabled = true;
+                        ctx.imageSmoothingQuality = "high";
+                        ctx.beginPath(); ctx.arc(size/2,size/2,logoSize/2+4,0,Math.PI*2); ctx.fillStyle="#fff"; ctx.fill(); ctx.closePath();
+                        ctx.drawImage(img,(size-logoSize)/2,(size-logoSize)/2,logoSize,logoSize);
+                    };
+                    img.src=logoImg;
+                }
+                completed++;
+                if(completed==batchData.length){
+                  document.querySelectorAll(".btn-secondary").forEach(btn=>{ btn.disabled = false; }); // 1. Enable after batch
+                  document.getElementById("zipBtn").style.display="grid";
+                }
+            });
+        });
+        return;
+    }
 
+    if(qrDataString.trim()==""){alert("Please enter data");return;}
+    const size=parseInt(document.getElementById("qrSize").value);
+    const canvas=document.createElement("canvas");
+    QRCode.toCanvas(canvas,qrDataString,{width:size,margin:2,errorCorrectionLevel:"H",color:{dark:document.getElementById("qrColor").value,light:document.getElementById("bgColor").value}},function(err){
+        if(err){console.error(err);alert("QR Generate Failed");return;}
+        proQR=canvas;
+        const preview=document.getElementById("qrPreview");
+        preview.innerHTML="";preview.appendChild(canvas);
+        document.querySelectorAll(".btn-secondary").forEach(btn=>{ btn.disabled=false; }); // Enable
+
+        if(logoImg){
+            const ctx=canvas.getContext("2d");
+            const img=new Image();
+            img.onload=function(){
+                const logoSize = Math.min(size * 0.22, 70);
+                ctx.imageSmoothingEnabled = true;
+                ctx.imageSmoothingQuality = "high";
+                ctx.beginPath(); ctx.arc(size/2,size/2,logoSize/2+4,0,Math.PI*2); ctx.fillStyle="#fff"; ctx.fill(); ctx.closePath();
+                ctx.drawImage(img,(size-logoSize)/2,(size-logoSize)/2,logoSize,logoSize);
+            };
+            img.src=logoImg;
+        }
+    });
 }
 
-document.getElementById("qrPreview").innerHTML="";
-
-batchData.forEach((item,index)=>{
-
-const box=document.createElement("div");
-
-box.style.marginBottom="30px";
-box.style.textAlign="center";
-
-const title=document.createElement("p");
-title.innerHTML="<b>"+item.name+"</b>";
-
-const canvas=document.createElement("canvas");
-
-box.appendChild(title);
-box.appendChild(canvas);
-
-document.getElementById("qrPreview").appendChild(box);
-
-QRCode.toCanvas(canvas,item.url,{
-
-width:parseInt(document.getElementById("qrSize").value),
-
-margin:2,
-
-color:{
-dark:document.getElementById("qrColor").value,
-light:document.getElementById("bgColor").value
-}
-
-});
-
-});
-
-return;
-
-  }
-if(currentType!="batch" && qrDataString.trim()==""){
-alert("Please enter data");
-return;
-}
-
-const preview=document.getElementById("qrPreview");
-preview.innerHTML="";
-
-const size=parseInt(document.getElementById("qrSize").value);
-
-QRCode.toCanvas(qrDataString,{
-
-width:size,
-
-margin:2,
-
-color:{
-dark:document.getElementById("qrColor").value,
-light:document.getElementById("bgColor").value
-}
-
-},function(err,canvas){
-
-if(err){
-console.error(err);
-alert("QR Generate Failed");
-return;
-}
-
-proQR=canvas;
-
-preview.appendChild(canvas);
-
-// Logo
-if(logoImg){
-
-const ctx=canvas.getContext("2d");
-
-const img=new Image();
-
-img.onload=function(){
-
-const logoSize=size/5;
-
-ctx.fillStyle="#fff";
-
-ctx.fillRect(
-
-(size-logoSize)/2,
-
-(size-logoSize)/2,
-
-logoSize,
-
-logoSize
-
-);
-
-ctx.drawImage(
-
-img,
-
-(size-logoSize)/2,
-
-(size-logoSize)/2,
-
-logoSize,
-
-logoSize
-
-);
-
-};
-
-img.src=logoImg;
-
-}
-
-});
-
-}
-// ==========================
-// Download PNG
-// ==========================
+// 4. PNG Quality + 9. Dynamic Filename
 function downloadProPNG(){
-
-if(!proQR){
-alert("Generate QR First");
-return;
-}
-
+if(!proQR){alert("Generate QR First");return;}
+proQR.toBlob(function(blob){
 const link=document.createElement("a");
-link.download="pro-qr.png";
-link.href=proQR.toDataURL("image/png",1.0);
+link.download=currentType+"-qr.png";
+link.href=URL.createObjectURL(blob);
 link.click();
-
+},"image/png",1);
 }
 
-// ==========================
-// Download SVG
-// ==========================
+// 2. SVG with Logo
 function downloadSVG(){
-
-if(!qrDataString){
-alert("Generate QR First");
-return;
+if(!qrDataString){alert("Generate QR First");return;}
+QRCode.toString(qrDataString,{type:"svg",margin:2,color:{dark:document.getElementById("qrColor").value,light:document.getElementById("bgColor").value}},function(err,svg){
+if(err){alert("SVG Error");return;}
+let finalSVG=svg;
+if(logoImg){
+  const size=parseInt(document.getElementById("qrSize").value);
+  const logoSize=Math.min(size * 0.22, 70);
+  const logoX=(size-logoSize)/2; const logoY=(size-logoSize)/2;
+  const logoTag=`<rect x="${logoX-4}" y="${logoY-4}" width="${logoSize+8}" height="${logoSize+8}" fill="#fff" rx="8"/><image x="${logoX}" y="${logoY}" width="${logoSize}" height="${logoSize}" href="${logoImg}"/>`;
+  finalSVG=svg.replace('</svg>', logoTag+'</svg>');
 }
-
-QRCode.toString(qrDataString,{
-
-type:"svg",
-margin:2,
-color:{
-dark:document.getElementById("qrColor").value,
-light:document.getElementById("bgColor").value
-}
-
-},function(err,svg){
-
-if(err){
-alert("SVG Error");
-return;
-}
-
-const blob=new Blob([svg],{type:"image/svg+xml"});
+const blob=new Blob([finalSVG],{type:"image/svg+xml"});
 const url=URL.createObjectURL(blob);
-
 const a=document.createElement("a");
-a.href=url;
-a.download="pro-qr.svg";
-a.click();
-
+a.href=url;a.download=currentType+"-qr.svg";a.click();
 URL.revokeObjectURL(url);
-
 });
-
 }
 
-// ==========================
-// Download PDF
-// ==========================
+// 3. Beautiful PDF
 function downloadPDF(){
-
-if(!proQR){
-alert("Generate QR First");
-return;
-}
-
+if(!proQR){alert("Generate QR First");return;}
 const {jsPDF}=window.jspdf;
-
 const pdf=new jsPDF();
-
-pdf.setFontSize(18);
-pdf.text("Pro QR Code",105,20,{align:"center"});
-
-pdf.addImage(
-proQR.toDataURL("image/png"),
-"PNG",
-40,
-35,
-130,
-130
-);
-
-pdf.save("pro-qr.pdf");
-
+pdf.setFillColor(34,197,94); pdf.rect(0,0,210,20,"F");
+pdf.setTextColor(255,255,255); pdf.setFontSize(20);
+pdf.text("My Tools Pro QR Code",105,13,{align:"center"});
+pdf.addImage(proQR.toDataURL("image/png"),"PNG",40,35,130,130);
+pdf.save(currentType+"-qr.pdf");
 }
 
-// ==========================
-// Copy QR
-// ==========================
 async function copyQR(){
-
-if(!proQR){
-alert("Generate QR First");
-return;
-}
-
+if(!proQR){alert("Generate QR First");return;}
 proQR.toBlob(async function(blob){
-
-try{
-
-await navigator.clipboard.write([
-new ClipboardItem({
-"image/png":blob
-})
-]);
-
-alert("QR Copied Successfully");
-
-}catch(e){
-
-alert("Copy Not Supported In This Browser");
-
+try{await navigator.clipboard.write([new ClipboardItem({"image/png":blob})]);alert("QR Copied Successfully");}catch(e){alert("Copy Not Supported In This Browser");}});
 }
 
-});
-
-      }
+// 10. Batch ZIP Download
+async function downloadBatchZIP(){
+  if(batchCanvases.length==0){alert("Generate Batch First");return;}
+  const zip=new JSZip();
+  for(let i=0;i<batchCanvases.length;i++){
+    const item=batchCanvases[i];
+    const dataUrl=item.canvas.toDataURL("image/png");
+    zip.file(item.name+".png", dataUrl.split(",")[1], {base64: true});
+  }
+  const content=await zip.generateAsync({type:"blob"});
+  const link=document.createElement("a");
+  link.href=URL.createObjectURL(content);
+  link.download="batch-qr.zip";
+  link.click();
+}
 </script>
 </body>
-        </html>
+          </html>
