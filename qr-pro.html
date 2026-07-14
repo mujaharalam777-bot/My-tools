@@ -119,15 +119,17 @@ body{background:linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg3));color:v
 
 <script>
 /* Global Variables */
+/* Global Variables */
+
 let currentType = "text";
 
-let qrCode = null;
+let proQR = null;
 
 let qrCanvas = null;
 
 let logoImage = null;
 
-let batchQRList = [];
+let batchCanvases = [];
 
 const qrContainer = document.getElementById("qrPreview");
 
@@ -201,6 +203,8 @@ window.onload = function () {
 
 };
 
+    
+
 function updateInput(){
 
     const box = document.getElementById("dynamicInput");
@@ -210,7 +214,6 @@ function updateInput(){
     switch(currentType){
 
         case "text":
-
             html = `
             <div class="input-group">
                 <label>Write Your Text</label>
@@ -219,7 +222,6 @@ function updateInput(){
         break;
 
         case "url":
-
             html = `
             <div class="input-group">
                 <label>Website URL</label>
@@ -228,22 +230,19 @@ function updateInput(){
         break;
 
         case "phone":
-
             html = `
             <div class="input-group">
                 <label>Phone Number</label>
-                <input id="mainInput" placeholder="+91xxxxxxxxxx">
+                <input id="mainInput" placeholder="+91XXXXXXXXXX">
             </div>`;
         break;
 
         case "email":
-
             html = `
             <div class="input-group">
                 <label>Email</label>
                 <input id="emailTo" type="email">
             </div>
-
             <div class="input-group">
                 <label>Subject</label>
                 <input id="emailSub">
@@ -251,13 +250,11 @@ function updateInput(){
         break;
 
         case "sms":
-
             html = `
             <div class="input-group">
-                <label>Phone</label>
+                <label>Phone Number</label>
                 <input id="smsNum">
             </div>
-
             <div class="input-group">
                 <label>Message</label>
                 <textarea id="smsMsg"></textarea>
@@ -265,13 +262,11 @@ function updateInput(){
         break;
 
         case "whatsapp":
-
             html = `
             <div class="input-group">
                 <label>WhatsApp Number</label>
                 <input id="waNum">
             </div>
-
             <div class="input-group">
                 <label>Message</label>
                 <textarea id="waMsg"></textarea>
@@ -279,13 +274,11 @@ function updateInput(){
         break;
 
         case "wifi":
-
             html = `
             <div class="input-group">
                 <label>WiFi Name</label>
                 <input id="wifiSSID">
             </div>
-
             <div class="input-group">
                 <label>Password</label>
                 <input id="wifiPass">
@@ -293,13 +286,11 @@ function updateInput(){
         break;
 
         case "upi":
-
             html = `
             <div class="input-group">
                 <label>UPI ID</label>
                 <input id="upiID">
             </div>
-
             <div class="input-group">
                 <label>Amount</label>
                 <input id="upiAmt" type="number">
@@ -307,13 +298,11 @@ function updateInput(){
         break;
 
         case "contact":
-
             html = `
             <div class="input-group">
-                <label>Name</label>
+                <label>Full Name</label>
                 <input id="cName">
             </div>
-
             <div class="input-group">
                 <label>Phone</label>
                 <input id="cPhone">
@@ -321,7 +310,6 @@ function updateInput(){
         break;
 
         case "maps":
-
             html = `
             <div class="input-group">
                 <label>Location</label>
@@ -329,20 +317,117 @@ function updateInput(){
             </div>`;
         break;
 
-        default:
+        case "event":
+            html = `
+            <div class="input-group">
+                <label>Event Name</label>
+                <input id="eventName">
+            </div>
+            <div class="input-group">
+                <label>Date</label>
+                <input id="eventDate" type="date">
+            </div>`;
+        break;
 
+        case "youtube":
+            html = `
+            <div class="input-group">
+                <label>YouTube URL</label>
+                <input id="mainInput">
+            </div>`;
+        break;
+
+        case "twitter":
+            html = `
+            <div class="input-group">
+                <label>Twitter Username</label>
+                <input id="mainInput" placeholder="@username">
+            </div>`;
+        break;
+
+        case "instagram":
+            html = `
+            <div class="input-group">
+                <label>Instagram Username</label>
+                <input id="mainInput" placeholder="@username">
+            </div>`;
+        break;
+
+        case "facebook":
+            html = `
+            <div class="input-group">
+                <label>Facebook URL</label>
+                <input id="mainInput">
+            </div>`;
+        break;
+
+        case "linkedin":
+            html = `
+            <div class="input-group">
+                <label>LinkedIn URL</label>
+                <input id="mainInput">
+            </div>`;
+        break;
+
+        case "paypal":
+            html = `
+            <div class="input-group">
+                <label>PayPal Link</label>
+                <input id="mainInput">
+            </div>`;
+        break;
+
+        case "bitcoin":
+            html = `
+            <div class="input-group">
+                <label>Bitcoin Wallet</label>
+                <input id="mainInput">
+            </div>`;
+        break;
+
+        case "facetime":
+            html = `
+            <div class="input-group">
+                <label>FaceTime Email/Number</label>
+                <input id="mainInput">
+            </div>`;
+        break;
+
+        case "zoom":
+            html = `
+            <div class="input-group">
+                <label>Zoom Meeting Link</label>
+                <input id="mainInput">
+            </div>`;
+        break;
+
+        case "vcard":
+            html = `
+            <div class="input-group">
+                <label>Full Name</label>
+                <input id="vName">
+            </div>
+            <div class="input-group">
+                <label>Phone</label>
+                <input id="vPhone">
+            </div>
+            <div class="input-group">
+                <label>Email</label>
+                <input id="vEmail">
+            </div>`;
+        break;
+
+        default:
             html = `
             <div class="input-group">
                 <label>Data</label>
                 <input id="mainInput">
             </div>`;
-
     }
 
     box.innerHTML = html;
 
-                }
-
+}
 function getQRData(){
 
     try{
@@ -363,9 +448,7 @@ function getQRData(){
                 return "mailto:" +
                 document.getElementById("emailTo").value.trim() +
                 "?subject=" +
-                encodeURIComponent(
-                    document.getElementById("emailSub").value.trim()
-                );
+                encodeURIComponent(document.getElementById("emailSub").value.trim());
 
             case "sms":
                 return "SMSTO:" +
@@ -377,9 +460,7 @@ function getQRData(){
                 return "https://wa.me/" +
                 document.getElementById("waNum").value.trim() +
                 "?text=" +
-                encodeURIComponent(
-                    document.getElementById("waMsg").value.trim()
-                );
+                encodeURIComponent(document.getElementById("waMsg").value.trim());
 
             case "wifi":
                 return "WIFI:T:WPA;S:" +
@@ -396,109 +477,257 @@ function getQRData(){
 
             case "contact":
                 return "BEGIN:VCARD\n" +
-                       "FN:" +
-                       document.getElementById("cName").value.trim() +
-                       "\nTEL:" +
-                       document.getElementById("cPhone").value.trim() +
-                       "\nEND:VCARD";
+                "FN:" + document.getElementById("cName").value.trim() +
+                "\nTEL:" + document.getElementById("cPhone").value.trim() +
+                "\nEND:VCARD";
 
             case "maps":
                 return "https://maps.google.com/?q=" +
-                encodeURIComponent(
-                    document.getElementById("mapLoc").value.trim()
-                );
+                encodeURIComponent(document.getElementById("mapLoc").value.trim());
+
+            case "event":
+                return "BEGIN:VEVENT\n" +
+                "SUMMARY:" + document.getElementById("eventName").value.trim() +
+                "\nDTSTART:" + document.getElementById("eventDate").value +
+                "\nEND:VEVENT";
+
+            case "youtube":
+            case "facebook":
+            case "linkedin":
+            case "paypal":
+            case "bitcoin":
+            case "zoom":
+                return document.getElementById("mainInput").value.trim();
+
+            case "twitter":
+                return "https://twitter.com/" +
+                document.getElementById("mainInput").value.replace("@","").trim();
+
+            case "instagram":
+                return "https://instagram.com/" +
+                document.getElementById("mainInput").value.replace("@","").trim();
+
+            case "facetime":
+                return "facetime:" +
+                document.getElementById("mainInput").value.trim();
+
+            case "vcard":
+                return "BEGIN:VCARD\n" +
+                "FN:" + document.getElementById("vName").value.trim() +
+                "\nTEL:" + document.getElementById("vPhone").value.trim() +
+                "\nEMAIL:" + document.getElementById("vEmail").value.trim() +
+                "\nEND:VCARD";
 
             default:
-                return document.getElementById("mainInput")?.value.trim() || "";
+                return "";
 
         }
 
-    }catch(error){
+    }catch(err){
 
-        console.log(error);
+        console.error(err);
 
         return "";
 
     }
 
-                    }
-
+}
 function generateQR(){
 
     const data = getQRData();
 
-    if(data===""){
+    if(!data || data.trim() === ""){
         alert("Please enter your data.");
         return;
     }
 
-    const size = parseInt(document.getElementById("qrSize").value);
+    const size = Number(document.getElementById("qrSize").value);
 
     qrContainer.innerHTML = "";
 
-    QRCode.toCanvas(data,{
-        width:size,
-        margin:2,
-        errorCorrectionLevel:"H",
-        color:{
-            dark:document.getElementById("qrColor").value,
-            light:document.getElementById("bgColor").value
+    QRCode.toCanvas(
+        data,
+        {
+            width: size,
+            margin: 2,
+            errorCorrectionLevel: "H",
+            color: {
+                dark: document.getElementById("qrColor").value,
+                light: document.getElementById("bgColor").value
+            }
+        },
+
+        function(error, canvas){
+
+            if(error){
+                console.error(error);
+                alert("QR Generation Failed!");
+                return;
+            }
+
+            qrCanvas = canvas;
+            proQR = canvas;
+
+            if(logoImage && logoImage.complete){
+
+                const ctx = canvas.getContext("2d");
+
+                const logoSize = size * 0.20;
+
+                const x = (size - logoSize) / 2;
+                const y = (size - logoSize) / 2;
+
+                ctx.fillStyle = "#ffffff";
+                ctx.fillRect(x - 4, y - 4, logoSize + 8, logoSize + 8);
+
+                ctx.drawImage(
+                    logoImage,
+                    x,
+                    y,
+                    logoSize,
+                    logoSize
+                );
+
+            }
+
+            qrContainer.innerHTML = "";
+            qrContainer.appendChild(canvas);
+
+            document.querySelectorAll(".action-btn").forEach(btn=>{
+                btn.disabled = false;
+            });
+
+            saveHistory(data);
+
         }
 
-    },function(error,canvas){
+    );
 
-        if(error){
-            console.error(error);
-            alert("QR Generate Failed");
-            return;
+}
+/* =========================
+   DOWNLOAD PNG
+========================= */
+
+function downloadPNG(){
+
+    if(!proQR){
+        alert("Generate QR First");
+        return;
+    }
+
+    const link=document.createElement("a");
+    link.download="Ultimate_QR.png";
+    link.href=proQR.toDataURL("image/png");
+    link.click();
+
+}
+
+
+/* =========================
+   DOWNLOAD SVG
+========================= */
+
+function downloadSVG(){
+
+    if(!proQR){
+        alert("Generate QR First");
+        return;
+    }
+
+    const svg=`
+<svg xmlns="http://www.w3.org/2000/svg"
+width="${proQR.width}"
+height="${proQR.height}">
+<image
+href="${proQR.toDataURL("image/png")}"
+width="100%"
+height="100%"/>
+</svg>`;
+
+    const blob=new Blob(
+        [svg],
+        {type:"image/svg+xml"}
+    );
+
+    const url=URL.createObjectURL(blob);
+
+    const link=document.createElement("a");
+    link.href=url;
+    link.download="Ultimate_QR.svg";
+    link.click();
+
+    setTimeout(()=>{
+        URL.revokeObjectURL(url);
+    },500);
+
+}
+
+
+/* =========================
+   COPY QR
+========================= */
+
+async function copyQR(){
+
+    if(!proQR){
+        alert("Generate QR First");
+        return;
+    }
+
+    proQR.toBlob(async(blob)=>{
+
+        try{
+
+            await navigator.clipboard.write([
+                new ClipboardItem({
+                    [blob.type]:blob
+                })
+            ]);
+
+            alert("QR Copied Successfully");
+
+        }catch(e){
+
+            alert("Clipboard Copy Not Supported");
+
         }
-
-        qrCanvas = canvas;
-        proQR = canvas;
-
-        if(logoImage && logoImage.complete){
-
-            const ctx = canvas.getContext("2d");
-
-            const logoSize = size*0.20;
-
-            ctx.fillStyle="#ffffff";
-            ctx.fillRect(
-                (size-logoSize)/2,
-                (size-logoSize)/2,
-                logoSize,
-                logoSize
-            );
-
-            ctx.drawImage(
-                logoImage,
-                (size-logoSize)/2,
-                (size-logoSize)/2,
-                logoSize,
-                logoSize
-            );
-
-        }
-
-        qrContainer.appendChild(canvas);
-
-        document.querySelectorAll(".action-btn").forEach(btn=>{
-            btn.disabled=false;
-        });
-
-        saveHistory(data);
 
     });
 
-        }
-function downloadPNG(){const a=document.createElement("a");a.download="QRCode.png";a.href=proQR.toDataURL("image/png");a.click();}
-function downloadSVG(){const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300"><image href="${proQR.toDataURL()}"/></svg>`;const a=document.createElement("a");a.download="QR.svg";a.href="data:image/svg+xml;base64,"+btoa(svg);a.click();}
-function copyQR(){proQR.toBlob(b=>{navigator.clipboard.write([new ClipboardItem({[b.type]:b})]);alert("QR Copied to Clipboard!")});}
-function downloadPDF(){const {jsPDF}=window.jspdf;const pdf=new jsPDF();pdf.addImage(proQR.toDataURL("image/png"),'PNG',15,40,180,180);pdf.text("Ultimate QR Pro",15,20);pdf.save("QRCode.pdf");}
-function batchGenerate(){const file=document.getElementById("csvInput").files[0];if(!file){alert("Please upload CSV file");return;}Papa.parse(file,{complete:function(res){batchCanvases=[];res.data.forEach((row,i)=>{if(row[0]){const c=document.createElement("canvas");QRCode.toCanvas(c,row[0],{width:300});batchCanvases.push(c);}});alert(batchCanvases.length+" QR Generated Successfully");}});}
-function downloadZIP(){if(batchCanvases.length==0){alert("Generate Batch QR first");return;}const zip=new JSZip();batchCanvases.forEach((c,i)=>{zip.file(`QR_${i+1}.png`,c.toDataURL("image/png").split(",")[1],{base64:true});});zip.generateAsync({type:"blob"}).then(c=>{const a=document.createElement("a");a.href=URL.createObjectURL(c);a.download="Batch_QR.zip";a.click();});}
-function saveHistory(data){let h=JSON.parse(localStorage.getItem("qrH")||"[]");h.unshift({type:currentType,data:data,time:new Date().toLocaleString()});h=h.slice(0,10);localStorage.setItem("qrH",JSON.stringify(h));loadHistory();}
-function loadHistory(){let h=JSON.parse(localStorage.getItem("qrH")||"[]");document.getElementById("historyList").innerHTML=h.length?h.map(x=>`<div class="history-item" onclick="alert('${x.data}')">${x.type.toUpperCase()}: ${x.data.substring(0,25)}</div>`).join(""):"No History Yet";}
+}
+
+
+/* =========================
+   DOWNLOAD PDF
+========================= */
+
+function downloadPDF(){
+
+    if(!proQR){
+        alert("Generate QR First");
+        return;
+    }
+
+    const {jsPDF}=window.jspdf;
+
+    const pdf=new jsPDF();
+
+    pdf.setFontSize(18);
+
+    pdf.text("Ultimate QR Pro",20,20);
+
+    pdf.addImage(
+        proQR.toDataURL("image/png"),
+        "PNG",
+        20,
+        35,
+        170,
+        170
+    );
+
+    pdf.save("Ultimate_QR.pdf");
+
+    }
 </script>
 </body>
                                                                 </html>
