@@ -2413,6 +2413,140 @@ size
 
 proQR=canvas;
 
+async function generateProQR(){
+
+const btn=document.getElementById("genBtn");
+
+btn.disabled=true;
+
+
+batchCanvases=[];
+
+document.getElementById("zipBtn").style.display="none";
+document.getElementById("pdfBatchBtn").style.display="none";
+
+
+qrDataString=getQRData();
+
+
+if(!validateFields()){
+
+document.getElementById("qrPreview").innerHTML=
+"<p style='opacity:0.5'>Your Pro QR will appear here</p>";
+
+btn.disabled=false;
+
+return;
+
+}
+
+
+
+if(currentType==="url"){
+
+try{
+
+new URL(
+qrDataString.startsWith("http")
+?
+qrDataString
+:
+"https://"+qrDataString
+);
+
+
+}catch{
+
+alert("Please enter a valid website URL");
+
+btn.disabled=false;
+
+return;
+
+}
+
+}
+
+
+
+if(qrDataString.trim()==""){
+
+alert("Please enter data");
+
+document.getElementById("qrPreview").innerHTML=
+"<p style='opacity:0.5'>Your Pro QR will appear here</p>";
+
+btn.disabled=false;
+
+return;
+
+}
+
+
+
+let size=parseInt(
+document.getElementById("qrSize").value
+);
+
+
+
+const canvas=document.createElement("canvas");
+
+
+
+QRCode.toCanvas(
+
+canvas,
+
+qrDataString,
+
+{
+
+width:size,
+
+margin:2,
+
+errorCorrectionLevel:"H",
+
+color:{
+
+dark:document.getElementById("qrColor").value,
+
+light:document.getElementById("bgColor").value
+
+}
+
+},
+
+async function(err){
+
+
+if(err){
+
+alert("QR Generate Failed");
+
+btn.disabled=false;
+
+return;
+
+}
+
+
+
+if(logoImg){
+
+await drawLogoOnCanvas(
+canvas,
+logoImg,
+size
+);
+
+}
+
+
+
+proQR=canvas;
+
 
 const preview=
 document.getElementById("qrPreview");
@@ -2426,16 +2560,15 @@ preview.appendChild(canvas);
 
 
 document.querySelectorAll(".btn-secondary")
-.forEach(btn=>{
+.forEach(button=>{
 
-btn.disabled=false;
+button.disabled=false;
 
 });
 
 
-btn.disabled=false;
 
-btn.innerText="Generate Pro QR";
+btn.disabled=false;
 
 
 saveHistory(qrDataString);
@@ -2447,7 +2580,6 @@ saveHistory(qrDataString);
 
 
 }
-
 
 
 function getDateStr(){
