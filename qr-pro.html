@@ -206,4 +206,4 @@ function saveHistory(data){let h=JSON.parse(localStorage.getItem("qrH")||"[]");h
 function loadHistory(){let h=JSON.parse(localStorage.getItem("qrH")||"[]");document.getElementById("historyList").innerHTML=h.length?h.map(x=>`<div class="history-item" onclick="alert('${x.data}')">${x.type.toUpperCase()}: ${x.data.substring(0,25)}</div>`).join(""):"No History Yet";}
 </script>
 </body>
-          </html>
+</html>
