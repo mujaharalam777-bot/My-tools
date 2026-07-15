@@ -20,20 +20,20 @@
     <style>
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background: radial-gradient(circle at 50% 0%, #0b0f19 0%, #030712 100%);
+            background: radial-gradient(circle at 50% 0%, #080c14 0%, #020408 100%);
             color: #f3f4f6;
             -webkit-tap-highlight-color: transparent;
         }
         .glass-panel {
-            background: rgba(17, 24, 39, 0.45);
+            background: rgba(13, 20, 35, 0.6);
             backdrop-filter: blur(24px);
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
         }
         .active-neon-btn {
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
-            border-color: rgba(52, 211, 153, 0.4);
+            background: linear-gradient(135deg, #ff4500 0%, #ff0080 100%);
+            box-shadow: 0 0 20px rgba(255, 69, 0, 0.4);
+            border-color: rgba(255, 69, 0, 0.4);
             color: #ffffff !important;
         }
         .fire-glow {
@@ -59,7 +59,7 @@
 <body class="min-h-screen pb-24 overflow-x-hidden custom-scrollbar">
 
     <!-- Top Neon Ambient Glow Header -->
-    <header class="sticky top-0 z-50 w-full max-w-lg mx-auto backdrop-blur-xl bg-gray-950/70 border-b border-gray-900/60 p-5 flex justify-between items-center px-6">
+    <header class="sticky top-0 z-50 w-full max-w-lg mx-auto backdrop-blur-xl bg-gray-950/80 border-b border-gray-900/60 p-5 flex justify-between items-center px-6">
         <div>
             <div class="flex items-center gap-2">
                 <span class="h-2 w-2 rounded-full bg-orange-500 animate-ping"></span>
@@ -73,7 +73,7 @@
             <button onclick="toggleScanner()" class="p-2.5 rounded-xl bg-gray-900 border border-gray-800 text-gray-300 hover:text-orange-400 transition-colors">
                 <i class="fa-solid fa-camera text-sm"></i>
             </button>
-            <div class="px-3 py-1.5 text-[10px] mono-font rounded-full bg-orange-500/10 border border-orange-500/30 text-orange-400 flex items-center">
+            <div class="px-3 py-1.5 text-[10px] mono-font rounded-full bg-orange-500/10 border border-orange-500/30 text-orange-400 flex items-center font-bold">
                 PRO ACTIVE
             </div>
         </div>
@@ -100,7 +100,7 @@
                 <span class="text-[10px] text-orange-400 lowercase mono-font bg-orange-500/5 px-2 py-0.5 rounded-md border border-orange-500/10">21 Types Locked</span>
             </h2>
             <div class="grid grid-cols-3 gap-2 max-h-[195px] overflow-y-auto custom-scrollbar pr-1" id="protocolMatrixGrid">
-                <!-- Javascript will inject 21 premium node options seamlessly here -->
+                <!-- Javascript dynamically updates items -->
             </div>
         </section>
 
@@ -110,17 +110,15 @@
                 <i class="fa-solid fa-bolt text-orange-500"></i> 2. Dynamic Payload Ingestion Stream
             </h2>
             <div id="dynamicInputContainer" class="space-y-4">
-                <!-- Fields are updated gracefully based on active array selection -->
                 <div>
-                    <label id="inputLabelText" class="text-[11px] text-gray-400 mb-1.5 block font-medium">Global Input Payload String</label>
-                    <textarea id="mainPayloadData" class="w-full bg-gray-950/80 border border-gray-800/80 rounded-2xl p-3.5 text-sm focus:outline-none focus:border-orange-500/60 text-gray-200 transition-all min-h-[70px] resize-none" placeholder="Enter payload string..."></textarea>
+                    <label id="inputLabelText" class="text-[11px] text-gray-400 mb-1.5 block font-medium">Text Data String</label>
+                    <textarea id="mainPayloadData" class="w-full bg-gray-950/80 border border-gray-800/80 rounded-2xl p-3.5 text-sm focus:outline-none focus:border-orange-500/60 text-gray-200 transition-all min-h-[70px] resize-none" placeholder="Enter payload string...">hiii</textarea>
                 </div>
             </div>
             
-            <!-- Character Tracker & Live Counter -->
             <div class="flex justify-between items-center text-[10px] mono-font text-gray-500 px-1">
-                <span>Payload Validation Status: <span class="text-emerald-500">OK</span></span>
-                <span id="charCount">0 Chars</span>
+                <span>Payload Validation Status: <span class="text-emerald-500 font-bold">OK</span></span>
+                <span id="charCount">4 Chars</span>
             </div>
         </section>
 
@@ -136,15 +134,15 @@
                 <div>
                     <label class="text-[10px] text-gray-400 mb-1.5 block uppercase tracking-wide">Matrix QR Node Color</label>
                     <div class="flex items-center gap-2 bg-gray-950 p-2.5 rounded-xl border border-gray-800">
-                        <input type="color" id="qrColorInput" value="#000000" class="w-8 h-8 rounded-lg border-0 cursor-pointer bg-transparent">
-                        <span id="qrHexText" class="text-xs mono-font text-gray-300">#000000</span>
+                        <input type="color" id="qrColorInput" value="#ff0000" class="w-8 h-8 rounded-lg border-0 cursor-pointer bg-transparent">
+                        <span id="qrHexText" class="text-xs mono-font text-gray-300">#FF0000</span>
                     </div>
                 </div>
                 <div>
                     <label class="text-[10px] text-gray-400 mb-1.5 block uppercase tracking-wide">Canvas Background Color</label>
                     <div class="flex items-center gap-2 bg-gray-950 p-2.5 rounded-xl border border-gray-800">
                         <input type="color" id="bgColorInput" value="#ffffff" class="w-8 h-8 rounded-lg border-0 cursor-pointer bg-transparent">
-                        <span id="bgHexText" class="text-xs mono-font text-gray-300">#ffffff</span>
+                        <span id="bgHexText" class="text-xs mono-font text-gray-300">#FFFFFF</span>
                     </div>
                 </div>
             </div>
@@ -175,13 +173,12 @@
             </div>
         </section>
 
-        <!-- SECTION 4: MASS SCALE MASSIVE BATCH ASYNCHRONOUS ENGINE PRO -->
+        <!-- SECTION 4: MASS SCALE BATCH ASYNCHRONOUS ENGINE -->
         <section class="glass-panel rounded-3xl p-5 space-y-4 border border-dashed border-orange-500/20">
             <h2 class="text-xs font-bold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-300 uppercase flex items-center gap-2">
                 <i class="fa-solid fa-fire text-orange-500"></i> 4. Hyper Asynchronous Massive Batch Engine Core
             </h2>
             
-            <!-- High Speed Industrial File Dropzone Area -->
             <div class="border border-dashed border-gray-800 hover:border-orange-500/40 rounded-2xl p-6 text-center transition-all relative bg-gray-950/40 group">
                 <input type="file" id="csvFileInput" accept=".csv" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
                 <div class="space-y-2 pointer-events-none">
@@ -191,7 +188,7 @@
                 </div>
             </div>
 
-            <!-- Realtime Adaptive Engine Progress Telemetry Grid -->
+            <!-- Engine Progress Telemetry Grid -->
             <div id="progressTelemetryContainer" class="hidden space-y-2 bg-gray-950 p-3.5 rounded-2xl border border-gray-900">
                 <div class="flex justify-between text-[10px] mono-font text-gray-400">
                     <span id="progressStateLabel">Processing Node Cluster Array...</span>
@@ -216,16 +213,16 @@
             
             <div id="captureContainer" class="bg-gray-950 rounded-2xl p-6 flex flex-col items-center justify-center min-h-[280px] border border-gray-900 relative overflow-hidden">
                 <div id="liveBannerDisplay" class="absolute top-4 text-[11px] mono-font uppercase tracking-widest text-orange-500/40 font-extrabold"></div>
-                <!-- Purely used as an isolated background execution stage for high-capacity batch generation -->
+                <!-- Purely used as an isolated background execution stage -->
                 <div id="isolatedStagingStage" class="hidden"></div>
-                <!-- Dynamic active canvas wrapper rendering engine target output live -->
+                <!-- Dynamic active canvas wrapper -->
                 <div id="liveOutputWrapper" class="bg-white p-3 rounded-2xl shadow-2xl transition-transform duration-300 inline-block"></div>
                 <canvas id="canvasRenderLayer" class="hidden"></canvas>
                 <p id="placeholderLabelText" class="text-xs text-gray-600 italic mt-3 mono-font">Awaiting stream configuration pipeline...</p>
             </div>
 
             <!-- Multi Export Distribution Array Panel -->
-            <div id="exportPanelContainer" class="hidden grid grid-cols-2 gap-2">
+            <div id="exportPanelContainer" class="grid grid-cols-2 gap-2">
                 <button onclick="exportSingleFormat('png')" class="p-2.5 bg-gray-900 border border-gray-800 rounded-xl text-xs font-semibold text-gray-300 hover:text-orange-400"><i class="fa-solid fa-file-image mr-1"></i> PNG Format</button>
                 <button onclick="exportSingleFormat('jpg')" class="p-2.5 bg-gray-900 border border-gray-800 rounded-xl text-xs font-semibold text-gray-300 hover:text-orange-400"><i class="fa-solid fa-file-lines mr-1"></i> JPG Format</button>
                 <button onclick="copyToClipboardAction()" class="p-2.5 bg-gray-900 border border-gray-800 rounded-xl text-xs font-semibold text-gray-300 hover:text-orange-400"><i class="fa-solid fa-copy mr-1"></i> Copy Node</button>
@@ -260,29 +257,28 @@
 
     <!-- CORE LOGIC AND FUNCTIONAL SYSTEM SCRIPTS -->
     <script>
-        // 21 QR Code Definition Configuration Matrix Map Array Object
         const qrTypesConfigurationData = [
             { id: 'text', name: 'Text QR', icon: 'fa-align-left', placeholder: 'Plain Text Message String Content...', label: 'Text Data String' },
             { id: 'url', name: 'URL QR', icon: 'fa-globe', placeholder: 'https://example.com', label: 'Network Link URL address' },
             { id: 'phone', name: 'Phone QR', icon: 'fa-phone', placeholder: '+8768863096', label: 'Hardware Terminal Dial Phone Number' },
             { id: 'email', name: 'Email QR', icon: 'fa-envelope', placeholder: 'target@domain.com', label: 'Destination Email Envelope Node Address' },
             { id: 'sms', name: 'SMS QR', icon: 'fa-comment-sms', placeholder: 'Type phone number here...', label: 'SMS Target Interface Node' },
-            { id: 'whatsapp', name: 'WhatsApp QR', icon: 'fa-brands fa-whatsapp', placeholder: 'Phone with country code (e.g. 919876543210)', label: 'WhatsApp Secure Handshake Node' },
+            { id: 'whatsapp', name: 'WhatsApp QR', icon: 'fa-brands fa-whatsapp', placeholder: '919876543210', label: 'WhatsApp Secure Handshake Node' },
             { id: 'wifi', name: 'WiFi QR', icon: 'fa-wifi', placeholder: 'WIFI_SSID', label: 'Access Point Broadcast System SSID' },
             { id: 'upi', name: 'UPI QR', icon: 'fa-credit-card', placeholder: 'merchant@upi', label: 'Unified Payments Interface Address VPA' },
-            { id: 'vcard', name: 'vCard QR', icon: 'fa-id-card', placeholder: 'Name, Company, Phone details...', label: 'Digital Contact Structural vCard' },
-            { id: 'location', name: 'Location QR', icon: 'fa-location-dot', placeholder: 'Latitude, Longitude or Address', label: 'Geographical Coordinates Point Node' },
-            { id: 'event', name: 'Event QR', icon: 'fa-calendar-day', placeholder: 'Event Name, Date, Location', label: 'Calendar Event Synchronization Node' },
-            { id: 'youtube', name: 'YouTube QR', icon: 'fa-brands fa-youtube', placeholder: 'https://youtube.com/c/channel', label: 'YouTube Video/Channel Stream URL' },
+            { id: 'vcard', name: 'vCard QR', icon: 'fa-id-card', placeholder: 'Name, Phone details...', label: 'Digital Contact Structural vCard' },
+            { id: 'location', name: 'Location QR', icon: 'fa-location-dot', placeholder: 'Latitude, Longitude', label: 'Geographical Coordinates Point Node' },
+            { id: 'event', name: 'Event QR', icon: 'fa-calendar-day', placeholder: 'Event Name, Date', label: 'Calendar Event Synchronization Node' },
+            { id: 'youtube', name: 'YouTube QR', icon: 'fa-brands fa-youtube', placeholder: 'https://youtube.com/...', label: 'YouTube Video Stream URL' },
             { id: 'instagram', name: 'Instagram QR', icon: 'fa-brands fa-instagram', placeholder: 'Username', label: 'Instagram Profile Endpoint Identity' },
-            { id: 'facebook', name: 'Facebook QR', icon: 'fa-brands fa-facebook', placeholder: 'Page/Profile URL', label: 'Facebook Destination Social Graph Node' },
+            { id: 'facebook', name: 'Facebook QR', icon: 'fa-brands fa-facebook', placeholder: 'Profile URL', label: 'Facebook Destination Social Graph Node' },
             { id: 'linkedin', name: 'LinkedIn QR', icon: 'fa-brands fa-linkedin', placeholder: 'Profile URL', label: 'LinkedIn Professional Graph Connection' },
             { id: 'twitter', name: 'Twitter QR', icon: 'fa-brands fa-x-twitter', placeholder: 'Username', label: 'Twitter Handle Network String' },
             { id: 'paypal', name: 'PayPal QR', icon: 'fa-brands fa-paypal', placeholder: 'PayPal Email/Me Link', label: 'PayPal Payment Gateway Interface Address' },
             { id: 'bitcoin', name: 'Bitcoin QR', icon: 'fa-bitcoin-sign', placeholder: 'WalletAddress', label: 'Bitcoin Decentralized Crypto Ledger Address' },
-            { id: 'zoom', name: 'Zoom QR', icon: 'fa-video', placeholder: 'Meeting ID and Password Link', label: 'Zoom Teleconferencing Session Gateway' },
-            { id: 'facetime', name: 'FaceTime QR', icon: 'fa-video-slash', placeholder: 'Apple ID or Mobile Phone Node', label: 'FaceTime Call Address Route' },
-            { id: 'vcardplus', name: 'vCard Plus', icon: 'fa-address-card', placeholder: 'Advanced details portfolio string mapping...', label: 'vCard Plus Rich Metadata Structure' }
+            { id: 'zoom', name: 'Zoom QR', icon: 'fa-video', placeholder: 'Meeting ID Link', label: 'Zoom Teleconferencing Session Gateway' },
+            { id: 'facetime', name: 'FaceTime QR', icon: 'fa-video-slash', placeholder: 'Apple ID/Mobile Number', label: 'FaceTime Call Address Route' },
+            { id: 'vcardplus', name: 'vCard Plus', icon: 'fa-address-card', placeholder: 'Advanced metadata details portfolio...', label: 'vCard Plus Rich Metadata Structure' }
         ];
 
         let activeSelectedProtocolId = 'text';
@@ -291,7 +287,6 @@
         let base64UploadedLogoCacheString = null;
         let localHtml5QrCodeScannerInstance = null;
 
-        // Document Reference Selectors Core Elements
         const terminalLoggerOutput = document.getElementById('terminalLoggerOutput');
         const mainPayloadData = document.getElementById('mainPayloadData');
         const charCount = document.getElementById('charCount');
@@ -310,20 +305,18 @@
         const downloadZipPackageBtn = document.getElementById('downloadZipPackageBtn');
         const historyRegistryBox = document.getElementById('historyRegistryBox');
 
-        // Dynamic System Terminal Activity Debugger Ingestion Logging Core
         function logToSystemTerminal(message, tailwindColorClass = 'text-orange-400/80') {
             terminalLoggerOutput.className = tailwindColorClass;
             terminalLoggerOutput.innerText = `[SYSTEM_LOG]: ${message}`;
             terminalLoggerOutput.scrollTop = terminalLoggerOutput.scrollHeight;
         }
 
-        // Initialize Application Core Setup Routines on Mount
         window.addEventListener('DOMContentLoaded', () => {
             renderProtocolMatrixInterfaceGrid();
             refreshCharacterCounterDisplay();
             loadEngineHistoricalLogsFromStorage();
+            triggerInstantLiveSingleCodeGeneration();
             
-            // Register Reactive Element Stream Triggers Listeners
             mainPayloadData.addEventListener('input', () => {
                 refreshCharacterCounterDisplay();
                 triggerInstantLiveSingleCodeGeneration();
@@ -345,7 +338,6 @@
             });
         });
 
-        // Loop inject grid array mapping structure layout dynamically
         function renderProtocolMatrixInterfaceGrid() {
             const grid = document.getElementById('protocolMatrixGrid');
             grid.innerHTML = "";
@@ -367,16 +359,15 @@
         }
 
         function switchActiveProtocolSchema(targetProtocolId) {
-            // Remove previous button design layout mapping state tracking flags
             document.getElementById(`proto_btn_${activeSelectedProtocolId}`)?.classList.remove('active-neon-btn');
             activeSelectedProtocolId = targetProtocolId;
             document.getElementById(`proto_btn_${activeSelectedProtocolId}`)?.classList.add('active-neon-btn');
 
-            const selectedConfigurationObject = qrTypesConfigurationData.find(x => x.id === targetProtocolId);
-            document.getElementById('inputLabelText').innerText = selectedConfigurationObject.label;
-            mainPayloadData.placeholder = selectedConfigurationObject.placeholder;
+            const selectedConfig = qrTypesConfigurationData.find(x => x.id === targetProtocolId);
+            document.getElementById('inputLabelText').innerText = selectedConfig.label;
+            mainPayloadData.placeholder = selectedConfig.placeholder;
             
-            logToSystemTerminal(`Protocol stack re-routed cleanly to schema node matrix type: [${selectedConfigurationObject.name.toUpperCase()}]`);
+            logToSystemTerminal(`Protocol schema adjusted: [${selectedConfig.name.toUpperCase()}]`);
             triggerInstantLiveSingleCodeGeneration();
         }
 
@@ -384,7 +375,6 @@
             charCount.innerText = `${mainPayloadData.value.length} Chars`;
         }
 
-        // Live Upload Image Identity Asset Node Handler Routine
         document.getElementById('logoUploadInput').addEventListener('change', function(e) {
             const file = e.target.files[0];
             if (!file) return;
@@ -392,12 +382,11 @@
             const reader = new FileReader();
             reader.onload = function(evt) {
                 base64UploadedLogoCacheString = evt.target.result;
-                document.getElementById('logoUploadLabelText').innerHTML = `<span class="text-emerald-400 font-bold"><i class="fa-solid fa-circle-check"></i> Logo Cached Matrix</span>`;
+                document.getElementById('logoUploadLabelText').innerHTML = `<span class="text-emerald-400 font-bold"><i class="fa-solid fa-circle-check"></i> Logo Loaded</span>`;
                 document.getElementById('clearLogoBtn').classList.remove('hidden');
-                logToSystemTerminal("Brand asset identity matrix loaded into volatile runtime application cache buffer storage.");
+                logToSystemTerminal("Brand asset loaded into runtime image workspace cache buffer.");
                 triggerInstantLiveSingleCodeGeneration();
             };
-            reader.readAsText(file); // Reads image content format arrays data references accurately
             reader.readAsDataURL(file);
         });
 
@@ -408,36 +397,35 @@
             document.getElementById('logoUploadInput').value = "";
             document.getElementById('logoUploadLabelText').innerHTML = `<i class="fa-solid fa-image text-gray-500"></i> Place custom SVG / PNG node asset...`;
             document.getElementById('clearLogoBtn').classList.add('hidden');
-            logToSystemTerminal("Brand asset logo sequence flushed out of application cache matrix stack pipeline.");
+            logToSystemTerminal("Identity logo cleared successfully.");
             triggerInstantLiveSingleCodeGeneration();
         }
 
         function resetCustomization() {
-            qrColorInput.value = "#000000";
+            qrColorInput.value = "#ff0000";
             bgColorInput.value = "#ffffff";
-            document.getElementById('qrHexText').innerText = "#000000";
-            document.getElementById('bgHexText').innerText = "#ffffff";
+            document.getElementById('qrHexText').innerText = "#FF0000";
+            document.getElementById('bgHexText').innerText = "#FFFFFF";
             sizeSlider.value = 400;
             sliderValueText.innerText = "400px";
             bannerLabelInput.value = "";
             liveBannerDisplay.innerText = "";
-            logToSystemTerminal("Canvas customization geometric parameter fields reset defaults cleanly.");
+            logToSystemTerminal("Custom parameters dropped to architectural system standard default lines.");
             triggerInstantLiveSingleCodeGeneration();
         }
 
-        // CSV Massive File Array Stack Fast Asynchronous Engine Data Ingestion Parser
         document.getElementById('csvFileInput').addEventListener('change', function(e) {
             const file = e.target.files[0];
             if (!file) return;
 
-            document.getElementById('uploadTextText').innerText = `Injecting Cluster Array Nodes Data Matrix...`;
+            document.getElementById('uploadTextText').innerText = `Injecting Data Clusters...`;
             const reader = new FileReader();
             reader.onload = function(evt) {
                 const text = evt.target.result;
                 ingestedCsvRowsData = text.split(/\r?\n/).map(row => row.trim()).filter(row => row.length > 0);
                 
                 document.getElementById('uploadTextText').innerHTML = `<span class="text-orange-400 font-bold"><i class="fa-solid fa-fire animate-pulse"></i> ${ingestedCsvRowsData.length} Array Rows Locked!</span>`;
-                logToSystemTerminal(`Successfully parsed master spreadsheet dataset stream node array. ${ingestedCsvRowsData.length} records active.`);
+                logToSystemTerminal(`Successfully parsed master dataset stream. Total loaded records: ${ingestedCsvRowsData.length}`);
                 
                 if (ingestedCsvRowsData.length > 0) {
                     mainPayloadData.value = ingestedCsvRowsData[0].split(',')[0];
@@ -448,21 +436,17 @@
             reader.readAsText(file);
         });
 
-        // Purely Single Node Canvas Draw Rendering Engine Action Factory Trigger Logic
         function triggerInstantLiveSingleCodeGeneration() {
             const payload = mainPayloadData.value.trim();
             if(!payload) {
                 liveOutputWrapper.innerHTML = "";
                 placeholderLabelText.style.display = "block";
-                document.getElementById('exportPanelContainer').classList.add('hidden');
                 return;
             }
 
             placeholderLabelText.style.display = "none";
             liveOutputWrapper.innerHTML = "";
-            document.getElementById('exportPanelContainer').classList.remove('hidden');
 
-            // Instantiates targeted dynamic matrix renderer canvas instances block 
             new QRCode(liveOutputWrapper, {
                 text: payload,
                 width: parseInt(sizeSlider.value),
@@ -472,7 +456,6 @@
                 correctLevel: QRCode.CorrectLevel.H
             });
             
-            // Small micro delay array execution block loop context to weave custom brand elements layer maps 
             setTimeout(() => {
                 const canvas = liveOutputWrapper.querySelector('canvas');
                 if (canvas && base64UploadedLogoCacheString) {
@@ -486,40 +469,35 @@
             const logoImageElement = new Image();
             logoImageElement.src = base64UploadedLogoCacheString;
             logoImageElement.onload = function() {
-                const logoSize = canvas.width * 0.20; // Exact calculation boundaries matching 20% limit framework
+                const logoSize = canvas.width * 0.20;
                 const xCoordinatePosition = (canvas.width - logoSize) / 2;
                 const yCoordinatePosition = (canvas.height - logoSize) / 2;
                 
-                // Draw rounded bounding white protective container box structures behind custom logos assets layers 
                 ctx.fillStyle = bgColorInput.value;
                 ctx.fillRect(xCoordinatePosition - 4, yCoordinatePosition - 4, logoSize + 8, logoSize + 8);
                 ctx.drawImage(logoImageElement, xCoordinatePosition, yCoordinatePosition, logoSize, logoSize);
                 
-                // Mirror output into responsive visual wrapper layers arrays updates images elements objects base64
                 const imgElement = liveOutputWrapper.querySelector('img');
                 if(imgElement) imgElement.src = canvas.toDataURL();
             };
         }
 
-        // Master Engine Batch Asynchronous Mass Multi Thread Execution Flow Trigger Processor Loop 
         document.getElementById('executeEngineBatchBtn').addEventListener('click', async () => {
             const currentPayload = mainPayloadData.value.trim();
             
             if (ingestedCsvRowsData.length === 0) {
                 if(!currentPayload) {
-                    logToSystemTerminal("[CRITICAL_ERROR]: Null execution input stream track detected context stack.", "text-rose-500");
-                    alert("Please write data or import a bulk cluster data row matrix container CSV spreadsheet!");
+                    logToSystemTerminal("[CRITICAL_ERROR]: Null runtime target array ingestion parameters.", "text-rose-500");
+                    alert("Please write data or import a bulk cluster dataset CSV spreadsheet file!");
                     return;
                 }
-                // Trigger fast instant creation flow sequence save routine records logs tracks registry history mapping 
                 triggerInstantLiveSingleCodeGeneration();
                 saveSingleDataNodeEntryToHistoryLogRegistry(currentPayload);
-                logToSystemTerminal("Single code compilation sequence successfully executed and written history track logs.");
+                logToSystemTerminal("Single data node transaction registered successfully into environment log trace arrays.");
                 return;
             }
 
-            // High Execution Multi-Thread Processing Flow Loop Engine 
-            logToSystemTerminal(`Initializing High-Capacity Multi-Thread Mass Processing Core Pipeline for ${ingestedCsvRowsData.length} element nodes...`);
+            logToSystemTerminal(`Initializing High-Capacity Multi-Thread Mass Processing Core Pipeline for ${ingestedCsvRowsData.length} records...`);
             progressTelemetryContainer.classList.remove('hidden');
             downloadZipPackageBtn.classList.add('hidden');
             
@@ -542,7 +520,6 @@
                     correctLevel: QRCode.CorrectLevel.M
                 });
 
-                // Micro pause block delay scheduling engine architecture context to prevent execution threads freezes
                 await new Promise(resolve => setTimeout(resolve, 6));
 
                 let canvasObject = isolatedStagingStage.querySelector('canvas');
@@ -551,31 +528,28 @@
                     zipInstanceCompiler.file(`QR_NODE_CLUSTER_INDEX_${indexValue + 1}.png`, rawBase64ImageBufferString, { base64: true });
                 }
 
-                // Smooth execution tracking updates indicators bars components
                 const completionPercentageProgress = Math.round(((indexValue + 1) / ingestedCsvRowsData.length) * 100);
                 progressLinearIndicator.style.width = `${completionPercentageProgress}%`;
                 progressPercentLabel.innerText = `${completionPercentageProgress}%`;
-                progressStateLabel.innerText = `Assembling Binary Map Elements: ${indexValue + 1} / ${ingestedCsvRowsData.length}`;
+                progressStateLabel.innerText = `Assembling Binary Matrices: ${indexValue + 1} / ${ingestedCsvRowsData.length}`;
 
-                // Live dynamic feedback streaming sample loops interfaces elements rendering updates monitors panels layouts 
                 if (indexValue % 30 === 0 || indexValue === ingestedCsvRowsData.length - 1) {
                     liveOutputWrapper.innerHTML = isolatedStagingStage.innerHTML;
                 }
             }
 
-            progressStateLabel.innerText = "Compiling Archive Binary Multi Bundle Asset Pack...";
-            logToSystemTerminal("Packing individual data stream blocks arrays items vectors images files entries. Compressing...");
+            progressStateLabel.innerText = "Building Asset Target Distribution File...";
+            logToSystemTerminal("Finalizing high-compression multi-packet bundle distribution file.");
             
             compiledOutputZipBlobFile = await zipInstanceCompiler.generateAsync({ type: "blob" });
             
             progressStateLabel.innerText = "Compression Success!";
-            logToSystemTerminal(`Successfully bundled all ${ingestedCsvRowsData.length} generated unique QR assets codes into a standalone compressed package archive.`, 'text-emerald-400');
+            logToSystemTerminal(`Successfully packaged ${ingestedCsvRowsData.length} elements into active compressed directory package module.`, 'text-emerald-400');
             
             downloadZipPackageBtn.classList.remove('hidden');
-            saveSingleDataNodeEntryToHistoryLogRegistry(`Bulk Array Batch Manifest: (${ingestedCsvRowsData.length} Items Cluster Package Asset)`);
+            saveSingleDataNodeEntryToHistoryLogRegistry(`Bulk Dataset Render: [${ingestedCsvRowsData.length} Records Cluster]`);
         });
 
-        // Zip Archive File System Extraction Trigger Dispatcher Layout Loader 
         downloadZipPackageBtn.addEventListener('click', () => {
             if (!compiledOutputZipBlobFile) return;
             const virtualAnchorDownloadElement = document.createElement('a');
@@ -585,10 +559,9 @@
             virtualAnchorDownloadElement.click();
             window.URL.revokeObjectURL(virtualAnchorDownloadElement.href);
             document.body.removeChild(virtualAnchorDownloadElement);
-            logToSystemTerminal("Compressed asset bundle manifest safely deployed and downloaded onto client system storage.", "text-emerald-400");
+            logToSystemTerminal("Global collection array target bundle exported to local drive structure successfully.", "text-emerald-400");
         });
 
-        // Dedicated Single Frame Image Array File Export Engine System Core 
         function exportSingleFormat(targetFormatExtensionString) {
             const canvasObject = liveOutputWrapper.querySelector('canvas');
             if (!canvasObject) return;
@@ -600,27 +573,48 @@
             document.body.appendChild(anchorElement);
             anchorElement.click();
             document.body.removeChild(anchorElement);
-            logToSystemTerminal(`Successfully exported static standalone asset matrix structure mapping in image/${targetFormatExtensionString} format.`);
+            logToSystemTerminal(`Export operation targeted to image/${targetFormatExtensionString} structural file type completed.`);
         }
 
+        // MOBILE SECURE CLIPBOARD COPY FALLBACK SYSTEM (FIXED!)
         function copyToClipboardAction() {
-            const imageElement = liveOutputWrapper.querySelector('img');
-            if(!imageElement) return;
-            
-            fetch(imageElement.src)
-                .then(res => res.blob())
-                .then(blobObjectItem => {
-                    navigator.clipboard.write([
-                        new ClipboardItem({ [blobObjectItem.type]: blobObjectItem })
-                    ]);
-                    logToSystemTerminal("Active vector canvas pixel image data buffer successfully loaded into device hardware clipboard layer.", "text-emerald-400");
-                    alert("QR Code copied to clipboard successfully!");
-                }).catch(err => {
-                    logToSystemTerminal("Failed to copy image format context automatically.", "text-rose-400");
-                });
+            const canvasObject = liveOutputWrapper.querySelector('canvas');
+            if (!canvasObject) {
+                logToSystemTerminal("No target vector structure ready in visual buffer node layer.", "text-rose-400");
+                return;
+            }
+
+            try {
+                // Method A: Native direct Blob parsing into Clipboard items mapping array
+                canvasObject.toBlob((blobObjectItem) => {
+                    if (!blobObjectItem) {
+                        logToSystemTerminal("Conversion to binary image vector pipeline failed.", "text-rose-400");
+                        return;
+                    }
+                    const dataItems = [new ClipboardItem({ [blobObjectItem.type]: blobObjectItem })];
+                    navigator.clipboard.write(dataItems).then(() => {
+                        logToSystemTerminal("Active visual matrix payload code safely copied into device native storage clipboard data matrix.", "text-emerald-400");
+                        alert("QR Code image successfully copied to your clipboard!");
+                    }).catch(() => {
+                        executeTextFallbackClipboardCopy();
+                    });
+                }, 'image/png');
+            } catch (err) {
+                executeTextFallbackClipboardCopy();
+            }
         }
 
-        // Camera Live Scan Module Interface Architecture Layer Toggle Handlers
+        // Method B: Clean alternate text pipeline fallback tracking logs routing mapping sequences
+        function executeTextFallbackClipboardCopy() {
+            const rawTextPayloadValue = mainPayloadData.value.trim();
+            navigator.clipboard.writeText(rawTextPayloadValue).then(() => {
+                logToSystemTerminal("Clipboard engine adjusted: Encoded data string plain text copied safely.", "text-orange-400");
+                alert("Image copy blocked by browser environment. Copied QR raw string data instead!");
+            }).catch(() => {
+                logToSystemTerminal("Critical runtime clipboard API infrastructure blockage.", "text-rose-500");
+            });
+        }
+
         function toggleScanner() {
             const scannerContainer = document.getElementById('scannerSection');
             if (scannerContainer.classList.contains('hidden')) {
@@ -640,7 +634,7 @@
                         triggerInstantLiveSingleCodeGeneration();
                         logToSystemTerminal(`Successfully decoded scanned payload matrix input stream: [${decodedTextString}]`, 'text-emerald-400');
                     },
-                    (errorMessage) => { /* Suppress matrix tracking scanning noises loop cycles updates log */ }
+                    (errorMessage) => { }
                 ).catch(err => {
                     logToSystemTerminal("Camera hardware link routing initialization block failure or permission request denied.", "text-rose-500");
                 });
@@ -648,13 +642,12 @@
                 scannerContainer.classList.add('hidden');
                 if (localHtml5QrCodeScannerInstance) {
                     localHtml5QrCodeScannerInstance.stop().then(() => {
-                        logToSystemTerminal("Hardware lens video interface streams disconnected and resources deallocated cleanly.");
+                        logToSystemTerminal("Hardware lens video interface streams disconnected cleanly.");
                     });
                 }
             }
         }
 
-        // Local Storage Persistent Registry System History Implementation Data Managers
         function saveSingleDataNodeEntryToHistoryLogRegistry(stringContentPayloadValueText) {
             let activeLoggedArrayManifestList = JSON.parse(localStorage.getItem('quantum_qr_history_registry_tracker') || '[]');
             const logEntryObjectItem = {
@@ -664,7 +657,7 @@
             };
             
             activeLoggedArrayManifestList.unshift(logEntryObjectItem);
-            if(activeLoggedArrayManifestList.length > 25) activeLoggedArrayManifestList.pop(); // Cap length records index boundary logs limits
+            if(activeLoggedArrayManifestList.length > 25) activeLoggedArrayManifestList.pop();
             
             localStorage.setItem('quantum_qr_history_registry_tracker', JSON.stringify(activeLoggedArrayManifestList));
             loadEngineHistoricalLogsFromStorage();
@@ -695,7 +688,7 @@
         function clearHistoricalLogRegistry() {
             localStorage.removeItem('quantum_qr_history_registry_tracker');
             loadEngineHistoricalLogsFromStorage();
-            logToSystemTerminal("Local storage history telemetry registry logs items arrays wiped out successfully.");
+            logToSystemTerminal("Telemetry operational registry history cleared safely.");
         }
     </script>
 </body>
