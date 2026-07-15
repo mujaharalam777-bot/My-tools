@@ -114,11 +114,14 @@
             <h2 class="text-xs font-bold tracking-wider text-gray-400 uppercase flex items-center gap-2">
                 <i class="fa-solid fa-bolt text-orange-500"></i> 2. Dynamic Payload Ingestion Stream
             </h2>
-            <div id="dynamicInputContainer" class="space-y-4">
-                <div>
-                    <label id="inputLabelText" class="text-[11px] text-gray-400 mb-1.5 block font-medium">Text Data String</label>
-                    <textarea id="mainPayloadData" class="w-full bg-gray-950/80 border border-gray-800/80 rounded-2xl p-3.5 text-sm focus:outline-none focus:border-orange-500/60 text-gray-200 transition-all min-h-[80px] resize-none" placeholder="Enter payload string...">Welcome Boss</textarea>
-                </div>
+            
+            <!-- Target for Dynamic Form Field Injection -->
+            <div id="dynamicInputContainer" class="space-y-4"></div>
+            
+            <!-- Raw Payload Preview Area -->
+            <div class="pt-4 border-t border-gray-900/60">
+                <label class="text-[10px] text-orange-400/80 mb-1.5 block font-mono uppercase tracking-widest">Compiled Raw Payload String</label>
+                <textarea id="mainPayloadData" readonly class="w-full bg-gray-950/40 border border-gray-900/80 rounded-2xl p-3.5 text-xs mono-font focus:outline-none text-gray-400 min-h-[70px] resize-none cursor-default" placeholder="Compiled raw schema output will display here..."></textarea>
             </div>
         </section>
 
@@ -231,7 +234,7 @@
                 <p>Follow these quick, intuitive milestones to construct professional, highly customized dynamic visual communication matrices effortlessly:</p>
                 <ol class="list-decimal list-inside space-y-2 text-gray-400">
                     <li><strong class="text-gray-200">Choose Architecture:</strong> Pick a dedicated schema module from the 21+ layout configurations (URL, UPI, WiFi, etc.).</li>
-                    <li><strong class="text-gray-200">Input Raw Dataset:</strong> Type or paste your data text directly into the dynamic ingestion workspace field.</li>
+                    <li><strong class="text-gray-200">Input Raw Dataset:</strong> Dynamic input boxes will instantly open based on your chosen schema. Fill out the fields.</li>
                     <li><strong class="text-gray-200">Styling Customization:</strong> Adjust resolution matrices parameters alongside hex primary/background shades immediately using continuous tuning controller blocks.</li>
                     <li><strong class="text-gray-200">Export Deployment Packages:</strong> Instantly process massive batches using CSV spreadsheets or download standalone structures directly into local storage matrices.</li>
                 </ol>
@@ -257,28 +260,266 @@
 
     <!-- CORE LOGIC AND FUNCTIONAL SYSTEM SCRIPTS -->
     <script>
+        // Config Array updated with Dynamic Input Schema configurations & compile patterns
         const qrTypesConfigurationData = [
-            { id: 'text', name: 'Text QR', icon: 'fa-align-left', placeholder: 'Plain Text Message String...', label: 'Text Data String' },
-            { id: 'url', name: 'URL QR', icon: 'fa-globe', placeholder: 'https://example.com', label: 'Network URL Link Address' },
-            { id: 'phone', name: 'Phone QR', icon: 'fa-phone', placeholder: '+1234567890', label: 'Direct Telephone Contact Number' },
-            { id: 'email', name: 'Email QR', icon: 'fa-envelope', placeholder: 'boss@example.com', label: 'Target Destination Email Address' },
-            { id: 'sms', name: 'SMS QR', icon: 'fa-comment-sms', placeholder: 'sms:+1234567890:BodyText', label: 'SMS Receiver Number & Body' },
-            { id: 'whatsapp', name: 'WhatsApp QR', icon: 'fa-brands fa-whatsapp', placeholder: 'https://wa.me/1234567890', label: 'WhatsApp Direct API Endpoint Link' },
-            { id: 'wifi', name: 'WiFi QR', icon: 'fa-wifi', placeholder: 'WIFI:S:MySSID;T:WPA;P:Password;;', label: 'Access Point Broadcast SSID Configuration' },
-            { id: 'upi', name: 'UPI QR', icon: 'fa-credit-card', placeholder: 'upi://pay?pa=merchant@upi&pn=Boss', label: 'Unified Payments Interface String (VPA)' },
-            { id: 'vcard', name: 'vCard QR', icon: 'fa-address-card', placeholder: 'BEGIN:VCARD\nFN:Boss Name\nTEL:123456\nEND:VCARD', label: 'Standard Digital Contact Card Structural Text' },
-            { id: 'location', name: 'Location QR', icon: 'fa-location-dot', placeholder: 'https://maps.google.com/?q=latitude,longitude', label: 'Geographical Navigation Map Link URL' },
-            { id: 'event', name: 'Event QR', icon: 'fa-calendar-day', placeholder: 'BEGIN:VEVENT\nSUMMARY:Conference\nDTSTART:20260715T120000\nEND:VEVENT', label: 'Calendar ICS Format Event Parameters' },
-            { id: 'youtube', name: 'YouTube QR', icon: 'fa-brands fa-youtube', placeholder: 'https://youtube.com/c/Channel', label: 'YouTube Video or Target Channel Platform URL' },
-            { id: 'instagram', name: 'Instagram QR', icon: 'fa-brands fa-instagram', placeholder: 'https://instagram.com/username', label: 'Instagram Profile Target Username Link' },
-            { id: 'facebook', name: 'Facebook QR', icon: 'fa-brands fa-facebook', placeholder: 'https://facebook.com/page', label: 'Facebook Core Page or Profile Target URL' },
-            { id: 'linkedin', name: 'LinkedIn QR', icon: 'fa-brands fa-linkedin', placeholder: 'https://linkedin.com/in/username', label: 'LinkedIn Professional Identity Profile URL' },
-            { id: 'twitter', name: 'Twitter QR', icon: 'fa-brands fa-x-twitter', placeholder: 'https://twitter.com/username', label: 'Twitter / X Engine Platform Channel Link' },
-            { id: 'paypal', name: 'PayPal QR', icon: 'fa-brands fa-paypal', placeholder: 'https://paypal.me/username/amount', label: 'PayPal Global Merchant Direct Payment Link' },
-            { id: 'bitcoin', name: 'Bitcoin QR', icon: 'fa-brands fa-bitcoin', placeholder: 'bitcoin:1AddressHere?amount=0.01', label: 'Bitcoin Wallet Cryptography Ingestion Link Address' },
-            { id: 'zoom', name: 'Zoom QR', icon: 'fa-video', placeholder: 'https://zoom.us/j/meeting_id', label: 'Zoom Video Conferencing Target Link Room' },
-            { id: 'facetime', name: 'FaceTime QR', icon: 'fa-video-slash', placeholder: 'facetime://user@example.com', label: 'FaceTime Communication Address Core Apple ID' },
-            { id: 'vcardplus', name: 'vCard Plus QR', icon: 'fa-id-card-clip', placeholder: 'https://vcard.bio/premium-boss-profile', label: 'Advanced Cloud Vector Hosted Contact Landing Link' }
+            { 
+                id: 'text', 
+                name: 'Text QR', 
+                icon: 'fa-align-left', 
+                fields: [
+                    { key: 'text', label: 'Plain Text Message String', type: 'textarea', placeholder: 'Welcome Boss' }
+                ],
+                defaults: { text: 'Welcome Boss' },
+                compile: (f) => f.text || "" 
+            },
+            { 
+                id: 'url', 
+                name: 'URL QR', 
+                icon: 'fa-globe', 
+                fields: [
+                    { key: 'url', label: 'Network URL Link Address', type: 'text', placeholder: 'https://example.com' }
+                ],
+                defaults: { url: 'https://google.com' },
+                compile: (f) => {
+                    let val = f.url || "";
+                    if (val && !/^https?:\/\//i.test(val)) val = "https://" + val;
+                    return val;
+                }
+            },
+            { 
+                id: 'phone', 
+                name: 'Phone QR', 
+                icon: 'fa-phone', 
+                fields: [
+                    { key: 'phone', label: 'Direct Telephone Contact Number', type: 'text', placeholder: '+1234567890' }
+                ],
+                defaults: { phone: '+1234567890' },
+                compile: (f) => f.phone ? `tel:${f.phone.replace(/\s+/g, '')}` : "" 
+            },
+            { 
+                id: 'email', 
+                name: 'Email QR', 
+                icon: 'fa-envelope', 
+                fields: [
+                    { key: 'email', label: 'Target Destination Email Address', type: 'text', placeholder: 'boss@example.com' },
+                    { key: 'subject', label: 'Email Subject', type: 'text', placeholder: 'Project Updates' },
+                    { key: 'body', label: 'Email Body Message', type: 'textarea', placeholder: 'Write email contents here...' }
+                ],
+                defaults: { email: 'boss@example.com', subject: 'Priority Notification', body: 'This is an autogenerated email layout.' },
+                compile: (f) => f.email ? `mailto:${f.email}?subject=${encodeURIComponent(f.subject || '')}&body=${encodeURIComponent(f.body || '')}` : "" 
+            },
+            { 
+                id: 'sms', 
+                name: 'SMS QR', 
+                icon: 'fa-comment-sms', 
+                fields: [
+                    { key: 'phone', label: 'SMS Receiver Number', type: 'text', placeholder: '+1234567890' },
+                    { key: 'message', label: 'SMS Body', type: 'textarea', placeholder: 'Type SMS body...' }
+                ],
+                defaults: { phone: '+1234567890', message: 'Hello from Quantum Engine!' },
+                compile: (f) => f.phone ? `SMSTO:${f.phone.replace(/\s+/g, '')}:${f.message || ""}` : "" 
+            },
+            { 
+                id: 'whatsapp', 
+                name: 'WhatsApp QR', 
+                icon: 'fa-brands fa-whatsapp', 
+                fields: [
+                    { key: 'phone', label: 'WhatsApp Number (With Country Code)', type: 'text', placeholder: '1234567890' },
+                    { key: 'message', label: 'Pre-filled Text Message', type: 'textarea', placeholder: 'Type prefilled text...' }
+                ],
+                defaults: { phone: '1234567890', message: 'Hello Boss, connecting via QR!' },
+                compile: (f) => f.phone ? `https://wa.me/${f.phone.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(f.message || "")}` : "" 
+            },
+            { 
+                id: 'wifi', 
+                name: 'WiFi QR', 
+                icon: 'fa-wifi', 
+                fields: [
+                    { key: 'ssid', label: 'WiFi Network Name (SSID)', type: 'text', placeholder: 'MySSID' },
+                    { key: 'password', label: 'WiFi Password', type: 'password', placeholder: 'Password' },
+                    { key: 'encryption', label: 'Network Security Type', type: 'select', options: ['WPA', 'WEP', 'nopass'] },
+                    { key: 'hidden', label: 'Hidden SSID?', type: 'select', options: ['false', 'true'] }
+                ],
+                defaults: { ssid: 'Quantum_Network', password: 'SuperSecurePassword', encryption: 'WPA', hidden: 'false' },
+                compile: (f) => f.ssid ? `WIFI:S:${f.ssid};T:${f.encryption || 'WPA'};P:${f.password || ''};H:${f.hidden === 'true' ? 'true' : 'false'};;` : "" 
+            },
+            { 
+                id: 'upi', 
+                name: 'UPI QR', 
+                icon: 'fa-credit-card', 
+                fields: [
+                    { key: 'vpa', label: 'UPI ID / VPA Address', type: 'text', placeholder: 'merchant@upi' },
+                    { key: 'name', label: 'Payee Name', type: 'text', placeholder: 'Boss' },
+                    { key: 'amount', label: 'Amount (INR)', type: 'text', placeholder: '100.00' },
+                    { key: 'note', label: 'Transaction Note', type: 'text', placeholder: 'Paying Master' }
+                ],
+                defaults: { vpa: 'quantum@upi', name: 'Premium Boss', amount: '250.00', note: 'Secure API Ingestion' },
+                compile: (f) => {
+                    if (!f.vpa) return "";
+                    let query = `pa=${f.vpa}`;
+                    if (f.name) query += `&pn=${encodeURIComponent(f.name)}`;
+                    if (f.amount) query += `&am=${f.amount}`;
+                    if (f.note) query += `&tn=${encodeURIComponent(f.note)}`;
+                    return `upi://pay?${query}`;
+                }
+            },
+            { 
+                id: 'vcard', 
+                name: 'vCard QR', 
+                icon: 'fa-address-card', 
+                fields: [
+                    { key: 'firstName', label: 'First Name', type: 'text', placeholder: 'First Name' },
+                    { key: 'lastName', label: 'Last Name', type: 'text', placeholder: 'Last Name' },
+                    { key: 'phone', label: 'Primary Phone', type: 'text', placeholder: '+1234567890' },
+                    { key: 'email', label: 'Email Address', type: 'text', placeholder: 'boss@example.com' },
+                    { key: 'org', label: 'Company Name', type: 'text', placeholder: 'Quantum Inc' },
+                    { key: 'title', label: 'Job Title', type: 'text', placeholder: 'CEO' }
+                ],
+                defaults: { firstName: 'Quantum', lastName: 'Master', phone: '+1234567890', email: 'boss@quantum.org', org: 'Quantum Corp', title: 'System Director' },
+                compile: (f) => `BEGIN:VCARD\nVERSION:3.0\nN:${f.lastName || ""};${f.firstName || ""};;;\nFN:${f.firstName || ""} ${f.lastName || ""}\nORG:${f.org || ""}\nTITLE:${f.title || ""}\nTEL;TYPE=CELL:${f.phone || ""}\nEMAIL;TYPE=PREF,INTERNET:${f.email || ""}\nEND:VCARD`
+            },
+            { 
+                id: 'location', 
+                name: 'Location QR', 
+                icon: 'fa-location-dot', 
+                fields: [
+                    { key: 'latitude', label: 'Latitude Coordinate', type: 'text', placeholder: '22.5726' },
+                    { key: 'longitude', label: 'Longitude Coordinate', type: 'text', placeholder: '88.3639' }
+                ],
+                defaults: { latitude: '22.5726', longitude: '88.3639' },
+                compile: (f) => (f.latitude && f.longitude) ? `https://maps.google.com/?q=${f.latitude},${f.longitude}` : "" 
+            },
+            { 
+                id: 'event', 
+                name: 'Event QR', 
+                icon: 'fa-calendar-day', 
+                fields: [
+                    { key: 'title', label: 'Calendar Event Title', type: 'text', placeholder: 'Annual Assembly' },
+                    { key: 'start', label: 'Start Date & Time', type: 'datetime-local' },
+                    { key: 'end', label: 'End Date & Time', type: 'datetime-local' },
+                    { key: 'location', label: 'Event Location/Room', type: 'text', placeholder: 'Main Conference Room' }
+                ],
+                defaults: { title: 'Quantum Tech Launch', start: '2026-07-15T10:00', end: '2026-07-15T13:00', location: 'Server Center 01' },
+                compile: (f) => {
+                    const formatICSDate = (dtStr) => {
+                        if(!dtStr) return "";
+                        const d = new Date(dtStr);
+                        if(isNaN(d.getTime())) return "";
+                        return d.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+                    };
+                    return `BEGIN:VEVENT\nSUMMARY:${f.title || ""}\nDTSTART:${formatICSDate(f.start)}\nDTEND:${formatICSDate(f.end)}\nLOCATION:${f.location || ""}\nEND:VEVENT`;
+                }
+            },
+            { 
+                id: 'youtube', 
+                name: 'YouTube QR', 
+                icon: 'fa-brands fa-youtube', 
+                fields: [
+                    { key: 'url', label: 'YouTube Video or Channel URL', type: 'text', placeholder: 'https://youtube.com/watch?v=...' }
+                ],
+                defaults: { url: 'https://youtube.com/watch?v=dQw4w9WgXcQ' },
+                compile: (f) => f.url || "" 
+            },
+            { 
+                id: 'instagram', 
+                name: 'Instagram QR', 
+                icon: 'fa-brands fa-instagram', 
+                fields: [
+                    { key: 'username', label: 'Instagram Profile Username', type: 'text', placeholder: 'username' }
+                ],
+                defaults: { username: 'cristiano' },
+                compile: (f) => f.username ? `https://instagram.com/${f.username.replace(/^@/, '')}` : "" 
+            },
+            { 
+                id: 'facebook', 
+                name: 'Facebook QR', 
+                icon: 'fa-brands fa-facebook', 
+                fields: [
+                    { key: 'profileUrl', label: 'Facebook Page or Profile URL', type: 'text', placeholder: 'https://facebook.com/username' }
+                ],
+                defaults: { profileUrl: 'https://facebook.com/zuck' },
+                compile: (f) => f.profileUrl || "" 
+            },
+            { 
+                id: 'linkedin', 
+                name: 'LinkedIn QR', 
+                icon: 'fa-brands fa-linkedin', 
+                fields: [
+                    { key: 'profileUrl', label: 'LinkedIn Personal or Page URL', type: 'text', placeholder: 'https://linkedin.com/in/username' }
+                ],
+                defaults: { profileUrl: 'https://linkedin.com/in/williamhgates' },
+                compile: (f) => f.profileUrl || "" 
+            },
+            { 
+                id: 'twitter', 
+                name: 'Twitter QR', 
+                icon: 'fa-brands fa-x-twitter', 
+                fields: [
+                    { key: 'username', label: 'Twitter / X Profile Username', type: 'text', placeholder: 'username' }
+                ],
+                defaults: { username: 'elonmusk' },
+                compile: (f) => f.username ? `https://twitter.com/${f.username.replace(/^@/, '')}` : "" 
+            },
+            { 
+                id: 'paypal', 
+                name: 'PayPal QR', 
+                icon: 'fa-brands fa-paypal', 
+                fields: [
+                    { key: 'username', label: 'PayPal Username / Email Address', type: 'text', placeholder: 'merchant@paypal.com' },
+                    { key: 'amount', label: 'Transaction Amount', type: 'text', placeholder: '50.00' }
+                ],
+                defaults: { username: 'merchant', amount: '75.00' },
+                compile: (f) => f.username ? `https://paypal.me/${f.username}/${f.amount || ""}` : "" 
+            },
+            { 
+                id: 'bitcoin', 
+                name: 'Bitcoin QR', 
+                icon: 'fa-brands fa-bitcoin', 
+                fields: [
+                    { key: 'address', label: 'Bitcoin Wallet Address', type: 'text', placeholder: '1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa' },
+                    { key: 'amount', label: 'BTC Amount', type: 'text', placeholder: '0.005' },
+                    { key: 'message', label: 'Cryptography Memo Message', type: 'text', placeholder: 'Transaction Note' }
+                ],
+                defaults: { address: '1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa', amount: '0.0025', message: 'Secured Payment' },
+                compile: (f) => {
+                    if (!f.address) return "";
+                    let query = "";
+                    if (f.amount) query += `amount=${f.amount}`;
+                    if (f.message) query += `${query ? '&' : ''}message=${encodeURIComponent(f.message)}`;
+                    return `bitcoin:${f.address}${query ? '?' + query : ''}`;
+                }
+            },
+            { 
+                id: 'zoom', 
+                name: 'Zoom QR', 
+                icon: 'fa-video', 
+                fields: [
+                    { key: 'meetingId', label: 'Zoom Meeting ID', type: 'text', placeholder: '1234567890' },
+                    { key: 'password', label: 'Meeting Access Password', type: 'text', placeholder: 'Secret' }
+                ],
+                defaults: { meetingId: '8472910394', password: 'AccessPassword' },
+                compile: (f) => f.meetingId ? `https://zoom.us/j/${f.meetingId.replace(/\s+/g, '')}${f.password ? '?pwd=' + encodeURIComponent(f.password) : ''}` : "" 
+            },
+            { 
+                id: 'facetime', 
+                name: 'FaceTime QR', 
+                icon: 'fa-video-slash', 
+                fields: [
+                    { key: 'id', label: 'Apple ID or Registered Phone', type: 'text', placeholder: 'user@example.com' }
+                ],
+                defaults: { id: 'boss@apple.com' },
+                compile: (f) => f.id ? `facetime:${f.id.replace(/\s+/g, '')}` : "" 
+            },
+            { 
+                id: 'vcardplus', 
+                name: 'vCard Plus QR', 
+                icon: 'fa-id-card-clip', 
+                fields: [
+                    { key: 'landingUrl', label: 'Hosted Contact Landing Link', type: 'text', placeholder: 'https://vcard.bio/premium-boss' }
+                ],
+                defaults: { landingUrl: 'https://vcard.bio/premium-boss' },
+                compile: (f) => f.landingUrl || "" 
+            }
         ];
 
         let activeSelectedProtocolId = 'text';
@@ -305,9 +546,8 @@
 
         window.addEventListener('DOMContentLoaded', () => {
             renderProtocolMatrixInterfaceGrid();
-            triggerInstantLiveSingleCodeGeneration();
+            renderDynamicInputs();
             
-            mainPayloadData.addEventListener('input', triggerInstantLiveSingleCodeGeneration);
             sizeSlider.addEventListener('input', (e) => {
                 sliderValueText.innerText = `${e.target.value}px`;
                 triggerInstantLiveSingleCodeGeneration();
@@ -335,20 +575,92 @@
                     document.getElementById(`proto_btn_${activeSelectedProtocolId}`)?.classList.remove('active-neon-btn');
                     activeSelectedProtocolId = type.id;
                     button.classList.add('active-neon-btn');
-                    document.getElementById('inputLabelText').innerText = type.label;
-                    mainPayloadData.placeholder = type.placeholder;
-                    triggerInstantLiveSingleCodeGeneration();
+                    renderDynamicInputs();
                 };
                 grid.appendChild(button);
             });
         }
 
+        // Generate input workspace fields dynamically based on active selected Protocol
+        function renderDynamicInputs() {
+            const container = document.getElementById('dynamicInputContainer');
+            container.innerHTML = "";
+            
+            const proto = qrTypesConfigurationData.find(p => p.id === activeSelectedProtocolId);
+            if (!proto) return;
+            
+            proto.fields.forEach(field => {
+                const fieldWrapper = document.createElement('div');
+                fieldWrapper.className = "space-y-1.5";
+                
+                const label = document.createElement('label');
+                label.className = "text-[11px] text-gray-400 font-medium block";
+                label.innerText = field.label;
+                
+                let inputElement;
+                const defVal = proto.defaults && proto.defaults[field.key] ? proto.defaults[field.key] : "";
+                
+                if (field.type === 'textarea') {
+                    inputElement = document.createElement('textarea');
+                    inputElement.className = "w-full bg-gray-950/80 border border-gray-800/80 rounded-2xl p-3.5 text-sm focus:outline-none focus:border-orange-500/60 text-gray-200 transition-all min-h-[80px] resize-none";
+                    inputElement.placeholder = field.placeholder || "";
+                    inputElement.value = defVal;
+                } else if (field.type === 'select') {
+                    inputElement = document.createElement('select');
+                    inputElement.className = "w-full bg-gray-950/80 border border-gray-800/80 rounded-2xl p-3.5 text-sm focus:outline-none focus:border-orange-500/60 text-gray-200 transition-all cursor-pointer appearance-none";
+                    field.options.forEach(opt => {
+                        const option = document.createElement('option');
+                        option.value = opt;
+                        option.text = opt;
+                        if(opt === defVal) option.selected = true;
+                        inputElement.appendChild(option);
+                    });
+                } else {
+                    inputElement = document.createElement('input');
+                    inputElement.type = field.type || 'text';
+                    inputElement.className = "w-full bg-gray-950/80 border border-gray-800/80 rounded-2xl p-3.5 text-sm focus:outline-none focus:border-orange-500/60 text-gray-200 transition-all";
+                    inputElement.placeholder = field.placeholder || "";
+                    inputElement.value = defVal;
+                }
+                
+                inputElement.id = `input_${proto.id}_${field.key}`;
+                inputElement.dataset.key = field.key;
+                
+                // Live calculation mapping on key inputs
+                inputElement.addEventListener('input', triggerInstantLiveSingleCodeGeneration);
+                inputElement.addEventListener('change', triggerInstantLiveSingleCodeGeneration);
+                
+                fieldWrapper.appendChild(label);
+                fieldWrapper.appendChild(inputElement);
+                container.appendChild(fieldWrapper);
+            });
+            
+            triggerInstantLiveSingleCodeGeneration();
+        }
+
         // Core fix: Quiet zone generation logic implemented to wrap QR with scanning padding border
         function triggerInstantLiveSingleCodeGeneration() {
-            const payload = mainPayloadData.value.trim();
-            if(!payload) return;
-            liveOutputWrapper.innerHTML = "";
+            const proto = qrTypesConfigurationData.find(p => p.id === activeSelectedProtocolId);
+            if (!proto) return;
             
+            const inputs = {};
+            proto.fields.forEach(field => {
+                const el = document.getElementById(`input_${proto.id}_${field.key}`);
+                if (el) {
+                    inputs[field.key] = el.value;
+                }
+            });
+            
+            // Build the protocol raw string payload
+            const payload = proto.compile(inputs).trim();
+            mainPayloadData.value = payload; // Write directly into Compiled Area
+            
+            if(!payload) {
+                liveOutputWrapper.innerHTML = "";
+                return;
+            }
+            
+            liveOutputWrapper.innerHTML = "";
             // Set live wrapper styling wrapper match background
             liveOutputWrapper.style.backgroundColor = bgColorInput.value;
 
@@ -486,7 +798,16 @@
                 localHtml5QrCodeScannerInstance.start({ facingMode: "environment" }, { fps: 10, qrbox: 200 }, (txt) => {
                     document.getElementById('scanResult').innerText = txt;
                     document.getElementById('scanResult').classList.remove('hidden');
-                    mainPayloadData.value = txt;
+                    
+                    // Auto switch to text mode to display parsed result nicely
+                    activeSelectedProtocolId = 'text';
+                    renderProtocolMatrixInterfaceGrid();
+                    renderDynamicInputs();
+                    
+                    const el = document.getElementById('input_text_text');
+                    if(el) {
+                        el.value = txt;
+                    }
                     triggerInstantLiveSingleCodeGeneration();
                 }).catch(()=>{});
             } else {
