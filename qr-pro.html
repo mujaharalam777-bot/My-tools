@@ -1156,11 +1156,16 @@ box.innerHTML=html;
     }
 
 
-function generateQR(){
+ function generateQR(){
 
-    alert("Generate Clicked");
+const text = getQRData();
 
-    alert(typeof QRCode);
+if(!text){
+alert("Please enter data");
+return;
+}
+
+console.log(text);
 
     const text = getQRData();
 
