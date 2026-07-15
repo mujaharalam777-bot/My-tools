@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ultimate QR Pro | Maximum Premium Core</title>
+    <title>Ultimate QR Pro | Enterprise Operating Dashboard Matrix</title>
     
-    <!-- Ultra CDNs Integration -->
+    <!-- Heavy Production Grade Asset CDNs -->
     <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -15,344 +14,339 @@
 
     <style>
         :root {
-            --bg-gradient: radial-gradient(circle at 0% 0%, #070b19 0%, #0f172a 50%, #050510 100%);
-            --card-bg: rgba(15, 23, 42, 0.45);
-            --border: rgba(255, 255, 255, 0.07);
-            --text-main: #f8fafc;
-            --text-muted: #64748b;
-            --primary-glow: linear-gradient(135deg, #00f5a0 0%, #00d2ff 100%);
-            --accent-glow: linear-gradient(135deg, #ff007f 0%, #7f00ff 100%);
-            --radius-lg: 24px;
-            --radius-md: 14px;
-            --font: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --bg-master: radial-gradient(circle at 50% 0%, #060913 0%, #0b0f19 50%, #030408 100%);
+            --panel-bg: rgba(13, 20, 38, 0.45);
+            --panel-border: rgba(255, 255, 255, 0.05);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-dark: #475569;
+            --neon-green: #00f5a0;
+            --neon-blue: #00d2ff;
+            --neon-pink: #ff007f;
+            --neon-purple: #7f00ff;
+            --gradient-primary: linear-gradient(135deg, var(--neon-green) 0%, var(--neon-blue) 100%);
+            --gradient-accent: linear-gradient(135deg, var(--neon-pink) 0%, var(--neon-purple) 100%);
+            --radius-xl: 30px;
+            --radius-lg: 20px;
+            --radius-md: 12px;
+            --shadow-matrix: 0 30px 70px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255,255,255,0.05);
+            --font-stack: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
 
-        body.light {
-            --bg-gradient: radial-gradient(circle at 0% 0%, #f1f5f9 0%, #e2e8f0 100%);
-            --card-bg: rgba(255, 255, 255, 0.75);
-            --border: rgba(0, 0, 0, 0.06);
-            --text-main: #0f172a;
-            --text-muted: #475569;
-            --primary-glow: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        body.light-mode {
+            --bg-master: radial-gradient(circle at 50% 0%, #f8fafc 0%, #e2e8f0 100%);
+            --panel-bg: rgba(255, 255, 255, 0.85);
+            --panel-border: rgba(0, 0, 0, 0.06);
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --gradient-primary: linear-gradient(135deg, #0f172a 0%, #334155 100%);
+            --shadow-matrix: 0 20px 40px rgba(15, 23, 42, 0.05);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: var(--font);
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: var(--font-stack); }
+        body { background: var(--bg-master); color: var(--text-primary); min-height: 100vh; padding: 40px 20px; overflow-x: hidden; position: relative; line-height: 1.5; }
+        
+        /* Floating Background Light Clusters */
+        .ambient-orb { position: absolute; border-radius: 50%; filter: blur(120px); z-index: -1; pointer-events: none; opacity: 0.6; }
+        .orb-1 { width: 500px; height: 500px; background: rgba(0, 245, 160, 0.05); top: -10%; left: 5%; }
+        .orb-2 { width: 600px; height: 600px; background: rgba(0, 210, 255, 0.04); top: 30%; right: -10%; }
+        .orb-3 { width: 400px; height: 400px; background: rgba(255, 0, 127, 0.03); bottom: 10%; left: -5%; }
 
-        body {
-            background: var(--bg-gradient);
-            color: var(--text-main);
-            min-height: 100vh;
-            padding: 40px 20px;
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        /* Ambient Light Orbs behind Dashboard */
-        body::before, body::after {
-            content: '';
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            border-radius: 50%;
-            background: rgba(0, 245, 160, 0.08);
-            filter: blur(100px);
-            z-index: -1;
-            pointer-events: none;
-        }
-        body::before { top: 10%; left: 10%; background: rgba(0, 210, 255, 0.07); }
-        body::after { bottom: 10%; right: 10%; background: rgba(255, 0, 127, 0.05); }
-
-        .container {
-            max-width: 1440px;
-            margin: 0 auto;
-            position: relative;
-        }
+        .container { max-width: 1600px; margin: 0 auto; }
 
         header {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            backdrop-filter: blur(40px);
-            padding: 25px 40px;
+            background: var(--panel-bg);
+            border: 1px solid var(--panel-border);
+            border-radius: var(--radius-xl);
+            backdrop-filter: blur(50px);
+            padding: 30px 50px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
-            margin-bottom: 35px;
+            box-shadow: var(--shadow-matrix);
+            margin-bottom: 40px;
+            position: relative;
         }
 
-        body.light header { box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-
-        .logo-area h1 {
-            font-size: 28px;
+        .brand-container h1 {
+            font-size: 32px;
             font-weight: 900;
-            letter-spacing: -1px;
-            background: var(--primary-glow);
+            letter-spacing: -1.5px;
+            background: var(--gradient-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            display: flex;
-            align-items: center;
-            gap: 10px;
         }
 
-        .badge-pro {
-            font-size: 11px;
-            background: linear-gradient(135deg, #ffe600, #ffb300);
+        .version-badge {
+            font-size: 10px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #ffe600 0%, #ff9500 100%);
             color: #000;
-            padding: 4px 12px;
-            border-radius: 30px;
-            font-weight: 800;
-            letter-spacing: 0.5px;
-            box-shadow: 0 0 20px rgba(255, 230, 0, 0.3);
+            padding: 3px 12px;
+            border-radius: 50px;
+            margin-left: 10px;
+            letter-spacing: 1px;
+            box-shadow: 0 0 20px rgba(255, 230, 0, 0.2);
         }
 
-        .theme-toggle {
+        .header-actions { display: flex; gap: 15px; }
+
+        .action-trigger {
             padding: 12px 24px;
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            color: var(--text-main);
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--panel-border);
+            color: var(--text-primary);
             border-radius: var(--radius-md);
             cursor: pointer;
             font-weight: 700;
+            font-size: 14px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
             backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
         }
 
-        .theme-toggle:hover {
+        .action-trigger:hover {
+            background: rgba(255,255,255,0.06);
+            border-color: var(--neon-blue);
             transform: translateY(-2px);
-            border-color: #00f5a0;
         }
 
-        .main-grid {
+        .dashboard-grid {
             display: grid;
-            grid-template-columns: 1fr 480px;
-            gap: 35px;
+            grid-template-columns: 1fr 520px;
+            gap: 40px;
         }
 
-        @media (max-width: 1150px) {
-            .main-grid { grid-template-columns: 1fr; }
+        @media (max-width: 1280px) { .dashboard-grid { grid-template-columns: 1fr; } }
+
+        .workspace-panel {
+            background: var(--panel-bg);
+            border: 1px solid var(--panel-border);
+            border-radius: var(--radius-xl);
+            padding: 40px;
+            backdrop-filter: blur(50px);
+            box-shadow: var(--shadow-matrix);
         }
 
-        .panel {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            padding: 35px;
-            backdrop-filter: blur(40px);
-            box-shadow: 0 40px 80px rgba(0,0,0,0.4);
-        }
-        body.light .panel { box-shadow: 0 20px 40px rgba(0,0,0,0.04); }
-
-        .section-title {
-            font-size: 20px;
+        .panel-header-title {
+            font-size: 22px;
             font-weight: 800;
-            letter-spacing: -0.3px;
-            margin-bottom: 20px;
-            color: var(--text-main);
+            letter-spacing: -0.5px;
+            margin-bottom: 25px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding-bottom: 15px;
         }
 
-        .type-grid {
+        body.light-mode .panel-header-title { border-bottom-color: rgba(0,0,0,0.05); }
+
+        .protocol-selection-matrix {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
             gap: 12px;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
         }
 
-        .type-btn {
-            padding: 14px 10px;
-            background: rgba(255,255,255,0.02);
-            border: 1px solid var(--border);
-            color: var(--text-muted);
+        .protocol-node {
+            padding: 15px 10px;
+            background: rgba(255,255,255,0.01);
+            border: 1px solid var(--panel-border);
+            color: var(--text-secondary);
             border-radius: var(--radius-md);
             cursor: pointer;
             font-size: 13px;
             font-weight: 700;
             text-align: center;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        body.light .type-btn { background: rgba(0,0,0,0.02); }
 
-        .type-btn:hover, .type-btn.active {
+        .protocol-node:hover {
+            background: rgba(255,255,255,0.04);
+            color: var(--text-primary);
+            border-color: rgba(255,255,255,0.15);
+        }
+
+        .protocol-node.active-node {
             background: linear-gradient(135deg, rgba(0, 245, 160, 0.08), rgba(0, 210, 255, 0.08));
-            border-color: #00d2ff;
-            color: #fff;
-            box-shadow: 0 0 25px rgba(0, 210, 255, 0.15);
+            border-color: var(--neon-blue);
+            color: #ffffff;
+            box-shadow: 0 0 30px rgba(0, 210, 255, 0.15);
             transform: translateY(-2px);
         }
-        body.light .type-btn.active { background: #0f172a; color: white; }
 
-        .input-block {
-            margin-bottom: 22px;
+        body.light-mode .protocol-node.active-node {
+            background: #0f172a;
+            color: #fff;
+            border-color: #0f172a;
         }
 
-        .input-block label {
-            display: block;
-            font-size: 14px;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: var(--text-main);
-        }
+        .dynamic-form-wrapper { margin-bottom: 30px; }
 
-        .input-block input, .input-block textarea, .input-block select {
-            width: 100%;
-            padding: 14px 18px;
-            background: rgba(0,0,0,0.3);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-md);
-            color: var(--text-main);
-            font-size: 14px;
-            transition: all 0.3s ease;
-        }
-        body.light .input-block input, body.light .input-block textarea, body.light .input-block select {
-            background: #fff;
-        }
-
-        .input-block input:focus, .input-block textarea:focus {
-            border-color: #00f5a0;
-            box-shadow: 0 0 15px rgba(0, 245, 160, 0.1);
-            outline: none;
-        }
-
-        .counter-label {
+        .field-group { margin-bottom: 24px; }
+        
+        .field-group-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-        }
-        .counter { font-size: 11px; color: var(--text-muted); font-weight: 600; }
-
-        .custom-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            margin-bottom: 10px;
         }
 
-        .color-item input[type="color"] {
+        .field-group-header label { font-size: 14px; font-weight: 700; color: var(--text-primary); }
+        .field-counter { font-size: 11px; color: var(--text-secondary); font-weight: 600; }
+
+        .field-control {
             width: 100%;
-            height: 50px;
+            padding: 15px 20px;
+            background: rgba(0,0,0,0.25);
+            border: 1px solid var(--panel-border);
+            border-radius: var(--radius-md);
+            color: var(--text-primary);
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        body.light-mode .field-control { background: #ffffff; border-color: rgba(0,0,0,0.1); }
+
+        .field-control:focus {
+            border-color: var(--neon-green);
+            box-shadow: 0 0 20px rgba(0, 245, 160, 0.1);
+            outline: none;
+        }
+
+        .layout-split { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+        .chroma-palette-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 25px; }
+
+        .chroma-cell input[type="color"] {
+            width: 100%;
+            height: 55px;
             border: none;
             border-radius: var(--radius-md);
             cursor: pointer;
             background: transparent;
         }
 
-        /* Premium Floating Preview Area */
-        .preview-wrapper {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid var(--border);
+        .slider-wrapper { margin-bottom: 25px; }
+        .slider-data { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px; font-weight: 700; }
+
+        .range-slider {
+            width: 100%;
+            -webkit-appearance: none;
+            background: rgba(255,255,255,0.05);
+            height: 6px;
+            border-radius: 10px;
+            outline: none;
+        }
+        .range-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--neon-green);
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 245, 160, 0.5);
+        }
+
+        /* Studio Output Stage Right Panel */
+        .studio-stage {
+            background: rgba(255,255,255,0.01);
+            border: 1px solid var(--panel-border);
             border-radius: var(--radius-lg);
             padding: 40px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 380px;
-            box-shadow: inset 0 0 30px rgba(0,0,0,0.3);
+            min-height: 420px;
+            box-shadow: inset 0 0 40px rgba(0,0,0,0.4);
             position: relative;
-        }
-        body.light .preview-wrapper { background: #ffffff; box-shadow: none; border-color: rgba(0,0,0,0.08); }
-
-        #canvasContainer {
-            background: transparent;
-            padding: 15px;
-            border-radius: 16px;
-            display: inline-block;
+            margin-bottom: 30px;
         }
 
-        #qrCanvas {
-            max-width: 100%;
-            height: auto !important;
-            border-radius: 8px;
-        }
+        body.light-mode .studio-stage { background: #ffffff; box-shadow: none; border-color: rgba(0,0,0,0.08); }
 
-        .banner-text-view {
+        #canvasWrapper { position: relative; padding: 20px; background: transparent; display: inline-block; }
+        #matrixStudioCanvas { max-width: 100%; height: auto !important; border-radius: 10px; }
+        
+        .studio-typography-banner {
             text-align: center;
-            color: inherit;
             font-weight: 800;
-            margin-top: 15px;
-            font-size: 16px;
-            letter-spacing: 1px;
+            margin-top: 20px;
+            font-size: 18px;
+            letter-spacing: 2px;
             text-transform: uppercase;
         }
 
-        .btn-group {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            margin-top: 25px;
+        .terminal-feed-log {
+            background: rgba(0,0,0,0.3);
+            border: 1px solid var(--panel-border);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            font-size: 12px;
+            font-family: 'Courier New', Courier, monospace;
+            color: #a7f3d0;
+            line-height: 1.7;
+            margin-bottom: 30px;
         }
-        .full-width { grid-column: span 2; }
 
-        .btn {
-            padding: 15px 20px;
+        .action-button-matrix { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 30px; }
+        .span-full { grid-column: span 2; }
+
+        .core-btn {
+            padding: 16px 22px;
             border: none;
             border-radius: var(--radius-md);
             cursor: pointer;
             font-weight: 700;
             font-size: 14px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 10px;
         }
 
-        .btn-primary {
-            background: var(--primary-glow);
-            color: #070b19;
-            box-shadow: 0 12px 30px rgba(0, 245, 160, 0.2);
+        .core-btn-primary {
+            background: var(--gradient-primary);
+            color: #060913;
+            box-shadow: 0 15px 35px rgba(0, 245, 160, 0.2);
         }
-        .btn-primary:hover {
+        .core-btn-primary:hover {
             transform: translateY(-3px);
             box-shadow: 0 20px 40px rgba(0, 245, 160, 0.35);
         }
 
-        .btn-secondary {
-            background: rgba(255,255,255,0.04);
-            color: var(--text-main);
-            border: 1px solid var(--border);
+        .core-btn-secondary {
+            background: rgba(255,255,255,0.03);
+            color: var(--text-primary);
+            border: 1px solid var(--panel-border);
         }
-        body.light .btn-secondary { background: rgba(0,0,0,0.03); }
-        .btn-secondary:hover {
-            background: rgba(255,255,255,0.08);
-            border-color: #00d2ff;
+        .core-btn-secondary:hover {
+            background: rgba(255,255,255,0.07);
+            border-color: var(--neon-blue);
             transform: translateY(-2px);
         }
 
-        .btn-danger {
-            background: linear-gradient(135deg, #ef4444 0%, #991b1b 100%);
+        .core-btn-accent {
+            background: var(--gradient-accent);
             color: white;
+            box-shadow: 0 15px 35px rgba(255, 0, 127, 0.2);
+        }
+        .core-btn-accent:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(255, 0, 127, 0.35);
         }
 
-        .info-box {
-            background: rgba(0,0,0,0.2);
-            border: 1px solid var(--border);
-            padding: 16px;
-            border-radius: var(--radius-md);
-            margin-top: 20px;
-            font-size: 13px;
-            color: var(--text-muted);
-            line-height: 1.6;
-        }
+        .core-btn-danger { background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%); color: white; }
 
-        .history-list {
-            max-height: 220px;
-            overflow-y: auto;
-            margin-top: 12px;
-        }
-
-        .history-item {
-            padding: 12px 16px;
-            background: rgba(255,255,255,0.02);
-            border: 1px solid var(--border);
-            margin-bottom: 8px;
+        .ledger-box { margin-top: 40px; }
+        .ledger-stream { max-height: 250px; overflow-y: auto; margin-top: 15px; padding-right: 5px; }
+        .ledger-row {
+            padding: 14px 20px;
+            background: rgba(255,255,255,0.01);
+            border: 1px solid var(--panel-border);
+            margin-bottom: 10px;
             border-radius: 8px;
             font-size: 13px;
             cursor: pointer;
@@ -361,572 +355,591 @@
             text-overflow: ellipsis;
             transition: all 0.2s ease;
         }
-        .history-item:hover {
-            background: rgba(255,255,255,0.06);
-            border-color: #00f5a0;
-        }
+        .ledger-row:hover { background: rgba(255,255,255,0.04); border-color: var(--neon-green); }
 
-        #scannerModal {
+        #opticalScannerOverlay {
             display: none;
             position: fixed;
             top:0; left:0; width:100%; height:100%;
-            background: rgba(5, 5, 15, 0.9);
-            backdrop-filter: blur(20px);
-            z-index: 10000;
+            background: rgba(3, 4, 8, 0.95);
+            backdrop-filter: blur(30px);
+            z-index: 99999;
             justify-content: center;
             align-items: center;
             flex-direction: column;
         }
 
-        #reader {
-            width: 380px;
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            padding: 15px;
-            border-radius: var(--radius-lg);
+        #opticalVideoReaderFrame {
+            width: 420px;
+            background: rgba(13, 20, 38, 0.8);
+            border: 1px solid var(--panel-border);
+            padding: 20px;
+            border-radius: var(--radius-xl);
+            box-shadow: 0 50px 100px rgba(0,0,0,0.8);
         }
     </style>
 </head>
-
 <body>
+    <div class="ambient-orb orb-1"></div>
+    <div class="ambient-orb orb-2"></div>
+    <div class="ambient-orb orb-3"></div>
 
     <div class="container">
-        
-        <!-- Premium Header Area -->
+        <!-- Dashboard Header Node -->
         <header>
-            <div class="logo-area">
-                <h1>Ultimate QR Pro <span class="badge-pro">CORE ENGINE v4.5</span></h1>
+            <div class="brand-container">
+                <h1>Ultimate QR Pro <span class="version-badge">ENTERPRISE v5.0</span></h1>
             </div>
-            <button class="theme-toggle" onclick="toggleTheme()">🌓 Switch Ambience</button>
+            <div class="header-actions">
+                <button class="action-trigger" onclick="toggleSystemAmbiance()">🌓 Toggle Ambience Mode</button>
+            </div>
         </header>
 
-        <!-- Dynamic Control Workspace GRID -->
-        <div class="main-grid">
+        <!-- Main Grid Layout -->
+        <div class="dashboard-grid">
             
-            <!-- Config Board (Left Side) -->
-            <div class="panel">
-                <h2 class="section-title">1. Engine Dynamic Protocols (21 Core Modes)</h2>
-                <div class="type-grid" id="typeGrid"></div>
+            <!-- Parameters Configuration Pipeline (Left Column) -->
+            <div class="workspace-panel">
+                <div class="panel-header-title">
+                    <span>1. Select Protocol Schema Configuration Matrix</span>
+                </div>
+                <div class="protocol-selection-matrix" id="protocolMatrixContainer"></div>
 
-                <h2 class="section-title">2. Payload Stream Validation</h2>
-                <div id="dynamicInputContainer"></div>
+                <div class="panel-header-title" style="margin-top: 20px;">
+                    <span>2. Dynamic Payload Data Ingestion Block</span>
+                </div>
+                <div class="dynamic-form-wrapper" id="dynamicFormContainer"></div>
 
-                <div class="input-block">
-                    <div class="counter-label">
-                        <label>Frame Typography Label Banner</label>
-                        <span class="counter" id="bannerCount">0 / 40 Limit</span>
+                <div class="field-group">
+                    <div class="field-group-header">
+                        <label>Sub-Matrix Banner Typography Layout</label>
+                        <span class="field-counter" id="bannerCharCounter">0 / 45 Limit</span>
                     </div>
-                    <input type="text" id="frameText" maxlength="40" placeholder="Inject text banner under node matrix (e.g., SCAN TO PAY)" oninput="updateCounter('frameText','bannerCount'); liveGenerate();">
+                    <input type="text" id="matrixBannerInput" maxlength="45" placeholder="Append high-contrast label beneath matrix framework" class="field-control" oninput="updateFieldCharacterCounter('matrixBannerInput','bannerCharCounter'); pipelineExecutionTrigger();">
                 </div>
 
-                <h2 class="section-title">3. Luxury Chroma Customization</h2>
-                <div class="custom-grid">
-                    <div class="input-block color-item">
-                        <label>QR Matrix Node</label>
-                        <input type="color" id="qrColor" value="#000000" onchange="liveGenerate()">
+                <div class="panel-header-title" style="margin-top: 40px;">
+                    <span>3. Chroma Mapping & Vector Scale Array</span>
+                </div>
+                <div class="chroma-palette-grid">
+                    <div class="field-group chroma-cell">
+                        <label>Node Point Micro-Chroma</label>
+                        <input type="color" id="chromaNodeColor" value="#000000" onchange="pipelineExecutionTrigger()">
                     </div>
-                    <div class="input-block color-item">
-                        <label>Solid Background</label>
-                        <input type="color" id="bgColor" value="#ffffff" onchange="liveGenerate()">
+                    <div class="field-group chroma-cell">
+                        <label>Background Canvas-Chroma</label>
+                        <input type="color" id="chromaBgColor" value="#ffffff" onchange="pipelineExecutionTrigger()">
                     </div>
                 </div>
 
-                <div class="input-block">
-                    <div class="counter-label">
-                        <label>HD Resolution Matrix Scale</label>
-                        <span class="counter" id="sizeVal">350px</span>
+                <div class="slider-wrapper">
+                    <div class="slider-data">
+                        <span>High-Definition Raster Scale Resolution</span>
+                        <span id="rasterSizeDisplayValue">400px</span>
                     </div>
-                    <input type="range" id="qrSize" min="200" max="1000" step="50" value="350" oninput="document.getElementById('sizeVal').innerText=this.value+'px'; liveGenerate();">
+                    <input type="range" id="rasterScaleSizeSlider" min="200" max="1200" step="25" value="400" class="range-slider" oninput="document.getElementById('rasterSizeDisplayValue').innerText=this.value+'px'; pipelineExecutionTrigger();">
                 </div>
 
-                <div class="input-block">
-                    <label>Core Center Identity Brand Logo (Auto-Center Architecture)</label>
-                    <input type="file" id="logoUpload" accept="image/*" onchange="loadLogo(event)">
+                <div class="field-group">
+                    <label>Identity Brand Vector Injection Node (Auto-Center Scale Processing)</label>
+                    <input type="file" id="brandLogoFileUploader" accept="image/*" class="field-control" onchange="processBrandIdentityLogo(event)">
                 </div>
 
-                <button class="btn btn-secondary full-width" style="margin-bottom:30px;" onclick="resetCustomization()">🔄 Flush Design Parameters</button>
+                <button class="core-btn core-btn-secondary span-full" style="width:100%; margin-bottom:40px;" onclick="flushDesignParametersToDefault()">🔄 Flush Chromatic Parameter State</button>
 
-                <h2 class="section-title">4. Industrial Batch Multi-Processing Core</h2>
-                <div class="input-block">
-                    <label>Import Structured CSV File Template</label>
-                    <input type="file" id="csvFile" accept=".csv" onchange="processCSV(event)">
+                <div class="panel-header-title">
+                    <span>4. Mass Scale Asynchronous Batch Core</span>
                 </div>
-                <div class="btn-group">
-                    <button class="btn btn-secondary" onclick="downloadBatchZIP()">📦 Compile Bulk ZIP</button>
-                    <button class="btn btn-secondary" onclick="downloadBatchPDF()">📚 Compile Bulk PDF Document</button>
+                <div class="field-group">
+                    <label>Import Structured Master CSV Sequence Array</label>
+                    <input type="file" id="bulkCSVEngineFileUploader" accept=".csv" class="field-control" onchange="processBulkCSVDataSequence(event)">
+                </div>
+                <div class="layout-split">
+                    <button class="core-btn core-btn-secondary" onclick="asyncBatchZIPExecutionEngine()">📦 Package Mass ZIP Binary</button>
+                    <button class="core-btn core-btn-secondary" onclick="asyncBatchPDFExecutionEngine()">📚 Package Mass PDF Ledger</button>
                 </div>
             </div>
-
-            <!-- Previews & Terminal Area (Right Side) -->
-            <div class="panel">
-                <h2 class="section-title">Studio Canvas Vector Live Preview</h2>
+            <!-- Studio Output Stage Panel (Right Column) -->
+            <div class="workspace-panel">
+                <div class="panel-header-title">
+                    <span>Studio Canvas Engine Monitor</span>
+                </div>
                 
-                <div class="preview-wrapper" id="printZone">
-                    <div id="canvasContainer">
-                        <canvas id="qrCanvas"></canvas>
-                        <div id="bannerTextDisplay" class="banner-text-view"></div>
+                <div class="studio-stage" id="studioPrintCaptureZone">
+                    <div id="canvasWrapper">
+                        <canvas id="matrixStudioCanvas"></canvas>
+                        <div id="studioTypographyLabelDisplay" class="studio-typography-banner"></div>
                     </div>
                 </div>
 
-                <div class="info-box" id="qrInfoBox">
-                    <strong>Real-time Analytics Feed:</strong><br>
-                    Null session data track. Awaiting valid input streaming block structure...
+                <div class="terminal-feed-log" id="systemTerminalAnalyticsLogFeed">
+                    Initializing Core Ultimate QR Pro Kernel... Status: Operational. Awaiting pipeline ingestion block data array mapping stream...
                 </div>
 
-                <div class="btn-group">
-                    <button class="btn btn-primary" onclick="downloadPNG()">💾 Export High PNG</button>
-                    <button class="btn btn-primary" onclick="downloadSVG()">🎨 Export Clean SVG</button>
-                    <button class="btn btn-primary" onclick="downloadJPG()">🖼️ Export Flat JPG</button>
-                    <button class="btn btn-primary" onclick="downloadPDF()">📄 Print Studio PDF</button>
-                    <button class="btn btn-secondary" onclick="copyToClipboard()">📋 Copy Raw Image</button>
-                    <button class="btn btn-secondary" onclick="shareQR()">📤 Share Pipeline</button>
-                    <button class="btn btn-secondary full-width" onclick="printQR()">🖨️ Hardware System Print</button>
+                <div class="action-button-matrix">
+                    <button class="core-btn core-btn-primary" onclick="triggerRasterDownloadPNG()">💾 Export Production PNG</button>
+                    <button class="core-btn core-btn-primary" onclick="triggerVectorDownloadSVG()">🎨 Export Scalable SVG</button>
+                    <button class="core-btn core-btn-primary" onclick="triggerRasterDownloadJPG()">🖼️ Export Compressed JPG</button>
+                    <button class="core-btn core-btn-primary" onclick="triggerDocumentDownloadPDF()">📄 Export Layout PDF</button>
+                    <button class="core-btn core-btn-secondary" onclick="cloneBinaryToClipboard()">📋 Cloned Stream Matrix</button>
+                    <button class="core-btn core-btn-secondary" onclick="dispatchNativeSharePipeline()">📤 Broadcast Pipeline</button>
+                    <button class="core-btn core-btn-secondary span-full" onclick="executeHardwareDevicePrint()">🖨️ Hardware Device Direct Print</button>
                 </div>
 
-                <h2 class="section-title" style="margin-top: 35px;">Optical Scanner Interface</h2>
-                <div class="btn-group">
-                    <button class="btn btn-primary full-width" style="background: var(--accent-glow); color: white; box-shadow: 0 10px 25px rgba(255,0,127,0.25);" onclick="openScanner()">📷 Engage Live Video Camera Scanner</button>
+                <div class="panel-header-title" style="margin-top: 40px;">
+                    <span>Optical Sensor Network</span>
                 </div>
+                <button class="core-btn core-btn-accent span-full" style="width: 100%;" onclick="engageOpticalCameraScannerNode()">📷 Engage Live Optical Video Camera Stream</button>
 
-                <!-- Session Storage Data Logs -->
-                <h2 class="section-title" style="margin-top: 35px;">
-                    Offline Ledger Logs
-                    <span style="font-size:11px; cursor:pointer; color:#ef4444; font-weight:700;" onclick="clearHistory()">⚠️ Clear Storage Logs</span>
-                </h2>
-                <input type="text" id="searchHist" placeholder="🔍 Query local index parameters..." oninput="renderHistory()" style="width:100%; padding:12px; border-radius:10px; background:rgba(0,0,0,0.2); border:1px solid var(--border); color:var(--text-main); margin-bottom:10px;">
-                <div class="history-list" id="historyContainer"></div>
-                <button class="btn btn-secondary full-width" style="margin-top:10px; font-size:12px; padding:10px;" onclick="exportHistoryTXT()">📤 Extract Ledger Data (.TXT)</button>
+                <!-- Offline Ledger Storage Tracker -->
+                <div class="ledger-box">
+                    <div class="panel-header-title">
+                        <span>Offline Transaction Ledger Logs</span>
+                        <span style="font-size:12px; cursor:pointer; color:var(--neon-pink); font-weight:800;" onclick="flushOfflineLedgerLogs()">⚠️ Wipe System Logs</span>
+                    </div>
+                    <input type="text" id="queryLedgerSearchInput" placeholder="🔍 Query local transaction index tokens..." oninput="renderLocalLedgerDataStream()" class="field-control" style="margin-bottom:12px; padding:10px 15px;">
+                    <div class="ledger-stream" id="localLedgerLogContainer"></div>
+                    <button class="core-btn core-btn-secondary span-full" style="width: 100%; font-size: 12px; padding: 10px;" onclick="extractLedgerLogBlobTXT()">📤 Extract Ledger Report File (.TXT)</button>
+                </div>
             </div>
 
         </div>
     </div>
 
-    <!-- Scanner Optical Frame Modal -->
-    <div id="scannerModal">
-        <div id="reader"></div>
-        <button class="btn btn-danger" style="margin-top: 20px; width: 380px;" onclick="closeScanner()">❌ Kill Camera Node</button>
+    <!-- Scanner Optical Overlay Node Structure -->
+    <div id="opticalScannerOverlay">
+        <div id="opticalVideoReaderFrame"></div>
+        <button class="core-btn core-btn-danger" style="margin-top: 25px; width: 420px;" onclick="terminateOpticalCameraScannerNode()">❌ Terminate Optical Sensor Capture</button>
     </div>
 
-    <!-- Core Cryptography Dynamic Script System -->
     <script>
-        const qrTypesConfig = [
-            { id: "Text", label: "💬 Text QR", fields: [{ name: "val", type: "textarea", label: "Plain Text String", placeholder: "Type standard alphanumeric/unicode dataset..." }] },
-            { id: "URL", label: "🌐 URL QR", fields: [{ name: "val", type: "url", label: "Network URL Target Link", placeholder: "example.com" }] },
-            { id: "Phone", label: "📞 Phone QR", fields: [{ name: "val", type: "tel", label: "Hardware Call Address Number", placeholder: "+1234567890" }] },
-            { id: "Email", label: "✉️ Email QR", fields: [{ name: "to", type: "text", label: "Gateway Destination Email Address" }, { name: "sub", type: "text", label: "Encoded Subject Payload Line" }, { name: "body", type: "textarea", label: "Message Body Context Structure" }] },
-            { id: "SMS", label: "💬 SMS QR", fields: [{ name: "num", type: "tel", label: "Destination Mobile Frame Target" }, { name: "msg", type: "textarea", label: "SMS Body String Character" }] },
-            { id: "WhatsApp", label: "🟢 WhatsApp QR", fields: [{ name: "num", type: "tel", label: "WhatsApp Endpoint Node Identity Token", placeholder: "1234567890" }, { name: "msg", type: "textarea", label: "Pre-formed Text Payload Content" }] },
-            { id: "WiFi", label: "📶 WiFi QR", fields: [{ name: "ssid", type: "text", label: "Access Point SSID Name Broadcast" }, { name: "pass", type: "text", label: "Network Security Handshake Token" }, { name: "enc", type: "select", label: "Encryption Cipher Protocol", options: ["WPA", "WEP", "nopass"] }] },
-            { id: "UPI", label: "💳 UPI QR", fields: [{ name: "vpa", type: "text", label: "UPI VPA Direct Core ID Address", placeholder: "identifier@bank" }, { name: "name", type: "text", label: "Payee Merchant Corporate Legal Name" }, { name: "am", type: "number", label: "Transaction Amount Value Asset (INR)" }] },
-            { id: "vCard", label: "📇 vCard QR", fields: [{ name: "fn", type: "text", label: "Legal Full Name Identity" }, { name: "org", type: "text", label: "Corporate Entity Organization" }, { name: "tel", type: "tel", label: "Primary Cellular Node" }, { name: "email", type: "email", label: "Identity Electronic Mail Endpoint" }] },
-            { id: "Location", label: "📍 Location QR", fields: [{ name: "lat", type: "text", label: "Geographical Latitude Coordinate" }, { name: "lon", type: "text", label: "Geographical Longitude Coordinate" }] },
-            { id: "Event", label: "📅 Event QR", fields: [{ name: "title", type: "text", label: "Calendar Event Node Header Title" }, { name: "start", type: "date", label: "Event Execution Schedule Start Date" }, { name: "loc", type: "text", label: "Event Physical Location Parameter" }] },
-            { id: "YouTube", label: "🎥 YouTube QR", fields: [{ name: "val", type: "url", label: "Video streaming pipeline network URI address" }] },
-            { id: "Instagram", label: "📸 Instagram QR", fields: [{ name: "val", type: "url", label: "Target Account Context Web Interface URI" }] },
-            { id: "Facebook", label: "🔵 Facebook QR", fields: [{ name: "val", type: "url", label: "Profile Interface Endpoint Identity Web URL" }] },
-            { id: "LinkedIn", label: "👔 LinkedIn QR", fields: [{ name: "val", type: "url", label: "Corporate Network Index Database Target URL" }] },
-            { id: "Twitter", label: "🐦 Twitter QR", fields: [{ name: "val", type: "url", label: "Twitter Ecosystem Handle Matrix URL" }] },
-            { id: "PayPal", label: "💰 PayPal QR", fields: [{ name: "user", type: "text", label: "PayPal Corporate Ledger Email Address" }, { name: "amt", type: "number", label: "Transfer Value Asset Quantity Request" }] },
-            { id: "Bitcoin", label: "🪙 Bitcoin QR", fields: [{ name: "adr", type: "text", label: "Decentralized Ledger BTC Wallet Destination Token" }, { name: "amt", type: "number", label: "Asset Transfer Quantity (BTC Value)" }] },
-            { id: "Zoom", label: "📹 Zoom QR", fields: [{ name: "val", type: "url", label: "Streaming Meeting Node Invite Gateway Link" }] },
-            { id: "FaceTime", label: "📱 FaceTime QR", fields: [{ name: "val", type: "text", label: "Apple ID Authentication Phone/Email Node" }] },
-            { id: "vCardPlus", label: "💎 vCard Plus QR", fields: [{ name: "fn", type: "text", label: "Full Professional Profile Name" }, { name: "title", type: "text", label: "Corporate Functional Role Designation" }, { name: "cell", type: "tel", label: "Personal Mobile Cellular Address" }, { name: "work", type: "tel", label: "Corporate Enterprise Telephone Line" }, { name: "url", type: "url", label: "Online Cloud Portfolio Server URL Link" }] }
+        // Advanced Protocol Configuration Registry
+        const enterpriseProtocolRegistry = [
+            { id: "Text", label: "💬 Plain Text Data", fields: [{ name: "val", type: "textarea", label: "Raw String Matrix Dataset", placeholder: "Type standard alphanumeric/unicode content sequence blocks..." }] },
+            { id: "URL", label: "🌐 Network Link URI", fields: [{ name: "val", type: "url", label: "Network URL Target Location Pointer", placeholder: "enterprise.domain.com" }] },
+            { id: "Phone", label: "📞 Dial Address Node", fields: [{ name: "val", type: "tel", label: "Hardware Terminal Dial Routing Address", placeholder: "+18005550199" }] },
+            { id: "Email", label: "✉️ Mail Interface", fields: [{ name: "to", type: "text", label: "Gateway Destination E-Mail Node Address" }, { name: "sub", type: "text", label: "Subject Pipeline Header Line" }, { name: "body", type: "textarea", label: "Message Body Context Payload" }] },
+            { id: "SMS", label: "💬 Short Message Node", fields: [{ name: "num", type: "tel", label: "Mobile Device Router Address" }, { name: "msg", type: "textarea", label: "SMS ASCII Character String Payload" }] },
+            { id: "WhatsApp", label: "🟢 WA Routing Node", fields: [{ name: "num", type: "tel", label: "WhatsApp Secure Identity Identity Endpoint", placeholder: "447123456789" }, { name: "msg", type: "textarea", label: "Pre-loaded String Message Payload Context" }] },
+            { id: "WiFi", label: "📶 Access Point Configuration", fields: [{ name: "ssid", type: "text", label: "Access Point Network SSID Broadcast Name" }, { name: "pass", type: "text", label: "Network Security Handshake Encryption Passphrase" }, { name: "enc", type: "select", label: "Cipher Authentication Protocol Type", options: ["WPA", "WEP", "nopass"] }] },
+            { id: "UPI", label: "💳 Financial UPI Asset", fields: [{ name: "vpa", type: "text", label: "UPI VPA Direct Clearing House Virtual Address", placeholder: "transaction@bank" }, { name: "name", type: "text", label: "Payee Merchant Legal Registered Corporate Identity" }, { name: "am", type: "number", label: "Financial Transfer Value Limit (INR Currency Code)" }] },
+            { id: "vCard", label: "📇 vCard Personal Node", fields: [{ name: "fn", type: "text", label: "Legal Entity Full Name" }, { name: "org", type: "text", label: "Corporate Operation Organization Identity" }, { name: "tel", type: "tel", label: "Cellular Communication Interface Number" }, { name: "email", type: "email", label: "Electronic Contact Mail Server Node Address" }] },
+            { id: "Location", label: "📍 Geo Coordinate Mapping", fields: [{ name: "lat", type: "text", label: "Geographical Grid Latitude Value Degree" }, { name: "lon", type: "text", label: "Geographical Grid Longitude Value Degree" }] },
+            { id: "Event", label: "📅 Schedule Event Block", fields: [{ name: "title", type: "text", label: "Calendar Event Node Header Identifier Name" }, { name: "start", type: "date", label: "Execution Start Timeline Schedule Parameter" }, { name: "loc", type: "text", label: "Event Physical/Virtual Location Infrastructure Coordinates" }] },
+            { id: "YouTube", label: "🎥 YT Video Pipeline", fields: [{ name: "val", type: "url", label: "Video Channel/Asset Resource Grid Network URI Link" }] },
+            { id: "Instagram", label: "📸 Insta Account Matrix", fields: [{ name: "val", type: "url", label: "Target Account Matrix Profile Interface Endpoint Web URL" }] },
+            { id: "Facebook", label: "🔵 FB Platform Identity", fields: [{ name: "val", type: "url", label: "Profile Interface Corporate Page Target Asset Web Link" }] },
+            { id: "LinkedIn", label: "👔 Corporate Index Profile", fields: [{ name: "val", type: "url", label: "Professional Identity Server Public Node Directory URL" }] },
+            { id: "Twitter", label: "🐦 Handle Vector Stream", fields: [{ name: "val", type: "url", label: "Handle Matrix Micro-Post Public Grid Location URI" }] },
+            { id: "PayPal", label: "💰 PayPal Vault Gateway", fields: [{ name: "user", type: "text", label: "PayPal Merchant Gateway Identity E-Mail Address" }, { name: "amt", type: "number", label: "Asset Value Transaction Quantity Transfer Request" }] },
+            { id: "Bitcoin", label: "🪙 Distributed BTC Wallet", fields: [{ name: "adr", type: "text", label: "Decentralized Public Ledger Bitcoin Wallet Destination Hash Address" }, { name: "amt", type: "number", label: "Cryptographic Asset Transfer Quantity (BTC Native Denomination)" }] },
+            { id: "Zoom", label: "📹 Zoom Conference Bridge", fields: [{ name: "val", type: "url", label: "Virtual Streaming Room Meeting Node Access Gateway Link" }] },
+            { id: "FaceTime", label: "📱 Apple FT Endpoint", fields: [{ name: "val", type: "text", label: "Apple Authentication Identity Network Phone/Mail Node Input" }] },
+            { id: "vCardPlus", label: "💎 Advanced Enterprise Profile", fields: [{ name: "fn", type: "text", label: "Full Legal Identity Name String" }, { name: "title", type: "text", label: "Corporate Structural Functional Role Designation" }, { name: "cell", type: "tel", label: "Personal Mobile Node Contact Identifier" }, { name: "work", type: "tel", label: "Corporate Office Landline Interface Telephony" }, { name: "url", type: "url", label: "Online Enterprise Identity Portal Web URI Pointer" }] }
         ];
 
-        let selectedType = "Text";
-        let uploadedLogoData = null;
-        let batchRows = [];
-        let html5QrScanner = null;
+        let selectedActiveSchemaType = "Text";
+        let cacheUploadedBrandLogoDataStream = null;
+        let batchProcessedCSVRowsMatrixArray = [];
+        let executionCoreOpticalScannerModule = null;
 
         window.onload = function() {
-            setupTypeGrid();
-            selectType("Text");
-            loadSavedSettings();
-            renderHistory();
+            initializeDynamicProtocolMatrixInterface();
+            switchActiveProtocolWorkspaceSchema("Text");
+            loadSystemPreferenceConfigurationCache();
+            renderLocalLedgerDataStream();
         };
 
-        function setupTypeGrid() {
-            const grid = document.getElementById("typeGrid");
-            qrTypesConfig.forEach(t => {
-                const btn = document.createElement("button");
-                btn.className = "type-btn";
-                btn.id = "btn-" + t.id;
-                btn.innerText = t.label;
-                btn.onclick = () => selectType(t.id);
-                grid.appendChild(btn);
+        function initializeDynamicProtocolMatrixInterface() {
+            const matrixContainerGrid = document.getElementById("protocolMatrixContainer");
+            enterpriseProtocolRegistry.forEach(schema => {
+                const nodeButton = document.createElement("button");
+                nodeButton.className = "protocol-node";
+                nodeButton.id = "protocol-node-id-" + schema.id;
+                nodeButton.innerText = schema.label;
+                nodeButton.onclick = () => switchActiveProtocolWorkspaceSchema(schema.id);
+                matrixContainerGrid.appendChild(nodeButton);
             });
         }
 
-        function selectType(typeId) {
-            selectedType = typeId;
-            document.querySelectorAll(".type-btn").forEach(b => b.classList.remove("active"));
-            document.getElementById("btn-" + typeId).classList.add("active");
+        function switchActiveProtocolWorkspaceSchema(schemaId) {
+            selectedActiveSchemaType = schemaId;
+            document.querySelectorAll(".protocol-node").forEach(btnNode => btnNode.classList.remove("active-node"));
+            document.getElementById("protocol-node-id-" + schemaId).classList.add("active-node");
 
-            const container = document.getElementById("dynamicInputContainer");
-            container.innerHTML = "";
+            const inputInjectionFormContainer = document.getElementById("dynamicFormContainer");
+            inputInjectionFormContainer.innerHTML = "";
 
-            const config = qrTypesConfig.find(t => t.id === typeId);
-            config.fields.forEach(f => {
-                const block = document.createElement("div");
-                block.className = "input-block";
+            const matchedSchemaConfig = enterpriseProtocolRegistry.find(schema => schema.id === schemaId);
+            matchedSchemaConfig.fields.forEach(fieldDef => {
+                const blockDiv = document.createElement("div");
+                blockDiv.className = "field-group";
                 
-                const labelWrapper = document.createElement("div");
-                labelWrapper.className = "counter-label";
-                const label = document.createElement("label");
-                label.innerText = f.label;
-                labelWrapper.appendChild(label);
+                const labelsRowDiv = document.createElement("div");
+                labelsRowDiv.className = "field-group-header";
+                const standardLabel = document.createElement("label");
+                standardLabel.innerText = fieldDef.label;
+                labelsRowDiv.appendChild(standardLabel);
 
-                let fieldElem;
-                if(f.type === "textarea") {
-                    fieldElem = document.createElement("textarea");
-                    const countSpan = document.createElement("span");
-                    countSpan.className = "counter";
-                    countSpan.id = `count_${f.name}`;
-                    countSpan.innerText = "0 chars";
-                    labelWrapper.appendChild(countSpan);
-                    fieldElem.oninput = () => { updateCounter(fieldElem.id, countSpan.id); liveGenerate(); };
-                } else if(f.type === "select") {
-                    fieldElem = document.createElement("select");
-                    f.options.forEach(opt => {
-                        const o = document.createElement("option");
-                        o.value = opt; o.innerText = opt.toUpperCase();
-                        fieldElem.appendChild(o);
+                let domInputFieldControlElement;
+                if(fieldDef.type === "textarea") {
+                    domInputFieldControlElement = document.createElement("textarea");
+                    domInputFieldControlElement.rows = 4;
+                    const charCounterBadge = document.createElement("span");
+                    charCounterBadge.className = "field-counter";
+                    charCounterBadge.id = `character-badge-id-${fieldDef.name}`;
+                    charCounterBadge.innerText = "0 characters processed";
+                    labelsRowDiv.appendChild(charCounterBadge);
+                    domInputFieldControlElement.oninput = () => { 
+                        updateFieldCharacterCounter(domInputFieldControlElement.id, charCounterBadge.id); 
+                        pipelineExecutionTrigger(); 
+                    };
+                } else if(fieldDef.type === "select") {
+                    domInputFieldControlElement = document.createElement("select");
+                    fieldDef.options.forEach(optionString => {
+                        const optDomElem = document.createElement("option");
+                        optDomElem.value = optionString; 
+                        optDomElem.innerText = optionString.toUpperCase() + " Mode Protocol";
+                        domInputFieldControlElement.appendChild(optDomElem);
                     });
-                    fieldElem.onchange = liveGenerate;
+                    domInputFieldControlElement.onchange = pipelineExecutionTrigger;
                 } else {
-                    fieldElem = document.createElement("input");
-                    fieldElem.type = f.type;
-                    fieldElem.oninput = liveGenerate;
+                    domInputFieldControlElement = document.createElement("input");
+                    domInputFieldControlElement.type = fieldDef.type;
+                    domInputFieldControlElement.oninput = pipelineExecutionTrigger;
                 }
                 
-                fieldElem.id = "field_" + f.name;
-                fieldElem.placeholder = f.placeholder || "";
+                domInputFieldControlElement.id = "form-field-control-id-" + fieldDef.name;
+                domInputFieldControlElement.className = "field-control";
+                domInputFieldControlElement.placeholder = fieldDef.placeholder || "Enter clean dataset strings...";
                 
-                block.appendChild(labelWrapper);
-                block.appendChild(fieldElem);
-                container.appendChild(block);
+                blockDiv.appendChild(labelsRowDiv);
+                blockDiv.appendChild(domInputFieldControlElement);
+                inputInjectionFormContainer.appendChild(blockDiv);
             });
-            liveGenerate();
+            pipelineExecutionTrigger();
         }
 
-        function updateCounter(fieldId, counterId) {
-            const len = document.getElementById(fieldId).value.length;
-            document.getElementById(counterId).innerText = len + " chars";
+        function updateFieldCharacterCounter(inputTargetElementId, counterTargetElementId) {
+            const lengthCount = document.getElementById(inputTargetElementId).value.length;
+            document.getElementById(counterTargetElementId).innerText = lengthCount + " characters processed";
         }
-
-        function buildPayload() {
-            const getVal = (name) => {
-                const el = document.getElementById("field_" + name);
-                return el ? el.value.trim() : "";
+        function extractPayloadStringFromFormInputs() {
+            const readValueFromDOMField = (fieldNameString) => {
+                const DOMElementPointer = document.getElementById("form-field-control-id-" + fieldNameString);
+                return DOMElementPointer ? DOMElementPointer.value.trim() : "";
             };
 
-            switch(selectedType) {
-                case "Text": return getVal("val");
+            switch(selectedActiveSchemaType) {
+                case "Text": return readValueFromDOMField("val");
                 case "URL": 
                 case "YouTube": case "Facebook": case "Instagram": case "LinkedIn": case "Twitter": case "Zoom":
-                    let url = getVal("val");
-                    if(url && !/^https?:\/\//i.test(url)) url = "https://" + url;
-                    return url;
-                case "Phone": return `tel:${getVal("val")}`;
-                case "Email": return `mailto:${getVal("to")}?subject=${encodeURIComponent(getVal("sub"))}&body=${encodeURIComponent(getVal("body"))}`;
-                case "SMS": return `SMSTO:${getVal("num")}:${getVal("msg")}`;
-                case "WhatsApp": return `https://wa.me/${getVal("num")}?text=${encodeURIComponent(getVal("msg"))}`;
-                case "WiFi": return `WIFI:S:${getVal("ssid")};T:${getVal("enc")};P:${getVal("pass")};;`;
-                case "UPI": return `upi://pay?pa=${getVal("vpa")}&pn=${encodeURIComponent(getVal("name"))}&am=${getVal("am")}&cu=INR`;
+                    let networkURLString = readValueFromDOMField("val");
+                    if(networkURLString && !/^https?:\/\//i.test(networkURLString)) networkURLString = "https://" + networkURLString;
+                    return networkURLString;
+                case "Phone": return `tel:${readValueFromDOMField("val")}`;
+                case "Email": return `mailto:${readValueFromDOMField("to")}?subject=${encodeURIComponent(readValueFromDOMField("sub"))}&body=${encodeURIComponent(readValueFromDOMField("body"))}`;
+                case "SMS": return `SMSTO:${readValueFromDOMField("num")}:${readValueFromDOMField("msg")}`;
+                case "WhatsApp": return `https://wa.me/${readValueFromDOMField("num")}?text=${encodeURIComponent(readValueFromDOMField("msg"))}`;
+                case "WiFi": return `WIFI:S:${readValueFromDOMField("ssid")};T:${readValueFromDOMField("enc")};P:${readValueFromDOMField("pass")};;`;
+                case "UPI": return `upi://pay?pa=${readValueFromDOMField("vpa")}&pn=${encodeURIComponent(readValueFromDOMField("name"))}&am=${readValueFromDOMField("am")}&cu=INR`;
                 case "vCard":
-                    return `BEGIN:VCARD\nVERSION:3.0\nFN:${getVal("fn")}\nORG:${getVal("org")}\nTEL:${getVal("tel")}\nEMAIL:${getVal("email")}\nEND:VCARD`;
-                case "Location": return `geo:${getVal("lat")},${getVal("lon")}`;
-                case "Event": return `BEGIN:VEVENT\nSUMMARY:${getVal("title")}\nDTSTART:${getVal("start").replace(/-/g,'')}\nLOCATION:${getVal("loc")}\nEND:VEVENT`;
-                case "PayPal": return `https://www.paypal.me/${getVal("user")}/${getVal("amt")}`;
-                case "Bitcoin": return `bitcoin:${getVal("adr")}?amount=${getVal("amt")}`;
-                case "FaceTime": return `facetime:${getVal("val")}`;
+                    return `BEGIN:VCARD\nVERSION:3.0\nFN:${readValueFromDOMField("fn")}\nORG:${readValueFromDOMField("org")}\nTEL:${readValueFromDOMField("tel")}\nEMAIL:${readValueFromDOMField("email")}\nEND:VCARD`;
+                case "Location": return `geo:${readValueFromDOMField("lat")},${readValueFromDOMField("lon")}`;
+                case "Event": return `BEGIN:VEVENT\nSUMMARY:${readValueFromDOMField("title")}\nDTSTART:${readValueFromDOMField("start").replace(/-/g,'')}\nLOCATION:${readValueFromDOMField("loc")}\nEND:VEVENT`;
+                case "PayPal": return `https://www.paypal.me/${readValueFromDOMField("user")}/${readValueFromDOMField("amt")}`;
+                case "Bitcoin": return `bitcoin:${readValueFromDOMField("adr")}?amount=${readValueFromDOMField("amt")}`;
+                case "FaceTime": return `facetime:${readValueFromDOMField("val")}`;
                 case "vCardPlus":
-                    return `BEGIN:VCARD\nVERSION:3.0\nFN:${getVal("fn")}\nTITLE:${getVal("title")}\nTEL;TYPE=CELL:${getVal("cell")}\nTEL;TYPE=WORK:${getVal("work")}\nURL:${getVal("url")}\nEND:VCARD`;
+                    return `BEGIN:VCARD\nVERSION:3.0\nFN:${readValueFromDOMField("fn")}\nTITLE:${readValueFromDOMField("title")}\nTEL;TYPE=CELL:${readValueFromDOMField("cell")}\nTEL;TYPE=WORK:${readValueFromDOMField("work")}\nURL:${readValueFromDOMField("url")}\nEND:VCARD`;
                 default: return "";
             }
         }
 
-        let debounceTimer;
-        function liveGenerate() {
-            clearTimeout(debounceTimer);
-            debounceTimer = setTimeout(() => {
-                const payload = buildPayload();
-                const bannerText = document.getElementById("frameText").value.trim();
-                document.getElementById("bannerTextDisplay").innerText = bannerText;
+        let asynchronousPipelineDebounceTimerPointer;
+        function pipelineExecutionTrigger() {
+            clearTimeout(asynchronousPipelineDebounceTimerPointer);
+            asynchronousPipelineDebounceTimerPointer = setTimeout(() => {
+                const activeDataPayloadString = extractPayloadStringFromFormInputs();
+                const textLabelBannerString = document.getElementById("matrixBannerInput").value.trim();
+                document.getElementById("studioTypographyLabelDisplay").innerText = textLabelBannerString;
                 
-                if(!payload) {
-                    document.getElementById("qrInfoBox").innerHTML = `<strong>Real-time Analytics Feed:</strong><br>Null session data track. Awaiting valid input streaming block structure...`;
+                if(!activeDataPayloadString) {
+                    document.getElementById("systemTerminalAnalyticsLogFeed").innerHTML = `[CRITICAL_LOG]: Null execution session data track stack. Awaiting valid structure matrix configuration array ingestion...`;
                     return;
                 }
 
-                const size = parseInt(document.getElementById("qrSize").value);
-                const canvas = document.getElementById("qrCanvas");
+                const targetedRasterScalePixelSize = parseInt(document.getElementById("rasterScaleSizeSlider").value);
+                const applicationStudioCanvasElement = document.getElementById("matrixStudioCanvas");
 
-                QRCode.toCanvas(canvas, payload, {
-                    width: size,
+                QRCode.toCanvas(applicationStudioCanvasElement, activeDataPayloadString, {
+                    width: targetedRasterScalePixelSize,
                     margin: 2,
                     errorCorrectionLevel: 'H',
                     color: {
-                        dark: document.getElementById("qrColor").value,
-                        light: document.getElementById("bgColor").value
+                        dark: document.getElementById("chromaNodeColor").value,
+                        light: document.getElementById("chromaBgColor").value
                     }
-                }, function (error) {
-                    if (error) console.error(error);
+                }, function (processingPipelineExceptionError) {
+                    if (processingPipelineExceptionError) console.error(processingPipelineExceptionError);
                     
-                    const bytes = new Blob([payload]).size;
-                    document.getElementById("qrInfoBox").innerHTML = `<strong>Encryption Analytics Feed:</strong><br>• Asset Cluster Vector Size: ${bytes} Bytes Data Stream<br>• Protocol Signature Mode: System [ ${selectedType} ] Mapping Engine<br>• Error Resiliency Node Tolerance: Level H High Spectrum Mode [ 30% Auto-Recover Frame Capacity ]<br>• Device Status Framework: 100% Client-Side Sealed Encrypted Environment Node`;
+                    const computationalByteSizeCount = new Blob([activeDataPayloadString]).size;
+                    document.getElementById("systemTerminalAnalyticsLogFeed").innerHTML = `⚡ <b>REAL-TIME MONITOR PIPELINE ANALYTICS LOG:</b><br>• Ingested Cluster Vector Capacity: ${computationalByteSizeCount} Computational Bytes<br>• Schema Core Mapping Protocol: System Environment [ ${selectedActiveSchemaType} ] Mode Matrix<br>• Error Resiliency Node Range Tolerance: Level H High Spectrum Mode [ 30% Active-Recover Node Space ]<br>• Core Processing Unit Security Profile: 100% Client-Side Sealed Hardware Isolation Environment Link`;
                     
-                    if (uploadedLogoData) {
-                        const ctx = canvas.getContext("2d");
-                        const img = new Image();
-                        img.onload = function() {
-                            const logoSize = size * 0.20;
-                            const x = (size - logoSize) / 2;
-                            const y = (size - logoSize) / 2;
-                            ctx.fillStyle = document.getElementById("bgColor").value;
-                            ctx.fillRect(x - 5, y - 5, logoSize + 10, logoSize + 10);
-                            ctx.drawImage(img, x, y, logoSize, logoSize);
+                    if (cacheUploadedBrandLogoDataStream) {
+                        const canvas2DContextPointer = applicationStudioCanvasElement.getContext("2d");
+                        const coreLogoImageObjectInstance = new Image();
+                        coreLogoImageObjectInstance.onload = function() {
+                            const calculatedIdentityLogoSizeSquare = targetedRasterScalePixelSize * 0.22;
+                            const placementPositionCoordinateX = (targetedRasterScalePixelSize - calculatedIdentityLogoSizeSquare) / 2;
+                            const placementPositionCoordinateY = (targetedRasterScalePixelSize - calculatedIdentityLogoSizeSquare) / 2;
+                            canvas2DContextPointer.fillStyle = document.getElementById("chromaBgColor").value;
+                            canvas2DContextPointer.fillRect(placementPositionCoordinateX - 6, placementPositionCoordinateY - 6, calculatedIdentityLogoSizeSquare + 12, calculatedIdentityLogoSizeSquare + 12);
+                            canvas2DContextPointer.drawImage(coreLogoImageObjectInstance, placementPositionCoordinateX, placementPositionCoordinateY, calculatedIdentityLogoSizeSquare, calculatedIdentityLogoSizeSquare);
                         };
-                        img.src = uploadedLogoData;
+                        coreLogoImageObjectInstance.src = cacheUploadedBrandLogoDataStream;
                     }
-                    saveToHistory(payload);
+                    storeActiveDataPayloadIntoOfflineLedger(activeDataPayloadString);
                 });
             }, 50);
         }
 
-        function loadLogo(event) {
-            const reader = new FileReader();
-            reader.onload = function(){
-                uploadedLogoData = reader.result;
-                liveGenerate();
+        function processBrandIdentityLogo(domFileUploadEvent) {
+            const clientFileReaderInstance = new FileReader();
+            clientFileReaderInstance.onload = function(){
+                cacheUploadedBrandLogoDataStream = clientFileReaderInstance.result;
+                pipelineExecutionTrigger();
             };
-            if(event.target.files[0]) reader.readAsDataURL(event.target.files[0]);
+            if(domFileUploadEvent.target.files[0]) clientFileReaderInstance.readAsDataURL(domFileUploadEvent.target.files[0]);
         }
 
-        function resetCustomization() {
-            document.getElementById("qrColor").value = "#000000";
-            document.getElementById("bgColor").value = "#ffffff";
-            document.getElementById("qrSize").value = "350";
-            document.getElementById("sizeVal").innerText = "350px";
-            document.getElementById("frameText").value = "";
-            document.getElementById("logoUpload").value = "";
-            uploadedLogoData = null;
-            liveGenerate();
+        function flushDesignParametersToDefault() {
+            document.getElementById("chromaNodeColor").value = "#000000";
+            document.getElementById("chromaBgColor").value = "#ffffff";
+            document.getElementById("rasterScaleSizeSlider").value = "400";
+            document.getElementById("rasterSizeDisplayValue").innerText = "400px";
+            document.getElementById("matrixBannerInput").value = "";
+            document.getElementById("brandLogoFileUploader").value = "";
+            cacheUploadedBrandLogoDataStream = null;
+            pipelineExecutionTrigger();
         }
 
-        function downloadPNG() {
-            const canvas = document.getElementById("qrCanvas");
-            const a = document.createElement("a");
-            a.download = `MatrixCore_${Date.now()}.png`;
-            a.href = canvas.toDataURL("image/png");
-            a.click();
+        function triggerRasterDownloadPNG() {
+            const canvasElement = document.getElementById("matrixStudioCanvas");
+            const proxyAnchorLink = document.createElement("a");
+            proxyAnchorLink.download = `MatrixProductionEngine_${Date.now()}.png`;
+            proxyAnchorLink.href = canvasElement.toDataURL("image/png");
+            proxyAnchorLink.click();
         }
 
-        function downloadJPG() {
-            const canvas = document.getElementById("qrCanvas");
-            const outCanvas = document.createElement("canvas");
-            outCanvas.width = canvas.width;
-            outCanvas.height = canvas.height;
-            const ctx = outCanvas.getContext("2d");
-            ctx.fillStyle = "#ffffff";
-            ctx.fillRect(0,0,outCanvas.width,outCanvas.height);
-            ctx.drawImage(canvas, 0, 0);
+        function triggerRasterDownloadJPG() {
+            const canvasElement = document.getElementById("matrixStudioCanvas");
+            const compositeCompressionCanvas = document.createElement("canvas");
+            compositeCompressionCanvas.width = canvasElement.width;
+            compositeCompressionCanvas.height = canvasElement.height;
+            const context2D = compositeCompressionCanvas.getContext("2d");
+            context2D.fillStyle = "#ffffff";
+            context2D.fillRect(0,0,compositeCompressionCanvas.width,compositeCompressionCanvas.height);
+            context2D.drawImage(canvasElement, 0, 0);
             
-            const a = document.createElement("a");
-            a.download = `MatrixCore_${Date.now()}.jpg`;
-            a.href = outCanvas.toDataURL("image/jpeg", 0.95);
-            a.click();
+            const proxyAnchorLink = document.createElement("a");
+            proxyAnchorLink.download = `MatrixProductionCompressed_${Date.now()}.jpg`;
+            proxyAnchorLink.href = compositeCompressionCanvas.toDataURL("image/jpeg", 0.96);
+            proxyAnchorLink.click();
         }
 
-        function downloadSVG() {
-            const payload = buildPayload();
-            QRCode.toString(payload, {type: 'svg', errorCorrectionLevel: 'H'}, function (err, tags) {
-                if(err) return alert(err);
-                const blob = new Blob([tags], {type: "image/svg+xml;charset=utf-8"});
-                const a = document.createElement("a");
-                a.download = `VectorMatrix_${Date.now()}.svg`;
-                a.href = URL.createObjectURL(blob);
-                a.click();
+        function triggerVectorDownloadSVG() {
+            const currentDataPayloadString = extractPayloadStringFromFormInputs();
+            QRCode.toString(currentDataPayloadString, {type: 'svg', errorCorrectionLevel: 'H'}, function (exceptionError, XMLSVGTextTags) {
+                if(exceptionError) return alert(exceptionError);
+                const fileBlobInstance = new Blob([XMLSVGTextTags], {type: "image/svg+xml;charset=utf-8"});
+                const proxyAnchorLink = document.createElement("a");
+                proxyAnchorLink.download = `VectorScaleMatrix_${Date.now()}.svg`;
+                proxyAnchorLink.href = URL.createObjectURL(fileBlobInstance);
+                proxyAnchorLink.click();
             });
         }
 
-        function downloadPDF() {
+        function triggerDocumentDownloadPDF() {
             const { jsPDF } = window.jspdf;
-            const doc = new jsPDF();
-            const canvas = document.getElementById("qrCanvas");
-            const bannerText = document.getElementById("frameText").value.trim();
+            const pdfDocumentBuilder = new jsPDF();
+            const canvasElement = document.getElementById("matrixStudioCanvas");
+            const labelBannerStringText = document.getElementById("matrixBannerInput").value.trim();
             
-            doc.setFont("Helvetica", "bold");
-            doc.text("Matrix Cluster Protocol Report File", 20, 20);
-            doc.addImage(canvas.toDataURL("image/png"), "PNG", 35, 40, 140, 140);
-            if(bannerText) {
-                doc.setFontSize(18);
-                doc.text(bannerText, 105, 195, { align: "center" });
+            pdfDocumentBuilder.setFont("Courier", "bold");
+            pdfDocumentBuilder.text("Matrix Operational Production Ledger Asset File", 20, 20);
+            pdfDocumentBuilder.addImage(canvasElement.toDataURL("image/png"), "PNG", 35, 40, 140, 140);
+            if(labelBannerStringText) {
+                pdfDocumentBuilder.setFontSize(20);
+                pdfDocumentBuilder.text(labelBannerStringText, 105, 195, { align: "center" });
             }
-            doc.save(`SecurePDF_Stream_${Date.now()}.pdf`);
+            pdfDocumentBuilder.save(`SecureDocumentLayoutStream_${Date.now()}.pdf`);
         }
 
-        function copyToClipboard() {
-            const canvas = document.getElementById("qrCanvas");
-            canvas.toBlob(blob => {
-                navigator.clipboard.write([new ClipboardItem({"image/png": blob})])
-                    .then(() => alert("🎯 Image Binary Stream Pipeline cloned to OS Global Clipboard framework!"))
-                    .catch(err => alert("Operation Fault: " + err));
+        function cloneBinaryToClipboard() {
+            const canvasElement = document.getElementById("matrixStudioCanvas");
+            canvasElement.toBlob(blobBinaryStream => {
+                navigator.clipboard.write([new ClipboardItem({"image/png": blobBinaryStream})])
+                    .then(() => alert("🎯 Vector Matrix Binary Data Cloned to Global Clipboard Interface Channel!"))
+                    .catch(errorException => alert("Pipeline Fault Exception: " + errorException));
             });
         }
 
-        function shareQR() {
-            const canvas = document.getElementById("qrCanvas");
-            canvas.toBlob(blob => {
-                const file = new File([blob], "vector-stream.png", {type: "image/png"});
+        function dispatchNativeSharePipeline() {
+            const canvasElement = document.getElementById("matrixStudioCanvas");
+            canvasElement.toBlob(blobBinaryStream => {
+                const transmittableFileObject = new File([blobBinaryStream], "matrix-stream-node.png", {type: "image/png"});
                 if(navigator.share) {
-                    navigator.share({ files: [file], title: 'Secure Matrix Stream Output File Cluster Link' }).catch(console.error);
+                    navigator.share({ files: [transmittableFileObject], title: 'Secure Vector Stream Production Block Package' }).catch(console.error);
                 } else {
-                    alert("System Sharing API Node is currently structurally uncoupled from this browser core architecture.");
+                    alert("System Notice: Native Transmission Interface API is functionally decoupled from this host environment setup.");
                 }
             });
         }
 
-        function printQR() {
-            const win = window.open('', '_blank');
-            const dataUrl = document.getElementById("qrCanvas").toDataURL();
-            const banner = document.getElementById("frameText").value;
-            win.document.write(`<html><body style="text-align:center;padding:50px;background:#fff;"><img src="${dataUrl}"/><h1 style="font-family:sans-serif;margin-top:15px;text-transform:uppercase;letter-spacing:1px;">${banner}</h1><script>window.onload = function() { window.print(); window.close(); }</s`+`cript></body></html>`);
-            win.document.close();
+        function executeHardwareDevicePrint() {
+            const printingProxyWindow = window.open('', '_blank');
+            const base64CanvasDataUrl = document.getElementById("matrixStudioCanvas").toDataURL();
+            const rawTextLabelString = document.getElementById("matrixBannerInput").value;
+            printingProxyWindow.document.write(`<html><body style="text-align:center;padding:60px;background:#fff;"><img src="${base64CanvasDataUrl}"/><h1 style="font-family:monospace;margin-top:20px;text-transform:uppercase;letter-spacing:2px;">${rawTextLabelString}</h1><script>window.onload = function() { window.print(); window.close(); }</s`+`cript></body></html>`);
+            printingProxyWindow.document.close();
         }
 
-        function processCSV(event) {
-            const file = event.target.files[0];
-            if(!file) return;
-            Papa.parse(file, {
-                complete: function(results) {
-                    batchRows = results.data.map(row => row[0]).filter(cell => cell && cell.trim() !== "");
-                    alert(`✅ Batch pipeline active. Successfully linked ${batchRows.length} dataset rows from CSV file array.`);
+        function processBulkCSVDataSequence(domFileUploadEvent) {
+            const targetedCSVFileObject = domFileUploadEvent.target.files[0];
+            if(!targetedCSVFileObject) return;
+            Papa.parse(targetedCSVFileObject, {
+                complete: function(parsingDataOutResults) {
+                    batchProcessedCSVRowsMatrixArray = parsingDataOutResults.data.map(rowCell => rowCell[0]).filter(cleanCell => cleanCell && cleanCell.trim() !== "");
+                    alert(`🚀 Bulk System core linked successfully. Synchronized ${batchProcessedCSVRowsMatrixArray.length} data rows index arrays.`);
                 }
             });
         }
 
-        async function downloadBatchZIP() {
-            if(batchRows.length === 0) return alert("System Fault: Missing structured CSV target source array dataset data stream link.");
-            const zip = new JSZip();
+        async function asyncBatchZIPExecutionEngine() {
+            if(batchProcessedCSVRowsMatrixArray.length === 0) return alert("Operation Rejected: Target CSV Sequence Map contains zero array entries.");
+            const jszipLibraryCoreInstance = new JSZip();
             
-            for(let i=0; i<batchRows.length; i++) {
-                const c = document.createElement("canvas");
-                await QRCode.toCanvas(c, batchRows[i], { width: 450, errorCorrectionLevel: 'H' });
-                const base64Data = c.toDataURL("image/png").split(',')[1];
-                zip.file(`BulkBatch_ClusterNode_${i+1}.png`, base64Data, {base64: true});
+            for(let dataPointerIndex=0; dataPointerIndex < batchProcessedCSVRowsMatrixArray.length; dataPointerIndex++) {
+                const proxyCanvasVirtualDOMElement = document.createElement("canvas");
+                await QRCode.toCanvas(proxyCanvasVirtualDOMElement, batchProcessedCSVRowsMatrixArray[dataPointerIndex], { width: 500, errorCorrectionLevel: 'H' });
+                const strippedBase64DataContentString = proxyCanvasVirtualDOMElement.toDataURL("image/png").split(',')[1];
+                jszipLibraryCoreInstance.file(`AsynchronousBulkNode_EntryIndex_${dataPointerIndex+1}.png`, strippedBase64DataContentString, {base64: true});
             }
             
-            zip.generateAsync({type:"blob"}).then(function(content) {
-                const a = document.createElement("a");
-                a.download = `MatrixBulk_Collection_${Date.now()}.zip`;
-                a.href = URL.createObjectURL(content);
-                a.click();
+            jszipLibraryCoreInstance.generateAsync({type:"blob"}).then(function(compiledBlobZipArchivePackage) {
+                const proxyAnchorLink = document.createElement("a");
+                proxyAnchorLink.download = `AsynchronousBulkMatrixPackage_${Date.now()}.zip`;
+                proxyAnchorLink.href = URL.createObjectURL(compiledBlobZipArchivePackage);
+                proxyAnchorLink.click();
             });
         }
 
-        async function downloadBatchPDF() {
-            if(batchRows.length === 0) return alert("System Fault: Missing structured CSV target source array dataset data stream link.");
+        async function asyncBatchPDFExecutionEngine() {
+            if(batchProcessedCSVRowsMatrixArray.length === 0) return alert("Operation Rejected: Target CSV Sequence Map contains zero array entries.");
             const { jsPDF } = window.jspdf;
-            const doc = new jsPDF();
+            const targetPDFDocumentBuilderInstance = new jsPDF();
             
-            for(let i=0; i<batchRows.length; i++) {
-                if(i > 0) doc.addPage();
-                const c = document.createElement("canvas");
-                await QRCode.toCanvas(c, batchRows[i], { width: 400, errorCorrectionLevel: 'H' });
-                doc.text(`Indexed System Entry Matrix Node Block #${i+1} : ${batchRows[i].substring(0, 45)}...`, 15, 20);
-                doc.addImage(c.toDataURL("image/png"), "PNG", 35, 40, 140, 140);
+            for(let dataPointerIndex=0; dataPointerIndex < batchProcessedCSVRowsMatrixArray.length; dataPointerIndex++) {
+                if(dataPointerIndex > 0) targetPDFDocumentBuilderInstance.addPage();
+                const proxyCanvasVirtualDOMElement = document.createElement("canvas");
+                await QRCode.toCanvas(proxyCanvasVirtualDOMElement, batchProcessedCSVRowsMatrixArray[dataPointerIndex], { width: 450, errorCorrectionLevel: 'H' });
+                targetPDFDocumentBuilderInstance.setFont("Courier", "bold");
+                targetPDFDocumentBuilderInstance.text(`Synchronized Production Document Stream Block Entry #${dataPointerIndex+1}`, 15, 20);
+                targetPDFDocumentBuilderInstance.setFont("Helvetica", "normal");
+                targetPDFDocumentBuilderInstance.text(`Payload String Hash Data: ${batchProcessedCSVRowsMatrixArray[dataPointerIndex].substring(0, 50)}...`, 15, 28);
+                targetPDFDocumentBuilderInstance.addImage(proxyCanvasVirtualDOMElement.toDataURL("image/png"), "PNG", 35, 45, 140, 140);
             }
-            doc.save(`BulkCompiledMaster_Matrix_${Date.now()}.pdf`);
+            targetPDFDocumentBuilderInstance.save(`AsynchronousBulkMasterPDFReport_${Date.now()}.pdf`);
         }
 
-        function saveToHistory(text) {
-            let logs = JSON.parse(localStorage.getItem("qr_pro_logs") || "[]");
-            if(!logs.includes(text)) {
-                logs.unshift(text);
-                if(logs.length > 40) logs.pop();
-                localStorage.setItem("qr_pro_logs", JSON.stringify(logs));
-                renderHistory();
+        function storeActiveDataPayloadIntoOfflineLedger(payloadTextString) {
+            let localStoreLedgerArrayCache = JSON.parse(localStorage.getItem("enterprise_matrix_ledger_cache_v5") || "[]");
+            if(!localStoreLedgerArrayCache.includes(payloadTextString)) {
+                localStoreLedgerArrayCache.unshift(payloadTextString);
+                if(localStoreLedgerArrayCache.length > 50) localStoreLedgerArrayCache.pop();
+                localStorage.setItem("enterprise_matrix_ledger_cache_v5", JSON.stringify(localStoreLedgerArrayCache));
+                renderLocalLedgerDataStream();
             }
         }
 
-        function renderHistory() {
-            const container = document.getElementById("historyContainer");
-            container.innerHTML = "";
-            const query = document.getElementById("searchHist").value.toLowerCase();
-            const logs = JSON.parse(localStorage.getItem("qr_pro_logs") || "[]");
+        function renderLocalLedgerDataStream() {
+            const scrollContainerDOMElement = document.getElementById("localLedgerLogContainer");
+            scrollContainerDOMElement.innerHTML = "";
+            const textFilterQueryString = document.getElementById("queryLedgerSearchInput").value.toLowerCase();
+            const localStoreLedgerArrayCache = JSON.parse(localStorage.getItem("enterprise_matrix_ledger_cache_v5") || "[]");
 
-            logs.forEach(log => {
-                if(log.toLowerCase().includes(query)) {
-                    const item = document.createElement("div");
-                    item.className = "history-item";
-                    item.innerText = log;
-                    item.onclick = () => {
-                        selectType("Text");
-                        document.getElementById("field_val").value = log;
-                        liveGenerate();
+            localStoreLedgerArrayCache.forEach(logStringItem => {
+                if(logStringItem.toLowerCase().includes(textFilterQueryString)) {
+                    const rowDivDOMElement = document.createElement("div");
+                    rowDivDOMElement.className = "ledger-row";
+                    rowDivDOMElement.innerText = logStringItem;
+                    rowDivDOMElement.onclick = () => {
+                        switchActiveProtocolWorkspaceSchema("Text");
+                        document.getElementById("form-field-control-id-val").value = logStringItem;
+                        pipelineExecutionTrigger();
                     };
-                    container.appendChild(item);
+                    scrollContainerDOMElement.appendChild(rowDivDOMElement);
                 }
             });
         }
 
-        function clearHistory() {
-            localStorage.removeItem("qr_pro_logs");
-            renderHistory();
+        function flushOfflineLedgerLogs() {
+            localStorage.removeItem("enterprise_matrix_ledger_cache_v5");
+            renderLocalLedgerDataStream();
         }
 
-        function exportHistoryTXT() {
-            const logs = JSON.parse(localStorage.getItem("qr_pro_logs") || "[]");
-            const blob = new Blob([logs.join("\r\n")], {type: "text/plain;charset=utf-8"});
-            const a = document.createElement("a");
-            a.download = `InternalLedger_Logs.txt`;
-            a.href = URL.createObjectURL(blob);
-            a.click();
+        function extractLedgerLogBlobTXT() {
+            const localStoreLedgerArrayCache = JSON.parse(localStorage.getItem("enterprise_matrix_ledger_cache_v5") || "[]");
+            const compiledFileBlobInstance = new Blob([localStoreLedgerArrayCache.join("\r\n")], {type: "text/plain;charset=utf-8"});
+            const proxyAnchorLink = document.createElement("a");
+            proxyAnchorLink.download = `SystemEnterpriseLedgerLogs_${Date.now()}.txt`;
+            proxyAnchorLink.href = URL.createObjectURL(compiledFileBlobInstance);
+            proxyAnchorLink.click();
         }
 
-        function openScanner() {
-            document.getElementById("scannerModal").style.display = "flex";
-            html5QrScanner = new Html5Qrcode("reader");
-            html5QrScanner.start(
+        function engageOpticalCameraScannerNode() {
+            document.getElementById("opticalScannerOverlay").style.display = "flex";
+            executionCoreOpticalScannerModule = new Html5Qrcode("opticalVideoReaderFrame");
+            executionCoreOpticalScannerModule.start(
                 { facingMode: "environment" }, 
-                { fps: 12, qrbox: 260 },
-                (decodedText) => {
-                    alert("🎯 Optical Stream Decoded successfully:\n" + decodedText);
-                    closeScanner();
-                    selectType("Text");
-                    document.getElementById("field_val").value = decodedText;
-                    liveGenerate();
+                { fps: 15, qrbox: 280 },
+                (successfullyDecodedTextPayload) => {
+                    alert("🎯 OPTICAL LINK SUCCESS:\n" + successfullyDecodedTextPayload);
+                    terminateOpticalCameraScannerNode();
+                    switchActiveProtocolWorkspaceSchema("Text");
+                    document.getElementById("form-field-control-id-val").value = successfullyDecodedTextPayload;
+                    pipelineExecutionTrigger();
                 },
-                (errorMessage) => {}
-            ).catch(err => alert("Optical Device Module Access Error: " + err));
+                (scanningTraceLogMessage) => {}
+            ).catch(exceptionError => alert("Optical Device Module Initialisation Exception: " + exceptionError));
         }
 
-        function closeScanner() {
-            if(html5QrScanner) {
-                html5QrScanner.stop().then(() => {
-                    html5QrScanner.clear();
-                    document.getElementById("scannerModal").style.display = "none";
-                }).catch(() => { document.getElementById("scannerModal").style.display = "none"; });
+        function terminateOpticalCameraScannerNode() {
+            if(executionCoreOpticalScannerModule) {
+                executionCoreOpticalScannerModule.stop().then(() => {
+                    executionCoreOpticalScannerModule.clear();
+                    document.getElementById("opticalScannerOverlay").style.display = "none";
+                }).catch(() => { document.getElementById("opticalScannerOverlay").style.display = "none"; });
             } else {
-                document.getElementById("scannerModal").style.display = "none";
+                document.getElementById("opticalScannerOverlay").style.display = "none";
             }
         }
 
-        function loadSavedSettings() {
-            if(localStorage.getItem("cache_color")) document.getElementById("qrColor").value = localStorage.getItem("cache_color");
-            if(localStorage.getItem("cache_bg")) document.getElementById("bgColor").value = localStorage.getItem("cache_bg");
-            if(localStorage.getItem("cache_mode") === "light") document.body.classList.add("light");
+        function loadSystemPreferenceConfigurationCache() {
+            if(localStorage.getItem("sys_chroma_node")) document.getElementById("chromaNodeColor").value = localStorage.getItem("sys_chroma_node");
+            if(localStorage.getItem("sys_chroma_bg")) document.getElementById("chromaBgColor").value = localStorage.getItem("sys_chroma_bg");
+            if(localStorage.getItem("sys_ambiance_mode") === "light") document.body.classList.add("light-mode");
         }
 
-        function toggleTheme() {
-            document.body.classList.toggle("light");
-            localStorage.setItem("cache_mode", document.body.classList.contains("light") ? "light" : "dark");
+        function toggleSystemAmbiance() {
+            document.body.classList.toggle("light-mode");
+            localStorage.setItem("sys_ambiance_mode", document.body.classList.contains("light-mode") ? "light" : "dark");
         }
 
         window.onbeforeunload = function() {
-            localStorage.setItem("cache_color", document.getElementById("qrColor").value);
-            localStorage.setItem("cache_bg", document.getElementById("bgColor").value);
+            localStorage.setItem("sys_chroma_node", document.getElementById("chromaNodeColor").value);
+            localStorage.setItem("sys_chroma_bg", document.getElementById("chromaBgColor").value);
         };
     </script>
 </body>
