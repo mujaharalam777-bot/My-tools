@@ -1158,7 +1158,11 @@ box.innerHTML=html;
 
 function generateQR(){
 
-const text=getQRData();
+    alert("Generate Clicked");
+
+    alert(typeof QRCode);
+
+    const text = getQRData();
 
 if(!text){
 alert("Please enter data.");
