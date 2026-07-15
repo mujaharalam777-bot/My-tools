@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Quantum QR Engine v4.6 | Ultimate 21-in-1 Suite</title>
-    <!-- SEO Optimization Meta Tags -->
+    <title>Quantum QR Engine v4.7 | Ultimate 21-in-1 Suite</title>
     <meta name="description" content="Generate 21 types of customizable QR codes with embedded center text or logos. Professional tool suite with automated batch processing, comprehensive FAQs, and technical tools.">
     <meta name="keywords" content="QR code generator, customized QR with logo, batch QR engine, QR code with text center, 21 qr types, vcard qr, upi qr generator">
     
@@ -74,7 +73,7 @@
                     Quantum QR Engine
                 </h1>
             </div>
-            <p class="text-[9px] text-gray-400 tracking-widest mono-font uppercase mt-0.5">Asynchronous Ecosystem v4.6</p>
+            <p class="text-[9px] text-gray-400 tracking-widest mono-font uppercase mt-0.5">Asynchronous Ecosystem v4.7</p>
         </div>
         <div class="flex gap-2">
             <button onclick="toggleScanner()" class="p-2.5 rounded-xl bg-gray-900 border border-gray-800 text-gray-300 hover:text-orange-400 transition-colors">
@@ -235,33 +234,6 @@
             </div>
         </section>
 
-        <!-- SEO VALUE ADDED TRAFFIC DRIVER: RELATED PRODUCTIVITY UTILITY TOOLS -->
-        <section class="glass-panel rounded-3xl p-6 space-y-4">
-            <h2 class="text-sm font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-300 uppercase"><i class="fa-solid fa-screwdriver-wrench text-orange-500 mr-2"></i> Related Productivity Tools Ecosystem</h2>
-            <div class="grid grid-cols-2 gap-3 text-center">
-                <div class="bg-gray-950/80 p-3.5 rounded-2xl border border-gray-900 hover:border-orange-500/20 transition-all group cursor-pointer">
-                    <i class="fa-solid fa-link-slash text-xl text-gray-500 group-hover:text-orange-500 mb-1.5 transition-colors"></i>
-                    <h4 class="text-xs font-bold text-gray-300">URL Shortener Core</h4>
-                    <p class="text-[9px] text-gray-500 mt-1">Compress long tracking variables securely.</p>
-                </div>
-                <div class="bg-gray-950/80 p-3.5 rounded-2xl border border-gray-900 hover:border-orange-500/20 transition-all group cursor-pointer">
-                    <i class="fa-solid fa-barcode text-xl text-gray-500 group-hover:text-orange-500 mb-1.5 transition-colors"></i>
-                    <h4 class="text-xs font-bold text-gray-300">Barcode Vector Studio</h4>
-                    <p class="text-[9px] text-gray-500 mt-1">Generate multi-format retail item tags instantly.</p>
-                </div>
-                <div class="bg-gray-950/80 p-3.5 rounded-2xl border border-gray-900 hover:border-orange-500/20 transition-all group cursor-pointer">
-                    <i class="fa-solid fa-file-invoice text-xl text-gray-500 group-hover:text-orange-500 mb-1.5 transition-colors"></i>
-                    <h4 class="text-xs font-bold text-gray-300">Bulk Invoice Linker</h4>
-                    <p class="text-[9px] text-gray-500 mt-1">Automate localized client receipt streams.</p>
-                </div>
-                <div class="bg-gray-950/80 p-3.5 rounded-2xl border border-gray-900 hover:border-orange-500/20 transition-all group cursor-pointer">
-                    <i class="fa-solid fa-shield-halved text-xl text-gray-500 group-hover:text-orange-500 mb-1.5 transition-colors"></i>
-                    <h4 class="text-xs font-bold text-gray-300">Secure Crypt Vault</h4>
-                    <p class="text-[9px] text-gray-500 mt-1">Encrypt standard textual data streams.</p>
-                </div>
-            </div>
-        </section>
-
     </main>
 
     <!-- CORE LOGIC AND FUNCTIONAL SYSTEM SCRIPTS -->
@@ -401,15 +373,14 @@
         function injectBrandingLayerAssets(canvas) {
             const ctx = canvas.getContext('2d');
             
-            // DYNAMIC COMPACT CENTER SIZING (Perfect scaling for scanning safety)
-            const centerDimension = canvas.width * 0.18; 
+            // CRITICAL UPDATE: EXTREMELY COMPACT AND MINIMAL CENTER SIZING FOR ULTRACLEAN SCANNING
+            const centerDimension = canvas.width * 0.12; 
             const positionCoordinate = (canvas.width - centerDimension) / 2;
 
-            // Clear Center Background + Dynamic Color Margin Padding
+            // Clear Center Background with tightly constrained margin boundaries
             ctx.fillStyle = bgColorInput.value;
-            ctx.fillRect(positionCoordinate - 3, positionCoordinate - 3, centerDimension + 6, centerDimension + 6);
+            ctx.fillRect(positionCoordinate - 2, positionCoordinate - 2, centerDimension + 4, centerDimension + 4);
 
-            // Priority 1: Render Custom Image Logo
             if(base64UploadedLogoCacheString) {
                 const img = new Image();
                 img.src = base64UploadedLogoCacheString;
@@ -418,16 +389,15 @@
                     updateImgTagSource(canvas);
                 };
             } 
-            // Priority 2: Render Custom Text Name Perfectly Proportioned Inside Center Box
             else if(centerBrandTextInput.value.trim()) {
                 const brandText = centerBrandTextInput.value.trim().toUpperCase();
                 ctx.fillStyle = qrColorInput.value;
                 
-                // Intelligent text fitting script dynamically scaling text base size length
-                let calculatedFontSize = Math.floor(centerDimension * 0.28);
-                if(brandText.length > 5) calculatedFontSize = Math.floor(centerDimension * (1.6 / brandText.length));
+                // ULTRASMALL ULTRA-COMPACT SMART FONT TUNER ENGINE
+                let calculatedFontSize = Math.floor(centerDimension * 0.22);
+                if(brandText.length > 5) calculatedFontSize = Math.floor(centerDimension * (1.1 / brandText.length));
                 
-                ctx.font = `black ${calculatedFontSize}px 'Plus Jakarta Sans', sans-serif`;
+                ctx.font = `900 ${calculatedFontSize}px 'Plus Jakarta Sans', sans-serif`;
                 ctx.textAlign = 'center';
                 ctx.textBaseline = 'middle';
                 ctx.fillText(brandText, canvas.width / 2, canvas.height / 2);
@@ -497,11 +467,8 @@
             a.click();
         }
 
-        // FALLBACK ROBUST CLIPBOARD ACCESS SYSTEM
         function fallbackCopyToClipboard() {
             const textToCopy = mainPayloadData.value.trim();
-            
-            // Primary Dynamic API
             if (navigator.clipboard && window.isSecureContext) {
                 navigator.clipboard.writeText(textToCopy).then(() => {
                     handleCopySuccess();
