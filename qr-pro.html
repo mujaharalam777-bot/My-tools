@@ -1165,35 +1165,26 @@ alert("Please enter data");
 return;
 }
 
-console.log(text);
-
-    const text = getQRData();
-
-if(!text){
-alert("Please enter data.");
-return;
-}
-
 const preview=document.getElementById("qrPreview");
-
 preview.innerHTML="";
 
 qrCanvas=document.createElement("canvas");
-
 preview.appendChild(qrCanvas);
 
-QRCode.toCanvas(qrCanvas,text,{
-
+QRCode.toCanvas(
+qrCanvas,
+text,
+{
 width:parseInt(document.getElementById("qrSize").value),
-
 color:{
 dark:document.getElementById("qrColor").value,
 light:document.getElementById("bgColor").value
 }
-
-},function(err){
+},
+function(err){
 
 if(err){
+console.error(err);
 alert("QR Generation Failed");
 return;
 }
@@ -1201,14 +1192,13 @@ return;
 saveHistory(text);
 
 if(logoImage){
-
 drawLogo();
-
 }
 
-});
-
 }
+);
+
+ }
 
 function drawLogo(){
 
