@@ -725,13 +725,21 @@ id="generateBtn">
 
 <div class="right-panel">
 
-<h2 class="section-title">
-QR Preview
-</h2>
+    <h2 class="section-title">
+        QR Preview
+    </h2>
 
-<div
-class="preview-box"
-id="qrPreview">
+    <div class="preview-box" id="qrPreview">
+        <p style="color:#777;text-align:center;">
+            Your QR Code will appear here
+        </p>
+    </div>
+
+    <div class="action-grid">
+        ...
+    </div>
+
+</div>
 <!-- ================= Download Buttons ================= -->
 
 <div class="action-grid">
@@ -1158,11 +1166,6 @@ box.innerHTML=html;
 
     }
 
-function getQRData(){
-
-return document.getElementById("qrInput").value.trim();
-
-    }
 
 function generateQR(){
 
@@ -1286,7 +1289,15 @@ div.innerText=item;
 
 div.onclick=function(){
 
+currentType="Text";
+
+createTypeButtons();
+
+updateInput();
+
+setTimeout(()=>{
 document.getElementById("qrInput").value=item;
+},20);
 
 };
 
@@ -2125,8 +2136,905 @@ batchData.length+" QR Loaded"
 
 
     }
+
+    // ================= SEARCH HISTORY =================
+
+function searchHistory(keyword){
+
+keyword = keyword.toLowerCase();
+
+const box = document.getElementById("historyBox");
+
+box.innerHTML = "";
+
+historyData
+.filter(item=>item.toLowerCase().includes(keyword))
+.forEach(item=>{
+
+const div=document.createElement("div");
+
+div.className="history-item";
+
+div.innerText=item;
+
+div.onclick=function(){
+
+currentType="Text";
+createTypeButtons();
+updateInput();
+
+setTimeout(()=>{
+document.getElementById("qrInput").value=item;
+},20);
+
+};
+
+box.appendChild(div);
+
+});
+
+}
+
+
+
+// ================= EXPORT HISTORY =================
+
+function exportHistory(){
+
+if(historyData.length===0){
+
+alert("No History");
+
+return;
+
+}
+
+let blob=new Blob(
+
+[historyData.join("\n")],
+
+{type:"text/plain"}
+
+);
+
+let url=URL.createObjectURL(blob);
+
+let a=document.createElement("a");
+
+a.href=url;
+
+a.download="qr-history.txt";
+
+a.click();
+
+URL.revokeObjectURL(url);
+
+}
+
+
+
+// ================= IMPORT HISTORY =================
+
+function importHistory(file){
+
+const reader=new FileReader();
+
+reader.onload=function(){
+
+historyData=reader.result.split("\n");
+
+localStorage.setItem(
+
+"qrHistory",
+
+JSON.stringify(historyData)
+
+);
+
+loadHistory();
+
+};
+
+reader.readAsText(file);
+
+}
+
+
+
+// ================= RANDOM COLOR =================
+
+function randomColor(){
+
+const letters="0123456789ABCDEF";
+
+let color="#";
+
+for(let i=0;i<6;i++){
+
+color+=letters[Math.floor(Math.random()*16)];
+
+}
+
+return color;
+
+}
+
+function randomTheme(){
+
+document.getElementById("qrColor").value=randomColor();
+
+document.getElementById("bgColor").value=randomColor();
+
+}
+
+
+
+// ================= RESET CUSTOMIZATION =================
+
+function resetCustomize(){
+
+document.getElementById("qrColor").value="#000000";
+
+document.getElementById("bgColor").value="#ffffff";
+
+document.getElementById("qrSize").value=300;
+
+document.getElementById("sizeValue").innerHTML="300 PX";
+
+logoImage=null;
+
+document.getElementById("logoInput").value="";
+
+}
+
+
+
+// ================= DOWNLOAD JPG =================
+
+function downloadJPG(){
+
+if(!qrCanvas){
+
+alert("Generate QR First");
+
+return;
+
+}
+
+const canvas=document.createElement("canvas");
+
+canvas.width=qrCanvas.width;
+
+canvas.height=qrCanvas.height;
+
+const ctx=canvas.getContext("2d");
+
+ctx.fillStyle="#ffffff";
+
+ctx.fillRect(0,0,canvas.width,canvas.height);
+
+ctx.drawImage(qrCanvas,0,0);
+
+let a=document.createElement("a");
+
+a.download="qr.jpg";
+
+a.href=canvas.toDataURL("image/jpeg",1);
+
+a.click();
+
+}
+
+
+
+// ================= FULLSCREEN PREVIEW =================
+
+function fullPreview(){
+
+if(!qrCanvas)return;
+
+let w=window.open("");
+
+w.document.write(
+
+"<img src='"+
+
+qrCanvas.toDataURL()+
+
+"' style='width:100%'>"
+
+);
+
+}
+
+
+
+// ================= AUTO DOWNLOAD =================
+
+function autoDownload(){
+
+generateQR();
+
+setTimeout(downloadPNG,700);
+
+}
+
+
+
+// ================= CLEAR PREVIEW =================
+
+function clearPreview(){
+
+document.getElementById("qrPreview").innerHTML=
+
+"<p style='color:#555'>QR Preview Cleared</p>";
+
+qrCanvas=null;
+
+}
+
+
+
+// ================= CHARACTER COUNT =================
+
+function characterCount(id){
+
+const el=document.getElementById(id);
+
+if(!el)return;
+
+el.oninput=function(){
+
+console.log(
+
+"Characters:",
+
+this.value.length
+
+);
+
+};
+
+}
+
+
+
+// ================= END PART 5 =================
+    // ================= LIVE QR =================
+
+function enableLiveQR(){
+
+document.addEventListener("input",function(e){
+
+if(
+e.target.tagName==="INPUT" ||
+e.target.tagName==="TEXTAREA" ||
+e.target.tagName==="SELECT"
+){
+
+try{
+
+let data=getQRData();
+
+if(data!==""){
+
+generateQR();
+
+}
+
+}catch(err){}
+
+}
+
+});
+
+}
+
+
+
+// ================= COPY QR TEXT =================
+
+async function copyQRText(){
+
+let text=getQRData();
+
+if(!text){
+
+alert("No Data");
+
+return;
+
+}
+
+await navigator.clipboard.writeText(text);
+
+alert("QR Data Copied");
+
+}
+
+
+
+// ================= SAVE SETTINGS =================
+
+function saveSettings(){
+
+localStorage.setItem("qrColor",document.getElementById("qrColor").value);
+
+localStorage.setItem("bgColor",document.getElementById("bgColor").value);
+
+localStorage.setItem("qrSize",document.getElementById("qrSize").value);
+
+}
+
+
+
+// ================= LOAD SETTINGS =================
+
+function loadSettings(){
+
+if(localStorage.getItem("qrColor"))
+
+document.getElementById("qrColor").value=localStorage.getItem("qrColor");
+
+if(localStorage.getItem("bgColor"))
+
+document.getElementById("bgColor").value=localStorage.getItem("bgColor");
+
+if(localStorage.getItem("qrSize")){
+
+document.getElementById("qrSize").value=localStorage.getItem("qrSize");
+
+document.getElementById("sizeValue").innerHTML=
+
+localStorage.getItem("qrSize")+" PX";
+
+}
+
+}
+
+
+
+// ================= AUTO SAVE =================
+
+function enableAutoSave(){
+
+["qrColor","bgColor","qrSize"].forEach(id=>{
+
+document.getElementById(id).addEventListener("change",saveSettings);
+
+});
+
+}
+
+
+
+// ================= REVERSE COLOR =================
+
+function reverseColor(){
+
+const qr=document.getElementById("qrColor").value;
+
+const bg=document.getElementById("bgColor").value;
+
+document.getElementById("qrColor").value=bg;
+
+document.getElementById("bgColor").value=qr;
+
+}
+
+
+
+// ================= OPEN IMAGE =================
+
+function openImage(){
+
+if(!qrCanvas){
+
+alert("Generate QR First");
+
+return;
+
+}
+
+window.open(qrCanvas.toDataURL());
+
+}
+
+
+
+// ================= DOWNLOAD WEBP =================
+
+function downloadWEBP(){
+
+if(!qrCanvas){
+
+alert("Generate QR First");
+
+return;
+
+}
+
+let a=document.createElement("a");
+
+a.download="qr.webp";
+
+a.href=qrCanvas.toDataURL("image/webp");
+
+a.click();
+
+}
+
+
+
+// ================= ESTIMATE SIZE =================
+
+function estimateSize(){
+
+if(!qrCanvas) return;
+
+let size=Math.round(
+
+(atob(qrCanvas.toDataURL().split(",")[1]).length)/1024
+
+);
+
+console.log("Approx Size:",size+" KB");
+
+}
+
+
+
+// ================= CLEAR INPUT =================
+
+function clearInput(){
+
+document.querySelectorAll("input,textarea").forEach(el=>{
+
+if(el.type!=="color" && el.type!=="range" && el.type!=="file")
+
+el.value="";
+
+});
+
+}
+
+
+
+// ================= INIT PART 6 =================
+
+enableLiveQR();
+loadSettings();
+enableAutoSave();
+
+// ================= END PART 6 =================
+    // ================= FAVORITE QR =================
+
+let favoriteQR=[];
+
+function addFavorite(){
+
+let data=getQRData();
+
+if(!data){
+alert("Generate QR First");
+return;
+}
+
+favoriteQR.push(data);
+
+localStorage.setItem(
+"favoriteQR",
+JSON.stringify(favoriteQR)
+);
+
+alert("Added To Favorite");
+
+}
+
+function loadFavorite(){
+
+favoriteQR=JSON.parse(
+
+localStorage.getItem("favoriteQR")||"[]"
+
+);
+
+}
+
+
+
+// ================= RANDOM SIZE =================
+
+function randomSize(){
+
+let size=[200,250,300,350,400,500,600,700,800];
+
+let value=size[Math.floor(Math.random()*size.length)];
+
+document.getElementById("qrSize").value=value;
+
+document.getElementById("sizeValue").innerHTML=value+" PX";
+
+}
+
+
+
+// ================= QR INFORMATION =================
+
+function qrInfo(){
+
+let data=getQRData();
+
+alert(
+
+"Characters : "+data.length+
+
+"\nType : "+currentType+
+
+"\nQR Size : "+
+
+document.getElementById("qrSize").value+" PX"
+
+);
+
+}
+
+
+
+// ================= DOWNLOAD JSON =================
+
+function exportJSON(){
+
+let data={
+
+type:currentType,
+
+content:getQRData(),
+
+qrColor:document.getElementById("qrColor").value,
+
+bgColor:document.getElementById("bgColor").value,
+
+size:document.getElementById("qrSize").value
+
+};
+
+let blob=new Blob(
+
+[JSON.stringify(data,null,2)],
+
+{type:"application/json"}
+
+);
+
+let a=document.createElement("a");
+
+a.href=URL.createObjectURL(blob);
+
+a.download="qr-data.json";
+
+a.click();
+
+}
+
+
+
+// ================= IMPORT JSON =================
+
+function importJSON(file){
+
+const reader=new FileReader();
+
+reader.onload=function(){
+
+let obj=JSON.parse(reader.result);
+
+currentType=obj.type;
+
+createTypeButtons();
+
+updateInput();
+
+setTimeout(()=>{
+
+if(document.getElementById("qrInput"))
+
+document.getElementById("qrInput").value=obj.content;
+
+},100);
+
+};
+
+reader.readAsText(file);
+
+}
+
+
+
+// ================= SHOW TIME =================
+
+function updateClock(){
+
+const d=new Date();
+
+console.log(
+
+"Last Open : "+
+
+d.toLocaleString()
+
+);
+
+}
+
+
+
+// ================= RESET ALL =================
+
+function resetAll(){
+
+localStorage.removeItem("qrHistory");
+
+localStorage.removeItem("favoriteQR");
+
+historyData=[];
+
+favoriteQR=[];
+
+loadHistory();
+
+clearPreview();
+
+resetCustomize();
+
+alert("Reset Complete");
+
+}
+
+
+
+// ================= QUICK GENERATE =================
+
+function quickGenerate(text){
+
+currentType="Text";
+
+createTypeButtons();
+
+updateInput();
+
+setTimeout(()=>{
+
+document.getElementById("qrInput").value=text;
+
+generateQR();
+
+},100);
+
+}
+
+
+
+// ================= INIT PART 7 =================
+
+loadFavorite();
+
+updateClock();
+
+// ================= END PART 7 =================
+    // ================= DRAG & DROP LOGO =================
+
+function enableLogoDrop(){
+
+const box=document.querySelector(".logo-upload");
+
+if(!box) return;
+
+box.addEventListener("dragover",function(e){
+e.preventDefault();
+box.style.borderColor="#22c55e";
+});
+
+box.addEventListener("dragleave",function(){
+box.style.borderColor="";
+});
+
+box.addEventListener("drop",function(e){
+
+e.preventDefault();
+
+box.style.borderColor="";
+
+if(e.dataTransfer.files.length){
+
+logoImage=e.dataTransfer.files[0];
+
+document.getElementById("logoInput").files=e.dataTransfer.files;
+
+alert("Logo Added");
+
+}
+
+});
+
+}
+
+
+
+// ================= SAVE AS HTML =================
+
+function saveHTML(){
+
+const text=getQRData();
+
+if(text===""){
+
+alert("No QR Data");
+
+return;
+
+}
+
+const html=`
+<!DOCTYPE html>
+<html>
+<head>
+<title>QR Export</title>
+</head>
+<body style="text-align:center;font-family:Arial">
+<h2>QR Code</h2>
+<img src="${qrCanvas.toDataURL()}">
+<p>${text}</p>
+</body>
+</html>
+`;
+
+const blob=new Blob([html],{type:"text/html"});
+
+const a=document.createElement("a");
+
+a.href=URL.createObjectURL(blob);
+
+a.download="qr.html";
+
+a.click();
+
+}
+
+
+
+// ================= DOWNLOAD BASE64 =================
+
+function downloadBase64(){
+
+if(!qrCanvas){
+
+alert("Generate QR First");
+
+return;
+
+}
+
+const blob=new Blob(
+
+[qrCanvas.toDataURL()],
+
+{type:"text/plain"}
+
+);
+
+const a=document.createElement("a");
+
+a.href=URL.createObjectURL(blob);
+
+a.download="qr-base64.txt";
+
+a.click();
+
+}
+
+
+
+// ================= SHOW FILE SIZE =================
+
+function showQRSize(){
+
+if(!qrCanvas) return;
+
+const bytes=atob(
+
+qrCanvas.toDataURL().split(",")[1]
+
+).length;
+
+alert(
+
+"Approx Size : "+
+
+(bytes/1024).toFixed(2)+
+
+" KB"
+
+);
+
+}
+
+
+
+// ================= RANDOM QR DEMO =================
+
+function randomDemo(){
+
+const demo=[
+
+"Hello World",
+
+"https://google.com",
+
+"https://youtube.com",
+
+"https://github.com",
+
+"https://facebook.com",
+
+"mailto:test@gmail.com",
+
+"tel:+911234567890",
+
+"https://wa.me/911234567890"
+
+];
+
+quickGenerate(
+
+demo[Math.floor(Math.random()*demo.length)]
+
+);
+
+}
+
+
+
+// ================= TOGGLE HISTORY =================
+
+function toggleHistory(){
+
+const box=document.getElementById("historyBox");
+
+if(box.style.display==="none"){
+
+box.style.display="block";
+
+}else{
+
+box.style.display="none";
+
+}
+
+}
+
+
+
+// ================= CLEAR FAVORITE =================
+
+function clearFavorite(){
+
+favoriteQR=[];
+
+localStorage.removeItem("favoriteQR");
+
+alert("Favorites Cleared");
+
+}
+
+
+
+// ================= AUTO INIT =================
+
+enableLogoDrop();
+
+// ================= END PART 8 =================
 loadTheme();    
-initApp();
 loadHistory();
 initApp();
     
