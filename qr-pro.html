@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Quantum QR Engine v4.0 | Cyber Pro</title>
+    <title>Quantum QR Engine v4.5 | Professional Suite</title>
+    <!-- SEO Optimization Meta Tags -->
+    <meta name="description" content="Generate customizable QR codes with embedded text or logos in the center. Free batch QR engine with FAQ and utility tools for better productivity.">
+    <meta name="keywords" content="QR code generator, customized QR with logo, batch QR engine, QR code with text center, online QR tools">
+    
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Premium Icons -->
@@ -20,25 +24,25 @@
     <style>
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background: radial-gradient(circle at 50% 0%, #080c14 0%, #020408 100%);
+            background: radial-gradient(circle at 50% 0%, #060a12 0%, #010204 100%);
             color: #f3f4f6;
             -webkit-tap-highlight-color: transparent;
         }
         .glass-panel {
-            background: rgba(13, 20, 35, 0.6);
+            background: rgba(10, 16, 30, 0.7);
             backdrop-filter: blur(24px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            box-shadow: 0 25px 55px rgba(0, 0, 0, 0.75);
         }
         .active-neon-btn {
             background: linear-gradient(135deg, #ff4500 0%, #ff0080 100%);
-            box-shadow: 0 0 20px rgba(255, 69, 0, 0.4);
-            border-color: rgba(255, 69, 0, 0.4);
+            box-shadow: 0 0 22px rgba(255, 69, 0, 0.45);
+            border-color: rgba(255, 69, 0, 0.45);
             color: #ffffff !important;
         }
         .fire-glow {
             background: linear-gradient(135deg, #ff4500, #ff8c00, #ff0080);
-            box-shadow: 0 0 30px rgba(255, 69, 0, 0.5);
+            box-shadow: 0 0 35px rgba(255, 69, 0, 0.55);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .fire-glow:active {
@@ -58,8 +62,8 @@
 </head>
 <body class="min-h-screen pb-24 overflow-x-hidden custom-scrollbar">
 
-    <!-- Top Neon Ambient Glow Header -->
-    <header class="sticky top-0 z-50 w-full max-w-lg mx-auto backdrop-blur-xl bg-gray-950/80 border-b border-gray-900/60 p-5 flex justify-between items-center px-6">
+    <!-- Header Grid Area -->
+    <header class="sticky top-0 z-50 w-full max-w-lg mx-auto backdrop-blur-xl bg-gray-950/90 border-b border-gray-900/80 p-5 flex justify-between items-center px-6">
         <div>
             <div class="flex items-center gap-2">
                 <span class="h-2 w-2 rounded-full bg-orange-500 animate-ping"></span>
@@ -67,7 +71,7 @@
                     Quantum QR Engine
                 </h1>
             </div>
-            <p class="text-[9px] text-gray-400 tracking-widest mono-font uppercase mt-0.5">Asynchronous Ecosystem v4.0</p>
+            <p class="text-[9px] text-gray-400 tracking-widest mono-font uppercase mt-0.5">Asynchronous Ecosystem v4.5</p>
         </div>
         <div class="flex gap-2">
             <button onclick="toggleScanner()" class="p-2.5 rounded-xl bg-gray-900 border border-gray-800 text-gray-300 hover:text-orange-400 transition-colors">
@@ -97,11 +101,8 @@
         <section class="glass-panel rounded-3xl p-5 space-y-4">
             <h2 class="text-xs font-bold tracking-wider text-gray-400 uppercase flex items-center justify-between">
                 <span><i class="fa-solid fa-layer-group text-orange-500 mr-1.5"></i> 1. Select Engine Protocol Schema</span>
-                <span class="text-[10px] text-orange-400 lowercase mono-font bg-orange-500/5 px-2 py-0.5 rounded-md border border-orange-500/10">21 Types Locked</span>
             </h2>
-            <div class="grid grid-cols-3 gap-2 max-h-[195px] overflow-y-auto custom-scrollbar pr-1" id="protocolMatrixGrid">
-                <!-- Javascript dynamically updates items -->
-            </div>
+            <div class="grid grid-cols-3 gap-2 max-h-[140px] overflow-y-auto custom-scrollbar pr-1" id="protocolMatrixGrid"></div>
         </section>
 
         <!-- SECTION 2: DYNAMIC PAYLOAD DATA INPUT GENERATOR LAYER -->
@@ -112,144 +113,146 @@
             <div id="dynamicInputContainer" class="space-y-4">
                 <div>
                     <label id="inputLabelText" class="text-[11px] text-gray-400 mb-1.5 block font-medium">Text Data String</label>
-                    <textarea id="mainPayloadData" class="w-full bg-gray-950/80 border border-gray-800/80 rounded-2xl p-3.5 text-sm focus:outline-none focus:border-orange-500/60 text-gray-200 transition-all min-h-[70px] resize-none" placeholder="Enter payload string...">hiii</textarea>
+                    <textarea id="mainPayloadData" class="w-full bg-gray-950/80 border border-gray-800/80 rounded-2xl p-3.5 text-sm focus:outline-none focus:border-orange-500/60 text-gray-200 transition-all min-h-[70px] resize-none" placeholder="Enter payload string...">Welcome Boss</textarea>
                 </div>
             </div>
-            
-            <div class="flex justify-between items-center text-[10px] mono-font text-gray-500 px-1">
-                <span>Payload Validation Status: <span class="text-emerald-500 font-bold">OK</span></span>
-                <span id="charCount">4 Chars</span>
+        </section>
+
+        <!-- NEW SECTION: QR CENTER ASSET IDENTITY HUB (TEXT & LOGO OR BOTH) -->
+        <section class="glass-panel rounded-3xl p-5 space-y-4 border border-orange-500/10">
+            <h2 class="text-xs font-bold tracking-wider text-gray-300 uppercase flex items-center gap-2">
+                <i class="fa-solid fa-signature text-orange-500"></i> Embedded Center Branding Matrix
+            </h2>
+            <div class="grid grid-cols-2 gap-3">
+                <div class="space-y-1.5">
+                    <label class="text-[10px] text-gray-400 block uppercase tracking-wide">Embed Brand Text (Center)</label>
+                    <input type="text" id="centerBrandTextInput" placeholder="e.g., BOSS" class="w-full bg-gray-950 border border-gray-800 rounded-xl p-2.5 text-xs focus:outline-none focus:border-orange-500/60 text-gray-200 font-extrabold tracking-wider">
+                </div>
+                <div class="space-y-1.5">
+                    <label class="text-[10px] text-gray-400 block uppercase tracking-wide">Brand Logo Image Upload</label>
+                    <div class="relative bg-gray-950 border border-gray-800 rounded-xl p-2.5 flex items-center justify-center transition-colors overflow-hidden">
+                        <input type="file" id="logoUploadInput" accept="image/*" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
+                        <span id="logoUploadLabelText" class="text-[11px] text-gray-400 truncate"><i class="fa-solid fa-image text-gray-500 mr-1"></i> Upload Image</span>
+                        <button id="clearLogoBtn" class="hidden absolute right-2 text-xs text-rose-500" onclick="clearUploadedLogo(event)">✕</button>
+                    </div>
+                </div>
             </div>
         </section>
 
         <!-- SECTION 3: ADVANCED STRUCTURAL CUSTOMIZATION PIPELINE -->
-        <section class="glass-panel rounded-3xl p-5 space-y-5">
+        <section class="glass-panel rounded-3xl p-5 space-y-4">
             <h2 class="text-xs font-bold tracking-wider text-gray-400 uppercase flex items-center justify-between">
-                <span><i class="fa-solid fa-sliders text-orange-500 mr-1.5"></i> 3. Vector Canvas Customization Architecture</span>
-                <button onclick="resetCustomization()" class="text-[10px] text-gray-500 hover:text-orange-400 transition-colors uppercase"><i class="fa-solid fa-rotate-right"></i> Reset</button>
+                <span><i class="fa-solid fa-sliders text-orange-500 mr-1.5"></i> 3. Color & Size Customization</span>
             </h2>
-
-            <!-- Matrix Color Arrays Controls -->
             <div class="grid grid-cols-2 gap-4">
                 <div>
-                    <label class="text-[10px] text-gray-400 mb-1.5 block uppercase tracking-wide">Matrix QR Node Color</label>
-                    <div class="flex items-center gap-2 bg-gray-950 p-2.5 rounded-xl border border-gray-800">
-                        <input type="color" id="qrColorInput" value="#ff0000" class="w-8 h-8 rounded-lg border-0 cursor-pointer bg-transparent">
-                        <span id="qrHexText" class="text-xs mono-font text-gray-300">#FF0000</span>
+                    <label class="text-[10px] text-gray-400 mb-1 block uppercase">QR Code Color</label>
+                    <div class="flex items-center gap-2 bg-gray-950 p-2 rounded-xl border border-gray-800">
+                        <input type="color" id="qrColorInput" value="#ff2a00" class="w-7 h-7 rounded-lg cursor-pointer bg-transparent border-0">
+                        <span id="qrHexText" class="text-xs mono-font text-gray-300">#FF2A00</span>
                     </div>
                 </div>
                 <div>
-                    <label class="text-[10px] text-gray-400 mb-1.5 block uppercase tracking-wide">Canvas Background Color</label>
-                    <div class="flex items-center gap-2 bg-gray-950 p-2.5 rounded-xl border border-gray-800">
-                        <input type="color" id="bgColorInput" value="#ffffff" class="w-8 h-8 rounded-lg border-0 cursor-pointer bg-transparent">
+                    <label class="text-[10px] text-gray-400 mb-1 block uppercase">Canvas Background</label>
+                    <div class="flex items-center gap-2 bg-gray-950 p-2 rounded-xl border border-gray-800">
+                        <input type="color" id="bgColorInput" value="#ffffff" class="w-7 h-7 rounded-lg cursor-pointer bg-transparent border-0">
                         <span id="bgHexText" class="text-xs mono-font text-gray-300">#FFFFFF</span>
                     </div>
                 </div>
             </div>
-
-            <!-- Resolution Matrix Scaling Sliders -->
             <div class="space-y-1.5">
                 <div class="flex justify-between items-center text-[11px] text-gray-400">
-                    <label class="uppercase tracking-wide text-[10px]">Geometric Resolution Output Size</label>
+                    <label class="text-[10px] uppercase">Geometric Resolution Size</label>
                     <span id="sliderValueText" class="text-orange-400 font-bold mono-font">400px</span>
                 </div>
-                <input type="range" id="sizeSlider" min="200" max="1000" step="50" value="400" class="w-full accent-orange-500 h-1 bg-gray-950 rounded-lg cursor-pointer">
-            </div>
-
-            <!-- Brand Logo Matrix Ingestion Block -->
-            <div class="space-y-2">
-                <label class="text-[10px] text-gray-400 block uppercase tracking-wide">Brand Identity Node Injection (Upload Logo)</label>
-                <div class="relative bg-gray-950 border border-gray-800 hover:border-orange-500/30 rounded-xl p-3 flex items-center justify-between transition-colors">
-                    <input type="file" id="logoUploadInput" accept="image/*" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
-                    <span id="logoUploadLabelText" class="text-xs text-gray-400 flex items-center gap-2 truncate"><i class="fa-solid fa-image text-gray-500"></i> Place custom SVG / PNG node asset...</span>
-                    <button id="clearLogoBtn" class="hidden text-xs text-rose-500 hover:text-rose-400 z-10" onclick="clearUploadedLogo(event)">Remove</button>
-                </div>
-            </div>
-
-            <!-- Frame Text Typography Sub Banner Layout -->
-            <div class="space-y-1.5">
-                <label class="text-[10px] text-gray-400 block uppercase tracking-wide">Sub-Matrix Banner Typography Layout</label>
-                <input type="text" id="bannerLabelInput" placeholder="e.g., SCAN ME" class="w-full bg-gray-950 border border-gray-800 rounded-xl p-3 text-xs focus:outline-none focus:border-orange-500/60 text-gray-200 uppercase tracking-widest font-bold">
+                <input type="range" id="sizeSlider" min="200" max="800" step="50" value="400" class="w-full accent-orange-500 h-1 bg-gray-950 rounded-lg">
             </div>
         </section>
 
-        <!-- SECTION 4: MASS SCALE BATCH ASYNCHRONOUS ENGINE -->
-        <section class="glass-panel rounded-3xl p-5 space-y-4 border border-dashed border-orange-500/20">
-            <h2 class="text-xs font-bold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-300 uppercase flex items-center gap-2">
-                <i class="fa-solid fa-fire text-orange-500"></i> 4. Hyper Asynchronous Massive Batch Engine Core
-            </h2>
-            
-            <div class="border border-dashed border-gray-800 hover:border-orange-500/40 rounded-2xl p-6 text-center transition-all relative bg-gray-950/40 group">
-                <input type="file" id="csvFileInput" accept=".csv" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
-                <div class="space-y-2 pointer-events-none">
-                    <i class="fa-solid fa-circle-arrow-up text-3xl text-gray-700 group-hover:text-orange-500 transition-colors"></i>
-                    <p class="text-xs text-gray-300 font-medium" id="uploadTextText">Load Structural Master Dataset CSV File</p>
-                    <p class="text-[9px] text-gray-500 mono-font">Asynchronously tuned for 3,000+ line arrays execution flawlessly</p>
-                </div>
-            </div>
-
-            <!-- Engine Progress Telemetry Grid -->
-            <div id="progressTelemetryContainer" class="hidden space-y-2 bg-gray-950 p-3.5 rounded-2xl border border-gray-900">
-                <div class="flex justify-between text-[10px] mono-font text-gray-400">
-                    <span id="progressStateLabel">Processing Node Cluster Array...</span>
-                    <span id="progressPercentLabel" class="text-orange-400 font-bold">0%</span>
-                </div>
-                <div class="w-full h-1.5 bg-gray-900 rounded-full overflow-hidden border border-gray-950">
-                    <div id="progressLinearIndicator" class="w-0 h-full bg-gradient-to-r from-orange-500 via-rose-500 to-amber-400 transition-all duration-700"></div>
-                </div>
-            </div>
-
-            <!-- Action Engine Launcher Command Trigger -->
-            <button id="executeEngineBatchBtn" class="w-full fire-glow text-gray-950 font-extrabold p-4 rounded-xl text-xs tracking-wider uppercase flex items-center justify-center gap-2">
-                <i class="fa-solid fa-circle-play text-sm"></i> Run Engine Operations Batch Build
-            </button>
+        <!-- BULK ENGINE INGESTION PORT -->
+        <section class="glass-panel rounded-3xl p-5 space-y-3">
+            <h2 class="text-xs font-bold tracking-wider text-gray-400 uppercase"><i class="fa-solid fa-fire text-orange-500 mr-1"></i> 4. Async CSV Bulk Processing Array</h2>
+            <input type="file" id="csvFileInput" accept=".csv" class="w-full bg-gray-950 border border-dashed border-gray-800 rounded-xl p-3 text-xs text-gray-400">
+            <button id="executeEngineBatchBtn" class="w-full fire-glow text-gray-950 font-extrabold p-3 rounded-xl text-xs tracking-wider uppercase flex items-center justify-center gap-2">Run Engine Batch</button>
+            <div id="progressTelemetryContainer" class="hidden text-xs mono-font text-gray-400 flex justify-between"><span id="progressStateLabel">Processing...</span><span id="progressPercentLabel">0%</span></div>
         </section>
 
         <!-- OUTPUT FRAME MONITOR CANVAS AREA -->
         <section class="glass-panel rounded-3xl p-5 text-center space-y-4">
-            <h2 class="text-xs font-bold tracking-wider text-gray-400 uppercase text-left flex items-center gap-2">
-                <i class="fa-solid fa-crosshairs text-orange-500"></i> Engine Active Studio Output Monitor
-            </h2>
-            
-            <div id="captureContainer" class="bg-gray-950 rounded-2xl p-6 flex flex-col items-center justify-center min-h-[280px] border border-gray-900 relative overflow-hidden">
-                <div id="liveBannerDisplay" class="absolute top-4 text-[11px] mono-font uppercase tracking-widest text-orange-500/40 font-extrabold"></div>
-                <!-- Purely used as an isolated background execution stage -->
+            <h2 class="text-xs font-bold tracking-wider text-gray-400 uppercase text-left"><i class="fa-solid fa-crosshairs text-orange-500 mr-1"></i> Active Studio Output Monitor</h2>
+            <div id="captureContainer" class="bg-gray-950 rounded-2xl p-6 flex flex-col items-center justify-center min-h-[260px] border border-gray-900 relative">
                 <div id="isolatedStagingStage" class="hidden"></div>
-                <!-- Dynamic active canvas wrapper -->
-                <div id="liveOutputWrapper" class="bg-white p-3 rounded-2xl shadow-2xl transition-transform duration-300 inline-block"></div>
-                <canvas id="canvasRenderLayer" class="hidden"></canvas>
-                <p id="placeholderLabelText" class="text-xs text-gray-600 italic mt-3 mono-font">Awaiting stream configuration pipeline...</p>
+                <div id="liveOutputWrapper" class="bg-white p-3 rounded-2xl shadow-2xl inline-block"></div>
             </div>
-
-            <!-- Multi Export Distribution Array Panel -->
-            <div id="exportPanelContainer" class="grid grid-cols-2 gap-2">
+            <div class="grid grid-cols-2 gap-2">
                 <button onclick="exportSingleFormat('png')" class="p-2.5 bg-gray-900 border border-gray-800 rounded-xl text-xs font-semibold text-gray-300 hover:text-orange-400"><i class="fa-solid fa-file-image mr-1"></i> PNG Format</button>
                 <button onclick="exportSingleFormat('jpg')" class="p-2.5 bg-gray-900 border border-gray-800 rounded-xl text-xs font-semibold text-gray-300 hover:text-orange-400"><i class="fa-solid fa-file-lines mr-1"></i> JPG Format</button>
-                <button onclick="copyToClipboardAction()" class="p-2.5 bg-gray-900 border border-gray-800 rounded-xl text-xs font-semibold text-gray-300 hover:text-orange-400"><i class="fa-solid fa-copy mr-1"></i> Copy Node</button>
+                <button onclick="copyToClipboardAction()" class="p-2.5 bg-gray-900 border border-gray-800 rounded-xl text-xs font-semibold text-gray-300 hover:text-orange-400"><i class="fa-solid fa-copy mr-1"></i> Copy Payload</button>
                 <button onclick="window.print()" class="p-2.5 bg-gray-900 border border-gray-800 rounded-xl text-xs font-semibold text-gray-300 hover:text-orange-400"><i class="fa-solid fa-print mr-1"></i> Print Matrix</button>
             </div>
+            <div class="bg-black/90 border border-gray-900 rounded-xl p-3 text-left font-mono text-[10px]"><div id="terminalLoggerOutput" class="text-orange-400/80">[SYSTEM]: System calibrated. Awaiting action...</div></div>
+        </section>
 
-            <!-- System Logs Live Matrix Realtime Debugger Terminal -->
-            <div class="bg-black/95 border border-gray-900 rounded-xl p-3.5 text-left font-mono text-[10px] max-h-[90px] overflow-y-auto custom-scrollbar">
-                <div id="terminalLoggerOutput" class="text-orange-400/80">[SYSTEM]: Diagnostic systems green. Operation node listening...</div>
+        <button id="downloadZipPackageBtn" class="hidden w-full bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-black p-4 rounded-2xl text-xs tracking-widest uppercase flex items-center justify-center gap-2">Download ZIP Package</button>
+
+        <!-- SEO VALUE ADDED TRAFFIC DRIVER: HOW TO USE INSTRUCTION MANUAL -->
+        <section class="glass-panel rounded-3xl p-6 space-y-4">
+            <h2 class="text-sm font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-300 uppercase"><i class="fa-solid fa-book-open text-orange-500 mr-2"></i> How to Use the Custom QR Engine?</h2>
+            <div class="text-xs text-gray-300 space-y-3 leading-relaxed">
+                <p>Follow these quick, intuitive milestones to construct professional, highly customized dynamic visual communication matrices effortlessly:</p>
+                <ol class="list-decimal list-inside space-y-2 text-gray-400">
+                    <li><strong class="text-gray-200">Choose Architecture:</strong> Pick a dedicated schema module from the 21+ layout configurations (URL, UPI, WiFi, etc.).</li>
+                    <li><strong class="text-gray-200">Input Raw Dataset:</strong> Type or paste your data text directly into the dynamic ingestion workspace field.</li>
+                    <li><strong class="text-gray-200">Inject Custom Brand Assets:</strong> Type standard uppercase text characters or upload custom transparent logo badges to render branding marks centered elegantly within the QR code matrix layout.</li>
+                    <li><strong class="text-gray-200">Styling Customization:</strong> Adjust resolution matrices parameters alongside hex primary/background shades immediately using continuous tuning controller blocks.</li>
+                    <li><strong class="text-gray-200">Export Deployment Packages:</strong> Instantly process massive batches using CSV spreadsheets or download standalone vector structures directly into local storage matrices.</li>
+                </ol>
             </div>
         </section>
 
-        <!-- INDUSTRIAL BULK COMPRESSION ZIP PACKAGED ASSET DOWNLOAD BUTTON -->
-        <button id="downloadZipPackageBtn" class="hidden w-full bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-black p-4 rounded-2xl text-xs tracking-widest uppercase flex items-center justify-center gap-2 active:scale-95 transition-all shadow-xl shadow-emerald-950/20">
-            <i class="fa-solid fa-file-zipper text-sm animate-bounce"></i> Export Mass Package ZIP Binary Pack
-        </button>
-
-        <!-- HISTORICAL REGISTRY RECORD LIST SYSTEM -->
-        <section class="glass-panel rounded-3xl p-5 space-y-4">
-            <div class="flex justify-between items-center">
-                <h2 class="text-xs font-bold tracking-wider text-gray-400 uppercase flex items-center gap-2">
-                    <i class="fa-solid fa-clock-rotate-left text-orange-500"></i> Historical Engine Registry Logs
-                </h2>
-                <button onclick="clearHistoricalLogRegistry()" class="text-[10px] text-rose-400 font-bold uppercase hover:underline">Clear Logs</button>
+        <!-- SEO VALUE ADDED TRAFFIC DRIVER: HIGH REVENUE FAQS ACCORDION -->
+        <section class="glass-panel rounded-3xl p-6 space-y-4">
+            <h2 class="text-sm font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-300 uppercase"><i class="fa-solid fa-circle-question text-orange-500 mr-2"></i> Frequently Asked Questions (FAQs)</h2>
+            <div class="space-y-3">
+                <details class="group bg-gray-950/60 p-3 rounded-xl border border-gray-900/60 transition-all cursor-pointer">
+                    <summary class="text-xs font-bold text-gray-200 flex justify-between items-center list-none">Can QR codes scan properly if text or a logo is placed in the center?<span class="text-orange-500 group-open:rotate-180 transition-transform">+</span></summary>
+                    <p class="text-[11px] text-gray-400 mt-2 leading-relaxed">Yes. The engine uses professional high-capacity error correction standard parameters (Level H). This allows up to 30% of the vector layout grid modules to be covered or omitted without rendering the generated structural asset unreadable by mobile camera modules.</p>
+                </details>
+                <details class="group bg-gray-950/60 p-3 rounded-xl border border-gray-900/60 transition-all cursor-pointer">
+                    <summary class="text-xs font-bold text-gray-200 flex justify-between items-center list-none">What format is best for multi-platform bulk QR distributions?<span class="text-orange-500 group-open:rotate-180 transition-transform">+</span></summary>
+                    <p class="text-[11px] text-gray-400 mt-2 leading-relaxed">PNG is ideal for web graphics due to its pixel accuracy and support for custom background components. For print and publishing industries, we highly recommend launching our asynchronous print system matrix mapping directly.</p>
+                </details>
+                <details class="group bg-gray-950/60 p-3 rounded-xl border border-gray-900/60 transition-all cursor-pointer">
+                    <summary class="text-xs font-bold text-gray-200 flex justify-between items-center list-none">Is my payload string securely protected by the system architecture?<span class="text-orange-500 group-open:rotate-180 transition-transform">+</span></summary>
+                    <p class="text-[11px] text-gray-400 mt-2 leading-relaxed">Absolutely. Processing functions execute isolated natively inside client-side client browser runtimes. No private network telemetry datasets or custom branding identities route back to cross-domain remote application target infrastructures.</p>
+                </details>
             </div>
-            <div id="historyRegistryBox" class="space-y-2 max-h-[160px] overflow-y-auto custom-scrollbar pr-1">
-                <p class="text-[11px] text-gray-600 italic text-center py-4">No data tracks recorded in local registry stack yet...</p>
+        </section>
+
+        <!-- SEO VALUE ADDED TRAFFIC DRIVER: RELATED PRODUCTIVITY UTILITY TOOLS -->
+        <section class="glass-panel rounded-3xl p-6 space-y-4">
+            <h2 class="text-sm font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-300 uppercase"><i class="fa-solid fa-screwdriver-wrench text-orange-500 mr-2"></i> Related Productivity Tools Ecosystem</h2>
+            <div class="grid grid-cols-2 gap-3 text-center">
+                <div class="bg-gray-950/80 p-3.5 rounded-2xl border border-gray-900 hover:border-orange-500/20 transition-all group cursor-pointer">
+                    <i class="fa-solid fa-link-slash text-xl text-gray-500 group-hover:text-orange-500 mb-1.5 transition-colors"></i>
+                    <h4 class="text-xs font-bold text-gray-300">URL Shortener Core</h4>
+                    <p class="text-[9px] text-gray-500 mt-1">Compress long tracking variables securely.</p>
+                </div>
+                <div class="bg-gray-950/80 p-3.5 rounded-2xl border border-gray-900 hover:border-orange-500/20 transition-all group cursor-pointer">
+                    <i class="fa-solid fa-barcode text-xl text-gray-500 group-hover:text-orange-500 mb-1.5 transition-colors"></i>
+                    <h4 class="text-xs font-bold text-gray-300">Barcode Vector Studio</h4>
+                    <p class="text-[9px] text-gray-500 mt-1">Generate multi-format retail item tags instantly.</p>
+                </div>
+                <div class="bg-gray-950/80 p-3.5 rounded-2xl border border-gray-900 hover:border-orange-500/20 transition-all group cursor-pointer">
+                    <i class="fa-solid fa-file-invoice text-xl text-gray-500 group-hover:text-orange-500 mb-1.5 transition-colors"></i>
+                    <h4 class="text-xs font-bold text-gray-300">Bulk Invoice Linker</h4>
+                    <p class="text-[9px] text-gray-500 mt-1">Automate localized client receipt streams.</p>
+                </div>
+                <div class="bg-gray-950/80 p-3.5 rounded-2xl border border-gray-900 hover:border-orange-500/20 transition-all group cursor-pointer">
+                    <i class="fa-solid fa-shield-halved text-xl text-gray-500 group-hover:text-orange-500 mb-1.5 transition-colors"></i>
+                    <h4 class="text-xs font-bold text-gray-300">Secure Crypt Vault</h4>
+                    <p class="text-[9px] text-gray-500 mt-1">Encrypt standard textual data streams.</p>
+                </div>
             </div>
         </section>
 
@@ -257,30 +260,6 @@
 
     <!-- CORE LOGIC AND FUNCTIONAL SYSTEM SCRIPTS -->
     <script>
-        const qrTypesConfigurationData = [
-            { id: 'text', name: 'Text QR', icon: 'fa-align-left', placeholder: 'Plain Text Message String Content...', label: 'Text Data String' },
-            { id: 'url', name: 'URL QR', icon: 'fa-globe', placeholder: 'https://example.com', label: 'Network Link URL address' },
-            { id: 'phone', name: 'Phone QR', icon: 'fa-phone', placeholder: '+8768863096', label: 'Hardware Terminal Dial Phone Number' },
-            { id: 'email', name: 'Email QR', icon: 'fa-envelope', placeholder: 'target@domain.com', label: 'Destination Email Envelope Node Address' },
-            { id: 'sms', name: 'SMS QR', icon: 'fa-comment-sms', placeholder: 'Type phone number here...', label: 'SMS Target Interface Node' },
-            { id: 'whatsapp', name: 'WhatsApp QR', icon: 'fa-brands fa-whatsapp', placeholder: '919876543210', label: 'WhatsApp Secure Handshake Node' },
-            { id: 'wifi', name: 'WiFi QR', icon: 'fa-wifi', placeholder: 'WIFI_SSID', label: 'Access Point Broadcast System SSID' },
-            { id: 'upi', name: 'UPI QR', icon: 'fa-credit-card', placeholder: 'merchant@upi', label: 'Unified Payments Interface Address VPA' },
-            { id: 'vcard', name: 'vCard QR', icon: 'fa-id-card', placeholder: 'Name, Phone details...', label: 'Digital Contact Structural vCard' },
-            { id: 'location', name: 'Location QR', icon: 'fa-location-dot', placeholder: 'Latitude, Longitude', label: 'Geographical Coordinates Point Node' },
-            { id: 'event', name: 'Event QR', icon: 'fa-calendar-day', placeholder: 'Event Name, Date', label: 'Calendar Event Synchronization Node' },
-            { id: 'youtube', name: 'YouTube QR', icon: 'fa-brands fa-youtube', placeholder: 'https://youtube.com/...', label: 'YouTube Video Stream URL' },
-            { id: 'instagram', name: 'Instagram QR', icon: 'fa-brands fa-instagram', placeholder: 'Username', label: 'Instagram Profile Endpoint Identity' },
-            { id: 'facebook', name: 'Facebook QR', icon: 'fa-brands fa-facebook', placeholder: 'Profile URL', label: 'Facebook Destination Social Graph Node' },
-            { id: 'linkedin', name: 'LinkedIn QR', icon: 'fa-brands fa-linkedin', placeholder: 'Profile URL', label: 'LinkedIn Professional Graph Connection' },
-            { id: 'twitter', name: 'Twitter QR', icon: 'fa-brands fa-x-twitter', placeholder: 'Username', label: 'Twitter Handle Network String' },
-            { id: 'paypal', name: 'PayPal QR', icon: 'fa-brands fa-paypal', placeholder: 'PayPal Email/Me Link', label: 'PayPal Payment Gateway Interface Address' },
-            { id: 'bitcoin', name: 'Bitcoin QR', icon: 'fa-bitcoin-sign', placeholder: 'WalletAddress', label: 'Bitcoin Decentralized Crypto Ledger Address' },
-            { id: 'zoom', name: 'Zoom QR', icon: 'fa-video', placeholder: 'Meeting ID Link', label: 'Zoom Teleconferencing Session Gateway' },
-            { id: 'facetime', name: 'FaceTime QR', icon: 'fa-video-slash', placeholder: 'Apple ID/Mobile Number', label: 'FaceTime Call Address Route' },
-            { id: 'vcardplus', name: 'vCard Plus', icon: 'fa-address-card', placeholder: 'Advanced metadata details portfolio...', label: 'vCard Plus Rich Metadata Structure' }
-        ];
-
         let activeSelectedProtocolId = 'text';
         let ingestedCsvRowsData = [];
         let compiledOutputZipBlobFile = null;
@@ -289,38 +268,28 @@
 
         const terminalLoggerOutput = document.getElementById('terminalLoggerOutput');
         const mainPayloadData = document.getElementById('mainPayloadData');
-        const charCount = document.getElementById('charCount');
         const liveOutputWrapper = document.getElementById('liveOutputWrapper');
-        const placeholderLabelText = document.getElementById('placeholderLabelText');
         const sizeSlider = document.getElementById('sizeSlider');
         const sliderValueText = document.getElementById('sliderValueText');
         const qrColorInput = document.getElementById('qrColorInput');
         const bgColorInput = document.getElementById('bgColorInput');
-        const liveBannerDisplay = document.getElementById('liveBannerDisplay');
-        const bannerLabelInput = document.getElementById('bannerLabelInput');
+        const centerBrandTextInput = document.getElementById('centerBrandTextInput');
         const progressTelemetryContainer = document.getElementById('progressTelemetryContainer');
-        const progressLinearIndicator = document.getElementById('progressLinearIndicator');
         const progressPercentLabel = document.getElementById('progressPercentLabel');
         const progressStateLabel = document.getElementById('progressStateLabel');
         const downloadZipPackageBtn = document.getElementById('downloadZipPackageBtn');
-        const historyRegistryBox = document.getElementById('historyRegistryBox');
 
         function logToSystemTerminal(message, tailwindColorClass = 'text-orange-400/80') {
             terminalLoggerOutput.className = tailwindColorClass;
             terminalLoggerOutput.innerText = `[SYSTEM_LOG]: ${message}`;
-            terminalLoggerOutput.scrollTop = terminalLoggerOutput.scrollHeight;
         }
 
         window.addEventListener('DOMContentLoaded', () => {
             renderProtocolMatrixInterfaceGrid();
-            refreshCharacterCounterDisplay();
-            loadEngineHistoricalLogsFromStorage();
             triggerInstantLiveSingleCodeGeneration();
             
-            mainPayloadData.addEventListener('input', () => {
-                refreshCharacterCounterDisplay();
-                triggerInstantLiveSingleCodeGeneration();
-            });
+            mainPayloadData.addEventListener('input', triggerInstantLiveSingleCodeGeneration);
+            centerBrandTextInput.addEventListener('input', triggerInstantLiveSingleCodeGeneration);
             sizeSlider.addEventListener('input', (e) => {
                 sliderValueText.innerText = `${e.target.value}px`;
                 triggerInstantLiveSingleCodeGeneration();
@@ -333,58 +302,37 @@
                 document.getElementById('bgHexText').innerText = e.target.value.toUpperCase();
                 triggerInstantLiveSingleCodeGeneration();
             });
-            bannerLabelInput.addEventListener('input', (e) => {
-                liveBannerDisplay.innerText = e.target.value.toUpperCase();
-            });
         });
 
         function renderProtocolMatrixInterfaceGrid() {
             const grid = document.getElementById('protocolMatrixGrid');
             grid.innerHTML = "";
-            
             qrTypesConfigurationData.forEach(type => {
                 const button = document.createElement('button');
                 button.id = `proto_btn_${type.id}`;
-                button.className = `p-3 rounded-2xl bg-gray-900/40 border border-gray-800/80 text-left flex flex-col items-center justify-center gap-1.5 text-[11px] font-medium text-gray-400 transition-all active:scale-95`;
+                button.className = `p-2 rounded-xl bg-gray-900/40 border border-gray-800 text-center flex flex-col items-center justify-center text-[10px] font-medium text-gray-400 transition-all`;
                 if(type.id === activeSelectedProtocolId) button.classList.add('active-neon-btn');
-                
-                button.innerHTML = `
-                    <i class="fa-solid ${type.icon} text-sm"></i>
-                    <span class="text-[10px] truncate w-full text-center">${type.name}</span>
-                `;
-                
-                button.onclick = () => switchActiveProtocolSchema(type.id);
+                button.innerHTML = `<i class="fa-solid ${type.icon} mb-1"></i><span class="truncate w-full">${type.name}</span>`;
+                button.onclick = () => {
+                    document.getElementById(`proto_btn_${activeSelectedProtocolId}`)?.classList.remove('active-neon-btn');
+                    activeSelectedProtocolId = type.id;
+                    button.classList.add('active-neon-btn');
+                    document.getElementById('inputLabelText').innerText = type.label;
+                    mainPayloadData.placeholder = type.placeholder;
+                    triggerInstantLiveSingleCodeGeneration();
+                };
                 grid.appendChild(button);
             });
-        }
-
-        function switchActiveProtocolSchema(targetProtocolId) {
-            document.getElementById(`proto_btn_${activeSelectedProtocolId}`)?.classList.remove('active-neon-btn');
-            activeSelectedProtocolId = targetProtocolId;
-            document.getElementById(`proto_btn_${activeSelectedProtocolId}`)?.classList.add('active-neon-btn');
-
-            const selectedConfig = qrTypesConfigurationData.find(x => x.id === targetProtocolId);
-            document.getElementById('inputLabelText').innerText = selectedConfig.label;
-            mainPayloadData.placeholder = selectedConfig.placeholder;
-            
-            logToSystemTerminal(`Protocol schema adjusted: [${selectedConfig.name.toUpperCase()}]`);
-            triggerInstantLiveSingleCodeGeneration();
-        }
-
-        function refreshCharacterCounterDisplay() {
-            charCount.innerText = `${mainPayloadData.value.length} Chars`;
         }
 
         document.getElementById('logoUploadInput').addEventListener('change', function(e) {
             const file = e.target.files[0];
             if (!file) return;
-            
             const reader = new FileReader();
             reader.onload = function(evt) {
                 base64UploadedLogoCacheString = evt.target.result;
-                document.getElementById('logoUploadLabelText').innerHTML = `<span class="text-emerald-400 font-bold"><i class="fa-solid fa-circle-check"></i> Logo Loaded</span>`;
+                document.getElementById('logoUploadLabelText').innerHTML = `<span class="text-emerald-400 font-bold">Image Loaded</span>`;
                 document.getElementById('clearLogoBtn').classList.remove('hidden');
-                logToSystemTerminal("Brand asset loaded into runtime image workspace cache buffer.");
                 triggerInstantLiveSingleCodeGeneration();
             };
             reader.readAsDataURL(file);
@@ -392,59 +340,16 @@
 
         function clearUploadedLogo(event) {
             event.stopPropagation();
-            event.preventDefault();
             base64UploadedLogoCacheString = null;
             document.getElementById('logoUploadInput').value = "";
-            document.getElementById('logoUploadLabelText').innerHTML = `<i class="fa-solid fa-image text-gray-500"></i> Place custom SVG / PNG node asset...`;
+            document.getElementById('logoUploadLabelText').innerHTML = `<i class="fa-solid fa-image text-gray-500 mr-1"></i> Upload Image`;
             document.getElementById('clearLogoBtn').classList.add('hidden');
-            logToSystemTerminal("Identity logo cleared successfully.");
             triggerInstantLiveSingleCodeGeneration();
         }
-
-        function resetCustomization() {
-            qrColorInput.value = "#ff0000";
-            bgColorInput.value = "#ffffff";
-            document.getElementById('qrHexText').innerText = "#FF0000";
-            document.getElementById('bgHexText').innerText = "#FFFFFF";
-            sizeSlider.value = 400;
-            sliderValueText.innerText = "400px";
-            bannerLabelInput.value = "";
-            liveBannerDisplay.innerText = "";
-            logToSystemTerminal("Custom parameters dropped to architectural system standard default lines.");
-            triggerInstantLiveSingleCodeGeneration();
-        }
-
-        document.getElementById('csvFileInput').addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (!file) return;
-
-            document.getElementById('uploadTextText').innerText = `Injecting Data Clusters...`;
-            const reader = new FileReader();
-            reader.onload = function(evt) {
-                const text = evt.target.result;
-                ingestedCsvRowsData = text.split(/\r?\n/).map(row => row.trim()).filter(row => row.length > 0);
-                
-                document.getElementById('uploadTextText').innerHTML = `<span class="text-orange-400 font-bold"><i class="fa-solid fa-fire animate-pulse"></i> ${ingestedCsvRowsData.length} Array Rows Locked!</span>`;
-                logToSystemTerminal(`Successfully parsed master dataset stream. Total loaded records: ${ingestedCsvRowsData.length}`);
-                
-                if (ingestedCsvRowsData.length > 0) {
-                    mainPayloadData.value = ingestedCsvRowsData[0].split(',')[0];
-                    refreshCharacterCounterDisplay();
-                    triggerInstantLiveSingleCodeGeneration();
-                }
-            };
-            reader.readAsText(file);
-        });
 
         function triggerInstantLiveSingleCodeGeneration() {
             const payload = mainPayloadData.value.trim();
-            if(!payload) {
-                liveOutputWrapper.innerHTML = "";
-                placeholderLabelText.style.display = "block";
-                return;
-            }
-
-            placeholderLabelText.style.display = "none";
+            if(!payload) return;
             liveOutputWrapper.innerHTML = "";
 
             new QRCode(liveOutputWrapper, {
@@ -458,160 +363,109 @@
             
             setTimeout(() => {
                 const canvas = liveOutputWrapper.querySelector('canvas');
-                if (canvas && base64UploadedLogoCacheString) {
-                    injectBrandLogoIntoActiveCanvasObject(canvas);
-                }
+                if (canvas) injectBrandingLayerAssets(canvas);
             }, 50);
         }
 
-        function injectBrandLogoIntoActiveCanvasObject(canvas) {
+        function injectBrandingLayerAssets(canvas) {
             const ctx = canvas.getContext('2d');
-            const logoImageElement = new Image();
-            logoImageElement.src = base64UploadedLogoCacheString;
-            logoImageElement.onload = function() {
-                const logoSize = canvas.width * 0.20;
-                const xCoordinatePosition = (canvas.width - logoSize) / 2;
-                const yCoordinatePosition = (canvas.height - logoSize) / 2;
-                
-                ctx.fillStyle = bgColorInput.value;
-                ctx.fillRect(xCoordinatePosition - 4, yCoordinatePosition - 4, logoSize + 8, logoSize + 8);
-                ctx.drawImage(logoImageElement, xCoordinatePosition, yCoordinatePosition, logoSize, logoSize);
-                
-                const imgElement = liveOutputWrapper.querySelector('img');
-                if(imgElement) imgElement.src = canvas.toDataURL();
-            };
+            const centerDimension = canvas.width * 0.22;
+            const positionCoordinate = (canvas.width - centerDimension) / 2;
+
+            // Clear Center Background
+            ctx.fillStyle = bgColorInput.value;
+            ctx.fillRect(positionCoordinate - 2, positionCoordinate - 2, centerDimension + 4, centerDimension + 4);
+
+            // Priority 1: Render Custom Image Logo
+            if(base64UploadedLogoCacheString) {
+                const img = new Image();
+                img.src = base64UploadedLogoCacheString;
+                img.onload = function() {
+                    ctx.drawImage(img, positionCoordinate, positionCoordinate, centerDimension, centerDimension);
+                    updateImgTagSource(canvas);
+                };
+            } 
+            // Priority 2: Render Custom Text Branding Name
+            else if(centerBrandTextInput.value.trim()) {
+                const brandText = centerBrandTextInput.value.trim().toUpperCase();
+                ctx.fillStyle = qrColorInput.value;
+                ctx.font = `bold ${Math.floor(centerDimension * 0.35)}px 'Plus Jakarta Sans', sans-serif`;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(brandText, canvas.width / 2, canvas.height / 2);
+                updateImgTagSource(canvas);
+            } else {
+                updateImgTagSource(canvas);
+            }
         }
 
+        function updateImgTagSource(canvas) {
+            const imgElement = liveOutputWrapper.querySelector('img');
+            if(imgElement) imgElement.src = canvas.toDataURL();
+        }
+
+        document.getElementById('csvFileInput').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(evt) {
+                ingestedCsvRowsData = evt.target.result.split(/\r?\n/).map(r => r.trim()).filter(r => r.length > 0);
+                logToSystemTerminal(`CSV Stream Active: ${ingestedCsvRowsData.length} records parsed.`);
+            };
+            reader.readAsText(file);
+        });
+
         document.getElementById('executeEngineBatchBtn').addEventListener('click', async () => {
-            const currentPayload = mainPayloadData.value.trim();
-            
-            if (ingestedCsvRowsData.length === 0) {
-                if(!currentPayload) {
-                    logToSystemTerminal("[CRITICAL_ERROR]: Null runtime target array ingestion parameters.", "text-rose-500");
-                    alert("Please write data or import a bulk cluster dataset CSV spreadsheet file!");
-                    return;
-                }
+            if(ingestedCsvRowsData.length === 0) {
                 triggerInstantLiveSingleCodeGeneration();
-                saveSingleDataNodeEntryToHistoryLogRegistry(currentPayload);
-                logToSystemTerminal("Single data node transaction registered successfully into environment log trace arrays.");
+                logToSystemTerminal("Single matrix instance evaluated successfully.");
                 return;
             }
-
-            logToSystemTerminal(`Initializing High-Capacity Multi-Thread Mass Processing Core Pipeline for ${ingestedCsvRowsData.length} records...`);
             progressTelemetryContainer.classList.remove('hidden');
-            downloadZipPackageBtn.classList.add('hidden');
+            const zip = new JSZip();
+            const staging = document.getElementById('isolatedStagingStage');
             
-            const zipInstanceCompiler = new JSZip();
-            const isolatedStagingStage = document.getElementById('isolatedStagingStage');
-            const calculatedTargetDimensionSize = parseInt(sizeSlider.value);
-            
-            for (let indexValue = 0; indexValue < ingestedCsvRowsData.length; indexValue++) {
-                const isolatedRowStringData = ingestedCsvRowsData[indexValue].split(',')[0].trim();
-                if(!isolatedRowStringData) continue;
-
-                isolatedStagingStage.innerHTML = "";
+            for (let i = 0; i < ingestedCsvRowsData.length; i++) {
+                const data = ingestedCsvRowsData[i].split(',')[0].trim();
+                if(!data) continue;
+                staging.innerHTML = "";
+                new QRCode(staging, { text: data, width: parseInt(sizeSlider.value), height: parseInt(sizeSlider.value), colorDark: qrColorInput.value, colorLight: bgColorInput.value, correctLevel: QRCode.CorrectLevel.M });
+                await new Promise(r => setTimeout(r, 5));
+                let cvs = staging.querySelector('canvas');
+                if(cvs) zip.file(`QR_INDEX_${i+1}.png`, cvs.toDataURL('image/png').split(',')[1], {base64: true});
                 
-                new QRCode(isolatedStagingStage, {
-                    text: isolatedRowStringData,
-                    width: calculatedTargetDimensionSize,
-                    height: calculatedTargetDimensionSize,
-                    colorDark: qrColorInput.value,
-                    colorLight: bgColorInput.value,
-                    correctLevel: QRCode.CorrectLevel.M
-                });
-
-                await new Promise(resolve => setTimeout(resolve, 6));
-
-                let canvasObject = isolatedStagingStage.querySelector('canvas');
-                if (canvasObject) {
-                    const rawBase64ImageBufferString = canvasObject.toDataURL('image/png').split(',')[1];
-                    zipInstanceCompiler.file(`QR_NODE_CLUSTER_INDEX_${indexValue + 1}.png`, rawBase64ImageBufferString, { base64: true });
-                }
-
-                const completionPercentageProgress = Math.round(((indexValue + 1) / ingestedCsvRowsData.length) * 100);
-                progressLinearIndicator.style.width = `${completionPercentageProgress}%`;
-                progressPercentLabel.innerText = `${completionPercentageProgress}%`;
-                progressStateLabel.innerText = `Assembling Binary Matrices: ${indexValue + 1} / ${ingestedCsvRowsData.length}`;
-
-                if (indexValue % 30 === 0 || indexValue === ingestedCsvRowsData.length - 1) {
-                    liveOutputWrapper.innerHTML = isolatedStagingStage.innerHTML;
-                }
+                let pct = Math.round(((i+1)/ingestedCsvRowsData.length)*100);
+                progressPercentLabel.innerText = `${pct}%`;
             }
-
-            progressStateLabel.innerText = "Building Asset Target Distribution File...";
-            logToSystemTerminal("Finalizing high-compression multi-packet bundle distribution file.");
-            
-            compiledOutputZipBlobFile = await zipInstanceCompiler.generateAsync({ type: "blob" });
-            
-            progressStateLabel.innerText = "Compression Success!";
-            logToSystemTerminal(`Successfully packaged ${ingestedCsvRowsData.length} elements into active compressed directory package module.`, 'text-emerald-400');
-            
+            compiledOutputZipBlobFile = await zip.generateAsync({type:"blob"});
             downloadZipPackageBtn.classList.remove('hidden');
-            saveSingleDataNodeEntryToHistoryLogRegistry(`Bulk Dataset Render: [${ingestedCsvRowsData.length} Records Cluster]`);
+            logToSystemTerminal("Bulk binary target dataset package complete.", "text-emerald-400");
         });
 
         downloadZipPackageBtn.addEventListener('click', () => {
-            if (!compiledOutputZipBlobFile) return;
-            const virtualAnchorDownloadElement = document.createElement('a');
-            virtualAnchorDownloadElement.href = window.URL.createObjectURL(compiledOutputZipBlobFile);
-            virtualAnchorDownloadElement.download = `QUANTUM_QR_PRO_BATCH_STACK_MANIFEST_${Date.now()}.zip`;
-            document.body.appendChild(virtualAnchorDownloadElement);
-            virtualAnchorDownloadElement.click();
-            window.URL.revokeObjectURL(virtualAnchorDownloadElement.href);
-            document.body.removeChild(virtualAnchorDownloadElement);
-            logToSystemTerminal("Global collection array target bundle exported to local drive structure successfully.", "text-emerald-400");
+            if(!compiledOutputZipBlobFile) return;
+            const a = document.createElement('a');
+            a.href = window.URL.createObjectURL(compiledOutputZipBlobFile);
+            a.download = `QR_BULK_BUNDLE_${Date.now()}.zip`;
+            a.click();
         });
 
-        function exportSingleFormat(targetFormatExtensionString) {
-            const canvasObject = liveOutputWrapper.querySelector('canvas');
-            if (!canvasObject) return;
-            
-            const imageURLStreamTarget = canvasObject.toDataURL(`image/${targetFormatExtensionString === 'jpg' ? 'jpeg' : 'png'}`);
-            const anchorElement = document.createElement('a');
-            anchorElement.href = imageURLStreamTarget;
-            anchorElement.download = `QR_MATRIX_NODE_EXPORT_${Date.now()}.${targetFormatExtensionString}`;
-            document.body.appendChild(anchorElement);
-            anchorElement.click();
-            document.body.removeChild(anchorElement);
-            logToSystemTerminal(`Export operation targeted to image/${targetFormatExtensionString} structural file type completed.`);
+        function exportSingleFormat(ext) {
+            const cvs = liveOutputWrapper.querySelector('canvas');
+            if(!cvs) return;
+            const a = document.createElement('a');
+            a.href = cvs.toDataURL(`image/${ext==='jpg'?'jpeg':'png'}`);
+            a.download = `QR_EXPORT_${Date.now()}.${ext}`;
+            a.click();
         }
 
-        // MOBILE SECURE CLIPBOARD COPY FALLBACK SYSTEM (FIXED!)
         function copyToClipboardAction() {
-            const canvasObject = liveOutputWrapper.querySelector('canvas');
-            if (!canvasObject) {
-                logToSystemTerminal("No target vector structure ready in visual buffer node layer.", "text-rose-400");
-                return;
-            }
-
-            try {
-                // Method A: Native direct Blob parsing into Clipboard items mapping array
-                canvasObject.toBlob((blobObjectItem) => {
-                    if (!blobObjectItem) {
-                        logToSystemTerminal("Conversion to binary image vector pipeline failed.", "text-rose-400");
-                        return;
-                    }
-                    const dataItems = [new ClipboardItem({ [blobObjectItem.type]: blobObjectItem })];
-                    navigator.clipboard.write(dataItems).then(() => {
-                        logToSystemTerminal("Active visual matrix payload code safely copied into device native storage clipboard data matrix.", "text-emerald-400");
-                        alert("QR Code image successfully copied to your clipboard!");
-                    }).catch(() => {
-                        executeTextFallbackClipboardCopy();
-                    });
-                }, 'image/png');
-            } catch (err) {
-                executeTextFallbackClipboardCopy();
-            }
-        }
-
-        // Method B: Clean alternate text pipeline fallback tracking logs routing mapping sequences
-        function executeTextFallbackClipboardCopy() {
-            const rawTextPayloadValue = mainPayloadData.value.trim();
-            navigator.clipboard.writeText(rawTextPayloadValue).then(() => {
-                logToSystemTerminal("Clipboard engine adjusted: Encoded data string plain text copied safely.", "text-orange-400");
-                alert("Image copy blocked by browser environment. Copied QR raw string data instead!");
+            const payload = mainPayloadData.value.trim();
+            navigator.clipboard.writeText(payload).then(() => {
+                alert("QR raw textual payload string data successfully copied!");
+                logToSystemTerminal("String character trace flushed cleanly to client interface.");
             }).catch(() => {
-                logToSystemTerminal("Critical runtime clipboard API infrastructure blockage.", "text-rose-500");
+                logToSystemTerminal("Security infrastructure block detected.", "text-rose-500");
             });
         }
 
@@ -619,77 +473,25 @@
             const scannerContainer = document.getElementById('scannerSection');
             if (scannerContainer.classList.contains('hidden')) {
                 scannerContainer.classList.remove('hidden');
-                logToSystemTerminal("Initializing live terminal hardware lens connection interface scanner stack layer...");
-                
                 localHtml5QrCodeScannerInstance = new Html5Qrcode("reader");
-                localHtml5QrCodeScannerInstance.start(
-                    { facingMode: "environment" },
-                    { fps: 10, qrbox: { width: 220, height: 220 } },
-                    (decodedTextString) => {
-                        const resultBox = document.getElementById('scanResult');
-                        resultBox.innerText = `Decoded String Data: ${decodedTextString}`;
-                        resultBox.classList.remove('hidden');
-                        mainPayloadData.value = decodedTextString;
-                        refreshCharacterCounterDisplay();
-                        triggerInstantLiveSingleCodeGeneration();
-                        logToSystemTerminal(`Successfully decoded scanned payload matrix input stream: [${decodedTextString}]`, 'text-emerald-400');
-                    },
-                    (errorMessage) => { }
-                ).catch(err => {
-                    logToSystemTerminal("Camera hardware link routing initialization block failure or permission request denied.", "text-rose-500");
-                });
+                localHtml5QrCodeScannerInstance.start({ facingMode: "environment" }, { fps: 10, qrbox: 200 }, (txt) => {
+                    document.getElementById('scanResult').innerText = txt;
+                    document.getElementById('scanResult').classList.remove('hidden');
+                    mainPayloadData.value = txt;
+                    triggerInstantLiveSingleCodeGeneration();
+                }).catch(()=>{});
             } else {
                 scannerContainer.classList.add('hidden');
-                if (localHtml5QrCodeScannerInstance) {
-                    localHtml5QrCodeScannerInstance.stop().then(() => {
-                        logToSystemTerminal("Hardware lens video interface streams disconnected cleanly.");
-                    });
-                }
+                if(localHtml5QrCodeScannerInstance) localHtml5QrCodeScannerInstance.stop();
             }
         }
 
-        function saveSingleDataNodeEntryToHistoryLogRegistry(stringContentPayloadValueText) {
-            let activeLoggedArrayManifestList = JSON.parse(localStorage.getItem('quantum_qr_history_registry_tracker') || '[]');
-            const logEntryObjectItem = {
-                timestamp: new Date().toLocaleTimeString(),
-                payload: stringContentPayloadValueText,
-                schemaType: activeSelectedProtocolId.toUpperCase()
-            };
-            
-            activeLoggedArrayManifestList.unshift(logEntryObjectItem);
-            if(activeLoggedArrayManifestList.length > 25) activeLoggedArrayManifestList.pop();
-            
-            localStorage.setItem('quantum_qr_history_registry_tracker', JSON.stringify(activeLoggedArrayManifestList));
-            loadEngineHistoricalLogsFromStorage();
-        }
-
-        function loadEngineHistoricalLogsFromStorage() {
-            let activeLoggedArrayManifestList = JSON.parse(localStorage.getItem('quantum_qr_history_registry_tracker') || '[]');
-            if(activeLoggedArrayManifestList.length === 0) {
-                historyRegistryBox.innerHTML = `<p class="text-[11px] text-gray-600 italic text-center py-4">No data tracks recorded in local registry stack yet...</p>`;
-                return;
-            }
-
-            historyRegistryBox.innerHTML = "";
-            activeLoggedArrayManifestList.forEach(item => {
-                const elementWrapperCardNode = document.createElement('div');
-                elementWrapperCardNode.className = "bg-gray-950/80 p-2.5 rounded-xl border border-gray-900 flex justify-between items-center text-[11px] font-medium transition-transform hover:scale-[0.99]";
-                elementWrapperCardNode.innerHTML = `
-                    <div class="truncate max-w-[70%]">
-                        <span class="text-[9px] px-1.5 py-0.5 font-bold rounded bg-orange-500/15 text-orange-400 mr-1.5 uppercase tracking-wider mono-font">${item.schemaType}</span>
-                        <span class="text-gray-300 truncate mono-font">${item.payload}</span>
-                    </div>
-                    <span class="text-[10px] text-gray-500 font-mono">${item.timestamp}</span>
-                `;
-                historyRegistryBox.appendChild(elementWrapperCardNode);
-            });
-        }
-
-        function clearHistoricalLogRegistry() {
-            localStorage.removeItem('quantum_qr_history_registry_tracker');
-            loadEngineHistoricalLogsFromStorage();
-            logToSystemTerminal("Telemetry operational registry history cleared safely.");
-        }
+        const qrTypesConfigurationData = [
+            { id: 'text', name: 'Text QR', icon: 'fa-align-left', placeholder: 'Plain Text Message String...', label: 'Text Data String' },
+            { id: 'url', name: 'URL QR', icon: 'fa-globe', placeholder: 'https://example.com', label: 'Network Link URL Address' },
+            { id: 'wifi', name: 'WiFi QR', icon: 'fa-wifi', placeholder: 'WIFI_SSID', label: 'Access Point Broadcast System SSID' },
+            { id: 'upi', name: 'UPI QR', icon: 'fa-credit-card', placeholder: 'merchant@upi', label: 'Unified Payments Interface Address VPA' }
+        ];
     </script>
 </body>
 </html>
