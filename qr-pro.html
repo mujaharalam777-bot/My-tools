@@ -13,7 +13,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 
 <style>
-/* LINE 1 - 300 CSS START */
 :root{
     --primary:#22c55e; --primary-dark:#16a34a; --secondary:#facc15; --accent:#ec4899;
     --bg1:#0f2027; --bg2:#203a43; --bg3:#2c5364;
@@ -63,11 +62,9 @@ input[type="range"]{width:100%; accent-color:var(--primary);}
 .loader{display:none; border:3px solid rgba(255,255,255,.3); border-top:3px solid var(--primary); border-radius:50%; width:40px; height:40px; animation:spin 1s linear infinite;margin:auto;}
 @keyframes spin{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
 .toast{position:fixed; bottom:30px; right:30px; background:var(--primary); color:#000;padding:16px 24px; border-radius:12px; font-weight:700; display:none; z-index:9999;box-shadow:0 8px 25px rgba(34,197,94,.4);}
-/* CSS END LINE 300 */
 </style>
 </head>
 <body>
-<!-- HTML START LINE 301 -->
 <div class="header">
     <div><h1>🚀 QR PRO MAX ULTRA v5.0</h1></div>
     <button class="theme-btn" onclick="toggleTheme()">🌙 Theme</button>
@@ -139,262 +136,8 @@ input[type="range"]{width:100%; accent-color:var(--primary);}
 
 <div class="footer">© 2026 QR PRO MAX ULTRA v5.0 | 100% Private & Offline</div>
 <div class="toast" id="toast"></div>
-<!-- HTML END LINE 450 -->
 
 <script>
-/* JAVASCRIPT START LINE 451 - 1000 */
-let currentType="text"; let proQR=null; let logoImg=null;
-let html5QrCode=null; let isScanning=false;
-
-window.onload = function(){
-    updateInput(); loadHistory(); setupEventListeners();
-    setTimeout(generateQR, 500);
-}
-
-function setupEventListeners(){
-    document.querySelectorAll('.type-btn').forEach(btn=>{
-      btn.onclick=function(){
-        document.querySelectorAll('.type-btn').forEach(b=>b.classList.remove('active'));
-        this.classList.add('active'); currentType=this.dataset.type;
-        updateInput(); attachInputListeners(); setTimeout(generateQR, 100);
-      }
-    });
-    attachInputListeners();
-    document.getElementById('qrSize').oninput=function(){
-        document.getElementById('sizeText').innerText=this.value+'px';
-        if(proQR) generateQR();
-    }
-    ['qrColor','bgColor','frameText'].forEach(id=>{
-        document.getElementById(id).oninput = ()=>{ if(proQR) generateQR(); }
-    });
-    document.getElementById('logoInput').onchange=function(e){
-        const r=new FileReader();
-        r.onload=ev=>{logoImg=new Image();logoImg.src=ev.target.result; if(proQR) generateQR();};
-        r.readAsDataURL(e.target.files[0]);
-    }
-}
-
-function attachInputListeners(){
-    const inputs = document.querySelectorAll('#dynamicInput input, #dynamicInput textarea, #dynamicInput select');
-    inputs.forEach(input => {
-        input.oninput = () => { setTimeout(generateQR, 300); }
-    });
-}
-
-function toggleTheme(){document.body.classList.toggle("light"); showToast("Theme Changed");}
-
-function updateInput(){
-  const d=document.getElementById("dynamicInput");
-  const inputs={
-    text:`<div class="input-group"><label>Enter Text</label><textarea id="mainInput" rows="3" placeholder="Hello World"></textarea></div>`,
-    url:`<div class="input-group"><label>Website URL</label><input id="mainInput" placeholder="https://google.com"></div>`,
-    phone:`<div class="input-group"><label>Phone Number</label><input id="mainInput" placeholder="+91 98765 43210"></div>`,
-    email:`<div class="input-group"><label>Email To</label><input id="emailTo" placeholder="email@example.com"></div><div class="input-group"><label>Subject</label><input id="emailSub" placeholder="Subject"></div>`,
-    sms:`<div class="input-group"><label>Phone Number</label><input id="smsNum" placeholder="+91..."></div><div class="input-group"><label>Message</label><textarea id="smsMsg"></textarea></div>`,
-    whatsapp:`<div class="input-group"><label>WA Number with Country Code</label><input id="waNum" placeholder="919876543210"></div><div class="input-group"><label>Message</label><textarea id="waMsg"></textarea></div>`,
-    wifi:`<div class="input-group"><label>WiFi Name SSID</label><input id="wifiSSID"></div><div class="input-group"><label>Password</label><input id="wifiPass" type="password"></div><div class="input-group"><label>Encryption</label><select id="wifiEnc"><option>WPA</option><option>WEP</option><option>NOPASS</option></select></div>`,
-    upi:`<div class="input-group"><label>UPI ID</label><input id="upiID" placeholder="name@upi"></div><div class="input-group"><label>Amount ₹</label><input id="upiAmt" type="number"></div><div class="input-group"><label>Note</label><input id="upiNote" placeholder="Payment"></div>`,
-    contact:`<div class="input-group"><label>Full Name</label><input id="cName"></div><div class="input-group"><label>Phone</label><input id="cPhone"></div><div class="input-group"><label>Email</label><input id="cEmail"></div>`,
-    maps:`<div class="input-group"><label>Location Address</label><input id="mapLoc" placeholder="Kolkata, West Bengal"></div>`,
-    event:`<div class="input-group"><label>Event Name</label><input id="eventName"></div><div class="input-group"><label>Date</label><input id="eventDate" type="date"></div><div class="input-group"><label>Location</label><input id="eventLoc"></div>`,
-    youtube:`<div class="input-group"><label>YouTube Video URL</label><input id="mainInput"></div>`,
-    instagram:`<div class="input-group"><label>Instagram Username</label><input id="mainInput" placeholder="@username"></div>`,
-    facebook:`<div class="input-group"><label>Facebook Profile URL</label><input id="mainInput"></div>`,
-    linkedin:`<div class="input-group"><label>LinkedIn Profile URL</label><input id="mainInput"></div>`,
-    twitter:`<div class="input-group"><label>Twitter Username</label><input id="mainInput" placeholder="@username"></div>`,
-    paypal:`<div class="input-group"><label>PayPal.me Link</label><input id="mainInput"></div>`,
-    bitcoin:`<div class="input-group"><label>Bitcoin Wallet Address</label><input id="mainInput"></div>`,
-    zoom:`<div class="input-group"><label>Zoom Meeting Link</label><input id="mainInput"></div>`,
-    facetime:`<div class="input-group"><label>FaceTime Email or Number</label><input id="mainInput"></div>`,
-    vcard:`<div class="input-group"><label>Full Name</label><input id="vName"></div><div class="input-group"><label>Phone</label><input id="vPhone"></div><div class="input-group"><label>Email</label><input id="vEmail"></div><div class="input-group"><label>Company</label><input id="vCompany"></div>`
-  };
-  d.innerHTML=inputs[currentType] || inputs['text'];
-    }
-
-function getQRData(){
-  try{
-    // Simple types
-    if(["text","url","youtube","instagram","facebook","linkedin","twitter","paypal","bitcoin","zoom","facetime"].includes(currentType))
-        return document.getElementById("mainInput")?.value || "";
-    
-    // Phone
-    if(currentType=="phone") 
-        return `tel:${document.getElementById("mainInput")?.value || ""}`;
-    
-    // Email
-    if(currentType=="email") 
-        return `mailto:${document.getElementById("emailTo")?.value || ""}?subject=${encodeURIComponent(document.getElementById("emailSub")?.value || "")}`;
-    
-    // SMS
-    if(currentType=="sms") 
-        return `SMSTO:${document.getElementById("smsNum")?.value || ""}:${document.getElementById("smsMsg")?.value || ""}`;
-    
-    // WhatsApp
-    if(currentType=="whatsapp") 
-        return `https://wa.me/${document.getElementById("waNum")?.value || ""}?text=${encodeURIComponent(document.getElementById("waMsg")?.value || "")}`;
-    
-    // WiFi
-    if(currentType=="wifi") {
-        const enc = document.getElementById("wifiEnc")?.value || "WPA";
-        return `WIFI:T:${enc};S:${document.getElementById("wifiSSID")?.value || ""};P:${document.getElementById("wifiPass")?.value || ""};;`;
-    }
-    
-    // UPI
-    if(currentType=="upi") 
-        return `upi://pay?pa=${document.getElementById("upiID")?.value || ""}&pn=Payment&am=${document.getElementById("upiAmt")?.value || ""}&tn=${document.getElementById("upiNote")?.value || ""}`;
-    
-    // Contact vCard
-    if(currentType=="contact") 
-        return `BEGIN:VCARD\nFN:${document.getElementById("cName")?.value || ""}\nTEL:${document.getElementById("cPhone")?.value || ""}\nEMAIL:${document.getElementById("cEmail")?.value || ""}\nEND:VCARD`;
-    
-    // Maps
-    if(currentType=="maps") 
-        return `https://maps.google.com/?q=${encodeURIComponent(document.getElementById("mapLoc")?.value || "")}`;
-    
-    // Event
-    if(currentType=="event") 
-        return `BEGIN:VEVENT\nSUMMARY:${document.getElementById("eventName")?.value || ""}\nDTSTART:${document.getElementById("eventDate")?.value || ""}\nLOCATION:${document.getElementById("eventLoc")?.value || ""}\nEND:VEVENT`;
-    
-    // Full vCard
-    if(currentType=="vcard") 
-        return `BEGIN:VCARD\nFN:${document.getElementById("vName")?.value || ""}\nTEL:${document.getElementById("vPhone")?.value || ""}\nEMAIL:${document.getElementById("vEmail")?.value || ""}\nORG:${document.getElementById("vCompany")?.value || ""}\nEND:VCARD`;
-        
-  }catch(e){console.log(e); return "";}
-  return "";
-    }
-
-async function generateQR(){
-    const data = getQRData(); 
-    if(!data) return;
-
-    showLoader(true);
-    const size = parseInt(document.getElementById("qrSize").value);
-
-    QRCode.toCanvas(data,{
-        width:size, 
-        margin:2, 
-        errorCorrectionLevel:"H",
-        color:{
-            dark:document.getElementById("qrColor").value, 
-            light:document.getElementById("bgColor").value
-        }
-    },function(err,canvas){
-        showLoader(false); 
-        if(err){showToast("Error: "+err); return;}
-
-        // Logo add korar system
-        if(logoImg && logoImg.complete){
-            const ctx = canvas.getContext("2d"); 
-            const ls = size/4.5; 
-            const x = (size-ls)/2; 
-            const y = (size-ls)/2;
-            // Logo er pichone white bg
-            ctx.fillStyle = document.getElementById("bgColor").value; 
-            ctx.fillRect(x-5,y-5,ls+10,ls+10); 
-            ctx.drawImage(logoImg,x,y,ls,ls);
-        }
-
-        proQR = canvas; 
-        document.getElementById("qrPreview").innerHTML = ""; 
-        document.getElementById("qrPreview").appendChild(canvas);
-
-        // Frame Text niche add
-        const frameText = document.getElementById("frameText").value;
-        if(frameText){ 
-            const label = document.createElement("p"); 
-            label.innerText = frameText; 
-            label.style.marginTop = "15px"; 
-            label.style.fontWeight = "700"; 
-            label.style.fontSize = "16px";
-            label.style.color = "#000";
-            document.getElementById("qrPreview").appendChild(label); 
-        }
-
-        // Download button gulo enable kora
-        document.querySelectorAll(".action-btn").forEach(btn=>{ 
-            if(!btn.getAttribute('onclick')?.includes("Scanner") && !btn.getAttribute('onclick')?.includes("History") && !btn.getAttribute('onclick')?.includes("batch"))
-            btn.disabled = false; 
-        });
-
-        // History te save
-        saveHistory(data);
-    });
-    }
-function showLoader(show){
-    document.getElementById("loader").style.display = show ? "block" : "none";
-    document.getElementById("btnText").style.display = show ? "none" : "inline";
-    }
-
-    function toggleScanner(){
-    if(!isScanning){
-        html5QrCode = new Html5Qrcode("qrReader");
-        html5QrCode.start(
-            { facingMode: "environment" }, // Back Camera
-            { fps: 10, qrbox: 250 }, // Settings
-            qrCodeMessage => {
-                // Scan hole ki hobe
-                showToast("✅ Scanned: " + qrCodeMessage); 
-                navigator.clipboard.writeText(qrCodeMessage); // Auto copy
-                document.getElementById("mainInput").value = qrCodeMessage; // Input box e bosiye de
-                generateQR(); // QR abar baniye dekhiye de
-                
-                html5QrCode.stop(); 
-                isScanning=false; 
-                document.getElementById("scanBtn").innerText="Start Scanner";
-            },
-            errorMessage => {
-                // Scan korte na parle
-                // console.log(errorMessage);
-            }
-        ).catch(err => {
-            showToast("❌ Camera Error: " + err);
-        });
-        isScanning=true; 
-        document.getElementById("scanBtn").innerText="⏹ Stop Scanner";
-    }else{
-        // Stop korar jonno
-        html5QrCode.stop(); 
-        isScanning=false; 
-        document.getElementById("scanBtn").innerText="📷 Start Scanner";
-    }
-    }
-
-// 1. PNG Download
-function downloadPNG(){
-    const a=document.createElement("a"); 
-    a.download="QR_PRO_MAX.png"; 
-    a.href=proQR.toDataURL("image/png"); 
-    a.click(); 
-    showToast("✅ PNG Downloaded");
-}
-
-// 2. SVG Download
-function downloadSVG(){
-    const pngData = proQR.toDataURL("image/png"); 
-    const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000"><image href="${pngData}" width="1000" height="1000"/></svg>`; 
-    const a=document.createElement("a"); 
-    a.download="QR_PRO_MAX.svg"; 
-    a.href="data:image/svg+xml;charset=utf-8,"+encodeURIComponent(svg); 
-    a.click(); 
-    showToast("✅ SVG Downloaded");
-}
-
-// 3. PDF Download
-function downloadPDF(){
-    const {jsPDF}=window.jspdf; 
-    const pdf=new jsPDF(); 
-    pdf.addImage(proQR.toDataURL("image/png"),'PNG',15,40,180,180); 
-    pdf.setFontSize(20); 
-    pdf.text(document.getElementById("frameText").value || "QR PRO MAX",105,20,{align:"center"}); 
-    pdf.save("QR_PRO_MAX.pdf"); 
-    showToast("✅ PDF Downloaded");
-}
-
-// 4. Copy to Clipboard
-function copyQR(){
-    proQR.toBlob(b=>{
-        navigator.clipboard.write([new ClipboardItem({[b.type]:b})]); 
-/* JAVASCRIPT START LINE 451 - 1000 */
 let currentType="text"; let proQR=null; let logoImg=null;
 let html5QrCode=null; let isScanning=false;
 
@@ -519,7 +262,7 @@ async function generateQR(){
             document.getElementById("qrPreview").appendChild(label);
         }
         document.querySelectorAll(".action-btn").forEach(btn=>{
-            if(!btn.getAttribute('onclick')?.includes("Scanner") &&!btn.getAttribute('onclick')?.includes("History") &&!btn.getAttribute('onclick')?.includes("batch"))
+            if(!btn.getAttribute('onclick')?.includes("Scanner") &&!btn.getAttribute('onclick')?.includes("History"))
             btn.disabled = false;
         });
         saveHistory(data);
@@ -566,7 +309,6 @@ function copyQR(){ proQR.toBlob(b=>{ navigator.clipboard.write([new ClipboardIte
 function shareQR(){ if(navigator.share){ proQR.toBlob(b=>{ const file = new File([b], "qr.png", {type:b.type}); navigator.share({ files:[file], title:"QR PRO MAX", text:"Check this QR Code" }).catch(()=>{}); }); }else{ showToast("❌ Sharing not supported in this browser") } }
 function printQR(){ const w = window.open(); w.document.write(`<html><body style="text-align:center"><img src="${proQR.toDataURL()}" onload="window.print();window.close()"></body></html>`); w.document.close(); }
 
-// HISTORY FUNCTIONS
 function saveHistory(data){
     let h = JSON.parse(localStorage.getItem("qrH") || "[]");
     h = h.filter(item => item.data!== data);
@@ -610,7 +352,6 @@ function clearHistory(){
     }
 }
 
-// TOAST FUNCTION
 function showToast(msg){
     const toast = document.createElement("div");
     toast.innerText = msg;
@@ -624,8 +365,6 @@ function showToast(msg){
     setTimeout(() => { toast.style.opacity = "1"; toast.style.transform = "translateY(0)"; }, 100);
     setTimeout(() => { toast.style.opacity = "0"; toast.style.transform = "translateY(-20px)"; setTimeout(() => toast.remove(), 300); }, 2000);
 }
-/* JAVASCRIPT END LINE 1000 */
-/* JAVASCRIPT END LINE 1000 */
 </script>
 </body>
-    </html>
+</html>
