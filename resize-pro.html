@@ -1,1 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- 🚀 MASSIVE SEO OPTIMIZATION & HIGH VOLUME KEYWORDS -->
+    <title>Free Bulk Image Resizer, WebP Converter & Watermark Maker Online | 8K Photo Editor</title>
+    <meta name="description" content="The ultimate free batch image processor. Resize to 4K/8K, convert JPG to WebP/PNG, add bulk text watermarks, compress images, and strip EXIF data instantly without losing quality.">
+    <meta name="keywords" content="free image resizer, bulk photo editor, batch webp converter, add watermark online free, 8k image upscaler, compress image online, remove exif data, fast photo converter">
+    <meta name="author" content="ProStudio Network">
+    <meta name="robots" content="index, follow">
+    
+    <!-- 🧠 SCHEMA.ORG JSON-LD FOR GOOGLE RICH SNIPPETS -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "ProStudio Ultimate Image Toolkit",
+      "url": "https://yourwebsite.com",
+      "operatingSystem": "Any",
+      "applicationCategory": "PhotoEditor, UtilitiesApplication",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "description": "Premium-grade batch image processing tool directly in your browser. Resize, convert, watermark, and secure privacy entirely for free.",
+      "featureList": ["Batch Resizing up to 8K", "WebP/PNG Conversion", "EXIF Stripping", "Bulk Watermarking", "Local Browser Processing"]
+    }
+    </script>
 
+    <!-- External Assets -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    
+    <style>
+        /* --------------------------------------------------------------------------
+           GOD MODE DESIGN SYSTEM V6 (ULTIMATE EDITION)
+        -------------------------------------------------------------------------- */
+        :root {
+            --bg-deep: #050505;
+            --accent-cyan: #00e5ff;
+            --accent-purple: #b400ff;
+            --accent-gold: #ffaa00;
+            --accent-green: #00ff66;
+            --panel-glass: rgba(12, 12, 18, 0.75);
+            --border-glass: rgba(255, 255, 255, 0.08);
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&display=swap');
+
+        body {
+            background-color: var(--bg-deep);
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(0, 229, 255, 0.05), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(180, 0, 255, 0.05), transparent 25%);
+            font-family: 'Outfit', sans-serif;
+            color: #e2e8f0;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        .bg-grid { background-image: linear-gradient(var(--border-glass) 1px, transparent 1px), linear-gradient(90deg, var(--border-glass) 1px, transparent 1px); background-size: 30px 30px; }
+        
+        .glass-panel {
+            background: var(--panel-glass);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid var(--border-glass);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05);
+            border-radius: 20px;
+        }
+
+        .glow-cyan { box-shadow: 0 0 20px rgba(0, 229, 255, 0.3); }
+        .text-gradient { background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-purple) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .btn-premium { background: linear-gradient(135deg, #ff007a, #7a00ff); transition: all 0.3s ease; }
+        .btn-premium:hover { box-shadow: 0 10px 25px rgba(122, 0, 255, 0.5); transform: translateY(-2px); }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-deep); }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent-cyan); }
+
+        /* Form Elements */
+        input[type="range"] { -webkit-appearance: none; background: #1e293b; height: 6px; border-radius: 4px; outline: none; }
+        input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; background: var(--accent-cyan); border-radius: 50%; cursor: pointer; box-shadow: 0 0 10px var(--accent-cyan); }
+        input, select { background: rgba(0,0,0,0.3) !important; border: 1px solid var(--border-glass) !important; color: white !important; transition: all 0.3s; }
+        input:focus, select:focus { border-color: var(--accent-cyan) !important; box-shadow: 0 0 10px rgba(0, 229, 255, 0.1); outline: none; }
+
+        .thumbnail-card { transition: all 0.2s; }
+        .thumbnail-active { border-color: var(--accent-cyan) !important; filter: brightness(1.2); transform: scale(1.05); }
+
+        /* Accordion CSS for FAQ */
+        .faq-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; }
+        .faq-toggle:checked ~ .faq-content { max-height: 500px; padding-top: 15px; padding-bottom: 15px; }
+        .faq-toggle:checked ~ label .icon-rotate { transform: rotate(180deg); color: var(--accent-cyan); }
+    </style>
+</head>
+<body class="bg-grid flex flex-col min-h-screen">
+
+    <!-- HEADER / NAV -->
+    <header class="glass-panel sticky top-0 z-50 mx-4 mt-4 px-6 py-4 flex justify-between items-center rounded-2xl">
+        <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-black flex items-center justify-center border border-white/10 glow-cyan">
+                <i class="fa-solid fa-infinity text-2xl text-[var(--accent-cyan)]"></i>
+            </div>
+            <div>
+                <span class="text-[10px] font-black tracking-[0.2em] text-[var(--accent-gold)] flex items-center gap-2">
+                    <i class="fa-solid fa-star"></i> ENTERPRISE GRADE
+                </span>
+                <h1 class="text-xl md:text-2xl font-black uppercase tracking-wide">
+                    Ultimate <span class="text-gradient">Image Editor</span>
+                </h1>
+            </div>
+        </div>
+        <nav class="hidden lg:flex gap-8 text-[13px] font-bold uppercase tracking-widest text-slate-400">
+            <a href="#workspace" class="hover:text-[var(--accent-cyan)] transition">App Engine</a>
+            <a href="#how-to-use" class="hover:text-[var(--accent-cyan)] transition">Tutorial</a>
+            <a href="#faq" class="hover:text-[var(--accent-cyan)] transition">FAQ</a>
+            <a href="#related-tools" class="hover:text-[var(--accent-purple)] transition">More Tools</a>
+        </nav>
+        <a href="#workspace" class="lg:hidden text-white"><i class="fa-solid fa-bars text-xl"></i></a>
+    </header>
+
+    <!-- HERO SECTION (For SEO) -->
+    <section class="max-w-6xl mx-auto px-6 py-16 text-center">
+        <h2 class="text-4xl md:text-6xl font-black mb-6 leading-tight">
+            Process 100+ Images <br>
+            <span class="text-gradient">In Your Browser instantly.</span>
+        </h2>
+        <p class="text-slate-400 text-lg md:text-xl max-w-3xl mx-auto mb-8 font-light">
+            No software installation. No server uploads. 100% Privacy. Bulk resize to 8K, convert to WebP, add custom watermarks, and strip EXIF data entirely for free.
+        </p>
+        <div class="flex justify-center gap-6 text-sm font-bold text-slate-300">
+            <span class="flex items-center gap-2"><i class="fa-solid fa-check text-[var(--accent-green)]"></i> 100% Free Forever</span>
+            <span class="flex items-center gap-2"><i class="fa-solid fa-check text-[var(--accent-green)]"></i> No Sign Up</span>
+            <span class="flex items-center gap-2"><i class="fa-solid fa-check text-[var(--accent-green)]"></i> Unlimited Use</span>
+        </div>
+    </section>
+
+    <!-- CORE WORKSPACE (THE APP) -->
+    <main id="workspace" class="w-full max-w-[1800px] mx-auto px-4 md:px-6 mb-20 grid xl:grid-cols-12 gap-6">
+        
+        <!-- LEFT PANEL: CONTROLS (5 Cols) -->
+        <div class="xl:col-span-5 flex flex-col gap-6">
+            
+            <!-- UPLOAD ZONE -->
+            <div class="glass-panel p-6">
+                <div id="dropZone" class="border-2 border-dashed border-slate-700 hover:border-[var(--accent-cyan)] bg-black/40 rounded-xl p-10 text-center cursor-pointer transition-all duration-300 relative group overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[var(--accent-cyan)]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <input type="file" id="imageUploader" multiple accept="image/*" class="hidden">
+                    <i class="fa-solid fa-cloud-arrow-up text-5xl text-slate-600 mb-4 group-hover:text-[var(--accent-cyan)] transition-colors transform group-hover:scale-110 duration-300"></i>
+                    <h3 class="text-lg font-bold text-white mb-1">Drag & Drop Images Here</h3>
+                    <p class="text-xs text-slate-400 uppercase tracking-widest font-bold">Supports JPG, PNG, WEBP (Max 50MB/File)</p>
+                </div>
+            </div>
+
+            <!-- MEGA CONTROLS -->
+            <div class="glass-panel p-6 space-y-6">
+                
+                <!-- Format & Conversion -->
+                <div>
+                    <h4 class="text-[11px] font-black uppercase text-[var(--accent-cyan)] tracking-widest mb-3 flex justify-between">
+                        <span><i class="fa-solid fa-microchip mr-2"></i> Export Format</span>
+                        <span class="text-[var(--accent-gold)]" title="Removes GPS & Camera Data"><i class="fa-solid fa-shield-halved"></i> EXIF Shield Active</span>
+                    </h4>
+                    <select id="exportFormat" class="w-full rounded-xl p-3 text-sm font-bold">
+                        <option value="image/jpeg">JPG / JPEG (Best for photos)</option>
+                        <option value="image/webp" selected>WEBP (Next-Gen SEO Optimized)</option>
+                        <option value="image/png">PNG (Lossless Quality)</option>
+                    </select>
+                </div>
+
+                <hr class="border-white/10">
+
+                <!-- Advanced Dimensions -->
+                <div>
+                    <h4 class="text-[11px] font-black uppercase text-[var(--accent-purple)] tracking-widest mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-expand"></i> Resolution & Upscaling
+                    </h4>
+                    
+                    <div class="grid grid-cols-4 gap-2 mb-4">
+                        <button onclick="setDimension(1280, 720)" class="bg-black/50 border border-white/10 py-2 rounded-lg text-[10px] font-bold hover:bg-white/5 transition">HD 720</button>
+                        <button onclick="setDimension(1920, 1080)" class="bg-black/50 border border-white/10 py-2 rounded-lg text-[10px] font-bold hover:bg-white/5 transition">FHD 1080</button>
+                        <button onclick="setDimension(3840, 2160)" class="bg-black/50 border border-[var(--accent-gold)]/50 py-2 rounded-lg text-[10px] font-bold text-[var(--accent-gold)] hover:bg-[var(--accent-gold)]/10 transition">4K UHD</button>
+                        <button onclick="setDimension(7680, 4320)" class="bg-black/50 border border-[var(--accent-cyan)]/50 py-2 rounded-lg text-[10px] font-bold text-[var(--accent-cyan)] hover:bg-[var(--accent-cyan)]/10 transition">8K MAX</button>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="text-[10px] text-slate-500 font-bold uppercase block mb-1">Custom Width (PX)</label>
+                            <input type="number" id="inputW" placeholder="Original" class="w-full rounded-lg p-2.5 text-sm">
+                        </div>
+                        <div>
+                            <label class="text-[10px] text-slate-500 font-bold uppercase block mb-1">Custom Height (PX)</label>
+                            <input type="number" id="inputH" placeholder="Original" class="w-full rounded-lg p-2.5 text-sm">
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="border-white/10">
+
+                <!-- Professional Watermark -->
+                <div>
+                    <h4 class="text-[11px] font-black uppercase text-[var(--accent-gold)] tracking-widest mb-3 flex justify-between items-center">
+                        <span><i class="fa-solid fa-copyright mr-2"></i> Bulk Watermark</span>
+                    </h4>
+                    <input type="text" id="wmText" placeholder="e.g. © MyBrandName" class="w-full rounded-xl p-3 text-sm mb-4">
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="text-[10px] text-slate-500 font-bold uppercase block mb-1">Color Picker</label>
+                            <input type="color" id="wmColor" value="#ffffff" class="w-full h-10 p-0 border-0 rounded-lg cursor-pointer">
+                        </div>
+                        <div>
+                            <label class="text-[10px] text-slate-500 font-bold uppercase block mb-1">Transparency (<span id="wmOpacityVal">50</span>%)</label>
+                            <input type="range" id="wmOpacity" min="10" max="100" value="50" class="w-full mt-3">
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="border-white/10">
+
+                <!-- Final Polish (Quality/Color) -->
+                <div class="space-y-4">
+                    <div>
+                        <div class="flex justify-between text-[10px] font-bold text-slate-400 uppercase mb-1">
+                            <span>Image Quality / Compression</span><span id="qualVal" class="text-[var(--accent-green)]">90%</span>
+                        </div>
+                        <input type="range" id="imgQuality" min="10" max="100" value="90" class="w-full">
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-[10px] font-bold text-slate-400 uppercase mb-1">
+                            <span>Brightness / Exposure</span><span id="brightVal">100%</span>
+                        </div>
+                        <input type="range" id="imgBrightness" min="50" max="150" value="100" class="w-full">
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- EXPORT ENGINE BUTTON -->
+            <button id="btnExport" class="btn-premium w-full py-5 rounded-2xl text-white font-black uppercase tracking-[0.2em] flex items-center justify-center gap-3 text-sm relative overflow-hidden group">
+                <i class="fa-solid fa-bolt group-hover:animate-bounce"></i>
+                <span id="btnExportText">Compile & Download ZIP</span>
+            </button>
+        </div>
+
+        <!-- RIGHT PANEL: LIVE PREVIEW & QUEUE (7 Cols) -->
+        <div class="xl:col-span-7 flex flex-col gap-6">
+            
+            <!-- Live Canvas Area -->
+            <div class="glass-panel p-4 md:p-6 flex-grow flex flex-col min-h-[500px]">
+                <div class="flex flex-wrap justify-between items-center mb-4 gap-2">
+                    <span class="text-xs font-black uppercase tracking-widest text-slate-400">
+                        <i class="fa-solid fa-eye text-[var(--accent-cyan)] mr-2"></i> Ultra-HD Live Monitor
+                    </span>
+                    <div id="statsPill" class="hidden bg-black/60 border border-[var(--accent-green)]/30 px-3 py-1.5 rounded-lg flex gap-3 text-[10px] font-mono text-[var(--accent-green)]">
+                        <span>RES: <span id="statRes">0x0</span></span>
+                        <span>|</span>
+                        <span>EST. SIZE: <span id="statSize">~0 KB</span></span>
+                    </div>
+                </div>
+                
+                <div class="flex-grow bg-[#08080c] border border-white/5 rounded-xl flex items-center justify-center relative overflow-hidden bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9IiMzMzMiLz48L3N2Zz4=')]">
+                    
+                    <div id="emptyState" class="text-center text-slate-600">
+                        <i class="fa-solid fa-layer-group text-6xl mb-4 opacity-50"></i>
+                        <p class="text-sm font-bold uppercase tracking-widest">Engine is Idle</p>
+                        <p class="text-[10px] mt-2">Upload images to activate rendering</p>
+                    </div>
+
+                    <canvas id="liveCanvas" class="max-w-full max-h-[600px] object-contain shadow-2xl hidden"></canvas>
+                </div>
+            </div>
+
+            <!-- Active Batch Queue Manager -->
+            <div class="glass-panel p-5">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-[11px] font-black uppercase text-slate-400 tracking-widest">Job Queue</span>
+                    <span id="queueCounter" class="text-[10px] font-bold bg-white/10 px-2 py-1 rounded text-white">0 Assets</span>
+                </div>
+                
+                <div id="queueTrack" class="flex gap-3 overflow-x-auto custom-scroll pb-3 min-h-[80px] items-center">
+                    <span class="text-xs text-slate-600 italic">No files in queue...</span>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- HOW TO USE SECTION -->
+    <section id="how-to-use" class="max-w-7xl mx-auto px-6 py-16">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-black mb-4">How to Use the <span class="text-[var(--accent-cyan)]">8K Toolkit</span></h2>
+            <p class="text-slate-400">Process hundreds of photos in 3 simple steps without leaving your browser.</p>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="glass-panel p-8 text-center relative">
+                <div class="w-16 h-16 bg-black border border-white/10 rounded-full flex items-center justify-center text-2xl text-[var(--accent-purple)] mx-auto mb-6 absolute -top-8 left-1/2 -translate-x-1/2 glow-cyan">1</div>
+                <i class="fa-solid fa-images text-4xl text-slate-500 mb-4 mt-4"></i>
+                <h3 class="text-xl font-bold mb-3">Upload Bulk Images</h3>
+                <p class="text-sm text-slate-400">Drag & drop as many images as you want into the upload zone. They never leave your device.</p>
+            </div>
+            <div class="glass-panel p-8 text-center relative mt-8 md:mt-0">
+                <div class="w-16 h-16 bg-black border border-white/10 rounded-full flex items-center justify-center text-2xl text-[var(--accent-gold)] mx-auto mb-6 absolute -top-8 left-1/2 -translate-x-1/2 glow-cyan">2</div>
+                <i class="fa-solid fa-sliders text-4xl text-slate-500 mb-4 mt-4"></i>
+                <h3 class="text-xl font-bold mb-3">Set Master Parameters</h3>
+                <p class="text-sm text-slate-400">Choose your desired resolution (up to 8K), format (WebP/PNG/JPG), and add your copyright watermark.</p>
+            </div>
+            <div class="glass-panel p-8 text-center relative mt-8 md:mt-0">
+                <div class="w-16 h-16 bg-black border border-white/10 rounded-full flex items-center justify-center text-2xl text-[var(--accent-green)] mx-auto mb-6 absolute -top-8 left-1/2 -translate-x-1/2 glow-cyan">3</div>
+                <i class="fa-solid fa-file-zipper text-4xl text-slate-500 mb-4 mt-4"></i>
+                <h3 class="text-xl font-bold mb-3">Download ZIP Archive</h3>
+                <p class="text-sm text-slate-400">Click compile. Our hardware-accelerated engine processes everything instantly and gives you a single ZIP file.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- RELATED TOOLS SECTION -->
+    <section id="related-tools" class="bg-black/50 py-16 border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-2xl font-black mb-8 uppercase tracking-widest text-center">More <span class="text-[var(--accent-purple)]">ProStudio Tools</span></h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Tool 1 -->
+                <a href="index.html" class="glass-panel p-6 hover:border-[var(--accent-cyan)] transition group flex flex-col items-center text-center">
+                    <i class="fa-solid fa-house text-3xl text-[var(--accent-cyan)] mb-4 group-hover:scale-110 transition"></i>
+                    <h3 class="font-bold text-lg mb-2">Home Dashboard</h3>
+                    <p class="text-xs text-slate-400">Return to the main hub to access all premium utilities.</p>
+                </a>
+                
+                <!-- Tool 2 -->
+                <a href="bmi.html" class="glass-panel p-6 hover:border-[#ff007a] transition group flex flex-col items-center text-center">
+                    <i class="fa-solid fa-heart-pulse text-3xl text-[#ff007a] mb-4 group-hover:scale-110 transition"></i>
+                    <h3 class="font-bold text-lg mb-2">Smart BMI Calculator</h3>
+                    <p class="text-xs text-slate-400">Advanced fitness & health tracking calculator with detailed reports.</p>
+                </a>
+                
+                <!-- Tool 3 -->
+                <a href="age.html" class="glass-panel p-6 hover:border-[var(--accent-gold)] transition group flex flex-col items-center text-center">
+                    <i class="fa-solid fa-calendar-days text-3xl text-[var(--accent-gold)] mb-4 group-hover:scale-110 transition"></i>
+                    <h3 class="font-bold text-lg mb-2">Age Chronology</h3>
+                    <p class="text-xs text-slate-400">Calculate exact age in years, months, days, and seconds instantly.</p>
+                </a>
+                
+                <!-- Tool 4 -->
+                <a href="password.html" class="glass-panel p-6 hover:border-[var(--accent-green)] transition group flex flex-col items-center text-center">
+                    <i class="fa-solid fa-shield-halved text-3xl text-[var(--accent-green)] mb-4 group-hover:scale-110 transition"></i>
+                    <h3 class="font-bold text-lg mb-2">Password Generator</h3>
+                    <p class="text-xs text-slate-400">Create unbreakable military-grade passwords for ultimate security.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section id="faq" class="max-w-4xl mx-auto px-6 py-20">
+        <h2 class="text-3xl font-black text-center mb-10">Frequently Asked <span class="text-[var(--accent-gold)]">Questions</span></h2>
+        
+        <div class="space-y-4">
+            <!-- FAQ Item 1 -->
+            <div class="glass-panel rounded-xl overflow-hidden">
+                <input type="checkbox" id="faq1" class="faq-toggle hidden">
+                <label for="faq1" class="flex justify-between items-center p-5 cursor-pointer font-bold bg-white/5 hover:bg-white/10 transition">
+                    <span>Are my images uploaded to any server?</span>
+                    <i class="fa-solid fa-chevron-down icon-rotate transition-transform"></i>
+                </label>
+                <div class="faq-content bg-black/30 px-5 text-sm text-slate-300">
+                    <p>No, absolutely not. This tool utilizes HTML5 Canvas and modern Web APIs to process all images strictly within your local browser. No data is ever transmitted to our servers, ensuring 100% privacy for sensitive photos.</p>
+                </div>
+            </div>
+
+            <!-- FAQ Item 2 -->
+            <div class="glass-panel rounded-xl overflow-hidden">
+                <input type="checkbox" id="faq2" class="faq-toggle hidden">
+                <label for="faq2" class="flex justify-between items-center p-5 cursor-pointer font-bold bg-white/5 hover:bg-white/10 transition">
+                    <span>What is EXIF Data and why is it removed?</span>
+                    <i class="fa-solid fa-chevron-down icon-rotate transition-transform"></i>
+                </label>
+                <div class="faq-content bg-black/30 px-5 text-sm text-slate-300">
+                    <p>EXIF data contains hidden information stored by your camera/phone, such as precise GPS coordinates, date taken, and device model. Our tool strips this metadata during export by default to protect your identity and location online.</p>
+                </div>
+            </div>
+
+            <!-- FAQ Item 3 -->
+            <div class="glass-panel rounded-xl overflow-hidden">
+                <input type="checkbox" id="faq3" class="faq-toggle hidden">
+                <label for="faq3" class="flex justify-between items-center p-5 cursor-pointer font-bold bg-white/5 hover:bg-white/10 transition">
+                    <span>Why should I convert JPG to WebP?</span>
+                    <i class="fa-solid fa-chevron-down icon-rotate transition-transform"></i>
+                </label>
+                <div class="faq-content bg-black/30 px-5 text-sm text-slate-300">
+                    <p>WebP is a modern image format developed by Google. It provides superior lossless and lossy compression compared to JPG/PNG, meaning files are up to 30% smaller while retaining the same quality. This massively improves website loading speeds and SEO.</p>
+                </div>
+            </div>
+
+            <!-- FAQ Item 4 -->
+            <div class="glass-panel rounded-xl overflow-hidden">
+                <input type="checkbox" id="faq4" class="faq-toggle hidden">
+                <label for="faq4" class="flex justify-between items-center p-5 cursor-pointer font-bold bg-white/5 hover:bg-white/10 transition">
+                    <span>Can I actually scale up to 8K resolution?</span>
+                    <i class="fa-solid fa-chevron-down icon-rotate transition-transform"></i>
+                </label>
+                <div class="faq-content bg-black/30 px-5 text-sm text-slate-300">
+                    <p>Yes. The tool features a built-in 8K parameter (7680x4320 pixels). By utilizing the browser's hardware-accelerated image smoothing algorithms, we attempt to maintain high visual fidelity when upscaling images.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-black py-10 mt-auto border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6 text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-6">
+            <div>
+                <h2 class="text-xl font-black tracking-widest text-white mb-2">PRO<span class="text-[var(--accent-cyan)]">STUDIO</span></h2>
+                <p class="text-xs text-slate-500">© 2026 ProStudio Network. All rights reserved. Built with ❤️ for creators.</p>
+            </div>
+            <div class="flex gap-4 text-slate-400">
+                <a href="#" class="hover:text-white transition"><i class="fa-brands fa-github text-xl"></i></a>
+                <a href="#" class="hover:text-white transition"><i class="fa-brands fa-twitter text-xl"></i></a>
+                <a href="#" class="hover:text-white transition"><i class="fa-brands fa-youtube text-xl"></i></a>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- --------------------------------------------------------------------------
+         JAVASCRIPT MASTER ENGINE (V6)
+    -------------------------------------------------------------------------- -->
+    <script>
+        /**
+         * Core Application State
+         */
+        const AppState = {
+            images: [],
+            activeIndex: -1,
+            isProcessing: false
+        };
+
+        // DOM Elements
+        const DOM = {
+            dropZone: document.getElementById('dropZone'),
+            uploader: document.getElementById('imageUploader'),
+            queueTrack: document.getElementById('queueTrack'),
+            queueCounter: document.getElementById('queueCounter'),
+            canvas: document.getElementById('liveCanvas'),
+            ctx: document.getElementById('liveCanvas').getContext('2d'),
+            emptyState: document.getElementById('emptyState'),
+            statsPill: document.getElementById('statsPill'),
+            statRes: document.getElementById('statRes'),
+            statSize: document.getElementById('statSize'),
+            btnExport: document.getElementById('btnExport'),
+            btnExportText: document.getElementById('btnExportText'),
+            
+            // Inputs
+            inW: document.getElementById('inputW'),
+            inH: document.getElementById('inputH'),
+            format: document.getElementById('exportFormat'),
+            wmText: document.getElementById('wmText'),
+            wmColor: document.getElementById('wmColor'),
+            wmOpacity: document.getElementById('wmOpacity'),
+            wmOpacityVal: document.getElementById('wmOpacityVal'),
+            imgQual: document.getElementById('imgQuality'),
+            qualVal: document.getElementById('qualVal'),
+            imgBright: document.getElementById('imgBrightness'),
+            brightVal: document.getElementById('brightVal'),
+        };
+
+        /**
+         * Initialization & Event Listeners
+         */
+        function initApp() {
+            // Drag and Drop Logic
+            DOM.dropZone.addEventListener('click', () => DOM.uploader.click());
+            DOM.dropZone.addEventListener('dragover', (e) => { e.preventDefault(); DOM.dropZone.style.borderColor = 'var(--accent-cyan)'; });
+            DOM.dropZone.addEventListener('dragleave', () => { DOM.dropZone.style.borderColor = ''; });
+            DOM.dropZone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                DOM.dropZone.style.borderColor = '';
+                processRawFiles(e.dataTransfer.files);
+            });
+            DOM.uploader.addEventListener('change', (e) => processRawFiles(e.target.files));
+
+            // Setup Input Sync Listeners
+            const inputs = [DOM.inW, DOM.inH, DOM.format, DOM.wmText, DOM.wmColor, DOM.wmOpacity, DOM.imgQual, DOM.imgBright];
+            inputs.forEach(el => el.addEventListener('input', triggerRender));
+
+            // Sync visual labels
+            DOM.wmOpacity.addEventListener('input', (e) => DOM.wmOpacityVal.textContent = e.target.value);
+            DOM.imgQual.addEventListener('input', (e) => DOM.qualVal.textContent = e.target.value + '%');
+            DOM.imgBright.addEventListener('input', (e) => DOM.brightVal.textContent = e.target.value + '%');
+
+            // Export logic
+            DOM.btnExport.addEventListener('click', generateBulkArchive);
+        }
+
+        /**
+         * Dimension Shortcut Handler
+         */
+        window.setDimension = function(w, h) {
+            DOM.inW.value = w;
+            DOM.inH.value = h;
+            triggerRender();
+        };
+
+        /**
+         * File Ingestion & Object URL Generation
+         */
+        function processRawFiles(files) {
+            const validFiles = Array.from(files).filter(f => f.type.startsWith('image/'));
+            if(validFiles.length === 0) return;
+
+            // Optional Loading UI can be placed here
+
+            validFiles.forEach(file => {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        AppState.images.push({
+                            name: file.name.split('.')[0], // Strip extension
+                            originExt: file.name.split('.').pop(),
+                            width: img.width,
+                            height: img.height,
+                            size: file.size,
+                            src: img
+                        });
+                        updateQueueUI();
+                        if (AppState.activeIndex === -1) {
+                            selectActiveAsset(0);
+                        }
+                    };
+                    img.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+
+        /**
+         * Bottom Track UI Updater
+         */
+        function updateQueueUI() {
+            DOM.queueCounter.textContent = `${AppState.images.length} ASSETS`;
+            DOM.queueTrack.innerHTML = '';
+            
+            if(AppState.images.length === 0) {
+                DOM.queueTrack.innerHTML = `<span class="text-xs text-slate-600 italic">No files in queue...</span>`;
+                return;
+            }
+
+            AppState.images.forEach((asset, index) => {
+                const wrapper = document.createElement('div');
+                const isAct = index === AppState.activeIndex;
+                wrapper.className = `w-14 h-14 rounded-lg overflow-hidden border-2 cursor-pointer flex-shrink-0 bg-black relative thumbnail-card ${isAct ? 'border-[var(--accent-cyan)] thumbnail-active' : 'border-white/10 opacity-60 hover:opacity-100'}`;
+                
+                const thumb = document.createElement('img');
+                thumb.src = asset.src.src;
+                thumb.className = 'w-full h-full object-cover';
+                
+                wrapper.appendChild(thumb);
+                wrapper.onclick = () => selectActiveAsset(index);
+                DOM.queueTrack.appendChild(wrapper);
+            });
+        }
+
+        /**
+         * Select Image for Master Canvas
+         */
+        function selectActiveAsset(index) {
+            AppState.activeIndex = index;
+            DOM.emptyState.classList.add('hidden');
+            DOM.canvas.classList.remove('hidden');
+            DOM.statsPill.classList.remove('hidden');
+            
+            // Set placeholders based on original size
+            const asset = AppState.images[index];
+            DOM.inW.placeholder = `Orig: ${asset.width}`;
+            DOM.inH.placeholder = `Orig: ${asset.height}`;
+            
+            updateQueueUI();
+            triggerRender();
+        }
+
+        /**
+         * The God Mode Canvas Renderer
+         */
+        function triggerRender() {
+            if(AppState.activeIndex === -1 || !AppState.images[AppState.activeIndex]) return;
+            
+            const asset = AppState.images[AppState.activeIndex];
+            const targetW = parseInt(DOM.inW.value) || asset.width;
+            const targetH = parseInt(DOM.inH.value) || asset.height;
+            
+            DOM.canvas.width = targetW;
+            DOM.canvas.height = targetH;
+            
+            // Hardware acceleration smoothing
+            DOM.ctx.imageSmoothingEnabled = true;
+            DOM.ctx.imageSmoothingQuality = 'high';
+            
+            // Apply Brightness Filter
+            const brightness = DOM.imgBright.value;
+            DOM.ctx.filter = `brightness(${brightness}%)`;
+            
+            // Draw Main Image
+            DOM.ctx.drawImage(asset.src, 0, 0, targetW, targetH);
+            DOM.ctx.filter = 'none';
+
+            // Watermark Engine
+            const text = DOM.wmText.value;
+            if (text.trim() !== "") {
+                const fontSize = Math.max(16, Math.floor(targetH * 0.04));
+                DOM.ctx.font = `900 ${fontSize}px 'Outfit', sans-serif`;
+                DOM.ctx.textAlign = 'right';
+                DOM.ctx.textBaseline = 'bottom';
+                
+                // Drop shadow for visibility
+                DOM.ctx.shadowColor = 'rgba(0,0,0,0.8)';
+                DOM.ctx.shadowBlur = Math.max(5, fontSize / 4);
+                DOM.ctx.shadowOffsetX = 2;
+                DOM.ctx.shadowOffsetY = 2;
+
+                DOM.ctx.globalAlpha = DOM.wmOpacity.value / 100;
+                DOM.ctx.fillStyle = DOM.wmColor.value;
+                
+                const paddingX = Math.floor(targetW * 0.05);
+                const paddingY = Math.floor(targetH * 0.05);
+                
+                DOM.ctx.fillText(text, targetW - paddingX, targetH - paddingY);
+                
+                // Reset context
+                DOM.ctx.globalAlpha = 1.0;
+                DOM.ctx.shadowBlur = 0;
+            }
+
+            // Update stats logic
+            DOM.statRes.textContent = `${targetW}x${targetH}`;
+            const qualityFactor = DOM.imgQual.value / 100;
+            const estimatedBytes = (targetW * targetH * qualityFactor * 0.2); // Rough estimation formula
+            DOM.statSize.textContent = `~${(estimatedBytes / 1024).toFixed(1)} KB`;
+        }
+
+        /**
+         * Bulk Processing & ZIP Compilation
+         */
+        async function generateBulkArchive() {
+            if(AppState.images.length === 0 || AppState.isProcessing) {
+                alert("Please add images to the queue first.");
+                return;
+            }
+
+            AppState.isProcessing = true;
+            const originalBtnHtml = DOM.btnExport.innerHTML;
+            DOM.btnExport.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin"></i> <span>Compiling Archive...</span>`;
+            DOM.btnExport.classList.add('opacity-50', 'cursor-not-allowed');
+
+            try {
+                const zip = new JSZip();
+                const format = DOM.format.value; // 'image/webp', 'image/jpeg', etc.
+                const ext = format.split('/')[1];
+                const quality = DOM.imgQual.value / 100;
+
+                // Hidden temp canvas for batching without disrupting UI
+                const tempCanvas = document.createElement('canvas');
+                const tCtx = tempCanvas.getContext('2d');
+
+                for(let i=0; i < AppState.images.length; i++) {
+                    const asset = AppState.images[i];
+                    const tW = parseInt(DOM.inW.value) || asset.width;
+                    const tH = parseInt(DOM.inH.value) || asset.height;
+                    
+                    tempCanvas.width = tW;
+                    tempCanvas.height = tH;
+                    tCtx.imageSmoothingEnabled = true;
+                    tCtx.imageSmoothingQuality = 'high';
+                    
+                    // Filter
+                    tCtx.filter = `brightness(${DOM.imgBright.value}%)`;
+                    tCtx.drawImage(asset.src, 0, 0, tW, tH);
+                    tCtx.filter = 'none';
+
+                    // Watermark
+                    if (DOM.wmText.value.trim() !== "") {
+                        const fontSize = Math.max(16, Math.floor(tH * 0.04));
+                        tCtx.font = `900 ${fontSize}px 'Outfit', sans-serif`;
+                        tCtx.textAlign = 'right';
+                        tCtx.textBaseline = 'bottom';
+                        tCtx.shadowColor = 'rgba(0,0,0,0.8)';
+                        tCtx.shadowBlur = Math.max(5, fontSize / 4);
+                        tCtx.shadowOffsetX = 2; tCtx.shadowOffsetY = 2;
+                        tCtx.globalAlpha = DOM.wmOpacity.value / 100;
+                        tCtx.fillStyle = DOM.wmColor.value;
+                        tCtx.fillText(DOM.wmText.value, tW - (tW * 0.05), tH - (tH * 0.05));
+                        tCtx.globalAlpha = 1.0;
+                    }
+
+                    // Convert to Base64 (strips EXIF automatically via Canvas API)
+                    const dataUrl = tempCanvas.toDataURL(format, quality);
+                    const base64Data = dataUrl.replace(/^data:image\/(png|jpeg|webp);base64,/, "");
+                    
+                    zip.file(`ProStudio_${asset.name}_Optimized.${ext}`, base64Data, {base64: true});
+                }
+
+                // Generate and download ZIP
+                const content = await zip.generateAsync({ type: "blob" });
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(content);
+                link.download = `ProStudio_Batch_Export_${Date.now()}.zip`;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+
+            } catch(err) {
+                console.error("Compilation Error: ", err);
+                alert("An error occurred during processing.");
+            } finally {
+                // Reset Button
+                AppState.isProcessing = false;
+                DOM.btnExport.innerHTML = originalBtnHtml;
+                DOM.btnExport.classList.remove('opacity-50', 'cursor-not-allowed');
+            }
+        }
+
+        // Run the App
+        window.addEventListener('DOMContentLoaded', initApp);
+    </script>
+</body>
+</html>
