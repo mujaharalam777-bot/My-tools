@@ -30,7 +30,12 @@ body{background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);min-height:100vh
 .btn-green:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(34,197,94,0.4);}
 .btn-orange{background:#f97316;color:#fff;}
 .btn-orange:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(249,115,22,0.6);}
-
+/* BUTTON PULSE */
+@keyframes btn-pulse{
+  0%{box-shadow:0 0 0 0 rgba(249,115,22,0.5)}
+  70%{box-shadow:0 0 0 12px rgba(249,115,22,0)}
+  100%{box-shadow:0 0 0 0 rgba(249,115,22,0)}
+}
 .feature-list{text-align:left;margin:20px 0;}
 .feature-item{display:flex;align-items:center;gap:10px;margin-bottom:12px;font-size:14px;opacity:0.9;}
 .feature-item .tick{color:#22c55e;font-weight:800;font-size:16px;}
