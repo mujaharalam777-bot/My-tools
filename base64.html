@@ -1,1 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Base64 Encoder</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);min-height:100vh;display:flex;justify-content:center;align-items:center;padding:20px;color:#fff;}
+.container{width:100%;max-width:500px;text-align:center;}
+.icon{font-size:70px;margin-bottom:15px;}
+h1{font-size:28px;font-weight:800;margin-bottom:30px;color:#fff;}
 
+.card{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);backdrop-filter:blur(20px);border-radius:24px;padding:25px;margin-bottom:20px;box-shadow:0 8px 32px rgba(0,0,0,.3);}
+
+/* BADGE */
+.badge{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:10px;}
+.dot{width:10px;height:10px;border-radius:50%;animation:pulse 1.5s infinite;}
+.dot-green{background:#22c55e;box-shadow:0 0 10px #22c55e;}
+.dot-orange{background:#f97316;box-shadow:0 0 10px #f97316;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(1.2)}}
+.badge-text{font-size:20px;font-weight:800;color:#fff;}
+
+.card p{font-size:14px;opacity:0.8;margin-bottom:20px;}
+
+.btn{width:100%;padding:16px;border:none;border-radius:14px;font-size:16px;font-weight:800;cursor:pointer;transition:0.3s;}
+.btn-green{background:#22c55e;color:#000;animation:btn-pulse-green 2s infinite;}
+.btn-orange{background:#f97316;color:#fff;animation:btn-pulse-orange 2s infinite;}
+@keyframes btn-pulse-green{0%{box-shadow:0 0 0 0 rgba(34,197,94,0.5)}70%{box-shadow:0 0 0 12px rgba(34,197,94,0)}100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}}
+@keyframes btn-pulse-orange{0%{box-shadow:0 0 0 0 rgba(249,115,22,0.5)}70%{box-shadow:0 0 0 12px rgba(249,115,22,0)}100%{box-shadow:0 0 0 0 rgba(249,115,22,0)}}
+
+.feature-list{text-align:left;margin:20px 0;}
+.feature-item{display:flex;align-items:center;gap:10px;margin-bottom:12px;font-size:15px;opacity:0.9;}
+.feature-item .tick{color:#22c55e;font-weight:800;font-size:18px;}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="icon">📦</div>
+    <h1>Base64 Encoder</h1>
+
+    <!-- FREE VERSION CARD -->
+    <div class="card">
+        <div class="badge">
+            <div class="dot dot-green"></div>
+            <div class="badge-text">Free Version</div>
+        </div>
+        <p>Text to Base64 Converter</p>
+        <button class="btn btn-green" onclick="window.location.href='base64-free.html'">Open Free</button>
+    </div>
+
+    <!-- PRO VERSION CARD -->
+    <div class="card">
+        <div class="badge">
+            <div class="dot dot-orange"></div>
+            <div class="badge-text">Pro Version</div>
+        </div>
+        <p>Advanced Base64 Tool</p>
+
+        <div class="feature-list">
+            <div class="feature-item"><span class="tick">✓</span> File to Base64 Converter</div>
+            <div class="feature-item"><span class="tick">✓</span> Bulk Encode/Decode 100 Files</div>
+            <div class="feature-item"><span class="tick">✓</span> Image to Base64 + Download</div>
+            <div class="feature-item"><span class="tick">✓</span> API Access + No Ads</div>
+        </div>
+
+        <button class="btn btn-orange" onclick="window.location.href='base64-pro.html'">Open Pro</button>
+    </div>
+
+</div>
+
+</body>
+</html>
