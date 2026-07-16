@@ -1,1 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate Free Image Resizer - Fast & Offline</title>
+    <!-- Tailwind CSS CDN for Premium Styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+        }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .neon-glow-emerald {
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.2);
+        }
+    </style>
+</head>
+<body class="text-slate-100 min-h-screen font-sans antialiased pb-12">
 
+    <!-- Top Navigation Header -->
+    <header class="p-5 border-b border-slate-800 bg-slate-900/60 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-2 text-emerald-400 hover:text-emerald-300 transition">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span class="font-medium text-sm">Back to Dashboard</span>
+            </a>
+            <div class="text-right">
+                <span class="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2.5 py-1 rounded-full font-mono uppercase tracking-wider">Free Engine</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 mt-8">
+        <!-- Title & Subtitle -->
+        <div class="text-center mb-8">
+            <h1 class="text-3xl md:text-4xl font-extrabold bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent mb-2">
+                ⚡ Ultra Image Resizer
+            </h1>
+            <p class="text-slate-400 text-sm md:text-base">Resize, compress, and convert your photos instantly inside your browser. 100% Private.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Left Panel: Upload & Settings (Takes 2 Columns on desktop) -->
+            <div class="md:col-span-2 space-y-6">
+                <!-- Dropzone Area -->
+                <div id="dropZone" class="glass-card border-2 border-dashed border-slate-700 hover:border-emerald-500/50 rounded-2xl p-8 text-center cursor-pointer transition-all duration-300 group">
+                    <input type="file" id="fileInput" class="hidden" accept="image/*">
+                    <div class="space-y-4 py-4">
+                        <div class="w-16 h-16 bg-slate-800 rounded-2xl flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300 border border-slate-700 group-hover:border-emerald-500/30">
+                            <i class="fa-solid fa-cloud-arrow-up text-2xl text-slate-400 group-hover:text-emerald-400"></i>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-base">Drag & drop your image here</p>
+                            <p class="text-xs text-slate-500 mt-1">Supports PNG, JPG, JPEG, WEBP</p>
+                        </div>
+                        <button type="button" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-xl text-xs font-medium transition">
+                            Browse File
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Resizer Controls (Hidden by default until image loads) -->
+                <div id="controlsCard" class="glass-card rounded-2xl p-6 space-y-6 hidden transition-all duration-500">
+                    <h3 class="font-bold text-slate-200 border-b border-slate-800 pb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-sliders text-emerald-400"></i> Configuration Panel
+                    </h3>
+                    
+                    <!-- Dimensions Input Grid -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="space-y-2">
+                            <label class="text-xs font-mono text-slate-400 uppercase tracking-wider">Width (px)</label>
+                            <input type="number" id="widthInput" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-3 text-slate-200 focus:outline-none focus:border-emerald-500 transition font-mono">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs font-mono text-slate-400 uppercase tracking-wider">Height (px)</label>
+                            <input type="number" id="heightInput" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-3 text-slate-200 focus:outline-none focus:border-emerald-500 transition font-mono">
+                        </div>
+                    </div>
+
+                    <!-- Aspect Ratio Toggle -->
+                    <label class="flex items-center gap-3 cursor-pointer group py-1">
+                        <input type="checkbox" id="aspectRatioToggle" checked class="rounded bg-slate-900 border-slate-800 text-emerald-500 focus:ring-0 focus:ring-offset-0 w-4 h-4">
+                        <span class="text-xs font-medium text-slate-300 group-hover:text-slate-100 transition">Lock Aspect Ratio (<span id="ratioDisplay" class="font-mono text-emerald-400">1:1</span>)</span>
+                    </label>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                        <!-- Output Format Selection -->
+                        <div class="space-y-2">
+                            <label class="text-xs font-mono text-slate-400 uppercase tracking-wider">Export Format</label>
+                            <select id="formatSelect" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-3 text-slate-200 focus:outline-none focus:border-emerald-500 transition">
+                                <option value="image/jpeg">JPEG (.jpg)</option>
+                                <option value="image/png">PNG (.png)</option>
+                                <option value="image/webp">WEBP (.webp)</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Image Quality Slider -->
+                        <div class="space-y-2" id="qualityWrapper">
+                            <div class="flex justify-between items-center">
+                                <label class="text-xs font-mono text-slate-400 uppercase tracking-wider">Quality</label>
+                                <span id="qualityVal" class="text-xs font-mono text-emerald-400 font-bold">85%</span>
+                            </div>
+                            <input type="range" id="qualitySlider" min="10" max="100" value="85" class="w-full accent-emerald-500 bg-slate-900 h-2 rounded-lg cursor-pointer">
+                        </div>
+                    </div>
+
+                    <!-- Primary Action Button -->
+                    <button id="downloadBtn" class="w-full py-4 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold rounded-xl transition duration-300 flex items-center justify-center gap-2 neon-glow-emerald tracking-wide text-sm">
+                        <i class="fa-solid fa-download"></i> Process & Download Image
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Panel: Info & Live Preview -->
+            <div class="space-y-6">
+                <!-- Meta Details Card -->
+                <div id="metaCard" class="glass-card rounded-2xl p-5 space-y-4 hidden">
+                    <h4 class="text-xs font-mono text-slate-400 uppercase tracking-wider border-b border-slate-800 pb-2">Image Stream Analysis</h4>
+                    <div class="space-y-2 text-xs font-mono">
+                        <div class="flex justify-between"><span class="text-slate-500">File Name:</span><span id="metaName" class="text-slate-300 truncate max-w-[150px]">img.jpg</span></div>
+                        <div class="flex justify-between"><span class="text-slate-500">Original Size:</span><span id="metaSize" class="text-slate-300">0 KB</span></div>
+                        <div class="flex justify-between"><span class="text-slate-500">Native Res:</span><span id="metaRes" class="text-slate-300">0 x 0</span></div>
+                    </div>
+                </div>
+
+                <!-- Visual Preview Window -->
+                <div id="previewCard" class="glass-card rounded-2xl p-4 flex flex-col items-center justify-center min-h-[220px] text-center relative overflow-hidden group">
+                    <div id="previewPlaceholder" class="text-slate-600 space-y-2">
+                        <i class="fa-solid fa-image text-3xl"></i>
+                        <p class="text-xs">Awaiting Matrix Feed</p>
+                    </div>
+                    <img id="imagePreview" class="max-w-full max-h-[300px] rounded-xl object-contain hidden z-10 shadow-lg">
+                </div>
+            </div>
+        </div>
+
+        <!-- System Terminal Console Output -->
+        <div class="mt-8 bg-slate-950 border border-slate-900 rounded-2xl p-4 font-mono text-xs shadow-2xl relative">
+            <div class="flex items-center gap-2 mb-3 border-b border-slate-900 pb-2 text-slate-500">
+                <span class="w-2.5 h-2.5 rounded-full bg-red-500/40"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/40"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/40"></span>
+                <span class="ml-2 text-[10px] uppercase tracking-widest text-slate-600">Terminal Output Logs</span>
+            </div>
+            <div id="terminalLog" class="space-y-1.5 h-24 overflow-y-auto text-slate-400 scrollbar-thin">
+                <p class="text-emerald-500/70">> Core engine initialized successfully.</p>
+                <p class="text-slate-600">> Awaiting client image loading input payload...</p>
+            </div>
+        </div>
+
+        <!-- SEO Rich Structured FAQ Engine -->
+        <section class="mt-12 border-t border-slate-800/60 pt-10">
+            <h2 class="text-xl font-bold text-slate-200 mb-6 flex items-center gap-2">
+                <i class="fa-solid fa-circle-question text-cyan-400"></i> Frequently Asked Questions
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-slate-900/40 p-5 rounded-xl border border-slate-800/40">
+                    <h3 class="text-sm font-semibold text-emerald-400 mb-2">Is my data safe with this Free Resizer?</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">Yes, absolutely. This compression engine works entirely client-side via your web browser cache. No imagery or metadata is ever pushed onto third-party external networks.</p>
+                </div>
+                <div class="bg-slate-900/40 p-5 rounded-xl border border-slate-800/40">
+                    <h3 class="text-sm font-semibold text-emerald-400 mb-2">How do I keep aspect ratios locked?</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">By default, our engine hooks onto the input matrix scale. Toggling the aspect lock checkbox maintains proportional calculation while modifying structural width parameters.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Core Resizer Engine Logic -->
+    <script>
+        const dropZone = document.getElementById('dropZone');
+        const fileInput = document.getElementById('fileInput');
+        const controlsCard = document.getElementById('controlsCard');
+        const metaCard = document.getElementById('metaCard');
+        const previewPlaceholder = document.getElementById('previewPlaceholder');
+        const imagePreview = document.getElementById('imagePreview');
+        const widthInput = document.getElementById('widthInput');
+        const heightInput = document.getElementById('heightInput');
+        const aspectRatioToggle = document.getElementById('aspectRatioToggle');
+        const ratioDisplay = document.getElementById('ratioDisplay');
+        const formatSelect = document.getElementById('formatSelect');
+        const qualitySlider = document.getElementById('qualitySlider');
+        const qualityVal = document.getElementById('qualityVal');
+        const qualityWrapper = document.getElementById('qualityWrapper');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const terminalLog = document.getElementById('terminalLog');
+
+        let originalImage = null;
+        let nativeWidth = 0;
+        let nativeHeight = 0;
+        let calculatedRatio = 1;
+
+        function logTerminal(message, type = 'info') {
+            const el = document.createElement('p');
+            if(type === 'success') el.className = 'text-emerald-400';
+            else if(type === 'error') el.className = 'text-rose-400';
+            else el.className = 'text-slate-400';
+            el.innerText = `> ${message}`;
+            terminalLog.appendChild(el);
+            terminalLog.scrollTop = terminalLog.scrollHeight;
+        }
+
+        // Dropzone Trigger Handlers
+        dropZone.addEventListener('click', () => fileInput.click());
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.classList.add('border-emerald-500');
+        });
+        dropZone.addEventListener('dragleave', () => dropZone.classList.remove('border-emerald-500'));
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('border-emerald-500');
+            if (e.dataTransfer.files.length > 0) processFile(e.dataTransfer.files[0]);
+        });
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) processFile(e.target.files[0]);
+        });
+
+        // Hide/Show Quality slider based on PNG exception
+        formatSelect.addEventListener('change', (e) => {
+            if(e.target.value === 'image/png') {
+                qualityWrapper.style.opacity = '0.3';
+                qualitySlider.disabled = true;
+            } else {
+                qualityWrapper.style.opacity = '1';
+                qualitySlider.disabled = false;
+            }
+            logTerminal(`Target engine runtime format switched to: ${e.target.value}`);
+        });
+
+        qualitySlider.addEventListener('input', (e) => {
+            qualityVal.innerText = `${e.target.value}%`;
+        });
+
+        function processFile(file) {
+            if (!file.type.startsWith('image/')) {
+                logTerminal('Error: Processing aborted. Invalid file schema detected.', 'error');
+                return;
+            }
+
+            logTerminal(`Loading file structure: ${file.name}`);
+            
+            // Populate File Metadata UI elements
+            document.getElementById('metaName').innerText = file.name;
+            document.getElementById('metaSize').innerText = `${(file.size / 1024).toFixed(1)} KB`;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                originalImage = new Image();
+                originalImage.onload = function() {
+                    nativeWidth = originalImage.width;
+                    nativeHeight = originalImage.height;
+                    calculatedRatio = nativeWidth / nativeHeight;
+
+                    document.getElementById('metaRes').innerText = `${nativeWidth} x ${nativeHeight} px`;
+                    ratioDisplay.innerText = calculatedRatio.toFixed(2);
+
+                    // Set standard dimension input value mappings
+                    widthInput.value = nativeWidth;
+                    heightInput.value = nativeHeight;
+
+                    // Reveal Interface components gracefully
+                    imagePreview.src = e.target.result;
+                    imagePreview.classList.remove('hidden');
+                    previewPlaceholder.classList.add('hidden');
+                    controlsCard.classList.remove('hidden');
+                    metaCard.classList.remove('hidden');
+
+                    logTerminal('Image byte buffers bound into runtime successfully.', 'success');
+                };
+                originalImage.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // Dual Aspect Bind Linkage Watchers
+        widthInput.addEventListener('input', () => {
+            if (aspectRatioToggle.checked && originalImage) {
+                heightInput.value = Math.round(widthInput.value / calculatedRatio);
+            }
+        });
+
+        heightInput.addEventListener('input', () => {
+            if (aspectRatioToggle.checked && originalImage) {
+                widthInput.value = Math.round(heightInput.value * calculatedRatio);
+            }
+        });
+
+        // Canvas Scale Execution Downloader
+        downloadBtn.addEventListener('click', () => {
+            if (!originalImage) return;
+
+            const targetW = parseInt(widthInput.value) || nativeWidth;
+            const targetH = parseInt(heightInput.value) || nativeHeight;
+
+            logTerminal(`Compiling canvas transformations to render matrix: ${targetW}x${targetH}...`);
+
+            const canvas = document.createElement('canvas');
+            canvas.width = targetW;
+            canvas.height = targetH;
+            const ctx = canvas.getContext('2d');
+            
+            ctx.drawImage(originalImage, 0, 0, targetW, targetH);
+
+            const format = formatSelect.value;
+            const quality = parseFloat(qualitySlider.value) / 100;
+
+            const dataUrl = canvas.toDataURL(format, quality);
+            
+            // Build temporary anchor downpour link layer
+            const downloadLink = document.createElement('a');
+            const fileExt = format.split('/')[1];
+            downloadLink.download = `resized-image.${fileExt}`;
+            downloadLink.href = dataUrl;
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+            document.body.removeChild(downloadLink);
+
+            logTerminal('Image payload exported to local directory successfully!', 'success');
+        });
+    </script>
+</body>
+</html>
