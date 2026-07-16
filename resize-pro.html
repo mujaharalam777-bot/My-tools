@@ -1,520 +1,635 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- 🚀 MASSIVE SEO OPTIMIZATION & HIGH VOLUME KEYWORDS -->
-    <title>Free Bulk Image Resizer, WebP Converter & Watermark Maker Online | 8K Photo Editor</title>
-    <meta name="description" content="The ultimate free batch image processor. Resize to 4K/8K, convert JPG to WebP/PNG, add bulk text watermarks, compress images, and strip EXIF data instantly without losing quality.">
-    <meta name="keywords" content="free image resizer, bulk photo editor, batch webp converter, add watermark online free, 8k image upscaler, compress image online, remove exif data, fast photo converter">
+    <!-- ==========================================
+         ULTIMATE SEO & META TAGS
+    =========================================== -->
+    <title>ProStudio Max | 8K Bulk Image Editor & Ultimate Resizer Engine</title>
+    <meta name="description" content="The absolute best free batch image processor on the web. Resize to exact pixels, scale, crop, convert JPG/PNG/WebP, add professional watermarks, apply filters, and export to ZIP, PDF, or Base64. 100% Client-side.">
+    <meta name="keywords" content="bulk image resizer, convert image to pdf, batch photo editor, add watermark, image to base64, webp converter, social media image resizer, 8k photo editor">
     <meta name="author" content="ProStudio Network">
-    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#0f0f13">
     
-    <!-- 🧠 SCHEMA.ORG JSON-LD FOR GOOGLE RICH SNIPPETS -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "ProStudio Ultimate Image Toolkit",
-      "url": "https://yourwebsite.com",
-      "operatingSystem": "Any",
-      "applicationCategory": "PhotoEditor, UtilitiesApplication",
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-      "description": "Premium-grade batch image processing tool directly in your browser. Resize, convert, watermark, and secure privacy entirely for free.",
-      "featureList": ["Batch Resizing up to 8K", "WebP/PNG Conversion", "EXIF Stripping", "Bulk Watermarking", "Local Browser Processing"]
-    }
-    </script>
-
-    <!-- External Assets -->
+    <!-- ==========================================
+         EXTERNAL LIBRARIES (The Powerhouse)
+    =========================================== -->
+    <!-- Tailwind CSS (Styling) -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome (Icons) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- JSZip (For ZIP Archiving) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <!-- jsPDF (For PDF Generation) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     
+    <!-- ==========================================
+         MASSIVE CUSTOM CSS (Animations & UI)
+    =========================================== -->
     <style>
-        /* --------------------------------------------------------------------------
-           GOD MODE DESIGN SYSTEM V6 (ULTIMATE EDITION)
-        -------------------------------------------------------------------------- */
-        :root {
-            --bg-deep: #050505;
-            --accent-cyan: #00e5ff;
-            --accent-purple: #b400ff;
-            --accent-gold: #ffaa00;
-            --accent-green: #00ff66;
-            --panel-glass: rgba(12, 12, 18, 0.75);
-            --border-glass: rgba(255, 255, 255, 0.08);
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@700&display=swap');
 
-        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&display=swap');
+        :root {
+            --bg-base: #0a0a0f;
+            --bg-panel: #13131a;
+            --c-brand: #00f0ff;
+            --c-brand-glow: rgba(0, 240, 255, 0.4);
+            --c-accent1: #ff0055;
+            --c-accent2: #7000ff;
+            --c-success: #00ff88;
+            --c-warning: #ffb800;
+            --border-light: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(255, 255, 255, 0.2);
+            --glass-bg: rgba(19, 19, 26, 0.7);
+        }
 
         body {
-            background-color: var(--bg-deep);
-            background-image: 
-                radial-gradient(circle at 15% 50%, rgba(0, 229, 255, 0.05), transparent 25%),
-                radial-gradient(circle at 85% 30%, rgba(180, 0, 255, 0.05), transparent 25%);
-            font-family: 'Outfit', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-base);
             color: #e2e8f0;
+            background-image: 
+                radial-gradient(circle at 0% 0%, rgba(112, 0, 255, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 100% 100%, rgba(0, 240, 255, 0.15) 0%, transparent 40%),
+                linear-gradient(var(--border-light) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border-light) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+            background-attachment: fixed;
             overflow-x: hidden;
-            scroll-behavior: smooth;
         }
 
-        .bg-grid { background-image: linear-gradient(var(--border-glass) 1px, transparent 1px), linear-gradient(90deg, var(--border-glass) 1px, transparent 1px); background-size: 30px 30px; }
+        h1, h2, h3, .font-display { font-family: 'Space Grotesk', sans-serif; }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-base); }
+        ::-webkit-scrollbar-thumb { background: #2d2d3d; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--c-brand); }
+
+        /* Panels & Glassmorphism */
+        .premium-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-light);
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
         
-        .glass-panel {
-            background: var(--panel-glass);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border: 1px solid var(--border-glass);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05);
-            border-radius: 20px;
+        /* Inputs & Controls */
+        input[type="number"], input[type="text"], select, .custom-select {
+            background: rgba(0,0,0,0.5); border: 1px solid var(--border-light); color: white;
+            padding: 10px 14px; border-radius: 8px; font-size: 0.875rem; width: 100%; transition: all 0.2s;
         }
+        input:focus, select:focus { border-color: var(--c-brand); outline: none; box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.15); }
+        
+        /* Range Sliders */
+        input[type="range"] { -webkit-appearance: none; background: transparent; width: 100%; height: 20px; }
+        input[type="range"]::-webkit-slider-runnable-track { width: 100%; height: 6px; background: #2d2d3d; border-radius: 4px; }
+        input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; height: 16px; width: 16px; border-radius: 50%; background: var(--c-brand); margin-top: -5px; cursor: pointer; box-shadow: 0 0 10px var(--c-brand-glow); transition: transform 0.1s; }
+        input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.2); }
 
-        .glow-cyan { box-shadow: 0 0 20px rgba(0, 229, 255, 0.3); }
-        .text-gradient { background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-purple) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .btn-premium { background: linear-gradient(135deg, #ff007a, #7a00ff); transition: all 0.3s ease; }
-        .btn-premium:hover { box-shadow: 0 10px 25px rgba(122, 0, 255, 0.5); transform: translateY(-2px); }
+        /* Buttons */
+        .btn-core {
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+            font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 0.75rem;
+            padding: 12px 20px; border-radius: 8px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative; overflow: hidden; cursor: pointer; border: none;
+        }
+        .btn-mega { background: linear-gradient(135deg, var(--c-brand), #0088ff); color: #000; font-size: 0.9rem; padding: 16px 24px; box-shadow: 0 10px 20px rgba(0, 240, 255, 0.2); }
+        .btn-mega:hover { box-shadow: 0 15px 30px rgba(0, 240, 255, 0.4); transform: translateY(-2px); }
+        .btn-outline { background: transparent; border: 1px solid var(--border-light); color: #a1a1aa; }
+        .btn-outline:hover { border-color: white; color: white; background: rgba(255,255,255,0.05); }
+        
+        /* Thumbnail Queue */
+        .queue-item { position: relative; border-radius: 8px; overflow: hidden; border: 2px solid transparent; cursor: pointer; transition: all 0.2s; background: #000; }
+        .queue-item img { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; transition: opacity 0.2s; }
+        .queue-item:hover img { opacity: 0.8; }
+        .queue-item.active { border-color: var(--c-brand); transform: translateY(-3px); box-shadow: 0 10px 15px rgba(0,0,0,0.5); }
+        .queue-item.active img { opacity: 1; }
+        .remove-btn { position: absolute; top: 4px; right: 4px; background: rgba(255,0,0,0.8); color: white; border-radius: 50%; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; font-size: 10px; opacity: 0; transition: opacity 0.2s; }
+        .queue-item:hover .remove-btn { opacity: 1; }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; height: 8px; }
-        ::-webkit-scrollbar-track { background: var(--bg-deep); }
-        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--accent-cyan); }
+        /* Toast Notifications */
+        #toast-container { position: fixed; bottom: 20px; right: 20px; z-index: 9999; display: flex; flex-direction: column; gap: 10px; pointer-events: none; }
+        .toast { background: var(--bg-panel); border: 1px solid var(--border-light); color: white; padding: 16px 20px; border-radius: 12px; display: flex; align-items: center; gap: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); transform: translateX(120%); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); pointer-events: auto; }
+        .toast.show { transform: translateX(0); }
+        .toast.success { border-left: 4px solid var(--c-success); }
+        .toast.error { border-left: 4px solid var(--c-accent1); }
+        .toast.info { border-left: 4px solid var(--c-brand); }
 
-        /* Form Elements */
-        input[type="range"] { -webkit-appearance: none; background: #1e293b; height: 6px; border-radius: 4px; outline: none; }
-        input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; background: var(--accent-cyan); border-radius: 50%; cursor: pointer; box-shadow: 0 0 10px var(--accent-cyan); }
-        input, select { background: rgba(0,0,0,0.3) !important; border: 1px solid var(--border-glass) !important; color: white !important; transition: all 0.3s; }
-        input:focus, select:focus { border-color: var(--accent-cyan) !important; box-shadow: 0 0 10px rgba(0, 229, 255, 0.1); outline: none; }
+        /* Toggle Switch */
+        .toggle-switch { position: relative; display: inline-block; width: 40px; height: 20px; }
+        .toggle-switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #2d2d3d; transition: .4s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 14px; width: 14px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: var(--c-brand); }
+        input:checked + .slider:before { transform: translateX(20px); }
 
-        .thumbnail-card { transition: all 0.2s; }
-        .thumbnail-active { border-color: var(--accent-cyan) !important; filter: brightness(1.2); transform: scale(1.05); }
-
-        /* Accordion CSS for FAQ */
-        .faq-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; }
-        .faq-toggle:checked ~ .faq-content { max-height: 500px; padding-top: 15px; padding-bottom: 15px; }
-        .faq-toggle:checked ~ label .icon-rotate { transform: rotate(180deg); color: var(--accent-cyan); }
+        /* Grid Position Selector */
+        .grid-pos-selector { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; width: 80px; height: 80px; margin: 0 auto; }
+        .grid-cell { background: #2d2d3d; border-radius: 4px; cursor: pointer; transition: all 0.2s; border: 1px solid transparent; }
+        .grid-cell:hover { background: #3f3f5a; }
+        .grid-cell.active { background: rgba(0, 240, 255, 0.2); border-color: var(--c-brand); box-shadow: 0 0 10px var(--c-brand-glow); }
+        
+        /* Canvas Checkerboard Base */
+        .canvas-wrapper { background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+PHJlY3Qgd2lkdGg9IjEwIiBoZWlnaHQ9IjEwIiBmaWxsPSIjMWExYTI0Ii8+PHJlY3QgeD0iMTAiIHdpZHRoPSIxMCIgaGVpZ2h0PSIxMCIgZmlsbD0iIzEzMTMxYSIvPjxyZWN0IHk9IjEwIiB3aWR0aD0iMTAiIGhlaWdodD0iMTAiIGZpbGw9IiMxMzEzMWEiLz48cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIxMCIgaGVpZ2h0PSIxMCIgZmlsbD0iIzFhMWEyNCIvPjwvc3ZnPg=='); }
     </style>
 </head>
-<body class="bg-grid flex flex-col min-h-screen">
+<body class="flex flex-col min-h-screen">
 
-    <!-- HEADER / NAV -->
-    <header class="glass-panel sticky top-0 z-50 mx-4 mt-4 px-6 py-4 flex justify-between items-center rounded-2xl">
+    <!-- NOISE OVERLAY -->
+    <div class="fixed inset-0 pointer-events-none z-0 opacity-[0.03]" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E');"></div>
+
+    <!-- ==========================================
+         TOP NAVIGATION BAR
+    =========================================== -->
+    <nav class="premium-panel mx-4 mt-4 px-6 py-4 flex justify-between items-center relative z-50">
         <div class="flex items-center gap-4">
-            <div class="w-12 h-12 rounded-xl bg-black flex items-center justify-center border border-white/10 glow-cyan">
-                <i class="fa-solid fa-infinity text-2xl text-[var(--accent-cyan)]"></i>
+            <div class="w-10 h-10 rounded-lg bg-black flex items-center justify-center border border-[var(--c-brand)] shadow-[0_0_15px_var(--c-brand-glow)]">
+                <i class="fa-solid fa-layer-group text-[var(--c-brand)] text-xl"></i>
             </div>
             <div>
-                <span class="text-[10px] font-black tracking-[0.2em] text-[var(--accent-gold)] flex items-center gap-2">
-                    <i class="fa-solid fa-star"></i> ENTERPRISE GRADE
-                </span>
-                <h1 class="text-xl md:text-2xl font-black uppercase tracking-wide">
-                    Ultimate <span class="text-gradient">Image Editor</span>
+                <h1 class="font-display text-xl md:text-2xl font-bold tracking-tight text-white flex items-center gap-2">
+                    PROSTUDIO <span class="px-2 py-0.5 rounded text-[10px] bg-white/10 text-white border border-white/20 uppercase tracking-widest">Max Engine</span>
                 </h1>
+                <p class="text-[10px] text-slate-400 uppercase tracking-widest font-bold">Ultimate Bulk Image Processor</p>
             </div>
         </div>
-        <nav class="hidden lg:flex gap-8 text-[13px] font-bold uppercase tracking-widest text-slate-400">
-            <a href="#workspace" class="hover:text-[var(--accent-cyan)] transition">App Engine</a>
-            <a href="#how-to-use" class="hover:text-[var(--accent-cyan)] transition">Tutorial</a>
-            <a href="#faq" class="hover:text-[var(--accent-cyan)] transition">FAQ</a>
-            <a href="#related-tools" class="hover:text-[var(--accent-purple)] transition">More Tools</a>
-        </nav>
-        <a href="#workspace" class="lg:hidden text-white"><i class="fa-solid fa-bars text-xl"></i></a>
-    </header>
-
-    <!-- HERO SECTION -->
-    <section class="max-w-6xl mx-auto px-6 py-16 text-center">
-        <h2 class="text-4xl md:text-6xl font-black mb-6 leading-tight">
-            Process 100+ Images <br>
-            <span class="text-gradient">In Your Browser instantly.</span>
-        </h2>
-        <p class="text-slate-400 text-lg md:text-xl max-w-3xl mx-auto mb-8 font-light">
-            No software installation. No server uploads. 100% Privacy. Bulk resize to 8K, convert to WebP, add custom watermarks, and compress sizes entirely for free.
-        </p>
-        <div class="flex justify-center gap-6 text-sm font-bold text-slate-300">
-            <span class="flex items-center gap-2"><i class="fa-solid fa-check text-[var(--accent-green)]"></i> 100% Free</span>
-            <span class="flex items-center gap-2"><i class="fa-solid fa-check text-[var(--accent-green)]"></i> No Sign Up</span>
-            <span class="flex items-center gap-2"><i class="fa-solid fa-check text-[var(--accent-green)]"></i> Unlimited Use</span>
+        <div class="hidden md:flex gap-4">
+            <a href="#" class="btn-core btn-outline"><i class="fa-solid fa-book"></i> Tutorials</a>
+            <button onclick="clearAll()" class="btn-core btn-outline text-red-400 hover:text-red-300 hover:border-red-400/50 hover:bg-red-900/20"><i class="fa-solid fa-trash-can"></i> Reset Engine</button>
         </div>
-    </section>
+    </nav>
 
-    <!-- CORE WORKSPACE (THE APP) -->
-    <main id="workspace" class="w-full max-w-[1800px] mx-auto px-4 md:px-6 mb-20 grid xl:grid-cols-12 gap-6">
+    <!-- ==========================================
+         MAIN WORKSPACE
+    =========================================== -->
+    <main class="flex-grow w-full max-w-[1920px] mx-auto p-4 grid lg:grid-cols-12 gap-6 relative z-10 mt-2">
         
-        <!-- LEFT PANEL: CONTROLS -->
-        <div class="xl:col-span-5 flex flex-col gap-6">
+        <!-- LEFT: TOOLBOX (Controls) -->
+        <div class="lg:col-span-4 xl:col-span-3 flex flex-col gap-4 overflow-y-auto pr-2 pb-20 custom-scrollbar" style="max-height: calc(100vh - 120px);">
             
-            <!-- UPLOAD ZONE -->
-            <div class="glass-panel p-6">
-                <div id="dropZone" class="border-2 border-dashed border-slate-700 hover:border-[var(--accent-cyan)] bg-black/40 rounded-xl p-10 text-center cursor-pointer transition-all duration-300 relative group overflow-hidden">
-                    <div class="absolute inset-0 bg-gradient-to-t from-[var(--accent-cyan)]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                    <input type="file" id="imageUploader" multiple accept="image/*" class="hidden">
-                    <i class="fa-solid fa-cloud-arrow-up text-5xl text-slate-600 mb-4 group-hover:text-[var(--accent-cyan)] transition-colors transform group-hover:scale-110 duration-300"></i>
-                    <h3 class="text-lg font-bold text-white mb-1">Drag & Drop Images Here</h3>
-                    <p class="text-xs text-slate-400 uppercase tracking-widest font-bold">Supports JPG, PNG, WEBP</p>
+            <!-- 1. UPLOAD ZONE -->
+            <div class="premium-panel p-5 text-center">
+                <input type="file" id="fileInput" multiple accept="image/*" class="hidden">
+                <div id="dropZone" class="border-2 border-dashed border-slate-600 hover:border-[var(--c-brand)] rounded-xl p-8 cursor-pointer transition-all bg-black/30 group">
+                    <i class="fa-solid fa-cloud-arrow-up text-4xl text-slate-500 group-hover:text-[var(--c-brand)] group-hover:scale-110 transition-all duration-300 mb-3"></i>
+                    <h3 class="font-bold text-white mb-1">Drag & Drop Images</h3>
+                    <p class="text-xs text-slate-400">or click to browse files</p>
+                    <div class="mt-4 inline-block bg-white/5 border border-white/10 rounded px-3 py-1 text-[10px] uppercase font-bold text-slate-300">JPG, PNG, WEBP, BMP</div>
                 </div>
             </div>
 
-            <!-- MEGA CONTROLS -->
-            <div class="glass-panel p-6 space-y-6">
+            <!-- 2. RESIZE ENGINE -->
+            <div class="premium-panel p-5">
+                <div class="flex items-center gap-2 mb-4 text-white">
+                    <i class="fa-solid fa-expand text-[var(--c-brand)]"></i>
+                    <h3 class="font-bold uppercase tracking-wide text-sm">Resize Master</h3>
+                </div>
                 
-                <!-- Format & Conversion -->
-                <div>
-                    <h4 class="text-[11px] font-black uppercase text-[var(--accent-cyan)] tracking-widest mb-3 flex justify-between">
-                        <span><i class="fa-solid fa-microchip mr-2"></i> Export Format</span>
-                        <span class="text-[var(--accent-gold)]" title="Removes GPS & Camera Data"><i class="fa-solid fa-shield-halved"></i> EXIF Shield Active</span>
-                    </h4>
-                    <select id="exportFormat" class="w-full rounded-xl p-3 text-sm font-bold">
-                        <option value="image/jpeg">JPG / JPEG (Best for photos)</option>
-                        <option value="image/webp" selected>WEBP (Next-Gen SEO Optimized)</option>
-                        <option value="image/png">PNG (Lossless Quality)</option>
+                <!-- Social Media Presets -->
+                <div class="mb-4">
+                    <label class="text-[10px] uppercase text-slate-400 font-bold mb-2 block">Quick Presets</label>
+                    <select id="presetSelect" class="bg-black/50" onchange="applyPreset(this.value)">
+                        <option value="">Custom Dimensions...</option>
+                        <optgroup label="General Scale">
+                            <option value="scale:25">Scale to 25%</option>
+                            <option value="scale:50">Scale to 50%</option>
+                            <option value="scale:75">Scale to 75%</option>
+                            <option value="scale:200">Scale to 200% (Upscale)</option>
+                        </optgroup>
+                        <optgroup label="Instagram">
+                            <option value="1080x1080">IG Square Post (1080x1080)</option>
+                            <option value="1080x1350">IG Portrait Post (1080x1350)</option>
+                            <option value="1080x1920">IG Story / Reels (1080x1920)</option>
+                        </optgroup>
+                        <optgroup label="Facebook">
+                            <option value="1200x630">FB Shared Image (1200x630)</option>
+                            <option value="820x312">FB Cover Photo (820x312)</option>
+                        </optgroup>
+                        <optgroup label="YouTube & Video">
+                            <option value="1920x1080">YT Thumbnail / 1080p (1920x1080)</option>
+                            <option value="2560x1440">2K Resolution (2560x1440)</option>
+                            <option value="3840x2160">4K Resolution (3840x2160)</option>
+                            <option value="7680x4320">8K Ultra HD (7680x4320)</option>
+                        </optgroup>
+                        <optgroup label="Twitter / X">
+                            <option value="1200x675">In-Stream Photo (1200x675)</option>
+                            <option value="1500x500">Header Image (1500x500)</option>
+                        </optgroup>
                     </select>
                 </div>
 
-                <hr class="border-white/10">
-
-                <!-- Advanced Dimensions -->
-                <div>
-                    <h4 class="text-[11px] font-black uppercase text-[var(--accent-purple)] tracking-widest mb-3 flex items-center gap-2">
-                        <i class="fa-solid fa-expand"></i> Resolution & Upscaling
-                    </h4>
-                    
-                    <div class="grid grid-cols-4 gap-2 mb-4">
-                        <button onclick="setDimension(1080, 1080)" class="bg-black/50 border border-white/10 py-2 rounded-lg text-[10px] font-bold hover:bg-white/5 transition">1:1 INSTA</button>
-                        <button onclick="setDimension(1920, 1080)" class="bg-black/50 border border-white/10 py-2 rounded-lg text-[10px] font-bold hover:bg-white/5 transition">16:9 YT</button>
-                        <button onclick="setDimension(1080, 1920)" class="bg-black/50 border border-[var(--accent-gold)]/50 py-2 rounded-lg text-[10px] font-bold text-[var(--accent-gold)] hover:bg-[var(--accent-gold)]/10 transition">9:16 REELS</button>
-                        <button onclick="setDimension(7680, 4320)" class="bg-black/50 border border-[var(--accent-cyan)]/50 py-2 rounded-lg text-[10px] font-bold text-[var(--accent-cyan)] hover:bg-[var(--accent-cyan)]/10 transition">8K MAX</button>
+                <!-- Custom Dimensions -->
+                <div class="grid grid-cols-[1fr_auto_1fr] gap-3 items-end">
+                    <div>
+                        <label class="text-[10px] uppercase text-slate-400 font-bold mb-1 block">Width (px)</label>
+                        <input type="number" id="dimW" placeholder="Auto">
                     </div>
-
-                    <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <label class="text-[10px] text-slate-500 font-bold uppercase block mb-1">Custom Width (PX)</label>
-                            <input type="number" id="inputW" placeholder="Original" class="w-full rounded-lg p-2.5 text-sm">
-                        </div>
-                        <div>
-                            <label class="text-[10px] text-slate-500 font-bold uppercase block mb-1">Custom Height (PX)</label>
-                            <input type="number" id="inputH" placeholder="Original" class="w-full rounded-lg p-2.5 text-sm">
-                        </div>
+                    <div class="pb-2">
+                        <button id="btnLockRatio" class="w-8 h-8 rounded bg-white/5 border border-white/10 text-white hover:bg-[var(--c-brand)] hover:text-black transition flex items-center justify-center tooltip-trigger" title="Lock Aspect Ratio">
+                            <i id="iconLock" class="fa-solid fa-link"></i>
+                        </button>
+                    </div>
+                    <div>
+                        <label class="text-[10px] uppercase text-slate-400 font-bold mb-1 block">Height (px)</label>
+                        <input type="number" id="dimH" placeholder="Auto">
                     </div>
                 </div>
+            </div>
 
-                <hr class="border-white/10">
-
-                <!-- Professional Watermark -->
-                <div>
-                    <h4 class="text-[11px] font-black uppercase text-[var(--accent-gold)] tracking-widest mb-3 flex justify-between items-center">
-                        <span><i class="fa-solid fa-copyright mr-2"></i> Bulk Watermark</span>
-                    </h4>
-                    <input type="text" id="wmText" placeholder="e.g. © ProStudio" class="w-full rounded-xl p-3 text-sm mb-4">
-                    
-                    <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <label class="text-[10px] text-slate-500 font-bold uppercase block mb-1">Color Picker</label>
-                            <input type="color" id="wmColor" value="#ffffff" class="w-full h-10 p-0 border-0 rounded-lg cursor-pointer">
-                        </div>
-                        <div>
-                            <label class="text-[10px] text-slate-500 font-bold uppercase block mb-1">Transparency (<span id="wmOpacityVal">50</span>%)</label>
-                            <input type="range" id="wmOpacity" min="10" max="100" value="50" class="w-full mt-3">
-                        </div>
-                    </div>
+            <!-- 3. ADVANCED FILTERS -->
+            <div class="premium-panel p-5">
+                <div class="flex items-center gap-2 mb-4 text-white">
+                    <i class="fa-solid fa-wand-magic-sparkles text-[var(--c-accent2)]"></i>
+                    <h3 class="font-bold uppercase tracking-wide text-sm">Color & FX</h3>
                 </div>
-
-                <hr class="border-white/10">
-
-                <!-- Final Polish (Quality/Color) -->
+                
                 <div class="space-y-4">
                     <div>
-                        <div class="flex justify-between text-[10px] font-bold text-slate-400 uppercase mb-1">
-                            <span>Compress & Quality</span><span id="qualVal" class="text-[var(--accent-green)]">90%</span>
+                        <div class="flex justify-between text-[10px] uppercase font-bold text-slate-400 mb-1">
+                            <span>Brightness</span><span id="valBright">100%</span>
                         </div>
-                        <input type="range" id="imgQuality" min="10" max="100" value="90" class="w-full">
+                        <input type="range" id="fltBright" min="0" max="200" value="100">
                     </div>
                     <div>
-                        <div class="flex justify-between text-[10px] font-bold text-slate-400 uppercase mb-1">
-                            <span>Brightness / Exposure</span><span id="brightVal">100%</span>
+                        <div class="flex justify-between text-[10px] uppercase font-bold text-slate-400 mb-1">
+                            <span>Contrast</span><span id="valCont">100%</span>
                         </div>
-                        <input type="range" id="imgBrightness" min="50" max="150" value="100" class="w-full">
+                        <input type="range" id="fltCont" min="0" max="200" value="100">
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-[10px] uppercase font-bold text-slate-400 mb-1">
+                            <span>Saturation</span><span id="valSat">100%</span>
+                        </div>
+                        <input type="range" id="fltSat" min="0" max="200" value="100">
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-[10px] uppercase font-bold text-slate-400 mb-1">
+                            <span>Blur (px)</span><span id="valBlur">0px</span>
+                        </div>
+                        <input type="range" id="fltBlur" min="0" max="20" value="0" step="0.5">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. PROFESSIONAL WATERMARK -->
+            <div class="premium-panel p-5">
+                <div class="flex items-center gap-2 mb-4 text-white">
+                    <i class="fa-solid fa-copyright text-[var(--c-warning)]"></i>
+                    <h3 class="font-bold uppercase tracking-wide text-sm">Watermark Maker</h3>
+                </div>
+                
+                <input type="text" id="wmText" placeholder="e.g. © MyBrand 2026" class="mb-4">
+                
+                <div class="grid grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label class="text-[10px] uppercase text-slate-400 font-bold mb-1 block">Color</label>
+                        <input type="color" id="wmColor" value="#ffffff" class="h-10 p-1 cursor-pointer">
+                    </div>
+                    <div>
+                        <label class="text-[10px] uppercase text-slate-400 font-bold mb-1 block">Opacity</label>
+                        <input type="range" id="wmOpacity" min="10" max="100" value="60" class="mt-3">
                     </div>
                 </div>
 
+                <label class="text-[10px] uppercase text-slate-400 font-bold mb-2 block text-center">Position</label>
+                <div class="grid-pos-selector" id="wmGrid">
+                    <div class="grid-cell" data-pos="tl"></div><div class="grid-cell" data-pos="tc"></div><div class="grid-cell" data-pos="tr"></div>
+                    <div class="grid-cell" data-pos="cl"></div><div class="grid-cell" data-pos="cc"></div><div class="grid-cell" data-pos="cr"></div>
+                    <div class="grid-cell" data-pos="bl"></div><div class="grid-cell" data-pos="bc"></div><div class="grid-cell active" data-pos="br"></div>
+                </div>
             </div>
 
-            <!-- EXPORT ENGINE BUTTON -->
-            <button id="btnExport" class="btn-premium w-full py-5 rounded-2xl text-white font-black uppercase tracking-[0.2em] flex items-center justify-center gap-3 text-sm relative overflow-hidden group">
-                <span id="btnExportText"><i class="fa-solid fa-bolt group-hover:animate-bounce mr-2"></i> Compile & Download ZIP</span>
-            </button>
+            <!-- 5. EXPORT SETTINGS -->
+            <div class="premium-panel p-5">
+                <div class="flex items-center gap-2 mb-4 text-white">
+                    <i class="fa-solid fa-gear text-[var(--c-success)]"></i>
+                    <h3 class="font-bold uppercase tracking-wide text-sm">Output Config</h3>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label class="text-[10px] uppercase text-slate-400 font-bold mb-1 block">Format</label>
+                        <select id="outFormat">
+                            <option value="image/jpeg">JPG (Photo)</option>
+                            <option value="image/png">PNG (Lossless)</option>
+                            <option value="image/webp" selected>WEBP (Best)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="text-[10px] uppercase text-slate-400 font-bold mb-1 block">Quality (<span id="valQual">90</span>%)</label>
+                        <input type="range" id="outQual" min="10" max="100" value="90" class="mt-2">
+                    </div>
+                </div>
+                
+                <div class="flex items-center justify-between bg-black/30 p-3 rounded-lg border border-white/5">
+                    <div>
+                        <p class="text-xs font-bold text-white">Strip EXIF Data</p>
+                        <p class="text-[9px] text-slate-400">Remove GPS & Camera info</p>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="stripExif" checked disabled title="Canvas naturally strips EXIF">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+
         </div>
 
-        <!-- RIGHT PANEL: LIVE PREVIEW & QUEUE -->
-        <div class="xl:col-span-7 flex flex-col gap-6">
+        <!-- RIGHT: LIVE MONITOR & DOWNLOADS -->
+        <div class="lg:col-span-8 xl:col-span-9 flex flex-col gap-6">
             
-            <!-- Live Canvas Area -->
-            <div class="glass-panel p-4 md:p-6 flex-grow flex flex-col min-h-[500px]">
-                <div class="flex flex-wrap justify-between items-center mb-4 gap-2">
-                    <span class="text-xs font-black uppercase tracking-widest text-slate-400">
-                        <i class="fa-solid fa-eye text-[var(--accent-cyan)] mr-2"></i> Ultra-HD Live Monitor
-                    </span>
-                    <div id="statsPill" class="hidden bg-black/60 border border-[var(--accent-green)]/30 px-3 py-1.5 rounded-lg flex gap-3 text-[10px] font-mono text-[var(--accent-green)]">
-                        <span>RES: <span id="statRes">0x0</span></span>
-                        <span>|</span>
-                        <span>EST. SIZE: <span id="statSize">~0 KB</span></span>
+            <!-- LIVE CANVAS MONITOR -->
+            <div class="premium-panel flex-grow flex flex-col overflow-hidden relative min-h-[500px]">
+                
+                <!-- Monitor Header -->
+                <div class="bg-black/50 border-b border-white/10 p-3 flex flex-wrap justify-between items-center z-10 backdrop-blur-md">
+                    <div class="flex gap-4 items-center">
+                        <div class="flex items-center gap-2 text-[var(--c-brand)] text-xs font-bold tracking-widest uppercase">
+                            <span class="w-2 h-2 rounded-full bg-[var(--c-brand)] animate-pulse shadow-[0_0_8px_var(--c-brand)]"></span> Live 8K Preview
+                        </div>
+                        <span id="fileNameDisplay" class="text-xs text-slate-400 truncate max-w-[200px] hidden md:block">No file selected</span>
+                    </div>
+                    <div class="flex gap-3 text-[10px] font-mono font-bold">
+                        <div class="bg-white/5 px-3 py-1.5 rounded text-white border border-white/10">Orig: <span id="statOrig" class="text-slate-400">0x0</span></div>
+                        <div class="bg-white/5 px-3 py-1.5 rounded text-[var(--c-success)] border border-[var(--c-success)]/30">Out: <span id="statNew">0x0</span></div>
+                        <div class="bg-white/5 px-3 py-1.5 rounded text-[var(--c-warning)] border border-[var(--c-warning)]/30">Size: <span id="statSize">~0 KB</span></div>
                     </div>
                 </div>
-                
-                <div class="flex-grow bg-[#08080c] border border-white/5 rounded-xl flex items-center justify-center relative overflow-hidden bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9IiMzMzMiLz48L3N2Zz4=')]">
+
+                <!-- Canvas Area -->
+                <div class="flex-grow canvas-wrapper relative flex items-center justify-center p-4 overflow-hidden" id="canvasContainer">
                     
-                    <div id="emptyState" class="text-center text-slate-600">
-                        <i class="fa-solid fa-layer-group text-6xl mb-4 opacity-50"></i>
-                        <p class="text-sm font-bold uppercase tracking-widest">Engine is Idle</p>
-                        <p class="text-[10px] mt-2">Upload images to activate rendering</p>
+                    <div id="emptyState" class="absolute inset-0 flex flex-col items-center justify-center text-slate-600">
+                        <i class="fa-solid fa-microchip text-6xl mb-4 opacity-30 drop-shadow-2xl"></i>
+                        <h2 class="font-display font-bold text-xl text-slate-400 tracking-widest uppercase">Engine Idle</h2>
+                        <p class="text-sm mt-2 max-w-md text-center opacity-70">Drop a folder of images on the left panel to ignite the rendering engine.</p>
                     </div>
 
-                    <canvas id="liveCanvas" class="max-w-full max-h-[600px] object-contain shadow-2xl hidden"></canvas>
+                    <!-- The Master Canvas -->
+                    <canvas id="mainCanvas" class="max-w-full max-h-full object-contain shadow-2xl rounded hidden transform transition-transform duration-300"></canvas>
+                    
+                </div>
+                
+                <!-- Zoom Controls Overlay -->
+                <div class="absolute bottom-4 right-4 bg-black/60 backdrop-blur border border-white/10 rounded-lg p-1 flex gap-1 z-10 hidden" id="zoomControls">
+                    <button class="w-8 h-8 rounded flex items-center justify-center text-white hover:bg-white/10" onclick="zoomCanvas(-0.1)"><i class="fa-solid fa-minus"></i></button>
+                    <button class="w-8 h-8 rounded flex items-center justify-center text-white hover:bg-white/10 text-xs font-bold" onclick="resetZoom()">FIT</button>
+                    <button class="w-8 h-8 rounded flex items-center justify-center text-white hover:bg-white/10" onclick="zoomCanvas(0.1)"><i class="fa-solid fa-plus"></i></button>
                 </div>
             </div>
 
-            <!-- Active Batch Queue Manager -->
-            <div class="glass-panel p-5">
-                <div class="flex justify-between items-center mb-4">
-                    <span class="text-[11px] font-black uppercase text-slate-400 tracking-widest">Job Queue</span>
-                    <span id="queueCounter" class="text-[10px] font-bold bg-white/10 px-2 py-1 rounded text-white">0 Assets</span>
+            <!-- EXPORT ENGINE (The 5 Options) -->
+            <div class="premium-panel p-6">
+                <h3 class="font-display font-bold uppercase tracking-widest text-sm text-white mb-4 border-b border-white/10 pb-2">
+                    <i class="fa-solid fa-rocket text-[var(--c-accent1)] mr-2"></i> Export Terminal
+                </h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+                    
+                    <!-- 1. Single -->
+                    <button onclick="downloadSingle()" class="btn-core bg-[#1f1f2e] hover:bg-[#2a2a3e] border border-white/10 text-white flex-col py-4 group">
+                        <i class="fa-solid fa-download text-2xl text-[var(--c-brand)] mb-1 group-hover:scale-125 transition-transform"></i>
+                        <span class="text-[10px]">1. Current Image</span>
+                    </button>
+                    
+                    <!-- 2. ZIP -->
+                    <button onclick="downloadZIP()" class="btn-core btn-mega flex-col py-4 col-span-1 md:col-span-2 lg:col-span-1 group">
+                        <i class="fa-solid fa-file-zipper text-2xl text-black mb-1 group-hover:animate-bounce"></i>
+                        <span class="text-[10px]">2. Batch ZIP (All)</span>
+                    </button>
+                    
+                    <!-- 3. PDF -->
+                    <button onclick="downloadPDF()" class="btn-core bg-[#1f1f2e] hover:bg-[#2a2a3e] border border-[#ff0055]/30 hover:border-[#ff0055] text-white flex-col py-4 group">
+                        <i class="fa-solid fa-file-pdf text-2xl text-[#ff0055] mb-1 group-hover:scale-125 transition-transform"></i>
+                        <span class="text-[10px]">3. PDF Book (All)</span>
+                    </button>
+                    
+                    <!-- 4. Auto Download -->
+                    <button onclick="downloadAuto()" class="btn-core bg-[#1f1f2e] hover:bg-[#2a2a3e] border border-[#00ff88]/30 hover:border-[#00ff88] text-white flex-col py-4 group" title="Downloads files one by one">
+                        <i class="fa-solid fa-robot text-2xl text-[#00ff88] mb-1 group-hover:scale-125 transition-transform"></i>
+                        <span class="text-[10px]">4. Auto Save (All)</span>
+                    </button>
+                    
+                    <!-- 5. Base64 -->
+                    <button onclick="downloadBase64()" class="btn-core bg-[#1f1f2e] hover:bg-[#2a2a3e] border border-[#7000ff]/30 hover:border-[#7000ff] text-white flex-col py-4 group">
+                        <i class="fa-solid fa-code text-2xl text-[#7000ff] mb-1 group-hover:scale-125 transition-transform"></i>
+                        <span class="text-[10px]">5. Base64 (TXT)</span>
+                    </button>
+
+                </div>
+            </div>
+
+            <!-- BATCH QUEUE MANAGER (Filmstrip) -->
+            <div class="premium-panel p-4">
+                <div class="flex justify-between items-center mb-3">
+                    <span class="text-[11px] font-bold uppercase text-slate-400 tracking-widest flex items-center gap-2">
+                        <i class="fa-solid fa-film"></i> Job Queue
+                    </span>
+                    <span id="queueCounter" class="text-[10px] font-bold bg-white/10 px-2 py-1 rounded text-white border border-white/20">0 Assets Loaded</span>
                 </div>
                 
-                <div id="queueTrack" class="flex gap-3 overflow-x-auto pb-3 min-h-[80px] items-center">
-                    <span class="text-xs text-slate-600 italic">No files in queue...</span>
+                <div id="queueTrack" class="flex gap-3 overflow-x-auto pb-2 custom-scrollbar min-h-[80px] items-center">
+                    <span class="text-xs text-slate-600 italic px-2">Awaiting files...</span>
                 </div>
             </div>
 
         </div>
     </main>
 
-    <!-- HOW TO USE SECTION -->
-    <section id="how-to-use" class="max-w-7xl mx-auto px-6 py-16">
-        <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl font-black mb-4">How to Use the <span class="text-[var(--accent-cyan)]">Ultimate Engine</span></h2>
-            <p class="text-slate-400">Process hundreds of photos in 3 simple steps without leaving your browser.</p>
+    <!-- TOAST NOTIFICATION CONTAINER -->
+    <div id="toast-container"></div>
+
+    <!-- GLOBAL LOADING OVERLAY -->
+    <div id="loadingOverlay" class="fixed inset-0 bg-black/90 backdrop-blur-sm z-[9999] flex flex-col items-center justify-center hidden">
+        <div class="relative w-24 h-24 flex items-center justify-center mb-6">
+            <div class="absolute inset-0 rounded-full border-t-4 border-[var(--c-brand)] animate-spin"></div>
+            <div class="absolute inset-2 rounded-full border-b-4 border-[var(--c-accent2)] animate-[spin_1.5s_reverse_infinite]"></div>
+            <i class="fa-solid fa-bolt text-3xl text-white"></i>
         </div>
+        <h2 id="loadingText" class="font-display font-bold text-2xl text-white tracking-widest uppercase">Processing...</h2>
+        <p id="loadingSub" class="text-sm text-[var(--c-brand)] mt-2 font-mono">0 / 0 Complete</p>
         
-        <div class="grid md:grid-cols-3 gap-8">
-            <div class="glass-panel p-8 text-center relative">
-                <div class="w-16 h-16 bg-black border border-white/10 rounded-full flex items-center justify-center text-2xl text-[var(--accent-purple)] mx-auto mb-6 absolute -top-8 left-1/2 -translate-x-1/2 glow-cyan">1</div>
-                <i class="fa-solid fa-images text-4xl text-slate-500 mb-4 mt-4"></i>
-                <h3 class="text-xl font-bold mb-3">Upload Bulk Images</h3>
-                <p class="text-sm text-slate-400">Drag & drop as many images as you want into the upload zone. They never leave your device.</p>
-            </div>
-            <div class="glass-panel p-8 text-center relative mt-8 md:mt-0">
-                <div class="w-16 h-16 bg-black border border-white/10 rounded-full flex items-center justify-center text-2xl text-[var(--accent-gold)] mx-auto mb-6 absolute -top-8 left-1/2 -translate-x-1/2 glow-cyan">2</div>
-                <i class="fa-solid fa-sliders text-4xl text-slate-500 mb-4 mt-4"></i>
-                <h3 class="text-xl font-bold mb-3">Set Parameters</h3>
-                <p class="text-sm text-slate-400">Choose your desired resolution, reduce KB size using the quality slider, and add your custom watermark.</p>
-            </div>
-            <div class="glass-panel p-8 text-center relative mt-8 md:mt-0">
-                <div class="w-16 h-16 bg-black border border-white/10 rounded-full flex items-center justify-center text-2xl text-[var(--accent-green)] mx-auto mb-6 absolute -top-8 left-1/2 -translate-x-1/2 glow-cyan">3</div>
-                <i class="fa-solid fa-file-zipper text-4xl text-slate-500 mb-4 mt-4"></i>
-                <h3 class="text-xl font-bold mb-3">Download ZIP</h3>
-                <p class="text-sm text-slate-400">Click compile. Our hardware-accelerated engine processes everything instantly and gives you a single ZIP file.</p>
-            </div>
+        <!-- Progress Bar -->
+        <div class="w-64 h-2 bg-white/10 rounded-full mt-6 overflow-hidden">
+            <div id="loadingBar" class="h-full bg-gradient-to-r from-[var(--c-brand)] to-[var(--c-accent2)] w-0 transition-all duration-300"></div>
         </div>
-    </section>
-
-    <!-- RELATED TOOLS SECTION -->
-    <section id="related-tools" class="bg-black/50 py-16 border-y border-white/5">
-        <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-2xl font-black mb-8 uppercase tracking-widest text-center">More <span class="text-[var(--accent-purple)]">Free Tools</span></h2>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <a href="index.html" class="glass-panel p-6 hover:border-[var(--accent-cyan)] transition group flex flex-col items-center text-center">
-                    <i class="fa-solid fa-house text-3xl text-[var(--accent-cyan)] mb-4 group-hover:scale-110 transition"></i>
-                    <h3 class="font-bold text-lg mb-2">Home Dashboard</h3>
-                    <p class="text-xs text-slate-400">Access all premium utilities.</p>
-                </a>
-                
-                <a href="qr.html" class="glass-panel p-6 hover:border-[#ff007a] transition group flex flex-col items-center text-center">
-                    <i class="fa-solid fa-qrcode text-3xl text-[#ff007a] mb-4 group-hover:scale-110 transition"></i>
-                    <h3 class="font-bold text-lg mb-2">QR Code Gen</h3>
-                    <p class="text-xs text-slate-400">Create custom trackable QR Codes.</p>
-                </a>
-                
-                <a href="password.html" class="glass-panel p-6 hover:border-[var(--accent-gold)] transition group flex flex-col items-center text-center">
-                    <i class="fa-solid fa-shield-halved text-3xl text-[var(--accent-gold)] mb-4 group-hover:scale-110 transition"></i>
-                    <h3 class="font-bold text-lg mb-2">Password Generator</h3>
-                    <p class="text-xs text-slate-400">Create unbreakable secure passwords.</p>
-                </a>
-                
-                <a href="converter.html" class="glass-panel p-6 hover:border-[var(--accent-green)] transition group flex flex-col items-center text-center">
-                    <i class="fa-solid fa-file-pdf text-3xl text-[var(--accent-green)] mb-4 group-hover:scale-110 transition"></i>
-                    <h3 class="font-bold text-lg mb-2">Image to PDF</h3>
-                    <p class="text-xs text-slate-400">Convert your images to PDF documents.</p>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ SECTION -->
-    <section id="faq" class="max-w-4xl mx-auto px-6 py-20">
-        <h2 class="text-3xl font-black text-center mb-10">Frequently Asked <span class="text-[var(--accent-gold)]">Questions</span></h2>
-        
-        <div class="space-y-4">
-            <div class="glass-panel rounded-xl overflow-hidden">
-                <input type="checkbox" id="faq1" class="faq-toggle hidden">
-                <label for="faq1" class="flex justify-between items-center p-5 cursor-pointer font-bold bg-white/5 hover:bg-white/10 transition">
-                    <span>Are my images uploaded to any server?</span>
-                    <i class="fa-solid fa-chevron-down icon-rotate transition-transform"></i>
-                </label>
-                <div class="faq-content bg-black/30 px-5 text-sm text-slate-300">
-                    <p>No, absolutely not. This tool utilizes HTML5 Canvas to process all images strictly within your local browser. No data is ever transmitted to our servers, ensuring 100% privacy.</p>
-                </div>
-            </div>
-
-            <div class="glass-panel rounded-xl overflow-hidden">
-                <input type="checkbox" id="faq2" class="faq-toggle hidden">
-                <label for="faq2" class="flex justify-between items-center p-5 cursor-pointer font-bold bg-white/5 hover:bg-white/10 transition">
-                    <span>How can I compress images to an exact KB size?</span>
-                    <i class="fa-solid fa-chevron-down icon-rotate transition-transform"></i>
-                </label>
-                <div class="faq-content bg-black/30 px-5 text-sm text-slate-300">
-                    <p>To reduce file size for job forms or websites, adjust the "Compress & Quality" slider. Keep an eye on the "EST. SIZE" indicator in the Live Monitor to perfectly match your target KB size before downloading.</p>
-                </div>
-            </div>
-
-            <div class="glass-panel rounded-xl overflow-hidden">
-                <input type="checkbox" id="faq3" class="faq-toggle hidden">
-                <label for="faq3" class="flex justify-between items-center p-5 cursor-pointer font-bold bg-white/5 hover:bg-white/10 transition">
-                    <span>Why should I convert JPG to WebP?</span>
-                    <i class="fa-solid fa-chevron-down icon-rotate transition-transform"></i>
-                </label>
-                <div class="faq-content bg-black/30 px-5 text-sm text-slate-300">
-                    <p>WebP provides superior lossless and lossy compression. Files are up to 30% smaller while retaining the same quality. This massively improves website loading speeds and Google SEO rankings.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="bg-black py-10 mt-auto border-t border-white/5">
-        <div class="max-w-7xl mx-auto px-6 text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-6">
-            <div>
-                <h2 class="text-xl font-black tracking-widest text-white mb-2">PRO<span class="text-[var(--accent-cyan)]">STUDIO</span></h2>
-                <p class="text-xs text-slate-500">© 2026 ProStudio Network. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+    </div>
 
 
-    <!-- --------------------------------------------------------------------------
-         JAVASCRIPT MASTER ENGINE (V6)
-    -------------------------------------------------------------------------- -->
+    <!-- ==========================================
+         JAVASCRIPT MAX ENGINE (V10.0)
+    =========================================== -->
     <script>
         /**
-         * Core Application State
+         * ----------------------------------------
+         * 1. STATE MANAGEMENT
+         * ----------------------------------------
          */
-        const AppState = {
-            images: [],
-            activeIndex: -1,
+        const Engine = {
+            files: [],          // Array of objects: { id, name, type, origW, origH, imgObj }
+            activeIndex: -1,    // Currently displayed image index
+            lockRatio: true,    // Aspect ratio lock status
+            wmPos: 'br',        // Default watermark position (bottom-right)
+            zoom: 1.0,          // Canvas visual zoom
             isProcessing: false
         };
 
-        // DOM Elements
-        const DOM = {
+        /**
+         * ----------------------------------------
+         * 2. DOM REFERENCES
+         * ----------------------------------------
+         */
+        const UI = {
             dropZone: document.getElementById('dropZone'),
-            uploader: document.getElementById('imageUploader'),
+            fileIn: document.getElementById('fileInput'),
             queueTrack: document.getElementById('queueTrack'),
-            queueCounter: document.getElementById('queueCounter'),
-            canvas: document.getElementById('liveCanvas'),
-            ctx: document.getElementById('liveCanvas').getContext('2d'),
-            emptyState: document.getElementById('emptyState'),
-            statsPill: document.getElementById('statsPill'),
-            statRes: document.getElementById('statRes'),
-            statSize: document.getElementById('statSize'),
-            btnExport: document.getElementById('btnExport'),
-            btnExportText: document.getElementById('btnExportText'),
+            qCount: document.getElementById('queueCounter'),
             
-            // Inputs
-            inW: document.getElementById('inputW'),
-            inH: document.getElementById('inputH'),
-            format: document.getElementById('exportFormat'),
-            wmText: document.getElementById('wmText'),
-            wmColor: document.getElementById('wmColor'),
-            wmOpacity: document.getElementById('wmOpacity'),
-            wmOpacityVal: document.getElementById('wmOpacityVal'),
-            imgQual: document.getElementById('imgQuality'),
-            qualVal: document.getElementById('qualVal'),
-            imgBright: document.getElementById('imgBrightness'),
-            brightVal: document.getElementById('brightVal'),
+            // Canvas Elements
+            canvas: document.getElementById('mainCanvas'),
+            ctx: document.getElementById('mainCanvas').getContext('2d'),
+            emptyState: document.getElementById('emptyState'),
+            zoomControls: document.getElementById('zoomControls'),
+            
+            // Stats
+            sName: document.getElementById('fileNameDisplay'),
+            sOrig: document.getElementById('statOrig'),
+            sNew: document.getElementById('statNew'),
+            sSize: document.getElementById('statSize'),
+            
+            // Inputs: Resize
+            inW: document.getElementById('dimW'),
+            inH: document.getElementById('dimH'),
+            btnLock: document.getElementById('btnLockRatio'),
+            iconLock: document.getElementById('iconLock'),
+            presetSelect: document.getElementById('presetSelect'),
+            
+            // Inputs: Filters
+            fBrt: document.getElementById('fltBright'),
+            fCon: document.getElementById('fltCont'),
+            fSat: document.getElementById('fltSat'),
+            fBlr: document.getElementById('fltBlur'),
+            
+            // Inputs: Watermark
+            wmTxt: document.getElementById('wmText'),
+            wmCol: document.getElementById('wmColor'),
+            wmOpa: document.getElementById('wmOpacity'),
+            wmCells: document.querySelectorAll('.grid-cell'),
+            
+            // Inputs: Export
+            oFmt: document.getElementById('outFormat'),
+            oQua: document.getElementById('outQual'),
+            
+            // Overlays
+            loader: document.getElementById('loadingOverlay'),
+            lText: document.getElementById('loadingText'),
+            lSub: document.getElementById('loadingSub'),
+            lBar: document.getElementById('loadingBar')
         };
 
         /**
-         * Initialization & Event Listeners
+         * ----------------------------------------
+         * 3. INITIALIZATION & LISTENERS
+         * ----------------------------------------
          */
-        function initApp() {
-            // Drag and Drop Logic
-            DOM.dropZone.addEventListener('click', () => DOM.uploader.click());
-            DOM.dropZone.addEventListener('dragover', (e) => { e.preventDefault(); DOM.dropZone.style.borderColor = 'var(--accent-cyan)'; });
-            DOM.dropZone.addEventListener('dragleave', () => { DOM.dropZone.style.borderColor = ''; });
-            DOM.dropZone.addEventListener('drop', (e) => {
-                e.preventDefault();
-                DOM.dropZone.style.borderColor = '';
-                processRawFiles(e.dataTransfer.files);
+        function init() {
+            // Drag & Drop
+            UI.dropZone.addEventListener('click', () => UI.fileIn.click());
+            UI.dropZone.addEventListener('dragover', (e) => { e.preventDefault(); UI.dropZone.style.borderColor = 'var(--c-brand)'; UI.dropZone.style.background = 'rgba(0, 240, 255, 0.05)'; });
+            UI.dropZone.addEventListener('dragleave', (e) => { e.preventDefault(); UI.dropZone.style.borderColor = ''; UI.dropZone.style.background = ''; });
+            UI.dropZone.addEventListener('drop', (e) => { e.preventDefault(); UI.dropZone.style.borderColor = ''; UI.dropZone.style.background = ''; ingestFiles(e.dataTransfer.files); });
+            UI.fileIn.addEventListener('change', (e) => ingestFiles(e.target.files));
+
+            // Aspect Ratio Lock
+            UI.btnLock.addEventListener('click', () => {
+                Engine.lockRatio = !Engine.lockRatio;
+                UI.iconLock.className = Engine.lockRatio ? "fa-solid fa-link" : "fa-solid fa-link-slash text-slate-500";
+                if(Engine.lockRatio && Engine.activeIndex > -1) calculateLinkedDimension('w');
+                showToast(Engine.lockRatio ? "Aspect Ratio Locked" : "Aspect Ratio Unlocked", "info");
             });
-            DOM.uploader.addEventListener('change', (e) => processRawFiles(e.target.files));
 
-            // Setup Input Sync Listeners for Live Preview
-            const inputs = [DOM.inW, DOM.inH, DOM.format, DOM.wmText, DOM.wmColor, DOM.wmOpacity, DOM.imgQual, DOM.imgBright];
-            inputs.forEach(el => el.addEventListener('input', triggerRender));
+            // Dimension Inputs (with ratio calculation)
+            UI.inW.addEventListener('input', () => { if(Engine.lockRatio) calculateLinkedDimension('w'); triggerRender(); });
+            UI.inH.addEventListener('input', () => { if(Engine.lockRatio) calculateLinkedDimension('h'); triggerRender(); });
 
-            // Sync visual text labels for sliders
-            DOM.wmOpacity.addEventListener('input', (e) => DOM.wmOpacityVal.textContent = e.target.value);
-            DOM.imgQual.addEventListener('input', (e) => DOM.qualVal.textContent = e.target.value + '%');
-            DOM.imgBright.addEventListener('input', (e) => DOM.brightVal.textContent = e.target.value + '%');
+            // Value Syncers for Sliders
+            const sync = (idSlider, idVal, suffix='') => {
+                document.getElementById(idSlider).addEventListener('input', (e) => {
+                    document.getElementById(idVal).textContent = e.target.value + suffix;
+                    triggerRender();
+                });
+            };
+            sync('fltBright', 'valBright', '%');
+            sync('fltCont', 'valCont', '%');
+            sync('fltSat', 'valSat', '%');
+            sync('fltBlur', 'valBlur', 'px');
+            sync('outQual', 'valQual', ''); // Special case, no suffix for display
 
-            // Export logic
-            DOM.btnExport.addEventListener('click', generateBulkArchive);
+            UI.oQua.addEventListener('input', triggerRender);
+            UI.oFmt.addEventListener('change', triggerRender);
+            UI.wmTxt.addEventListener('input', triggerRender);
+            UI.wmCol.addEventListener('input', triggerRender);
+            UI.wmOpa.addEventListener('input', triggerRender);
+
+            // Watermark Position Grid
+            UI.wmCells.forEach(cell => {
+                cell.addEventListener('click', function() {
+                    UI.wmCells.forEach(c => c.classList.remove('active'));
+                    this.classList.add('active');
+                    Engine.wmPos = this.getAttribute('data-pos');
+                    triggerRender();
+                });
+            });
+
+            console.log("ProStudio Max Engine V10 initialized.");
         }
 
         /**
-         * Dimension Shortcut Handler
+         * ----------------------------------------
+         * 4. CORE LOGIC: FILE INGESTION
+         * ----------------------------------------
          */
-        window.setDimension = function(w, h) {
-            DOM.inW.value = w;
-            DOM.inH.value = h;
-            triggerRender();
-        };
-
-        /**
-         * Process Uploaded Files
-         */
-        async function processRawFiles(fileList) {
+        async function ingestFiles(fileList) {
             if (!fileList || fileList.length === 0) return;
             
+            showLoader("Ingesting Assets...", true);
+            
+            let added = 0;
             for (let file of fileList) {
                 if (!file.type.startsWith('image/')) continue;
                 
                 try {
-                    const imgObj = await fileToImage(file);
-                    AppState.images.push({
+                    const img = await readImageFile(file);
+                    Engine.files.push({
+                        id: 'img_' + Date.now() + Math.random().toString(36).substr(2, 9),
                         file: file,
                         name: file.name,
-                        img: imgObj,
-                        origW: imgObj.width,
-                        origH: imgObj.height
+                        type: file.type,
+                        origW: img.width,
+                        origH: img.height,
+                        imgObj: img
                     });
-                } catch (e) {
-                    console.error("Error loading image:", e);
-                }
+                    added++;
+                } catch (e) { console.error("Error reading file:", e); }
             }
             
-            DOM.queueCounter.textContent = `${AppState.images.length} Assets`;
-            if (AppState.images.length > 0 && AppState.activeIndex === -1) {
-                AppState.activeIndex = 0;
+            if (added > 0) {
+                showToast(`Successfully loaded ${added} images`, "success");
+                if (Engine.activeIndex === -1) setActiveImage(0);
+                else buildQueueUI();
+            } else {
+                showToast("No valid images found", "error");
             }
             
-            buildQueueUI();
-            triggerRender();
+            hideLoader();
         }
 
-        /**
-         * Convert File Object to HTML Image Element
-         */
-        function fileToImage(file) {
+        function readImageFile(file) {
             return new Promise((resolve, reject) => {
                 const reader = new FileReader();
                 reader.onload = (e) => {
@@ -528,186 +643,552 @@
         }
 
         /**
-         * Render Queue Track (Thumbnails at the bottom)
+         * ----------------------------------------
+         * 5. UI UPDATES & CALCULATIONS
+         * ----------------------------------------
          */
         function buildQueueUI() {
-            if (AppState.images.length === 0) {
-                DOM.queueTrack.innerHTML = '<span class="text-xs text-slate-600 italic">No files in queue...</span>';
+            UI.qCount.textContent = `${Engine.files.length} Assets Loaded`;
+            
+            if (Engine.files.length === 0) {
+                UI.queueTrack.innerHTML = '<span class="text-xs text-slate-600 italic px-2">Awaiting files...</span>';
+                clearCanvas();
                 return;
             }
             
-            DOM.queueTrack.innerHTML = '';
-            AppState.images.forEach((item, index) => {
-                const div = document.createElement('div');
-                div.className = `w-16 h-16 flex-shrink-0 rounded-lg bg-black border-2 bg-cover bg-center cursor-pointer thumbnail-card ${index === AppState.activeIndex ? 'thumbnail-active border-[var(--accent-cyan)]' : 'border-white/10 opacity-70 hover:opacity-100'}`;
-                div.style.backgroundImage = `url(${item.img.src})`;
+            UI.queueTrack.innerHTML = '';
+            Engine.files.forEach((item, index) => {
+                const wrap = document.createElement('div');
+                wrap.className = `w-16 h-16 flex-shrink-0 queue-item ${index === Engine.activeIndex ? 'active' : ''}`;
+                wrap.onclick = () => setActiveImage(index);
                 
-                div.onclick = () => {
-                    AppState.activeIndex = index;
-                    // Update Placeholders
-                    DOM.inW.placeholder = `Orig: ${item.origW}`;
-                    DOM.inH.placeholder = `Orig: ${item.origH}`;
-                    buildQueueUI(); // Re-render to update active styling
-                    triggerRender(); // Re-render canvas with new active image
+                const img = document.createElement('img');
+                img.src = item.imgObj.src;
+                
+                const rmBtn = document.createElement('div');
+                rmBtn.className = 'remove-btn';
+                rmBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+                rmBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    removeImage(index);
                 };
                 
-                DOM.queueTrack.appendChild(div);
+                wrap.appendChild(img);
+                wrap.appendChild(rmBtn);
+                UI.queueTrack.appendChild(wrap);
             });
         }
 
-        /**
-         * Trigger Canvas Render if image is active
-         */
-        function triggerRender() {
-            if (AppState.activeIndex === -1 || !AppState.images[AppState.activeIndex]) return;
+        function setActiveImage(index) {
+            if (index < 0 || index >= Engine.files.length) return;
+            Engine.activeIndex = index;
+            const item = Engine.files[index];
             
-            DOM.emptyState.classList.add('hidden');
-            DOM.canvas.classList.remove('hidden');
-            DOM.statsPill.classList.remove('hidden');
+            // Update Stats UI
+            UI.sName.textContent = item.name;
+            UI.sName.title = item.name;
+            UI.sOrig.textContent = `${item.origW}x${item.origH}`;
             
-            renderCanvas(AppState.images[AppState.activeIndex]);
-        }
-
-        /**
-         * Draw Image, Apply Filters, Add Watermark & Update Canvas
-         */
-        function renderCanvas(item) {
-            const img = item.img;
-            
-            // Determine dimensions (fallback to original if empty)
-            let targetW = parseInt(DOM.inW.value) || img.width;
-            let targetH = parseInt(DOM.inH.value) || img.height;
-            
-            // Set underlying canvas resolution
-            DOM.canvas.width = targetW;
-            DOM.canvas.height = targetH;
-            
-            // Apply Brightness/Exposure
-            const brightness = DOM.imgBright.value;
-            DOM.ctx.filter = `brightness(${brightness}%)`;
-            
-            // Draw base image (this natively strips EXIF as it renders pixel data only)
-            DOM.ctx.drawImage(img, 0, 0, targetW, targetH);
-            DOM.ctx.filter = 'none'; // Reset filter for watermark
-            
-            // Draw Watermark
-            const wmText = DOM.wmText.value.trim();
-            if (wmText) {
-                const wmColor = DOM.wmColor.value;
-                const wmOpacity = DOM.wmOpacity.value / 100;
-                
-                DOM.ctx.globalAlpha = wmOpacity;
-                DOM.ctx.fillStyle = wmColor;
-                
-                // Responsive font sizing based on image height
-                const fontSize = Math.max(16, targetH * 0.05); 
-                DOM.ctx.font = `900 ${fontSize}px 'Outfit', sans-serif`;
-                DOM.ctx.textAlign = 'right';
-                DOM.ctx.textBaseline = 'bottom';
-                
-                // Add subtle shadow for legibility on all backgrounds
-                DOM.ctx.shadowColor = 'rgba(0,0,0,0.8)';
-                DOM.ctx.shadowBlur = Math.max(5, fontSize * 0.15);
-                DOM.ctx.shadowOffsetX = 2;
-                DOM.ctx.shadowOffsetY = 2;
-                
-                // Draw text in bottom right corner with padding
-                const padding = targetH * 0.03;
-                DOM.ctx.fillText(wmText, targetW - padding, targetH - padding);
-                
-                // Reset context state
-                DOM.ctx.globalAlpha = 1.0;
-                DOM.ctx.shadowColor = 'transparent';
+            // Set default inputs to original size if not set manually by user recently
+            // For batch processing, we keep inputs as they are, but if empty, fill them
+            if (!UI.inW.value && !UI.inH.value) {
+                UI.inW.value = item.origW;
+                UI.inH.value = item.origH;
+            } else if (Engine.lockRatio) {
+                // Adjust based on current lock
+                calculateLinkedDimension('w');
             }
             
-            // Update UI Stats (Resolution & Estimation)
-            DOM.statRes.textContent = `${targetW}x${targetH}`;
+            buildQueueUI(); // re-render queue for active state
             
-            // Estimate file size based on current settings
-            const format = DOM.format.value;
-            const quality = DOM.imgQual.value / 100;
-            const dataUrl = DOM.canvas.toDataURL(format, quality);
+            // Reveal Canvas
+            UI.emptyState.classList.add('hidden');
+            UI.canvas.classList.remove('hidden');
+            UI.zoomControls.classList.remove('hidden');
             
-            // Rough calculation: base64 string length * 0.75 gets byte size
-            const sizeKB = Math.round((dataUrl.length * 0.75) / 1024);
-            DOM.statSize.textContent = `~${sizeKB} KB`;
+            triggerRender();
         }
 
-        /**
-         * Process Queue & Generate Downloadable ZIP
-         */
-        async function generateBulkArchive() {
-            if (AppState.images.length === 0) {
-                alert("Engine Empty! Please drag and drop some images first.");
+        function removeImage(index) {
+            Engine.files.splice(index, 1);
+            if (Engine.files.length === 0) {
+                Engine.activeIndex = -1;
+                clearCanvas();
+            } else {
+                // Adjust active index
+                if (Engine.activeIndex === index) {
+                    setActiveImage(Math.max(0, index - 1));
+                } else if (Engine.activeIndex > index) {
+                    Engine.activeIndex--;
+                    buildQueueUI();
+                } else {
+                    buildQueueUI();
+                }
+            }
+        }
+
+        function clearAll() {
+            if(!confirm("Are you sure you want to reset the engine? All files will be cleared.")) return;
+            Engine.files = [];
+            Engine.activeIndex = -1;
+            clearCanvas();
+            showToast("Engine Reset Successful", "info");
+        }
+
+        function clearCanvas() {
+            UI.emptyState.classList.remove('hidden');
+            UI.canvas.classList.add('hidden');
+            UI.zoomControls.classList.add('hidden');
+            UI.sName.textContent = "No file selected";
+            UI.sOrig.textContent = "0x0";
+            UI.sNew.textContent = "0x0";
+            UI.sSize.textContent = "~0 KB";
+            buildQueueUI();
+        }
+
+        function calculateLinkedDimension(changedStr) {
+            if (Engine.activeIndex === -1) return;
+            const item = Engine.files[Engine.activeIndex];
+            const ratio = item.origW / item.origH;
+            
+            if (changedStr === 'w' && UI.inW.value) {
+                UI.inH.value = Math.round(parseInt(UI.inW.value) / ratio);
+            } else if (changedStr === 'h' && UI.inH.value) {
+                UI.inW.value = Math.round(parseInt(UI.inH.value) * ratio);
+            }
+        }
+
+        // Apply selected preset dimensions
+        window.applyPreset = function(val) {
+            if (!val || Engine.activeIndex === -1) {
+                UI.presetSelect.value = "";
                 return;
             }
+            const item = Engine.files[Engine.activeIndex];
             
-            if (AppState.isProcessing) return;
-            AppState.isProcessing = true;
-            
-            // UI Feedback
-            const originalBtnText = DOM.btnExportText.innerHTML;
-            DOM.btnExportText.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Processing Engines Active...';
-            DOM.btnExport.classList.add('opacity-75', 'cursor-not-allowed');
-            
-            try {
-                // We use JSZip (loaded via CDN)
-                const zip = new JSZip();
-                const format = DOM.format.value; // e.g., 'image/webp'
-                const ext = format.split('/')[1]; // e.g., 'webp'
-                const quality = DOM.imgQual.value / 100;
-                
-                // Loop through all images in queue
-                for (let i = 0; i < AppState.images.length; i++) {
-                    const item = AppState.images[i];
-                    
-                    // Render image onto the canvas temporarily to extract formatted data
-                    renderCanvas(item);
-                    
-                    const dataUrl = DOM.canvas.toDataURL(format, quality);
-                    const base64Data = dataUrl.split(',')[1];
-                    
-                    // Clean original filename and append new extension
-                    let originalName = item.name.substring(0, item.name.lastIndexOf('.')) || item.name;
-                    let newFilename = `${originalName}-prostudio.${ext}`;
-                    
-                    // Add to zip folder
-                    zip.file(newFilename, base64Data, {base64: true});
+            if (val.startsWith('scale:')) {
+                const percent = parseInt(val.split(':')[1]) / 100;
+                UI.inW.value = Math.round(item.origW * percent);
+                UI.inH.value = Math.round(item.origH * percent);
+            } else {
+                const dims = val.split('x');
+                UI.inW.value = dims[0];
+                UI.inH.value = dims[1];
+                // Temporarily disable lock to allow exact preset, then re-enable
+                if (Engine.lockRatio) {
+                    Engine.lockRatio = false;
+                    UI.iconLock.className = "fa-solid fa-link-slash text-slate-500";
+                    setTimeout(() => {
+                        Engine.lockRatio = true;
+                        UI.iconLock.className = "fa-solid fa-link";
+                    }, 500);
                 }
+            }
+            UI.presetSelect.value = ""; // reset dropdown visually
+            triggerRender();
+            showToast("Preset Applied", "success");
+        }
+
+        /**
+         * ----------------------------------------
+         * 6. CANVAS RENDER ENGINE (The Core)
+         * ----------------------------------------
+         */
+        function triggerRender() {
+            if (Engine.activeIndex === -1 || Engine.isProcessing) return;
+            renderToCanvas(Engine.files[Engine.activeIndex], UI.canvas, UI.ctx, false);
+            updateEstimations();
+        }
+
+        // Reusable render function for both Live Preview and Background Exporting
+        function renderToCanvas(item, canvasEl, ctx, isExporting = false) {
+            const img = item.imgObj;
+            
+            // Determine Target W/H
+            let targetW = parseInt(UI.inW.value) || img.width;
+            let targetH = parseInt(UI.inH.value) || img.height;
+            
+            canvasEl.width = targetW;
+            canvasEl.height = targetH;
+            
+            // Apply CSS Filters directly to Canvas Context
+            const b = UI.fBrt.value;
+            const c = UI.fCon.value;
+            const s = UI.fSat.value;
+            const blur = UI.fBlr.value;
+            
+            ctx.filter = `brightness(${b}%) contrast(${c}%) saturate(${s}%) blur(${blur}px)`;
+            
+            // Draw Base Image
+            ctx.drawImage(img, 0, 0, targetW, targetH);
+            
+            // Reset filter for Watermark
+            ctx.filter = 'none';
+            
+            // Draw Watermark
+            const wmTxt = UI.wmTxt.value.trim();
+            if (wmTxt) {
+                const opa = UI.wmOpa.value / 100;
+                ctx.globalAlpha = opa;
+                ctx.fillStyle = UI.wmCol.value;
                 
-                DOM.btnExportText.innerHTML = '<i class="fa-solid fa-file-zipper mr-2"></i> Compiling ZIP Archive...';
+                // Smart Font Sizing based on canvas width
+                const fontSize = Math.max(16, targetW * 0.04);
+                ctx.font = `800 ${fontSize}px 'Space Grotesk', sans-serif`;
                 
-                // Generate ZIP Blob
-                const content = await zip.generateAsync({ type: "blob" });
+                // Shadow for visibility
+                ctx.shadowColor = 'rgba(0,0,0,0.8)';
+                ctx.shadowBlur = fontSize * 0.2;
+                ctx.shadowOffsetX = 2;
+                ctx.shadowOffsetY = 2;
                 
-                // Trigger Download
-                const downloadUrl = URL.createObjectURL(content);
-                const a = document.createElement("a");
-                a.href = downloadUrl;
-                a.download = `ProStudio_Batch_Export_${Date.now()}.zip`;
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-                URL.revokeObjectURL(downloadUrl);
+                const padding = targetW * 0.03;
+                let x = 0, y = 0;
                 
-                // Restore the canvas to the currently active UI image
-                if (AppState.activeIndex > -1) {
-                    renderCanvas(AppState.images[AppState.activeIndex]);
-                }
+                // Measure text
+                const metrics = ctx.measureText(wmTxt);
+                const txtW = metrics.width;
+                const txtH = fontSize; // approx height
                 
-            } catch (err) {
-                console.error("Batch Engine Error: ", err);
-                alert("An error occurred during the compilation process.");
-            } finally {
-                // Restore UI
-                AppState.isProcessing = false;
-                DOM.btnExportText.innerHTML = originalBtnText;
-                DOM.btnExport.classList.remove('opacity-75', 'cursor-not-allowed');
+                // Calculate Position based on 3x3 Grid
+                const pos = Engine.wmPos;
+                
+                // X calc
+                if (pos.endsWith('l')) { ctx.textAlign = 'left'; x = padding; }
+                else if (pos.endsWith('c')) { ctx.textAlign = 'center'; x = targetW / 2; }
+                else if (pos.endsWith('r')) { ctx.textAlign = 'right'; x = targetW - padding; }
+                
+                // Y calc (textBaseline affects this)
+                if (pos.startsWith('t')) { ctx.textBaseline = 'top'; y = padding; }
+                else if (pos.startsWith('c')) { ctx.textBaseline = 'middle'; y = targetH / 2; }
+                else if (pos.startsWith('b')) { ctx.textBaseline = 'bottom'; y = targetH - padding; }
+
+                ctx.fillText(wmTxt, x, y);
+                
+                // Reset ctx
+                ctx.globalAlpha = 1.0;
+                ctx.shadowColor = 'transparent';
+            }
+            
+            if (!isExporting) {
+                UI.sNew.textContent = `${targetW}x${targetH}`;
             }
         }
 
-        // Boot the Engine
-        window.addEventListener('DOMContentLoaded', initApp);
+        function updateEstimations() {
+            // Rough size estimation without full compression
+            const format = UI.oFmt.value;
+            const quality = UI.oQua.value / 100;
+            
+            // To not freeze UI, use a small scaled version for estimation if image is huge
+            // Or just use a math formula based on pixels
+            let targetW = parseInt(UI.inW.value) || Engine.files[Engine.activeIndex].origW;
+            let targetH = parseInt(UI.inH.value) || Engine.files[Engine.activeIndex].origH;
+            let pixels = targetW * targetH;
+            
+            // Rough Byte Calc: Pixels * 3 (RGB) * compression factor
+            let factor = format === 'image/webp' ? 0.08 : (format === 'image/jpeg' ? 0.15 : 0.6);
+            factor = factor * (quality + 0.1); // adjust by quality slider
+            
+            let bytes = pixels * factor;
+            let kb = Math.round(bytes / 1024);
+            
+            UI.sSize.textContent = `~${kb} KB`;
+        }
+
+        // Canvas Zoom UI
+        window.zoomCanvas = function(amount) {
+            Engine.zoom += amount;
+            if(Engine.zoom < 0.1) Engine.zoom = 0.1;
+            if(Engine.zoom > 3) Engine.zoom = 3;
+            UI.canvas.style.transform = `scale(${Engine.zoom})`;
+        }
+        window.resetZoom = function() {
+            Engine.zoom = 1.0;
+            UI.canvas.style.transform = `scale(1)`;
+        }
+
+        /**
+         * ----------------------------------------
+         * 7. EXPORT TERMINAL (The 5 Options)
+         * ----------------------------------------
+         */
+         
+        // Helper: Generate Blob from canvas
+        function getCanvasBlob(canvas, format, quality) {
+            return new Promise(resolve => canvas.toBlob(resolve, format, quality));
+        }
+        
+        // Helper: Get Clean Filename
+        function getNewFilename(origName, format) {
+            const ext = format.split('/')[1].replace('jpeg', 'jpg');
+            const base = origName.substring(0, origName.lastIndexOf('.')) || origName;
+            return `${base}-ProStudio.${ext}`;
+        }
+
+        // 1. Single Download
+        window.downloadSingle = async function() {
+            if (Engine.activeIndex === -1) return showToast("No image selected", "error");
+            
+            const format = UI.oFmt.value;
+            const quality = UI.oQua.value / 100;
+            const item = Engine.files[Engine.activeIndex];
+            
+            const a = document.createElement('a');
+            a.download = getNewFilename(item.name, format);
+            a.href = UI.canvas.toDataURL(format, quality);
+            a.click();
+            showToast("Download Initiated", "success");
+        }
+
+        // 2. Batch ZIP
+        window.downloadZIP = async function() {
+            if (Engine.files.length === 0) return showToast("Queue is empty", "error");
+            
+            Engine.isProcessing = true;
+            showLoader("Compiling ZIP Archive...", false);
+            
+            try {
+                const zip = new JSZip();
+                const format = UI.oFmt.value;
+                const quality = UI.oQua.value / 100;
+                
+                // Create a hidden offscreen canvas for background processing
+                const offCanvas = document.createElement('canvas');
+                const offCtx = offCanvas.getContext('2d');
+                
+                for (let i = 0; i < Engine.files.length; i++) {
+                    updateLoader(i+1, Engine.files.length);
+                    const item = Engine.files[i];
+                    
+                    renderToCanvas(item, offCanvas, offCtx, true);
+                    const dataUrl = offCanvas.toDataURL(format, quality);
+                    const base64Data = dataUrl.split(',')[1];
+                    
+                    zip.file(getNewFilename(item.name, format), base64Data, {base64: true});
+                }
+                
+                UI.lText.textContent = "Zipping Files...";
+                const content = await zip.generateAsync({ type: "blob" });
+                
+                const a = document.createElement('a');
+                a.href = URL.createObjectURL(content);
+                a.download = `ProStudio_Batch_${Date.now()}.zip`;
+                a.click();
+                URL.revokeObjectURL(a.href);
+                
+                showToast("ZIP Compilation Complete!", "success");
+            } catch (e) {
+                console.error(e);
+                showToast("Error creating ZIP", "error");
+            } finally {
+                Engine.isProcessing = false;
+                hideLoader();
+                triggerRender(); // Restore main canvas
+            }
+        }
+
+        // 3. Batch PDF
+        window.downloadPDF = async function() {
+            if (Engine.files.length === 0) return showToast("Queue is empty", "error");
+            if (typeof window.jspdf === 'undefined') return showToast("PDF Library loading, try again", "warning");
+            
+            Engine.isProcessing = true;
+            showLoader("Generating PDF Book...", false);
+            
+            try {
+                const { jsPDF } = window.jspdf;
+                // Create PDF (A4 size default)
+                const doc = new jsPDF({ orientation: "portrait", unit: "px", format: "a4" });
+                const pdfW = doc.internal.pageSize.getWidth();
+                const pdfH = doc.internal.pageSize.getHeight();
+                
+                const offCanvas = document.createElement('canvas');
+                const offCtx = offCanvas.getContext('2d');
+                const format = "image/jpeg"; // PDF works best with JPG
+                const quality = UI.oQua.value / 100;
+                
+                for (let i = 0; i < Engine.files.length; i++) {
+                    updateLoader(i+1, Engine.files.length);
+                    const item = Engine.files[i];
+                    
+                    renderToCanvas(item, offCanvas, offCtx, true);
+                    const dataUrl = offCanvas.toDataURL(format, quality);
+                    
+                    if (i > 0) doc.addPage();
+                    
+                    // Fit image into A4 page maintaining aspect ratio
+                    const imgRatio = offCanvas.width / offCanvas.height;
+                    const pageRatio = pdfW / pdfH;
+                    let drawW = pdfW;
+                    let drawH = pdfH;
+                    
+                    if (imgRatio > pageRatio) {
+                        drawH = pdfW / imgRatio; // fit width
+                    } else {
+                        drawW = pdfH * imgRatio; // fit height
+                    }
+                    
+                    // Center on page
+                    const x = (pdfW - drawW) / 2;
+                    const y = (pdfH - drawH) / 2;
+                    
+                    doc.addImage(dataUrl, 'JPEG', x, y, drawW, drawH);
+                }
+                
+                doc.save(`ProStudio_Document_${Date.now()}.pdf`);
+                showToast("PDF Created Successfully!", "success");
+                
+            } catch (e) {
+                console.error(e);
+                showToast("Error generating PDF", "error");
+            } finally {
+                Engine.isProcessing = false;
+                hideLoader();
+            }
+        }
+
+        // 4. Auto Download (Multiple Files without ZIP)
+        window.downloadAuto = async function() {
+            if (Engine.files.length === 0) return showToast("Queue is empty", "error");
+            
+            // Browser might block multiple downloads, need to warn user
+            if(Engine.files.length > 5) {
+                if(!confirm("Warning: Your browser might block multiple simultaneous downloads. Continue?")) return;
+            }
+            
+            Engine.isProcessing = true;
+            showLoader("Auto Saving Files...", false);
+            
+            const format = UI.oFmt.value;
+            const quality = UI.oQua.value / 100;
+            const offCanvas = document.createElement('canvas');
+            const offCtx = offCanvas.getContext('2d');
+            
+            // Function to delay between downloads to prevent browser crash
+            const delay = ms => new Promise(res => setTimeout(res, ms));
+            
+            for (let i = 0; i < Engine.files.length; i++) {
+                updateLoader(i+1, Engine.files.length);
+                const item = Engine.files[i];
+                
+                renderToCanvas(item, offCanvas, offCtx, true);
+                const dataUrl = offCanvas.toDataURL(format, quality);
+                
+                const a = document.createElement('a');
+                a.download = getNewFilename(item.name, format);
+                a.href = dataUrl;
+                a.click();
+                
+                await delay(300); // 300ms delay between downloads
+            }
+            
+            Engine.isProcessing = false;
+            hideLoader();
+            showToast("Auto-Save Complete", "success");
+        }
+
+        // 5. Base64 TXT Export
+        window.downloadBase64 = async function() {
+            if (Engine.files.length === 0) return showToast("Queue is empty", "error");
+            
+            Engine.isProcessing = true;
+            showLoader("Encoding to Base64...", false);
+            
+            try {
+                let textContent = "PROSTUDIO MAX - BASE64 EXPORT LOG\n";
+                textContent += `Date: ${new Date().toLocaleString()}\n`;
+                textContent += `========================================================\n\n`;
+                
+                const format = UI.oFmt.value;
+                const quality = UI.oQua.value / 100;
+                const offCanvas = document.createElement('canvas');
+                const offCtx = offCanvas.getContext('2d');
+                
+                for (let i = 0; i < Engine.files.length; i++) {
+                    updateLoader(i+1, Engine.files.length);
+                    const item = Engine.files[i];
+                    
+                    renderToCanvas(item, offCanvas, offCtx, true);
+                    const dataUrl = offCanvas.toDataURL(format, quality);
+                    
+                    textContent += `--- FILE [${i+1}/${Engine.files.length}]: ${item.name} ---\n`;
+                    textContent += `${dataUrl}\n\n`;
+                }
+                
+                // Create TXT blob
+                const blob = new Blob([textContent], { type: 'text/plain' });
+                const a = document.createElement('a');
+                a.href = URL.createObjectURL(blob);
+                a.download = `ProStudio_Base64_Codes.txt`;
+                a.click();
+                URL.revokeObjectURL(a.href);
+                
+                showToast("Base64 TXT Downloaded", "success");
+            } catch (e) {
+                showToast("Error encoding Base64", "error");
+            } finally {
+                Engine.isProcessing = false;
+                hideLoader();
+            }
+        }
+
+        /**
+         * ----------------------------------------
+         * 8. UTILITIES (Toasts & Loaders)
+         * ----------------------------------------
+         */
+        function showToast(message, type="info") {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            
+            let icon = 'fa-info-circle text-[var(--c-brand)]';
+            if(type === 'success') icon = 'fa-check-circle text-[var(--c-success)]';
+            if(type === 'error') icon = 'fa-triangle-exclamation text-[var(--c-accent1)]';
+            
+            toast.innerHTML = `<i class="fa-solid ${icon} text-lg"></i> <span class="text-sm font-bold tracking-wide">${message}</span>`;
+            
+            container.appendChild(toast);
+            
+            // Trigger animation
+            setTimeout(() => toast.classList.add('show'), 10);
+            
+            // Remove after 3s
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 400);
+            }, 3000);
+        }
+
+        function showLoader(text, indeterminate = false) {
+            UI.loader.classList.remove('hidden');
+            UI.lText.textContent = text;
+            if (indeterminate) {
+                UI.lSub.classList.add('hidden');
+                UI.lBar.style.width = '100%';
+                UI.lBar.classList.add('animate-pulse');
+            } else {
+                UI.lSub.classList.remove('hidden');
+                UI.lSub.textContent = `0 / ${Engine.files.length}`;
+                UI.lBar.style.width = '0%';
+                UI.lBar.classList.remove('animate-pulse');
+            }
+        }
+
+        function updateLoader(current, total) {
+            UI.lSub.textContent = `${current} / ${total} Processed`;
+            const percent = (current / total) * 100;
+            UI.lBar.style.width = `${percent}%`;
+        }
+
+        function hideLoader() {
+            UI.loader.classList.add('hidden');
+        }
+
+        // Boot
+        window.addEventListener('DOMContentLoaded', init);
+
     </script>
 </body>
 </html>
