@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate Love Calculator 💖</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* ================= DARK MODE VARIABLES ================= */
+        :root {
+            --bg-color: #1a000d;
+            --container-bg: #2d0016;
+            --text-color: #ffcccc;
+            --primary: #ff1a53;
+            --secondary: #ff4d79;
+            --accent: #660022;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; transition: background 0.3s, color 0.3s; }
+        
+        body { background: var(--bg-color); color: var(--text-color); overflow-x: hidden; position: relative; }
+        
+        /* Heart Particle Background */
+        .heart-particle {
+            position: absolute; color: var(--primary); font-size: 20px; opacity: 0.5;
+            animation: floatUp 5s linear infinite; pointer-events: none; z-index: -1;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) scale(0.5); opacity: 0.7; }
+            100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+        }
+
+        /* Layout */
+        .header { display: flex; justify-content: space-between; padding: 15px 20px; background: var(--container-bg); box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .controls select { padding: 5px 10px; border-radius: 5px; border: 1px solid var(--primary); background: transparent; color: var(--text-color); cursor: pointer; }
+        
+        .container { max-width: 600px; margin: 30px auto; padding: 20px; background: var(--container-bg); border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); text-align: center; }
+        
+        /* Tabs */
+        .tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+        .tab-btn { padding: 10px 15px; border: none; background: var(--accent); color: #fff; border-radius: 20px; cursor: pointer; font-weight: bold; }
+        .tab-btn.active { background: var(--secondary); }
+
+        /* Inputs */
+        .input-group { margin-bottom: 15px; }
+        input[type="text"], input[type="date"] { width: 90%; padding: 12px; border: 2px solid var(--accent); border-radius: 8px; margin-top: 5px; background: var(--container-bg); color: var(--text-color); }
+        .gender-select { display: flex; justify-content: center; gap: 15px; margin-top: 5px; }
+        .gender-select i { font-size: 24px; cursor: pointer; color: gray; }
+        .gender-select i.active.fa-mars { color: #3399ff; }
+        .gender-select i.active.fa-venus { color: #ff3399; }
+
+        .btn-calc { background: linear-gradient(45deg, var(--primary), var(--secondary)); color: white; border: none; padding: 15px 30px; font-size: 18px; border-radius: 30px; cursor: pointer; width: 90%; font-weight: bold; box-shadow: 0 4px 15px rgba(255, 26, 83, 0.4); margin-top: 10px; }
+        .btn-calc:hover { transform: scale(1.05); }
+
+        /* Results Section */
+        #result-section { display: none; margin-top: 20px; animation: popIn 0.5s ease; }
+        @keyframes popIn { 0% { transform: scale(0.8); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+        
+        .score-circle { width: 120px; height: 120px; border-radius: 50%; border: 8px solid var(--primary); display: flex; align-items: center; justify-content: center; font-size: 32px; font-weight: bold; margin: 0 auto 15px; color: var(--primary); position: relative; }
+        .heart-burst { position: absolute; font-size: 40px; animation: burst 0.8s ease-out; opacity: 0; }
+        @keyframes burst { 0% { transform: scale(0); opacity: 1; } 100% { transform: scale(3); opacity: 0; } }
+
+        .progress-bar { width: 100%; background: #ddd; border-radius: 10px; margin: 5px 0 15px; height: 10px; overflow: hidden; }
+        .progress-fill { height: 100%; background: var(--primary); width: 0%; transition: width 1.5s ease-in-out; }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; text-align: left; font-size: 14px; }
+        .info-box { background: var(--accent); padding: 10px; border-radius: 8px; color: #fff; text-align: center; }
+
+        /* Social & Actions */
+        .action-btns { display: flex; justify-content: center; gap: 10px; margin-top: 15px; }
+        .action-btns button { padding: 10px; border: none; border-radius: 5px; color: white; cursor: pointer; font-weight: bold; }
+        .btn-wa { background: #25D366; } .btn-fb { background: #1877F2; } .btn-copy { background: #333; }
+
+        /* SEO & Extras */
+        .seo-section { max-width: 600px; margin: 20px auto; padding: 20px; background: var(--container-bg); border-radius: 15px; }
+        .seo-section h3 { border-bottom: 2px solid var(--primary); padding-bottom: 5px; margin-bottom: 10px; }
+        .ad-banner { background: #3d001e; border: 1px dashed #55002b; width: 300px; height: 250px; margin: 20px auto; display: flex; align-items: center; justify-content: center; color: #888; }
+        
+        .related-tools a { display: inline-block; margin: 5px; padding: 8px 15px; background: var(--accent); color: white; text-decoration: none; border-radius: 20px; font-size: 12px; }
+    </style>
+</head>
+<body>
+
+    <audio id="heartbeat-sound" src="https://www.soundjay.com/human/sounds/heartbeat-01a.mp3" preload="auto"></audio>
+
+    <div class="header">
+        <h2>💖 LoveCalc</h2>
+        <div class="controls">
+            <select id="lang-select">
+                <option value="en">English</option>
+                <option value="bn">বাংলা</option>
+                <option value="hi">हिन्दी</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('name')">Name Match</button>
+            <button class="tab-btn" onclick="switchTab('dob')">DOB Match</button>
+            <button class="tab-btn" onclick="switchTab('secret')">Secret Crush</button>
+            <button class="tab-btn" onclick="switchTab('celeb')">Celebrity</button>
+        </div>
+
+        <div id="calc-form">
+            <div class="input-group">
+                <input type="text" id="name1" placeholder="Your Name" required>
+                <div class="gender-select">
+                    <i class="fas fa-mars active" onclick="setGender(this, 'm1')"></i>
+                    <i class="fas fa-venus" onclick="setGender(this, 'f1')"></i>
+                </div>
+            </div>
+            <div class="input-group" id="dob-group1" style="display:none;">
+                <input type="date" id="dob1">
+            </div>
+            
+            <div style="font-size: 24px; color: var(--primary); margin: 10px 0;">❤️</div>
+
+            <div class="input-group">
+                <input type="text" id="name2" placeholder="Partner's Name" required>
+                <div class="gender-select">
+                    <i class="fas fa-mars" onclick="setGender(this, 'm2')"></i>
+                    <i class="fas fa-venus active" onclick="setGender(this, 'f2')"></i>
+                </div>
+            </div>
+            <div class="input-group" id="dob-group2" style="display:none;">
+                <input type="date" id="dob2">
+            </div>
+
+            <button class="btn-calc" onclick="calculateLove()">Calculate Love <i class="fas fa-heart"></i></button>
+        </div>
+
+        <div id="result-section">
+            <div class="score-circle">
+                <i class="fas fa-heart heart-burst" id="burst-anim"></i>
+                <span id="final-score">0%</span>
+            </div>
+            <h2 id="result-category" style="color: var(--secondary);">Soulmates</h2>
+            <p>Nickname: <strong id="couple-name"></strong></p>
+
+            <div style="text-align: left; margin-top: 20px;">
+                <label>Trust: <span id="val-trust"></span></label>
+                <div class="progress-bar"><div class="progress-fill" id="bar-trust"></div></div>
+                
+                <label>Communication: <span id="val-comm"></span></label>
+                <div class="progress-bar"><div class="progress-fill" id="bar-comm"></div></div>
+                
+                <label>Attraction: <span id="val-attr"></span></label>
+                <div class="progress-bar"><div class="progress-fill" id="bar-attr"></div></div>
+            </div>
+
+            <div class="grid-2" style="margin-top: 20px;">
+                <div class="info-box">
+                    <strong>💡 Advice</strong><br>
+                    <span id="love-advice"></span>
+                </div>
+                <div class="info-box">
+                    <strong>🔮 Prediction</strong><br>
+                    <span id="love-predict"></span>
+                </div>
+            </div>
+            <div class="info-box" style="margin-top:10px; background: var(--primary);">
+                <strong>📅 Today's Vibe:</strong> <span id="daily-vibe"></span>
+            </div>
+
+            <div class="action-btns">
+                <button class="btn-wa" onclick="share('whatsapp')"><i class="fab fa-whatsapp"></i> Share</button>
+                <button class="btn-fb" onclick="share('facebook')"><i class="fab fa-facebook"></i> Share</button>
+                <button class="btn-copy" onclick="share('copy')"><i class="fas fa-link"></i> Copy Link</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="ad-banner">
+        300x250 Ad Placement
+    </div>
+
+    <div class="seo-section">
+        <h3>🕒 Recent Matches</h3>
+        <ul id="recent-list" style="list-style:none; font-size: 14px; margin-bottom: 20px;"></ul>
+
+        <h3>❓ Love Quiz: What's your style?</h3>
+        <div style="background: #4a0026; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+            <p>Do you believe in love at first sight?</p>
+            <button style="padding:5px; margin:5px; cursor:pointer;">Yes</button> <button style="padding:5px; margin:5px; cursor:pointer;">No</button>
+            <br><input type="email" placeholder="Enter email for full quiz results" style="padding: 5px; margin-top:10px; width: 100%;">
+            <button style="padding: 5px 10px; background:var(--primary); color:white; border:none; margin-top:10px; cursor:pointer;">Submit</button>
+        </div>
+
+        <h3>📖 Blog: Top Signs You Found 'The One'</h3>
+        <p style="font-size: 14px; color: #ccc;">1. You feel completely comfortable being yourself... <a href="#" style="color:var(--primary)">Read more</a></p>
+
+        <h3 style="margin-top: 20px;">❓ FAQ & How to Use</h3>
+        <details>
+            <summary style="cursor:pointer; font-weight:bold;">Is this calculator accurate?</summary>
+            <p style="font-size:12px; margin-top:5px;">This tool uses a deterministic algorithm based on character matching and numerology for entertainment purposes!</p>
+        </details>
+        <details>
+            <summary style="cursor:pointer; font-weight:bold;">How to use?</summary>
+            <p style="font-size:12px; margin-top:5px;">Enter your name, your partner's name, select gender, and hit Calculate. Use the share button to send them the secret link!</p>
+        </details>
+
+        <h3 style="margin-top: 20px;">🔗 Related Tools</h3>
+        <div class="related-tools">
+            <a href="bmi.html">BMI Calculator</a>
+            <a href="age.html">Age Calculator</a>
+            <a href="qr.html">QR Code Generator</a>
+        </div>
+    </div>
+
+    <script>
+        function createHearts() {
+            const heart = document.createElement("i");
+            heart.classList.add("fas", "fa-heart", "heart-particle");
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+            document.body.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 5000);
+        }
+        setInterval(createHearts, 500);
+
+        function switchTab(type) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            document.getElementById('dob-group1').style.display = type === 'dob' ? 'block' : 'none';
+            document.getElementById('dob-group2').style.display = type === 'dob' ? 'block' : 'none';
+            
+            if(type === 'secret') {
+                document.getElementById('name2').placeholder = "Secret Crush Name (Hidden)";
+                document.getElementById('name2').type = "password";
+            } else {
+                document.getElementById('name2').placeholder = type === 'celeb' ? "Celebrity Name" : "Partner's Name";
+                document.getElementById('name2').type = "text";
+            }
+        }
+
+        function setGender(el, type) {
+            el.parentElement.querySelectorAll('i').forEach(i => i.classList.remove('active'));
+            el.classList.add('active');
+        }
+
+        function getDeterministicScore(str1, str2) {
+            let combined = (str1 + str2).toLowerCase().replace(/\s/g, '');
+            let sum = 0;
+            for(let i=0; i<combined.length; i++) {
+                sum += combined.charCodeAt(i);
+            }
+            return (sum % 101);
+        }
+
+        function calculateLove() {
+            const n1 = document.getElementById('name1').value.trim();
+            const n2 = document.getElementById('name2').value.trim();
+            
+            if(!n1 || !n2) { alert("Please enter both names!"); return; }
+
+            const sound = document.getElementById('heartbeat-sound');
+            sound.play().catch(e => console.log("Audio play blocked."));
+
+            const score = getDeterministicScore(n1, n2);
+            const trust = (getDeterministicScore(n1+"trust", n2) % 40) + 60; 
+            const comm = (getDeterministicScore(n1+"comm", n2) % 50) + 50;
+            const attr = (getDeterministicScore(n1+"attr", n2) % 30) + 70;
+            
+            const nick = n1.slice(0, Math.ceil(n1.length/2)) + n2.slice(Math.ceil(n2.length/2)).toLowerCase();
+
+            let cat = "", advice = "", predict = "";
+            if(score <= 30) { cat = "Enemies 💔"; advice = "Move on, plenty of fish in the sea!"; predict = "Lasts 2 weeks tops."; }
+            else if(score <= 50) { cat = "Just Friends 🤝"; advice = "Keep it platonic to save the bond."; predict = "Best friends for 5 years."; }
+            else if(score <= 80) { cat = "Lovers 🥰"; advice = "Great chemistry, work on communication."; predict = "Happily together for 10+ years!"; }
+            else { cat = "Soulmates 💍"; advice = "You two are made for each other!"; predict = "Forever and eternity! 💒"; }
+
+            document.getElementById('result-section').style.display = 'block';
+            
+            document.getElementById('burst-anim').style.animation = 'none';
+            setTimeout(() => document.getElementById('burst-anim').style.animation = 'burst 0.8s ease-out', 10);
+
+            animateValue("final-score", 0, score, 1500);
+            document.getElementById('result-category').innerText = cat;
+            document.getElementById('couple-name').innerText = nick.charAt(0).toUpperCase() + nick.slice(1);
+            
+            setTimeout(() => {
+                document.getElementById('bar-trust').style.width = trust + '%';
+                document.getElementById('val-trust').innerText = trust + '%';
+                document.getElementById('bar-comm').style.width = comm + '%';
+                document.getElementById('val-comm').innerText = comm + '%';
+                document.getElementById('bar-attr').style.width = attr + '%';
+                document.getElementById('val-attr').innerText = attr + '%';
+            }, 500);
+
+            document.getElementById('love-advice').innerText = advice;
+            document.getElementById('love-predict').innerText = predict;
+
+            const days = ["Romantic dinner needed", "Little fights, but cute", "Perfect harmony today!", "Surprise them with a gift", "Give each other some space today"];
+            document.getElementById('daily-vibe').innerText = days[new Date().getDay() % 5];
+
+            saveRecent(n1, n2, score);
+            document.getElementById('result-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function animateValue(id, start, end, duration) {
+            let obj = document.getElementById(id);
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                obj.innerHTML = Math.floor(progress * (end - start) + start) + "%";
+                if (progress < 1) { window.requestAnimationFrame(step); }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        function saveRecent(n1, n2, score) {
+            let recents = JSON.parse(localStorage.getItem('love_recents') || '[]');
+            recents.unshift(`${n1} & ${n2} - ${score}%`);
+            if(recents.length > 5) recents.pop();
+            localStorage.setItem('love_recents', JSON.stringify(recents));
+            loadRecents();
+        }
+
+        function loadRecents() {
+            let recents = JSON.parse(localStorage.getItem('love_recents') || '[]');
+            const list = document.getElementById('recent-list');
+            list.innerHTML = "";
+            recents.forEach(r => {
+                let li = document.createElement('li');
+                li.innerText = "💕 " + r;
+                li.style.padding = "5px";
+                li.style.borderBottom = "1px solid #4a0026";
+                list.appendChild(li);
+            });
+        }
+
+        function share(platform) {
+            const n1 = document.getElementById('name1').value;
+            const n2 = document.getElementById('name2').value;
+            const score = document.getElementById('final-score').innerText;
+            const url = window.location.origin + window.location.pathname + `?n1=${encodeURIComponent(n1)}&n2=${encodeURIComponent(n2)}`;
+            const text = `I checked my love score with ${n2} and got ${score}! Check yours: ${url}`;
+
+            if(platform === 'whatsapp') window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`);
+            if(platform === 'facebook') window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`);
+            if(platform === 'copy') {
+                navigator.clipboard.writeText(text);
+                alert("Link copied! Share it with your crush 😉");
+            }
+        }
+
+        window.onload = () => {
+            loadRecents();
+            const params = new URLSearchParams(window.location.search);
+            if(params.has('n1') && params.has('n2')) {
+                document.getElementById('name1').value = params.get('n1');
+                document.getElementById('name2').value = params.get('n2');
+                setTimeout(calculateLove, 500);
+            }
+        }
+    </script>
+</body>
+</html>
