@@ -2,108 +2,103 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- 22. Mobile Responsive -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ultimate Viral Love Calculator 💖</title>
+    <title>Ultimate Love Calculator 💖</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        /* 14. Dark + Pink Theme Toggle */
+        /* ================= THEME & CSS VARIABLES ================= */
         :root {
-            --bg: #ffe6f2; --card-bg: #ffffff; --text: #333333;
-            --primary: #ff4d79; --secondary: #ff1a53; --accent: #ff99bb;
-            --font: 'Segoe UI', sans-serif;
+            --bg-color: #ffe6f2;
+            --container-bg: #ffffff;
+            --text-color: #333333;
+            --primary: #ff4d79;
+            --secondary: #ff1a53;
+            --accent: #ff99bb;
+            --font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
+
         [data-theme="dark"] {
-            --bg: #1a000d; --card-bg: #2d0016; --text: #ffcccc;
-            --primary: #ff1a53; --secondary: #ff4d79; --accent: #660022;
+            --bg-color: #1a000d;
+            --container-bg: #2d0016;
+            --text-color: #ffcccc;
+            --primary: #ff1a53;
+            --secondary: #ff4d79;
+            --accent: #660022;
         }
+
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: var(--font); transition: background 0.3s, color 0.3s; }
-        body { background: var(--bg); color: var(--text); overflow-x: hidden; position: relative; }
+        
+        body { background: var(--bg-color); color: var(--text-color); overflow-x: hidden; position: relative; }
         
         /* 15. Heart Particle Background */
-        .particle { position: absolute; color: var(--primary); font-size: 20px; opacity: 0.5; animation: floatUp 5s linear infinite; pointer-events: none; z-index: -1; }
-        @keyframes floatUp { 0% { transform: translateY(100vh) scale(0.5); opacity: 0.7; } 100% { transform: translateY(-10vh) scale(1.2); opacity: 0; } }
+        .heart-particle {
+            position: absolute; color: var(--primary); font-size: 20px; opacity: 0.5;
+            animation: floatUp 5s linear infinite; pointer-events: none; z-index: -1;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) scale(0.5); opacity: 0.7; }
+            100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+        }
 
-        /* Header & Navigation */
-        .header { display: flex; justify-content: space-between; padding: 15px 20px; background: var(--card-bg); box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; }
-        .controls select, .controls button { padding: 8px 12px; border-radius: 5px; border: 1px solid var(--primary); background: transparent; color: var(--text); cursor: pointer; margin-left: 5px; }
+        /* Layout */
+        .header { display: flex; justify-content: space-between; padding: 15px 20px; background: var(--container-bg); box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .controls select, .controls button { padding: 5px 10px; border-radius: 5px; border: 1px solid var(--primary); background: transparent; color: var(--text-color); cursor: pointer; }
         
-        .container { max-width: 700px; margin: 30px auto; padding: 20px; }
-        .card { background: var(--card-bg); border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); padding: 25px; margin-bottom: 25px; text-align: center; }
+        .container { max-width: 600px; margin: 30px auto; padding: 20px; background: var(--container-bg); border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); text-align: center; }
         
         /* Tabs */
         .tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
-        .tab-btn { padding: 10px 15px; border: none; background: var(--accent); color: #fff; border-radius: 20px; cursor: pointer; font-weight: bold; flex-grow: 1; }
+        .tab-btn { padding: 10px 15px; border: none; background: var(--accent); color: #fff; border-radius: 20px; cursor: pointer; font-weight: bold; }
         .tab-btn.active { background: var(--secondary); }
 
-        /* Inputs & Gender */
-        .input-group { margin-bottom: 15px; text-align: left; }
-        .input-group label { font-size: 14px; font-weight: bold; color: var(--primary); margin-bottom: 5px; display: block; }
-        input[type="text"], input[type="date"], input[type="password"], select { width: 100%; padding: 12px; border: 2px solid var(--accent); border-radius: 8px; background: var(--bg); color: var(--text); font-size: 16px; outline: none; }
-        
-        /* 13. Gender Selection */
-        .gender-select { display: flex; justify-content: center; gap: 20px; margin-top: 10px; }
-        .gender-select i { font-size: 28px; cursor: pointer; color: gray; padding: 10px; border-radius: 50%; border: 2px solid transparent; }
-        .gender-select i.active.fa-mars { color: #3399ff; border-color: #3399ff; background: rgba(51, 153, 255, 0.1); }
-        .gender-select i.active.fa-venus { color: #ff3399; border-color: #ff3399; background: rgba(255, 51, 153, 0.1); }
+        /* Inputs */
+        .input-group { margin-bottom: 15px; }
+        input[type="text"], input[type="date"] { width: 90%; padding: 12px; border: 2px solid var(--accent); border-radius: 8px; margin-top: 5px; background: var(--container-bg); color: var(--text-color); }
+        .gender-select { display: flex; justify-content: center; gap: 15px; margin-top: 5px; }
+        .gender-select i { font-size: 24px; cursor: pointer; color: gray; }
+        .gender-select i.active.fa-mars { color: #3399ff; }
+        .gender-select i.active.fa-venus { color: #ff3399; }
 
-        .btn-calc { background: linear-gradient(45deg, var(--primary), var(--secondary)); color: white; border: none; padding: 15px 30px; font-size: 20px; border-radius: 30px; cursor: pointer; width: 100%; font-weight: bold; box-shadow: 0 4px 15px rgba(255, 26, 83, 0.4); margin-top: 15px; }
-        .btn-calc:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255, 26, 83, 0.6); }
+        .btn-calc { background: linear-gradient(45deg, var(--primary), var(--secondary)); color: white; border: none; padding: 15px 30px; font-size: 18px; border-radius: 30px; cursor: pointer; width: 90%; font-weight: bold; box-shadow: 0 4px 15px rgba(255, 26, 83, 0.4); margin-top: 10px; }
+        .btn-calc:hover { transform: scale(1.05); }
 
-        /* 4. Animated Result Section */
-        #result-section { display: none; animation: popIn 0.5s ease; }
+        /* Results Section */
+        #result-section { display: none; margin-top: 20px; animation: popIn 0.5s ease; }
         @keyframes popIn { 0% { transform: scale(0.8); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
         
-        .score-circle { width: 150px; height: 150px; border-radius: 50%; border: 10px solid var(--primary); display: flex; align-items: center; justify-content: center; font-size: 40px; font-weight: bold; margin: 0 auto 15px; color: var(--primary); position: relative; background: var(--bg); }
-        .heart-burst { position: absolute; font-size: 50px; animation: burst 1s ease-out; opacity: 0; color: var(--secondary); }
-        @keyframes burst { 0% { transform: scale(0); opacity: 1; } 100% { transform: scale(4); opacity: 0; } }
+        .score-circle { width: 120px; height: 120px; border-radius: 50%; border: 8px solid var(--primary); display: flex; align-items: center; justify-content: center; font-size: 32px; font-weight: bold; margin: 0 auto 15px; color: var(--primary); position: relative; }
+        .heart-burst { position: absolute; font-size: 40px; animation: burst 0.8s ease-out; opacity: 0; }
+        @keyframes burst { 0% { transform: scale(0); opacity: 1; } 100% { transform: scale(3); opacity: 0; } }
 
-        /* 6. Score Breakdown Bars */
-        .breakdown { text-align: left; margin: 20px 0; background: var(--bg); padding: 15px; border-radius: 10px; }
-        .progress-container { width: 100%; background: #ddd; border-radius: 10px; margin: 5px 0 15px; height: 12px; overflow: hidden; }
-        .progress-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--secondary)); width: 0%; transition: width 2s cubic-bezier(0.1, 0.7, 0.1, 1); }
+        .progress-bar { width: 100%; background: #ddd; border-radius: 10px; margin: 5px 0 15px; height: 10px; overflow: hidden; }
+        .progress-fill { height: 100%; background: var(--primary); width: 0%; transition: width 1.5s ease-in-out; }
 
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; text-align: left; font-size: 14px; margin-top: 15px; }
-        .info-box { background: var(--bg); padding: 15px; border-radius: 10px; border-left: 4px solid var(--primary); }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; text-align: left; font-size: 14px; }
+        .info-box { background: var(--accent); padding: 10px; border-radius: 8px; color: #fff; text-align: center; }
 
-        /* 5. Share Buttons */
-        .action-btns { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 20px; }
-        .action-btns button { padding: 12px; border: none; border-radius: 8px; color: white; cursor: pointer; font-weight: bold; font-size: 14px; }
+        /* Social & Actions */
+        .action-btns { display: flex; justify-content: center; gap: 10px; margin-top: 15px; }
+        .action-btns button { padding: 10px; border: none; border-radius: 5px; color: white; cursor: pointer; font-weight: bold; }
         .btn-wa { background: #25D366; } .btn-fb { background: #1877F2; } .btn-copy { background: #333; }
 
-        /* Extra Features */
-        h3 { color: var(--primary); margin-bottom: 15px; border-bottom: 2px dashed var(--accent); padding-bottom: 5px; text-align: left; }
+        /* SEO & Extras */
+        .seo-section { max-width: 600px; margin: 20px auto; padding: 20px; background: var(--container-bg); border-radius: 15px; }
+        .seo-section h3 { border-bottom: 2px solid var(--primary); padding-bottom: 5px; margin-bottom: 10px; }
+        .ad-banner { background: #f4f4f4; border: 1px dashed #ccc; width: 300px; height: 250px; margin: 20px auto; display: flex; align-items: center; justify-content: center; color: #888; }
         
-        /* 20. Ad Banner */
-        .ad-banner { background: #f4f4f4; border: 2px dashed #ccc; width: 300px; height: 250px; margin: 0 auto 25px; display: flex; align-items: center; justify-content: center; color: #888; font-weight: bold; }
-        
-        /* FAQ & Accordion */
-        details { background: var(--bg); padding: 10px 15px; margin-bottom: 10px; border-radius: 8px; text-align: left; cursor: pointer; }
-        summary { font-weight: bold; color: var(--secondary); outline: none; }
-        details p { margin-top: 10px; font-size: 14px; line-height: 1.5; }
-
-        /* Quiz Form */
-        .quiz-form { text-align: left; background: var(--bg); padding: 20px; border-radius: 10px; }
-        .quiz-form label { display: block; margin: 10px 0 5px; font-weight: bold; }
-        .quiz-btn { background: var(--secondary); color: white; padding: 10px 20px; border: none; border-radius: 5px; margin-top: 15px; cursor: pointer; }
-
-        /* 28. Related Tools */
-        .related-tools { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
-        .related-tools a { padding: 10px 20px; background: var(--accent); color: white; text-decoration: none; border-radius: 20px; font-size: 14px; font-weight: bold; }
-        
-        #secret-reveal-btn { background: #333; color: white; border: none; padding: 8px; border-radius: 5px; cursor: pointer; margin-top: 5px; width: 100%; display: none; }
+        .related-tools a { display: inline-block; margin: 5px; padding: 8px 15px; background: var(--accent); color: white; text-decoration: none; border-radius: 20px; font-size: 12px; }
     </style>
 </head>
 <body>
 
-    <!-- 24. Sound Effect -->
-    <audio id="sound-effect" src="https://www.soundjay.com/human/sounds/heartbeat-01a.mp3" preload="auto"></audio>
+    <!-- Audio Effect -->
+    <audio id="heartbeat-sound" src="https://www.soundjay.com/human/sounds/heartbeat-01a.mp3" preload="auto"></audio>
 
-    <!-- Header / 21. Multi Language / 14. Theme -->
+    <!-- Header (Theme & Lang) -->
     <div class="header">
-        <h2 data-i18n="title">💖 LoveCalc Pro</h2>
+        <h2>💖 LoveCalc</h2>
         <div class="controls">
-            <select id="lang-select" onchange="changeLanguage()">
+            <select id="lang-select">
                 <option value="en">English</option>
                 <option value="bn">বাংলা</option>
                 <option value="hi">हिन्दी</option>
@@ -112,412 +107,294 @@
         </div>
     </div>
 
+    <!-- Main Calculator -->
     <div class="container">
-        <!-- Input Card -->
-        <div class="card" id="input-card">
-            <div class="tabs">
-                <!-- 1, 2, 11, 12 Features Tabs -->
-                <button class="tab-btn active" onclick="setMode('name')" data-i18n="tab_name">Name Match</button>
-                <button class="tab-btn" onclick="setMode('dob')" data-i18n="tab_dob">DOB Match</button>
-                <button class="tab-btn" onclick="setMode('secret')" data-i18n="tab_secret">Secret Crush</button>
-                <button class="tab-btn" onclick="setMode('celeb')" data-i18n="tab_celeb">Celeb Match</button>
-            </div>
-
-            <div class="input-group">
-                <label data-i18n="your_name">Your Name:</label>
-                <input type="text" id="name1" placeholder="Enter your name" required>
-                <!-- 2. DOB inputs -->
-                <input type="date" id="dob1" style="display:none; margin-top:10px;">
-                <!-- 13. Gender Selection -->
-                <div class="gender-select">
-                    <i class="fas fa-mars active" onclick="selectGender(this, 'm1')"></i>
-                    <i class="fas fa-venus" onclick="selectGender(this, 'f1')"></i>
-                </div>
-            </div>
-
-            <div style="font-size: 30px; margin: 15px 0; color: var(--primary);"><i class="fas fa-heartbeat"></i></div>
-
-            <div class="input-group">
-                <label id="label-name2" data-i18n="partner_name">Partner's Name:</label>
-                <input type="text" id="name2" placeholder="Enter partner's name" required>
-                <!-- 12. Celeb Dropdown -->
-                <select id="celeb-select" style="display:none; margin-top:5px;">
-                    <option value="Shahrukh Khan">Shahrukh Khan</option>
-                    <option value="Alia Bhatt">Alia Bhatt</option>
-                    <option value="Virat Kohli">Virat Kohli</option>
-                    <option value="Deepika Padukone">Deepika Padukone</option>
-                    <option value="BTS Jungkook">BTS Jungkook</option>
-                    <option value="Taylor Swift">Taylor Swift</option>
-                </select>
-                <!-- 11. Secret Crush Reveal -->
-                <button id="secret-reveal-btn" onclick="revealCrush()"><i class="fas fa-eye"></i> Reveal Crush Name</button>
-                
-                <input type="date" id="dob2" style="display:none; margin-top:10px;">
-                <div class="gender-select" id="gender2-container">
-                    <i class="fas fa-mars" onclick="selectGender(this, 'm2')"></i>
-                    <i class="fas fa-venus active" onclick="selectGender(this, 'f2')"></i>
-                </div>
-            </div>
-
-            <!-- 23. No Page Reload (Handled via JS onClick) -->
-            <button class="btn-calc" onclick="runCalculator()" data-i18n="btn_calc">Calculate Love 💘</button>
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('name')">Name Match</button>
+            <button class="tab-btn" onclick="switchTab('dob')">DOB Match</button>
+            <button class="tab-btn" onclick="switchTab('secret')">Secret Crush</button>
+            <button class="tab-btn" onclick="switchTab('celeb')">Celebrity</button>
         </div>
 
-        <!-- Result Card -->
-        <div class="card" id="result-section">
-            <h3 style="text-align:center; border:none;" data-i18n="result_title">Your Compatibility Result</h3>
+        <div id="calc-form">
+            <div class="input-group">
+                <input type="text" id="name1" placeholder="Your Name" required>
+                <div class="gender-select">
+                    <i class="fas fa-mars active" onclick="setGender(this, 'm1')"></i>
+                    <i class="fas fa-venus" onclick="setGender(this, 'f1')"></i>
+                </div>
+            </div>
+            <div class="input-group" id="dob-group1" style="display:none;">
+                <input type="date" id="dob1">
+            </div>
             
+            <div style="font-size: 24px; color: var(--primary); margin: 10px 0;">❤️</div>
+
+            <div class="input-group">
+                <input type="text" id="name2" placeholder="Partner's Name" required>
+                <div class="gender-select">
+                    <i class="fas fa-mars" onclick="setGender(this, 'm2')"></i>
+                    <i class="fas fa-venus active" onclick="setGender(this, 'f2')"></i>
+                </div>
+            </div>
+            <div class="input-group" id="dob-group2" style="display:none;">
+                <input type="date" id="dob2">
+            </div>
+
+            <button class="btn-calc" onclick="calculateLove()">Calculate Love <i class="fas fa-heart"></i></button>
+        </div>
+
+        <!-- Results Section -->
+        <div id="result-section">
             <div class="score-circle">
                 <i class="fas fa-heart heart-burst" id="burst-anim"></i>
                 <span id="final-score">0%</span>
             </div>
-            <!-- 3. Result Categories -->
-            <h2 id="result-category" style="color: var(--secondary); font-size: 28px; margin-bottom: 10px;">Soulmates</h2>
-            
-            <!-- 7. Couple Nickname -->
-            <p style="font-size: 18px;">✨ Couple Name: <strong id="couple-name" style="color:var(--primary);"></strong> ✨</p>
-            <p id="zodiac-match" style="color:gray; font-size:14px; margin-top:5px; display:none;"></p>
+            <h2 id="result-category" style="color: var(--secondary);">Soulmates</h2>
+            <p>Nickname: <strong id="couple-name"></strong></p>
 
-            <!-- 6. Score Breakdown -->
-            <div class="breakdown">
-                <div><span style="float:right" id="val-trust">0%</span><strong>🛡️ Trust:</strong></div>
-                <div class="progress-container"><div class="progress-fill" id="bar-trust"></div></div>
+            <div style="text-align: left; margin-top: 20px;">
+                <label>Trust: <span id="val-trust"></span></label>
+                <div class="progress-bar"><div class="progress-fill" id="bar-trust"></div></div>
                 
-                <div><span style="float:right" id="val-comm">0%</span><strong>🗣️ Communication:</strong></div>
-                <div class="progress-container"><div class="progress-fill" id="bar-comm"></div></div>
+                <label>Communication: <span id="val-comm"></span></label>
+                <div class="progress-bar"><div class="progress-fill" id="bar-comm"></div></div>
                 
-                <div><span style="float:right" id="val-attr">0%</span><strong>🔥 Attraction:</strong></div>
-                <div class="progress-container"><div class="progress-fill" id="bar-attr"></div></div>
+                <label>Attraction: <span id="val-attr"></span></label>
+                <div class="progress-bar"><div class="progress-fill" id="bar-attr"></div></div>
             </div>
 
-            <div class="grid-2">
-                <!-- 8. Love Advice Section -->
+            <div class="grid-2" style="margin-top: 20px;">
                 <div class="info-box">
-                    <strong>💡 Expert Advice</strong><br>
-                    <span id="love-advice" style="color:var(--text);"></span>
+                    <strong>💡 Advice</strong><br>
+                    <span id="love-advice"></span>
                 </div>
-                <!-- 9. Relationship Prediction -->
                 <div class="info-box">
-                    <strong>🔮 Future Prediction</strong><br>
-                    <span id="love-predict" style="color:var(--text);"></span>
+                    <strong>🔮 Prediction</strong><br>
+                    <span id="love-predict"></span>
                 </div>
             </div>
-
-            <!-- 25. Daily Compatibility -->
-            <div class="info-box" style="margin-top:15px; border-left-color: #ff9900;">
+            <div class="info-box" style="margin-top:10px; background: var(--primary);">
                 <strong>📅 Today's Vibe:</strong> <span id="daily-vibe"></span>
             </div>
 
-            <!-- 5 & 10. Share & Unique URL -->
             <div class="action-btns">
-                <button class="btn-wa" onclick="shareTo('whatsapp')"><i class="fab fa-whatsapp"></i> WhatsApp</button>
-                <button class="btn-fb" onclick="shareTo('facebook')"><i class="fab fa-facebook"></i> Facebook</button>
-                <button class="btn-copy" onclick="shareTo('copy')"><i class="fas fa-link"></i> Copy Link</button>
-            </div>
-        </div>
-
-        <!-- 20. Ad Banner Placement -->
-        <div class="ad-banner">Advertisement (300 x 250)</div>
-
-        <!-- 18. Recent Matches -->
-        <div class="card">
-            <h3 data-i18n="recent_matches">🕒 Recent Matches</h3>
-            <ul id="recent-list" style="list-style:none; font-size: 16px; text-align:left; padding: 10px;">
-                <!-- JS will populate this -->
-            </ul>
-        </div>
-
-        <!-- 17. Love Quiz Section -->
-        <div class="card quiz-form">
-            <h3>📝 Love Quiz: What type of lover are you?</h3>
-            <form onsubmit="submitQuiz(event)">
-                <label>1. First date ideal location?</label>
-                <input type="radio" name="q1" required> Cafe <input type="radio" name="q1"> Movie <input type="radio" name="q1"> Park
-                
-                <label>2. How often do you text?</label>
-                <input type="radio" name="q2" required> All day <input type="radio" name="q2"> Few times <input type="radio" name="q2"> Rarely
-                
-                <label>3. Do you believe in love at first sight?</label>
-                <input type="radio" name="q3" required> Yes <input type="radio" name="q3"> No
-                
-                <label>4. Your love language?</label>
-                <select style="width:100%; margin-top:5px; padding:8px;"><option>Touch</option><option>Words</option><option>Gifts</option><option>Time</option></select>
-                
-                <label>5. Enter email to get your deep personality result:</label>
-                <input type="email" placeholder="your@email.com" required style="width:100%; padding:8px; margin-top:5px;">
-                
-                <button type="submit" class="quiz-btn">Submit Quiz</button>
-            </form>
-        </div>
-
-        <!-- 19. Blog Post -->
-        <div class="card" style="text-align: left;">
-            <h3>📖 Blog: Top 5 Signs You Found Your Soulmate</h3>
-            <p>1. <strong>Effortless Silence:</strong> You can sit in a room together doing nothing and not feel awkward.</p>
-            <p>2. <strong>Mutual Respect:</strong> They listen to your opinions even when they disagree.</p>
-            <p>3. <strong>Future Alignment:</strong> Your 5-year plans don't clash, they complement each other.</p>
-            <p>4. <strong>Safe Space:</strong> You can share your darkest secrets without fear of judgment.</p>
-            <p>5. <strong>Growth:</strong> They make you want to be a better version of yourself.</p>
-        </div>
-
-        <!-- 16 & 26 & 27. FAQ & How to Use -->
-        <div class="card">
-            <h3>❓ FAQ & How To Use</h3>
-            <details>
-                <summary>How to use this calculator?</summary>
-                <p>Simply enter your name in the first box, and your partner's/crush's name in the second. Select your genders and hit Calculate. If you use DOB mode, enter birthdays for astrological matching!</p>
-            </details>
-            <details>
-                <summary>Is the Love Calculator accurate?</summary>
-                <p>This tool uses a deterministic character-based algorithm and numerology. It's meant for fun and entertainment! Real love is based on trust, not algorithms. 😉</p>
-            </details>
-            <details>
-                <summary>What is Secret Crush mode?</summary>
-                <p>It hides the second name while typing so your friends looking over your shoulder can't see who you are calculating with!</p>
-            </details>
-        </div>
-
-        <!-- 28. Related Tools -->
-        <div class="card">
-            <h3>🔗 Related Tools</h3>
-            <div class="related-tools">
-                <a href="bmi.html"><i class="fas fa-weight"></i> BMI Calculator</a>
-                <a href="age.html"><i class="fas fa-calendar-alt"></i> Age Calculator</a>
-                <a href="qr.html"><i class="fas fa-qrcode"></i> QR Generator</a>
-                <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                <button class="btn-wa" onclick="share('whatsapp')"><i class="fab fa-whatsapp"></i> Share</button>
+                <button class="btn-fb" onclick="share('facebook')"><i class="fab fa-facebook"></i> Share</button>
+                <button class="btn-copy" onclick="share('copy')"><i class="fas fa-link"></i> Copy Link</button>
             </div>
         </div>
     </div>
 
+    <!-- Ad Banner -->
+    <div class="ad-banner">
+        300x250 Ad Placement
+    </div>
+
+    <!-- SEO & Extras Section -->
+    <div class="seo-section">
+        <h3>🕒 Recent Matches</h3>
+        <ul id="recent-list" style="list-style:none; font-size: 14px; margin-bottom: 20px;"></ul>
+
+        <h3>❓ Love Quiz: What's your style?</h3>
+        <div style="background: #f9f9f9; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+            <p>Do you believe in love at first sight?</p>
+            <button style="padding:5px; margin:5px;">Yes</button> <button style="padding:5px; margin:5px;">No</button>
+            <br><input type="email" placeholder="Enter email for full quiz results" style="padding: 5px; margin-top:10px;">
+            <button style="padding: 5px 10px; background:var(--primary); color:white; border:none;">Submit</button>
+        </div>
+
+        <h3>📖 Blog: Top Signs You Found 'The One'</h3>
+        <p style="font-size: 14px; color: gray;">1. You feel completely comfortable being yourself... <a href="#">Read more</a></p>
+
+        <h3 style="margin-top: 20px;">❓ FAQ & How to Use</h3>
+        <details>
+            <summary style="cursor:pointer; font-weight:bold;">Is this calculator accurate?</summary>
+            <p style="font-size:12px; margin-top:5px;">This tool uses a deterministic algorithm based on character matching and numerology for entertainment purposes!</p>
+        </details>
+        <details>
+            <summary style="cursor:pointer; font-weight:bold;">How to use?</summary>
+            <p style="font-size:12px; margin-top:5px;">Enter your name, your partner's name, select gender, and hit Calculate. Use the share button to send them the secret link!</p>
+        </details>
+
+        <h3 style="margin-top: 20px;">🔗 Related Tools</h3>
+        <div class="related-tools">
+            <a href="bmi.html">BMI Calculator</a>
+            <a href="age.html">Age Calculator</a>
+            <a href="qr.html">QR Code Generator</a>
+        </div>
+    </div>
+
     <script>
-        // 15. Heart Particles Generation
-        setInterval(() => {
+        // --- 15. Background Particles Logic ---
+        function createHearts() {
             const heart = document.createElement("i");
-            heart.classList.add("fas", "fa-heart", "particle");
+            heart.classList.add("fas", "fa-heart", "heart-particle");
             heart.style.left = Math.random() * 100 + "vw";
             heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
             document.body.appendChild(heart);
-            setTimeout(() => heart.remove(), 5000);
-        }, 400);
+            setTimeout(() => { heart.remove(); }, 5000);
+        }
+        setInterval(createHearts, 500);
 
-        // 14. Theme Toggle
+        // --- 14. Theme Toggle ---
         function toggleTheme() {
             const body = document.body;
-            body.setAttribute('data-theme', body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+            const isDark = body.getAttribute('data-theme') === 'dark';
+            body.setAttribute('data-theme', isDark ? 'light' : 'dark');
         }
 
-        // 21. Multi-Language Dictionary
-        const i18n = {
-            en: { title: "💖 LoveCalc Pro", tab_name: "Name Match", tab_dob: "DOB Match", tab_secret: "Secret Crush", tab_celeb: "Celeb Match", your_name: "Your Name:", partner_name: "Partner's Name:", btn_calc: "Calculate Love 💘", result_title: "Your Compatibility Result", recent_matches: "🕒 Recent Matches" },
-            bn: { title: "💖 লাভ ক্যালকুলেটর", tab_name: "নাম দিয়ে", tab_dob: "জন্মতারিখ দিয়ে", tab_secret: "গোপন ক্রাশ", tab_celeb: "তারকা ম্যাচ", your_name: "আপনার নাম:", partner_name: "সঙ্গীর নাম:", btn_calc: "ভালোবাসা মাপুন 💘", result_title: "আপনাদের রেজাল্ট", recent_matches: "🕒 রিসেন্ট ম্যাচ" },
-            hi: { title: "💖 लव कैलकुलेटर", tab_name: "नाम से", tab_dob: "जन्मदिन से", tab_secret: "सीक्रेट क्रश", tab_celeb: "सेलिब्रिटी", your_name: "आपका नाम:", partner_name: "पार्टनर का नाम:", btn_calc: "प्यार नापें 💘", result_title: "आपका परिणाम", recent_matches: "🕒 हाल के मैच" }
-        };
-
-        function changeLanguage() {
-            const lang = document.getElementById('lang-select').value;
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if(i18n[lang][key]) el.innerText = i18n[lang][key];
-            });
-        }
-
-        // UI Modes (Tabs)
-        let currentMode = 'name';
-        function setMode(mode) {
-            currentMode = mode;
+        // --- UI Interactions ---
+        function switchTab(type) {
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             event.target.classList.add('active');
             
-            const n2 = document.getElementById('name2');
-            const l2 = document.getElementById('label-name2');
-            const d1 = document.getElementById('dob1');
-            const d2 = document.getElementById('dob2');
-            const celeb = document.getElementById('celeb-select');
-            const reveal = document.getElementById('secret-reveal-btn');
-            const gender2 = document.getElementById('gender2-container');
-
-            // Reset displays
-            n2.style.display = 'block'; d1.style.display = 'none'; d2.style.display = 'none';
-            celeb.style.display = 'none'; reveal.style.display = 'none'; gender2.style.display = 'flex';
-            n2.type = 'text'; l2.innerText = "Partner's Name:";
-
-            if(mode === 'dob') { d1.style.display = 'block'; d2.style.display = 'block'; }
-            if(mode === 'secret') { n2.type = 'password'; l2.innerText = "Secret Crush (Hidden):"; reveal.style.display = 'block'; }
-            if(mode === 'celeb') { n2.style.display = 'none'; celeb.style.display = 'block'; l2.innerText = "Select Celebrity:"; gender2.style.display = 'none'; }
+            document.getElementById('dob-group1').style.display = type === 'dob' ? 'block' : 'none';
+            document.getElementById('dob-group2').style.display = type === 'dob' ? 'block' : 'none';
+            
+            if(type === 'secret') {
+                document.getElementById('name2').placeholder = "Secret Crush Name (Hidden)";
+                document.getElementById('name2').type = "password";
+            } else {
+                document.getElementById('name2').placeholder = type === 'celeb' ? "Celebrity Name" : "Partner's Name";
+                document.getElementById('name2').type = "text";
+            }
         }
 
-        // 11. Reveal Secret Crush
-        function revealCrush() {
-            const n2 = document.getElementById('name2');
-            n2.type = n2.type === 'password' ? 'text' : 'password';
-        }
-
-        // 13. Gender Select UI
-        function selectGender(el, type) {
+        function setGender(el, type) {
             el.parentElement.querySelectorAll('i').forEach(i => i.classList.remove('active'));
             el.classList.add('active');
         }
 
-        // Core Algorithm
-        function getSeed(str) {
-            let hash = 0;
-            for (let i = 0; i < str.length; i++) hash = str.charCodeAt(i) + ((hash << 5) - hash);
-            return Math.abs(hash);
+        // --- Core Calculator Logic ---
+        function getDeterministicScore(str1, str2) {
+            let combined = (str1 + str2).toLowerCase().replace(/\s/g, '');
+            let sum = 0;
+            for(let i=0; i<combined.length; i++) {
+                sum += combined.charCodeAt(i);
+            }
+            return (sum % 101); // Returns 0-100
         }
 
-        // 2. Zodiac Logic
-        function getZodiac(dateStr) {
-            if(!dateStr) return "";
-            const d = new Date(dateStr); const m = d.getMonth()+1; const day = d.getDate();
-            if((m==3&&day>=21)||(m==4&&day<=19)) return "Aries♈";
-            if((m==4&&day>=20)||(m==5&&day<=20)) return "Taurus♉";
-            if((m==5&&day>=21)||(m==6&&day<=20)) return "Gemini♊";
-            if((m==6&&day>=21)||(m==7&&day<=22)) return "Cancer♋";
-            if((m==7&&day>=23)||(m==8&&day<=22)) return "Leo♌";
-            if((m==8&&day>=23)||(m==9&&day<=22)) return "Virgo♍";
-            if((m==9&&day>=23)||(m==10&&day<=22)) return "Libra♎";
-            if((m==10&&day>=23)||(m==11&&day<=21)) return "Scorpio♏";
-            if((m==11&&day>=22)||(m==12&&day<=21)) return "Sagittarius♐";
-            if((m==12&&day>=22)||(m==1&&day<=19)) return "Capricorn♑";
-            if((m==1&&day>=20)||(m==2&&day<=18)) return "Aquarius♒";
-            return "Pisces♓";
-        }
-
-        // Calculate Logic
-        function runCalculator() {
-            let n1 = document.getElementById('name1').value.trim();
-            let n2 = currentMode === 'celeb' ? document.getElementById('celeb-select').value : document.getElementById('name2').value.trim();
+        function calculateLove() {
+            const n1 = document.getElementById('name1').value.trim();
+            const n2 = document.getElementById('name2').value.trim();
             
-            if(!n1 || !n2) { alert("Please fill both names!"); return; }
+            if(!n1 || !n2) { alert("Please enter both names!"); return; }
 
-            // 24. Sound Effect Play
-            document.getElementById('sound-effect').play().catch(e=>console.log("Audio requires user interaction"));
+            // 24. Sound Effect
+            const sound = document.getElementById('heartbeat-sound');
+            sound.play().catch(e => console.log("Audio play blocked by browser."));
 
-            const combined = (n1+n2).toLowerCase();
-            let baseScore = getSeed(combined) % 101; // 0-100
-
-            // Adjust score if DOB mode
-            let zMsg = "";
-            if(currentMode === 'dob') {
-                const z1 = getZodiac(document.getElementById('dob1').value);
-                const z2 = getZodiac(document.getElementById('dob2').value);
-                if(z1 && z2) {
-                    zMsg = `Zodiac Match: ${z1} & ${z2}`;
-                    document.getElementById('zodiac-match').innerText = zMsg;
-                    document.getElementById('zodiac-match').style.display = 'block';
-                    baseScore = (baseScore + (getSeed(z1+z2)%30)) % 101; // Modify based on zodiac
-                }
-            } else { document.getElementById('zodiac-match').style.display = 'none'; }
-
+            // Math
+            const score = getDeterministicScore(n1, n2);
+            const trust = (getDeterministicScore(n1+"trust", n2) % 40) + 60; 
+            const comm = (getDeterministicScore(n1+"comm", n2) % 50) + 50;
+            const attr = (getDeterministicScore(n1+"attr", n2) % 30) + 70;
+            
             // 7. Nickname Gen
             const nick = n1.slice(0, Math.ceil(n1.length/2)) + n2.slice(Math.ceil(n2.length/2)).toLowerCase();
-            document.getElementById('couple-name').innerText = nick.charAt(0).toUpperCase() + nick.slice(1);
 
-            // 6. Breakdown Stats
-            const trust = (getSeed(combined+"t") % 40) + 60; 
-            const comm = (getSeed(combined+"c") % 50) + 50;
-            const attr = (getSeed(combined+"a") % 30) + 70;
+            // Categories & Advice
+            let cat = "", advice = "", predict = "";
+            if(score <= 30) { cat = "Enemies 💔"; advice = "Move on, plenty of fish in the sea!"; predict = "Lasts 2 weeks tops."; }
+            else if(score <= 50) { cat = "Just Friends 🤝"; advice = "Keep it platonic to save the bond."; predict = "Best friends for 5 years."; }
+            else if(score <= 80) { cat = "Lovers 🥰"; advice = "Great chemistry, work on communication."; predict = "Happily together for 10+ years!"; }
+            else { cat = "Soulmates 💍"; advice = "You two are made for each other!"; predict = "Forever and eternity! 💒"; }
 
-            // 3. Categories, 8. Advice, 9. Prediction
-            let cat = "", adv = "", pred = "";
-            if(baseScore <= 30) { cat = "Enemies 💔"; adv = "Probably better off as strangers."; pred = "Won't last a month."; }
-            else if(baseScore <= 50) { cat = "Friends Zone 🤝"; adv = "Good friends, but romance is tough."; pred = "Besties for years!"; }
-            else if(baseScore <= 80) { cat = "Passionate Lovers 🥰"; adv = "Great spark! Keep communicating."; pred = "Strong chance for marriage!"; }
-            else { cat = "Perfect Soulmates 💍"; adv = "Made for each other in heaven!"; pred = "Together forever! 💒"; }
-
-            document.getElementById('result-category').innerText = cat;
-            document.getElementById('love-advice').innerText = adv;
-            document.getElementById('love-predict').innerText = pred;
-
-            // 25. Daily Compatibility
-            const days = ["Need a romantic dinner", "A little bumpy, stay calm", "Perfect harmony today!", "Surprise them!", "Give some personal space", "Plan a movie night", "Lots of cuddles today"];
-            document.getElementById('daily-vibe').innerText = days[new Date().getDay()];
-
-            // Update UI & Animations
+            // Update UI
             document.getElementById('result-section').style.display = 'block';
             
-            // 4. Reset & Trigger Animations
+            // 4. Animation
             document.getElementById('burst-anim').style.animation = 'none';
-            setTimeout(() => document.getElementById('burst-anim').style.animation = 'burst 1s ease-out', 50);
+            setTimeout(() => document.getElementById('burst-anim').style.animation = 'burst 0.8s ease-out', 10);
+
+            animateValue("final-score", 0, score, 1500);
+            document.getElementById('result-category').innerText = cat;
+            document.getElementById('couple-name').innerText = nick.charAt(0).toUpperCase() + nick.slice(1);
             
-            animateNumber("final-score", 0, baseScore, 1500);
-            
+            // 6. Score Breakdown
             setTimeout(() => {
-                document.getElementById('bar-trust').style.width = trust + '%'; document.getElementById('val-trust').innerText = trust + '%';
-                document.getElementById('bar-comm').style.width = comm + '%'; document.getElementById('val-comm').innerText = comm + '%';
-                document.getElementById('bar-attr').style.width = attr + '%'; document.getElementById('val-attr').innerText = attr + '%';
-            }, 300);
+                document.getElementById('bar-trust').style.width = trust + '%';
+                document.getElementById('val-trust').innerText = trust + '%';
+                document.getElementById('bar-comm').style.width = comm + '%';
+                document.getElementById('val-comm').innerText = comm + '%';
+                document.getElementById('bar-attr').style.width = attr + '%';
+                document.getElementById('val-attr').innerText = attr + '%';
+            }, 500);
 
-            saveRecent(n1, n2, baseScore);
+            document.getElementById('love-advice').innerText = advice;
+            document.getElementById('love-predict').innerText = predict;
+
+            // 25. Daily Compatibility
+            const days = ["Romantic dinner needed", "Little fights, but cute", "Perfect harmony today!", "Surprise them with a gift", "Give each other some space today"];
+            document.getElementById('daily-vibe').innerText = days[new Date().getDay() % 5];
+
+            saveRecent(n1, n2, score);
             
-            // 10. URL Generation without reload
-            const newUrl = window.location.pathname + `?n1=${encodeURIComponent(n1)}&n2=${encodeURIComponent(n2)}`;
-            window.history.pushState({path:newUrl}, '', newUrl);
-
+            // Smooth scroll to result
             document.getElementById('result-section').scrollIntoView({ behavior: 'smooth' });
         }
 
-        // 4. Number Animation
-        function animateNumber(id, start, end, duration) {
+        function animateValue(id, start, end, duration) {
             let obj = document.getElementById(id);
             let startTimestamp = null;
             const step = (timestamp) => {
                 if (!startTimestamp) startTimestamp = timestamp;
                 const progress = Math.min((timestamp - startTimestamp) / duration, 1);
                 obj.innerHTML = Math.floor(progress * (end - start) + start) + "%";
-                if (progress < 1) window.requestAnimationFrame(step);
+                if (progress < 1) { window.requestAnimationFrame(step); }
             };
             window.requestAnimationFrame(step);
         }
 
-        // 18. Recent Matches via LocalStorage
+        // --- 18. LocalStorage Recent Matches ---
         function saveRecent(n1, n2, score) {
-            let recents = JSON.parse(localStorage.getItem('love_calc_history') || '[]');
-            recents.unshift({ n1, n2, score, d: new Date().toLocaleTimeString() });
-            if(recents.length > 10) recents.pop();
-            localStorage.setItem('love_calc_history', JSON.stringify(recents));
-            renderRecents();
+            let recents = JSON.parse(localStorage.getItem('love_recents') || '[]');
+            recents.unshift(`${n1} & ${n2} - ${score}%`);
+            if(recents.length > 5) recents.pop();
+            localStorage.setItem('love_recents', JSON.stringify(recents));
+            loadRecents();
         }
 
-        function renderRecents() {
-            let recents = JSON.parse(localStorage.getItem('love_calc_history') || '[]');
+        function loadRecents() {
+            let recents = JSON.parse(localStorage.getItem('love_recents') || '[]');
             const list = document.getElementById('recent-list');
             list.innerHTML = "";
             recents.forEach(r => {
-                list.innerHTML += `<li style="padding:8px; border-bottom:1px solid #eee;">💕 <b>${r.n1}</b> & <b>${r.n2}</b> - <span style="color:var(--primary);">${r.score}%</span> <small style="color:gray; float:right;">${r.d}</small></li>`;
+                let li = document.createElement('li');
+                li.innerText = "💕 " + r;
+                li.style.padding = "5px";
+                li.style.borderBottom = "1px solid #eee";
+                list.appendChild(li);
             });
         }
 
-        // 5 & 10. Social Sharing
-        function shareTo(platform) {
-            const url = window.location.href;
+        // --- 5 & 10. Share & Unique URL Simulator ---
+        function share(platform) {
+            const n1 = document.getElementById('name1').value;
+            const n2 = document.getElementById('name2').value;
             const score = document.getElementById('final-score').innerText;
-            const text = `I just checked my love compatibility and got ${score}! Check yours now: ${url}`;
+            // Generating simulated unique URL using query params
+            const url = window.location.origin + window.location.pathname + `?n1=${encodeURIComponent(n1)}&n2=${encodeURIComponent(n2)}`;
+            const text = `I checked my love score with ${n2} and got ${score}! Check yours: ${url}`;
 
             if(platform === 'whatsapp') window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`);
             if(platform === 'facebook') window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`);
             if(platform === 'copy') {
                 navigator.clipboard.writeText(text);
-                alert("Unique Result Link Copied! Share it with your friends! 🚀");
+                alert("Link copied! Share it with your crush 😉");
             }
         }
 
-        // 17. Quiz Submission
-        function submitQuiz(e) {
-            e.preventDefault();
-            alert("Quiz Submitted! Check your email in 5 minutes for your deep personality analysis! 💌");
-            e.target.reset();
-        }
-
-        // Auto-load on visit
+        // --- Auto-fill from URL (Viral Save Link Feature) ---
         window.onload = () => {
-            renderRecents();
-            // Check URL for shared links
+            loadRecents();
             const params = new URLSearchParams(window.location.search);
             if(params.has('n1') && params.has('n2')) {
                 document.getElementById('name1').value = params.get('n1');
                 document.getElementById('name2').value = params.get('n2');
-                setTimeout(runCalculator, 800);
+                setTimeout(calculateLove, 500); // Auto calculate if link is shared
             }
         }
     </script>
