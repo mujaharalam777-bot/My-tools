@@ -1,1 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Love Calculator 💖</title>
+<style>
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3, #ff9a9e);
+    overflow: hidden;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  .heart {
+    position: absolute;
+    color: rgba(255,255,255,0.3);
+    animation: fall 6s linear infinite;
+  }
+  @keyframes fall {
+    0% {transform: translateY(-10vh) rotate(0deg);}
+    100% {transform: translateY(110vh) rotate(360deg);}
+  }
+  .container {
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(15px);
+    padding: 30px;
+    border-radius: 25px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+  h1 { font-size: 28px; margin-bottom: 10px; }
+  p { font-size: 14px; opacity: 0.9; }
+  input {
+    width: 90%;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    text-align: center;
+  }
+  button {
+    width: 95%;
+    padding: 14px;
+    background: #FF1493;
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  button:hover { background: #ff4da6; }
+  #result {
+    margin-top: 20px;
+    font-size: 22px;
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
 
+<!-- Floating hearts -->
+<div class="heart" style="left:10%;">💖</div>
+<div class="heart" style="left:30%; animation-delay:2s;">❤️</div>
+<div class="heart" style="left:50%; animation-delay:1s;">💕</div>
+<div class="heart" style="left:70%; animation-delay:3s;">💖</div>
+<div class="heart" style="left:90%; animation-delay:2.5s;">❤️</div>
+
+<div class="container">
+  <h1>💖 Love Calculator</h1>
+  <p>Enter two names to check compatibility</p>
+  
+  <input type="text" id="name1" placeholder="Your Name">
+  <input type="text" id="name2" placeholder="Partner's Name">
+  
+  <button onclick="calculateLove()">Check Love %</button>
+  
+  <div id="result"></div>
+</div>
+
+<script>
+function calculateLove() {
+  let n1 = document.getElementById("name1").value;
+  let n2 = document.getElementById("name2").value;
+  if(n1 == "" || n2 == "") {
+    alert("Please enter both names");
+    return;
+  }
+  let score = Math.floor(Math.random() * 101); // 0-100%
+  let msg = "";
+  if(score < 30) msg = "Enemies 😅";
+  else if(score < 50) msg = "Good Friends 🙂";
+  else if(score < 80) msg = "Lovers 💑";
+  else msg = "Soulmates 💖";
+  
+  document.getElementById("result").innerHTML = 
+  `${n1} + ${n2} = ${score}% <br> ${msg}`;
+}
+</script>
+</body>
+</html>
