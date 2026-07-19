@@ -1,1 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OXO Tools - Free Online Tools | Percentage, Password, Word Counter</title>
+<meta name="description" content="100% Free Online Tools. Percentage Calculator, Password Generator, Word Counter and more. No Login, No Ads. Fast and Mobile Friendly.">
 
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+* {margin:0; padding:0; box-sizing:border-box;}
+body {
+  background:#0a0e1a; 
+  font-family:'Poppins',sans-serif;
+  color:#fff;
+}
+
+/* SEO INTRO UPORE */
+.seo-intro {
+  max-width: 900px;
+  margin: 50px auto 30px;
+  padding: 0 20px;
+  text-align: center;
+}
+.seo-intro h1 {
+  font-size: 2.2rem;
+  color: #FF8C00;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+.seo-intro p {
+  color: #aaa;
+  line-height: 1.8;
+  font-size: 1rem;
+}
+
+/* CARD - SS ER MOTO */
+.tool-card {
+  max-width: 450px;
+  margin: 30px auto;
+  background: linear-gradient(145deg, #1a2333, #121a28);
+  border: 1px solid #2a3447;
+  border-radius: 20px;
+  padding: 30px 25px;
+  text-align: center;
+  box-shadow: 0 0 25px rgba(0,0,0,0.5);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.tool-card:hover {
+  transform: translateY(-5px);
+  border-color: #FF8C00;
+}
+
+.tool-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg, transparent, #FF4500, transparent);
+  animation: rotate 4s linear infinite;
+  opacity: 0.2;
+  z-index: 1;
+}
+@keyframes rotate {
+ 100% {transform: rotate(360deg);}
+}
+
+.card-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* LIVE DOT BADGE */
+.card-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,140,0,0.1);
+  padding: 8px 16px;
+  border-radius: 20px;
+  margin-bottom: 15px;
+  border: 1px solid rgba(255,140,0,0.3);
+}
+.dot {
+  width: 10px;
+  height: 10px;
+  background: #FF8C00;
+  border-radius: 50%;
+  animation: pulse 1.5s infinite;
+}
+@keyframes pulse {
+ 0%,100% {box-shadow: 0 0 0 0 rgba(255,140,0,0.7);}
+  50% {box-shadow: 0 0 0 10px rgba(255,140,0,0);}
+}
+.card-badge span {color: #FF8C00; font-weight: 600; font-size: 0.9rem;}
+
+.tool-card h2 {
+  color: #fff;
+  font-size: 1.6rem;
+  margin-bottom: 8px;
+}
+.tool-card .subtitle {
+  color: #8892a6;
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+}
+
+/* AGUN WALA BUTTON */
+.open-btn {
+  width: 100%;
+  padding: 16px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #FF4500, #FF8C00, #FF4500);
+  background-size: 200%;
+  color: #000;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  animation: fireBtn 2s linear infinite;
+  box-shadow: 0 0 20px rgba(255,69,0,0.5);
+  transition: 0.3s;
+}
+@keyframes fireBtn {
+ 0% {background-position: 0%;}
+ 100% {background-position: 200%;}
+}
+.open-btn:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 35px rgba(255,140,0,0.8);
+}
+
+/* NICHER INTRO */
+.card-desc {
+  margin-top: 20px;
+  color: #8892a6;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+</style>
+</head>
+<body>
+
+<!-- 1. SEO INTRO SECTION -->
+<section class="seo-intro">
+  <h1>Free Percentage Calculator Online - Marks, Discount, GST</h1>
+  <p>
+    We are providing this 100% free Percentage Calculator to help students, teachers, and business people. 
+    Calculate Marks to Percentage, Discount %, GST %, Salary Hike, and % Increase/Decrease in 1 second. 
+    No login required. No ads. Step by step solution available. Our goal is to save your time and make math easy for everyone.
+  </p>
+</section>
+
+<!-- 2. TOOL CARD - CLICK KORLE ALADA PAGE KHULBE -->
+<div class="tool-card" onclick="window.location.href='percentage-calculator.html'">
+  <div class="card-content">
+    
+    <div class="card-badge">
+      <span class="dot"></span>
+      <span>Free Version</span>
+    </div>
+
+    <h2>📊 Percentage Calculator</h2>
+    <p class="subtitle">Marks %, Discount %, GST %, Salary & More</p>
+
+    <button class="open-btn">Open Free</button>
+
+    <p class="card-desc">
+      Calculate any type of percentage in 1 second. Includes step by step solution, copy result, and mobile friendly design. 100% Private.
+    </p>
+
+  </div>
+</div>
+
+</body>
+  </html>
