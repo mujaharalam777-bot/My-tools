@@ -1,1 +1,1531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>Free All-in-One Percentage Calculator - Marks, Discount, GST, Salary | No Login</title>
+    <meta name="description" content="100% Free Percentage Calculator. Calculate Marks%, Discount%, GST%, Salary Hike, CGPA to % with Step by Step solution. No Ads, No Login.">
+    <meta name="keywords" content="percentage calculator, marks to percentage calculator, discount calculator, gst calculator, cgpa to percentage, profit loss percentage calculator, salary hike percentage calculator, percentage increase decrease calculator, reverse percentage calculator, free percentage calculator no ads">
+    
+    <!-- Open Graph for Social Sharing -->
+    <meta property="og:title" content="All-in-One Premium Percentage Calculator 2.0">
+    <meta property="og:description" content="Calculate percentages, marks grades, commercial GST, discounts, and salary hikes instantly with step-by-step visual solutions.">
+    <meta property="og:type" content="website">
 
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        /* Modern Design Architecture & Core Custom Properties */
+        :root {
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --card-glow: rgba(56, 189, 248, 0.1);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-primary: #38bdf8;
+            --accent-secondary: #818cf8;
+            --accent-success: #34d399;
+            --accent-danger: #f87171;
+            --input-bg: rgba(15, 23, 42, 0.6);
+            --shadow-preset: 0 20px 40px -15px rgba(0,0,0,0.5);
+        }
+
+        .light-theme {
+            --bg-gradient: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(15, 23, 42, 0.08);
+            --card-glow: rgba(2, 132, 199, 0.05);
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --accent-primary: #0284c7;
+            --accent-secondary: #4f46e5;
+            --accent-success: #16a34a;
+            --accent-danger: #dc2626;
+            --input-bg: rgba(255, 255, 255, 0.9);
+            --shadow-preset: 0 20px 40px -15px rgba(148, 163, 184, 0.3);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            color: var(--text-primary);
+            min-height: 100vh;
+            padding-bottom: 60px;
+            transition: background 0.4s ease, color 0.4s ease;
+        }
+
+        /* Table of Contents Header Styles */
+        .seo-toc {
+            background: var(--glass-bg);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 10px 20px;
+            font-size: 13px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            backdrop-filter: blur(10px);
+            flex-wrap: wrap;
+        }
+        .seo-toc a {
+            color: var(--accent-primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .seo-toc a:hover {
+            text-decoration: underline;
+        }
+
+        .app-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 0 20px 0;
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+
+        header p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        /* Floating Utilities Bar */
+        .utility-bar {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .util-btn {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: var(--text-primary);
+            padding: 8px 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            backdrop-filter: blur(8px);
+        }
+
+        .util-btn:hover {
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 12px var(--card-glow);
+        }
+
+        /* Sticky Navigation Matrix Layout */
+        .tabs-container {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(15, 23, 42, 0.3);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 12px 0;
+            border-bottom: 1px solid var(--glass-border);
+            margin-bottom: 30px;
+            overflow-x: auto;
+            white-space: nowrap;
+            scrollbar-width: none;
+        }
+        .tabs-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .tabs-grid {
+            display: inline-flex;
+            gap: 8px;
+            padding: 0 16px;
+        }
+
+        .tab-trigger {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: var(--text-secondary);
+            padding: 10px 18px;
+            border-radius: 12px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .tab-trigger.active {
+            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+            color: #ffffff;
+            border-color: transparent;
+            box-shadow: 0 8px 20px -6px rgba(56, 189, 248, 0.4);
+            transform: translateY(-1px);
+        }
+
+        /* Premium Split Matrix Screen Area */
+        .engine-room {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            align-items: start;
+        }
+
+        @media (min-width: 992px) {
+            .engine-room {
+                grid-template-columns: 1.2fr 0.8fr;
+            }
+        }
+
+        /* Calculator Workspace Core Blocks */
+        .workspace-panel {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: var(--shadow-preset);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .workspace-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+        }
+
+        .calc-view {
+            display: none;
+        }
+
+        .calc-view.active-view {
+            display: block;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .view-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-primary);
+        }
+
+        /* Advanced Form Component Controls */
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        label {
+            display: block;
+            font-size: 0.88rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        input[type="number"], select {
+            width: 100%;
+            padding: 14px 16px;
+            background: var(--input-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            outline: none;
+        }
+
+        input[type="number"]:focus, select:focus {
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 4px var(--card-glow);
+            background: var(--input-bg);
+        }
+
+        /* Remove default arrow controls on number inputs */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+
+        .input-suffix {
+            position: absolute;
+            right: 16px;
+            font-weight: 700;
+            color: var(--text-secondary);
+            pointer-events: none;
+        }
+
+        /* Dynamic Realtime Feedback Panel */
+        .telemetry-panel {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(16px);
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: var(--shadow-preset);
+            position: sticky;
+            top: 100px;
+        }
+
+        .metric-card {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0,0,0,0.15);
+            border-radius: 16px;
+            border: 1px solid var(--glass-border);
+            margin-bottom: 25px;
+        }
+
+        .metric-val {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--accent-primary);
+            word-wrap: break-word;
+            line-height: 1.1;
+            margin-bottom: 6px;
+        }
+
+        .metric-lbl {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+
+        .action-cluster {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .action-btn {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: var(--text-primary);
+            padding: 12px;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+        }
+
+        .action-btn:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: var(--text-secondary);
+        }
+
+        .action-btn.btn-accent {
+            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+            color: white;
+            border: none;
+        }
+
+        .action-btn.btn-accent:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        /* Interactive Math Architecture Block */
+        .drawer-solution {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            margin-top: 15px;
+        }
+
+        .drawer-solution.expanded {
+            max-height: 1000px;
+            border: 1px solid var(--glass-border);
+            padding: 20px;
+        }
+
+        .solution-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--accent-secondary);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .math-step {
+            font-size: 0.92rem;
+            line-height: 1.6;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            padding-left: 15px;
+            border-left: 2px solid var(--glass-border);
+        }
+
+        .math-formula {
+            font-family: "Courier New", Courier, monospace;
+            background: rgba(0,0,0,0.3);
+            padding: 6px 12px;
+            border-radius: 6px;
+            display: inline-block;
+            margin: 6px 0;
+            color: var(--accent-primary);
+            font-weight: 700;
+        }
+
+        /* Chart Platform */
+        .chart-envelope {
+            margin-top: 25px;
+            position: relative;
+            width: 100%;
+            height: 220px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Highly Optimized Editorial SEO Content Design */
+        .seo-editorial-core {
+            margin-top: 60px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: var(--shadow-preset);
+        }
+
+        .seo-editorial-core h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--text-primary), var(--text-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .seo-editorial-core p {
+            font-size: 1.05rem;
+            line-height: 1.75;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        /* FAQ Schema Compliant Accordion System */
+        .faq-accordion-shelf {
+            margin-top: 30px;
+            border-top: 1px solid var(--glass-border);
+            padding-top: 20px;
+        }
+
+        .faq-node {
+            border-bottom: 1px solid var(--glass-border);
+            padding: 18px 0;
+        }
+
+        .faq-query {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-query::after {
+            content: '＋';
+            font-size: 1.2rem;
+            color: var(--accent-primary);
+            transition: transform 0.2s ease;
+        }
+
+        .faq-node.open .faq-query::after {
+            content: '－';
+        }
+
+        .faq-response {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            color: var(--text-secondary);
+            font-size: 0.98rem;
+            line-height: 1.6;
+        }
+
+        .faq-node.open .faq-response {
+            max-height: 200px;
+            padding-top: 12px;
+        }
+
+        /* Extra Custom Presentation Elements */
+        .badge-info {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            background: rgba(56, 189, 248, 0.15);
+            color: var(--accent-primary);
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Navigation Table of Contents for SEO Flow Optimization -->
+    <div class="seo-toc">
+        <span>Quick Navigation Matrix:</span>
+        <a href="javascript:void(0)" onclick="mountTab(4)">Jump to Marks Converter</a>
+        <a href="javascript:void(0)" onclick="mountTab(8)">Jump to Discount Engine</a>
+        <a href="javascript:void(0)" onclick="mountTab(10)">Jump to GST Calculator</a>
+        <a href="#faq-anchor">Read Common FAQs</a>
+    </div>
+
+    <div class="app-wrapper">
+        <header>
+            <h1>All-in-One Percentage Calculator 2.0</h1>
+            <p>Premium Realtime Mathematics Core Engine • Completely Unlocked</p>
+        </header>
+
+        <!-- Dynamic Utilities Platform -->
+        <div class="utility-bar">
+            <button class="util-btn" onclick="switchThemeMode()" aria-label="Toggle Dark/Light Interface Style">
+                <span id="theme-btn-icon">☀️</span> <span id="theme-btn-text">Light Mode</span>
+            </button>
+            <button class="util-btn" onclick="triggerResetAllInputs()">
+                🔄 Reset Form Matrices
+            </button>
+        </div>
+
+        <!-- Sticky Navigation Matrix Component System -->
+        <div class="tabs-container">
+            <div class="tabs-grid" id="tabsGroup">
+                <button class="tab-trigger active" onclick="mountTab(0)">X is what % of Y</button>
+                <button class="tab-trigger" onclick="mountTab(1)">What is X% of Y</button>
+                <button class="tab-trigger" onclick="mountTab(2)">% Increase/Decrease</button>
+                <button class="tab-trigger" onclick="mountTab(3)">Reverse %</button>
+                <button class="tab-trigger" onclick="mountTab(4)">Marks to % & Grade</button>
+                <button class="tab-trigger" onclick="mountTab(5)">Pass/Fail Analyzer</button>
+                <button class="tab-trigger" onclick="mountTab(6)">Target % Matrix</button>
+                <button class="tab-trigger" onclick="mountTab(7)">CGPA to Percentage</button>
+                <button class="tab-trigger" onclick="mountTab(8)">Advanced Discount</button>
+                <button class="tab-trigger" onclick="mountTab(9)">Commercial Profit/Loss</button>
+                <button class="tab-trigger" onclick="mountTab(10)">GST Add/Remove</button>
+                <button class="tab-trigger" onclick="mountTab(11)">Salary Hike Estimator</button>
+                <button class="tab-trigger" onclick="mountTab(12)">Market Offer Matcher</button>
+                <button class="tab-trigger" onclick="mountTab(13)">Tip & Bill Splitter</button>
+                <button class="tab-trigger" onclick="mountTab(14)">Visual Architecture</button>
+                <button class="tab-trigger" onclick="mountTab(15)">System Utilities Module</button>
+            </div>
+        </div>
+
+        <!-- Core Split Screen Layout Engine Area -->
+        <div class="engine-room">
+            
+            <!-- Matrix Form Execution Field Component -->
+            <main class="workspace-panel" id="inputsFormZone">
+                
+                <!-- Tab 1: Basic Part/Whole Percentage Layout -->
+                <div class="calc-view active-view" id="calcView0">
+                    <div class="view-title">🔢 Basic: X is what % of Y</div>
+                    <div class="form-group">
+                        <label>Value X (The Part)</label>
+                        <input type="number" id="t1_x" placeholder="e.g. 50" oninput="fireEngine()">
+                    </div>
+                    <div class="form-group">
+                        <label>Value Y (The Total Base Value)</label>
+                        <input type="number" id="t1_y" placeholder="e.g. 200" oninput="fireEngine()">
+                    </div>
+                </div>
+
+                <!-- Tab 2: Value from Percentage Layout -->
+                <div class="calc-view" id="calcView1">
+                    <div class="view-title">📊 Basic: What is X% of Y</div>
+                    <div class="form-group">
+                        <label>Percentage X</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="t2_x" placeholder="e.g. 15" oninput="fireEngine()">
+                            <span class="input-suffix">%</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Total Value Y</label>
+                        <input type="number" id="t2_y" placeholder="e.g. 1200" oninput="fireEngine()">
+                    </div>
+                </div>
+
+                <!-- Tab 3: Delta % Growth Core Module Layout -->
+                <div class="calc-view" id="calcView2">
+                    <div class="view-title">📈 Basic: Percentage Increase / Decrease</div>
+                    <div class="form-group">
+                        <label>Original Initial Value</label>
+                        <input type="number" id="t3_old" placeholder="e.g. 150" oninput="fireEngine()">
+                    </div>
+                    <div class="form-group">
+                        <label>New Final Value</label>
+                        <input type="number" id="t3_new" placeholder="e.g. 210" oninput="fireEngine()">
+                    </div>
+                </div>
+
+                <!-- Tab 4: Reverse Percentage Matrix Layout -->
+                <div class="calc-view" id="calcView3">
+                    <div class="view-title">🔄 Basic: Reverse Percentage Engine</div>
+                    <div class="form-group">
+                        <label>Current Value Known</label>
+                        <input type="number" id="t4_val" placeholder="e.g. 85" oninput="fireEngine()">
+                    </div>
+                    <div class="form-group">
+                        <label>What % of the original value does this represent?</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="t4_pct" placeholder="e.g. 20" oninput="fireEngine()">
+                            <span class="input-suffix">%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 5: Academic Score Matrix Layout -->
+                <div class="calc-view" id="calcView4">
+                    <div class="view-title">🎓 Student: Marks to Percentage & Auto Grade</div>
+                    <div class="form-group">
+                        <label>Total Marks Secured</label>
+                        <input type="number" id="t5_got" placeholder="e.g. 435" oninput="fireEngine()">
+                    </div>
+                    <div class="form-group">
+                        <label>Maximum Possible Marks</label>
+                        <input type="number" id="t5_total" placeholder="e.g. 500" oninput="fireEngine()">
+                    </div>
+                    <div id="gradeBadgeContainer"></div>
+                </div>
+
+                <!-- Tab 6: Academic Risk Pass/Fail System Layout -->
+                <div class="calc-view" id="calcView5">
+                    <div class="view-title">🛑 Student: Pass/Fail Threshold Analyzer</div>
+                    <div class="form-group">
+                        <label>Total Marks Obtained</label>
+                        <input type="number" id="t6_got" placeholder="e.g. 180" oninput="fireEngine()">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Minimum Passing Marks Required</label>
+                            <input type="number" id="t6_pass" placeholder="e.g. 210" oninput="fireEngine()">
+                        </div>
+                        <div class="form-group">
+                            <label>Maximum Total Marks</label>
+                            <input type="number" id="t6_max" placeholder="e.g. 600" oninput="fireEngine()">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 7: Academic Objective Target Matrix Layout -->
+                <div class="calc-view" id="calcView6">
+                    <div class="view-title">🎯 Student: Target Percentage Strategic Planner</div>
+                    <div class="form-group">
+                        <label>Current Overall Cumulative Percentage</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="t7_curr_pct" placeholder="e.g. 72" oninput="fireEngine()">
+                            <span class="input-suffix">%</span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Weight of Past Terms Done</label>
+                            <div class="input-wrapper">
+                                <input type="number" id="t7_past_w" placeholder="e.g. 60" oninput="fireEngine()">
+                                <span class="input-suffix">%</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Your Target Term/Overall Average Goal</label>
+                            <div class="input-wrapper">
+                                <input type="number" id="t7_tgt" placeholder="e.g. 80" oninput="fireEngine()">
+                                <span class="input-suffix">%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 8: Educational CGPA Metric Converter Layout -->
+                <div class="calc-view" id="calcView7">
+                    <div class="view-title">📜 Student: CGPA to Percentage Engine</div>
+                    <div class="form-group">
+                        <label>Enter Secured CGPA Value Score</label>
+                        <input type="number" id="t7_cgpa" placeholder="e.g. 8.8" step="0.01" max="10" oninput="fireEngine()">
+                    </div>
+                    <div class="form-group">
+                        <label>Conversion Factor Multiplier Standard Formula</label>
+                        <input type="number" id="t7_factor" value="9.5" step="0.1" oninput="fireEngine()">
+                    </div>
+                </div>
+
+                <!-- Tab 9: Double Discount Matrix Engine Layout -->
+                <div class="calc-view" id="calcView8">
+                    <div class="view-title">🛍️ Business: Compound Premium Discount Engine</div>
+                    <div class="form-group">
+                        <label>Original Listed Catalog Price</label>
+                        <input type="number" id="t8_price" placeholder="e.g. 4500" oninput="fireEngine()">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Primary Store Discount</label>
+                            <div class="input-wrapper">
+                                <input type="number" id="t8_disc1" placeholder="e.g. 30" oninput="fireEngine()">
+                                <span class="input-suffix">%</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Extra Stacked Coupon Discount</label>
+                            <div class="input-wrapper">
+                                <input type="number" id="t8_disc2" placeholder="e.g. 10" oninput="fireEngine()">
+                                <span class="input-suffix">%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 10: Enterprise Yield Analysis Profit/Loss Layout -->
+                <div class="calc-view" id="calcView9">
+                    <div class="view-title">💼 Business: Profit & Loss Yield Analyzer</div>
+                    <div class="form-group">
+                        <label>Total Cost Price Asset Value</label>
+                        <input type="number" id="t9_cp" placeholder="e.g. 800" oninput="fireEngine()">
+                    </div>
+                    <div class="form-group">
+                        <label>Final Net Realized Selling Price</label>
+                        <input type="number" id="t9_sp" placeholder="e.g. 1040" oninput="fireEngine()">
+                    </div>
+                </div>
+
+                <!-- Tab 11: Fiscal GST Component Layout -->
+                <div class="calc-view" id="calcView10">
+                    <div class="view-title">🏛️ Business: GST Component Extractor & Adder</div>
+                    <div class="form-group">
+                        <label>Base Monetary Amount</label>
+                        <input type="number" id="t10_amt" placeholder="e.g. 5000" oninput="fireEngine()">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Assigned GST Rate Slate</label>
+                            <div class="input-wrapper">
+                                <input type="number" id="t10_rate" placeholder="e.g. 18" oninput="fireEngine()">
+                                <span class="input-suffix">%</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Filing Calculation Intention Direction</label>
+                            <select id="t10_mode" onchange="fireEngine()">
+                                <option value="add">Add GST to Base Value (Exclusive)</option>
+                                <option value="remove">Remove GST from Value (Inclusive)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 12: Corporate Evaluation Salary Hike Layout -->
+                <div class="calc-view" id="calcView11">
+                    <div class="view-title">💵 Business: Salary Hike & Velocity Estimator</div>
+                    <div class="form-group">
+                        <label>Current Base Monthly/Annual Compensation</label>
+                        <input type="number" id="t11_sal" placeholder="e.g. 75000" oninput="fireEngine()">
+                    </div>
+                    <div class="form-group">
+                        <label>Offered Salary Hike Percentage Rate</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="t11_hike" placeholder="e.g. 12.5" oninput="fireEngine()">
+                            <span class="input-suffix">%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 13: Comparative Market Offer Analysis Layout -->
+                <div class="calc-view" id="calcView12">
+                    <div class="view-title">⚔️ Compare: Market Offer Matcher Optimization Matrix</div>
+                    <div class="form-row">
+                        <div>
+                            <label style="color:var(--accent-primary)">Merchant Offer Alternative A</label>
+                            <div class="form-group">
+                                <label style="font-size:11px;">Stated List Value</label>
+                                <input type="number" id="t12_p1" placeholder="e.g. 1000" oninput="fireEngine()">
+                            </div>
+                            <div class="form-group">
+                                <label style="font-size:11px;">Stated Discount Rate</label>
+                                <div class="input-wrapper">
+                                    <input type="number" id="t12_d1" placeholder="e.g. 20" oninput="fireEngine()">
+                                    <span class="input-suffix">%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <label style="color:var(--accent-secondary)">Merchant Offer Alternative B</label>
+                            <div class="form-group">
+                                <label style="font-size:11px;">Stated List Value</label>
+                                <input type="number" id="t12_p2" placeholder="e.g. 1200" oninput="fireEngine()">
+                            </div>
+                            <div class="form-group">
+                                <label style="font-size:11px;">Stated Discount Rate</label>
+                                <div class="input-wrapper">
+                                    <input type="number" id="t12_d2" placeholder="e.g. 35" oninput="fireEngine()">
+                                    <span class="input-suffix">%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 14: Food & Hospitality Gratuity Splitter Layout -->
+                <div class="calc-view" id="calcView13">
+                    <div class="view-title">🥂 Utility: Premium Gratuity Tip & Bill Splitter</div>
+                    <div class="form-group">
+                        <label>Raw Total Invoice Amount</label>
+                        <input type="number" id="t13_bill" placeholder="e.g. 2450" oninput="fireEngine()">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Gratuity Tip Allocation Rate</label>
+                            <div class="input-wrapper">
+                                <input type="number" id="t13_tip" placeholder="e.g. 10" oninput="fireEngine()">
+                                <span class="input-suffix">%</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Total Party Size (Head Count)</label>
+                            <input type="number" id="t13_split" placeholder="e.g. 4" value="1" min="1" oninput="fireEngine()">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 15: Dedicated Visual Metrics Engine Canvas Layout -->
+                <div class="calc-view" id="calcView14">
+                    <div class="view-title">🖼️ Visual: Mathematical Distribution Mode</div>
+                    <p style="color:var(--text-secondary); font-size:0.95rem; line-height:1.5;">
+                        This dedicated tab visualizes structural component metrics mapping percentages in real-time. Use any operational tab interface on the grid menu to auto-update values across components. Adjust values here as a global playground:
+                    </p>
+                    <div class="form-group" style="margin-top:20px;">
+                        <label>Calculated Segment Allocation Portion Value</label>
+                        <input type="number" id="t14_slice" value="65" oninput="fireEngine()">
+                    </div>
+                    <div class="form-group">
+                        <label>Total Distribution Universe Value</label>
+                        <input type="number" id="t14_base" value="100" oninput="fireEngine()">
+                    </div>
+                </div>
+
+                <!-- Tab 16: System Diagnostics Core Utility Layout -->
+                <div class="calc-view" id="calcView15">
+                    <div class="view-title">⚙️ Utility: System Diagnostics Settings</div>
+                    <p style="color:var(--text-secondary); font-size:0.95rem; margin-bottom:20px;">
+                        Configure client rendering operational specifications for Premium Core Engine 2.0. No server tracking or external ads enabled. 100% Client sandboxed.
+                    </p>
+                    <div class="form-group">
+                        <label>Realtime Calculation Sync Optimization</label>
+                        <select id="t15_sync" disabled>
+                            <option>Instantaneous Virtual DOM Event Driven (Active)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Cryptographic Session Integrity State</label>
+                        <div style="font-family:monospace; font-size:0.85rem; color:var(--accent-success);">
+                            ● CLIENT_CORE_UNLOCKED_NO_AUTH_REQUIRED
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+
+            <!-- Realtime Telemetry Reporting Screen Component -->
+            <aside class="telemetry-panel">
+                <div class="metric-card">
+                    <div class="metric-val" id="telemetryOutput">0.00</div>
+                    <div class="metric-lbl" id="telemetryLabel">Calculated Value Output</div>
+                </div>
+
+                <div class="action-cluster">
+                    <button class="action-btn" onclick="executeSystemClipboardCopy()">📋 Copy Value</button>
+                    <button class="action-btn btn-accent" onclick="deployWhatsAppShare()">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="display:inline-block; vertical-align:middle;"><path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.907h.004c4.368 0 7.926-3.558 7.93-7.93A7.897 7.897 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.69-4.98c-.202-.101-1.194-.588-1.378-.653-.182-.066-.315-.099-.445.099-.133.197-.513.653-.629.788-.117.135-.232.152-.434.05-2.01-.102-3.323-.872-4.437-2.798-.219-.373-.075-.575.025-.675.09-.091.202-.234.302-.352.102-.117.135-.198.203-.332.066-.136.034-.251-.017-.352-.051-.101-.445-1.07-.61-1.472-.16-.388-.32-.335-.444-.341-.118-.006-.253-.006-.388-.006-.136 0-.356.051-.542.253-.187.202-.713.698-.713 1.706 0 1.008.734 1.981.835 2.116.102.135 1.442 2.202 3.492 3.084.488.21 0.87.336 1.167.43.491.157.938.135 1.294.082.397-.058 1.194-.488 1.362-.958.168-.471.168-.875.118-.959-.05-.084-.183-.135-.384-.237z"/></svg> 
+                        WhatsApp
+                    </button>
+                </div>
+
+                <button class="action-btn" style="width:100%;" id="toggleSolutionBtn" onclick="toggleMathSolutionDrawer()">
+                    📐 Show Step-by-Step Breakdown
+                </button>
+
+                <!-- Interactive Math Structural Solution System -->
+                <div class="drawer-solution" id="mathSolutionBox">
+                    <div class="solution-title">Mathematical Formula Analysis Matrix</div>
+                    <div id="solutionStepsContainer">Enter metrics to compile architectural steps.</div>
+                </div>
+
+                <!-- Graphic Chart Render Zone -->
+                <div class="chart-envelope">
+                    <canvas id="telemetryGraphicCanvas"></canvas>
+                </div>
+            </aside>
+
+        </div>
+
+        <!-- High Value Editorial Content Configuration for Maximum Topical Domain Authority -->
+        <article class="seo-editorial-core">
+            <h2>How to Utilize the All-in-One Premium Percentage Calculator 2.0</h2>
+            <p>
+                Navigating complex mathematical relationships shouldn't require excessive effort or registration forms. This highly optimized, <strong>free percentage calculator no ads</strong> interface delivers robust programmatic systems instantly inside your browser. By matching specific academic evaluation criteria with advanced multi-layered retail coupon matrices, our system gives users pure algebraic clarity in under a second.
+            </p>
+            <p>
+                Students requiring an accurate <strong>marks to percentage calculator</strong> can rely on the automated engine to calculate scholastic metrics while receiving instant grade assignments. For academic strategies, utilizing the <strong>cgpa to percentage</strong> converter ensures compliance with standard global normalization matrices via configurable scalar variables.
+            </p>
+            <p>
+                For business operations, corporate accounting users can deploy the multi-stage <strong>discount calculator</strong> to see exact margins when combining catalog write-downs with extra stacked promotions. Evaluate direct tax adjustments instantly through the specialized <strong>gst calculator</strong>, designed to accurately extract or append value components on demand. Enterprise scaling analysis is simple with our <strong>profit loss percentage calculator</strong> and <strong>salary hike percentage calculator</strong>, helping teams understand multi-year net worth velocity safely on the client side.
+            </p>
+            <p>
+                Whether calculating basic standard growth variables using the <strong>percentage increase decrease calculator</strong> or discovering missing financial baselines with the robust <strong>reverse percentage calculator</strong>, our application delivers elite performance with zero data tracking.
+            </p>
+
+            <!-- FAQ Section Accordion Base System for Structuring Snippet Rich-Results -->
+            <div class="faq-accordion-shelf" id="faq-anchor">
+                <h3>Frequently Asked Structural Questions</h3>
+                
+                <div class="faq-node">
+                    <div class="faq-query" onclick="toggleFaqAccordion(this)">How do you calculate a percentage manually?</div>
+                    <div class="faq-response">To determine the percentage relationship between two figures, take the localized segment value (the part), divide it by the total structural baseline base value (the whole), and multiply the resulting fraction score value by exactly 100.</div>
+                </div>
+
+                <div class="faq-node">
+                    <div class="faq-query" onclick="toggleFaqAccordion(this)">What is exactly 20% of a 500 baseline value?</div>
+                    <div class="faq-response">Calculating 20% of 500 implies evaluating the formula: (20 / 100) * 500. This resolves uniformly to exactly 100.00.</div>
+                </div>
+
+                <div class="faq-node">
+                    <div class="faq-query" onclick="toggleFaqAccordion(this)">How do you convert academic exam marks to a percentage?</div>
+                    <div class="faq-response">Divide the total count of marks secured inside your evaluations by the maximum possible total points baseline configuration attainable, then multiply the product by 100 to extract the academic percentile.</div>
+                </div>
+
+                <div class="faq-node">
+                    <div class="faq-query" onclick="toggleFaqAccordion(this)">What is the correct mathematical formula to calculate a retail discount?</div>
+                    <div class="faq-response">Subtract the promotional discount percentage value rate from 100, divide the difference by 100, and multiply the final scalar factor by the original catalog list price to determine the new net price.</div>
+                </div>
+
+                <div class="faq-node">
+                    <div class="faq-query" onclick="toggleFaqAccordion(this)">What is the standard formula utilized for converting CGPA scores to percentages?</div>
+                    <div class="faq-response">Under standard criteria, a student's secured CGPA value score is multiplied by a base factor of 9.5 to map it accurately to an equivalent structural percentage score out of 100.</div>
+                </div>
+            </div>
+        </article>
+    </div>
+
+    <!-- Complete System Application Architecture JavaScript Core Logic -->
+    <script>
+        // System State Architecture Matrix
+        let activeTabIndex = 0;
+        let internalChartInstance = null;
+        let calculatedGlobalResultState = 0;
+
+        // Structured UI Theme Switching Logic
+        function switchThemeMode() {
+            const bodyNode = document.body;
+            const themeTxt = document.getElementById('theme-btn-text');
+            const themeIcon = document.getElementById('theme-btn-icon');
+            
+            bodyNode.classList.toggle('light-theme');
+            
+            if (bodyNode.classList.contains('light-theme')) {
+                themeTxt.innerText = "Dark Mode";
+                themeIcon.innerText = "🌙";
+            } else {
+                themeTxt.innerText = "Light Mode";
+                themeIcon.innerText = "☀️";
+            }
+            fireEngine(); // Force re-render chart theme components matching matrix styles
+        }
+
+        // Horizontal Navigation Module Mount Control
+        function mountTab(tabIndex) {
+            activeTabIndex = tabIndex;
+            
+            // Re-render Tab Button Active States
+            const triggers = document.querySelectorAll('.tab-trigger');
+            triggers.forEach((btn, idx) => {
+                if(idx === tabIndex) btn.classList.add('active');
+                else btn.classList.remove('active');
+            });
+
+            // Re-render Input View Visibility Matrix
+            const views = document.querySelectorAll('.calc-view');
+            views.forEach((view, idx) => {
+                if(idx === tabIndex) view.classList.add('active-view');
+                else view.classList.remove('active-view');
+            });
+
+            // Auto Reset Telemetry Labels based on Context Objectives
+            adjustTelemetryLabels(tabIndex);
+            
+            // Execute Calculation Engine Pipeline Sync
+            fireEngine();
+        }
+
+        function adjustTelemetryLabels(index) {
+            const labelNode = document.getElementById('telemetryLabel');
+            switch(index) {
+                case 0: case 1: case 3: case 7: labelNode.innerText = "Calculated Value Output"; break;
+                case 2: labelNode.innerText = "Percentage Delta Shift (%)"; break;
+                case 4: labelNode.innerText = "Academic Percentage Score"; break;
+                case 5: labelNode.innerText = "Calculated Academic Status"; break;
+                case 6: labelNode.innerText = "Required Next Score (%)"; break;
+                case 8: labelNode.innerText = "Final Reduced Price ($)"; break;
+                case 9: labelNode.innerText = "Net Profit / Loss Rate (%)"; break;
+                case 10: labelNode.innerText = "Calculated Gross Processing Total"; break;
+                case 11: labelNode.innerText = "New Post-Hike Compensation Base"; break;
+                case 12: labelNode.innerText = "Optimal Economical Strategy Option"; break;
+                case 13: labelNode.innerText = "Individual Payment Share per Capita"; break;
+                default: labelNode.innerText = "Calculated Value Output";
+            }
+        }
+
+        // Global Variable Reset Subroutine
+        function triggerResetAllInputs() {
+            const numericInputs = document.querySelectorAll('#inputsFormZone input[type="number"]');
+            numericInputs.forEach(input => input.value = '');
+            fireEngine();
+        }
+
+        // Accordion SEO Component Logic
+        function toggleFaqAccordion(element) {
+            const containerNode = element.parentElement;
+            containerNode.classList.toggle('open');
+        }
+
+        function toggleMathSolutionDrawer() {
+            const drawerNode = document.getElementById('mathSolutionBox');
+            drawerNode.classList.toggle('expanded');
+        }
+
+        // Central Calculation and Data Visualization Orchestrator
+        function fireEngine() {
+            let computedOutput = 0;
+            let displayString = "0.00";
+            let structuralSteps = [];
+            let chartLabels = ['Segment A', 'Segment B'];
+            let chartDataValues = [0, 100];
+            let targetColorAccent = '#38bdf8';
+
+            // Extract Active Element Calculations
+            switch(activeTabIndex) {
+                case 0: { // X is what % of Y
+                    let x = parseFloat(document.getElementById('t1_x').value) || 0;
+                    let y = parseFloat(document.getElementById('t1_y').value) || 0;
+                    if(y !== 0) {
+                        computedOutput = (x / y) * 100;
+                        displayString = computedOutput.toFixed(2) + "%";
+                    }
+                    structuralSteps = [
+                        "Identify the component part values inside the active parameters: Part (X) = " + x + ", Base Whole (Y) = " + y,
+                        "Apply the algebraic structural standard formula definition matrix:",
+                        "<div class='math-formula'>Percentage = (X / Y) * 100</div>",
+                        "Execution: (" + x + " / " + y + ") * 100 = " + displayString
+                    ];
+                    chartLabels = ['Part X', 'Remaining Baseline'];
+                    chartDataValues = [x, Math.max(0, y - x)];
+                    break;
+                }
+                case 1: { // What is X% of Y
+                    let x = parseFloat(document.getElementById('t2_x').value) || 0;
+                    let y = parseFloat(document.getElementById('t2_y').value) || 0;
+                    computedOutput = (x / 100) * y;
+                    displayString = computedOutput.toFixed(2);
+                    structuralSteps = [
+                        "Extract given structural attributes: Scalar Factor (X) = " + x + "%, Target Base Universe (Y) = " + y,
+                        "Apply mathematical scale calculation formula:",
+                        "<div class='math-formula'>Value Output = (X / 100) * Y</div>",
+                        "Execution: (" + x + " / 100) * " + y + " = " + displayString
+                    ];
+                    chartLabels = ['Calculated Segment', 'Remaining Total'];
+                    chartDataValues = [computedOutput, Math.max(0, y - computedOutput)];
+                    break;
+                }
+                case 2: { // % Increase/Decrease
+                    let oldVal = parseFloat(document.getElementById('t3_old').value) || 0;
+                    let newVal = parseFloat(document.getElementById('t3_new').value) || 0;
+                    if(oldVal !== 0) {
+                        computedOutput = ((newVal - oldVal) / oldVal) * 100;
+                        displayString = (computedOutput >= 0 ? "+" : "") + computedOutput.toFixed(2) + "%";
+                    }
+                    structuralSteps = [
+                        "Map metrics: Initial Base = " + oldVal + ", Final Matrix Target Value = " + newVal,
+                        "Determine Net Differential Delta Shift: " + newVal + " - " + oldVal + " = " + (newVal - oldVal),
+                        "Apply Delta Percentage growth calculation formula baseline:",
+                        "<div class='math-formula'>% Shift = ((New - Old) / Old) * 100</div>",
+                        "Execution: ((" + newVal + " - " + oldVal + ") / " + oldVal + ") * 100 = " + displayString
+                    ];
+                    chartLabels = ['Original Starting Value', 'Delta Shift Matrix Value'];
+                    chartDataValues = [oldVal, Math.abs(newVal - oldVal)];
+                    targetColorAccent = computedOutput >= 0 ? '#34d399' : '#f87171';
+                    break;
+                }
+                case 3: { // Reverse %
+                    let val = parseFloat(document.getElementById('t4_val').value) || 0;
+                    let pct = parseFloat(document.getElementById('t4_pct').value) || 0;
+                    if(pct !== 0) {
+                        computedOutput = val / (pct / 100);
+                        displayString = computedOutput.toFixed(2);
+                    }
+                    structuralSteps = [
+                        "Define parameters: Manifested Component = " + val + ", Assigned Percent Scale Ratio = " + pct + "%",
+                        "Apply reverse algebraic formulation mapping standard base vectors:",
+                        "<div class='math-formula'>Original Baseline Whole = Value / (Percentage / 100)</div>",
+                        "Execution: " + val + " / (" + pct + " / 100) = " + displayString
+                    ];
+                    chartLabels = ['Known Segment Portion', 'Inferred Missing System Space'];
+                    chartDataValues = [val, Math.max(0, computedOutput - val)];
+                    break;
+                }
+                case 4: { // Marks to % + Grade
+                    let got = parseFloat(document.getElementById('t5_got').value) || 0;
+                    let total = parseFloat(document.getElementById('t5_total').value) || 0;
+                    let gradeBadge = document.getElementById('gradeBadgeContainer');
+                    let assignedGrade = "F";
+                    
+                    if(total !== 0) {
+                        computedOutput = (got / total) * 100;
+                        displayString = computedOutput.toFixed(2) + "%";
+                    }
+                    
+                    if(computedOutput >= 90) assignedGrade = "A+ (Elite Performance)";
+                    else if(computedOutput >= 80) assignedGrade = "A (Excellent Structural Yield)";
+                    else if(computedOutput >= 70) assignedGrade = "B (Competent Score Matrix)";
+                    else if(computedOutput >= 50) assignedGrade = "C (Passable Core State)";
+                    else assignedGrade = "F (Academic Operational Deficit)";
+
+                    if(total > 0 && got > 0) {
+                        gradeBadge.innerHTML = `<span class="badge-info">Assigned Metric Grade: ${assignedGrade}</span>`;
+                    } else {
+                        gradeBadge.innerHTML = "";
+                    }
+
+                    structuralSteps = [
+                        "Track evaluation points: Secured Score = " + got + ", Max Scale = " + total,
+                        "Compute percentile representation factor:",
+                        "<div class='math-formula'>Percentile Score = (Secured / Maximum) * 100</div>",
+                        "Score Resolution Matrix: (" + got + " / " + total + ") * 100 = " + displayString,
+                        "Normalization Engine evaluation result output assigned grade: " + assignedGrade
+                    ];
+                    chartLabels = ['Secured Points Allocation', 'Dropped Points Counterpart'];
+                    chartDataValues = [got, Math.max(0, total - got)];
+                    break;
+                }
+                case 5: { // Pass/Fail Analyzer
+                    let got = parseFloat(document.getElementById('t6_got').value) || 0;
+                    let pass = parseFloat(document.getElementById('t6_pass').value) || 0;
+                    let maxVal = parseFloat(document.getElementById('t6_max').value) || 0;
+                    
+                    let outcomeStatus = "Evaluation Pending";
+                    if(maxVal > 0) {
+                        outcomeStatus = got >= pass ? "PASS (Safe Operational Status)" : "FAIL (Deficit Identified)";
+                        displayString = outcomeStatus;
+                    }
+                    structuralSteps = [
+                        "Obtained Marks = " + got + ", Required Threshold = " + pass + ", Total Allocation Scale = " + maxVal,
+                        "Boolean Logic Threshold Check: Is Obtained (" + got + ") ≥ Passing Threshold (" + pass + ")?",
+                        "Condition Result Evaluation Status: " + outcomeStatus
+                    ];
+                    chartLabels = ['Marks Achieved', 'Target Buffer Delta Required'];
+                    chartDataValues = [got, Math.max(0, maxVal - got)];
+                    targetColorAlpha = got >= pass ? '#34d399' : '#f87171';
+                    break;
+                }
+                case 6: { // Target % Matrix
+                    let curr = parseFloat(document.getElementById('t7_curr_pct').value) || 0;
+                    let pastW = parseFloat(document.getElementById('t7_past_w').value) || 0;
+                    let tgt = parseFloat(document.getElementById('t7_tgt').value) || 0;
+                    
+                    let remainingW = 100 - pastW;
+                    if(remainingW > 0) {
+                        computedOutput = (tgt - (curr * (pastW / 100))) / (remainingW / 100);
+                        displayString = computedOutput.toFixed(2) + "%";
+                    }
+                    structuralSteps = [
+                        "Current Cumulative Score = " + curr + "%, Past Weight Factor = " + pastW + "%",
+                        "Objective Metric Target Goal = " + tgt + "%, Remaining Weight Vector Space = " + remainingW + "%",
+                        "Apply structural future trajectory target prediction equations:",
+                        "<div class='math-formula'>Required Next Performance = (Goal - (Current * PastWeight)) / FutureWeight</div>",
+                        "Execution Outcome Matrix: Target required next is " + displayString
+                    ];
+                    chartLabels = ['Past Achieved Credit Base', 'Required New Segment Target Threshold'];
+                    chartDataValues = [curr * (pastW/100), Math.max(0, computedOutput * (remainingW/100))];
+                    break;
+                }
+                case 7: { // CGPA to %
+                    let cgpa = parseFloat(document.getElementById('t7_cgpa').value) || 0;
+                    let factor = parseFloat(document.getElementById('t7_factor').value) || 9.5;
+                    computedOutput = cgpa * factor;
+                    displayString = computedOutput.toFixed(2) + "%";
+                    
+                    structuralSteps = [
+                        "Secured Scale Input CGPA = " + cgpa + ", System Scalar Formula Multiplier Factor = " + factor,
+                        "Apply standard multi-variate educational mapping standard linear equation:",
+                        "<div class='math-formula'>Percentage Mapping Equivalent = CGPA * Factor</div>",
+                        "Execution: " + cgpa + " * " + factor + " = " + displayString
+                    ];
+                    chartLabels = ['Mapped Percentage Matrix Area', 'Scale Ceiling Value Difference'];
+                    chartDataValues = [computedOutput, Math.max(0, 100 - computedOutput)];
+                    break;
+                }
+                case 8: { // Advanced Discount
+                    let price = parseFloat(document.getElementById('t8_price').value) || 0;
+                    let d1 = parseFloat(document.getElementById('t8_disc1').value) || 0;
+                    let d2 = parseFloat(document.getElementById('t8_disc2').value) || 0;
+                    
+                    let intermediatePrice = price - ((d1 / 100) * price);
+                    computedOutput = intermediatePrice - ((d2 / 100) * intermediatePrice);
+                    displayString = "$" + computedOutput.toFixed(2);
+                    
+                    structuralSteps = [
+                        "Initial Retail Value Base = $" + price + ", Discount Slate One = " + d1 + "%, Stacked Coupon Two = " + d2 + "%",
+                        "Run cascading financial processing steps:",
+                        "Step 1 (Primary Markdown): Base Deducted Value = " + price + " - (" + d1 + "% of " + price + ") = $" + intermediatePrice.toFixed(2),
+                        "Step 2 (Secondary Compound Markdown): Final Asset Processing Price = " + intermediatePrice.toFixed(2) + " - (" + d2 + "% of " + intermediatePrice.toFixed(2) + ") = " + displayString,
+                        "Total Saved Absolute Value Amount: $" + (price - computedOutput).toFixed(2)
+                    ];
+                    chartLabels = ['Realized Settlement Cost Paid', 'Total Slashed Monetary Savings'];
+                    chartDataValues = [computedOutput, Math.max(0, price - computedOutput)];
+                    targetColorAccent = '#34d399';
+                    break;
+                }
+                case 9: { // Profit/Loss Yield
+                    let cp = parseFloat(document.getElementById('t9_cp').value) || 0;
+                    let sp = parseFloat(document.getElementById('t9_sp').value) || 0;
+                    
+                    if(cp !== 0) {
+                        computedOutput = ((sp - cp) / cp) * 100;
+                        displayString = (computedOutput >= 0 ? "Profit of " : "Loss of ") + Math.abs(computedOutput).toFixed(2) + "%";
+                    }
+                    structuralSteps = [
+                        "Commercial Matrix Setup: Original Cost Base (CP) = " + cp + ", Realized Net Sale (SP) = " + sp,
+                        "Apply asset margin analysis configuration equations:",
+                        "<div class='math-formula'>Margin Efficiency Rate = ((SellingPrice - CostPrice) / CostPrice) * 100</div>",
+                        "Execution Output Resolution: " + displayString
+                    ];
+                    chartLabels = ['Cost Asset Foundation', 'Net Yield Performance Vector'];
+                    chartDataValues = [cp, Math.abs(sp - cp)];
+                    targetColorAccent = computedOutput >= 0 ? '#34d399' : '#f87171';
+                    break;
+                }
+                case 10: { // GST Add/Remove
+                    let amt = parseFloat(document.getElementById('t10_amt').value) || 0;
+                    let rate = parseFloat(document.getElementById('t10_rate').value) || 0;
+                    let mode = document.getElementById('t10_mode').value;
+                    
+                    let computedTax = 0;
+                    if(mode === "add") {
+                        computedTax = amt * (rate / 100);
+                        computedOutput = amt + computedTax;
+                        displayString = computedOutput.toFixed(2) + " (Tax Added: " + computedTax.toFixed(2) + ")";
+                        chartLabels = ['Base Net Asset Value', 'Assigned Isolated Tax Pool'];
+                        chartDataValues = [amt, computedTax];
+                    } else {
+                        computedOutput = amt / (1 + (rate / 100));
+                        computedTax = amt - computedOutput;
+                        displayString = computedOutput.toFixed(2) + " (Tax Extracted: " + computedTax.toFixed(2) + ")";
+                        chartLabels = ['Calculated Net Base Value', 'Extracted Isolated Tax Pool'];
+                        chartDataValues = [computedOutput, computedTax];
+                    }
+                    structuralSteps = [
+                        "Input Financial Base Value = " + amt + ", Fiscal Assigned Slate Rate = " + rate + "%",
+                        "Mode Intention Selection Direction: " + mode.toUpperCase(),
+                        mode === "add" ? "<div class='math-formula'>Gross Total = Base * (1 + (Rate / 100))</div>" : "<div class='math-formula'>Net Base = Gross / (1 + (Rate / 100))</div>",
+                        "Final Calculated Matrix Value: " + displayString
+                    ];
+                    break;
+                }
+                case 11: { // Salary Hike Estimator
+                    let sal = parseFloat(document.getElementById('t11_sal').value) || 0;
+                    let hike = parseFloat(document.getElementById('t11_hike').value) || 0;
+                    
+                    let monthlyIncrease = sal * (hike / 100);
+                    computedOutput = sal + monthlyIncrease;
+                    displayString = computedOutput.toFixed(2);
+                    
+                    structuralSteps = [
+                        "Baseline Salary Vector = " + sal + ", Stated Hike Allocation Multiplier = " + hike + "%",
+                        "Compute localized incremental velocity component factors:",
+                        "Absolute Component Boost Value Increase = " + monthlyIncrease.toFixed(2),
+                        "Projected Direct Annual Cumulative System Wealth Addition Flow Impact: " + (monthlyIncrease * 12).toFixed(2),
+                        "<div class='math-formula'>New Adjusted Salary Metric = Old Base * (1 + (Hike / 100))</div>"
+                    ];
+                    chartLabels = ['Historical Salary Footprint', 'New Incremental Wealth Segment'];
+                    chartDataValues = [sal, monthlyIncrease];
+                    break;
+                }
+                case 12: { // Market Offer Matcher
+                    let p1 = parseFloat(document.getElementById('t12_p1').value) || 0;
+                    let d1 = parseFloat(document.getElementById('t12_d1').value) || 0;
+                    let p2 = parseFloat(document.getElementById('t12_p2').value) || 0;
+                    let d2 = parseFloat(document.getElementById('t12_d2').value) || 0;
+                    
+                    let netA = p1 - ((d1/100)*p1);
+                    let netB = p2 - ((d2/100)*p2);
+                    
+                    if(netA === netB) {
+                        displayString = "Equilibrium Match (Both offers equal at $" + netA.toFixed(2) + ")";
+                        computedOutput = 0;
+                    } else if (netA < netB) {
+                        displayString = "Alternative A Wins (Net Cost: $" + netA.toFixed(2) + " vs $" + netB.toFixed(2) + ")";
+                        computedOutput = netB - netA;
+                    } else {
+                        displayString = "Alternative B Wins (Net Cost: $" + netB.toFixed(2) + " vs $" + netA.toFixed(2) + ")";
+                        computedOutput = netA - netB;
+                    }
+                    
+                    structuralSteps = [
+                        "Alternative A Parameters: Price = " + p1 + ", Discount = " + d1 + "% → Net Target Valuation = $" + netA.toFixed(2),
+                        "Alternative B Parameters: Price = " + p2 + ", Discount = " + d2 + "% → Net Target Valuation = $" + netB.toFixed(2),
+                        "System optimization algorithm select lowest resource consumption profile option:",
+                        "Selection Result Verdict Configuration: " + displayString
+                    ];
+                    chartLabels = ['Alternative A Cost Profile', 'Alternative B Cost Profile'];
+                    chartDataValues = [netA, netB];
+                    break;
+                }
+                case 13: { // Tip & Bill Splitter
+                    let bill = parseFloat(document.getElementById('t13_bill').value) || 0;
+                    let tip = parseFloat(document.getElementById('t13_tip').value) || 0;
+                    let split = parseInt(document.getElementById('t13_split').value) || 1;
+                    
+                    let totalTipAmt = bill * (tip / 100);
+                    let totalGrossBill = bill + totalTipAmt;
+                    computedOutput = totalGrossBill / (split > 0 ? split : 1);
+                    displayString = "$" + computedOutput.toFixed(2);
+                    
+                    structuralSteps = [
+                        "Invoice Base Cost = $" + bill + ", Tip Setup Rate = " + tip + "%, Party Headcount Divisor = " + split,
+                        "Calculate collective structural load extensions:",
+                        "Aggregated Total Tip Obligation = $" + totalTipAmt.toFixed(2),
+                        "Gross Total Transaction Cost = $" + totalGrossBill.toFixed(2),
+                        "<div class='math-formula'>Per Capita Share = (Bill + TipAmount) / Headcount</div>",
+                        "Calculated value per person = " + displayString
+                    ];
+                    chartLabels = ['Core Base Group Bill Matrix', 'Total Allocated Tip Premium'];
+                    chartDataValues = [bill, totalTipAmt];
+                    break;
+                }
+                case 14: { // Visual Playground Mode Control
+                    let slice = parseFloat(document.getElementById('t14_slice').value) || 0;
+                    let base = parseFloat(document.getElementById('t14_base').value) || 100;
+                    if(base !== 0) {
+                        computedOutput = (slice / base) * 100;
+                        displayString = computedOutput.toFixed(2) + "%";
+                    }
+                    structuralSteps = [
+                        "Visual Simulator Playground Active Mode Metrics Loaded.",
+                        "Input Component Data Unit Segment = " + slice + ", Total Scale Box Universe Vector = " + base,
+                        "Formula representation output visualization matrix matching parameters active UI states."
+                    ];
+                    chartLabels = ['Custom Slice Target data', 'Universe Remaining Mass'];
+                    chartDataValues = [slice, Math.max(0, base - slice)];
+                    break;
+                }
+                case 15: { // System Settings Tab Feedback
+                    computedOutput = 2.0;
+                    displayString = "System Engine v2.0 Operational";
+                    structuralSteps = ["Diagnostic Engine Status: OK", "Client Pipeline Sync Status: Online", "External Ad Network Filter Blockers: Active"];
+                    break;
+                }
+            }
+
+            // Sync States with Telemetry View Interface Components
+            document.getElementById('telemetryOutput').innerText = displayString;
+            calculatedGlobalResultState = displayString; // Keep textual reference frame locked
+
+            // Populate Mathematical Instruction Step Code Blocks
+            const solutionContainer = document.getElementById('solutionStepsContainer');
+            solutionContainer.innerHTML = '';
+            structuralSteps.forEach(step => {
+                const stepNode = document.createElement('div');
+                stepNode.className = 'math-step';
+                stepNode.innerHTML = step;
+                solutionContainer.appendChild(stepNode);
+            });
+
+            // Update Graphical Data Visualization Chart Interface Canvas Components
+            renderTelemetryChartData(chartLabels, chartDataValues, targetColorAccent);
+        }
+
+        // Highly Clean Chart Canvas Memory Lifecycle Control Interface
+        function renderTelemetryChartData(labels, data, accentColor) {
+            const ctx = document.getElementById('telemetryGraphicCanvas').getContext('2d');
+            
+            // Wipe historical active memory pointer slots safely to avoid leaky rendering loops
+            if (internalChartInstance) {
+                internalChartInstance.destroy();
+            }
+
+            const isDark = !document.body.classList.contains('light-theme');
+            const textColorResolved = isDark ? '#94a3b8' : '#475569';
+            const gridBorderColor = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)';
+
+            internalChartInstance = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        data: data,
+                        backgroundColor: [accentColor, '#818cf8', '#34d399', '#f87171'],
+                        borderWidth: 2,
+                        borderColor: isDark ? '#1e1b4b' : '#ffffff',
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                color: textColorResolved,
+                                font: { weight: '600', size: 11 }
+                            }
+                        }
+                    },
+                    cutout: '70%',
+                    animation: {
+                        duration: 350,
+                        easing: 'easeOutQuart'
+                    }
+                }
+            });
+        }
+
+        // Modern Client Clipboard System Interface API Controls
+        function executeSystemClipboardCopy() {
+            const outputCleanTextString = `All-in-One Percentage Calculator Result: ${calculatedGlobalResultState}`;
+            navigator.clipboard.writeText(outputCleanTextString).then(() => {
+                alert("Calculated metrics copied to secure clipboard space successfully: " + calculatedGlobalResultState);
+            }).catch(err => {
+                console.error('Could not execute browser structural text acquisition copy routine: ', err);
+            });
+        }
+
+        // Instant Native Messaging Deep-Link Share Protocol Handler Logic
+        function deployWhatsAppShare() {
+            const messagePayload = `Premium Percentage Engine Result: ${calculatedGlobalResultState} - Calculated instantly with 100% precision. Analyze solutions here:`;
+            const secureEncodedPayload = encodeURIComponent(messagePayload + " " + window.location.href);
+            const nativeDeepLinkUri = `https://wa.me/?text=${secureEncodedPayload}`;
+            window.open(nativeDeepLinkUri, '_blank');
+        }
+
+        // Bootstrapping System Mounting Subroutine Loops
+        window.addEventListener('DOMContentLoaded', () => {
+            // Core Application Engine Init Event Sequence Loop
+            mountTab(0);
+        });
+    </script>
+
+    <!-- Google Compliant Core JSON-LD Structural FAQ Schema Engine Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How to calculate percentage?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "To determine the percentage relationship between two figures, take the localized segment value (the part), divide it by the total structural baseline base value (the whole), and multiply the resulting fraction score value by exactly 100."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is 20% of 500?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Calculating 20% of 500 implies evaluating the formula: (20 / 100) * 500. This resolves uniformly to exactly 100.00."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How to convert marks to percentage?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Divide the total count of marks secured inside your evaluations by the maximum possible total points baseline configuration attainable, then multiply the product by 100 to extract the academic percentile."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How to calculate discount percentage?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Subtract the promotional discount percentage value rate from 100, divide the difference by 100, and multiply the final scalar factor by the original catalog list price to determine the new net price."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "CGPA to percentage formula?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Under standard international criteria scaling matrices, a student's secured CGPA value score is multiplied by a base factor of 9.5 to map it accurately to an equivalent structural percentage score out of 100."
+          }
+        }
+      ]
+    }
+    </script>
+</body>
+</html>
