@@ -59,12 +59,6 @@
 </head>
 <body class="font-sans antialiased min-h-screen flex flex-col">
 
-    <!-- Top API Inputs -->
-    <div class="glassmorphism w-full p-3 sticky top-0 z-50 flex flex-col md:flex-row gap-2 justify-center items-center text-sm border-b border-gray-700">
-        <input type="password" id="geminiApiKey" placeholder="Enter Gemini API Key..." class="bg-gray-800 text-white px-3 py-1.5 rounded border border-gray-600 focus:outline-none focus:border-primaryBlue w-full md:w-64">
-        <input type="password" id="firebaseConfig" placeholder="Enter Firebase Config JSON..." class="bg-gray-800 text-white px-3 py-1.5 rounded border border-gray-600 focus:outline-none focus:border-primaryBlue w-full md:w-80">
-        <button onclick="initCoreServices()" class="bg-successGreen hover:bg-green-600 text-white px-4 py-1.5 rounded transition font-medium">Initialize Core</button>
-    </div>
 
     <!-- Header -->
     <header class="text-center py-6">
@@ -451,20 +445,22 @@
         /* ================= INITIALIZATION & FIREBASE ================= */
         // // Firebase init (Dynamically injected config)
         function initCoreServices() {
-            const configStr = document.getElementById('firebaseConfig').value;
-            if(configStr) {
-                try {
-                    const fbConfig = JSON.parse(configStr);
-                    if (!firebase.apps.length) {
-                        firebase.initializeApp(fbConfig);
-                        fbDb = firebase.database();
-                        alert("Firebase Connected! Leaderboard & Room Battles active.");
-                        fetchLeaderboard();
-                    }
-                } catch(e) { alert("Invalid Firebase JSON config."); }
-            } else {
-                console.log("Firebase skipped. Local mode only.");
-            }
+    const fbConfig = {
+      apiKey: "AIzaSyAqLy5MQ5tikkgT3sTZLpOT",
+      authDomain: "linguaquiz-72efb.firebaseapp.com",
+      databaseURL: "https://linguaquiz-72efb.firebaseio.com",
+      projectId: "linguaquiz-72efb",
+      storageBucket: "linguaquiz-72efb.firebasestorage.app",
+      messagingSenderId: "1002810650043",
+      appId: "1:1002810650043:web:7fe0106d72e4079a55289e",
+      measurementId: "G-J85D0WEH0"
+    };
+    try {
+        if (!firebase.apps.length) {
+            firebase.initializeApp(fbConfig);
+            fbDb = firebase.database();
+            console.log("Firebase Connected!");
+            fetchLeaderboard();
         }
 
         // Auto Save (F26)
@@ -497,9 +493,8 @@
             return text;
         }
 
-        async function generateMCQ_Tab1() {
-            const key = document.getElementById('geminiApiKey').value;
-            if(!key) return alert("Please enter Gemini API Key at top!");
+            async function generateMCQ_Tab1() {
+            const key = "__GEMINI_API_KEY__";
             
             const fileInput = document.getElementById('t1_file');
             const file = fileInput.files[0];
