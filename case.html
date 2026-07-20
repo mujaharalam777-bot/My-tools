@@ -22,6 +22,7 @@
   }
  .glow-btn {
     box-shadow: 0 0 15px rgba(34, 197, 94, 0.6);
+    transition: all 0.3s ease;
   }
  .glow-btn:hover {
     box-shadow: 0 0 30px rgba(34, 197, 94, 1);
@@ -56,7 +57,7 @@
 <div class="grid grid-cols-1 max-w-sm mx-auto">
 
   <!-- CARD 1 - CASE CONVERTER -->
-  <div class="glow-card rounded-2xl p-6 cursor-pointer" onclick="openModal('case-converter')">
+  <div class="glow-card rounded-2xl p-6" onclick="openModal('case-converter')">
     
     <!-- FREE BADGE -->
     <div class="free-badge bg-green-500 text-black text-xs font-bold px-3 py-1 rounded-full shadow-lg shadow-green-500/50">
@@ -66,7 +67,13 @@
     <div class="text-5xl mb-4">🔤</div>
     <h3 class="text-2xl font-bold mb-2">Case Converter</h3>
     <p class="text-gray-400 text-sm mb-4">Convert text to 18+ cases. camelCase, snake_case, Title Case and more.</p>
-    <span class="bg-cyan-500/20 text-cyan-300 text-xs px-3 py-1 rounded-full">No Signup Needed</span>
+    <span class="bg-cyan-500/20 text-cyan-300 text-xs px-3 py-1 rounded-full mb-5 inline-block">No Signup Needed</span>
+    
+    <!-- OPEN BUTTON CARD ER BHITOR -->
+    <button class="w-full bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-bold py-3 px-6 rounded-xl glow-btn">
+      OPEN →
+    </button>
+
   </div>
 
 </div>
@@ -79,7 +86,7 @@
     <div id="modalIcon" class="text-6xl mb-4 text-center">🔤</div>
     <h2 id="modalTitle" class="text-3xl font-bold text-center mb-3 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Case Converter</h2>
     <p id="modalDesc" class="text-gray-300 text-center mb-6">Convert your text to 18+ different cases. 100% Free Forever.</p>
-    <a id="modalLink" href="/case-converter/" class="glow-btn w-full block text-center bg-green-500 text-black font-bold py-4 px-6 rounded-xl">OPEN FREE TOOL →</a>
+    <a id="modalLink" href="/case-converter/" class="glow-btn w-full block text-center bg-green-500 text-black font-bold py-4 px-6 rounded-xl">GO TO TOOL →</a>
   </div>
 </div>
 
