@@ -85,6 +85,45 @@ function joinRoom(){
 
 window.showTab=showTab;
 window.joinRoom=joinRoom;
+  import { onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+let myName = ""; let myRoom = ""; let myScore = 0;
+
+// purono joinRoom ke update korchi
+function joinRoom(){
+  const room = document.getElementById('roomId').value; 
+  const name = document.getElementById('playerName').value;
+  if(!room ||!name) return alert("Room ID r Naam 2 toi dao bhai");
+  
+  myRoom = room; myName = name;
+  set(ref(db, 'rooms/' + room + '/players/' + name), {score:0});
+  document.getElementById('roomStatus').innerText = "✅ Joined: " + room + " as " + name;
+
+  // Room area add korchi
+  document.getElementById('t2').innerHTML = `
+    <h2>Room Battle ⚔️</h2>
+    <p>Room: <b>${room}</b></p>
+    <div id="scoreboard" style="background:#1e293b;padding:10px;border-radius:10px;text-align:left"></div>
+    <hr>
+    <h4 id="q">Q1: Bharat er Rajdhani ki?</h4>
+    <button class="action" onclick="lqAns(0)">A. Delhi</button><br>
+    <button class="action" onclick="lqAns(1)">B. Mumbai</button><br>
+    <button class="action" onclick="lqAns(2)">C. Kolkata</button><br>
+    <button class="action" onclick="lqAns(3)">D. Chennai</button>
+  `;
+
+  // LIVE SCOREBOARD
+  onValue(ref(db, 'rooms/'+room+'/players'), (snap)=>{
+    let html = "<h3>Live Score</h3>";
+    snap.forEach(child=>{ html += `<p>${child.key}: ${child.val().score}</p>` });
+    document.getElementById('scoreboard').innerHTML = html;
+  });
+}
+
+function lqAns(opt){
+  if(opt == 0){ myScore = myScore + 1 } else { myScore = myScore - 1 }
+  set(ref(db, 'rooms/'+myRoom+'/players/'+myName), {score:myScore});
+          }
 </script>
 </body>
 </html>
