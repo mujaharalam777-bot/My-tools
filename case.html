@@ -1,1 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Case Converter Tool | 100% Free, No Login</title>
+<meta name="description" content="Free Online Case Converter. Convert to Uppercase, Lowercase, camelCase, snake_case. 100% Free Forever. Made for those who can't afford paid tools.">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  body { background: #0a0f1e; }
+ .glow-card {
+    background: rgba(20, 30, 50, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 200, 255, 0.2);
+    transition: all 0.3s ease;
+    position: relative;
+  }
+ .glow-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 0 25px rgba(0, 200, 255, 0.5), 0 0 50px rgba(0, 200, 255, 0.3);
+    border: 1px solid rgba(0, 200, 255, 0.8);
+  }
+ .glow-btn {
+    box-shadow: 0 0 15px rgba(34, 197, 94, 0.6);
+  }
+ .glow-btn:hover {
+    box-shadow: 0 0 30px rgba(34, 197, 94, 1);
+    transform: scale(1.03);
+  }
+ .free-badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+  }
+</style>
+</head>
+<body class="text-white">
 
+<!-- SOCIAL SERVICE BADGE - UPORE KONAY -->
+<div class="fixed top-4 right-4 z-50">
+  <div class="bg-gradient-to-r from-pink-500 to-orange-500 text-white text-xs font-bold px-4 py-2 rounded-full shadow-lg shadow-pink-500/50">
+    ❤️ Made for those who can't afford paid tools
+  </div>
+</div>
+
+<div class="p-6 pt-20">
+<h1 class="text-4xl font-bold text-center mb-4 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Free Premium Tools</h1>
+<p class="text-center text-gray-400 mb-10">100% Free Forever. No Login. No Ads.</p>
+
+<!-- EKTAI CARD -->
+<div class="grid grid-cols-1 max-w-sm mx-auto">
+
+  <!-- CARD 1 - CASE CONVERTER -->
+  <div class="glow-card rounded-2xl p-6 cursor-pointer" onclick="openModal('case-converter')">
+    
+    <!-- FREE BADGE -->
+    <div class="free-badge bg-green-500 text-black text-xs font-bold px-3 py-1 rounded-full shadow-lg shadow-green-500/50">
+      FREE
+    </div>
+
+    <div class="text-5xl mb-4">🔤</div>
+    <h3 class="text-2xl font-bold mb-2">Case Converter</h3>
+    <p class="text-gray-400 text-sm mb-4">Convert text to 18+ cases. camelCase, snake_case, Title Case and more.</p>
+    <span class="bg-cyan-500/20 text-cyan-300 text-xs px-3 py-1 rounded-full">No Signup Needed</span>
+  </div>
+
+</div>
+</div>
+
+<!-- GLOW MODAL -->
+<div id="toolModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden items-center justify-center z-50">
+  <div class="glow-card rounded-2xl p-8 w-11/12 max-w-md shadow-2xl relative border-cyan-400/50">
+    <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-red-500 text-3xl">&times;</button>
+    <div id="modalIcon" class="text-6xl mb-4 text-center">🔤</div>
+    <h2 id="modalTitle" class="text-3xl font-bold text-center mb-3 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Case Converter</h2>
+    <p id="modalDesc" class="text-gray-300 text-center mb-6">Convert your text to 18+ different cases. 100% Free Forever.</p>
+    <a id="modalLink" href="/case-converter/" class="glow-btn w-full block text-center bg-green-500 text-black font-bold py-4 px-6 rounded-xl">OPEN FREE TOOL →</a>
+  </div>
+</div>
+
+<!-- SEO SECTION -->
+<section class="max-w-4xl mx-auto mt-20 px-6 text-gray-300">
+  <h2 class="text-3xl font-bold text-center mb-6 text-white">Why This Tool is 100% Free?</h2>
+  <p class="mb-4">
+    We built this <b>Case Converter</b> as a <b>social service</b> for students, writers, and developers who cannot afford expensive paid software. This tool will always remain free. No login, no watermark, no limits.
+  </p>
+  <h3 class="text-xl font-bold mt-6 mb-2 text-cyan-400">Features:</h3>
+  <ul class="list-disc list-inside space-y-2">
+    <li>Convert to Uppercase, Lowercase, Title Case, Sentence case</li>
+    <li>Convert to camelCase, PascalCase, snake_case, kebab-case</li>
+    <li>1-Click Copy and Download</li>
+    <li>Works 100% in your browser. We don't save your text</li>
+  </ul>
+  <p class="mt-8 text-center text-sm text-gray-500">Keywords: free case converter, text case tool, uppercase lowercase converter</p>
+</section>
+
+<script>
+  function openModal(toolId) {
+    document.getElementById('toolModal').classList.remove('hidden');
+    document.getElementById('toolModal').classList.add('flex');
+  }
+  function closeModal() {
+    document.getElementById('toolModal').classList.add('hidden');
+    document.getElementById('toolModal').classList.remove('flex');
+  }
+  // Baire click korle bondho hobe
+  document.getElementById('toolModal').addEventListener('click', function(e){
+    if(e.target.id === 'toolModal') closeModal();
+  });
+</script>
+
+</body>
+</html>
