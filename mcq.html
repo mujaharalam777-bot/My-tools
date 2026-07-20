@@ -1,1 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MCQ Generator | Free</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#4f46e5,#6366f1,#818cf8);
+min-height:100vh;
+padding:30px 20px;
+color:#fff;
+overflow:hidden;
+}
+
+.container{
+max-width:650px;
+margin:auto;
+}
+
+.back{
+display:inline-block;
+text-decoration:none;
+color:#dbeafe;
+font-size:16px;
+margin-bottom:20px;
+}
+
+.header{
+text-align:center;
+margin-bottom:35px;
+}
+
+.header .icon{
+font-size:70px;
+margin-bottom:10px;
+filter:drop-shadow(0 0 15px rgba(255,255,255,.6));
+}
+
+.header h1{
+font-size:34px;
+font-weight:800;
+text-shadow:0 5px 15px rgba(0,0,0,.2);
+}
+
+/* Floating Icons */
+
+.float{
+position:fixed;
+font-size:22px;
+opacity:.15;
+animation:float 10s linear infinite;
+pointer-events:none;
+}
+
+@keyframes float{
+0%{
+transform:translateY(110vh) rotate(0deg);
+}
+100%{
+transform:translateY(-20vh) rotate(360deg);
+}
+}
+
+.card{
+background:rgba(255,255,255,.12);
+backdrop-filter:blur(18px);
+border:1px solid rgba(255,255,255,.18);
+border-radius:24px;
+padding:35px 25px;
+text-align:center;
+box-shadow:0 15px 40px rgba(0,0,0,.18);
+}
+
+.card-header{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:12px;
+margin-bottom:12px;
+}
+
+.dot{
+width:14px;
+height:14px;
+border-radius:50%;
+background:#22c55e;
+box-shadow:0 0 18px #22c55e;
+}
+
+.card h2{
+font-size:30px;
+font-weight:800;
+}
+
+.card p{
+margin-top:8px;
+color:#e0e7ff;
+font-size:16px;
+line-height:1.7;
+margin-bottom:28px;
+}
+
+.btn{
+width:100%;
+padding:18px;
+border:none;
+border-radius:16px;
+cursor:pointer;
+font-size:18px;
+font-weight:700;
+color:#fff;
+background:linear-gradient(135deg,#2563eb,#3b82f6);
+transition:.3s;
+box-shadow:0 8px 25px rgba(37,99,235,.35);
+}
+
+.btn:hover{
+transform:translateY(-3px);
+box-shadow:0 12px 30px rgba(37,99,235,.5);
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="float" style="left:8%;animation-delay:0s;">📝</div>
+<div class="float" style="left:25%;animation-delay:2s;">📚</div>
+<div class="float" style="left:45%;animation-delay:4s;">✏️</div>
+<div class="float" style="left:70%;animation-delay:1s;">📖</div>
+<div class="float" style="left:90%;animation-delay:3s;">🎓</div>
+
+<div class="container">
+
+<a href="index.html" class="back">← Back to Home</a>
+
+<div class="header">
+<div class="icon">📝</div>
+<h1>MCQ Generator</h1>
+</div>
+
+<div class="card">
+
+<div class="card-header">
+<div class="dot"></div>
+<h2>Create MCQs</h2>
+</div>
+
+<p>
+Generate professional Multiple Choice Questions instantly for Exams, School, College & Practice Tests.
+</p>
+
+<button class="btn" onclick="location.href='mcq-generator.html'">
+📄 Open MCQ Generator
+</button>
+
+</div>
+
+</div>
+
+</body>
+</html>
