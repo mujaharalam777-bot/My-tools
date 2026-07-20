@@ -1,1 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LinguaQuiz - MCQ, Mock, Room Battle</title>
+<style>
+body{background:#0f172a;color:#fff;font-family:sans-serif;padding:20px;text-align:center}
+h1{color:#3b82f6}
+.tabs{margin:20px 0}
+.tabs button{padding:12px 20px;background:#1e293b;color:#fff;border:none;margin:5px;border-radius:8px;cursor:pointer;font-size:16px}
+.tabs button.active{background:#3b82f6}
+.tab-content{margin-top:20px}
+input{padding:12px;border-radius:8px;border:none;margin:5px;width:200px;background:#1e293b;color:#fff}
+button.action{padding:12px 20px;background:#22c55e;color:#fff;border:none;border-radius:8px;cursor:pointer;margin-top:10px}
+a{color:#60a5fa;text-decoration:none;display:block;margin-top:30px}
+</style>
+</head>
+<body>
 
+<h1>LinguaQuiz 🔥</h1>
+
+<div class="tabs">
+  <button onclick="showTab(0)" class="active">MCQ Practice</button>
+  <button onclick="showTab(1)">Mock Test</button>
+  <button onclick="showTab(2)">Room Battle</button>
+</div>
+
+<div id="t0" class="tab-content">
+  <h2>MCQ Practice</h2>
+  <p>Ekhan theke topic select kore practice korbi</p>
+</div>
+
+<div id="t1" class="tab-content" style="display:none">
+  <h2>Mock Test</h2>
+  <p>Full test de. 30 min timer chalu hobe</p>
+</div>
+
+<div id="t2" class="tab-content" style="display:none">
+  <h2>Room Battle ⚔️</h2>
+  <input id="roomId" placeholder="Room ID likh">
+  <br>
+  <input id="playerName" placeholder="Tor Naam likh">
+  <br>
+  <button class="action" onclick="joinRoom()">Join Room</button>
+  <p id="roomStatus" style="color:#22c55e"></p>
+</div>
+
+<a href="index.html">← Back to 100FreeTools</a>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+// TOR FIREBASE CONFIG
+const firebaseConfig = {
+  apiKey: "AIzaSyAqVly5MQSTkkgGTS3zLpOT1pEJb1bplg8",
+  authDomain: "linguaquiz-72efb.firebaseapp.com",
+  databaseURL: "https://linguaquiz-72efb-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "linguaquiz-72efb",
+  storageBucket: "linguaquiz-72efb.firebasestorage.app",
+  messagingSenderId: "1002818650043",
+  appId: "1:1002818650043:web:7fe0166d72ea4079a55289e",
+  measurementId: "G-J8SD0HEH0"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+function showTab(n){
+  for(let i=0;i<3;i++) {
+    document.getElementById('t'+i).style.display = i==n? 'block' : 'none';
+    document.querySelectorAll('.tabs button')[i].classList.toggle('active', i==n);
+  }
+}
+
+function joinRoom(){
+  const room = document.getElementById('roomId').value;
+  const name = document.getElementById('playerName').value;
+  if(!room ||!name) return alert("Room ID r Naam 2 toi dao bhai");
+
+  set(ref(db, 'rooms/' + room + '/players/' + name), {score:0, joined: Date.now()});
+  document.getElementById('roomStatus').innerText = "✅ Joined: " + room + " as " + name;
+}
+
+window.showTab=showTab;
+window.joinRoom=joinRoom;
+</script>
+</body>
+</html>
