@@ -50,7 +50,7 @@ a{color:#60a5fa;text-decoration:none;display:block;margin-top:30px}
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
 // TOR FIREBASE CONFIG
 const firebaseConfig = {
@@ -67,6 +67,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
+let myName = ""; let myRoom = ""; let myScore = 0;
+
 function showTab(n){
   for(let i=0;i<3;i++) {
     document.getElementById('t'+i).style.display = i==n? 'block' : 'none';
@@ -79,22 +81,6 @@ function joinRoom(){
   const name = document.getElementById('playerName').value;
   if(!room ||!name) return alert("Room ID r Naam 2 toi dao bhai");
 
-  set(ref(db, 'rooms/' + room + '/players/' + name), {score:0, joined: Date.now()});
-  document.getElementById('roomStatus').innerText = "✅ Joined: " + room + " as " + name;
-}
-
-window.showTab=showTab;
-window.joinRoom=joinRoom;
-  import { onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
-
-let myName = ""; let myRoom = ""; let myScore = 0;
-
-// purono joinRoom ke update korchi
-function joinRoom(){
-  const room = document.getElementById('roomId').value; 
-  const name = document.getElementById('playerName').value;
-  if(!room ||!name) return alert("Room ID r Naam 2 toi dao bhai");
-  
   myRoom = room; myName = name;
   set(ref(db, 'rooms/' + room + '/players/' + name), {score:0});
   document.getElementById('roomStatus').innerText = "✅ Joined: " + room + " as " + name;
@@ -123,7 +109,11 @@ function joinRoom(){
 function lqAns(opt){
   if(opt == 0){ myScore = myScore + 1 } else { myScore = myScore - 1 }
   set(ref(db, 'rooms/'+myRoom+'/players/'+myName), {score:myScore});
-          }
+}
+
+window.showTab=showTab;
+window.joinRoom=joinRoom;
+window.lqAns=lqAns;
 </script>
 </body>
 </html>
