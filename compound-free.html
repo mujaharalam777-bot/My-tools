@@ -1,1 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interest Calculator - Simple, Compound, EMI, SIP, FD, RD Online Free | 100FreeTools</title>
+    <meta name="description" content="Free online Interest Calculator for FD, RD, Loan EMI, SIP. Compare SBI vs HDFC, download PDF, share result, inflation adjuster. Calculate compound interest and crorepati goal.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "How to calculate compound interest online?", "acceptedAnswer": { "@type": "Answer", "text": "Use our free compound interest calculator to find the future value of your investment. Just enter principal, rate, and time." } },
+        { "@type": "Question", "name": "What is the best SIP calculator for crorepati goal?", "acceptedAnswer": { "@type": "Answer", "text": "Our 18-in-1 calculator includes a Crorepati Goal Mode. Enter your target, and it calculates the exact monthly SIP required." } },
+        { "@type": "Question", "name": "How to compare SBI FD vs HDFC FD rates?", "acceptedAnswer": { "@type": "Answer", "text": "Use the Bank Compare War feature to input SBI, HDFC, ICICI, and Axis bank rates and see a bar chart comparison of maturity amounts." } },
+        { "@type": "Question", "name": "Does the FD calculator account for TDS?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, toggle the TDS mode to auto-deduct 10% tax if your interest exceeds 40,000 INR." } },
+        { "@type": "Question", "name": "Can I download my loan EMI table as PDF or Excel?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, you can download the complete interest table in PDF and CSV formats for free." } }
+      ]
+    }
+    </script>
+    
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #FF6B9D 0%, #FF8E53 100%);
+            --glass-bg: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.3);
+            --text-main: #1f2937;
+            --text-muted: #4b5563;
+            --card-text: #000;
+        }
+        
+        .dark {
+            --bg-gradient: linear-gradient(135deg, #2d0a1f 0%, #4a1c2f 100%);
+            --glass-bg: rgba(0, 0, 0, 0.3);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-main: #f3f4f6;
+            --text-muted: #d1d5db;
+            --card-text: #fff;
+        }
 
+        body {
+            background: var(--bg-gradient);
+            color: var(--text-main);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            transition: all 0.3s ease;
+        }
+
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 1.5rem;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-grad {
+            background: linear-gradient(to right, #FF006E, #FF3D00);
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 0, 110, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .btn-grad:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 0, 110, 0.6);
+        }
+
+        .glow {
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+            animation: pulse 2s infinite;
+            display: inline-block;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+
+        .tab-btn.active {
+            background: rgba(255, 255, 255, 0.3);
+            border-bottom: 2px solid #FF006E;
+            font-weight: bold;
+        }
+        
+        input, select {
+            background: rgba(255,255,255,0.2) !important;
+            color: var(--text-main) !important;
+            border: 1px solid var(--glass-border) !important;
+        }
+        .dark input, .dark select {
+            background: rgba(0,0,0,0.2) !important;
+        }
+        input:focus { outline: none; border-color: #FF006E !important; }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #FF006E; border-radius: 4px; }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <!-- Top Navigation -->
+    <nav class="max-w-6xl mx-auto flex justify-between items-center mb-6 glass px-6 py-3">
+        <a href="#" class="font-bold text-sm md:text-base hover:text-[#FF006E] transition">← Back to Home</a>
+        <div class="flex gap-4 items-center">
+            <select id="currencyToggle" class="text-xs p-1 rounded rounded glass font-bold">
+                <option value="₹">INR (₹)</option>
+                <option value="$">USD ($)</option>
+                <option value="€">EUR (€)</option>
+            </select>
+            <select id="langToggle" class="text-xs p-1 rounded glass font-bold">
+                <option value="en">EN</option>
+                <option value="hi">HI</option>
+                <option value="bn">BN</option>
+            </select>
+            <button id="themeToggle" class="text-xl" title="Toggle Dark/Light Mode">🌙</button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto">
+        <header class="text-center mb-8">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-2" data-lang="h1Title">
+                <span class="glow">💰</span> Free 6-in-1 Interest Calculator Pro
+            </h1>
+            <p class="text-lg opacity-90 font-medium" data-lang="subTitle">Calculate SIP, EMI, FD, RD, and compound interest instantly.</p>
+        </header>
+
+        <!-- Tabs -->
+        <div class="glass p-2 flex flex-wrap justify-center gap-2 mb-6" id="tabs">
+            <button class="tab-btn active px-4 py-2 rounded-xl text-sm font-semibold transition" data-target="simple">Simple</button>
+            <button class="tab-btn px-4 py-2 rounded-xl text-sm font-semibold transition" data-target="compound">Compound</button>
+            <button class="tab-btn px-4 py-2 rounded-xl text-sm font-semibold transition" data-target="emi">Loan EMI</button>
+            <button class="tab-btn px-4 py-2 rounded-xl text-sm font-semibold transition" data-target="sip">SIP</button>
+            <button class="tab-btn px-4 py-2 rounded-xl text-sm font-semibold transition" data-target="fd">FD</button>
+            <button class="tab-btn px-4 py-2 rounded-xl text-sm font-semibold transition" data-target="rd">RD</button>
+            <button class="tab-btn px-4 py-2 rounded-xl text-sm font-semibold transition bg-yellow-400/30 text-yellow-900 dark:text-yellow-300" data-target="crorepati">🏆 Crorepati</button>
+            <button class="tab-btn px-4 py-2 rounded-xl text-sm font-semibold transition bg-blue-400/30 text-blue-900 dark:text-blue-300" data-target="bankwar">⚔️ Bank War</button>
+        </div>
+
+        <div class="grid md:grid-cols-12 gap-6">
+            <!-- Left Column: Inputs -->
+            <div class="md:col-span-5 glass p-6 h-fit">
+                <div id="dynamicInputs" class="flex flex-col gap-4">
+                    <!-- Inputs rendered by JS -->
+                </div>
+                
+                <!-- Toggles Container -->
+                <div class="mt-6 space-y-3 border-t border-white/20 pt-4">
+                    <label class="flex items-center gap-2 cursor-pointer" id="inflationLabel">
+                        <input type="checkbox" id="inflationToggle" class="w-4 h-4 rounded">
+                        <span class="text-sm font-medium" data-lang="inflationText">Adjust for Inflation (6%)</span>
+                    </label>
+                    <label class="flex items-center gap-2 cursor-pointer hidden" id="tdsContainer">
+                        <input type="checkbox" id="tdsToggle" class="w-4 h-4 rounded">
+                        <span class="text-sm font-medium">Deduct 10% TDS (if Interest > 40k)</span>
+                    </label>
+                </div>
+
+                <button id="calcBtn" class="btn-grad w-full py-3 rounded-xl font-bold text-lg mt-6 shadow-lg">Calculate Now</button>
+            </div>
+
+            <!-- Right Column: Outputs -->
+            <div class="md:col-span-7 flex flex-col gap-6">
+                <!-- Result Cards inside a capture container for Share -->
+                <div id="shareCard" class="glass p-6 relative overflow-hidden">
+                    <!-- Watermark -->
+                    <div class="absolute inset-0 opacity-10 pointer-events-none flex items-center justify-center text-4xl font-black rotate-[-30deg]">
+                        100FreeTools
+                    </div>
+                    
+                    <h3 class="text-xl font-bold mb-4 border-b border-white/20 pb-2 flex justify-between" style="color: var(--card-text)">
+                        <span data-lang="resultTitle">Calculation Result</span>
+                        <span id="cardWatermark" class="text-xs opacity-50 font-normal mt-1">Made with 100FreeTools</span>
+                    </h3>
+                    
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-6" id="resultGrid">
+                        <div class="glass p-3 text-center">
+                            <p class="text-xs uppercase opacity-80" data-lang="resInvested">Total Invested</p>
+                            <p class="text-lg font-bold text-blue-600 dark:text-blue-300" id="resP">0</p>
+                        </div>
+                        <div class="glass p-3 text-center">
+                            <p class="text-xs uppercase opacity-80" data-lang="resInterest">Total Interest</p>
+                            <p class="text-lg font-bold text-green-600 dark:text-green-300" id="resI">0</p>
+                        </div>
+                        <div class="glass p-3 text-center col-span-2 md:col-span-1">
+                            <p class="text-xs uppercase opacity-80 font-bold" data-lang="resTotal">Maturity Amount</p>
+                            <p class="text-xl font-black text-[#FF006E]" id="resT">0</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Inflation Alert -->
+                    <div id="inflationAlert" class="hidden mb-4 p-2 bg-yellow-500/20 text-yellow-800 dark:text-yellow-200 text-sm rounded border border-yellow-500/50 text-center font-medium">
+                        Future Value adjusted for 6% inflation today: <span id="infValue" class="font-bold">0</span>
+                    </div>
+
+                    <!-- Charts Container -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 h-48 md:h-64 mb-2">
+                        <div class="glass p-2 relative h-full flex justify-center">
+                            <canvas id="pieChart"></canvas>
+                        </div>
+                        <div class="glass p-2 relative h-full">
+                            <canvas id="lineChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="glass p-4 flex flex-wrap gap-3 justify-center">
+                    <button id="shareBtn" class="flex-1 min-w-[120px] bg-white/20 hover:bg-white/30 py-2 px-4 rounded-lg font-bold text-sm flex items-center justify-center gap-2 transition border border-white/30 shadow">
+                        📸 Share Image
+                    </button>
+                    <button id="pdfBtn" class="flex-1 min-w-[120px] bg-white/20 hover:bg-white/30 py-2 px-4 rounded-lg font-bold text-sm flex items-center justify-center gap-2 transition border border-white/30 shadow">
+                        📄 PDF Report
+                    </button>
+                    <button id="csvBtn" class="flex-1 min-w-[120px] bg-white/20 hover:bg-white/30 py-2 px-4 rounded-lg font-bold text-sm flex items-center justify-center gap-2 transition border border-white/30 shadow">
+                        📊 Get CSV
+                    </button>
+                    <button id="embedBtn" class="flex-1 min-w-[120px] bg-gray-800 text-white hover:bg-gray-700 py-2 px-4 rounded-lg font-bold text-sm flex items-center justify-center gap-2 transition border border-gray-600 shadow">
+                        &lt;/&gt; Embed Code
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Embed Modal -->
+        <div id="embedModal" class="hidden fixed inset-0 bg-black/60 z-50 flex justify-center items-center backdrop-blur-sm">
+            <div class="glass w-full max-w-lg p-6 relative">
+                <button id="closeEmbed" class="absolute top-4 right-4 font-bold text-xl">&times;</button>
+                <h3 class="text-xl font-bold mb-4">Embed on your Blog</h3>
+                <textarea readonly class="w-full h-24 p-3 rounded text-sm font-mono"><iframe src="https://www.100freetools.com/interest-calculator" width="100%" height="800px" frameborder="0"></iframe></textarea>
+                <p class="text-xs mt-2 opacity-80">Copy and paste this HTML into your website to embed this tool.</p>
+            </div>
+        </div>
+
+        <!-- History Section -->
+        <div class="glass p-6 mt-8">
+            <h3 class="text-xl font-bold mb-4 flex justify-between items-center">
+                <span>🕒 Calculation History</span>
+                <button id="clearHistory" class="text-xs text-red-500 font-bold hover:underline">Clear All</button>
+            </h3>
+            <div id="historyList" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <!-- History Items -->
+            </div>
+        </div>
+
+        <!-- SEO / Content Section -->
+        <article class="glass p-6 md:p-8 mt-8 prose prose-invert max-w-none">
+            <h2 class="text-2xl font-bold mb-4 text-[#FF006E]">Complete Interest Calculator: Compound, Simple, EMI & More</h2>
+            <p class="mb-4">Welcome to the ultimate <strong>interest calculator</strong>. Whether you need a <strong>compound interest calculator</strong> to see your wealth grow, or a <strong>simple interest calculator</strong> for quick math, we've got you covered. Plan your loans easily with our accurate <strong>emi calculator</strong>.</p>
+            
+            <h3 class="text-xl font-bold mt-6 mb-3">Master Your Investments</h3>
+            <p class="mb-4">Use the <strong>sip calculator</strong> to map out your mutual funds, or the dedicated <strong>fd calculator</strong> and <strong>rd calculator</strong> to plan safe returns. Want to become a millionaire? Try our exclusive <strong>crorepati calculator</strong> to find your required monthly investment.</p>
+            
+            <h3 class="text-xl font-bold mt-6 mb-3">Compare Top Banks</h3>
+            <p class="mb-4">Confused between banks? Use our "Bank War" feature to compare the <strong>sbi fd calculator</strong> against the <strong>hdfc fd calculator</strong> or ICICI visually. Don't forget to use the <strong>inflation calculator india</strong> toggle to see the real buying power of your future wealth!</p>
+
+            <h3 class="text-2xl font-bold mt-8 mb-4">Frequently Asked Questions</h3>
+            <div class="space-y-4">
+                <details class="bg-black/10 p-4 rounded cursor-pointer">
+                    <summary class="font-bold">How to calculate compound interest online?</summary>
+                    <p class="mt-2 text-sm">Use our free compound interest calculator to find the future value of your investment. Just enter principal, rate, and time, and our tool calculates annual, monthly, or daily compounding instantly.</p>
+                </details>
+                <details class="bg-black/10 p-4 rounded cursor-pointer">
+                    <summary class="font-bold">What is the best SIP calculator for crorepati goal?</summary>
+                    <p class="mt-2 text-sm">Our 18-in-1 calculator includes a unique Crorepati Goal Mode. Simply enter your target amount, years, and expected return, and it reverse-calculates the exact monthly SIP required to reach your goal.</p>
+                </details>
+                <details class="bg-black/10 p-4 rounded cursor-pointer">
+                    <summary class="font-bold">How to compare SBI FD vs HDFC FD rates?</summary>
+                    <p class="mt-2 text-sm">Use the "Bank War" tab. Input the current interest rates for SBI, HDFC, Axis, and ICICI, and view a visual bar chart comparing the maturity amounts side-by-side.</p>
+                </details>
+                <details class="bg-black/10 p-4 rounded cursor-pointer">
+                    <summary class="font-bold">Does the FD calculator account for TDS?</summary>
+                    <p class="mt-2 text-sm">Yes, for fixed deposits, simply enable the TDS mode toggle. The tool will automatically deduct 10% tax if your total interest earned exceeds ₹40,000.</p>
+                </details>
+                <details class="bg-black/10 p-4 rounded cursor-pointer">
+                    <summary class="font-bold">Can I download my loan EMI table as PDF or Excel?</summary>
+                    <p class="mt-2 text-sm">Yes, you can click the "PDF Report" or "Get CSV" buttons to download your complete interest and maturity table directly to your device for free.</p>
+                </details>
+            </div>
+        </article>
+
+    </main>
+
+    <footer class="text-center py-6 mt-8 opacity-70 text-sm font-bold tracking-wider">
+        <!-- Made with 100FreeTools -->
+        Made with ❤️ by 100FreeTools
+    </footer>
+
+    <script>
+        // State
+        let currentMode = 'simple';
+        let curSym = '₹';
+        let curLang = 'en';
+        let pieChartInst = null;
+        let lineChartInst = null;
+        let currentResult = null; // Stores last calc data for export
+
+        const dictionary = {
+            en: { h1Title: "<span class='glow'>💰</span> Free 6-in-1 Interest Calculator Pro", subTitle: "Calculate SIP, EMI, FD, RD, and compound interest instantly.", resTitle: "Calculation Result", resInvested: "Total Invested", resInterest: "Total Interest", resTotal: "Maturity Amount", inflation: "Adjust for Inflation (6%)" },
+            hi: { h1Title: "<span class='glow'>💰</span> मुफ्त 6-इन-1 ब्याज कैलकुलेटर", subTitle: "एसआईपी, ईएमआई, एफडी, आरडी, और चक्रवृद्धि ब्याज की गणना करें।", resTitle: "गणना परिणाम", resInvested: "कुल निवेश", resInterest: "कुल ब्याज", resTotal: "परिपक्वता राशि", inflation: "मुद्रास्फीति (6%) के लिए समायोजित करें" },
+            bn: { h1Title: "<span class='glow'>💰</span> বিনামূল্যে 6-ইন-1 সুদ ক্যালকুলেটর", subTitle: "এসআইপি, ইএমআই, এফডি, আরডি এবং চক্রবৃদ্ধি সুদ হিসাব করুন।", resTitle: "হিসাবের ফলাফল", resInvested: "মোট বিনিয়োগ", resInterest: "মোট সুদ", resTotal: "পরিপক্কতার পরিমাণ", inflation: "মূল্যস্ফীতির জন্য সামঞ্জस्य করুন (6%)" }
+        };
+
+        const domInputs = document.getElementById('dynamicInputs');
+        const tabs = document.querySelectorAll('.tab-btn');
+        const calcBtn = document.getElementById('calcBtn');
+
+        // Input Configs
+        const inputMap = {
+            simple: [{id:'p', label:'Principal Amount', type:'number', val:10000}, {id:'r', label:'Interest Rate (%) p.a.', type:'number', val:5}, {id:'t', label:'Time Period (Years)', type:'number', val:3}],
+            compound: [{id:'p', label:'Principal Amount', type:'number', val:10000}, {id:'r', label:'Interest Rate (%) p.a.', type:'number', val:8}, {id:'t', label:'Time Period (Years)', type:'number', val:5}, {id:'n', label:'Compounding Frequency', type:'select', opts:[{v:1, l:'Yearly'}, {v:4, l:'Quarterly'}, {v:12, l:'Monthly'}]}],
+            emi: [{id:'p', label:'Loan Amount', type:'number', val:500000}, {id:'r', label:'Interest Rate (%) p.a.', type:'number', val:9}, {id:'t', label:'Loan Tenure (Years)', type:'number', val:10}],
+            sip: [{id:'p', label:'Monthly Investment', type:'number', val:5000}, {id:'r', label:'Expected Return (%)', type:'number', val:12}, {id:'t', label:'Time Period (Years)', type:'number', val:10}],
+            fd: [{id:'p', label:'Deposit Amount', type:'number', val:100000}, {id:'r', label:'Interest Rate (%) p.a.', type:'number', val:7}, {id:'t', label:'Duration (Years)', type:'number', val:3}],
+            rd: [{id:'p', label:'Monthly Deposit', type:'number', val:2000}, {id:'r', label:'Interest Rate (%) p.a.', type:'number', val:6.5}, {id:'t', label:'Duration (Years)', type:'number', val:5}],
+            crorepati: [{id:'goal', label:'Target Goal Amount', type:'number', val:10000000}, {id:'r', label:'Expected Return (%)', type:'number', val:12}, {id:'t', label:'Years to Goal', type:'number', val:15}],
+            bankwar: [{id:'b1', label:'Bank 1 Rate (%) - e.g. SBI', type:'number', val:6.8}, {id:'b2', label:'Bank 2 Rate (%) - e.g. HDFC', type:'number', val:7.1}, {id:'b3', label:'Bank 3 Rate (%)', type:'number', val:7.2}, {id:'b4', label:'Bank 4 Rate (%)', type:'number', val:6.5}, {id:'p', label:'Investment Amount', type:'number', val:100000}]
+        };
+
+        // Render Inputs
+        function renderInputs(mode) {
+            let html = '';
+            inputMap[mode].forEach(inp => {
+                html += `<div class="flex flex-col gap-1">
+                    <label class="text-sm font-semibold opacity-90">${inp.label}</label>`;
+                if(inp.type === 'select') {
+                    html += `<select id="${inp.id}" class="p-3 rounded-xl font-bold outline-none">`;
+                    inp.opts.forEach(opt => html += `<option value="${opt.v}">${opt.l}</option>`);
+                    html += `</select>`;
+                } else {
+                    html += `<input type="${inp.type}" id="${inp.id}" value="${inp.val}" class="p-3 rounded-xl font-bold outline-none" step="any">`;
+                }
+                html += `</div>`;
+            });
+            domInputs.innerHTML = html;
+            
+            document.getElementById('tdsContainer').style.display = (mode === 'fd') ? 'flex' : 'none';
+        }
+
+        // Tab Switching
+        tabs.forEach(tab => {
+            tab.addEventListener('click', (e) => {
+                tabs.forEach(t => t.classList.remove('active'));
+                e.target.classList.add('active');
+                currentMode = e.target.getAttribute('data-target');
+                renderInputs(currentMode);
+                calculate();
+            });
+        });
+
+        // Formatting
+        const fmt = (num) => {
+            if(isNaN(num) || !isFinite(num)) return '0';
+            return new Intl.NumberFormat('en-IN', { maximumFractionDigits: 2 }).format(num);
+        };
+
+        // Calculations Engine
+        function calculate() {
+            const tdsOn = document.getElementById('tdsToggle').checked;
+            const infOn = document.getElementById('inflationToggle').checked;
+            
+            let P=0, R=0, T=0, I=0, Total=0, Invested=0;
+            let chartLabels = [];
+            let chartDataPrincipal = [];
+            let chartDataTotal = [];
+            let isWar = false;
+
+            try {
+                if(['simple','compound','emi','sip','fd','rd'].includes(currentMode)) {
+                    P = parseFloat(document.getElementById('p').value) || 0;
+                    R = parseFloat(document.getElementById('r').value) || 0;
+                    T = parseFloat(document.getElementById('t').value) || 0;
+                }
+
+                if (currentMode === 'simple') {
+                    Invested = P;
+                    I = (P * R * T) / 100;
+                    Total = Invested + I;
+                    for(let i=1; i<=T; i++) {
+                        chartLabels.push(`Y${i}`);
+                        chartDataPrincipal.push(P);
+                        chartDataTotal.push(P + ((P*R*i)/100));
+                    }
+                } 
+                else if (currentMode === 'compound') {
+                    Invested = P;
+                    let n = parseFloat(document.getElementById('n').value) || 1;
+                    Total = P * Math.pow((1 + (R/100)/n), n*T);
+                    I = Total - P;
+                    for(let i=1; i<=T; i++) {
+                        chartLabels.push(`Y${i}`);
+                        chartDataPrincipal.push(P);
+                        chartDataTotal.push(P * Math.pow((1 + (R/100)/n), n*i));
+                    }
+                }
+                else if (currentMode === 'emi') {
+                    Invested = P; // Loan amount
+                    let rM = R / (12 * 100);
+                    let n = T * 12;
+                    let emi = (P * rM * Math.pow(1+rM, n)) / (Math.pow(1+rM, n) - 1);
+                    Total = emi * n; // Total Paid
+                    I = Total - P;
+                    // Custom grid texts for EMI
+                    document.getElementById('resP').previousElementSibling.innerText = "Loan Amount";
+                    document.getElementById('resT').previousElementSibling.innerText = "Total Payable";
+                    for(let i=1; i<=T; i++) {
+                        chartLabels.push(`Y${i}`);
+                        chartDataPrincipal.push(P); // static loan amount reference
+                        chartDataTotal.push(emi * 12 * i); // Cumulative paid
+                    }
+                }
+                else if (currentMode === 'sip') {
+                    Invested = P * 12 * T;
+                    let i = R / (12 * 100);
+                    let n = T * 12;
+                    Total = P * ((Math.pow(1+i, n) - 1)/i) * (1+i);
+                    I = Total - Invested;
+                    for(let yr=1; yr<=T; yr++) {
+                        chartLabels.push(`Y${yr}`);
+                        chartDataPrincipal.push(P * 12 * yr);
+                        let m = yr * 12;
+                        chartDataTotal.push(P * ((Math.pow(1+i, m) - 1)/i) * (1+i));
+                    }
+                }
+                else if (currentMode === 'fd') {
+                    Invested = P;
+                    // Usually Quarterly Compounding
+                    Total = P * Math.pow((1 + (R/100)/4), 4*T);
+                    I = Total - P;
+                    if(tdsOn && I > 40000) { I = I * 0.9; Total = P + I; }
+                    for(let i=1; i<=T; i++) {
+                        chartLabels.push(`Y${i}`);
+                        chartDataPrincipal.push(P);
+                        let tmpTot = P * Math.pow((1 + (R/100)/4), 4*i);
+                        chartDataTotal.push(tdsOn && (tmpTot-P)>40000 ? P + (tmpTot-P)*0.9 : tmpTot);
+                    }
+                }
+                else if (currentMode === 'rd') {
+                    Invested = P * 12 * T;
+                    let n = T * 12;
+                    let rQuart = R/400; // standard banks formula approximation
+                    Total = 0;
+                    for(let i=0; i<n; i++) {
+                        let monthsLeft = n - i;
+                        let quarters = Math.floor(monthsLeft/3);
+                        let remMonths = monthsLeft%3;
+                        Total += P * Math.pow(1+rQuart, quarters) * (1 + (remMonths*(R/1200)));
+                    }
+                    I = Total - Invested;
+                    // Simple linear chart for RD
+                    for(let yr=1; yr<=T; yr++) {
+                        chartLabels.push(`Y${yr}`);
+                        chartDataPrincipal.push(P * 12 * yr);
+                        chartDataTotal.push((Total/T)*yr); 
+                    }
+                }
+                else if (currentMode === 'crorepati') {
+                    let Goal = parseFloat(document.getElementById('goal').value) || 0;
+                    let rRate = parseFloat(document.getElementById('r').value) || 0;
+                    let yrs = parseFloat(document.getElementById('t').value) || 0;
+                    let i = rRate / (12 * 100);
+                    let n = yrs * 12;
+                    let reqSIP = (Goal * i) / ((Math.pow(1+i, n) - 1) * (1+i));
+                    
+                    document.getElementById('resP').previousElementSibling.innerText = "Target Goal";
+                    document.getElementById('resI').previousElementSibling.innerText = "Req. Monthly SIP";
+                    document.getElementById('resT').previousElementSibling.innerText = "Total Invested (Est)";
+                    
+                    Invested = Goal;
+                    I = reqSIP; 
+                    Total = reqSIP * n; 
+                    
+                    chartLabels = ['Goal', 'Invested'];
+                    chartDataPrincipal = [Goal, Total];
+                }
+                else if (currentMode === 'bankwar') {
+                    isWar = true;
+                    let b1 = parseFloat(document.getElementById('b1').value)||0;
+                    let b2 = parseFloat(document.getElementById('b2').value)||0;
+                    let b3 = parseFloat(document.getElementById('b3').value)||0;
+                    let b4 = parseFloat(document.getElementById('b4').value)||0;
+                    let dp = parseFloat(document.getElementById('p').value)||0;
+                    
+                    // FD 5 Year comparison
+                    let m1 = dp * Math.pow((1+(b1/400)), 20);
+                    let m2 = dp * Math.pow((1+(b2/400)), 20);
+                    let m3 = dp * Math.pow((1+(b3/400)), 20);
+                    let m4 = dp * Math.pow((1+(b4/400)), 20);
+                    
+                    document.getElementById('resP').previousElementSibling.innerText = "Deposit";
+                    document.getElementById('resI').previousElementSibling.innerText = "Best Rate";
+                    document.getElementById('resT').previousElementSibling.innerText = "Max Return (5Y)";
+                    
+                    Invested = dp;
+                    I = Math.max(b1,b2,b3,b4);
+                    Total = Math.max(m1,m2,m3,m4);
+                    
+                    chartLabels = ['Bank 1','Bank 2','Bank 3','Bank 4'];
+                    chartDataPrincipal = [dp,dp,dp,dp];
+                    chartDataTotal = [m1,m2,m3,m4];
+                }
+
+                // Update text based on lang dictionary if not special modes
+                if(!['emi','crorepati','bankwar'].includes(currentMode)) {
+                    document.getElementById('resP').previousElementSibling.innerText = dictionary[curLang].resInvested;
+                    document.getElementById('resI').previousElementSibling.innerText = dictionary[curLang].resInterest;
+                    document.getElementById('resT').previousElementSibling.innerText = dictionary[curLang].resTotal;
+                }
+
+                document.getElementById('resP').innerText = currentMode==='crorepati' ? `${curSym}${fmt(Invested)}` : `${curSym}${fmt(Invested)}`;
+                document.getElementById('resI').innerText = currentMode==='bankwar' ? `${I}%` : `${curSym}${fmt(I)}`;
+                document.getElementById('resT').innerText = `${curSym}${fmt(Total)}`;
+
+                // Inflation Logic
+                const alertDiv = document.getElementById('inflationAlert');
+                if(infOn && !['bankwar', 'crorepati'].includes(currentMode) && T > 0) {
+                    let infAdj = Total / Math.pow(1.06, T);
+                    document.getElementById('infValue').innerText = `${curSym}${fmt(infAdj)}`;
+                    alertDiv.classList.remove('hidden');
+                } else {
+                    alertDiv.classList.add('hidden');
+                }
+
+                // Update Charts
+                updateCharts(isWar, Invested, I, chartLabels, chartDataPrincipal, chartDataTotal);
+                
+                // Save Result State
+                currentResult = { mode: currentMode, p: Invested, i: I, t: Total, date: new Date().toLocaleDateString() };
+                saveHistory(currentResult);
+
+            } catch (e) { console.error(e); }
+        }
+
+        function updateCharts(isWar, p, i, lbls, dp, dt) {
+            const ctxPie = document.getElementById('pieChart').getContext('2d');
+            const ctxLine = document.getElementById('lineChart').getContext('2d');
+            
+            if(pieChartInst) pieChartInst.destroy();
+            if(lineChartInst) lineChartInst.destroy();
+
+            Chart.defaults.color = document.body.classList.contains('dark') ? '#fff' : '#000';
+
+            if(isWar) {
+                // Bank War gets Bar charts
+                pieChartInst = new Chart(ctxPie, {
+                    type: 'bar',
+                    data: {
+                        labels: lbls,
+                        datasets: [{ label: 'Maturity Amount', data: dt, backgroundColor: ['#FF006E','#FF8E53','#3b82f6','#10b981'] }]
+                    },
+                    options: { responsive: true, maintainAspectRatio: false, plugins:{legend:{display:false}} }
+                });
+                lineChartInst = new Chart(ctxLine, {
+                    type: 'bar',
+                    data: { labels: lbls, datasets: [{ label: 'Deposit', data: dp, backgroundColor: '#cbd5e1' }] },
+                    options: { responsive: true, maintainAspectRatio: false }
+                });
+            } else if (currentMode === 'crorepati') {
+                pieChartInst = new Chart(ctxPie, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Invested (Est)', 'Returns'],
+                        datasets: [{ data: [dt[0], dp[0]-dt[0]], backgroundColor: ['#3b82f6', '#10b981'] }]
+                    },
+                    options: { responsive: true, maintainAspectRatio: false }
+                });
+                // Empty line chart for crorepati
+                lineChartInst = new Chart(ctxLine, { type: 'line', data: { labels:[], datasets:[] } });
+            } else {
+                // Standard Pie & Line
+                pieChartInst = new Chart(ctxPie, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Invested', 'Interest'],
+                        datasets: [{ data: [p, i], backgroundColor: ['#FF8E53', '#FF006E'], borderWidth: 0 }]
+                    },
+                    options: { responsive: true, maintainAspectRatio: false }
+                });
+
+                lineChartInst = new Chart(ctxLine, {
+                    type: 'line',
+                    data: {
+                        labels: lbls,
+                        datasets: [
+                            { label: 'Total Value', data: dt, borderColor: '#FF006E', fill: true, backgroundColor: 'rgba(255,0,110,0.1)' },
+                            { label: 'Invested', data: dp, borderColor: '#FF8E53', borderDash: [5,5], fill: false }
+                        ]
+                    },
+                    options: { responsive: true, maintainAspectRatio: false, elements: { point:{ radius: 0 } } }
+                });
+            }
+        }
+
+        // Local Storage History
+        function saveHistory(res) {
+            if(!res.t || res.t <= 0) return;
+            let hist = JSON.parse(localStorage.getItem('icHistory')) || [];
+            hist.unshift(res);
+            if(hist.length > 10) hist.pop();
+            localStorage.setItem('icHistory', JSON.stringify(hist));
+            renderHistory();
+        }
+
+        function renderHistory() {
+            let hist = JSON.parse(localStorage.getItem('icHistory')) || [];
+            let html = '';
+            hist.forEach(h => {
+                html += `<div class="p-3 bg-white/10 rounded-lg text-sm border border-white/20">
+                    <span class="uppercase font-bold text-xs text-[#FF006E]">${h.mode}</span> | ${h.date}<br>
+                    Amt: ${curSym}${fmt(h.p)} ➔ <strong class="text-green-500">${curSym}${fmt(h.t)}</strong>
+                </div>`;
+            });
+            document.getElementById('historyList').innerHTML = html;
+        }
+
+        // UI Events
+        document.getElementById('calcBtn').addEventListener('click', calculate);
+        document.getElementById('inflationToggle').addEventListener('change', calculate);
+        document.getElementById('tdsToggle').addEventListener('change', calculate);
+        document.getElementById('clearHistory').addEventListener('click', () => { localStorage.removeItem('icHistory'); renderHistory(); });
+
+        // Theme Toggle
+        document.getElementById('themeToggle').addEventListener('click', () => {
+            document.body.classList.toggle('dark');
+            calculate(); // Re-render charts with new colors
+        });
+
+        // Settings Toggle (Currency & Lang)
+        document.getElementById('currencyToggle').addEventListener('change', (e) => { curSym = e.target.value; calculate(); });
+        document.getElementById('langToggle').addEventListener('change', (e) => { 
+            curLang = e.target.value; 
+            document.querySelector('[data-lang="h1Title"]').innerHTML = dictionary[curLang].h1Title;
+            document.querySelector('[data-lang="subTitle"]').innerText = dictionary[curLang].subTitle;
+            document.querySelector('[data-lang="resultTitle"]').innerText = dictionary[curLang].resTitle;
+            document.querySelector('[data-lang="inflationText"]').innerText = dictionary[curLang].inflation;
+            calculate();
+        });
+
+        // Share Image (html2canvas)
+        document.getElementById('shareBtn').addEventListener('click', () => {
+            const card = document.getElementById('shareCard');
+            html2canvas(card, { backgroundColor: document.body.classList.contains('dark') ? '#2d0a1f' : '#FF6B9D', scale: 2 }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = `Interest_Calc_Result_${Date.now()}.png`;
+                link.href = canvas.toDataURL();
+                link.click();
+            });
+        });
+
+        // PDF Export (jsPDF)
+        document.getElementById('pdfBtn').addEventListener('click', () => {
+            if(!currentResult) return;
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            doc.setFontSize(20);
+            doc.text("Calculation Report - 100FreeTools", 20, 20);
+            doc.setFontSize(12);
+            doc.text(`Mode: ${currentResult.mode.toUpperCase()}`, 20, 30);
+            doc.text(`Date: ${currentResult.date}`, 20, 40);
+            doc.text(`Initial Amount: ${curSym} ${fmt(currentResult.p)}`, 20, 50);
+            doc.text(`Interest/Rate: ${currentResult.mode==='bankwar'?'':curSym} ${fmt(currentResult.i)}`, 20, 60);
+            doc.text(`Final Value: ${curSym} ${fmt(currentResult.t)}`, 20, 70);
+            doc.setFontSize(10);
+            doc.text("Generated via 100FreeTools Interest Calculator Pro", 20, 280);
+            doc.save(`Report_${Date.now()}.pdf`);
+        });
+
+        // CSV Export
+        document.getElementById('csvBtn').addEventListener('click', () => {
+            if(!currentResult) return;
+            let csv = "Mode,Date,Invested,Interest,Total\n";
+            csv += `${currentResult.mode},${currentResult.date},${currentResult.p},${currentResult.i},${currentResult.t}\n`;
+            let blob = new Blob([csv], { type: 'text/csv' });
+            let url = window.URL.createObjectURL(blob);
+            let a = document.createElement('a');
+            a.setAttribute('hidden', '');
+            a.setAttribute('href', url);
+            a.setAttribute('download', `data_${Date.now()}.csv`);
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        });
+
+        // Embed Modal
+        const modal = document.getElementById('embedModal');
+        document.getElementById('embedBtn').addEventListener('click', () => modal.classList.remove('hidden'));
+        document.getElementById('closeEmbed').addEventListener('click', () => modal.classList.add('hidden'));
+
+        // Init
+        renderInputs(currentMode);
+        renderHistory();
+        setTimeout(calculate, 500); // Initial calculate
+    </script>
+</body>
+</html>
+<!-- Made with 100FreeTools -->
