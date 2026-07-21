@@ -1,1 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pro Remove Duplicate Tool - Remove Duplicate Lines & Words Online Free</title>
+    <meta name="description" content="Free tool to remove duplicate lines, words, keywords from text, CSV, Excel list instantly. Bulk 50k lines, Fuzzy match, Count & Download.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom Scrollbar for Dark Theme */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
+        
+        /* Glassmorphism Utilities */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
 
+        /* Loading Spinner */
+        .loader {
+            border: 3px solid #1e293b;
+            border-top: 3px solid #3b82f6;
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            animation: spin 1s linear infinite;
+            display: none;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-200 font-sans min-h-screen selection:bg-blue-500 selection:text-white">
+
+    <!-- Header Section -->
+    <header class="pt-10 pb-6 px-4 max-w-7xl mx-auto text-center">
+        <div class="inline-flex items-center justify-center space-x-3 mb-4">
+            <span class="text-4xl">🗑️</span>
+            <h1 class="text-3xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-500 tracking-tight">
+                Remove Duplicate Lines & Words Online
+            </h1>
+        </div>
+        <p class="text-slate-400 max-w-2xl mx-auto text-sm md:text-base">
+            Pro text duplicate remover & keyword list cleaner. Paste up to 50,000 lines. Supports Fuzzy Match, CSV Column deduplication, and bulk export. 100% Client-side.
+        </p>
+    </header>
+
+    <!-- Main Workspace -->
+    <main class="max-w-7xl mx-auto px-4 pb-12 grid grid-cols-1 lg:grid-cols-12 gap-6">
+        
+        <!-- Left Panel: Input & Settings (Col span 1-5) -->
+        <div class="lg:col-span-5 space-y-6">
+            
+            <!-- Input Area -->
+            <div class="glass-panel rounded-2xl p-5">
+                <div class="flex justify-between items-center mb-3">
+                    <label for="inputData" class="font-semibold text-sm uppercase tracking-wider text-slate-300">Data Input</label>
+                    <span id="inputLineCount" class="text-xs bg-slate-800 px-2 py-1 rounded text-slate-400">0 Lines</span>
+                </div>
+                <textarea id="inputData" rows="10" placeholder="Paste your text, keywords, or CSV here...&#10;Line 1&#10;Line 2&#10;Line 1 (Duplicate)" class="w-full bg-slate-950/50 border border-slate-700 rounded-xl p-4 text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 placeholder-slate-600 resize-y transition-colors"></textarea>
+                
+                <!-- Dynamic CSV Detection Dropdown -->
+                <div id="csvColumnContainer" class="mt-3 hidden animate-fade-in">
+                    <label class="text-xs text-blue-400 font-semibold mb-1 block">📄 CSV Detected. Select Column to Remove Duplicates From:</label>
+                    <select id="csvColumn" class="w-full bg-slate-800 border border-slate-600 rounded-lg p-2 text-sm focus:outline-none focus:border-blue-500">
+                        <option value="all">Check Whole Line</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Settings -->
+            <div class="glass-panel rounded-2xl p-5">
+                <h3 class="font-semibold text-sm uppercase tracking-wider text-slate-300 mb-4">Processing Settings</h3>
+                
+                <div class="space-y-4">
+                    <!-- Toggles -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <label class="flex items-center space-x-3 cursor-pointer group">
+                            <input type="checkbox" id="caseSensitive" class="form-checkbox h-5 w-5 text-blue-500 rounded border-slate-600 bg-slate-800 focus:ring-blue-500 focus:ring-offset-slate-900">
+                            <span class="text-sm text-slate-300 group-hover:text-white transition-colors">Case Sensitive</span>
+                        </label>
+                        <label class="flex items-center space-x-3 cursor-pointer group">
+                            <input type="checkbox" id="trimSpaces" checked class="form-checkbox h-5 w-5 text-blue-500 rounded border-slate-600 bg-slate-800 focus:ring-blue-500 focus:ring-offset-slate-900">
+                            <span class="text-sm text-slate-300 group-hover:text-white transition-colors">Trim Spaces</span>
+                        </label>
+                        <label class="flex items-center space-x-3 cursor-pointer group sm:col-span-2">
+                            <input type="checkbox" id="fuzzyMatch" class="form-checkbox h-5 w-5 text-indigo-500 rounded border-slate-600 bg-slate-800 focus:ring-indigo-500 focus:ring-offset-slate-900">
+                            <span class="text-sm text-slate-300 group-hover:text-white transition-colors">Fuzzy Match (Similarity Duplicate 85%)</span>
+                        </label>
+                    </div>
+
+                    <hr class="border-slate-700">
+
+                    <!-- Keep Mode -->
+                    <div>
+                        <span class="text-xs text-slate-400 font-semibold block mb-2 uppercase">Keep Mode:</span>
+                        <div class="flex flex-wrap gap-4">
+                            <label class="flex items-center space-x-2 cursor-pointer">
+                                <input type="radio" name="keepMode" value="first" checked class="text-blue-500 bg-slate-800 border-slate-600 focus:ring-blue-500">
+                                <span class="text-sm text-slate-300">Keep First</span>
+                            </label>
+                            <label class="flex items-center space-x-2 cursor-pointer">
+                                <input type="radio" name="keepMode" value="last" class="text-blue-500 bg-slate-800 border-slate-600 focus:ring-blue-500">
+                                <span class="text-sm text-slate-300">Keep Last</span>
+                            </label>
+                            <label class="flex items-center space-x-2 cursor-pointer">
+                                <input type="radio" name="keepMode" value="longest" class="text-blue-500 bg-slate-800 border-slate-600 focus:ring-blue-500">
+                                <span class="text-sm text-slate-300">Keep Longest</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <hr class="border-slate-700">
+
+                    <!-- Blacklist / Whitelist -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="text-xs text-red-400 font-semibold block mb-1">Blacklist (Auto Delete)</label>
+                            <textarea id="blacklist" rows="2" placeholder="word1&#10;word2" class="w-full bg-slate-950/50 border border-slate-700 rounded-lg p-2 text-xs focus:outline-none focus:border-red-500"></textarea>
+                        </div>
+                        <div>
+                            <label class="text-xs text-green-400 font-semibold block mb-1">Whitelist (Never Delete)</label>
+                            <textarea id="whitelist" rows="2" placeholder="important_word" class="w-full bg-slate-950/50 border border-slate-700 rounded-lg p-2 text-xs focus:outline-none focus:border-green-500"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- History Widget -->
+            <div class="glass-panel rounded-2xl p-5">
+                <h3 class="font-semibold text-sm uppercase tracking-wider text-slate-300 mb-3">Recent History</h3>
+                <div id="historyContainer" class="space-y-2 max-h-32 overflow-y-auto">
+                    <!-- Dynamic history items -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Panel: Actions & Output (Col span 6-12) -->
+        <div class="lg:col-span-7 flex flex-col space-y-6">
+            
+            <!-- Main Actions -->
+            <div class="glass-panel rounded-2xl p-5 flex flex-wrap gap-3 items-center justify-between">
+                <div class="flex flex-wrap gap-3 w-full sm:w-auto">
+                    <button onclick="executeDeduplication('standard')" class="flex-1 sm:flex-none bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-bold py-2.5 px-5 rounded-lg shadow-lg shadow-blue-500/25 transition-all active:scale-95 flex items-center justify-center space-x-2">
+                        <span>Remove Duplicates</span>
+                        <div id="loadingStandard" class="loader"></div>
+                    </button>
+                    <button onclick="executeDeduplication('count')" class="flex-1 sm:flex-none bg-slate-700 hover:bg-slate-600 text-white font-semibold py-2.5 px-5 rounded-lg transition-all active:scale-95 flex items-center justify-center space-x-2 border border-slate-600">
+                        <span>Smart Count Group</span>
+                        <div id="loadingCount" class="loader"></div>
+                    </button>
+                </div>
+                <button onclick="sortOutput()" class="w-full sm:w-auto mt-3 sm:mt-0 bg-slate-800 hover:bg-slate-700 text-slate-300 py-2.5 px-4 rounded-lg transition-all text-sm border border-slate-600">
+                    Sort A-Z ↕
+                </button>
+            </div>
+
+            <!-- Stats -->
+            <div class="grid grid-cols-3 gap-4">
+                <div class="glass-panel rounded-xl p-4 text-center">
+                    <div class="text-xs text-slate-400 uppercase font-semibold">Total Input</div>
+                    <div id="statTotal" class="text-2xl font-bold text-slate-200 mt-1">0</div>
+                </div>
+                <div class="glass-panel rounded-xl p-4 text-center border border-green-500/30 bg-green-500/5">
+                    <div class="text-xs text-green-400 uppercase font-semibold">Unique Results</div>
+                    <div id="statUnique" class="text-2xl font-bold text-green-400 mt-1">0</div>
+                </div>
+                <div class="glass-panel rounded-xl p-4 text-center border border-red-500/30 bg-red-500/5">
+                    <div class="text-xs text-red-400 uppercase font-semibold">Duplicates Removed</div>
+                    <div id="statRemoved" class="text-2xl font-bold text-red-400 mt-1">0</div>
+                </div>
+            </div>
+
+            <!-- Output Area -->
+            <div class="glass-panel rounded-2xl p-5 flex-grow flex flex-col relative">
+                <div class="flex justify-between items-center mb-3">
+                    <label class="font-semibold text-sm uppercase tracking-wider text-slate-300">Cleaned Output</label>
+                    <div class="flex space-x-2">
+                        <button onclick="copyOutput()" class="text-xs bg-indigo-600 hover:bg-indigo-500 text-white px-3 py-1.5 rounded transition-colors shadow-sm">Copy All</button>
+                        <button onclick="downloadFile('txt')" class="text-xs bg-slate-700 hover:bg-slate-600 text-white px-3 py-1.5 rounded transition-colors border border-slate-600">TXT</button>
+                        <button onclick="downloadFile('csv')" class="text-xs bg-slate-700 hover:bg-slate-600 text-white px-3 py-1.5 rounded transition-colors border border-slate-600">CSV</button>
+                    </div>
+                </div>
+                <textarea id="outputData" readonly class="w-full h-full min-h-[300px] bg-slate-950/70 border border-slate-700 rounded-xl p-4 text-sm text-slate-300 focus:outline-none focus:border-indigo-500 resize-none"></textarea>
+                
+                <!-- Toast Notification -->
+                <div id="toast" class="absolute bottom-10 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-4 py-2 rounded shadow-xl text-sm font-semibold opacity-0 transition-opacity pointer-events-none">
+                    Copied to Clipboard!
+                </div>
+            </div>
+            
+        </div>
+    </main>
+
+    <!-- FAQ Section for SEO -->
+    <section class="max-w-5xl mx-auto px-4 pb-20">
+        <div class="glass-panel rounded-2xl p-8">
+            <h2 class="text-2xl font-bold mb-6 text-slate-200 text-center">Frequently Asked Questions</h2>
+            <div class="space-y-6">
+                <div>
+                    <h3 class="text-lg font-semibold text-blue-400 mb-2">How to remove duplicate lines online instantly?</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        To use our <strong>remove duplicate lines online</strong> tool, simply paste your text, keyword list, or CSV into the input box. Configure your settings (like Case Sensitivity or Trim Spaces), choose your preferred "Keep Mode", and click the "Remove Duplicates" button. Your clean, deduplicated list will appear on the right instantly, ready to copy or download.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-blue-400 mb-2">Can this tool act as a CSV duplicate remover?</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        Yes! This tool functions as a highly capable <strong>csv duplicate remover</strong> and <strong>remove duplicate excel</strong> utility. When you paste comma-separated values, the tool automatically detects the format and reveals a dropdown menu. You can then select a specific column to evaluate for duplicates, leaving the rest of your CSV row data intact based on the selected Keep Mode.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-blue-400 mb-2">What is the "Smart Count Group" and "Fuzzy Match" feature?</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        The Smart Count feature transforms this into a robust <strong>keyword list cleaner</strong> and <strong>remove duplicate words</strong> application. Instead of just deleting, it outputs the unique line alongside the number of times it appeared (e.g., "seo tools - 5x"). The Fuzzy Match toggle uses a Levenshtein distance algorithm (85% similarity) to detect and group slight typos (like "seo tool" and "SEO Tools") as the same duplicate entity.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // DOM Elements
+        const inputData = document.getElementById('inputData');
+        const outputData = document.getElementById('outputData');
+        const inputLineCount = document.getElementById('inputLineCount');
+        const csvColumnContainer = document.getElementById('csvColumnContainer');
+        const csvSelect = document.getElementById('csvColumn');
+        const statTotal = document.getElementById('statTotal');
+        const statUnique = document.getElementById('statUnique');
+        const statRemoved = document.getElementById('statRemoved');
+        const historyContainer = document.getElementById('historyContainer');
+        const toast = document.getElementById('toast');
+
+        // Initialization
+        document.addEventListener('DOMContentLoaded', () => {
+            renderHistory();
+            inputData.addEventListener('input', handleInputChanges);
+        });
+
+        // Update line count & detect CSV
+        function handleInputChanges() {
+            const text = inputData.value;
+            const lines = text.split('\n');
+            const count = text.trim() === '' ? 0 : lines.length;
+            inputLineCount.innerText = `${count} Line${count !== 1 ? 's' : ''}`;
+
+            // Basic CSV Detection (check first 5 non-empty lines)
+            let isCsv = false;
+            let colCount = 0;
+            const sampleLines = lines.filter(l => l.trim().length > 0).slice(0, 5);
+            
+            if (sampleLines.length > 0 && sampleLines[0].includes(',')) {
+                colCount = sampleLines[0].split(',').length;
+                isCsv = colCount > 1;
+                // Verify consistency in sample
+                for (let i = 1; i < sampleLines.length; i++) {
+                    if (sampleLines[i].split(',').length !== colCount) {
+                        isCsv = false;
+                        break;
+                    }
+                }
+            }
+
+            if (isCsv) {
+                csvColumnContainer.classList.remove('hidden');
+                csvSelect.innerHTML = '<option value="all">Check Whole Line</option>';
+                for (let i = 0; i < colCount; i++) {
+                    csvSelect.innerHTML += `<option value="${i}">Column ${i + 1}</option>`;
+                }
+            } else {
+                csvColumnContainer.classList.add('hidden');
+                csvSelect.value = "all";
+            }
+        }
+
+        // Levenshtein Distance for Fuzzy Matching
+        function levenshtein(a, b) {
+            if(a.length === 0) return b.length;
+            if(b.length === 0) return a.length;
+            let matrix = [];
+            for(let i = 0; i <= b.length; i++) matrix[i] = [i];
+            for(let j = 0; j <= a.length; j++) matrix[0][j] = j;
+            for(let i = 1; i <= b.length; i++) {
+                for(let j = 1; j <= a.length; j++) {
+                    if(b.charAt(i-1) === a.charAt(j-1)) {
+                        matrix[i][j] = matrix[i-1][j-1];
+                    } else {
+                        matrix[i][j] = Math.min(matrix[i-1][j-1] + 1, Math.min(matrix[i][j-1] + 1, matrix[i-1][j] + 1));
+                    }
+                }
+            }
+            return matrix[b.length][a.length];
+        }
+
+        function isFuzzyMatch(a, b, threshold = 0.85) {
+            let maxLen = Math.max(a.length, b.length);
+            if(maxLen === 0) return true;
+            let distance = levenshtein(a, b);
+            let similarity = (maxLen - distance) / maxLen;
+            return similarity >= threshold;
+        }
+
+        // Async wrapper to prevent UI freeze on large datasets during fuzzy match
+        function executeDeduplication(mode) {
+            const fuzzyMatch = document.getElementById('fuzzyMatch').checked;
+            const linesCount = inputData.value.split('\n').length;
+            
+            // Show loader
+            const loaderId = mode === 'standard' ? 'loadingStandard' : 'loadingCount';
+            document.getElementById(loaderId).style.display = 'block';
+
+            // Use setTimeout to allow UI to render the loader before heavy calculation
+            setTimeout(() => {
+                try {
+                    removeDuplicates(mode);
+                } catch(e) {
+                    alert("An error occurred during processing.");
+                    console.error(e);
+                } finally {
+                    document.getElementById(loaderId).style.display = 'none';
+                }
+            }, 50);
+        }
+
+        // CORE LOGIC: Remove Duplicates
+        function removeDuplicates(mode = 'standard') {
+            const rawText = inputData.value;
+            if (rawText.trim() === '') {
+                outputData.value = '';
+                updateStats(0, 0, 0);
+                return;
+            }
+
+            // Get Settings
+            const caseSensitive = document.getElementById('caseSensitive').checked;
+            const trimSpaces = document.getElementById('trimSpaces').checked;
+            const fuzzyMatch = document.getElementById('fuzzyMatch').checked;
+            const keepMode = document.querySelector('input[name="keepMode"]:checked').value;
+            
+            const blacklist = document.getElementById('blacklist').value.split('\n').map(w=>w.trim()).filter(w=>w);
+            const whitelist = document.getElementById('whitelist').value.split('\n').map(w=>w.trim()).filter(w=>w);
+
+            const isCsvMode = !csvColumnContainer.classList.contains('hidden') && csvSelect.value !== 'all';
+            const colIndex = parseInt(csvSelect.value);
+
+            let lines = rawText.split('\n');
+            let initialTotal = lines.length;
+
+            let exactGroups = new Map();
+            let fuzzyClusters = []; 
+            let whitelistedLines = [];
+            let removedCount = 0;
+
+            for (let i = 0; i < lines.length; i++) {
+                let originalLine = lines[i];
+                
+                // Blacklist check
+                if (blacklist.length > 0 && blacklist.some(b => originalLine.includes(b))) {
+                    removedCount++;
+                    continue;
+                }
+
+                // Whitelist check (bypass duplicate logic completely)
+                if (whitelist.length > 0 && whitelist.some(w => originalLine.includes(w))) {
+                    whitelistedLines.push(originalLine);
+                    continue; 
+                }
+
+                // Generate Comparison Key
+                let key = originalLine;
+                if (isCsvMode) {
+                    let cols = key.split(',');
+                    if (cols[colIndex] !== undefined) key = cols[colIndex];
+                }
+                
+                if (trimSpaces) key = key.trim();
+                if (!caseSensitive) key = key.toLowerCase();
+
+                // Grouping Logic
+                if (fuzzyMatch) {
+                    let matched = false;
+                    for (let cluster of fuzzyClusters) {
+                        if (isFuzzyMatch(cluster.key, key)) {
+                            cluster.lines.push({ text: originalLine, index: i });
+                            matched = true;
+                            break;
+                        }
+                    }
+                    if (!matched) {
+                        fuzzyClusters.push({ key: key, lines: [{ text: originalLine, index: i }] });
+                    }
+                } else {
+                    if (exactGroups.has(key)) {
+                        exactGroups.get(key).push({ text: originalLine, index: i });
+                    } else {
+                        exactGroups.set(key, [{ text: originalLine, index: i }]);
+                    }
+                }
+            }
+
+            // Consolidate Groups
+            let groupedData = fuzzyMatch ? fuzzyClusters.map(c => c.lines) : Array.from(exactGroups.values());
+            let resultLines = [];
+
+            // Apply Keep Mode & Count Formatting
+            groupedData.forEach(group => {
+                if (group.length > 1) {
+                    removedCount += (group.length - 1); // Track standard duplicates removed
+                }
+                
+                let selectedLine;
+                if (keepMode === 'first') {
+                    selectedLine = group[0].text;
+                } else if (keepMode === 'last') {
+                    selectedLine = group[group.length - 1].text;
+                } else if (keepMode === 'longest') {
+                    selectedLine = group.reduce((a, b) => a.text.length >= b.text.length ? a : b).text;
+                }
+
+                if (mode === 'count') {
+                    resultLines.push(`${selectedLine} - ${group.length}x`);
+                } else {
+                    resultLines.push(selectedLine);
+                }
+            });
+
+            // Merge whitelisted items (appended to end to preserve them safely)
+            let finalOutputArray = [...resultLines, ...whitelistedLines];
+
+            // Render Output
+            outputData.value = finalOutputArray.join('\n');
+            
+            // Ensure stats math is perfectly balanced based on input vs output
+            let calculatedRemoved = initialTotal - finalOutputArray.length;
+            updateStats(initialTotal, finalOutputArray.length, calculatedRemoved);
+
+            // Save to LocalStorage History (preview first 40 chars)
+            if(finalOutputArray.length > 0) {
+                let previewText = finalOutputArray[0].substring(0, 40) + (finalOutputArray.length > 1 ? '...' : '');
+                saveHistory(finalOutputArray.length, previewText, mode);
+            }
+        }
+
+        function updateStats(total, unique, removed) {
+            statTotal.innerText = total.toLocaleString();
+            statUnique.innerText = unique.toLocaleString();
+            statRemoved.innerText = removed.toLocaleString();
+        }
+
+        // Secondary Actions
+        function sortOutput() {
+            if(!outputData.value) return;
+            let lines = outputData.value.split('\n');
+            lines.sort((a, b) => a.localeCompare(b, undefined, {sensitivity: 'base'}));
+            outputData.value = lines.join('\n');
+            showToast("Sorted A-Z!");
+        }
+
+        function copyOutput() {
+            if(!outputData.value) return;
+            navigator.clipboard.writeText(outputData.value).then(() => {
+                showToast("Copied to Clipboard!");
+            });
+        }
+
+        function downloadFile(ext) {
+            if(!outputData.value) return;
+            let blob = new Blob([outputData.value], { type: 'text/plain;charset=utf-8' });
+            let url = URL.createObjectURL(blob);
+            let a = document.createElement('a');
+            a.href = url;
+            a.download = `clean_list_${new Date().getTime()}.${ext}`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function showToast(msg) {
+            toast.innerText = msg;
+            toast.style.opacity = 1;
+            setTimeout(() => { toast.style.opacity = 0; }, 2000);
+        }
+
+        // LocalStorage History Management
+        function saveHistory(count, preview, mode) {
+            let history = JSON.parse(localStorage.getItem('duplicateHistory') || '[]');
+            const timeStr = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+            history.unshift({ time: timeStr, count, preview, mode });
+            if (history.length > 5) history.pop(); // Keep only last 5
+            localStorage.setItem('duplicateHistory', JSON.stringify(history));
+            renderHistory();
+        }
+
+        function renderHistory() {
+            let history = JSON.parse(localStorage.getItem('duplicateHistory') || '[]');
+            if(history.length === 0) {
+                historyContainer.innerHTML = '<p class="text-slate-500 text-xs italic">No recent deduplications.</p>';
+                return;
+            }
+            
+            let html = history.map(h => `
+                <div class="text-xs bg-slate-800/50 p-2.5 rounded-lg border border-slate-700/50 flex flex-col gap-1">
+                    <div class="flex justify-between">
+                        <span class="text-blue-400 font-semibold">[${h.time}] ${h.mode === 'count' ? 'Count Mode' : 'Cleaned'}</span>
+                        <span class="text-green-400">${h.count} unique</span>
+                    </div>
+                    <span class="text-slate-400 truncate w-full" title="${h.preview}">${h.preview}</span>
+                </div>
+            `).join('');
+            historyContainer.innerHTML = html;
+        }
+    </script>
+</body>
+</html>
+<!-- Made for 100FreeTools by Gemini -->
