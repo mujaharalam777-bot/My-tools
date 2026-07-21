@@ -1,1 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slug Generator - 100FreeTools</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+body {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  min-height: 100vh;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: hidden;
+}
+.back-btn {
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  align-self: flex-start;
+  margin-bottom: 30px;
+  font-weight: 500;
+}
+.icon {
+  font-size: 60px;
+  filter: drop-shadow(0 0 15px rgba(0,242,254,0.6));
+  margin-bottom: 10px;
+}
+h1 {
+  color: #fff;
+  font-size: 32px;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  margin-bottom: 30px;
+}
+.card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 25px;
+  padding: 30px 25px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+}
+.card-title {
+  color: #fff;
+  font-size: 22px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.card-title .dot {
+  width: 10px; height: 10px;
+  background: #00f2fe;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #00f2fe;
+}
+.card p {
+  color: rgba(255,255,255,0.9);
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+.btn {
+  width: 100%;
+  background: linear-gradient(90deg, #00f2fe, #4facfe);
+  color: #000;
+  font-weight: 700;
+  font-size: 18px;
+  padding: 15px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 5px 20px rgba(0,242,254,0.4);
+}
+.btn:hover { transform: translateY(-2px); }
+.float-emoji {
+  position: absolute;
+  font-size: 20px;
+  animation: float 6s infinite ease-in-out;
+  opacity: 0.7;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+</style>
+</head>
+<body>
 
+<a href="/" class="back-btn">← Back to Home</a>
+
+<div class="icon">🔗</div>
+<h1>Slug Generator</h1>
+
+<div class="card">
+  <div class="card-title">
+    <span class="dot"></span> Create SEO Slug
+  </div>
+  <p>
+    Enter your blog title and get a clean, SEO-friendly URL slug instantly ⚡
+  </p>
+  <button class="btn" onclick="window.location.href='/slug-tool.html'">
+    ✨ Open Slug Tool
+  </button>
+</div>
+
+<!-- Floating emojis -->
+<span class="float-emoji" style="top:70%; left:10%;">🔗</span>
+<span class="float-emoji" style="top:80%; left:80%;">✨</span>
+<span class="float-emoji" style="top:60%; left:90%;">⚡</span>
+
+</body>
+</html>
