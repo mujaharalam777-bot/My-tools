@@ -1,1 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pro Remove Duplicate Tool - Remove Duplicate Lines & Words Online Free</title>
+<meta name="description" content="Free tool to remove duplicate lines, words, keywords from text, CSV, Excel list instantly. Bulk 50k lines, Fuzzy match, Count & Download.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
 
+body {
+  background: linear-gradient(135deg, #FF6B9D 0%, #FF8E53 100%);
+  min-height: 100vh;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.back-btn {
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  align-self: flex-start;
+  margin-bottom: 30px;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+.icon {
+  font-size: 70px;
+  filter: drop-shadow(0 0 20px rgba(255,255,255,0.5));
+  margin-bottom: 10px;
+  animation: glow 2s ease-in-out infinite alternate;
+}
+@keyframes glow {
+  from { filter: drop-shadow(0 0 10px rgba(255,255,255,0.3)); }
+  to { filter: drop-shadow(0 0 25px rgba(255,255,255,0.7)); }
+}
+
+h1 {
+  color: #fff;
+  font-size: 32px;
+  font-weight: 700;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 25px;
+  padding: 30px 25px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+}
+
+.card-title {
+  color: #fff;
+  font-size: 22px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.card-title .dot {
+  width: 10px; height: 10px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #fff;
+}
+
+.card p {
+  color: rgba(255,255,255,0.9);
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+
+.btn {
+  width: 100%;
+  background: linear-gradient(90deg, #FF006E, #FF3D00);
+  color: #fff;
+  font-weight: 700;
+  font-size: 18px;
+  padding: 16px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 5px 20px rgba(255,0,110,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(255,0,110,0.6); }
+
+.float-emoji {
+  position: absolute;
+  font-size: 22px;
+  animation: float 6s infinite ease-in-out;
+  opacity: 0.6;
+  z-index: -1;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-25px) rotate(10deg); }
+}
+</style>
+</head>
+<body>
+
+<a href="/" class="back-btn">← Back to Home</a>
+
+<div class="icon">🗑️</div>
+<h1>Remove Duplicate Tool</h1>
+
+<div class="card">
+  <div class="card-title">
+    <span class="dot"></span> Clean Your Text
+  </div>
+  <p>
+    Paste your list and remove duplicate lines, words & keywords instantly ⚡
+    Supports CSV, Excel & Bulk 50k lines
+  </p>
+  <button class="btn" onclick="window.location.href='/remove-duplicate-tool.html'">
+    ✨ Open Duplicate Remover
+  </button>
+</div>
+
+<!-- Floating emojis -->
+<span class="float-emoji" style="top:70%; left:10%;">🗑️</span>
+<span class="float-emoji" style="top:85%; left:80%;">✨</span>
+<span class="float-emoji" style="top:60%; left:90%;">⚡</span>
+<span class="float-emoji" style="top:90%; left:20%;">📋</span>
+
+</body>
+</html>
