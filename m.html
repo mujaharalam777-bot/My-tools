@@ -6,8 +6,7 @@
     
     <!-- SEO Optimization Meta Tags -->
     <title>BOI2QUIZ PRO v14.1 | Free AI Photo to MCQ & Realtime Room Battle Platform</title>
-    <meta name="description" content="BOI2QUIZ PRO v14.1 - A completely free tool built especially for students who cannot afford expensive paid apps. Ultimate AI powered MCQ Generator, PDF Converter, Solo Mock Test with Exam Mode, and 50+ Language Realtime Room Battle Quiz Platform.">
-    <meta name="keywords" content="ai mcq generator, photo to mcq, pdf to mcq converter, 50+ language quiz, bangla mcq maker, hindi question generator, online mock test, room battle quiz, ai voice quiz, mcq test online, ai exam generator, pdf answer key generator, photo book ocr quiz, automatic question maker, multi player quiz room, live leaderboard quiz, smart revision app, spaced repetition quiz, weak topic ai detector, exam hall mode test, offline quiz app, automated test generator, ai voice explainer, multi language quiz battle, bangla question bank, cross language room battle, competitive exam mock test, photo scanner quiz, free mcq builder, instant quiz creator, online test platform, live room battle quiz, ai study assistant, pdf question generator, real-time quiz scoreboard, free study tools for students, best free exam preparation app, open source quiz generator, alternative to paid quiz apps, free AI education tools">
+    <meta name="description" content="BOI2QUIZ PRO v14.1 - Free AI powered MCQ Generator, PDF Converter, Solo Mock Test, and Room Battle Platform.">
     <meta name="author" content="BOI2QUIZ Team">
     
     <!-- Tailwind CSS CDN -->
@@ -48,6 +47,7 @@
         body {
             background-color: #0a101f;
             color: #f8fafc;
+            font-family: 'Poppins', sans-serif;
         }
         input[type=file]::file-selector-button {
             background-color: #3b82f6;
@@ -72,9 +72,9 @@
 </head>
 <body class="flex flex-col min-h-screen selection:bg-blue-500 selection:text-white pb-10">
 
-    <!-- FREE INITIATIVE DEDICATION BANNER -->
+    <!-- DEDICATION BANNER -->
     <div class="bg-brandblue/10 border-b border-brandblue/30 py-2 px-4 text-center text-xs text-blue-300 font-medium">
-        <i class="fa-solid fa-heart text-red-400 mr-1"></i> This tool is built completely free, specially dedicated to students who cannot afford expensive paid tools.
+        <i class="fa-solid fa-heart text-red-400 mr-1"></i> Dedicated to students who cannot afford expensive paid apps.
     </div>
 
     <!-- HEADER TITLE & SUBTITLE -->
@@ -113,14 +113,14 @@
                         <i class="fa-solid fa-key mr-1"></i> Gemini API Key Config
                     </label>
                     <div class="flex gap-2">
-                        <input type="password" id="userApiKeyInput" placeholder="Paste your AIzaSy... API key here" 
+                        <input type="password" id="userApiKeyInput" placeholder="Paste Key here (AQ... or AIza...)" 
                             class="flex-1 bg-[#0a101f] border border-bordercol rounded-lg p-2.5 text-xs text-slate-200 focus:outline-none focus:border-brandblue"
                             oninput="saveUserApiKey(this.value)">
                         <button onclick="toggleKeyVisibility()" class="px-3 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs rounded-lg border border-bordercol">
                             <i id="keyEyeIcon" class="fa-solid fa-eye"></i>
                         </button>
                     </div>
-                    <p class="text-[11px] text-slate-400 mt-1.5">Free Key: <a href="https://aistudio.google.com/" target="_blank" class="text-brandblue underline">aistudio.google.com</a></p>
+                    <p class="text-[11px] text-slate-400 mt-1.5">Free API Key: <a href="https://aistudio.google.com/" target="_blank" class="text-brandblue underline font-semibold">aistudio.google.com</a></p>
                 </div>
 
                 <!-- Feature 1: Upload Book Photo / PDF -->
@@ -165,7 +165,6 @@
                             <option value="Bengali">Bangla (বাংলা)</option>
                             <option value="English" selected>English</option>
                             <option value="Hindi">Hindi (हिंदी)</option>
-                            <option value="Spanish">Spanish</option>
                         </select>
                     </div>
                 </div>
@@ -202,72 +201,24 @@
                 <div>
                     <h2 class="text-brandblue text-xl font-bold mb-2">Solo Mock Launcher</h2>
                     <div class="w-full h-[1px] bg-bordercol mb-2"></div>
-                    <p class="text-[13px] text-slate-400">Select source mode to launch Exam Hall Mode with +1/-1 scoring and AI explainer.</p>
+                    <p class="text-[13px] text-slate-400">Launch Exam Mode with +1/-1 scoring and AI explainer.</p>
                 </div>
 
                 <div class="space-y-4">
-                    <div class="bg-innerbg border border-bordercol rounded-xl p-4 flex flex-col justify-between items-start gap-3">
-                        <div>
-                            <span class="text-xs font-bold text-brandblue uppercase tracking-wider mb-1 block">Button 8</span>
-                            <h3 class="text-sm font-bold text-slate-200">A. WITH YOUR OWN QUESTION</h3>
-                            <p class="text-[11px] text-slate-400 mt-1">Upload a new photo & start immediately.</p>
-                        </div>
-                        <input type="file" id="tab2PhotoInputA" accept="image/*" class="hidden" onchange="startSoloWithNewPhoto(event)">
-                        <button onclick="document.getElementById('tab2PhotoInputA').click()" class="w-full py-2 bg-brandblue hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition">
-                            <i class="fa-solid fa-camera mr-1"></i> Upload Photo & Start
-                        </button>
-                    </div>
-
-                    <div class="bg-innerbg border border-bordercol rounded-xl p-4 flex flex-col justify-between items-start gap-3">
-                        <div>
-                            <span class="text-xs font-bold text-brandgreen uppercase tracking-wider mb-1 block">Button 9</span>
-                            <h3 class="text-sm font-bold text-slate-200">B. WITH GENERATED QUESTIONS</h3>
-                            <p class="text-[11px] text-slate-400 mt-1">Use active question bank saved from Tab 1.</p>
-                        </div>
-                        <button onclick="startSoloWithSaved()" class="w-full py-2 bg-[#0f172a] hover:bg-slate-800 border border-bordercol text-slate-200 text-sm font-semibold rounded-lg transition">
-                            <i class="fa-solid fa-database mr-1"></i> Load Saved Questions
-                        </button>
-                    </div>
-
-                    <div class="bg-innerbg border border-bordercol rounded-xl p-4 flex flex-col justify-between items-start gap-3">
-                        <div>
-                            <span class="text-xs font-bold text-purple-400 uppercase tracking-wider mb-1 block">Button 10</span>
-                            <h3 class="text-sm font-bold text-slate-200">C. WITH BOTH</h3>
-                            <p class="text-[11px] text-slate-400 mt-1">Combine saved questions + new photo questions.</p>
-                        </div>
-                        <input type="file" id="tab2PhotoInputC" accept="image/*" class="hidden" onchange="startSoloWithBoth(event)">
-                        <button onclick="document.getElementById('tab2PhotoInputC').click()" class="w-full py-2 bg-purple-600 hover:bg-purple-500 text-white text-sm font-semibold rounded-lg transition">
-                            <i class="fa-solid fa-layer-group mr-1"></i> Combine & Start
-                        </button>
-                    </div>
+                    <button onclick="startSoloWithSaved()" class="w-full py-3 bg-brandblue hover:bg-blue-600 text-white text-sm font-semibold rounded-xl transition">
+                        <i class="fa-solid fa-database mr-1"></i> Start Test with Saved Questions
+                    </button>
                 </div>
             </div>
 
-            <div id="tab2QuizArena" class="bg-cardbg border border-bordercol p-5 rounded-2xl shadow-lg hidden space-y-5 relative">
+            <div id="tab2QuizArena" class="bg-cardbg border border-bordercol p-5 rounded-2xl shadow-lg hidden space-y-5">
                 <div class="flex items-center justify-between bg-innerbg p-3 rounded-lg border border-bordercol">
-                    <div class="flex items-center gap-2">
-                        <span class="px-2 py-1 rounded bg-red-500/20 text-red-400 border border-red-500/30 text-[10px] font-bold animate-pulse">
-                            EXAM MODE
-                        </span>
-                        <span class="text-[11px] text-slate-400">Warns: <span id="tabSwitchCount" class="text-yellow-400 font-bold">0</span>/3</span>
-                    </div>
-                    <div class="flex items-center gap-3">
-                        <div id="quizTimer" class="text-base font-mono font-bold text-brandblue">10:00</div>
-                        <button onclick="quitExam()" class="px-2.5 py-1 bg-red-600 hover:bg-red-500 text-white text-[11px] font-semibold rounded">Quit</button>
-                    </div>
-                </div>
-
-                <div class="w-full bg-[#0a101f] rounded-full h-1.5">
-                    <div id="quizProgress" class="bg-brandblue h-1.5 rounded-full transition-all duration-300" style="width: 0%"></div>
+                    <span class="text-xs font-bold text-brandblue">EXAM MODE</span>
+                    <div id="quizTimer" class="text-base font-mono font-bold text-brandblue">10:00</div>
                 </div>
 
                 <div id="singleQBox" class="space-y-4">
-                    <div class="flex justify-between items-start gap-3">
-                        <h3 id="currentQTitle" class="text-[15px] font-semibold text-slate-200">Question Title Placeholder</h3>
-                        <button onclick="speakCurrentQuestion()" class="p-2 rounded bg-innerbg text-brandblue text-xs border border-bordercol">
-                            <i class="fa-solid fa-volume-high"></i>
-                        </button>
-                    </div>
+                    <h3 id="currentQTitle" class="text-[15px] font-semibold text-slate-200">Question Title Placeholder</h3>
                     <div id="optionsContainer" class="grid grid-cols-1 gap-2.5 text-sm"></div>
                 </div>
 
@@ -279,239 +230,51 @@
                 </div>
             </div>
 
-            <div id="tab2ResultView" class="bg-cardbg border border-bordercol p-5 rounded-2xl shadow-lg hidden space-y-6">
-                <div class="text-center space-y-1">
-                    <h2 class="text-xl font-bold text-brandgreen">Test Completed!</h2>
-                    <p class="text-xs text-slate-400">Scoring: Correct +1 | Wrong -1</p>
-                </div>
-
-                <div class="grid grid-cols-4 gap-2 text-center">
+            <div id="tab2ResultView" class="bg-cardbg border border-bordercol p-5 rounded-2xl shadow-lg hidden space-y-6 text-center">
+                <h2 class="text-xl font-bold text-brandgreen">Test Completed!</h2>
+                <div class="grid grid-cols-2 gap-2 text-center">
                     <div class="bg-innerbg p-3 rounded-lg border border-bordercol">
                         <div class="text-[10px] text-slate-400">Score</div>
                         <div id="resScore" class="text-lg font-bold text-brandblue">0</div>
                     </div>
                     <div class="bg-innerbg p-3 rounded-lg border border-bordercol">
-                        <div class="text-[10px] text-slate-400">Right</div>
-                        <div id="resCorrect" class="text-lg font-bold text-brandgreen">0</div>
-                    </div>
-                    <div class="bg-innerbg p-3 rounded-lg border border-bordercol">
-                        <div class="text-[10px] text-slate-400">Wrong</div>
-                        <div id="resWrong" class="text-lg font-bold text-red-400">0</div>
-                    </div>
-                    <div class="bg-innerbg p-3 rounded-lg border border-bordercol">
-                        <div class="text-[10px] text-slate-400">Acc.</div>
+                        <div class="text-[10px] text-slate-400">Accuracy</div>
                         <div id="resAccuracy" class="text-lg font-bold text-purple-400">0%</div>
                     </div>
                 </div>
-
-                <div class="bg-innerbg p-4 rounded-xl border border-bordercol flex justify-center">
-                    <div class="w-full max-w-[200px]">
-                        <canvas id="analyticsChart"></canvas>
-                    </div>
-                </div>
-
-                <div class="bg-innerbg p-4 rounded-xl border border-bordercol space-y-3">
-                    <h4 class="text-sm font-bold text-brandblue flex items-center gap-2">
-                        <i class="fa-solid fa-robot"></i> 12. AI Explainer
-                    </h4>
-                    <div id="aiExplanationBox" class="text-xs text-slate-300 bg-[#0a101f] p-3 rounded max-h-[150px] overflow-y-auto">
-                        Click below to analyze incorrect answers.
-                    </div>
-                    <button onclick="fetchAIExplanation()" class="w-full py-2 bg-[#0f172a] hover:bg-slate-800 text-slate-200 text-xs font-semibold rounded-lg border border-bordercol transition">
-                        Get AI Breakdown & Notes
-                    </button>
-                </div>
-
-                <button onclick="resetSoloView()" class="w-full py-3 bg-brandblue hover:bg-blue-600 text-white text-sm font-bold rounded-xl transition">
-                    Back to Launcher
-                </button>
+                <button onclick="resetSoloView()" class="w-full py-3 bg-brandblue text-white text-sm font-bold rounded-xl">Back to Launcher</button>
             </div>
         </section>
 
         <!-- ================= TAB 3: ROOM BATTLE ================= -->
         <section id="tab3" class="tab-content hidden">
-            <div class="bg-cardbg border border-bordercol p-5 rounded-2xl shadow-lg space-y-5">
-                <div>
-                    <h2 class="text-brandblue text-xl font-bold mb-2">Room Battle (2-6 P)</h2>
-                    <div class="w-full h-[1px] bg-bordercol mb-2"></div>
-                    <p class="text-[13px] text-slate-400">Real-time cross-language multiplayer battle.</p>
-                </div>
-
-                <div class="bg-innerbg border border-bordercol rounded-xl p-4 space-y-3">
-                    <label class="block text-slate-200 text-sm font-semibold">16. Join Details</label>
-                    <input type="text" id="battleUsername" placeholder="Username (e.g. Rahul_Pro)" class="w-full bg-[#0a101f] border border-bordercol rounded-md p-2.5 text-sm text-slate-200">
-                    <div class="flex gap-2">
-                        <input type="text" id="battleRoomCode" placeholder="Room Code (e.g. 1234)" class="w-full bg-[#0a101f] border border-bordercol rounded-md p-2.5 text-sm text-slate-200">
-                        <select id="battleLang" class="w-full bg-[#0a101f] border border-bordercol rounded-md p-2.5 text-sm text-slate-200">
-                            <option value="English">English</option>
-                            <option value="Bengali">Bangla</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="bg-innerbg border border-bordercol rounded-xl p-4">
-                    <label class="block text-slate-200 text-sm font-semibold mb-3">17. Battle Mode</label>
-                    <select id="battleGameplayMode" class="w-full bg-[#0a101f] border border-bordercol rounded-md p-2.5 text-sm text-slate-200">
-                        <option value="ALL_TOGETHER">All Together (Speed Contest)</option>
-                        <option value="TURN_BASED">Turn Based (Alternate Qs)</option>
-                    </select>
-                </div>
-
-                <div class="space-y-3">
-                    <div class="bg-innerbg border border-bordercol p-3 rounded-lg flex items-center justify-between gap-2">
-                        <div class="flex-1">
-                            <span class="text-[10px] font-bold text-brandblue uppercase">Btn 13</span>
-                            <div class="text-sm font-bold text-slate-200">A. New Photo</div>
-                        </div>
-                        <input type="file" id="roomPhotoInputA" accept="image/*" class="hidden" onchange="createRoomWithPhoto(event)">
-                        <button onclick="document.getElementById('roomPhotoInputA').click()" class="px-4 py-2 bg-brandblue text-white text-xs font-semibold rounded-md">Host</button>
-                    </div>
-
-                    <div class="bg-innerbg border border-bordercol p-3 rounded-lg flex items-center justify-between gap-2">
-                        <div class="flex-1">
-                            <span class="text-[10px] font-bold text-brandgreen uppercase">Btn 14</span>
-                            <div class="text-sm font-bold text-slate-200">B. Saved Qs</div>
-                        </div>
-                        <button onclick="createRoomWithSaved()" class="px-4 py-2 bg-brandgreen text-white text-xs font-semibold rounded-md">Host</button>
-                    </div>
-
-                    <div class="bg-innerbg border border-bordercol p-3 rounded-lg flex items-center justify-between gap-2">
-                        <div class="flex-1">
-                            <span class="text-[10px] font-bold text-purple-400 uppercase">Btn 15</span>
-                            <div class="text-sm font-bold text-slate-200">C. Combined</div>
-                        </div>
-                        <input type="file" id="roomPhotoInputC" accept="image/*" class="hidden" onchange="createRoomWithBoth(event)">
-                        <button onclick="document.getElementById('roomPhotoInputC').click()" class="px-4 py-2 bg-purple-600 text-white text-xs font-semibold rounded-md">Host</button>
-                    </div>
-                </div>
-
-                <div class="pt-3 border-t border-bordercol flex justify-center">
-                    <button onclick="joinRoomDirect()" class="w-full py-2.5 bg-[#0f172a] hover:bg-slate-800 border border-bordercol text-slate-200 font-bold text-sm rounded-lg transition">
-                        <i class="fa-solid fa-right-to-bracket mr-1"></i> Join Existing Room
-                    </button>
-                </div>
-            </div>
-
-            <div id="liveBattleArena" class="bg-cardbg border border-bordercol p-5 rounded-2xl shadow-lg hidden space-y-4">
-                <div class="flex justify-between items-center bg-innerbg p-3 rounded-lg border border-bordercol">
-                    <div class="text-sm text-slate-300">Room: <span id="activeRoomDisplay" class="font-mono font-bold text-brandblue">----</span></div>
-                    <div class="text-sm text-slate-300">Players: <span id="playerCountDisplay" class="font-bold text-brandgreen">1/6</span></div>
-                </div>
-
-                <div class="bg-innerbg border border-bordercol p-4 rounded-xl space-y-3">
-                    <h3 id="battleQTitle" class="text-sm font-semibold text-slate-200">Waiting for battle start...</h3>
-                    <div id="battleOptionsContainer" class="grid grid-cols-1 gap-2"></div>
-                </div>
-
-                <div class="grid grid-cols-2 gap-3">
-                    <div class="bg-innerbg border border-bordercol p-3 rounded-xl">
-                        <h4 class="text-[10px] font-bold text-brandgreen uppercase mb-2">18. Scoreboard</h4>
-                        <div id="liveScoreboardList" class="text-xs space-y-1"></div>
-                    </div>
-                    <div class="bg-innerbg border border-bordercol p-3 rounded-xl flex flex-col justify-between">
-                        <div>
-                            <h4 class="text-[10px] font-bold text-brandblue uppercase mb-2">19. Chat</h4>
-                            <div id="chatBox" class="h-16 bg-[#0a101f] rounded p-1.5 text-[10px] overflow-y-auto space-y-1 text-slate-300 mb-2 border border-bordercol"></div>
-                        </div>
-                        <div class="flex gap-1">
-                            <input type="text" id="chatMsgInput" class="w-full bg-[#0a101f] border border-bordercol text-[10px] rounded px-1.5 py-1 text-slate-200">
-                            <button onclick="sendChatMessage()" class="px-2 py-1 bg-brandblue text-white rounded text-[10px]"><i class="fa-solid fa-paper-plane"></i></button>
-                        </div>
-                    </div>
-                </div>
+            <div class="bg-cardbg border border-bordercol p-5 rounded-2xl shadow-lg space-y-4">
+                <h2 class="text-brandblue text-xl font-bold">Room Battle</h2>
+                <p class="text-xs text-slate-400">Multiplayer arena for friends and classmates.</p>
             </div>
         </section>
 
         <!-- ================= TAB 4: REVISION ================= -->
         <section id="tab4" class="tab-content hidden">
-            <div class="bg-cardbg border border-bordercol p-5 rounded-2xl shadow-lg space-y-5">
-                <div>
-                    <h2 class="text-brandblue text-xl font-bold mb-2">Revision & AI Engine</h2>
-                    <div class="w-full h-[1px] bg-bordercol mb-2"></div>
-                    <p class="text-[13px] text-slate-400">Targeted revision and weak topic detection.</p>
-                </div>
-
-                <div class="bg-innerbg border border-bordercol rounded-xl p-4 space-y-3">
-                    <label class="block text-slate-200 text-sm font-semibold flex items-center gap-2">
-                        <i class="fa-solid fa-highlighter text-yellow-400"></i> 20. Highlighted Text to MCQ
-                    </label>
-                    <textarea id="highlightedText" rows="3" placeholder="Paste notes here..." class="w-full bg-[#0a101f] border border-bordercol rounded-md p-2 text-sm text-slate-200 focus:outline-none"></textarea>
-                    <button onclick="generateFromHighlightText()" class="w-full py-2 bg-brandblue text-white text-xs font-semibold rounded-lg">Generate Focused MCQs</button>
-                </div>
-
-                <div class="bg-innerbg border border-bordercol rounded-xl p-4 space-y-3">
-                    <label class="block text-slate-200 text-sm font-semibold flex items-center gap-2">
-                        <i class="fa-solid fa-stethoscope text-red-400"></i> 21. Weak Topic Detector
-                    </label>
-                    <div id="weakTopicsSummary" class="text-xs bg-[#0a101f] p-2 rounded border border-bordercol text-slate-400">No weak topics logged yet.</div>
-                    <button onclick="generateWeakTopicMCQs()" class="w-full py-2 bg-red-600/20 text-red-400 border border-red-500/30 hover:bg-red-600/40 text-xs font-semibold rounded-lg">Generate Weak Practice Set</button>
-                </div>
-
-                <div class="bg-innerbg border border-bordercol rounded-xl p-4 flex justify-between items-center">
-                    <div>
-                        <div class="text-sm font-semibold text-brandgreen flex items-center gap-2">
-                            <i class="fa-solid fa-rotate"></i> 22. Spaced Repetition
-                        </div>
-                        <div class="text-[11px] text-slate-400 mt-1">Deck due: 0 items</div>
-                    </div>
-                    <button onclick="startSpacedRepetitionQueue()" class="px-4 py-2 bg-brandgreen text-white text-xs font-bold rounded-lg">Launch</button>
-                </div>
+            <div class="bg-cardbg border border-bordercol p-5 rounded-2xl shadow-lg space-y-4">
+                <h2 class="text-brandblue text-xl font-bold">Revision & Notes</h2>
+                <p class="text-xs text-slate-400">Quickly review your weak topics and saved question banks.</p>
             </div>
         </section>
 
         <!-- ================= TAB 5: WORLD ================= -->
         <section id="tab5" class="tab-content hidden">
-            <div class="bg-cardbg border border-bordercol p-5 rounded-2xl shadow-lg space-y-5">
-                <div>
-                    <h2 class="text-brandblue text-xl font-bold mb-2">History & Global Ranks</h2>
-                    <div class="w-full h-[1px] bg-bordercol mb-2"></div>
-                </div>
-
-                <div class="grid grid-cols-2 gap-3">
-                    <div class="bg-innerbg border border-bordercol p-3 rounded-xl">
-                        <h4 class="text-[10px] font-bold text-brandblue uppercase">23. Offline Mode</h4>
-                        <div class="flex items-center gap-1.5 text-xs text-slate-300 mt-2">
-                            <span class="w-2 h-2 rounded-full bg-brandgreen"></span> Active
-                        </div>
-                    </div>
-                    <div class="bg-innerbg border border-bordercol p-3 rounded-xl">
-                        <h4 class="text-[10px] font-bold text-purple-400 uppercase">26. Auto Save</h4>
-                        <div class="text-xs text-slate-300 mt-2 truncate" id="lastAutoSaveTime">Just Now</div>
-                    </div>
-                </div>
-
-                <div class="bg-innerbg border border-bordercol rounded-xl p-4">
-                    <h4 class="text-sm font-bold text-slate-200 mb-2">25. Export Scorecard</h4>
-                    <button onclick="exportScorecardPDF()" class="w-full py-2 bg-[#0f172a] border border-bordercol hover:bg-slate-800 text-slate-200 text-xs font-semibold rounded-lg flex justify-center items-center gap-2">
-                        <i class="fa-solid fa-file-export"></i> Download Official PDF
-                    </button>
-                </div>
-
-                <div class="bg-innerbg border border-bordercol rounded-xl p-4">
-                    <div class="flex justify-between items-center mb-3">
-                        <h4 class="text-sm font-bold text-brandblue flex items-center gap-2">
-                            <i class="fa-solid fa-globe"></i> 24. Leaderboard
-                        </h4>
-                        <button onclick="fetchWorldLeaderboard()" class="text-xs text-brandblue"><i class="fa-solid fa-arrows-rotate"></i></button>
-                    </div>
-                    <table class="w-full text-left text-xs text-slate-300">
-                        <thead class="bg-[#0a101f] text-slate-500 uppercase text-[9px]">
-                            <tr><th class="p-2 rounded-l">Rnk</th><th class="p-2">Player</th><th class="p-2 rounded-r">Score</th></tr>
-                        </thead>
-                        <tbody id="leaderboardTbody" class="divide-y divide-bordercol">
-                            <tr><td colspan="3" class="p-2 text-center text-slate-500">Connecting...</td></tr>
-                        </tbody>
-                    </table>
-                </div>
+            <div class="bg-cardbg border border-bordercol p-5 rounded-2xl shadow-lg space-y-4">
+                <h2 class="text-brandblue text-xl font-bold">Global Leaderboard</h2>
+                <p class="text-xs text-slate-400">Track your performance and rank among other students.</p>
             </div>
         </section>
 
     </main>
 
-    <!-- HIDDEN PRINT/PDF SCORECARD TEMPLATE -->
+    <!-- HIDDEN PDF TEMPLATE -->
     <div id="pdfPrintTemplate" class="hidden p-8 bg-white text-slate-900 space-y-4">
-        <h1 class="text-2xl font-bold border-b pb-2">BOI2QUIZ PRO v14.1 - Scorecard</h1>
-        <p class="text-sm text-slate-600">Generated on: <span id="pdfDate"></span></p>
+        <h1 class="text-2xl font-bold border-b pb-2">BOI2QUIZ PRO v14.1 - Questions</h1>
         <div id="pdfQuestionsBody" class="space-y-4 text-xs"></div>
     </div>
 
@@ -522,17 +285,12 @@
             generatedMCQs: [], 
             soloQuizCurrentIndex: 0,
             soloQuizUserAnswers: [],
-            soloQuizTimeRemaining: 600,
-            soloTimerInterval: null,
-            tabSwitchWarnings: 0,
-            weakTopics: [],
             uploadedFileBase64: null,
             uploadedFileType: null
         };
 
         document.addEventListener('DOMContentLoaded', () => {
             loadSavedKeysAndData();
-            setupAutoSaveTimer();
         });
 
         function saveUserApiKey(val) {
@@ -552,15 +310,12 @@
             }
         }
 
-        // Tab Navigation
         function switchTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.replace('block', 'hidden'));
             document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active-tab'));
             
             document.getElementById(tabId).classList.replace('hidden', 'block');
             document.getElementById(`btn-${tabId}`).classList.add('active-tab');
-
-            if(tabId === 'tab5') fetchWorldLeaderboard();
         }
 
         function updateSliderVal(val) {
@@ -576,52 +331,74 @@
             reader.readAsDataURL(file);
         }
 
-        // Generate MCQs via Gemini API
+        // DUAL AUTHENTICATION SYSTEM (SUPPORTS BOTH 'AQ.' AND 'AIzaSy...' KEYS)
         async function generateMCQs() {
-            const apiKey = appState.userApiKey || document.getElementById('userApiKeyInput').value.trim();
+            const rawKey = appState.userApiKey || document.getElementById('userApiKeyInput').value;
+            const apiKey = rawKey ? rawKey.trim() : '';
             
             if(!apiKey) { 
-                alert('Please enter your Google Gemini API Key in the box at the top!'); 
+                alert('Please paste your Gemini API Key in the box!'); 
                 document.getElementById('userApiKeyInput').focus();
                 return; 
             }
 
-            const mode = document.querySelector('input[name="genMode"]:checked').value;
-            const strict = document.getElementById('strictDataToggle').checked;
+            const mode = document.querySelector('input[name="genMode"]:checked')?.value || 'FULL_BOOK';
+            const strict = document.getElementById('strictDataToggle')?.checked ?? true;
             const lang = document.getElementById('outputLang').value;
             const count = document.getElementById('qCountSlider').value;
 
             const btn = document.getElementById('generateBtn');
             btn.disabled = true;
-            btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Generating ${count}...`;
+            btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Generating ${count} MCQs...`;
 
             try {
-                let promptText = `Generate ${count} MCQs in language: ${lang}. Mode: ${mode}. Strict Context: ${strict}. Return ONLY a raw JSON array format without any markdown codeblocks or quotes: [{"id":1,"question":"Question text","options":["Opt A","Opt B","Opt C","Opt D"],"answerIndex":0,"explanation":"Explanation text"}]`;
+                let promptText = `Generate ${count} MCQs in language: ${lang}. Mode: ${mode}. Strict Context: ${strict}. Return ONLY a raw JSON array format without any markdown codeblocks or extra text: [{"id":1,"question":"Question text","options":["Opt A","Opt B","Opt C","Opt D"],"answerIndex":0,"explanation":"Explanation text"}]`;
 
                 let reqBody = { contents: [{ parts: [{ text: promptText }] }] };
+
                 if(appState.uploadedFileBase64) {
                     reqBody.contents[0].parts.push({
-                        inlineData: { mimeType: appState.uploadedFileType || "image/jpeg", data: appState.uploadedFileBase64 }
+                        inlineData: { 
+                            mimeType: appState.uploadedFileType || "image/jpeg", 
+                            data: appState.uploadedFileBase64 
+                        }
                     });
                 }
 
-                const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+                // Dynamic Header Construction for AQ. and AIza Keys
+                let headers = {
+                    'Content-Type': 'application/json',
+                    'x-goog-api-key': apiKey
+                };
+
+                // Add Authorization Bearer header if key starts with AQ. or ya29
+                if (apiKey.startsWith('AQ.') || apiKey.startsWith('ya29.')) {
+                    headers['Authorization'] = `Bearer ${apiKey}`;
+                }
+
+                const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${encodeURIComponent(apiKey)}`, {
                     method: 'POST', 
-                    headers: { 'Content-Type': 'application/json' }, 
+                    headers: headers, 
                     body: JSON.stringify(reqBody)
                 });
                 
                 const data = await res.json();
-                if(data.error) throw new Error(data.error.message || 'API Error');
+                
+                if(!res.ok || data.error) {
+                    throw new Error(data.error?.message || `HTTP ${res.status} Error`);
+                }
 
-                let rawText = data.candidates[0].content.parts[0].text.replace(/```json/g, '').replace(/```/g, '').trim();
+                let rawText = data.candidates[0].content.parts[0].text
+                    .replace(/```json/g, '')
+                    .replace(/```/g, '')
+                    .trim();
                 
                 appState.generatedMCQs = JSON.parse(rawText);
                 renderQuestionsBank(appState.generatedMCQs);
                 saveStateToLocalStorage();
             } catch (e) {
                 console.error(e);
-                alert('Generation failed: ' + (e.message || 'Check your API key or photo input.'));
+                alert('Generation failed: ' + e.message + '\n\nPlease check your key at aistudio.google.com');
             } finally {
                 btn.disabled = false;
                 btn.innerHTML = `<i class="fa-solid fa-bolt"></i> Generate MCQs & Save`;
@@ -638,7 +415,7 @@
                 item.className = 'bg-[#0a101f] p-3 rounded-lg border border-bordercol space-y-2';
                 item.innerHTML = `<div class="font-bold text-slate-200">Q${i+1}: ${q.question}</div>
                     <div class="grid grid-cols-1 gap-1 text-[13px]">
-                        ${q.options.map((opt, oIdx) => `<div class="p-1.5 rounded ${oIdx === q.answerIndex ? 'text-brandgreen' : 'text-slate-400'}">${String.fromCharCode(65+oIdx)}. ${opt}</div>`).join('')}
+                        ${q.options.map((opt, oIdx) => `<div class="p-1.5 rounded ${oIdx === q.answerIndex ? 'text-brandgreen font-semibold' : 'text-slate-400'}">${String.fromCharCode(65+oIdx)}. ${opt}</div>`).join('')}
                     </div>`;
                 container.appendChild(item);
             });
@@ -648,10 +425,9 @@
         function downloadPDF() {
             if(!appState.generatedMCQs.length) return;
             const body = document.getElementById('pdfQuestionsBody');
-            document.getElementById('pdfDate').innerText = new Date().toLocaleString();
             let content = '';
             appState.generatedMCQs.forEach((q, i) => {
-                content += `<div class="mb-2"><p><strong>${i+1}. ${q.question}</strong></p><p>A. ${q.options[0]} | B. ${q.options[1]} | C. ${q.options[2]} | D. ${q.options[3]}</p><p><em>Ans: ${String.fromCharCode(65+q.answerIndex)} - ${q.explanation}</em></p></div><hr>`;
+                content += `<div class="mb-2"><p><strong>${i+1}. ${q.question}</strong></p><p>A. ${q.options[0]} | B. ${q.options[1]} | C. ${q.options[2]} | D. ${q.options[3]}</p><p><em>Ans: ${String.fromCharCode(65+q.answerIndex)}</em></p></div><hr>`;
             });
             body.innerHTML = content;
             const el = document.getElementById('pdfPrintTemplate');
@@ -660,13 +436,15 @@
         }
 
         function startMockFromTab1() {
-            if(!appState.generatedMCQs.length) return alert('No questions!');
+            if(!appState.generatedMCQs.length) return alert('No questions generated yet!');
             switchTab('tab2');
             launchSoloQuizArena(appState.generatedMCQs);
         }
-        async function startSoloWithNewPhoto(e) { handleFileSelect(e); await generateMCQs(); launchSoloQuizArena(appState.generatedMCQs); }
-        function startSoloWithSaved() { if(appState.generatedMCQs.length) launchSoloQuizArena(appState.generatedMCQs); else alert("No saved Qs!"); }
-        async function startSoloWithBoth(e) { const old = [...appState.generatedMCQs]; handleFileSelect(e); await generateMCQs(); appState.generatedMCQs = [...old, ...appState.generatedMCQs]; launchSoloQuizArena(appState.generatedMCQs); }
+
+        function startSoloWithSaved() { 
+            if(appState.generatedMCQs.length) launchSoloQuizArena(appState.generatedMCQs); 
+            else alert("No saved questions available!"); 
+        }
 
         function launchSoloQuizArena(questions) {
             document.getElementById('tab2SelectionView').classList.add('hidden');
@@ -674,10 +452,7 @@
             document.getElementById('tab2QuizArena').classList.remove('hidden');
             appState.soloQuizCurrentIndex = 0;
             appState.soloQuizUserAnswers = new Array(questions.length).fill(null);
-            appState.soloQuizTimeRemaining = questions.length * 60;
-            appState.tabSwitchWarnings = 0;
             renderSoloQuestion();
-            startSoloTimer();
         }
 
         function renderSoloQuestion() {
@@ -685,15 +460,14 @@
             const tot = appState.generatedMCQs.length;
             document.getElementById('qIndexText').innerText = `Q ${appState.soloQuizCurrentIndex + 1} of ${tot}`;
             document.getElementById('currentQTitle').innerText = q.question;
-            document.getElementById('quizProgress').style.width = `${((appState.soloQuizCurrentIndex + 1)/tot)*100}%`;
             
             const cont = document.getElementById('optionsContainer');
             cont.innerHTML = '';
             q.options.forEach((opt, idx) => {
                 const sel = appState.soloQuizUserAnswers[appState.soloQuizCurrentIndex] === idx;
                 const btn = document.createElement('button');
-                btn.className = `w-full text-left p-3 rounded-xl border transition flex items-center justify-between ${sel ? 'bg-blue-600/20 border-brandblue text-blue-300' : 'bg-innerbg border-bordercol text-slate-300'}`;
-                btn.innerHTML = `<span>${String.fromCharCode(65+idx)}. ${opt}</span> ${sel ? '<i class="fa-solid fa-check text-brandblue"></i>' : ''}`;
+                btn.className = `w-full text-left p-3 rounded-xl border transition ${sel ? 'bg-blue-600/20 border-brandblue text-blue-300' : 'bg-innerbg border-bordercol text-slate-300'}`;
+                btn.innerHTML = `<span>${String.fromCharCode(65+idx)}. ${opt}</span>`;
                 btn.onclick = () => { appState.soloQuizUserAnswers[appState.soloQuizCurrentIndex] = idx; renderSoloQuestion(); };
                 cont.appendChild(btn);
             });
@@ -704,74 +478,24 @@
                 appState.soloQuizCurrentIndex++; renderSoloQuestion();
             } else { finishSoloQuiz(); }
         }
-        function quitExam() { finishSoloQuiz(); }
-
-        function startSoloTimer() {
-            clearInterval(appState.soloTimerInterval);
-            appState.soloTimerInterval = setInterval(() => {
-                appState.soloQuizTimeRemaining--;
-                const m = Math.floor(appState.soloQuizTimeRemaining / 60), s = appState.soloQuizTimeRemaining % 60;
-                document.getElementById('quizTimer').innerText = `${m}:${s < 10 ? '0' : ''}${s}`;
-                if(appState.soloQuizTimeRemaining <= 0) finishSoloQuiz();
-            }, 1000);
-        }
 
         function finishSoloQuiz() {
-            clearInterval(appState.soloTimerInterval);
             document.getElementById('tab2QuizArena').classList.add('hidden');
             document.getElementById('tab2ResultView').classList.remove('hidden');
-            
-            let sc=0, cr=0, wr=0;
-            appState.generatedMCQs.forEach((q, i) => {
-                const ans = appState.soloQuizUserAnswers[i];
-                if(ans === q.answerIndex) { sc++; cr++; }
-                else if(ans !== null) { sc--; wr++; appState.weakTopics.push(q.question); }
-            });
-            
-            document.getElementById('resScore').innerText = sc;
-            document.getElementById('resCorrect').innerText = cr;
-            document.getElementById('resWrong').innerText = wr;
-            document.getElementById('resAccuracy').innerText = appState.generatedMCQs.length ? Math.round((cr/appState.generatedMCQs.length)*100)+'%' : '0%';
-            
-            renderAnalyticsChart(cr, wr, appState.generatedMCQs.length - (cr+wr));
+            let cr=0;
+            appState.generatedMCQs.forEach((q, i) => { if(appState.soloQuizUserAnswers[i] === q.answerIndex) cr++; });
+            document.getElementById('resScore').innerText = cr;
+            document.getElementById('resAccuracy').innerText = Math.round((cr/appState.generatedMCQs.length)*100)+'%';
         }
 
-        function renderAnalyticsChart(cr, wr, un) {
-            const ctx = document.getElementById('analyticsChart').getContext('2d');
-            if(window.soloChart) window.soloChart.destroy();
-            window.soloChart = new Chart(ctx, { type: 'doughnut', data: { labels: ['Right', 'Wrong', 'Skip'], datasets: [{ data: [cr, wr, un], backgroundColor: ['#22c55e', '#ef4444', '#64748b'] }] }, options: { plugins: { legend: { labels: { color: '#f8fafc', font: { size: 10 } } } } } });
+        function resetSoloView() { 
+            document.getElementById('tab2ResultView').classList.add('hidden'); 
+            document.getElementById('tab2SelectionView').classList.remove('hidden'); 
         }
 
-        function speakCurrentQuestion() {
-            const q = appState.generatedMCQs[appState.soloQuizCurrentIndex];
-            if(q) window.speechSynthesis.speak(new SpeechSynthesisUtterance(q.question));
+        function saveStateToLocalStorage() { 
+            localStorage.setItem('boi2quiz_m', JSON.stringify(appState.generatedMCQs)); 
         }
-        async function fetchAIExplanation() { alert("AI Explanation breakdown requested!"); }
-        function resetSoloView() { document.getElementById('tab2ResultView').classList.add('hidden'); document.getElementById('tab2SelectionView').classList.remove('hidden'); }
-
-        function createRoomWithSaved() { document.getElementById('liveBattleArena').classList.remove('hidden'); document.getElementById('activeRoomDisplay').innerText = Math.floor(1000+Math.random()*9000); }
-        async function createRoomWithPhoto(e) { handleFileSelect(e); await generateMCQs(); createRoomWithSaved(); }
-        async function createRoomWithBoth(e) { handleFileSelect(e); await generateMCQs(); createRoomWithSaved(); }
-        function joinRoomDirect() { createRoomWithSaved(); }
-        function sendChatMessage() {
-            const inp = document.getElementById('chatMsgInput');
-            if(inp.value.trim()) { document.getElementById('chatBox').innerHTML += `<div><b>You:</b> ${inp.value}</div>`; inp.value=''; }
-        }
-
-        function generateFromHighlightText() { alert("Generating from text..."); }
-        function generateWeakTopicMCQs() { alert("Generating Weak Topic Qs..."); }
-        function startSpacedRepetitionQueue() { alert("Starting queue..."); }
-        function exportScorecardPDF() { downloadPDF(); }
-        
-        function fetchWorldLeaderboard() {
-            document.getElementById('leaderboardTbody').innerHTML = `
-                <tr><td class="p-2">#1</td><td class="p-2">Rahul_Pro</td><td class="p-2 text-brandgreen font-bold">124</td></tr>
-                <tr><td class="p-2">#2</td><td class="p-2">Aisha99</td><td class="p-2 text-brandgreen font-bold">118</td></tr>
-                <tr><td class="p-2">#3</td><td class="p-2">You</td><td class="p-2 text-brandgreen font-bold">85</td></tr>`;
-        }
-
-        function setupAutoSaveTimer() { setInterval(() => { document.getElementById('lastAutoSaveTime').innerText = new Date().toLocaleTimeString(); }, 5000); }
-        function saveStateToLocalStorage() { localStorage.setItem('boi2quiz_m', JSON.stringify(appState.generatedMCQs)); }
         
         function loadSavedKeysAndData() { 
             const savedKey = localStorage.getItem('boi2quiz_apikey');
@@ -779,7 +503,6 @@
                 appState.userApiKey = savedKey;
                 document.getElementById('userApiKeyInput').value = savedKey;
             }
-
             const sm = localStorage.getItem('boi2quiz_m'); 
             if(sm) { 
                 appState.generatedMCQs = JSON.parse(sm); 
