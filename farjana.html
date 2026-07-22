@@ -539,21 +539,20 @@
     <!-- JAVASCRIPT APPLICATION CORE -->
     <script>
         // ==========================================
-        // 🔑 API & FIREBASE CONFIGURATION (HIDDEN)
+        // 🔑 API & FIREBASE CONFIGURATION
         // ==========================================
-        const GEMINI_API_KEY = "AQ.Ab8RN6JEYqChBy4VzgIYH30Lm_MCPHCjNBN7S34J6eqYq0Md9Q"; 
+        const GEMINI_API_KEY = "AQ.Ab8RN6IRQ2D3HvY6PBFaMzfkoHBhZuDCKotTY7TXK8SmFrIhmA"; 
         
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyCmLZql8EHqmLfc4JfnolHoBC9TgNSKbgk",
-  authDomain: "mcq-801eb.firebaseapp.com",
-  databaseURL: "https://mcq-801eb-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "mcq-801eb",
-  storageBucket: "mcq-801eb.firebasestorage.app",
-  messagingSenderId: "123682086900",
-  appId: "1:123682086900:web:f550559d28e2824f2523a1",
-  measurementId: "G-5Z17FFR66Q"
-};
+        const firebaseConfig = {
+          apiKey: "AIzaSyCmLZql8EHqmLfc4JfnolHoBC9TgNSKbgk",
+          authDomain: "mcq-801eb.firebaseapp.com",
+          databaseURL: "https://mcq-801eb-default-rtdb.asia-southeast1.firebasedatabase.app",
+          projectId: "mcq-801eb",
+          storageBucket: "mcq-801eb.firebasestorage.app",
+          messagingSenderId: "123682086900",
+          appId: "1:123682086900:web:f550559d28e2824f2523a1",
+          measurementId: "G-5Z17FFR66Q"
+        };
         // ==========================================
 
         let appState = {
@@ -601,10 +600,12 @@ const firebaseConfig = {
             reader.readAsDataURL(file);
         }
 
-        // Feature 1-5: Generate MCQs (Gemini 2.5 API)
+        // Feature 1-5: Generate MCQs (Gemini API)
         async function generateMCQs() {
             const apiKey = GEMINI_API_KEY;
-            if(apiKey === "AQ.Ab8RN6JEYqChBy4VzgIYH30Lm_MCPHCjNBN7S34J6eqYq0Md9Q" || !apiKey) { alert('Please set your Gemini API Key in the JavaScript code!'); return; }
+            
+            // FIX 1: Removed the strict check that was blocking your key
+            if(!apiKey) { alert('Please set your Gemini API Key in the JavaScript code!'); return; }
 
             const mode = document.querySelector('input[name="genMode"]:checked').value;
             const strict = document.getElementById('strictDataToggle').checked;
@@ -624,10 +625,12 @@ const firebaseConfig = {
                         inlineData: { mimeType: appState.uploadedFileType || "image/jpeg", data: appState.uploadedFileBase64 }
                     });
                 }
-
-                const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`, {
+                
+                // FIX 2: Changed gemini-2.5-flash to the correct working model gemini-1.5-flash
+                const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
                     method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(reqBody)
                 });
+                
                 const data = await res.json();
                 let rawText = data.candidates[0].content.parts[0].text.replace(/```json/g, '').replace(/```/g, '').trim();
                 
@@ -636,7 +639,7 @@ const firebaseConfig = {
                 saveStateToLocalStorage();
             } catch (e) {
                 console.error(e);
-                alert('Generation failed. Check API key or file.');
+                alert('Generation failed. Check API key, network, or file format.');
             } finally {
                 btn.disabled = false;
                 btn.innerHTML = `<i class="fa-solid fa-bolt"></i> Generate MCQs & Save`;
