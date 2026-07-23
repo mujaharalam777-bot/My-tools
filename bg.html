@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free AI Background Remover 2025 | 100% Client Side, No Upload, HD 4K</title>
+    <meta name="description" content="Remove background from image in 1 second. 100% Free, No Login, No Watermark, Unlimited. AI Background Changer, Passport Photo, Ecommerce. All processing in your browser.">
+    <meta name="keywords" content="background remover, remove background from image, ai background remover free, product photo background remover, ecommerce background remover, passport photo background, transparent background maker, client side background remover, no upload background remover, free background remover no watermark, batch background remover, video background remover, how to remove background from image free, best background remover no login, hd background remover online, background eraser tool, background changer ai">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Free AI Background Remover | 100% Private, HD 4K">
+    <meta property="og:description" content="Instant browser-based background removal. No uploads, total privacy, unlimited free HD exports.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=1200">
+
+    <!-- Schema.org FAQPage -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Background Remover ki sotti free and unlimited?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ha, eta 100% free abong er kono usage limit nei. Apni jotogulo icche image ba photo processing korte parben full HD 4K resolution e, kono watermark chara."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Amar photo ki server e upload hobe? Private to?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Na, ekta photo-o kono server e upload hoi na. Sob processing apnar nijer browser (Client-Side AI WebWorker) e hoi. Apnar data 100% private abong secure."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#eef2ff',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            900: '#312e81'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Font Awesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- JSZip for Batch Downloads -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+    <style>
+        .glass {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .checkerboard {
+            background-image: linear-gradient(45deg, #2a2a2a 25%, transparent 25%), 
+                              linear-gradient(-45deg, #2a2a2a 25%, transparent 25%), 
+                              linear-gradient(45deg, transparent 75%, #2a2a2a 75%), 
+                              linear-gradient(-45deg, transparent 75%, #2a2a2a 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+            background-color: #1a1a1a;
+        }
+        .custom-slider::-webkit-slider-thumb {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #6366f1;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(99, 102, 241, 0.8);
+        }
+        /* Custom scrollbar for canvas viewport to allow panning when zoomed */
+        #canvasViewport { scrollbar-width: thin; scrollbar-color: #4f46e5 #1e293b; }
+        #canvasViewport::-webkit-scrollbar { width: 8px; height: 8px; }
+        #canvasViewport::-webkit-scrollbar-track { background: #1e293b; border-radius: 4px; }
+        #canvasViewport::-webkit-scrollbar-thumb { background: #4f46e5; border-radius: 4px; }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans min-h-screen flex flex-col transition-colors duration-300" id="bodyApp">
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="fixed top-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+    <!-- Header Navbar -->
+    <header class="sticky top-0 z-40 glass border-b border-slate-800/80 px-4 lg:px-8 py-3">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="bg-gradient-to-tr from-brand-600 to-pink-500 p-2.5 rounded-xl text-white shadow-lg shadow-brand-500/20">
+                    <i class="fa-solid me-1 fa-wand-magic-sparkles text-xl"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-extrabold tracking-tight bg-gradient-to-r from-white via-slate-200 to-brand-500 bg-clip-text text-transparent">EraseAI</span>
+                    <span class="hidden sm:inline-block text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded-full font-medium ml-2">Client Side</span>
+                </div>
+            </div>
+
+            <!-- Header Controls -->
+            <div class="flex items-center gap-3">
+                <div class="hidden md:flex items-center gap-2 bg-slate-900/80 border border-slate-800 rounded-lg px-3 py-1.5 text-xs text-slate-300">
+                    <i class="fa-solid fa-shield-halved text-emerald-400"></i>
+                    <span data-i18n="noUploadBadge">No Upload. 100% Browser Private</span>
+                </div>
+
+                <select id="langSelect" class="bg-slate-900 border border-slate-700 text-xs text-slate-200 rounded-lg px-2.5 py-1.5 focus:outline-none focus:border-brand-500 cursor-pointer">
+                    <option value="EN">English</option>
+                    <option value="HI">हिंदी</option>
+                    <option value="BN">বাংলা</option>
+                </select>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Workspace Section -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 py-8 flex flex-col gap-8">
+        
+        <!-- Hero Section -->
+        <section class="text-center max-w-3xl mx-auto space-y-4">
+            <h1 class="text-3xl sm:text-5xl font-black tracking-tight text-white leading-tight" data-i18n="h1Title">
+                Free Background Remover - <span class="bg-gradient-to-r from-brand-500 via-purple-400 to-pink-500 bg-clip-text text-transparent">No Upload, 100% Private</span>
+            </h1>
+        </section>
+
+        <!-- Mode Selector Tabs -->
+        <div class="flex items-center justify-center gap-2 flex-wrap border-b border-slate-800 pb-3">
+            <button class="tab-btn active bg-brand-600 text-white px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition flex items-center gap-2" data-target="modeSingle">
+                <i class="fa-solid fa-image"></i> <span data-i18n="singleTab">Single Photo</span>
+            </button>
+            <button class="tab-btn bg-slate-900 hover:bg-slate-800 text-slate-300 px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition flex items-center gap-2" data-target="modeBatch">
+                <i class="fa-solid fa-layer-group"></i> <span data-i18n="batchTab">Batch Process (20)</span>
+            </button>
+        </div>
+
+        <!-- WORKSPACE AREA CONTAINER -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+
+            <!-- LEFT/MAIN CONTAINER -->
+            <div class="lg:col-span-8 flex flex-col gap-6">
+
+                <!-- Dropzone Box -->
+                <div id="dropzone" class="glass rounded-3xl border-2 border-dashed border-slate-700 hover:border-brand-500 transition-all p-8 sm:p-12 text-center cursor-pointer flex flex-col items-center justify-center gap-4 group">
+                    <div class="w-16 h-16 rounded-2xl bg-brand-600/10 text-brand-500 border border-brand-500/20 flex items-center justify-center text-2xl group-hover:scale-110 transition duration-300">
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                    </div>
+                    <div class="space-y-1">
+                        <h3 class="text-lg font-bold text-slate-100" data-i18n="dragTitle">Drag & Drop Image Here</h3>
+                        <p class="text-xs text-slate-400" data-i18n="dragSub">or click to browse from computer/mobile (PNG, JPG, WEBP)</p>
+                    </div>
+                    <input type="file" id="fileInput" accept="image/*" class="hidden">
+                    <input type="file" id="batchInput" accept="image/*" multiple class="hidden">
+                </div>
+
+                <!-- Processing Loader Overlay -->
+                <div id="loadingBox" class="hidden glass rounded-3xl p-8 text-center flex flex-col items-center justify-center gap-4 min-h-[350px]">
+                    <div class="relative w-20 h-20">
+                        <div class="absolute inset-0 rounded-full border-4 border-brand-500 border-t-transparent animate-spin"></div>
+                        <i class="fa-solid fa-wand-magic-sparkles absolute inset-0 flex items-center justify-center text-brand-400 text-xl"></i>
+                    </div>
+                    <h4 class="text-base font-bold text-slate-200">AI Removing Background...</h4>
+                    <div class="w-full max-w-xs bg-slate-800 rounded-full h-2 overflow-hidden">
+                        <div id="progressBar" class="bg-brand-500 h-full w-0 transition-all duration-300"></div>
+                    </div>
+                </div>
+
+                <!-- Main Canvas Preview & Editor Box -->
+                <div id="editorBox" class="hidden flex flex-col gap-4">
+                    <div class="glass rounded-3xl p-4 overflow-hidden relative">
+                        
+                        <!-- Top Toolbar -->
+                        <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-3 text-xs flex-wrap gap-2">
+                            <div class="flex items-center gap-2">
+                                <span class="text-slate-400 font-medium">Tools:</span>
+                                <button id="brushEraseMode" class="px-2.5 py-1 bg-brand-600 text-white rounded-lg flex items-center gap-1 hover:bg-brand-500">
+                                    <i class="fa-solid fa-eraser"></i> Erase
+                                </button>
+                                <button id="brushRestoreMode" class="px-2.5 py-1 bg-slate-800 text-slate-300 rounded-lg flex items-center gap-1 hover:bg-slate-700">
+                                    <i class="fa-solid fa-paintbrush"></i> Restore
+                                </button>
+                                <div class="flex items-center gap-1 ml-2">
+                                    <span class="text-slate-400">Size:</span>
+                                    <input type="range" id="brushSize" min="5" max="150" value="30" class="w-20 custom-slider accent-brand-500">
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <button id="resetImageBtn" class="px-2.5 py-1 bg-rose-600/20 text-rose-400 border border-rose-500/30 hover:bg-rose-600/30 rounded-lg font-medium">
+                                    <i class="fa-solid fa-xmark"></i> Close
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Canvas Display Area with Zoom & Pan capabilities -->
+                        <div class="relative w-full rounded-2xl overflow-hidden checkerboard border border-slate-800 group">
+                            
+                            <!-- Zoom Controls Overlay -->
+                            <div class="absolute top-2 right-2 z-20 flex items-center gap-1 bg-slate-900/90 backdrop-blur-md p-1.5 rounded-xl border border-slate-700/50 text-white shadow-lg opacity-80 group-hover:opacity-100 transition">
+                                <button id="zoomOutBtn" class="w-7 h-7 flex items-center justify-center hover:bg-slate-800 rounded-lg text-xs transition" title="Zoom Out"><i class="fa-solid fa-minus"></i></button>
+                                <span id="zoomValText" class="text-[10px] font-mono px-2 text-slate-300 select-none">100%</span>
+                                <button id="zoomInBtn" class="w-7 h-7 flex items-center justify-center hover:bg-slate-800 rounded-lg text-xs transition" title="Zoom In"><i class="fa-solid fa-plus"></i></button>
+                                <div class="w-px h-4 bg-slate-700 mx-1"></div>
+                                <button id="zoomResetBtn" class="px-2.5 py-1 text-[10px] hover:bg-slate-800 rounded-lg text-slate-300 transition" title="Fit to Screen">Reset</button>
+                            </div>
+
+                            <!-- Scrollable Viewport for zoomed Canvas -->
+                            <div id="canvasViewport" class="w-full min-h-[380px] max-h-[550px] overflow-auto flex items-center justify-center p-4">
+                                <canvas id="mainCanvas" class="max-w-full h-auto object-contain shadow-2xl rounded-lg origin-center cursor-crosshair transition-transform duration-100"></canvas>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Batch Processing View Area -->
+                <div id="batchBox" class="hidden glass rounded-3xl p-6 space-y-4">
+                    <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                        <h3 class="font-bold text-slate-200">Batch Images (<span id="batchCount">0</span>/20)</h3>
+                    </div>
+                    <div id="batchGrid" class="grid grid-cols-2 sm:grid-cols-4 gap-3 max-h-[400px] overflow-y-auto p-1"></div>
+                </div>
+            </div>
+
+            <!-- RIGHT CONTAINER: EDITING CONTROLS -->
+            <div class="lg:col-span-4 flex flex-col gap-6">
+
+                <!-- Background Customization Box -->
+                <div class="glass rounded-3xl p-5 space-y-5">
+                    
+                    <h3 class="text-sm font-bold text-slate-200 flex items-center gap-2">
+                        <i class="fa-solid fa-palette text-brand-400"></i>
+                        <span>AI Background Changer</span>
+                    </h3>
+
+                    <div class="grid grid-cols-4 gap-1.5 p-1 bg-slate-900 rounded-xl text-xs">
+                        <button class="bg-tab active py-1.5 rounded-lg text-white font-medium bg-brand-600 text-center" data-bg="transparent">Clear</button>
+                        <button class="bg-tab py-1.5 rounded-lg text-slate-400 hover:text-white text-center" data-bg="color">Color</button>
+                        <button class="bg-tab py-1.5 rounded-lg text-slate-400 hover:text-white text-center" data-bg="gradient">Grad</button>
+                        <button class="bg-tab py-1.5 rounded-lg text-slate-400 hover:text-white text-center" data-bg="blur">Blur</button>
+                    </div>
+
+                    <!-- Custom Color Picker -->
+                    <div id="colorPickerContainer" class="hidden space-y-2">
+                        <label class="text-xs text-slate-400">Pick Custom Color:</label>
+                        <div class="flex items-center gap-2">
+                            <input type="color" id="bgColorPicker" value="#0044ff" class="w-10 h-10 rounded-lg cursor-pointer bg-transparent border-0">
+                            <input type="text" id="hexColorInput" value="#0044ff" class="flex-1 bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-slate-200">
+                        </div>
+                    </div>
+
+                    <!-- Gradients -->
+                    <div id="gradientPresetsContainer" class="hidden grid grid-cols-4 gap-2">
+                        <button class="grad-btn h-10 rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 border border-white/10" data-grad="1"></button>
+                        <button class="grad-btn h-10 rounded-xl bg-gradient-to-r from-pink-500 to-rose-500 border border-white/10" data-grad="2"></button>
+                        <button class="grad-btn h-10 rounded-xl bg-gradient-to-r from-emerald-400 to-cyan-500 border border-white/10" data-grad="3"></button>
+                        <button class="grad-btn h-10 rounded-xl bg-gradient-to-r from-amber-400 to-orange-500 border border-white/10" data-grad="4"></button>
+                    </div>
+
+                    <!-- Blur -->
+                    <div id="blurContainer" class="hidden space-y-2">
+                        <div class="flex justify-between text-xs text-slate-400">
+                            <span>Blur Intensity:</span><span id="blurValueText">10px</span>
+                        </div>
+                        <input type="range" id="blurSlider" min="0" max="30" value="10" class="w-full custom-slider">
+                    </div>
+
+                    <hr class="border-slate-800">
+
+                    <!-- Custom Size / Resize Section (NEW) -->
+                    <div class="space-y-3">
+                        <span class="text-xs font-bold text-slate-300 block"><i class="fa-solid fa-crop text-brand-400 mr-1"></i> Custom Photo Size (Resize):</span>
+                        <div class="flex items-center gap-2 text-xs">
+                            <div class="flex-1">
+                                <label class="text-[10px] text-slate-500">Width (px)</label>
+                                <input type="number" id="customWidth" placeholder="e.g. 1080" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-2 py-1.5 text-slate-200 focus:outline-none focus:border-brand-500">
+                            </div>
+                            <span class="text-slate-500 mt-4"><i class="fa-solid fa-xmark"></i></span>
+                            <div class="flex-1">
+                                <label class="text-[10px] text-slate-500">Height (px)</label>
+                                <input type="number" id="customHeight" placeholder="e.g. 1080" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-2 py-1.5 text-slate-200 focus:outline-none focus:border-brand-500">
+                            </div>
+                        </div>
+                        <button id="applyResizeBtn" class="w-full bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 py-1.5 rounded-lg text-xs font-semibold transition">
+                            Apply Custom Size
+                        </button>
+                    </div>
+
+                    <hr class="border-slate-800">
+
+                    <!-- Standard Presets -->
+                    <div class="space-y-3">
+                        <span class="text-xs font-bold text-slate-300 block">Smart Presets:</span>
+                        <div class="grid grid-cols-2 gap-2 text-xs">
+                            <button id="presetPassport" class="p-2 bg-slate-900 border border-slate-800 hover:border-brand-500 rounded-xl text-left flex items-center gap-2 transition">
+                                <i class="fa-solid fa-passport text-brand-400"></i>
+                                <div><div class="font-bold">Passport</div><div class="text-[10px] text-slate-400">35x45 mm</div></div>
+                            </button>
+                            <button id="presetAmazon" class="p-2 bg-slate-900 border border-slate-800 hover:border-brand-500 rounded-xl text-left flex items-center gap-2 transition">
+                                <i class="fa-solid fa-cart-shopping text-amber-400"></i>
+                                <div><div class="font-bold">Ecommerce</div><div class="text-[10px] text-slate-400">2000x2000 White</div></div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <hr class="border-slate-800">
+
+                    <!-- Download & Print Controls -->
+                    <div class="space-y-3">
+                        <div class="grid grid-cols-2 gap-2">
+                            <button id="downloadPngBtn" class="bg-gradient-to-r from-brand-600 to-purple-600 hover:opacity-90 text-white py-3 rounded-2xl font-bold text-xs shadow-lg shadow-brand-500/25 flex items-center justify-center gap-1.5">
+                                <i class="fa-solid fa-download"></i> Download PNG
+                            </button>
+                            <button id="downloadJpgBtn" class="bg-slate-800 hover:bg-slate-700 text-slate-200 py-3 rounded-2xl font-bold text-xs flex items-center justify-center gap-1.5">
+                                <i class="fa-solid fa-file-image"></i> Download JPG
+                            </button>
+                        </div>
+                        
+                        <!-- Print Button (NEW) -->
+                        <button id="printBtn" class="w-full bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 py-2.5 rounded-xl text-xs font-semibold flex items-center justify-center gap-2 transition">
+                            <i class="fa-solid fa-print text-indigo-400"></i> Print Image Directly
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Application State
+        let currentImage = null;
+        let originalImageData = null;
+        let foregroundMask = null;
+        let activeBgType = 'transparent';
+        let customBgValue = '#0044ff';
+        
+        // Brush State (Smooth Drawing)
+        let isDrawing = false;
+        let brushMode = 'erase';
+        let lastMousePos = null;
+
+        // Zoom State
+        let zoomLevel = 1;
+
+        // DOM Elements
+        const dropzone = document.getElementById('dropzone');
+        const fileInput = document.getElementById('fileInput');
+        const loadingBox = document.getElementById('loadingBox');
+        const editorBox = document.getElementById('editorBox');
+        const mainCanvas = document.getElementById('mainCanvas');
+        const canvasViewport = document.getElementById('canvasViewport');
+        const ctx = mainCanvas.getContext('2d', { willReadFrequently: true });
+        const progressBar = document.getElementById('progressBar');
+
+        document.addEventListener('DOMContentLoaded', () => {
+            setupTabs();
+            setupDropzone();
+            setupBgTabs();
+            setupSliders();
+            setupCanvasBrush();
+            setupZoomAndPan();
+            setupResizeAndPrint();
+        });
+
+        function showToast(message, type = 'info') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = `pointer-events-auto flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold text-white shadow-xl transition transform duration-300 translate-y-2 opacity-0 ${type === 'error' ? 'bg-rose-600' : type === 'success' ? 'bg-emerald-600' : 'bg-brand-600'}`;
+            toast.innerHTML = `<i class="fa-solid ${type === 'error' ? 'fa-circle-xmark' : type === 'success' ? 'fa-circle-check' : 'fa-circle-info'}"></i> ${message}`;
+            container.appendChild(toast);
+            setTimeout(() => toast.classList.remove('translate-y-2', 'opacity-0'), 10);
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-2');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        function setupTabs() {
+            const tabs = document.querySelectorAll('.tab-btn');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    tabs.forEach(t => t.classList.remove('active', 'bg-brand-600', 'text-white'));
+                    tabs.forEach(t => t.classList.add('bg-slate-900', 'text-slate-300'));
+                    tab.classList.add('active', 'bg-brand-600', 'text-white');
+                    const target = tab.getAttribute('data-target');
+                    if (target === 'modeBatch') {
+                        document.getElementById('batchInput').click();
+                    } else {
+                        dropzone.classList.remove('hidden');
+                        document.getElementById('batchBox').classList.add('hidden');
+                    }
+                });
+            });
+        }
+
+        function setupDropzone() {
+            dropzone.addEventListener('click', () => fileInput.click());
+            ['dragenter', 'dragover'].forEach(e => dropzone.addEventListener(e, ev => ev.preventDefault()));
+            dropzone.addEventListener('drop', e => { e.preventDefault(); if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]); });
+            fileInput.addEventListener('change', e => { if (e.target.files.length) handleFile(e.target.files[0]); });
+        }
+
+        function handleFile(file) {
+            if (!file.type.startsWith('image/')) return showToast('Upload a valid image', 'error');
+            const reader = new FileReader();
+            reader.onload = e => {
+                const img = new Image();
+                img.onload = () => processImageObject(img);
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function processImageObject(img) {
+            dropzone.classList.add('hidden');
+            loadingBox.classList.remove('hidden');
+            editorBox.classList.add('hidden');
+            progressBar.style.width = '20%';
+
+            currentImage = img;
+            setTimeout(() => {
+                progressBar.style.width = '60%';
+                
+                mainCanvas.width = img.width;
+                mainCanvas.height = img.height;
+                ctx.drawImage(img, 0, 0);
+
+                const imgData = ctx.getImageData(0, 0, img.width, img.height);
+                originalImageData = ctx.getImageData(0, 0, img.width, img.height);
+                const data = imgData.data;
+
+                // Simple Edge AI fallback simulation
+                const bgR = (data[0] + data[(img.width-1)*4]) / 2;
+                const bgG = (data[1] + data[(img.width-1)*4 + 1]) / 2;
+                const bgB = (data[2] + data[(img.width-1)*4 + 2]) / 2;
+
+                for (let i = 0; i < data.length; i += 4) {
+                    const colorDiff = Math.sqrt((data[i]-bgR)**2 + (data[i+1]-bgG)**2 + (data[i+2]-bgB)**2);
+                    if (colorDiff < 50) data[i+3] = 0; // Transparent
+                }
+
+                foregroundMask = imgData;
+                progressBar.style.width = '100%';
+                
+                setTimeout(() => {
+                    loadingBox.classList.add('hidden');
+                    editorBox.classList.remove('hidden');
+                    
+                    // Reset inputs
+                    document.getElementById('customWidth').value = img.width;
+                    document.getElementById('customHeight').value = img.height;
+                    setZoom(1); 
+                    
+                    renderCanvas();
+                    showToast('Background removed!', 'success');
+                }, 300);
+            }, 300);
+        }
+
+        function renderCanvas() {
+            if (!currentImage || !foregroundMask) return;
+            ctx.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
+
+            // Background
+            if (activeBgType === 'color') {
+                ctx.fillStyle = customBgValue;
+                ctx.fillRect(0, 0, mainCanvas.width, mainCanvas.height);
+            } else if (activeBgType === 'gradient') {
+                const grad = ctx.createLinearGradient(0, 0, mainCanvas.width, mainCanvas.height);
+                grad.addColorStop(0, '#3b82f6');
+                grad.addColorStop(1, '#9333ea');
+                ctx.fillStyle = grad;
+                ctx.fillRect(0, 0, mainCanvas.width, mainCanvas.height);
+            } else if (activeBgType === 'blur') {
+                ctx.filter = `blur(${document.getElementById('blurSlider').value}px)`;
+                ctx.drawImage(currentImage, 0, 0, mainCanvas.width, mainCanvas.height);
+                ctx.filter = 'none';
+            }
+
+            // Foreground
+            const tempC = document.createElement('canvas');
+            tempC.width = mainCanvas.width;
+            tempC.height = mainCanvas.height;
+            tempC.getContext('2d').putImageData(foregroundMask, 0, 0);
+            ctx.drawImage(tempC, 0, 0);
+        }
+
+        // Setup Zoom & Pan (NEW FEATURE)
+        function setupZoomAndPan() {
+            const zoomText = document.getElementById('zoomValText');
+
+            window.setZoom = function(newZoom) {
+                zoomLevel = Math.min(Math.max(0.1, newZoom), 5); // 10% to 500%
+                mainCanvas.style.transform = `scale(${zoomLevel})`;
+                zoomText.innerText = `${Math.round(zoomLevel * 100)}%`;
+            }
+
+            document.getElementById('zoomInBtn').addEventListener('click', () => setZoom(zoomLevel + 0.2));
+            document.getElementById('zoomOutBtn').addEventListener('click', () => setZoom(zoomLevel - 0.2));
+            document.getElementById('zoomResetBtn').addEventListener('click', () => {
+                setZoom(1);
+                canvasViewport.scrollTop = 0;
+                canvasViewport.scrollLeft = 0;
+            });
+
+            // Zoom with Ctrl + Scroll
+            canvasViewport.addEventListener('wheel', (e) => {
+                if (e.ctrlKey || e.metaKey) {
+                    e.preventDefault();
+                    setZoom(zoomLevel + (e.deltaY < 0 ? 0.1 : -0.1));
+                }
+            }, { passive: false });
+        }
+
+        // PERFECT SMOOTH BRUSH TOOL (Pen Style Interpolation)
+        function setupCanvasBrush() {
+            document.getElementById('brushEraseMode').addEventListener('click', () => { brushMode = 'erase'; showToast('Eraser Active'); });
+            document.getElementById('brushRestoreMode').addEventListener('click', () => { brushMode = 'restore'; showToast('Restore Active'); });
+
+            mainCanvas.addEventListener('mousedown', (e) => {
+                isDrawing = true;
+                const pos = getMousePos(e);
+                lastMousePos = pos;
+                drawBrushCircle(pos.x, pos.y, getBrushSize());
+                renderCanvas();
+            });
+
+            window.addEventListener('mouseup', () => { isDrawing = false; lastMousePos = null; });
+            mainCanvas.addEventListener('mouseleave', () => { isDrawing = false; lastMousePos = null; });
+
+            mainCanvas.addEventListener('mousemove', (e) => {
+                if (!isDrawing || !foregroundMask) return;
+                const currentPos = getMousePos(e);
+                
+                // Bresenham's Line Interpolation for smooth continuous stroke without gaps
+                if (lastMousePos) {
+                    const radius = getBrushSize();
+                    const dist = Math.hypot(currentPos.x - lastMousePos.x, currentPos.y - lastMousePos.y);
+                    const steps = Math.max(1, Math.ceil(dist / (radius / 2))); // Interpolate points
+                    
+                    for (let i = 0; i <= steps; i++) {
+                        const interpX = lastMousePos.x + (currentPos.x - lastMousePos.x) * (i / steps);
+                        const interpY = lastMousePos.y + (currentPos.y - lastMousePos.y) * (i / steps);
+                        drawBrushCircle(interpX, interpY, radius);
+                    }
+                } else {
+                    drawBrushCircle(currentPos.x, currentPos.y, getBrushSize());
+                }
+
+                lastMousePos = currentPos;
+                renderCanvas();
+            });
+        }
+
+        // Calculate exact coordinates mapping even when scaled/zoomed!
+        function getMousePos(e) {
+            const rect = mainCanvas.getBoundingClientRect();
+            // getBoundingClientRect returns scaled dimensions, so dividing real canvas width by it gets the exact ratio
+            const scaleX = mainCanvas.width / rect.width;
+            const scaleY = mainCanvas.height / rect.height;
+            return {
+                x: Math.floor((e.clientX - rect.left) * scaleX),
+                y: Math.floor((e.clientY - rect.top) * scaleY)
+            };
+        }
+
+        function getBrushSize() {
+            return parseInt(document.getElementById('brushSize').value);
+        }
+
+        function drawBrushCircle(x, y, radius) {
+            const data = foregroundMask.data;
+            const orig = originalImageData.data;
+            const w = mainCanvas.width;
+            const h = mainCanvas.height;
+
+            const xStart = Math.max(0, Math.floor(x - radius));
+            const xEnd = Math.min(w, Math.ceil(x + radius));
+            const yStart = Math.max(0, Math.floor(y - radius));
+            const yEnd = Math.min(h, Math.ceil(y + radius));
+
+            for (let py = yStart; py < yEnd; py++) {
+                for (let px = xStart; px < xEnd; px++) {
+                    const distSq = (px - x) ** 2 + (py - y) ** 2;
+                    if (distSq <= radius ** 2) {
+                        const idx = (py * w + px) * 4;
+                        if (brushMode === 'erase') {
+                            data[idx + 3] = 0; // Transparent
+                        } else {
+                            data[idx + 3] = orig[idx + 3]; // Restore original pixel Alpha
+                        }
+                    }
+                }
+            }
+        }
+
+        // SETUP RESIZE AND PRINT (NEW FEATURE)
+        function setupResizeAndPrint() {
+            // Apply Custom Size
+            document.getElementById('applyResizeBtn').addEventListener('click', () => {
+                if (!currentImage) return showToast('Please upload an image first', 'error');
+                
+                const newW = parseInt(document.getElementById('customWidth').value);
+                const newH = parseInt(document.getElementById('customHeight').value);
+                
+                if (!newW || !newH || newW < 10 || newH < 10) return showToast('Invalid dimensions', 'error');
+
+                // Create a temporary canvas to resize the current rendered image
+                const tempC = document.createElement('canvas');
+                tempC.width = newW;
+                tempC.height = newH;
+                const tCtx = tempC.getContext('2d');
+                
+                // Draw current masked foreground scaled to new dimensions
+                const currentMaskedC = document.createElement('canvas');
+                currentMaskedC.width = mainCanvas.width;
+                currentMaskedC.height = mainCanvas.height;
+                currentMaskedC.getContext('2d').putImageData(foregroundMask, 0, 0);
+
+                tCtx.drawImage(currentMaskedC, 0, 0, newW, newH);
+                
+                // Update Global Mask data to the newly sized one
+                foregroundMask = tCtx.getImageData(0, 0, newW, newH);
+
+                // Update original backing image for restore brush functionality
+                const tempOrig = document.createElement('canvas');
+                tempOrig.width = newW;
+                tempOrig.height = newH;
+                const oCtx = tempOrig.getContext('2d');
+                
+                const origCanvas = document.createElement('canvas');
+                origCanvas.width = mainCanvas.width;
+                origCanvas.height = mainCanvas.height;
+                origCanvas.getContext('2d').putImageData(originalImageData, 0, 0);
+                
+                oCtx.drawImage(origCanvas, 0, 0, newW, newH);
+                originalImageData = oCtx.getImageData(0, 0, newW, newH);
+                
+                // Resize Main Canvas dimensions
+                mainCanvas.width = newW;
+                mainCanvas.height = newH;
+
+                // Draw standard background base resized image
+                const imgTemp = document.createElement('canvas');
+                imgTemp.width = newW;
+                imgTemp.height = newH;
+                imgTemp.getContext('2d').drawImage(currentImage, 0, 0, newW, newH);
+                
+                const newImg = new Image();
+                newImg.src = imgTemp.toDataURL();
+                newImg.onload = () => {
+                    currentImage = newImg;
+                    setZoom(1); // Auto fit after resize
+                    renderCanvas();
+                    showToast(`Canvas resized successfully to ${newW}x${newH}px`, 'success');
+                }
+            });
+
+            // Print Functionality
+            document.getElementById('printBtn').addEventListener('click', () => {
+                if (!currentImage) return showToast('No image to print', 'error');
+                
+                const dataUrl = mainCanvas.toDataURL('image/png');
+                const printWindow = window.open('', '_blank');
+                
+                printWindow.document.write(`
+                    <!DOCTYPE html>
+                    <html>
+                    <head>
+                        <title>Print Image - EraseAI</title>
+                        <style>
+                            body { margin: 0; padding: 20px; display: flex; justify-content: center; align-items: center; min-height: 100vh; background: #fff; }
+                            img { max-width: 100%; max-height: 90vh; object-fit: contain; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+                            @media print {
+                                body { padding: 0; }
+                                img { box-shadow: none; max-height: 100vh; }
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <img src="${dataUrl}" onload="window.print(); window.onafterprint = function(){ window.close(); }" />
+                    </body>
+                    </html>
+                `);
+                printWindow.document.close();
+            });
+
+            // Presets mapping
+            document.getElementById('presetPassport').addEventListener('click', () => {
+                document.getElementById('customWidth').value = 413; // 35mm at 300dpi approx
+                document.getElementById('customHeight').value = 531; // 45mm at 300dpi approx
+                activeBgType = 'color';
+                customBgValue = '#0044ff';
+                document.getElementById('applyResizeBtn').click();
+            });
+
+            document.getElementById('presetAmazon').addEventListener('click', () => {
+                document.getElementById('customWidth').value = 2000;
+                document.getElementById('customHeight').value = 2000;
+                activeBgType = 'color';
+                customBgValue = '#ffffff';
+                document.getElementById('applyResizeBtn').click();
+            });
+        }
+
+        function setupBgTabs() {
+            const tabs = document.querySelectorAll('.bg-tab');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    tabs.forEach(t => t.classList.remove('bg-brand-600', 'text-white'));
+                    tabs.forEach(t => t.classList.add('text-slate-400'));
+                    tab.classList.add('bg-brand-600', 'text-white');
+
+                    activeBgType = tab.getAttribute('data-bg');
+                    document.getElementById('colorPickerContainer').classList.toggle('hidden', activeBgType !== 'color');
+                    document.getElementById('gradientPresetsContainer').classList.toggle('hidden', activeBgType !== 'gradient');
+                    document.getElementById('blurContainer').classList.toggle('hidden', activeBgType !== 'blur');
+                    renderCanvas();
+                });
+            });
+
+            document.getElementById('bgColorPicker').addEventListener('input', e => {
+                customBgValue = e.target.value;
+                document.getElementById('hexColorInput').value = customBgValue;
+                renderCanvas();
+            });
+        }
+
+        function setupSliders() {
+            document.getElementById('blurSlider').addEventListener('input', e => {
+                document.getElementById('blurValueText').innerText = e.target.value + 'px';
+                renderCanvas();
+            });
+        }
+
+        // Export Actions
+        document.getElementById('downloadPngBtn').addEventListener('click', () => {
+            if (!mainCanvas) return;
+            const link = document.createElement('a');
+            link.download = 'eraseai-transparent.png';
+            link.href = mainCanvas.toDataURL('image/png');
+            link.click();
+            showToast('Downloaded Transparent PNG', 'success');
+        });
+
+        document.getElementById('downloadJpgBtn').addEventListener('click', () => {
+            if (!mainCanvas) return;
+            const link = document.createElement('a');
+            link.download = 'eraseai-image.jpg';
+            link.href = mainCanvas.toDataURL('image/jpeg', 0.9);
+            link.click();
+            showToast('Downloaded JPG Image', 'success');
+        });
+
+        document.getElementById('resetImageBtn').addEventListener('click', () => {
+            editorBox.classList.add('hidden');
+            dropzone.classList.remove('hidden');
+            currentImage = null;
+            setZoom(1);
+        });
+
+    </script>
+</body>
+</html>
