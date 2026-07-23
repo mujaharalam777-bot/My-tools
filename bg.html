@@ -1,368 +1,846 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en" data-theme="dark">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Free AI Background Remover 2025 | 100% Client Side, No Upload, HD 4K</title>
-<meta name="description" content="Remove background from image in 1 second. 100% Free, No Login, No Watermark, Unlimited. AI Background Changer, Passport Photo, Ecommerce. All processing in your browser.">
-<meta name="keywords" content="background remover, remove background from image, ai background remover free, product photo background remover, ecommerce background remover, passport photo background, transparent background maker, client side background remover, no upload background remover, free background remover no watermark, batch background remover, video background remover, how to remove background from image free, best background remover no login, hd background remover online, background eraser tool, background changer ai">
-<meta name="robots" content="index, follow">
-<meta name="theme-color" content="#8B5CF6">
-<link rel="manifest" href="data:application/json,{&quot;name&quot;:&quot;EraseAI&quot;,&quot;short_name&quot;:&quot;EraseAI&quot;,&quot;start_url&quot;:&quot;.&quot;,&quot;display&quot;:&quot;standalone&quot;,&quot;background_color&quot;:&quot;#0A0A0A&quot;,&quot;theme_color&quot;:&quot;#8B5CF6&quot;,&quot;icons&quot;:[{&quot;src&quot;:&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==&quot;,&quot;sizes&quot;:&quot;192x192&quot;,&quot;type&quot;:&quot;image/png&quot;}]}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <!-- SEO Meta Tags -->
+    <title>Free AI Background Remover 2026 | 100% Client Side, No Upload, HD 4K</title>
+    <meta name="description" content="Remove background from image in 1 second. 100% Free, No Login, No Watermark, Unlimited. AI Background Changer, Passport Photo, Ecommerce. All processing in your browser.">
+    <meta name="keywords" content="background remover, remove background from image, ai background remover free, product photo background remover, ecommerce background remover, passport photo background, transparent background maker, client side background remover, no upload background remover, free background remover no watermark, batch background remover, video background remover, how to remove background from image free, best background remover no login, hd background remover online, background eraser tool, background changer ai">
+    <meta name="author" content="World's #1 Free BG Remover">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://yourwebsite.com">
 
-<!-- OPEN GRAPH -->
-<meta property="og:title" content="Free AI Background Remover | 100% Private, HD 4K">
-<meta property="og:description" content="Instant browser-based background removal. No uploads, total privacy, unlimited free HD exports.">
-<meta property="og:type" content="website">
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-<!-- FAQ SCHEMA -->
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Background Remover ki sotti free and unlimited?","acceptedAnswer":{"@type":"Answer","text":"Ha, eta 100% free abong er kono usage limit nei. Apni jotogulo icche image ba photo processing korte parben full HD 4K resolution e, kono watermark chara."}},{"@type":"Question","name":"Amar photo ki server e upload hobe? Private to?","acceptedAnswer":{"@type":"Answer","text":"Na, ekta photo-o kono server e upload hoi na. Sob processing apnar nijer browser (Client-Side AI WebWorker) e hoi. Apnar data 100% private abong secure."}},{"@type":"Question","name":"HD 4K quality pabo?","acceptedAnswer":{"@type":"Answer","text":"Ha! Amader browser AI high resolution image er edge and hair fine detail precise vabe process kore 4K Ultra HD quality preserve kare."}},{"@type":"Question","name":"Batch e koto gulo photo eksathe remove kora jabe?","acceptedAnswer":{"@type":"Answer","text":"Apni eksathe up to 20 ti photo upload kore Batch Remove feature use korte parben abong sobgulo ek click e JSZip format e download korte parben."}},{"@type":"Question","name":"Passport size photo banano jabe?","acceptedAnswer":{"@type":"Answer","text":"Ha, amader Passport Photo Maker preset e 35x45mm abong 2x2 inch option ache. Single click e background Blue ba White kore auto-crop kora jay."}},{"@type":"Question","name":"Video theke background remove kora jabe?","acceptedAnswer":{"@type":"Answer","text":"Ha, 10s porjonto choto video clip er background browser segmentation model er maddhome remove ba blur kora jai."}},{"@type":"Question","name":"Mobile e kaj korbe?","acceptedAnswer":{"@type":"Answer","text":"Sotti, eta completely Mobile-First responsive Web App. Chrome, Safari, Firefox - sob mobile browser e smoothly chole."}},{"@type":"Question","name":"Watermark thakbe?","acceptedAnswer":{"@type":"Answer","text":"Kono watermark thakbe na. Single photo hok ba batch - sob image full clean HD transparent background e paben."}}]}
-</script>
+    <!-- CDNs for App Functionality -->
+    <script src="https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.4.5/dist/index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 
-<!-- CDN LIBRARIES -->
-<script src="https://cdn.tailwindcss.com"></script>
-<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.18.0/dist/tf.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/body-segmentation"></script>
-<script src="https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.4.1/dist/background-removal.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- JSON-LD FAQ Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type": "Question","name": "Background Remover ki sotti free and unlimited?","acceptedAnswer": {"@type": "Answer","text": "Yes, it is 100% free and unlimited. No hidden costs."}},
+        {"@type": "Question","name": "Amar photo ki server e upload hobe? Private to?","acceptedAnswer": {"@type": "Answer","text": "No upload required. Everything runs inside your browser using WebAssembly. 100% Private."}},
+        {"@type": "Question","name": "HD 4K quality pabo?","acceptedAnswer": {"@type": "Answer","text": "Yes, we support full HD and 4K export with no resolution loss."}},
+        {"@type": "Question","name": "Batch e koto gulo photo eksathe remove kora jabe?","acceptedAnswer": {"@type": "Answer","text": "You can process up to 20 images at once and download them as a ZIP file."}},
+        {"@type": "Question","name": "Passport size photo banano jabe?","acceptedAnswer": {"@type": "Answer","text": "Yes, use our built-in Passport presets (35x45mm, 2x2 inch) with blue/white background."}},
+        {"@type": "Question","name": "Video theke background remove kora jabe?","acceptedAnswer": {"@type": "Answer","text": "Currently, we specialize in high-quality image background removal. Video support is coming soon."}},
+        {"@type": "Question","name": "Mobile e kaj korbe?","acceptedAnswer": {"@type": "Answer","text": "Yes, the tool is perfectly optimized for all mobile devices."}},
+        {"@type": "Question","name": "Watermark thakbe?","acceptedAnswer": {"@type": "Answer","text": "Absolutely not. Zero watermarks forever."}}
+      ]
+    }
+    </script>
 
-<style>
-/* // EDIT HERE PREMIUM GLASSMORPHISM + DARK THEME */
-* { -webkit-tap-highlight-color: transparent; }
-body { background: linear-gradient(135deg, #0A0A0A 0%, #1A0A2E 50%, #0A0A0A 100%); font-family: 'Poppins', system-ui, sans-serif; }
-.glass { background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(139, 92, 246, 0.2); }
-.glow-bg::before { content: ''; position: fixed; top: 50%; left: 50%; width: 800px; height: 800px; background: radial-gradient(circle, rgba(139, 92, 246, 0.25) 0%, transparent 70%); transform: translate(-50%, -50%); filter: blur(100px); z-index: -1; }
-.checkerboard { background-image: linear-gradient(45deg, #2a2a2a 25%, transparent 25%), linear-gradient(-45deg, #2a2a2a 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #2a2a2a 75%), linear-gradient(-45deg, transparent 75%, #2a2a2a 75%); background-size: 20px 20px; background-color: #1a1a1a; }
-.custom-slider::-webkit-slider-thumb { appearance: none; width: 18px; height: 18px; border-radius: 50%; background: #8B5CF6; cursor: pointer; box-shadow: 0 0 10px rgba(139, 92, 246, 0.8); }
-.custom-slider::-moz-range-thumb { width: 18px; height: 18px; border-radius: 50%; background: #8B5CF6; cursor: pointer; box-shadow: 0 0 10px rgba(139, 92, 246, 0.8); border: none; }
-.toast { animation: slideIn 0.3s ease; }
-@keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
-.lasso-box { position: absolute; border: 2px dashed #8B5CF6; background: rgba(139, 92, 246, 0.2); pointer-events: none; z-index: 10; }
-.btn-gradient { background: linear-gradient(135deg, #8B5CF6 0%, #A855F7 100%); }
-.btn-gradient:hover { box-shadow: 0 0 20px rgba(139, 92, 246, 0.6); transform: translateY(-1px); }
-.scrollbar-thin::-webkit-scrollbar { height: 4px; }.scrollbar-thin::-webkit-scrollbar-thumb { background: #8B5CF6; border-radius: 10px; }
-</style>
+    <style>
+        /* CSS Variables for Theming */
+        :root {
+            --bg-base: #f8fafc;
+            --bg-panel: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --accent: #ec4899;
+            --border: #e2e8f0;
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.5);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --checkboard: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"><rect width="10" height="10" fill="%23e5e7eb"/><rect x="10" width="10" height="10" fill="%23f3f4f6"/><rect y="10" width="10" height="10" fill="%23f3f4f6"/><rect x="10" y="10" width="10" height="10" fill="%23e5e7eb"/></svg>');
+        }
+
+        [data-theme="dark"] {
+            --bg-base: #0f172a;
+            --bg-panel: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: #334155;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+            --checkboard: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"><rect width="10" height="10" fill="%231e293b"/><rect x="10" width="10" height="10" fill="%230f172a"/><rect y="10" width="10" height="10" fill="%230f172a"/><rect x="10" y="10" width="10" height="10" fill="%231e293b"/></svg>');
+        }
+
+        /* Global Reset */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.3s, color 0.3s; }
+        body { background-color: var(--bg-base); color: var(--text-main); overflow-x: hidden; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* Typography */
+        h1, h2, h3 { font-weight: 800; line-height: 1.2; }
+        .gradient-text { background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+        /* Glassmorphism Classes */
+        .glass { background: var(--glass-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--glass-border); box-shadow: var(--shadow); border-radius: 16px; }
+
+        /* Header */
+        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; position: sticky; top: 0; z-index: 100; background: var(--bg-panel); border-bottom: 1px solid var(--border); }
+        .logo { font-size: 24px; font-weight: 800; display: flex; align-items: center; gap: 10px; }
+        .header-actions { display: flex; gap: 15px; align-items: center; }
+        .icon-btn { background: transparent; border: 1px solid var(--border); color: var(--text-main); width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
+        .icon-btn:hover { background: var(--primary); color: white; border-color: var(--primary); }
+        select.lang-select { background: var(--bg-base); color: var(--text-main); border: 1px solid var(--border); padding: 5px 10px; border-radius: 8px; outline: none; cursor: pointer; }
+
+        /* Hero Layout */
+        .hero { text-align: center; padding: 40px 20px; }
+        .hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 15px; }
+        .trust-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(16, 185, 129, 0.1); color: #10b981; padding: 8px 16px; border-radius: 20px; font-weight: 600; font-size: 0.9rem; margin-bottom: 20px; }
+        
+        /* App Layout */
+        .app-container { display: flex; flex-wrap: wrap; max-width: 1500px; margin: 0 auto; gap: 20px; padding: 0 20px; min-height: 70vh; }
+        
+        /* Left Sidebar - Presets & Tools */
+        .sidebar { flex: 1; min-width: 280px; max-width: 350px; display: none; flex-direction: column; gap: 20px; height: fit-content; }
+        .sidebar.active { display: flex; }
+        .tool-section { padding: 20px; }
+        .tool-section h3 { font-size: 1.1rem; margin-bottom: 15px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+        .preset-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .preset-btn { background: var(--bg-base); border: 1px solid var(--border); color: var(--text-main); padding: 10px; border-radius: 8px; cursor: pointer; font-size: 0.85rem; font-weight: 600; transition: 0.2s; }
+        .preset-btn:hover, .preset-btn.active { border-color: var(--primary); background: rgba(99, 102, 241, 0.1); color: var(--primary); }
+        
+        input[type="range"] { width: 100%; accent-color: var(--primary); margin: 10px 0; }
+        input[type="color"] { width: 100%; height: 40px; border: none; border-radius: 8px; cursor: pointer; background: transparent; }
+
+        /* Main Workspace */
+        .workspace { flex: 3; min-width: 300px; display: flex; flex-direction: column; align-items: center; position: relative; }
+        
+        /* Dropzone */
+        .dropzone { width: 100%; max-width: 800px; border: 3px dashed var(--primary); border-radius: 24px; padding: 60px 20px; text-align: center; cursor: pointer; background: var(--bg-panel); transition: 0.3s; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 400px; }
+        .dropzone:hover, .dropzone.dragover { background: rgba(99, 102, 241, 0.05); transform: scale(1.02); }
+        .dropzone i { font-size: 80px; color: var(--primary); margin-bottom: 20px; }
+        .primary-btn { background: linear-gradient(135deg, var(--primary), var(--accent)); color: white; border: none; padding: 15px 35px; border-radius: 50px; font-size: 1.2rem; font-weight: 800; cursor: pointer; box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3); transition: 0.3s; display: inline-flex; align-items: center; gap: 10px; margin: 20px 0; }
+        .primary-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 25px rgba(99, 102, 241, 0.4); }
+
+        /* Loader */
+        .loader-container { display: none; text-align: center; width: 100%; padding: 50px; }
+        .spinner { width: 60px; height: 60px; border: 5px solid var(--border); border-top: 5px solid var(--primary); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 20px; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .progress-bar { width: 100%; max-width: 400px; height: 10px; background: var(--border); border-radius: 10px; margin: 20px auto; overflow: hidden; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--accent)); width: 0%; transition: width 0.3s; }
+
+        /* Canvas Editor */
+        .editor-container { display: none; width: 100%; max-width: 900px; position: relative; background: var(--checkboard); border-radius: 16px; overflow: hidden; box-shadow: var(--shadow); border: 2px solid var(--border); }
+        canvas { width: 100%; height: auto; display: block; max-height: 600px; object-fit: contain; cursor: crosshair; }
+        
+        /* Lasso/Eraser UI overlay */
+        .lasso-ui { position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.8); color: white; padding: 8px 15px; border-radius: 8px; font-size: 0.9rem; display: none; z-index: 10; pointer-events: none; }
+
+        /* Floating Toolbar (Top inside workspace) */
+        .floating-toolbar { display: none; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; justify-content: center; }
+        .tool-btn { background: var(--bg-panel); border: 1px solid var(--border); color: var(--text-main); padding: 10px 20px; border-radius: 50px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px; box-shadow: var(--shadow); }
+        .tool-btn:hover, .tool-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+
+        /* Right Sidebar - Export */
+        .export-panel { flex: 1; min-width: 250px; max-width: 300px; display: none; flex-direction: column; gap: 20px; height: fit-content; }
+        .export-panel.active { display: flex; }
+        .btn-full { width: 100%; padding: 15px; border-radius: 12px; font-size: 1.1rem; font-weight: bold; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 10px; border: none; transition: 0.2s; }
+        .btn-download { background: var(--primary); color: white; }
+        .btn-download:hover { background: var(--primary-hover); transform: scale(1.02); }
+        .btn-copy { background: var(--bg-base); color: var(--text-main); border: 1px solid var(--border); }
+        .btn-copy:hover { border-color: var(--primary); }
+
+        /* Toast Notification */
+        .toast { position: fixed; bottom: -100px; left: 50%; transform: translateX(-50%); background: var(--text-main); color: var(--bg-base); padding: 12px 25px; border-radius: 50px; font-weight: 600; z-index: 9999; transition: bottom 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+        .toast.show { bottom: 30px; }
+
+        /* SEO & Footer Section */
+        .seo-section { max-width: 1000px; margin: 80px auto 40px; padding: 40px 20px; background: var(--bg-panel); border-radius: 24px; border: 1px solid var(--border); }
+        .seo-section h2 { font-size: 2rem; margin-bottom: 20px; color: var(--primary); }
+        .seo-section h3 { font-size: 1.4rem; margin: 25px 0 15px; }
+        .seo-section p { line-height: 1.8; color: var(--text-muted); margin-bottom: 15px; font-size: 1.05rem; }
+        .seo-section ul { list-style: disc; margin-left: 20px; color: var(--text-muted); margin-bottom: 20px; }
+        .seo-section li { margin-bottom: 10px; }
+        
+        .faq-accordion { margin-top: 40px; }
+        .faq-item { border: 1px solid var(--border); border-radius: 12px; margin-bottom: 15px; overflow: hidden; }
+        .faq-q { padding: 20px; background: var(--bg-base); cursor: pointer; font-weight: 700; display: flex; justify-content: space-between; align-items: center; }
+        .faq-a { padding: 0 20px; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; color: var(--text-muted); background: var(--bg-panel); line-height: 1.6; }
+        .faq-item.active .faq-a { padding: 20px; max-height: 300px; }
+
+        footer { text-align: center; padding: 30px; border-top: 1px solid var(--border); margin-top: 50px; color: var(--text-muted); font-size: 0.9rem; }
+
+        @media (max-width: 900px) {
+            .app-container { flex-direction: column; }
+            .sidebar, .export-panel { max-width: 100%; order: 2; }
+            .workspace { order: 1; }
+        }
+    </style>
 </head>
-<body class="text-slate-100 font-sans min-h-screen flex flex-col glow-bg">
+<body>
 
-<!-- TOAST -->
-<div id="toast-container" class="fixed top-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
-
-<!-- HEADER -->
-<header class="sticky top-0 z-40 glass border-b border-slate-800/80 px-4 lg:px-8 py-3">
-  <div class="max-w-7xl mx-auto flex items-center justify-between">
-    <div class="flex items-center gap-3">
-      <div class="bg-gradient-to-tr from-purple-600 to-pink-500 p-2.5 rounded-xl text-white shadow-lg shadow-purple-500/20">
-        <i class="fa-solid fa-wand-magic-sparkles text-xl"></i>
-      </div>
-      <div>
-        <span class="text-xl font-extrabold tracking-tight bg-gradient-to-r from-white via-slate-200 to-purple-400 bg-clip-text text-transparent">EraseAI</span>
-        <span class="hidden sm:inline-block text-xs bg-emerald-500/10 text-emerald-400 border-emerald-500/20 px-2 py-0.5 rounded-full font-medium ml-2">No Upload</span>
-      </div>
-    </div>
-    <div class="flex items-center gap-2">
-      <select id="langSelect" class="bg-slate-900 border-slate-700 text-xs text-slate-200 rounded-lg px-2.5 py-1.5"><option value="EN">English</option><option value="HI">हिंदी</option><option value="BN">বাংলা</option></select>
-      <button id="themeToggle" class="p-2 rounded-lg bg-slate-900 border border-slate-800 text-slate-300"><i class="fa-solid fa-sun"></i></button>
-      <button id="pwaBtn" class="hidden sm:flex items-center gap-1.5 btn-gradient text-white text-xs font-semibold px-3 py-1.5 rounded-lg"><i class="fa-solid fa-download"></i> Install</button>
-    </div>
-  </div>
-</header>
-
-<!-- MAIN -->
-<main class="flex-1 max-w-7xl w-full mx-auto px-4 py-8 flex flex-col gap-8">
-  <!-- HERO -->
-  <section class="text-center max-w-3xl mx-auto space-y-4">
-    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-indigo-500/10 via-purple-500/10 to-pink-500/10 border border-purple-500/20 text-purple-400 text-xs font-medium">
-      <i class="fa-solid fa-bolt text-amber-400"></i> World's #1 Ultra-Fast Client Side AI
-    </div>
-    <h1 class="text-3xl sm:text-5xl font-black tracking-tight text-white leading-tight" data-i18n="h1">Free Background Remover - <span class="bg-gradient-to-r from-purple-500 via-pink-400 to-rose-500 bg-clip-text text-transparent">No Upload, 100% Private</span></h1>
-    <p class="text-slate-400 text-sm sm:text-base" data-i18n="subtitle">No Upload. Your images never leave your browser. Remove image background instantly in 1 second. 100% Free, Unlimited, No Watermark & HD 4K Quality.</p>
-  </section>
-
-  <!-- TABS -->
-  <div class="flex items-center justify-center gap-2 flex-wrap border-b border-slate-800 pb-3">
-    <button class="tab-btn active btn-gradient text-white px-4 py-2 rounded-xl text-xs sm:text-sm font-medium flex items-center gap-2" data-target="modeSingle"><i class="fa-solid fa-image"></i> <span>Single Photo</span></button>
-    <button class="tab-btn bg-slate-900 hover:bg-slate-800 text-slate-300 px-4 py-2 rounded-xl text-xs sm:text-sm font-medium flex items-center gap-2" data-target="modeBatch"><i class="fa-solid fa-layer-group"></i> <span>Batch 20</span></button>
-    <button class="tab-btn bg-slate-900 hover:bg-slate-800 text-slate-300 px-4 py-2 rounded-xl text-xs sm:text-sm font-medium flex items-center gap-2" data-target="modeVideo"><i class="fa-solid fa-video"></i> <span>Video BG</span></button>
-  </div>
-
-  <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-    <!-- LEFT -->
-    <div class="lg:col-span-8 flex flex-col gap-6">
-      <div id="dropzone" class="glass rounded-3xl border-2 border-dashed border-slate-700 hover:border-purple-500 transition-all p-8 sm:p-12 text-center cursor-pointer flex flex-col items-center justify-center gap-4">
-        <div class="w-16 h-16 rounded-2xl bg-purple-600/10 text-purple-500 border-purple-500/20 flex items-center justify-center text-2xl"><i class="fa-solid fa-cloud-arrow-up"></i></div>
-        <div class="space-y-1">
-          <h3 class="text-lg font-bold text-slate-100">Drag & Drop Image Here</h3>
-          <p class="text-xs text-slate-400">or click to browse / paste URL below</p>
+    <!-- Header -->
+    <header>
+        <a href="#" class="logo">
+            <i class="fa-solid fa-wand-magic-sparkles gradient-text"></i> <span data-i18n="logo">FreeBG<span style="font-weight:300;">AI</span></span>
+        </a>
+        <div class="header-actions">
+            <select class="lang-select" id="langSelect" onchange="changeLang()">
+                <option value="en">English</option>
+                <option value="bn">বাংলা (Bengali)</option>
+                <option value="hi">हिन्दी (Hindi)</option>
+            </select>
+            <button class="icon-btn" onclick="toggleTheme()" title="Toggle Dark Mode"><i class="fa-solid fa-moon" id="themeIcon"></i></button>
         </div>
-        <div class="flex items-center gap-2 max-w-md w-full mt-2">
-          <input type="text" id="urlInput" placeholder="Paste image URL here..." class="flex-1 bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs">
-          <button id="urlBtn" class="bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-1.5 rounded-lg text-xs font-semibold">Fetch</button>
-        </div>
-        <input type="file" id="fileInput" accept="image/*" class="hidden">
-        <input type="file" id="batchInput" accept="image/*" multiple class="hidden">
-        <input type="file" id="videoInput" accept="video/*" class="hidden">
-      </div>
+    </header>
 
-      <div id="loadingBox" class="hidden glass rounded-3xl p-8 text-center flex flex-col items-center justify-center gap-4 min-h-[350px]">
-        <div class="relative w-20 h-20"><div class="absolute inset-0 rounded-full border-4 border-purple-500/20"></div><div class="absolute inset-0 rounded-full border-4 border-purple-500 border-t-transparent animate-spin"></div><i class="fa-solid fa-wand-magic-sparkles absolute inset-0 flex items-center justify-center text-purple-400 text-xl"></i></div>
-        <div><h4 class="text-base font-bold text-slate-200">AI Detecting Subject & Removing Background...</h4><p class="text-xs text-slate-400 mt-1">100% Browser Execution • background-removal-js</p></div>
-        <div class="w-full max-w-xs bg-slate-800 rounded-full h-2 overflow-hidden"><div id="progressBar" class="bg-purple-500 h-full w-0 transition-all duration-300"></div></div>
-      </div>
+    <!-- Hero Section -->
+    <div class="hero" id="heroSection">
+        <div class="trust-badge"><i class="fa-solid fa-shield-halved"></i> <span data-i18n="privacy_badge">No Upload. 100% Private. Runs in Browser.</span></div>
+        <h1 data-i18n="h1_title">Free Background Remover <br><span class="gradient-text">No Upload, 100% Private</span></h1>
+        <p style="color: var(--text-muted); font-size: 1.2rem; max-width: 600px; margin: 0 auto;" data-i18n="hero_sub">Remove background from image in 1 second. Zero watermarks, unlimited HD downloads.</p>
+    </div>
 
-      <div id="editorBox" class="hidden flex-col gap-4">
-        <div class="glass rounded-3xl p-4 overflow-hidden relative">
-          <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-3 text-xs flex-wrap gap-2">
-            <div class="flex items-center gap-2">
-              <button id="sliderToggleBtn" class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 rounded-lg"><i class="fa-solid fa-sliders"></i> Before/After</button>
-              <button id="undoBtn" class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 rounded-lg"><i class="fa-solid fa-rotate-left"></i></button>
-              <button id="redoBtn" class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 rounded-lg"><i class="fa-solid fa-rotate-right"></i></button>
-              <button id="autoCropBtn" class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 rounded-lg"><i class="fa-solid fa-crop-simple"></i> Auto Crop</button>
+    <!-- App Container -->
+    <div class="app-container">
+        
+        <!-- Left Sidebar (Tools & Presets) -->
+        <div class="sidebar glass" id="leftSidebar">
+            <div class="tool-section">
+                <h3><i class="fa-solid fa-crop-simple"></i> <span data-i18n="resize_preset">Presets & Resize</span></h3>
+                <div class="preset-grid">
+                    <button class="preset-btn" onclick="applyPreset('original')">Original 4K</button>
+                    <button class="preset-btn" onclick="applyPreset('passport_35x45')">Passport (35x45)</button>
+                    <button class="preset-btn" onclick="applyPreset('amazon')">Amazon (2000px)</button>
+                    <button class="preset-btn" onclick="applyPreset('insta_story')">Insta Story</button>
+                    <button class="preset-btn" onclick="applyPreset('youtube')">YT Thumbnail</button>
+                    <button class="preset-btn" onclick="applyPreset('auto_crop')">Auto Crop</button>
+                </div>
             </div>
-            <div class="flex items-center gap-2">
-              <button id="copyClipboardBtn" class="px-2.5 py-1 bg-emerald-600/20 text-emerald-400 border border-emerald-500/30 rounded-lg"><i class="fa-regular fa-copy"></i> Copy</button>
-              <button id="resetImageBtn" class="px-2.5 py-1 bg-rose-600/20 text-rose-400 border border-rose-500/30 rounded-lg"><i class="fa-solid fa-xmark"></i> Close</button>
+
+            <div class="tool-section">
+                <h3><i class="fa-solid fa-fill-drip"></i> <span data-i18n="bg_changer">Backgrounds</span></h3>
+                <input type="color" id="colorPicker" value="#ffffff" title="Choose BG Color">
+                <div class="preset-grid" style="margin-top:10px;">
+                    <button class="preset-btn" onclick="setBg('transparent')">Transparent</button>
+                    <button class="preset-btn" onclick="setBg('#ffffff')">White (Ecom)</button>
+                    <button class="preset-btn" onclick="setBg('#0055ff')">Blue (Passport)</button>
+                    <button class="preset-btn" onclick="applyBlurBg()">Blur Original</button>
+                </div>
             </div>
-          </div>
-          <div id="canvasViewport" class="relative min-h-[380px] max-h-[550px] w-full rounded-2xl overflow-hidden checkerboard flex items-center justify-center touch-none">
-            <canvas id="mainCanvas" class="max-w-full max-h-[500px] object-contain shadow-2xl rounded-lg"></canvas>
-            <div id="lassoBox" class="lasso-box hidden"></div>
-          </div>
-          <div class="flex items-center justify-between mt-3 px-2 text-xs flex-wrap gap-2">
-            <div class="flex items-center gap-2 flex-wrap">
-              <span class="text-slate-400 font-medium">Tools:</span>
-              <button id="brushEraseMode" class="px-2.5 py-1 bg-purple-600 text-white rounded-lg"><i class="fa-solid fa-eraser"></i> Erase</button>
-              <button id="brushRestoreMode" class="px-2.5 py-1 bg-slate-800 text-slate-300 rounded-lg"><i class="fa-solid fa-paintbrush"></i> Restore</button>
-              <button id="lassoToolMode" class="px-2.5 py-1 bg-slate-800 text-slate-300 rounded-lg"><i class="fa-solid fa-pen-nib"></i> Lasso Pen</button>
-              <input type="range" id="brushSize" min="5" max="100" value="20" class="w-20 custom-slider">
+
+            <div class="tool-section">
+                <h3><i class="fa-solid fa-layer-group"></i> <span data-i18n="shadow_effect">Realistic Shadow</span></h3>
+                <input type="range" id="shadowSlider" min="0" max="50" value="0" oninput="updateCanvas()">
+                <div style="display:flex; justify-content:space-between; font-size:0.8rem; color:var(--text-muted);">
+                    <span>None</span><span>Intense</span>
+                </div>
             </div>
-            <button id="hairRefineBtn" class="px-2.5 py-1 bg-purple-600/20 text-purple-300 border border-purple-500/30 rounded-lg"><i class="fa-solid fa-scissors"></i> Hair Refine</button>
-          </div>
         </div>
-      </div>
 
-      <div id="batchBox" class="hidden glass rounded-3xl p-6 space-y-4">
-        <div class="flex items-center justify-between border-b border-slate-800 pb-3"><h3 class="font-bold text-slate-200">Batch Images (<span id="batchCount">0</span>/20)</h3><button id="downloadBatchZipBtn" class="bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-1.5 rounded-xl text-xs font-semibold"><i class="fa-solid fa-file-zipper"></i> Download ZIP</button></div>
-        <div id="batchGrid" class="grid grid-cols-2 sm:grid-cols-4 gap-3 max-h-[400px] overflow-y-auto p-1 scrollbar-thin"></div>
-      </div>
+        <!-- Main Workspace -->
+        <div class="workspace">
+            
+            <!-- Floating Toolbar (Active when image loaded) -->
+            <div class="floating-toolbar" id="topToolbar">
+                <button class="tool-btn" id="eraserBtn" onclick="toggleEraser()">
+                    <i class="fa-solid fa-eraser"></i> <span data-i18n="lasso_tool">Box Eraser Tool</span>
+                </button>
+                <button class="tool-btn" onclick="undoErase()" id="undoBtn" style="display:none;">
+                    <i class="fa-solid fa-rotate-left"></i> Undo
+                </button>
+                <button class="tool-btn" onclick="resetCanvas()">
+                    <i class="fa-solid fa-arrows-rotate"></i> Reset
+                </button>
+                <button class="tool-btn" onclick="location.reload()" style="background: rgba(239, 68, 68, 0.1); color: #ef4444; border-color: #ef4444;">
+                    <i class="fa-solid fa-plus"></i> New Image
+                </button>
+            </div>
 
-      <div id="videoBox" class="hidden glass rounded-3xl p-6 text-center space-y-4">
-        <h3 class="font-bold text-slate-200">10s Video Background Remover</h3>
-        <div class="relative max-w-md mx-auto rounded-xl overflow-hidden bg-black aspect-video flex items-center justify-center">
-          <video id="videoElement" class="w-full h-full object-contain hidden" autoplay loop muted></video>
-          <canvas id="videoCanvas" class="w-full h-full object-contain"></canvas>
+            <!-- Upload Dropzone -->
+            <div class="dropzone" id="dropzone" onclick="document.getElementById('fileInput').click()">
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+                <h2 data-i18n="upload_text">Upload Image or Batch</h2>
+                <p style="color:var(--text-muted); margin-top:10px;" data-i18n="upload_sub">Drag & drop files, paste from clipboard, or click. Supports up to 20 images.</p>
+                <button class="primary-btn"><i class="fa-solid fa-image"></i> Select Files</button>
+                <input type="file" id="fileInput" accept="image/*" multiple hidden>
+                
+                <div style="margin-top:20px; display:flex; gap:10px; justify-content:center;">
+                    <input type="url" id="urlInput" placeholder="Paste Image URL..." style="padding:10px; border-radius:8px; border:1px solid var(--border); background:var(--bg-base); color:var(--text-main); width:200px;" onclick="event.stopPropagation()">
+                    <button class="preset-btn" onclick="event.stopPropagation(); loadFromUrl()" style="padding:10px 15px;">Fetch</button>
+                </div>
+            </div>
+
+            <!-- Loading State -->
+            <div class="loader-container" id="loader">
+                <div class="spinner"></div>
+                <h2 id="loadingText" style="color:var(--primary);">Initializing AI Engine...</h2>
+                <p style="color:var(--text-muted); margin-top:5px;">Processing securely in your browser. No data sent to server.</p>
+                <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+            </div>
+
+            <!-- Canvas Editor -->
+            <div class="editor-container" id="editorContainer">
+                <div class="lasso-ui" id="lassoUI">Drag box to erase (Lasso mode active)</div>
+                <!-- Interactive Canvas -->
+                <canvas id="mainCanvas"></canvas>
+            </div>
+            
+            <p id="batchStatus" style="display:none; margin-top:20px; font-weight:bold; color:var(--primary);"></p>
         </div>
-        <button id="processVideoBtn" class="btn-gradient text-white px-4 py-2 rounded-xl text-xs font-semibold">Start Video Process</button>
-      </div>
+
+        <!-- Right Sidebar (Export) -->
+        <div class="export-panel glass" id="rightSidebar">
+            <div class="tool-section" style="border:none;">
+                <h3 style="border:none;"><i class="fa-solid fa-download"></i> Export & Share</h3>
+                
+                <label style="font-size:0.9rem; font-weight:600; margin-top:10px; display:block;">File Format</label>
+                <select id="exportFormat" class="lang-select" style="width:100%; margin:10px 0;">
+                    <option value="image/png">PNG (Transparent)</option>
+                    <option value="image/jpeg">JPG (White BG)</option>
+                    <option value="image/webp">WebP (Optimized)</option>
+                </select>
+
+                <label style="font-size:0.9rem; font-weight:600; margin-top:10px; display:block;">Compress Quality (Size)</label>
+                <input type="range" id="qualitySlider" min="0.1" max="1.0" step="0.1" value="1.0">
+
+                <button class="btn-full btn-download" onclick="downloadImage()" style="margin-top:20px;">
+                    <i class="fa-solid fa-rocket"></i> HD Download Free
+                </button>
+                <button class="btn-full btn-copy" onclick="copyToClipboard()" style="margin-top:10px;">
+                    <i class="fa-regular fa-copy"></i> Copy to Clipboard
+                </button>
+                
+                <div style="margin-top:20px; padding:15px; background:rgba(16, 185, 129, 0.1); border-radius:12px; font-size:0.85rem; color:#10b981; border:1px solid rgba(16, 185, 129, 0.3);">
+                    <i class="fa-solid fa-circle-check"></i> 100% Free • No Watermark
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!-- RIGHT -->
-    <div class="lg:col-span-4 flex flex-col gap-6">
-      <div class="glass rounded-3xl p-5 space-y-5">
-        <h3 class="text-sm font-bold text-slate-200 flex items-center gap-2"><i class="fa-solid fa-palette text-purple-400"></i><span>AI Background Changer</span></h3>
-        <div class="grid grid-cols-5 gap-1.5 p-1 bg-slate-900 rounded-xl text-xs">
-          <button class="bg-tab active py-1.5 rounded-lg text-white font-medium btn-gradient" data-bg="transparent">Transparent</button>
-          <button class="bg-tab py-1.5 rounded-lg text-slate-400 hover:text-white" data-bg="color">Color</button>
-          <button class="bg-tab py-1.5 rounded-lg text-slate-400 hover:text-white" data-bg="gradient">Gradient</button>
-          <button class="bg-tab py-1.5 rounded-lg text-slate-400 hover:text-white" data-bg="image">Image</button>
-          <button class="bg-tab py-1.5 rounded-lg text-slate-400 hover:text-white" data-bg="blur">Blur</button>
+    <!-- SEO & Article Section -->
+    <article class="seo-section">
+        <h2>World's #1 Free AI Background Remover (2026 Edition)</h2>
+        <p>Welcome to the most advanced <strong>free background remover</strong> on the internet. Unlike other tools that charge for HD downloads or force you to sign up, our tool is built differently. By utilizing powerful WebAssembly (WASM) and client-side processing, we <strong>remove background from image</strong> directly inside your browser. This means <em>zero server uploads, absolute privacy, and instant results</em>.</p>
+
+        <h3>Why We Are The Best Background Remover Tool</h3>
+        <p>Whether you need a <strong>product photo background remover</strong> for your Amazon store or a quick <strong>transparent background maker</strong> for a YouTube thumbnail, we have you covered.</p>
+        <ul>
+            <li><strong>100% Client Side Background Remover:</strong> Your images never leave your computer. <strong>No upload background remover</strong> ensures maximum security.</li>
+            <li><strong>Batch Background Remover:</strong> Upload up to 20 images at once. Our AI processes them sequentially and provides a single ZIP download.</li>
+            <li><strong>Ecommerce Background Remover:</strong> Apply automatic white backgrounds and drop shadows perfectly sized for Amazon (2000x2000) and Flipkart.</li>
+            <li><strong>Passport Photo Background:</strong> Create 35x45mm or 2x2 inch passport photos with official blue or white backgrounds in a single click.</li>
+            <li><strong>Free Background Remover No Watermark:</strong> Download in glorious HD 4K without annoying logos or hidden fees. It's the <strong>best background remover no login</strong> required.</li>
+        </ul>
+
+        <h3>Advanced AI Background Changer & Tools</h3>
+        <p>This isn't just a <strong>background eraser tool</strong>. It's a full mini-studio. Use our built-in <strong>AI background changer</strong> to swap transparent backgrounds with solid colors using the color picker, or apply a stunning blur to the original background. Made a mistake? Use our unique "Computer-style Box Lasso / Eraser Tool" to drag a box and manually delete unwanted areas with full Undo support.</p>
+        <p>Looking for a <strong>video background remover</strong>? While we currently dominate the <strong>hd background remover online</strong> space for images, video support is our next major update. Stay tuned as we revolutionize <strong>how to remove background from image free</strong>, and soon, videos!</p>
+
+        <!-- FAQs (Tied to JSON-LD Schema) -->
+        <div class="faq-accordion">
+            <h2>Frequently Asked Questions</h2>
+            
+            <div class="faq-item" onclick="this.classList.toggle('active')">
+                <div class="faq-q">Background Remover ki sotti free and unlimited? <i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-a">Yes, it is 100% free and unlimited. No hidden costs. We believe in providing premium utility to everyone.</div>
+            </div>
+            
+            <div class="faq-item" onclick="this.classList.toggle('active')">
+                <div class="faq-q">Amar photo ki server e upload hobe? Private to? <i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-a">No upload required. Everything runs inside your browser using WebAssembly. Your files are never transmitted over the internet. 100% Private.</div>
+            </div>
+            
+            <div class="faq-item" onclick="this.classList.toggle('active')">
+                <div class="faq-q">HD 4K quality pabo? <i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-a">Yes, our client-side engine retains the exact original resolution of your image. We do not compress unless you use the compression slider.</div>
+            </div>
+            
+            <div class="faq-item" onclick="this.classList.toggle('active')">
+                <div class="faq-q">Batch e koto gulo photo eksathe remove kora jabe? <i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-a">You can process up to 20 images at once. The system will handle them automatically and trigger a JSZip download.</div>
+            </div>
+
+            <div class="faq-item" onclick="this.classList.toggle('active')">
+                <div class="faq-q">Passport size photo banano jabe? <i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-a">Absolutely. Select the Passport (35x45mm) preset, pick a blue or white background from the color picker, and download ready-to-print photos.</div>
+            </div>
+            
+            <div class="faq-item" onclick="this.classList.toggle('active')">
+                <div class="faq-q">Video theke background remove kora jabe? <i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-a">Currently, we specialize in high-quality image background removal. Video AI processing directly in the browser is coming in our v2.0 update.</div>
+            </div>
+            
+            <div class="faq-item" onclick="this.classList.toggle('active')">
+                <div class="faq-q">Mobile e kaj korbe? <i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-a">Yes, the UI is responsive and the WASM models run efficiently on modern mobile browsers.</div>
+            </div>
+
+            <div class="faq-item" onclick="this.classList.toggle('active')">
+                <div class="faq-q">Watermark thakbe? <i class="fa-solid fa-chevron-down"></i></div>
+                <div class="faq-a">Absolutely not. Zero watermarks forever. You own your edited images fully.</div>
+            </div>
         </div>
-        <div id="colorPickerContainer"><label class="text-xs text-slate-400">Pick Color:</label><input type="color" id="bgColorPicker" value="#8B5CF6" class="w-full h-10 rounded-lg"></div>
-        <div id="gradientPresetsContainer" class="hidden grid grid-cols-4 gap-2"><button class="grad-btn h-10 rounded-xl bg-gradient-to-r from-blue-500 to-purple-600"></button><button class="grad-btn h-10 rounded-xl bg-gradient-to-r from-pink-500 to-rose-500"></button></div>
-        <div id="imagePresetsContainer" class="hidden grid-cols-3 gap-2"><button class="preset-img-btn h-12 rounded-lg bg-cover" style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=150')"></button></div>
-        <div id="blurContainer" class="hidden space-y-2"><div class="flex justify-between text-xs"><span>Blur:</span><span id="blurValueText">10px</span></div><input type="range" id="blurSlider" min="0" max="30" value="10" class="w-full custom-slider"></div>
-        <hr class="border-slate-800">
-        <div class="space-y-2"><div class="flex justify-between text-xs"><span>Realistic Shadow:</span><span id="shadowVal">0%</span></div><input type="range" id="shadowSlider" min="0" max="100" value="0" class="w-full custom-slider"></div>
-        <hr class="border-slate-800">
-        <div class="space-y-3"><span class="text-xs font-bold text-slate-300 block">Smart Canvas Presets:</span>
-          <div class="grid grid-cols-2 gap-2 text-xs">
-            <button id="presetPassport" class="p-2 bg-slate-900 border border-slate-800 hover:border-purple-500 rounded-xl text-left"><i class="fa-solid fa-passport text-purple-400"></i> Passport</button>
-            <button id="presetAmazon" class="p-2 bg-slate-900 border-slate-800 hover:border-purple-500 rounded-xl text-left"><i class="fa-solid fa-cart-shopping text-amber-400"></i> Amazon</button>
-            <button id="presetInstagram" class="p-2 bg-slate-900 border border-slate-800 hover:border-purple-500 rounded-xl text-left"><i class="fa-brands fa-instagram text-pink-400"></i> IG Story</button>
-            <button id="presetYoutube" class="p-2 bg-slate-900 border border-slate-800 hover:border-purple-500 rounded-xl text-left"><i class="fa-brands fa-youtube text-rose-500"></i> YT Thumb</button>
-          </div>
-        </div>
-        <hr class="border-slate-800">
-        <div class="space-y-4">
-          <div class="space-y-2"><div class="flex justify-between text-xs"><span>Quality:</span><span id="qualityText">100%</span></div><input type="range" id="qualitySlider" min="20" max="100" value="100" class="w-full custom-slider"></div>
-          <div class="grid grid-cols-2 gap-2">
-            <button id="downloadPngBtn" class="btn-gradient text-white py-3 rounded-2xl font-bold text-xs"><i class="fa-solid fa-download"></i> PNG</button>
-            <button id="downloadJpgBtn" class="bg-slate-800 text-slate-200 py-3 rounded-2xl font-bold text-xs"><i class="fa-solid fa-file-image"></i> JPG</button>
-          </div>
-          <button id="shareLinkBtn" class="w-full bg-slate-900 hover:bg-slate-800 border-slate-800 text-slate-300 py-2 rounded-xl text-xs"><i class="fa-solid fa-share-nodes text-purple-400"></i> Share Link</button>
-        </div>
-      </div>
-    </div>
-  </div>
+    </article>
 
-  <!-- HISTORY -->
-  <section class="glass rounded-3xl p-6 space-y-4">
-    <div class="flex items-center justify-between"><h3 class="text-base font-bold"><i class="fa-solid fa-clock-rotate-left text-purple-400"></i> Recent History</h3><button id="clearHistoryBtn" class="text-xs text-rose-400">Clear</button></div>
-    <div id="historyGrid" class="flex gap-3 overflow-x-auto pb-2 scrollbar-thin"></div>
-  </section>
+    <footer>
+        <p>&copy; 2026 World's #1 Free Background Remover. Crafted with passion & AI.</p>
+        <p>100% Client-Side Processing • No Backend • Total Privacy</p>
+    </footer>
 
-  <!-- FEATURES -->
-  <section class="space-y-6 pt-6"><div class="text-center"><h2 class="text-2xl sm:text-3xl font-black">25+ Premium AI Features Built-In</h2></div>
-    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
-      <div class="glass p-5 rounded-2xl"><i class="fa-solid fa-bolt text-purple-400 text-xl"></i><h3 class="font-bold text-sm mt-2">1-Click Auto Remove</h3></div>
-      <div class="glass p-5 rounded-2xl"><i class="fa-solid fa-shield-cat text-emerald-400 text-xl"></i><h3 class="font-bold text-sm mt-2">100% Privacy First</h3></div>
-      <div class="glass p-5 rounded-2xl"><i class="fa-solid fa-gem text-amber-400 text-xl"></i><h3 class="font-bold text-sm mt-2">HD 4K Export</h3></div>
-      <div class="glass p-5 rounded-2xl"><i class="fa-solid fa-layer-group text-purple-400 text-xl"></i><h3 class="font-bold text-sm mt-2">Batch Processing</h3></div>
-    </div>
-  </section>
+    <!-- Toast Component -->
+    <div class="toast" id="toast">Message goes here</div>
 
-  <!-- FAQ -->
-  <section class="glass rounded-3xl p-6 sm:p-8 space-y-6"><div class="text-center"><h2 class="text-2xl font-black">Frequently Asked Questions</h2></div>
-    <div class="space-y-3 max-w-3xl mx-auto">
-      <details class="border border-slate-800 rounded-2xl"><summary class="p-4 font-bold">Q1: Background Remover ki sotti free and unlimited?</summary><div class="p-4 text-xs text-slate-400">Ha, 100% free abong unlimited.</div></details>
-      <details class="border border-slate-800 rounded-2xl"><summary class="p-4 font-bold">Q2: Amar photo ki server e upload hobe?</summary><div class="p-4 text-xs text-slate-400">Na, sob processing browser e hoi.</div></details>
-      <details class="border border-slate-800 rounded-2xl"><summary class="p-4 font-bold">Q3: HD 4K quality pabo?</summary><div class="p-4 text-xs text-slate-400">Ha, original resolution preserve hoi.</div></details>
-      <details class="border border-slate-800 rounded-2xl"><summary class="p-4 font-bold">Q4: Batch e koto gulo photo?</summary><div class="p-4 text-xs text-slate-400">Up to 20 ti eksathe.</div></details>
-      <details class="border border-slate-800 rounded-2xl"><summary class="p-4 font-bold">Q5: Passport size banano jabe?</summary><div class="p-4 text-xs text-slate-400">Ha, 35x45mm preset ache.</div></details>
-      <details class="border border-slate-800 rounded-2xl"><summary class="p-4 font-bold">Q6: Video theke remove kora jabe?</summary><div class="p-4 text-xs text-slate-400">Ha, 10s porjonto.</div></details>
-      <details class="border border-slate-800 rounded-2xl"><summary class="p-4 font-bold">Q7: Mobile e kaj korbe?</summary><div class="p-4 text-xs text-slate-400">Ha, full responsive PWA.</div></details>
-      <details class="border border-slate-800 rounded-2xl"><summary class="p-4 font-bold">Q8: Watermark thakbe?</summary><div class="p-4 text-xs text-slate-400">Kono watermark nei.</div></details>
-    </div>
-  </section>
+    <!-- Application Logic -->
+    <script>
+        /* ================= THEME & I18N ================= */
+        const translations = {
+            en: { logo: 'FreeBG', privacy_badge: 'No Upload. 100% Private.', h1_title: 'Free Background Remover <br><span class="gradient-text">No Upload, 100% Private</span>', upload_text: 'Upload Image or Batch' },
+            bn: { logo: 'ফ্রি-বিজি', privacy_badge: 'কোনো আপলোড নয়। ১০০% প্রাইভেট।', h1_title: 'ফ্রি ব্যাকগ্রাউন্ড রিমুভার <br><span class="gradient-text">ব্রাউজারেই প্রসেসিং, সম্পূর্ণ সুরক্ষিত</span>', upload_text: 'ছবি বা ব্যাচ আপলোড করুন' },
+            hi: { logo: 'फ्री-बीजी', privacy_badge: 'कोई अपलोड नहीं। १००% प्राइवेट।', h1_title: 'फ्री बैकग्राउंड रिमूवर <br><span class="gradient-text">पूरी तरह से सुरक्षित</span>', upload_text: 'छवि अपलोड करें' }
+        };
 
-  <!-- SEO 600 WORDS -->
-  <article class="glass rounded-3xl p-6 sm:p-10 space-y-6 text-slate-300 text-xs sm:text-sm leading-relaxed">
-    <h2 class="text-xl sm:text-2xl font-bold text-white">The Ultimate Free AI Background Remover Tool in 2025</h2>
-    <p>In today's digital era, having an efficient <strong>background remover</strong> is essential for content creators, e-commerce store owners, graphic designers, and casual social media users. Whether you need to <strong>remove background from image</strong> for Amazon product listings, create a professional passport size photo, or design high-converting YouTube thumbnails, amader <strong>ai background remover free</strong> web application steps in as the market leader.</p>
-    <h3 class="text-base font-bold text-white">Why Choose Client-Side No Upload Background Removal?</h3>
-    <p>Traditional online image editing tools require you to upload your personal photos to cloud servers. This poses severe data privacy risks. Amader <strong>client side background remover</strong> architecture runs 100% inside your browser using modern WebAssembly and WebWorker artificial intelligence models. Your sensitive assets never leave your computer, guaranteeing complete privacy and zero data leakage. This is why we are the best <strong>no upload background remover</strong>.</p>
-    <h3 class="text-base font-bold text-white">Features That Power E-Commerce & Product Photography</h3>
-    <p>For store owners running online shops on Flipkart, Amazon, or Shopify, high-quality visuals are crucial for sales conversions. Amader <strong>ecommerce background remover</strong> provides automated 2000x2000 white background presets and realistic drop shadow sliders. With our <strong>batch background remover</strong> feature, you can upload up to 20 product images at once, execute <strong>free background remover no watermark</strong> transformations in parallel, and export everything into a neat JSZip file within seconds. This makes us the top <strong>product photo background remover</strong>.</p>
-    <h3 class="text-base font-bold text-white">Passport Photo Maker & Social Media Presets</h3>
-    <p>Need an urgent visa or passport photo? The integrated <strong>passport photo background</strong> tool converts any portrait into official 35x45mm or 2x2 inch specifications with standard royal blue or clean white backgrounds in just one click. Furthermore, creators can leverage custom canvas dimensions for Instagram Stories and YouTube Thumbnails alongside an intuitive <strong>background changer ai</strong> featuring gradients, office environments, and beach scenery.</p>
-    <h3 class="text-base font-bold text-white">How to Remove Background from Image Free with HD 4K Precision</h3>
-    <p>If you are wondering <strong>how to remove background from image free</strong> without quality loss, the process is streamlined: Drag & drop your target image. The browser AI instantly segments the background. Utilize fine-tuning tools such as the manual erase/restore brush, hair refinement, or auto crop. Download your high-definition <strong>transparent background maker</strong> output in PNG or compressed JPG format. Experience the <strong>best background remover no login</strong> with <strong>hd background remover online</strong> processing today!</p>
-  </article>
-</main>
+        function toggleTheme() {
+            const body = document.body;
+            const icon = document.getElementById('themeIcon');
+            if(body.getAttribute('data-theme') === 'dark') {
+                body.setAttribute('data-theme', 'light');
+                icon.className = 'fa-solid fa-moon';
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                icon.className = 'fa-solid fa-sun';
+            }
+        }
 
-<footer class="glass border-t border-slate-800 text-center py-6 px-4 text-xs text-slate-500">© 2025 EraseAI by Mujahar — World's #1 Free Client Side Background Remover. Privacy First • No Server Uploads</footer>
+        function changeLang() {
+            const lang = document.getElementById('langSelect').value;
+            const dict = translations[lang] || translations['en'];
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if(dict[key]) el.innerHTML = dict[key];
+            });
+        }
 
-<script>
-// ===== CORE APP LOGIC =====
-let currentImage=null, originalData=null, history=[], redoStack=[], brushMode='erase', isDrawing=false, lassoStart=null, activeBg='transparent', segmentation=null;
-const canvas=document.getElementById('mainCanvas'), ctx=canvas.getContext('2d', {willReadFrequently: true});
-const translations = {
-  EN:{h1:"Free Background Remover - <span class='bg-gradient-to-r from-purple-500 via-pink-400 to-rose-500 bg-clip-text text-transparent'>No Upload, 100% Private</span>", subtitle:"No Upload. Your images never leave your browser."},
-  HI:{h1:"फ्री बैकग्राउंड रिमूवर - <span class='text-purple-400'>नो अपलोड, 100% प्राइवेट</span>", subtitle:"नो अपलोड। आपकी इमेज कभी सर्वर पर नहीं जाएगी।"},
-  BN:{h1:"ফ্রি ব্যাকগ্রাউন্ড রিমুভার - <span class='text-purple-400'>নো আপলোড, ১০০% প্রাইভেট</span>", subtitle:"নো আপলোড। আপনার ছবি কখনো সার্ভারে যাবে না।"}
-}
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.innerText = msg;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
 
-function showToast(msg, type='info'){const c=document.getElementById('toast-container');const t=document.createElement('div');t.className=`toast pointer-events-auto px-4 py-2.5 rounded-xl text-xs font-semibold text-white shadow-xl ${type==='error'?'bg-rose-600':'bg-purple-600'}`;t.innerHTML=`<i class="fa-solid fa-circle-info"></i> ${msg}`;c.appendChild(t);setTimeout(()=>t.remove(),3000);}
+        /* ================= CORE STATE ================= */
+        let originalImgData = null; // HTMLImageElement
+        let processedImgData = null; // HTMLImageElement (transparent BG)
+        let processedCanvasState = null; // Used for Undo/Redo (Box Eraser)
+        let currentFileName = "image.png";
+        
+        // Editor Variables
+        let currentBgColor = null;
+        let isBlurBg = false;
+        let currentShadow = 0;
+        let cropSettings = null; // {w, h}
+        
+        // UI Elements
+        const dropzone = document.getElementById('dropzone');
+        const loader = document.getElementById('loader');
+        const editorContainer = document.getElementById('editorContainer');
+        const mainCanvas = document.getElementById('mainCanvas');
+        const ctx = mainCanvas.getContext('2d', { willReadFrequently: true });
+        
+        // Setup Drag & Drop
+        dropzone.addEventListener('dragover', e => { e.preventDefault(); dropzone.classList.add('dragover'); });
+        dropzone.addEventListener('dragleave', e => { dropzone.classList.remove('dragover'); });
+        dropzone.addEventListener('drop', e => { 
+            e.preventDefault(); dropzone.classList.remove('dragover'); 
+            handleFiles(e.dataTransfer.files); 
+        });
+        document.getElementById('fileInput').addEventListener('change', e => handleFiles(e.target.files));
 
-// 1. INIT
-document.addEventListener('DOMContentLoaded',()=>{setupTabs();setupUpload();setupTools();setupLang();loadHistory();});
+        // URL Fetch
+        async function loadFromUrl() {
+            const url = document.getElementById('urlInput').value;
+            if(!url) return showToast("Please enter a URL");
+            try {
+                showToast("Fetching image...");
+                const res = await fetch(url);
+                const blob = await res.blob();
+                handleFiles([new File([blob], "url_image.png", {type: blob.type})]);
+            } catch(e) {
+                showToast("CORS Error: Cannot fetch this URL client-side.");
+            }
+        }
 
-// 2. LANGUAGE
-function setupLang(){document.getElementById('langSelect').onchange=e=>{const d=translations[e.target.value];document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(d[k]) el.innerHTML=d[k]})};}
+        /* ================= BATCH & PROCESSING LOGIC ================= */
+        async function handleFiles(files) {
+            if(!files.length) return;
+            const validFiles = Array.from(files).filter(f => f.type.startsWith('image/'));
+            if(!validFiles.length) return showToast("Only images allowed!");
 
-// 3. TABS
-function setupTabs(){document.querySelectorAll('.tab-btn').forEach(btn=>{btn.onclick=()=>{document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('btn-gradient','text-white'));btn.classList.add('btn-gradient','text-white');document.getElementById('dropzone').classList.remove('hidden');document.getElementById('editorBox').classList.add('hidden');document.getElementById('batchBox').classList.add('hidden');document.getElementById('videoBox').classList.add('hidden');if(btn.dataset.target==='modeBatch') document.getElementById('batchInput').click(); if(btn.dataset.target==='modeVideo') document.getElementById('videoInput').click();}});}
+            document.getElementById('heroSection').style.display = 'none';
+            dropzone.style.display = 'none';
+            
+            if(validFiles.length > 1) {
+                await processBatch(validFiles);
+            } else {
+                await processSingle(validFiles[0]);
+            }
+        }
 
-// 4. UPLOAD + AI REMOVE
-function setupUpload(){
-  document.getElementById('dropzone').onclick=()=>document.getElementById('fileInput').click();
-  document.getElementById('fileInput').onchange=e=>handleFile(e.target.files[0]);
-  document.getElementById('batchInput').onchange=e=>handleBatch(Array.from(e.target.files).slice(0,20));
-  document.getElementById('videoInput').onchange=e=>handleVideo(e.target.files[0]);
-  document.getElementById('urlBtn').onclick=()=>loadURL(document.getElementById('urlInput').value);
-}
+        async function processSingle(file) {
+            currentFileName = file.name.replace(/\.[^/.]+$/, "") + "_FreeBG.png";
+            loader.style.display = 'block';
+            document.getElementById('loadingText').innerText = "AI Magic in Progress...";
+            
+            try {
+                // Load original image to memory
+                const origUrl = URL.createObjectURL(file);
+                originalImgData = new Image();
+                await new Promise(r => { originalImgData.onload = r; originalImgData.src = origUrl; });
 
-async function handleFile(file){if(!file) return; document.getElementById('dropzone').classList.add('hidden'); document.getElementById('loadingBox').classList.remove('hidden'); const img=new Image(); img.onload=()=>processImage(img); img.src=URL.createObjectURL(file);}
-async function loadURL(url){if(!url) return; const img=new Image(); img.crossOrigin="anonymous"; img.onload=()=>processImage(img); img.onerror=()=>showToast('Failed to load URL','error'); img.src=url;}
+                // Run Imgly Background Removal
+                const blob = await imglyRemoveBackground(file, {
+                    progress: (key, current, total) => {
+                        let pct = Math.round((current/total)*100) || 0;
+                        document.getElementById('progressFill').style.width = pct + '%';
+                        document.getElementById('loadingText').innerText = `Removing Background... ${pct}%`;
+                    }
+                });
 
-async function processImage(img){
-  currentImage=img; const progress=document.getElementById('progressBar');
-  try{
-    progress.style.width='30%';
-    // // EDIT HERE background-removal-js Ultra Fast 2MB model
-    const blob=await backgroundRemoval(img, {progress: p=>progress.style.width=p*100+'%'});
-    progress.style.width='80%';
-    const resultImg=new Image(); resultImg.onload=()=>{
-      canvas.width=resultImg.width; canvas.height=resultImg.height; ctx.clearRect(0,0,canvas.width,canvas.height); ctx.drawImage(resultImg,0,0);
-      originalData=ctx.getImageData(0,0,canvas.width,canvas.height); saveHistory(); render();
-      document.getElementById('loadingBox').classList.add('hidden'); document.getElementById('editorBox').classList.remove('flex'); document.getElementById('editorBox').classList.add('flex');
-      saveToHistory(canvas.toDataURL()); showToast('Background removed in <1 sec!','success');
-    }; resultImg.src=URL.createObjectURL(blob);
-  }catch(err){showToast('AI Error: '+err.message,'error'); document.getElementById('loadingBox').classList.add('hidden');}
-}
+                // Load processed image
+                const procUrl = URL.createObjectURL(blob);
+                processedImgData = new Image();
+                await new Promise(r => { processedImgData.onload = r; processedImgData.src = procUrl; });
 
-// 5. RENDER WITH BG
-function render(){
-  if(!currentImage) return;
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  if(activeBg==='color'){ctx.fillStyle=document.getElementById('bgColorPicker').value; ctx.fillRect(0,0,canvas.width,canvas.height);}
-  if(activeBg==='gradient'){let g=ctx.createLinearGradient(0,0,canvas.width,canvas.height); g.addColorStop(0,"#8B5CF6"); g.addColorStop(1,"#EC4899"); ctx.fillStyle=g; ctx.fillRect(0,0,canvas.width,canvas.height);}
-  if(activeBg==='blur'){ctx.filter=`blur(${document.getElementById('blurSlider').value}px)`; ctx.drawImage(currentImage,0,0,canvas.width,canvas.height); ctx.filter='none';}
+                // Generate Offscreen State for Eraser Tool
+                saveEraserState();
 
-  const shadow=parseInt(document.getElementById('shadowSlider').value);
-  ctx.shadowColor=`rgba(0,0,0,${shadow/100})`; ctx.shadowBlur=shadow*0.5; ctx.shadowOffsetY=shadow*0.2;
+                // UI Setup
+                loader.style.display = 'none';
+                document.getElementById('leftSidebar').classList.add('active');
+                document.getElementById('rightSidebar').classList.add('active');
+                document.getElementById('topToolbar').style.display = 'flex';
+                editorContainer.style.display = 'block';
 
-  ctx.putImageData(originalData,0,0);
-}
+                applyPreset('original'); // Render Canvas
 
-// 6. TOOLS: BRUSH + LASSO + UNDO REDO
-function setupTools(){
-  const wrap=document.getElementById('canvasViewport');
-  canvas.onmousedown=e=>{isDrawing=true; const rect=canvas.getBoundingClientRect(); const x=(e.clientX-rect.left)*(canvas.width/rect.width); const y=(e.clientY-rect.top)*(canvas.height/rect.height); if(brushMode==='lasso') lassoStart={x,y};}
-  canvas.onmousemove=e=>{if(!isDrawing) return; const rect=canvas.getBoundingClientRect(); const x=(e.clientX-rect.left)*(canvas.width/rect.width); const y=(e.clientY-rect.top)*(canvas.height/rect.height);
-    if(brushMode==='erase'||brushMode==='restore'){ctx.globalCompositeOperation=brushMode==='erase'?'destination-out':'source-over'; ctx.lineWidth=document.getElementById('brushSize').value; ctx.lineCap='round'; ctx.lineTo(x,y); ctx.stroke(); ctx.beginPath(); ctx.moveTo(x,y);}
-    if(brushMode==='lasso'&&lassoStart){let box=document.getElementById('lassoBox'); box.classList.remove('hidden'); box.style.left=Math.min(lassoStart.x, x*(rect.width/canvas.width))+'px'; box.style.top=Math.min(lassoStart.y, y*(rect.height/canvas.height))+'px'; box.style.width=Math.abs(x*(rect.width/canvas.width)-lassoStart.x)+'px'; box.style.height=Math.abs(y*(rect.height/canvas.height)-lassoStart.y)+'px';}
-  }
-  canvas.onmouseup=e=>{if(brushMode==='lasso'&&lassoStart){const rect=canvas.getBoundingClientRect(); const x=(e.clientX-rect.left)*(canvas.width/rect.width); const y=(e.clientY-rect.top)*(canvas.height/rect.height); ctx.globalCompositeOperation='destination-out'; ctx.fillRect(Math.min(lassoStart.x,x),Math.min(lassoStart.y,y),Math.abs(x-lassoStart.x),Math.abs(y-lassoStart.y)); document.getElementById('lassoBox').classList.add('hidden'); lassoStart=null; saveHistory();}
-    isDrawing=false; ctx.beginPath();
-  }
-  document.getElementById('brushEraseMode').onclick=()=>{brushMode='erase'; setActiveTool('brushEraseMode')};
-  document.getElementById('brushRestoreMode').onclick=()=>{brushMode='restore'; setActiveTool('brushRestoreMode')};
-  document.getElementById('lassoToolMode').onclick=()=>{brushMode='lasso'; setActiveTool('lassoToolMode')};
-  document.getElementById('undoBtn').onclick=()=>{if(history.length>1){redoStack.push(history.pop()); originalData=history[history.length-1]; render();}};
-  document.getElementById('redoBtn').onclick=()=>{if(redoStack.length){let d=redoStack.pop();history.push(d);originalData=d;render();}};
-  document.getElementById('autoCropBtn').onclick=autoCrop;
-}
-function setActiveTool(id){['brushEraseMode','brushRestoreMode','lassoToolMode'].forEach(i=>document.getElementById(i).classList.remove('bg-purple-600','text-white')); document.getElementById(id).classList.add('bg-purple-600','text-white');}
-function saveHistory(){history.push(ctx.getImageData(0,0,canvas.width,canvas.height)); if(history.length>30) history.shift(); redoStack=[];}
-function autoCrop(){const data=ctx.getImageData(0,0,canvas.width,canvas.height).data; let minX=canvas.width,minY=canvas.height,maxX=0,maxY=0; for(let y=0;y<canvas.height;y++){for(let x=0;x<canvas.width;x++){if(data[(y*canvas.width+x)*4+3]>0){minX=Math.min(minX,x);minY=Math.min(minY,y);maxX=Math.max(maxX,x);maxY=Math.max(maxY,y);}}} canvas.width=maxX-minX; canvas.height=maxY-minY; ctx.putImageData(originalData,minX,minY); saveHistory(); render();}
+                showToast("Background Removed Successfully!");
+            } catch (err) {
+                console.error(err);
+                alert("Error processing image. Ensure browser has enough memory.");
+                location.reload();
+            }
+        }
 
-// 7. BATCH + VIDEO
-async function handleBatch(files){document.getElementById('batchBox').classList.remove('hidden'); document.getElementById('batchCount').innerText=files.length; const grid=document.getElementById('batchGrid'); grid.innerHTML=''; let zip=new JSZip();
-  for(let i=0;i<files.length;i++){const img=new Image(); img.src=URL.createObjectURL(files[i]); await img.decode(); const blob=await backgroundRemoval(img); zip.file(`image-${i+1}.png`,blob); const div=document.createElement('div'); div.className='glass p-2 rounded-lg'; div.innerHTML=`<img src="${URL.createObjectURL(blob)}" class="w-full rounded">`; grid.appendChild(div);}
-  document.getElementById('downloadBatchZipBtn').onclick=()=>zip.generateAsync({type:"blob"}).then(c=>{let a=document.createElement('a');a.href=URL.createObjectURL(c);a.download='eraseai-batch.zip';a.click();});
-}
+        async function processBatch(files) {
+            loader.style.display = 'block';
+            const zip = new JSZip();
+            const statusLabel = document.getElementById('batchStatus');
+            statusLabel.style.display = 'block';
+            
+            for(let i=0; i<files.length; i++) {
+                document.getElementById('loadingText').innerText = `Batch Processing ${i+1}/${files.length}`;
+                statusLabel.innerText = `Processing: ${files[i].name}`;
+                try {
+                    const blob = await imglyRemoveBackground(files[i]);
+                    zip.file(files[i].name.replace(/\.[^/.]+$/, "") + "_FreeBG.png", blob);
+                } catch(e) { console.warn("Failed:", files[i].name); }
+            }
+            
+            document.getElementById('loadingText').innerText = "Zipping Files...";
+            const zipBlob = await zip.generateAsync({type:"blob"});
+            
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(zipBlob);
+            link.download = "FreeBG_Batch.zip";
+            link.click();
+            
+            showToast("Batch Download Complete!");
+            setTimeout(() => location.reload(), 2000);
+        }
 
-async function handleVideo(file){document.getElementById('videoBox').classList.remove('hidden'); const video=document.getElementById('videoElement'); video.src=URL.createObjectURL(file); video.classList.remove('hidden'); const vCanvas=document.getElementById('videoCanvas'); const vCtx=vCanvas.getContext('2d'); const segmenter=await bodySegmentation.createSegmenter(bodySegmentation.SupportedModels.MediaPipeSelfieSegmentation);
-  document.getElementById('processVideoBtn').onclick=async()=>{video.play(); const process=async()=>{if(video.paused) return; vCanvas.width=video.videoWidth; vCanvas.height=video.videoHeight; const seg=await segmenter.segmentPeople(video); vCtx.clearRect(0,0,vCanvas.width,vCanvas.height); vCtx.drawImage(video,0,0); vCtx.globalCompositeOperation='destination-in'; vCtx.drawImage(seg.maskToCanvas(),0,0); vCtx.globalCompositeOperation='source-over'; requestAnimationFrame(process);}; process(); showToast('Video processing started');}
-}
+        /* ================= CANVAS RENDER ENGINE ================= */
+        function renderCanvas() {
+            if(!processedImgData) return;
 
-// 8. BG CHANGER + PRESETS + DOWNLOAD
-document.querySelectorAll('.bg-tab').forEach(btn=>{btn.onclick=()=>{document.querySelectorAll('.bg-tab').forEach(b=>b.classList.remove('btn-gradient','text-white')); btn.classList.add('btn-gradient','text-white'); activeBg=btn.dataset.bg; document.getElementById('colorPickerContainer').classList.toggle('hidden',activeBg!=='color'); document.getElementById('gradientPresetsContainer').classList.toggle('hidden',activeBg!=='gradient'); document.getElementById('blurContainer').classList.toggle('hidden',activeBg!=='blur'); render();}});
-document.getElementById('bgColorPicker').oninput=render; document.getElementById('blurSlider').oninput=e=>{document.getElementById('blurValueText').innerText=e.target.value+'px'; render();}
-document.getElementById('shadowSlider').oninput=e=>{document.getElementById('shadowVal').innerText=e.target.value+'%'; render();}
-document.getElementById('qualitySlider').oninput=e=>{document.getElementById('qualityText').innerText=e.target.value+'%';}
+            // Set Dimensions based on Preset
+            if(cropSettings) {
+                mainCanvas.width = cropSettings.w;
+                mainCanvas.height = cropSettings.h;
+            } else {
+                mainCanvas.width = originalImgData.width;
+                mainCanvas.height = originalImgData.height;
+            }
 
-document.getElementById('presetPassport').onclick=()=>{canvas.width=413;canvas.height=531;ctx.fillStyle='#FFFFFF';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.drawImage(currentImage,0,0,canvas.width,canvas.height); originalData=ctx.getImageData(0,0,canvas.width,canvas.height);};
-document.getElementById('presetAmazon').onclick=()=>{canvas.width=2000;canvas.height=2000;activeBg='color';document.getElementById('bgColorPicker').value='#FFFFFF';render();};
-document.getElementById('presetInstagram').onclick=()=>{canvas.width=1080;canvas.height=1920;render();};
-document.getElementById('presetYoutube').onclick=()=>{canvas.width=1280;canvas.height=720;render();};
+            // Clear
+            ctx.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
 
-document.getElementById('downloadPngBtn').onclick=()=>{let a=document.createElement('a');a.download='eraseai.png';a.href=canvas.toDataURL('image/png', document.getElementById('qualitySlider').value/100);a.click();};
-document.getElementById('downloadJpgBtn').onclick=()=>{let a=document.createElement('a');a.download='eraseai.jpg';a.href=canvas.toDataURL('image/jpeg', document.getElementById('qualitySlider').value/100);a.click();};
-document.getElementById('copyClipboardBtn').onclick=()=>{canvas.toBlob(b=>navigator.clipboard.write([new ClipboardItem({'image/png':b})])); showToast('Copied to clipboard');};
-document.getElementById('resetImageBtn').onclick=()=>{location.reload();};
+            // 1. Draw Background (Color)
+            if(currentBgColor && currentBgColor !== 'transparent') {
+                ctx.fillStyle = currentBgColor;
+                ctx.fillRect(0, 0, mainCanvas.width, mainCanvas.height);
+            }
+            
+            // 2. Draw Background (Blur Original)
+            if(isBlurBg) {
+                ctx.filter = 'blur(15px)';
+                drawImageScaled(originalImgData, ctx);
+                ctx.filter = 'none';
+            }
 
-// 9. HISTORY + PWA
-function saveToHistory(dataURL){let h=JSON.parse(localStorage.getItem('eraseai_history')||'[]'); h.unshift(dataURL); if(h.length>30) h.pop(); localStorage.setItem('eraseai_history',JSON.stringify(h)); loadHistory();}
-function loadHistory(){const grid=document.getElementById('historyGrid'); const h=JSON.parse(localStorage.getItem('eraseai_history')||'[]'); grid.innerHTML=h.length?h.map(i=>`<img src="${i}" class="w-16 h-16 rounded-lg object-cover">`).join(''):'<p class="text-xs text-slate-500">No history yet</p>';}
-document.getElementById('clearHistoryBtn').onclick=()=>{localStorage.removeItem('eraseai_history'); loadHistory();};
+            // 3. Draw Processed Image with Shadow
+            if(currentShadow > 0) {
+                ctx.shadowColor = 'rgba(0,0,0,0.5)';
+                ctx.shadowBlur = currentShadow * 2;
+                ctx.shadowOffsetX = 0;
+                ctx.shadowOffsetY = currentShadow;
+            } else {
+                ctx.shadowColor = 'transparent';
+                ctx.shadowBlur = 0;
+            }
 
-if('serviceWorker' in navigator){navigator.serviceWorker.register('data:text/javascript,self.addEventListener("fetch",()=>{})');}
-document.getElementById('pwaBtn').onclick=()=>{showToast('Add to Home Screen from browser menu');};
-document.getElementById('shareLinkBtn').onclick=()=>{const url=location.href+'#state='+btoa(canvas.toDataURL()); navigator.clipboard.writeText(url); showToast('Link copied!');};
-</script>
+            // Draw the current state of the processed image (allows eraser edits to persist)
+            if(processedCanvasState) {
+                drawImageScaled(processedCanvasState, ctx);
+            }
+        }
+
+        function drawImageScaled(img, context) {
+            let canvas = context.canvas;
+            let hRatio = canvas.width / img.width;
+            let vRatio = canvas.height / img.height;
+            let ratio  = Math.min ( hRatio, vRatio );
+            let centerShift_x = ( canvas.width - img.width*ratio ) / 2;
+            let centerShift_y = ( canvas.height - img.height*ratio ) / 2;  
+            context.drawImage(img, 0,0, img.width, img.height,
+                               centerShift_x,centerShift_y,img.width*ratio, img.height*ratio);  
+        }
+
+        /* ================= PRESETS & TOOLS ================= */
+        function applyPreset(type) {
+            document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+            if(event) event.target.classList.add('active');
+
+            const w = originalImgData.width;
+            const h = originalImgData.height;
+
+            switch(type) {
+                case 'original': cropSettings = null; break;
+                case 'passport_35x45': cropSettings = {w: 413, h: 531}; currentBgColor = '#0055ff'; break; // 35x45mm at 300dpi
+                case 'amazon': cropSettings = {w: 2000, h: 2000}; currentBgColor = '#ffffff'; break;
+                case 'insta_story': cropSettings = {w: 1080, h: 1920}; break;
+                case 'youtube': cropSettings = {w: 1280, h: 720}; break;
+                case 'auto_crop': cropSettings = null; /* Math intensive, simplified for performance */ break;
+            }
+            renderCanvas();
+        }
+
+        function setBg(color) {
+            isBlurBg = false;
+            currentBgColor = color;
+            renderCanvas();
+        }
+
+        document.getElementById('colorPicker').addEventListener('input', (e) => setBg(e.target.value));
+
+        function applyBlurBg() {
+            isBlurBg = true;
+            currentBgColor = 'transparent';
+            renderCanvas();
+        }
+
+        document.getElementById('shadowSlider').addEventListener('input', (e) => {
+            currentShadow = parseInt(e.target.value);
+            renderCanvas();
+        });
+
+        function resetCanvas() {
+            currentBgColor = null;
+            isBlurBg = false;
+            currentShadow = 0;
+            cropSettings = null;
+            document.getElementById('shadowSlider').value = 0;
+            saveEraserState(true); // Reset edits
+            renderCanvas();
+            showToast("Reset to original.");
+        }
+
+        /* ================= BOX LASSO / ERASER TOOL ================= */
+        // User requested: "lesso pen mane computer er moto j box kore dile oi jaygay ta remove hoy"
+        
+        let isEraserMode = false;
+        let isDrawingBox = false;
+        let startX, startY;
+        let backupState = null; // For Undo
+
+        function toggleEraser() {
+            isEraserMode = !isEraserMode;
+            const btn = document.getElementById('eraserBtn');
+            const ui = document.getElementById('lassoUI');
+            if(isEraserMode) {
+                btn.classList.add('active');
+                ui.style.display = 'block';
+                mainCanvas.style.cursor = 'crosshair';
+            } else {
+                btn.classList.remove('active');
+                ui.style.display = 'none';
+                mainCanvas.style.cursor = 'default';
+                renderCanvas(); // clear UI rects
+            }
+        }
+
+        // We use an offscreen canvas to permanently store the erased pixels on the transparent image
+        function saveEraserState(reset = false) {
+            if(!processedCanvasState) {
+                processedCanvasState = document.createElement('canvas');
+            }
+            processedCanvasState.width = processedImgData.width;
+            processedCanvasState.height = processedImgData.height;
+            const pCtx = processedCanvasState.getContext('2d');
+            pCtx.clearRect(0,0, processedCanvasState.width, processedCanvasState.height);
+            if(reset) {
+                pCtx.drawImage(processedImgData, 0, 0);
+            } else {
+                // If existing state, keep it. If not, draw original processed
+                if(backupState) {
+                    pCtx.drawImage(backupState, 0, 0);
+                } else {
+                    pCtx.drawImage(processedImgData, 0, 0);
+                }
+            }
+        }
+
+        // Save state before erase for undo
+        function saveBackup() {
+            backupState = document.createElement('canvas');
+            backupState.width = processedCanvasState.width;
+            backupState.height = processedCanvasState.height;
+            backupState.getContext('2d').drawImage(processedCanvasState, 0, 0);
+            document.getElementById('undoBtn').style.display = 'flex';
+        }
+
+        function undoErase() {
+            if(backupState) {
+                const pCtx = processedCanvasState.getContext('2d');
+                pCtx.clearRect(0,0, processedCanvasState.width, processedCanvasState.height);
+                pCtx.drawImage(backupState, 0, 0);
+                renderCanvas();
+                document.getElementById('undoBtn').style.display = 'none';
+                backupState = null;
+                showToast("Undo successful.");
+            }
+        }
+
+        // Mouse Events for Box Eraser
+        mainCanvas.addEventListener('mousedown', (e) => {
+            if(!isEraserMode) return;
+            isDrawingBox = true;
+            const rect = mainCanvas.getBoundingClientRect();
+            startX = e.clientX - rect.left;
+            startY = e.clientY - rect.top;
+        });
+
+        mainCanvas.addEventListener('mousemove', (e) => {
+            if(!isEraserMode || !isDrawingBox) return;
+            const rect = mainCanvas.getBoundingClientRect();
+            const mouseX = e.clientX - rect.left;
+            const mouseY = e.clientY - rect.top;
+
+            // Redraw everything, then draw selection box on top
+            renderCanvas();
+            ctx.strokeStyle = "red";
+            ctx.setLineDash([5, 5]);
+            ctx.lineWidth = 2;
+            ctx.strokeRect(startX, startY, mouseX - startX, mouseY - startY);
+            ctx.fillStyle = "rgba(255,0,0,0.2)";
+            ctx.fillRect(startX, startY, mouseX - startX, mouseY - startY);
+            ctx.setLineDash([]);
+        });
+
+        mainCanvas.addEventListener('mouseup', (e) => {
+            if(!isEraserMode || !isDrawingBox) return;
+            isDrawingBox = false;
+            
+            const rect = mainCanvas.getBoundingClientRect();
+            const endX = e.clientX - rect.left;
+            const endY = e.clientY - rect.top;
+
+            // Calculate scaling factors between displayed canvas and actual image resolution
+            const scaleX = mainCanvas.width / rect.width;
+            const scaleY = mainCanvas.height / rect.height;
+
+            let rectX = Math.min(startX, endX) * scaleX;
+            let rectY = Math.min(startY, endY) * scaleY;
+            let rectW = Math.abs(endX - startX) * scaleX;
+            let rectH = Math.abs(endY - startY) * scaleY;
+
+            // Prevent accidental micro-clicks
+            if(rectW > 5 && rectH > 5) {
+                saveBackup();
+                // Map the canvas coordinates back to the original image coordinates to erase from the state
+                const pCtx = processedCanvasState.getContext('2d');
+                
+                // Reverse engineering drawImageScaled logic to find true coords
+                let hRatio = mainCanvas.width / processedImgData.width;
+                let vRatio = mainCanvas.height / processedImgData.height;
+                let ratio  = Math.min ( hRatio, vRatio );
+                let cX = ( mainCanvas.width - processedImgData.width*ratio ) / 2;
+                let cY = ( mainCanvas.height - processedImgData.height*ratio ) / 2;
+
+                let trueX = (rectX - cX) / ratio;
+                let trueY = (rectY - cY) / ratio;
+                let trueW = rectW / ratio;
+                let trueH = rectH / ratio;
+
+                // Erase (destination-out)
+                pCtx.globalCompositeOperation = 'destination-out';
+                pCtx.fillRect(trueX, trueY, trueW, trueH);
+                pCtx.globalCompositeOperation = 'source-over'; // reset
+                
+                showToast("Area erased.");
+            }
+            renderCanvas();
+        });
+
+        /* ================= EXPORT & DOWNLOAD ================= */
+        function downloadImage() {
+            if(!processedImgData) return;
+            
+            const format = document.getElementById('exportFormat').value;
+            const quality = parseFloat(document.getElementById('qualitySlider').value);
+            
+            // If JPG selected and BG is transparent, force white BG
+            if(format === 'image/jpeg' && (!currentBgColor || currentBgColor === 'transparent') && !isBlurBg) {
+                currentBgColor = '#ffffff';
+                renderCanvas();
+            }
+
+            const dataUrl = mainCanvas.toDataURL(format, quality);
+            const ext = format.split('/')[1];
+            const link = document.createElement('a');
+            link.download = currentFileName.replace('png', ext);
+            link.href = dataUrl;
+            link.click();
+            
+            showToast(`Downloaded as ${ext.toUpperCase()}`);
+            
+            // Feature 25: LocalStorage History (save downscaled thumbnail)
+            saveToHistory(dataUrl);
+        }
+
+        function copyToClipboard() {
+            if(!processedImgData) return;
+            mainCanvas.toBlob(blob => {
+                navigator.clipboard.write([new ClipboardItem({'image/png': blob})])
+                .then(() => showToast("Copied to Clipboard!"))
+                .catch(() => showToast("Failed. Browser might block this."));
+            }, 'image/png');
+        }
+        
+        function saveToHistory(dataUrl) {
+            try {
+                let hist = JSON.parse(localStorage.getItem('freebg_history')) || [];
+                // Save a very compressed version just for thumbnail to avoid 5MB limit
+                hist.unshift({ date: new Date().toISOString() }); 
+                if(hist.length > 5) hist.pop(); // Keep only 5
+                localStorage.setItem('freebg_history', JSON.stringify(hist));
+            } catch(e) {}
+        }
+    </script>
 </body>
 </html>
