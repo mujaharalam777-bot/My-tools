@@ -1282,6 +1282,854 @@
             const grid = document.getElementById('batchGrid');
             grid.innerHTML = '';
             document.getElementById('batchCount').innerText = files.length;
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Dictionary Translations
+        const translations = {
+            EN: {
+                noUploadBadge: "No Upload. 100% Browser Private",
+                installApp: "Install App",
+                h1Title: "Free Background Remover - <span class='bg-gradient-to-r from-brand-500 via-purple-400 to-pink-500 bg-clip-text text-transparent'>No Upload, 100% Private</span>",
+                h1Subtitle: "Remove image background instantly in 1 second. 100% Free, Unlimited, No Watermark & HD 4K Quality.",
+                singleTab: "Single Photo",
+                batchTab: "Batch Process (20)",
+                passportTab: "Passport Maker",
+                videoTab: "Video BG Remover",
+                dragTitle: "Drag & Drop Image Here",
+                dragSub: "or click to browse from computer/mobile (PNG, JPG, WEBP up to 4K)",
+                featuresH2: "25+ Premium AI Features Built-In",
+                faqTitle: "Frequently Asked Questions"
+            },
+            HI: {
+                noUploadBadge: "नो अपलोड. 100% ब्राउज़र प्राइवेट",
+                installApp: "ऐप इंस्टॉल करें",
+                h1Title: "फ्री बैकग्राउंड रिमूवर - <span class='bg-gradient-to-r from-brand-500 via-purple-400 to-pink-500 bg-clip-text text-transparent'>नो अपलोड, 100% प्राइवेट</span>",
+                h1Subtitle: "1 सेकंड में इमेज का बैकग्राउंड हटाएं। 100% फ्री, असीमित, बिना वॉटरमार्क HD 4K क्वालिटी।",
+                singleTab: "सिंगल फोटो",
+                batchTab: "बैच प्रोसेस (20)",
+                passportTab: "पासपोर्ट मेकर",
+                videoTab: "वीडियो बैकग्राउंड",
+                dragTitle: "इमेज यहाँ ड्रैग एंड ड्रॉप करें",
+                dragSub: "या कंप्यूटर/मोबाइल से चुनने के लिए क्लिक करें",
+                featuresH2: "25+ प्रीमियम AI फीचर्स मुफ़्त",
+                faqTitle: "अक्सर पूछे जाने वाले प्रश्न"
+            },
+            BN: {
+                noUploadBadge: "নো আপলোড. ১০০% ব্রাউজার প্রাইভেট",
+                installApp: "অ্যাপ ইন্সটল করুন",
+                h1Title: "ফ্রি ব্যাকগ্রাউন্ড রিমুভার - <span class='bg-gradient-to-r from-brand-500 via-purple-400 to-pink-500 bg-clip-text text-transparent'>নো আপলোড, ১০০% প্রাইভেট</span>",
+                h1Subtitle: "১ সেকেন্ডে ইমেজের ব্যাকগ্রাউন্ড রিমুভ করুন। ১০০% ফ্রি, আনলিমিটেড, নো ওয়াটারমার্ক ও HD 4K কোয়ালিটি।",
+                singleTab: "সিঙ্গেল ফটো",
+                batchTab: "ব্যাচ প্রসেস (২০)",
+                passportTab: "পাশপোর্ট মেকার",
+                videoTab: "ভিডিও ব্যাকগ্রাউন্ড",
+                dragTitle: "এখানে ছবি ড্র্যাগ ও ড্রপ করুন",
+                dragSub: "অথবা ব্রাউজ করতে ক্লিক করুন (PNG, JPG, WEBP HD)",
+                featuresH2: "২৫+ প্রিমিয়াম AI ফিচারস বিল্ট-ইন",
+                faqTitle: "সাধারণ জিজ্ঞাসিত প্রশ্নাবলী"
+            }
+        };
+
+        // Application State Variables
+        let currentImage = null;
+        let originalImageData = null;
+        let foregroundMask = null;
+        let activeBgType = 'transparent';
+        let customBgValue = '#0044ff';
+        let bgImageObj = null;
+        let brushMode = 'erase'; // 'erase', 'restore', 'lasso'
+        let isDrawing = false;
+        
+        // Lasso Selection Points
+        let selectionPoints = [];
+        let bodyPixNet = null;
+
+        // Undo/Redo Stacks
+        let historyStack = [];
+        let redoStack = [];
+
+        // DOM Elements Setup
+        const dropzone = document.getElementById('dropzone');
+        const fileInput = document.getElementById('fileInput');
+        const batchInput = document.getElementById('batchInput');
+        const videoInput = document.getElementById('videoInput');
+        const loadingBox = document.getElementById('loadingBox');
+        const editorBox = document.getElementById('editorBox');
+        const batchBox = document.getElementById('batchBox');
+        const videoBox = document.getElementById('videoBox');
+        const mainCanvas = document.getElementById('mainCanvas');
+        const ctx = mainCanvas.getContext('2d');
+        const progressBar = document.getElementById('progressBar');
+
+        // Initialize Event Listeners
+        document.addEventListener('DOMContentLoaded', () => {
+            setupLanguage();
+            setupTabs();
+            setupDropzone();
+            setupAccordion();
+            setupBgTabs();
+            setupSliders();
+            setupCanvasBrushAndLasso();
+            setupUndoRedoAndCrop();
+            setupBeforeAfterSlider();
+            loadHistoryUI();
+        });
+
+        // Toast Notification System
+        function showToast(message, type = 'info') {
+            const container = document.getElementById('toast-container');
+            if(!container) return;
+            const toast = document.createElement('div');
+            toast.className = `pointer-events-auto flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold text-white shadow-xl transition transform duration-300 translate-y-2 opacity-0 ${type === 'error' ? 'bg-rose-600' : type === 'success' ? 'bg-emerald-600' : 'bg-brand-600'}`;
+            toast.innerHTML = `<i class="fa-solid ${type === 'error' ? 'fa-circle-xmark' : type === 'success' ? 'fa-circle-check' : 'fa-circle-info'}"></i> ${message}`;
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-2', 'opacity-0');
+            }, 10);
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-2');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // Save State for Undo/Redo
+        function saveState() {
+            if (!foregroundMask) return;
+            const copy = new ImageData(
+                new Uint8ClampedArray(foregroundMask.data),
+                foregroundMask.width,
+                foregroundMask.height
+            );
+            historyStack.push(copy);
+            if (historyStack.length > 20) historyStack.shift();
+            redoStack = [];
+        }
+
+        // Language Switcher Logic
+        function setupLanguage() {
+            const langSelect = document.getElementById('langSelect');
+            if(!langSelect) return;
+            langSelect.addEventListener('change', (e) => {
+                const lang = e.target.value;
+                const dict = translations[lang] || translations.EN;
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    const key = el.getAttribute('data-i18n');
+                    if (dict[key]) el.innerHTML = dict[key];
+                });
+            });
+        }
+
+        // Tab Navigation
+        function setupTabs() {
+            const tabs = document.querySelectorAll('.tab-btn');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    tabs.forEach(t => t.classList.remove('active', 'bg-brand-600', 'text-white'));
+                    tabs.forEach(t => t.classList.add('bg-slate-900', 'text-slate-300'));
+                    tab.classList.add('active', 'bg-brand-600', 'text-white');
+
+                    const target = tab.getAttribute('data-target');
+                    dropzone.classList.add('hidden');
+                    editorBox.classList.add('hidden');
+                    batchBox.classList.add('hidden');
+                    videoBox.classList.add('hidden');
+
+                    if (target === 'modeBatch') {
+                        batchBox.classList.remove('hidden');
+                        if(batchInput) batchInput.click();
+                    } else if (target === 'modeVideo') {
+                        videoBox.classList.remove('hidden');
+                        if(videoInput) videoInput.click();
+                    } else {
+                        if (currentImage) editorBox.classList.remove('hidden');
+                        else dropzone.classList.remove('hidden');
+                    }
+                });
+            });
+        }
+
+        // Dropzone & File Loading Logic
+        function setupDropzone() {
+            if(!dropzone) return;
+            dropzone.addEventListener('click', () => fileInput.click());
+            
+            ['dragenter', 'dragover'].forEach(eventName => {
+                dropzone.addEventListener(eventName, (e) => {
+                    e.preventDefault();
+                    dropzone.classList.add('border-brand-500', 'bg-brand-500/5');
+                });
+            });
+
+            ['dragleave', 'drop'].forEach(eventName => {
+                dropzone.addEventListener(eventName, (e) => {
+                    e.preventDefault();
+                    dropzone.classList.remove('border-brand-500', 'bg-brand-500/5');
+                });
+            });
+
+            dropzone.addEventListener('drop', (e) => {
+                const files = e.dataTransfer.files;
+                if (files.length > 0) handleFile(files[0]);
+            });
+
+            if(fileInput) {
+                fileInput.addEventListener('change', (e) => {
+                    if (e.target.files.length > 0) handleFile(e.target.files[0]);
+                });
+            }
+
+            if(batchInput) {
+                batchInput.addEventListener('change', (e) => {
+                    if (e.target.files.length > 0) handleBatchFiles(Array.from(e.target.files).slice(0, 20));
+                });
+            }
+
+            const urlBtn = document.getElementById('urlBtn');
+            if(urlBtn) {
+                urlBtn.addEventListener('click', () => {
+                    const url = document.getElementById('urlInput').value.trim();
+                    if (url) {
+                        showToast('Fetching image URL...');
+                        const img = new Image();
+                        img.crossOrigin = 'Anonymous';
+                        img.onload = () => processImageObject(img);
+                        img.onerror = () => showToast('Failed to load image from URL', 'error');
+                        img.src = url;
+                    }
+                });
+            }
+        }
+
+        // Client Side AI Background Removal Processing Engine
+        function handleFile(file) {
+            if (!file.type.startsWith('image/')) {
+                showToast('Please upload a valid image file', 'error');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const img = new Image();
+                img.onload = () => processImageObject(img);
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        async function processImageObject(img) {
+            dropzone.classList.add('hidden');
+            loadingBox.classList.remove('hidden');
+            editorBox.classList.add('hidden');
+            if(progressBar) progressBar.style.width = '20%';
+
+            currentImage = img;
+            historyStack = [];
+            redoStack = [];
+
+            try {
+                const loadText = document.getElementById('loadingText');
+                if(loadText) loadText.innerText = "AI Segmenting Person & Foreground...";
+                if(progressBar) progressBar.style.width = '40%';
+
+                if (!bodyPixNet && typeof bodyPix !== 'undefined') {
+                    bodyPixNet = await bodyPix.load({
+                        architecture: 'MobileNetV1',
+                        outputStride: 16,
+                        multiplier: 0.75,
+                        quantBytes: 2
+                    });
+                }
+
+                if(progressBar) progressBar.style.width = '70%';
+
+                const tempCanvas = document.createElement('canvas');
+                tempCanvas.width = img.width;
+                tempCanvas.height = img.height;
+                const tCtx = tempCanvas.getContext('2d');
+                tCtx.drawImage(img, 0, 0);
+
+                originalImageData = tCtx.getImageData(0, 0, img.width, img.height);
+                const imgData = tCtx.getImageData(0, 0, img.width, img.height);
+
+                if (bodyPixNet) {
+                    const segmentation = await bodyPixNet.segmentPerson(img, {
+                        flipHorizontal: false,
+                        internalResolution: 'high',
+                        segmentationThreshold: 0.65
+                    });
+
+                    for (let i = 0; i < segmentation.data.length; i++) {
+                        if (segmentation.data[i] === 0) {
+                            imgData.data[i * 4 + 3] = 0;
+                        }
+                    }
+                    foregroundMask = imgData;
+                } else {
+                    fallbackBgRemoval(imgData);
+                }
+
+            } catch (err) {
+                console.error("AI Model error, falling back:", err);
+                const tempCanvas = document.createElement('canvas');
+                tempCanvas.width = img.width;
+                tempCanvas.height = img.height;
+                const tCtx = tempCanvas.getContext('2d');
+                tCtx.drawImage(img, 0, 0);
+                originalImageData = tCtx.getImageData(0, 0, img.width, img.height);
+                const imgData = tCtx.getImageData(0, 0, img.width, img.height);
+                fallbackBgRemoval(imgData);
+            }
+
+            if(progressBar) progressBar.style.width = '100%';
+            setTimeout(() => {
+                loadingBox.classList.add('hidden');
+                editorBox.classList.remove('hidden');
+                renderCanvas();
+                saveToHistory(img.src);
+                showToast('Background removed successfully!', 'success');
+            }, 300);
+        }
+
+        // Fallback Algorithm
+        function fallbackBgRemoval(imgData) {
+            const data = imgData.data;
+            const w = imgData.width;
+            const h = imgData.height;
+
+            let bgR = 0, bgG = 0, bgB = 0, count = 0;
+            for (let x = 0; x < w; x += 10) {
+                for (let y = 0; y < h; y += 10) {
+                    if (x < w * 0.1 || x > w * 0.9 || y < h * 0.1 || y > h * 0.9) {
+                        const idx = (y * w + x) * 4;
+                        bgR += data[idx];
+                        bgG += data[idx + 1];
+                        bgB += data[idx + 2];
+                        count++;
+                    }
+                }
+            }
+            bgR /= count; bgG /= count; bgB /= count;
+
+            for (let i = 0; i < data.length; i += 4) {
+                const r = data[i], g = data[i + 1], b = data[i + 2];
+                const dist = Math.sqrt((r - bgR) ** 2 + (g - bgG) ** 2 + (b - bgB) ** 2);
+                if (dist < 55) {
+                    data[i + 3] = 0;
+                }
+            }
+            foregroundMask = imgData;
+        }
+
+        // Canvas Render Function
+        function renderCanvas() {
+            if (!currentImage || !foregroundMask) return;
+
+            mainCanvas.width = foregroundMask.width;
+            mainCanvas.height = foregroundMask.height;
+
+            ctx.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
+
+            // 1. Draw Background
+            if (activeBgType === 'color') {
+                ctx.fillStyle = customBgValue;
+                ctx.fillRect(0, 0, mainCanvas.width, mainCanvas.height);
+            } else if (activeBgType === 'gradient') {
+                if (customBgValue.includes('gradient')) {
+                    const grad = ctx.createLinearGradient(0, 0, mainCanvas.width, mainCanvas.height);
+                    grad.addColorStop(0, '#3b82f6');
+                    grad.addColorStop(1, '#9333ea');
+                    ctx.fillStyle = grad;
+                } else {
+                    ctx.fillStyle = customBgValue;
+                }
+                ctx.fillRect(0, 0, mainCanvas.width, mainCanvas.height);
+            } else if (activeBgType === 'presetImage' && bgImageObj) {
+                ctx.drawImage(bgImageObj, 0, 0, mainCanvas.width, mainCanvas.height);
+            } else if (activeBgType === 'blur') {
+                const blurSlider = document.getElementById('blurSlider');
+                const blurVal = blurSlider ? blurSlider.value : 5;
+                ctx.filter = `blur(${blurVal}px)`;
+                ctx.drawImage(currentImage, 0, 0, mainCanvas.width, mainCanvas.height);
+                ctx.filter = 'none';
+            }
+
+            // 2. Drop Shadow
+            const shadowSlider = document.getElementById('shadowSlider');
+            const shadowIntensity = shadowSlider ? parseInt(shadowSlider.value) : 0;
+            if (shadowIntensity > 0) {
+                ctx.shadowColor = `rgba(0, 0, 0, ${shadowIntensity / 100})`;
+                ctx.shadowBlur = shadowIntensity * 0.5;
+                ctx.shadowOffsetY = shadowIntensity * 0.2;
+            } else {
+                ctx.shadowColor = 'transparent';
+            }
+
+            // 3. Draw Foreground Mask
+            const tempC = document.createElement('canvas');
+            tempC.width = mainCanvas.width;
+            tempC.height = mainCanvas.height;
+            tempC.getContext('2d').putImageData(foregroundMask, 0, 0);
+
+            ctx.drawImage(tempC, 0, 0);
+        }
+
+        // Get Mouse/Touch Coordinate Relative to Canvas
+        function getCanvasMousePos(e) {
+            const rect = mainCanvas.getBoundingClientRect();
+            const scaleX = mainCanvas.width / rect.width;
+            const scaleY = mainCanvas.height / rect.height;
+            
+            let clientX = e.clientX;
+            let clientY = e.clientY;
+
+            if (e.touches && e.touches.length > 0) {
+                clientX = e.touches[0].clientX;
+                clientY = e.touches[0].clientY;
+            }
+
+            return {
+                x: Math.floor((clientX - rect.left) * scaleX),
+                y: Math.floor((clientY - rect.top) * scaleY)
+            };
+        }
+
+        // Canvas Brush & Lasso Editing Logic (Mobile & Touch Optimized)
+        function setupCanvasBrushAndLasso() {
+            const eraseBtn = document.getElementById('brushEraseMode');
+            const restoreBtn = document.getElementById('brushRestoreMode');
+            const lassoBtn = document.getElementById('lassoToolMode');
+
+            function setActiveTool(mode, activeEl) {
+                brushMode = mode;
+                [eraseBtn, restoreBtn, lassoBtn].forEach(b => {
+                    if(b) {
+                        b.classList.remove('bg-brand-600', 'text-white');
+                        b.classList.add('bg-slate-800', 'text-slate-300');
+                    }
+                });
+                if(activeEl) {
+                    activeEl.classList.add('bg-brand-600', 'text-white');
+                    activeEl.classList.remove('bg-slate-800', 'text-slate-300');
+                }
+            }
+
+            if(eraseBtn) eraseBtn.addEventListener('click', () => setActiveTool('erase', eraseBtn));
+            if(restoreBtn) restoreBtn.addEventListener('click', () => setActiveTool('restore', restoreBtn));
+            if(lassoBtn) {
+                lassoBtn.addEventListener('click', () => {
+                    setActiveTool('lasso', lassoBtn);
+                    showToast('Lasso Cut: Draw around the area to cut out', 'info');
+                });
+            }
+
+            const startDrawing = (e) => {
+                if (!foregroundMask) return;
+                
+                // মোবাইল স্ক্রোলিং বন্ধ করার জন্য
+                if (e.type === 'touchstart') {
+                    if (e.touches.length > 1) return; // টু-ফিঙ্গার জুম পারমিট করবে
+                    e.preventDefault();
+                }
+
+                isDrawing = true;
+                saveState();
+                
+                const pos = getCanvasMousePos(e);
+                if (brushMode === 'lasso') {
+                    selectionPoints = [pos];
+                } else {
+                    drawBrush(e);
+                }
+            };
+
+            const drawBrush = (e) => {
+                if (!isDrawing || !foregroundMask) return;
+                
+                if (e.type === 'touchmove') {
+                    e.preventDefault();
+                }
+
+                const pos = getCanvasMousePos(e);
+
+                if (brushMode === 'lasso') {
+                    selectionPoints.push(pos);
+                    
+                    // Render Image first
+                    renderCanvas();
+                    
+                    // Live Red Path Preview
+                    ctx.save();
+                    ctx.beginPath();
+                    ctx.moveTo(selectionPoints[0].x, selectionPoints[0].y);
+                    for (let i = 1; i < selectionPoints.length; i++) {
+                        ctx.lineTo(selectionPoints[i].x, selectionPoints[i].y);
+                    }
+                    ctx.strokeStyle = "#ff0044";
+                    ctx.lineWidth = Math.max(3, Math.floor(mainCanvas.width / 200));
+                    ctx.setLineDash([6, 6]);
+                    ctx.stroke();
+                    ctx.restore();
+                } else {
+                    const sizeInput = document.getElementById('brushSize');
+                    const radius = sizeInput ? parseInt(sizeInput.value) : 20;
+                    const data = foregroundMask.data;
+                    const orig = originalImageData.data;
+                    const w = foregroundMask.width;
+
+                    for (let py = pos.y - radius; py <= pos.y + radius; py++) {
+                        for (let px = pos.x - radius; px <= pos.x + radius; px++) {
+                            if (px >= 0 && px < w && py >= 0 && py < foregroundMask.height) {
+                                const dist = Math.sqrt((px - pos.x) ** 2 + (py - pos.y) ** 2);
+                                if (dist <= radius) {
+                                    const idx = (py * w + px) * 4;
+                                    if (brushMode === 'erase') {
+                                        data[idx + 3] = 0;
+                                    } else if (brushMode === 'restore') {
+                                        data[idx + 3] = orig[idx + 3] || 255;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    renderCanvas();
+                }
+            };
+
+            const stopDrawing = (e) => {
+                if (!isDrawing) return;
+                isDrawing = false;
+
+                // Execute Lasso Cut Processing
+                if (brushMode === 'lasso' && selectionPoints.length > 2) {
+                    const tempC = document.createElement('canvas');
+                    tempC.width = foregroundMask.width;
+                    tempC.height = foregroundMask.height;
+                    const tCtx = tempC.getContext('2d');
+
+                    // 1. Draw current Foreground Mask
+                    tCtx.putImageData(foregroundMask, 0, 0);
+
+                    // 2. Erase selected polygon region
+                    tCtx.save();
+                    tCtx.globalCompositeOperation = 'destination-out';
+                    tCtx.beginPath();
+                    tCtx.moveTo(selectionPoints[0].x, selectionPoints[0].y);
+                    for (let i = 1; i < selectionPoints.length; i++) {
+                        tCtx.lineTo(selectionPoints[i].x, selectionPoints[i].y);
+                    }
+                    tCtx.closePath();
+                    tCtx.fillStyle = '#000000';
+                    tCtx.fill();
+                    tCtx.restore();
+
+                    // 3. Update Foreground Mask
+                    foregroundMask = tCtx.getImageData(0, 0, tempC.width, tempC.height);
+                    selectionPoints = [];
+                    renderCanvas();
+                    showToast('Lasso selection cut successfully!', 'success');
+                }
+            };
+
+            // Mouse Events
+            mainCanvas.addEventListener('mousedown', startDrawing);
+            mainCanvas.addEventListener('mousemove', drawBrush);
+            window.addEventListener('mouseup', stopDrawing);
+
+            // Mobile Touch Events (Explicit Non-Passive Listeners)
+            mainCanvas.addEventListener('touchstart', startDrawing, { passive: false });
+            mainCanvas.addEventListener('touchmove', drawBrush, { passive: false });
+            window.addEventListener('touchend', stopDrawing);
+            window.addEventListener('touchcancel', stopDrawing);
+        }
+
+        // Setup Undo, Redo, Auto-Crop & Hair Refine
+        function setupUndoRedoAndCrop() {
+            // Undo
+            const undoBtn = document.getElementById('undoBtn');
+            if(undoBtn) {
+                undoBtn.addEventListener('click', () => {
+                    if (historyStack.length > 0) {
+                        redoStack.push(new ImageData(
+                            new Uint8ClampedArray(foregroundMask.data),
+                            foregroundMask.width,
+                            foregroundMask.height
+                        ));
+                        foregroundMask = historyStack.pop();
+                        renderCanvas();
+                        showToast('Undo successful');
+                    } else {
+                        showToast('Nothing to undo', 'error');
+                    }
+                });
+            }
+
+            // Redo
+            const redoBtn = document.getElementById('redoBtn');
+            if(redoBtn) {
+                redoBtn.addEventListener('click', () => {
+                    if (redoStack.length > 0) {
+                        historyStack.push(new ImageData(
+                            new Uint8ClampedArray(foregroundMask.data),
+                            foregroundMask.width,
+                            foregroundMask.height
+                        ));
+                        foregroundMask = redoStack.pop();
+                        renderCanvas();
+                        showToast('Redo successful');
+                    } else {
+                        showToast('Nothing to redo', 'error');
+                    }
+                });
+            }
+
+            // Auto Crop
+            const autoCropBtn = document.getElementById('autoCropBtn');
+            if(autoCropBtn) {
+                autoCropBtn.addEventListener('click', () => {
+                    if (!foregroundMask) return;
+                    saveState();
+
+                    const w = foregroundMask.width;
+                    const h = foregroundMask.height;
+                    const data = foregroundMask.data;
+
+                    let minX = w, minY = h, maxX = 0, maxY = 0;
+                    let found = false;
+
+                    for (let y = 0; y < h; y++) {
+                        for (let x = 0; x < w; x++) {
+                            if (data[(y * w + x) * 4 + 3] > 10) {
+                                if (x < minX) minX = x;
+                                if (x > maxX) maxX = x;
+                                if (y < minY) minY = y;
+                                if (y > maxY) maxY = y;
+                                found = true;
+                            }
+                        }
+                    }
+
+                    if (!found) {
+                        showToast('No object found to crop', 'error');
+                        return;
+                    }
+
+                    const pad = 15;
+                    minX = Math.max(0, minX - pad);
+                    minY = Math.max(0, minY - pad);
+                    maxX = Math.min(w - 1, maxX + pad);
+                    maxY = Math.min(h - 1, maxY + pad);
+
+                    const cropW = maxX - minX + 1;
+                    const cropH = maxY - minY + 1;
+
+                    const cCanvas = document.createElement('canvas');
+                    cCanvas.width = cropW;
+                    cCanvas.height = cropH;
+                    const cCtx = cCanvas.getContext('2d');
+
+                    const tCanvas = document.createElement('canvas');
+                    tCanvas.width = w;
+                    tCanvas.height = h;
+                    tCanvas.getContext('2d').putImageData(foregroundMask, 0, 0);
+
+                    cCtx.drawImage(tCanvas, minX, minY, cropW, cropH, 0, 0, cropW, cropH);
+                    foregroundMask = cCtx.getImageData(0, 0, cropW, cropH);
+
+                    renderCanvas();
+                    showToast('Auto Cropped!', 'success');
+                });
+            }
+
+            // Hair Refinement
+            const hairRefineBtn = document.getElementById('hairRefineBtn');
+            if(hairRefineBtn) {
+                hairRefineBtn.addEventListener('click', () => {
+                    if (!foregroundMask) return;
+                    saveState();
+
+                    const data = foregroundMask.data;
+                    const w = foregroundMask.width;
+                    const h = foregroundMask.height;
+
+                    for (let y = 1; y < h - 1; y++) {
+                        for (let x = 1; x < w - 1; x++) {
+                            const idx = (y * w + x) * 4;
+                            if (data[idx + 3] > 10 && data[idx + 3] < 240) {
+                                let sum = 0, count = 0;
+                                for (let dy = -1; dy <= 1; dy++) {
+                                    for (let dx = -1; dx <= 1; dx++) {
+                                        sum += data[((y + dy) * w + (x + dx)) * 4 + 3];
+                                        count++;
+                                    }
+                                }
+                                data[idx + 3] = Math.round(sum / count);
+                            }
+                        }
+                    }
+                    renderCanvas();
+                    showToast('Hair Edges Refined!', 'success');
+                });
+            }
+        }
+
+        // Before / After Comparison Slider
+        function setupBeforeAfterSlider() {
+            let isSliderActive = false;
+            const sliderToggleBtn = document.getElementById('sliderToggleBtn');
+            const wrapper = document.getElementById('beforeAfterWrapper');
+            const overlayImg = document.getElementById('originalImgOverlay');
+            const handle = document.getElementById('sliderHandle');
+
+            if(!sliderToggleBtn || !wrapper || !handle) return;
+
+            sliderToggleBtn.addEventListener('click', () => {
+                isSliderActive = !isSliderActive;
+                if (isSliderActive) {
+                    wrapper.classList.remove('hidden');
+                    overlayImg.src = currentImage.src;
+                    sliderToggleBtn.classList.add('bg-brand-600', 'text-white');
+                    showToast('Before/After View Enabled');
+                } else {
+                    wrapper.classList.add('hidden');
+                    sliderToggleBtn.classList.remove('bg-brand-600', 'text-white');
+                }
+            });
+
+            let isDragging = false;
+            handle.addEventListener('mousedown', () => isDragging = true);
+            window.addEventListener('mouseup', () => isDragging = false);
+            window.addEventListener('mousemove', (e) => {
+                if (!isDragging || !isSliderActive) return;
+                const rect = mainCanvas.getBoundingClientRect();
+                let x = e.clientX - rect.left;
+                if (x < 0) x = 0;
+                if (x > rect.width) x = rect.width;
+                const pct = (x / rect.width) * 100;
+                handle.style.left = `${pct}%`;
+                overlayImg.style.clipPath = `polygon(0 0, ${pct}% 0, ${pct}% 100%, 0 100%)`;
+            });
+        }
+
+        // Background Customization Controls
+        function setupBgTabs() {
+            const tabs = document.querySelectorAll('.bg-tab');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    tabs.forEach(t => t.classList.remove('bg-brand-600', 'text-white'));
+                    tabs.forEach(t => t.classList.add('text-slate-400'));
+                    tab.classList.add('bg-brand-600', 'text-white');
+
+                    activeBgType = tab.getAttribute('data-bg');
+
+                    const cp = document.getElementById('colorPickerContainer');
+                    const gp = document.getElementById('gradientPresetsContainer');
+                    const ip = document.getElementById('imagePresetsContainer');
+                    const bp = document.getElementById('blurContainer');
+
+                    if(cp) cp.classList.toggle('hidden', activeBgType !== 'color');
+                    if(gp) gp.classList.toggle('hidden', activeBgType !== 'gradient');
+                    if(ip) ip.classList.toggle('hidden', activeBgType !== 'image');
+                    if(bp) bp.classList.toggle('hidden', activeBgType !== 'blur');
+
+                    renderCanvas();
+                });
+            });
+
+            const cpInput = document.getElementById('bgColorPicker');
+            if(cpInput) {
+                cpInput.addEventListener('input', (e) => {
+                    customBgValue = e.target.value;
+                    const hexInput = document.getElementById('hexColorInput');
+                    if(hexInput) hexInput.value = customBgValue;
+                    renderCanvas();
+                });
+            }
+
+            document.querySelectorAll('.grad-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    activeBgType = 'gradient';
+                    customBgValue = btn.getAttribute('data-grad');
+                    renderCanvas();
+                });
+            });
+
+            document.querySelectorAll('.preset-img-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const url = btn.getAttribute('data-url');
+                    const img = new Image();
+                    img.crossOrigin = 'Anonymous';
+                    img.onload = () => {
+                        bgImageObj = img;
+                        activeBgType = 'presetImage';
+                        renderCanvas();
+                        showToast('Background Preset Applied!');
+                    };
+                    img.src = url;
+                });
+            });
+
+            const passBtn = document.getElementById('presetPassport');
+            if(passBtn) {
+                passBtn.addEventListener('click', () => {
+                    activeBgType = 'color';
+                    customBgValue = '#0044ff';
+                    renderCanvas();
+                    showToast('Passport Size Blue Preset Applied');
+                });
+            }
+
+            const amzBtn = document.getElementById('presetAmazon');
+            if(amzBtn) {
+                amzBtn.addEventListener('click', () => {
+                    activeBgType = 'color';
+                    customBgValue = '#ffffff';
+                    renderCanvas();
+                    showToast('Ecommerce White Preset Applied');
+                });
+            }
+        }
+
+        // Sliders Listener
+        function setupSliders() {
+            const bSlider = document.getElementById('blurSlider');
+            if(bSlider) {
+                bSlider.addEventListener('input', (e) => {
+                    const txt = document.getElementById('blurValueText');
+                    if(txt) txt.innerText = e.target.value + 'px';
+                    renderCanvas();
+                });
+            }
+
+            const sSlider = document.getElementById('shadowSlider');
+            if(sSlider) {
+                sSlider.addEventListener('input', (e) => {
+                    const txt = document.getElementById('shadowVal');
+                    if(txt) txt.innerText = e.target.value + '%';
+                    renderCanvas();
+                });
+            }
+
+            const qSlider = document.getElementById('qualitySlider');
+            if(qSlider) {
+                qSlider.addEventListener('input', (e) => {
+                    const txt = document.getElementById('qualityText');
+                    if(txt) txt.innerText = e.target.value + '%';
+                });
+            }
+        }
+
+        // Batch Processing
+        function handleBatchFiles(files) {
+            dropzone.classList.add('hidden');
+            batchBox.classList.remove('hidden');
+            const grid = document.getElementById('batchGrid');
+            if(!grid) return;
+            grid.innerHTML = '';
+            
+            const bCount = document.getElementById('batchCount');
+            if(bCount) bCount.innerText = files.length;
 
             files.forEach((file, index) => {
                 const card = document.createElement('div');
@@ -1308,6 +2156,7 @@
 
         function loadHistoryUI() {
             const grid = document.getElementById('historyGrid');
+            if(!grid) return;
             let history = JSON.parse(localStorage.getItem('eraseai_history') || '[]');
             if (history.length === 0) return;
 
@@ -1320,11 +2169,15 @@
             });
         }
 
-        document.getElementById('clearHistoryBtn').addEventListener('click', () => {
-            localStorage.removeItem('eraseai_history');
-            document.getElementById('historyGrid').innerHTML = '<p class="text-xs text-slate-500 italic py-2">No recent images processed yet.</p>';
-            showToast('History cleared');
-        });
+        const clearHistBtn = document.getElementById('clearHistoryBtn');
+        if(clearHistBtn) {
+            clearHistBtn.addEventListener('click', () => {
+                localStorage.removeItem('eraseai_history');
+                const grid = document.getElementById('historyGrid');
+                if(grid) grid.innerHTML = '<p class="text-xs text-slate-500 italic py-2">No recent images processed yet.</p>';
+                showToast('History cleared');
+            });
+        }
 
         // FAQ Accordion
         function setupAccordion() {
@@ -1333,43 +2186,56 @@
                 btn.addEventListener('click', () => {
                     const content = btn.nextElementSibling;
                     const icon = btn.querySelector('i');
-                    content.classList.toggle('hidden');
-                    icon.classList.toggle('rotate-180');
+                    if(content) content.classList.toggle('hidden');
+                    if(icon) icon.classList.toggle('rotate-180');
                 });
             });
         }
 
         // Export & Download Listeners
-        document.getElementById('downloadPngBtn').addEventListener('click', () => {
-            if (!mainCanvas) return;
-            const link = document.createElement('a');
-            link.download = 'eraseai-transparent.png';
-            link.href = mainCanvas.toDataURL('image/png');
-            link.click();
-            showToast('Downloaded Transparent PNG', 'success');
-        });
-
-        document.getElementById('downloadJpgBtn').addEventListener('click', () => {
-            if (!mainCanvas) return;
-            const link = document.createElement('a');
-            link.download = 'eraseai-image.jpg';
-            link.href = mainCanvas.toDataURL('image/jpeg', 0.9);
-            link.click();
-            showToast('Downloaded JPG Image', 'success');
-        });
-
-        document.getElementById('copyClipboardBtn').addEventListener('click', () => {
-            mainCanvas.toBlob(blob => {
-                navigator.clipboard.write([new ClipboardItem({'image/png': blob})]);
-                showToast('Copied PNG to Clipboard!', 'success');
+        const dlPngBtn = document.getElementById('downloadPngBtn');
+        if(dlPngBtn) {
+            dlPngBtn.addEventListener('click', () => {
+                if (!mainCanvas) return;
+                const link = document.createElement('a');
+                link.download = 'eraseai-transparent.png';
+                link.href = mainCanvas.toDataURL('image/png');
+                link.click();
+                showToast('Downloaded Transparent PNG', 'success');
             });
-        });
+        }
 
-        document.getElementById('resetImageBtn').addEventListener('click', () => {
-            editorBox.classList.add('hidden');
-            dropzone.classList.remove('hidden');
-            currentImage = null;
-        });
+        const dlJpgBtn = document.getElementById('downloadJpgBtn');
+        if(dlJpgBtn) {
+            dlJpgBtn.addEventListener('click', () => {
+                if (!mainCanvas) return;
+                const link = document.createElement('a');
+                link.download = 'eraseai-image.jpg';
+                link.href = mainCanvas.toDataURL('image/jpeg', 0.9);
+                link.click();
+                showToast('Downloaded JPG Image', 'success');
+            });
+        }
+
+        const copyBtn = document.getElementById('copyClipboardBtn');
+        if(copyBtn) {
+            copyBtn.addEventListener('click', () => {
+                mainCanvas.toBlob(blob => {
+                    navigator.clipboard.write([new ClipboardItem({'image/png': blob})]);
+                    showToast('Copied PNG to Clipboard!', 'success');
+                });
+            });
+        }
+
+        const resetBtn = document.getElementById('resetImageBtn');
+        if(resetBtn) {
+            resetBtn.addEventListener('click', () => {
+                editorBox.classList.add('hidden');
+                dropzone.classList.remove('hidden');
+                currentImage = null;
+            });
+        }
     </script>
+
 </body>
 </html>
