@@ -7,24 +7,17 @@
 <meta name="description" content="Remove background from image in 1 second. 100% Free, No Login, No Watermark, Unlimited. AI Background Changer, Passport Photo, Ecommerce. All processing in your browser.">
 <meta name="keywords" content="background remover, remove background from image, ai background remover free, product photo background remover, ecommerce background remover, passport photo background, transparent background maker, client side background remover, no upload background remover, free background remover no watermark, batch background remover, video background remover, how to remove background from image free, best background remover no login, hd background remover online, background eraser tool, background changer ai">
 <meta name="robots" content="index, follow">
+<meta name="theme-color" content="#8B5CF6">
+<link rel="manifest" href="data:application/json,{&quot;name&quot;:&quot;EraseAI&quot;,&quot;short_name&quot;:&quot;EraseAI&quot;,&quot;start_url&quot;:&quot;.&quot;,&quot;display&quot;:&quot;standalone&quot;,&quot;background_color&quot;:&quot;#0A0A0A&quot;,&quot;theme_color&quot;:&quot;#8B5CF6&quot;,&quot;icons&quot;:[{&quot;src&quot;:&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==&quot;,&quot;sizes&quot;:&quot;192x192&quot;,&quot;type&quot;:&quot;image/png&quot;}]}">
+
+<!-- OPEN GRAPH -->
 <meta property="og:title" content="Free AI Background Remover | 100% Private, HD 4K">
 <meta property="og:description" content="Instant browser-based background removal. No uploads, total privacy, unlimited free HD exports.">
+<meta property="og:type" content="website">
 
 <!-- FAQ SCHEMA -->
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org", "@type": "FAQPage",
-  "mainEntity": [
-    {"@type":"Question","name":"Background Remover ki sotti free and unlimited?","acceptedAnswer":{"@type":"Answer","text":"Ha, eta 100% free abong er kono usage limit nei. Jotogulo icche HD 4K te process korte parben."}},
-    {"@type":"Question","name":"Amar photo ki server e upload hobe? Private to?","acceptedAnswer":{"@type":"Answer","text":"Na, ekta photo-o server e upload hoi na. Sob processing apnar browser e Client-Side AI diye hoi."}},
-    {"@type":"Question","name":"HD 4K quality pabo?","acceptedAnswer":{"@type":"Answer","text":"Ha! Amader AI high resolution image er edge and hair fine detail preserve kore 4K quality dai."}},
-    {"@type":"Question","name":"Batch e koto gulo photo eksathe remove kora jabe?","acceptedAnswer":{"@type":"Answer","text":"Eksathe up to 20 ti photo upload kore Batch Remove kore JSZip e download korte parben."}},
-    {"@type":"Question","name":"Passport size photo banano jabe?","acceptedAnswer":{"@type":"Answer","text":"Ha, 35x45mm abong 2x2 inch option ache. 1 click e Blue ba White BG."}},
-    {"@type":"Question","name":"Video theke background remove kora jabe?","acceptedAnswer":{"@type":"Answer","text":"Ha, 10s porjonto video clip er background body-segmentation diye remove kora jai."}},
-    {"@type":"Question","name":"Mobile e kaj korbe?","acceptedAnswer":{"@type":"Answer","text":"Ha, eta Mobile-First PWA. Chrome, Safari sob browser e cholbe."}},
-    {"@type":"Question","name":"Watermark thakbe?","acceptedAnswer":{"@type":"Answer","text":"Kono watermark thakbe na. Full clean HD transparent PNG paben."}}
-  ]
-}
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Background Remover ki sotti free and unlimited?","acceptedAnswer":{"@type":"Answer","text":"Ha, eta 100% free abong er kono usage limit nei. Apni jotogulo icche image ba photo processing korte parben full HD 4K resolution e, kono watermark chara."}},{"@type":"Question","name":"Amar photo ki server e upload hobe? Private to?","acceptedAnswer":{"@type":"Answer","text":"Na, ekta photo-o kono server e upload hoi na. Sob processing apnar nijer browser (Client-Side AI WebWorker) e hoi. Apnar data 100% private abong secure."}},{"@type":"Question","name":"HD 4K quality pabo?","acceptedAnswer":{"@type":"Answer","text":"Ha! Amader browser AI high resolution image er edge and hair fine detail precise vabe process kore 4K Ultra HD quality preserve kare."}},{"@type":"Question","name":"Batch e koto gulo photo eksathe remove kora jabe?","acceptedAnswer":{"@type":"Answer","text":"Apni eksathe up to 20 ti photo upload kore Batch Remove feature use korte parben abong sobgulo ek click e JSZip format e download korte parben."}},{"@type":"Question","name":"Passport size photo banano jabe?","acceptedAnswer":{"@type":"Answer","text":"Ha, amader Passport Photo Maker preset e 35x45mm abong 2x2 inch option ache. Single click e background Blue ba White kore auto-crop kora jay."}},{"@type":"Question","name":"Video theke background remove kora jabe?","acceptedAnswer":{"@type":"Answer","text":"Ha, 10s porjonto choto video clip er background browser segmentation model er maddhome remove ba blur kora jai."}},{"@type":"Question","name":"Mobile e kaj korbe?","acceptedAnswer":{"@type":"Answer","text":"Sotti, eta completely Mobile-First responsive Web App. Chrome, Safari, Firefox - sob mobile browser e smoothly chole."}},{"@type":"Question","name":"Watermark thakbe?","acceptedAnswer":{"@type":"Answer","text":"Kono watermark thakbe na. Single photo hok ba batch - sob image full clean HD transparent background e paben."}}]}
 </script>
 
 <!-- CDN LIBRARIES -->
@@ -36,281 +29,340 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
-/* // EDIT HERE PREMIUM GLASS + DARK THEME */
-body { background: linear-gradient(135deg, #0A0A0A 0%, #1A0A2E 50%, #0A0A0A 100%); }
-.glass { background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(20px); border: 1px solid rgba(139, 92, 246, 0.2); }
+/* // EDIT HERE PREMIUM GLASSMORPHISM + DARK THEME */
+* { -webkit-tap-highlight-color: transparent; }
+body { background: linear-gradient(135deg, #0A0A0A 0%, #1A0A2E 50%, #0A0A0A 100%); font-family: 'Poppins', system-ui, sans-serif; }
+.glass { background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(139, 92, 246, 0.2); }
 .glow-bg::before { content: ''; position: fixed; top: 50%; left: 50%; width: 800px; height: 800px; background: radial-gradient(circle, rgba(139, 92, 246, 0.25) 0%, transparent 70%); transform: translate(-50%, -50%); filter: blur(100px); z-index: -1; }
-.checkerboard { background-image: linear-gradient(45deg, #2a2a2a 25%, transparent 25%), linear-gradient(-45deg, #2a2a2a 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #2a2a2a 75%), linear-gradient(-45deg, transparent 75%, #2a2a2a 75%); background-size: 20px 20px; }
-.custom-slider::-webkit-slider-thumb { appearance: none; width: 18px; height: 18px; border-radius: 50%; background: #8B5CF6; box-shadow: 0 0 10px rgba(139, 92, 246, 0.8); }
+.checkerboard { background-image: linear-gradient(45deg, #2a2a2a 25%, transparent 25%), linear-gradient(-45deg, #2a2a2a 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #2a2a2a 75%), linear-gradient(-45deg, transparent 75%, #2a2a2a 75%); background-size: 20px 20px; background-color: #1a1a1a; }
+.custom-slider::-webkit-slider-thumb { appearance: none; width: 18px; height: 18px; border-radius: 50%; background: #8B5CF6; cursor: pointer; box-shadow: 0 0 10px rgba(139, 92, 246, 0.8); }
+.custom-slider::-moz-range-thumb { width: 18px; height: 18px; border-radius: 50%; background: #8B5CF6; cursor: pointer; box-shadow: 0 0 10px rgba(139, 92, 246, 0.8); border: none; }
 .toast { animation: slideIn 0.3s ease; }
 @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+.lasso-box { position: absolute; border: 2px dashed #8B5CF6; background: rgba(139, 92, 246, 0.2); pointer-events: none; z-index: 10; }
+.btn-gradient { background: linear-gradient(135deg, #8B5CF6 0%, #A855F7 100%); }
+.btn-gradient:hover { box-shadow: 0 0 20px rgba(139, 92, 246, 0.6); transform: translateY(-1px); }
+.scrollbar-thin::-webkit-scrollbar { height: 4px; }.scrollbar-thin::-webkit-scrollbar-thumb { background: #8B5CF6; border-radius: 10px; }
 </style>
 </head>
 <body class="text-slate-100 font-sans min-h-screen flex flex-col glow-bg">
 
-<div id="toast-container" class="fixed top-5 right-5 z-50 flex flex-col gap-2"></div>
+<!-- TOAST -->
+<div id="toast-container" class="fixed top-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
 
 <!-- HEADER -->
-<header class="sticky top-0 z-40 glass px-4 py-3">
+<header class="sticky top-0 z-40 glass border-b border-slate-800/80 px-4 lg:px-8 py-3">
   <div class="max-w-7xl mx-auto flex items-center justify-between">
     <div class="flex items-center gap-3">
-      <div class="bg-gradient-to-tr from-purple-600 to-pink-500 p-2.5 rounded-xl"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
-      <span class="text-xl font-extrabold">EraseAI</span>
-      <span class="text-xs bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full">No Upload</span>
+      <div class="bg-gradient-to-tr from-purple-600 to-pink-500 p-2.5 rounded-xl text-white shadow-lg shadow-purple-500/20">
+        <i class="fa-solid fa-wand-magic-sparkles text-xl"></i>
+      </div>
+      <div>
+        <span class="text-xl font-extrabold tracking-tight bg-gradient-to-r from-white via-slate-200 to-purple-400 bg-clip-text text-transparent">EraseAI</span>
+        <span class="hidden sm:inline-block text-xs bg-emerald-500/10 text-emerald-400 border-emerald-500/20 px-2 py-0.5 rounded-full font-medium ml-2">No Upload</span>
+      </div>
     </div>
     <div class="flex items-center gap-2">
-      <select id="langSelect" class="bg-slate-900 border border-slate-700 text-xs rounded-lg px-2 py-1"><option>EN</option><option>HI</option><option>BN</option></select>
-      <button id="themeToggle" class="p-2 bg-slate-900 rounded-lg"><i class="fa-solid fa-sun"></i></button>
+      <select id="langSelect" class="bg-slate-900 border-slate-700 text-xs text-slate-200 rounded-lg px-2.5 py-1.5"><option value="EN">English</option><option value="HI">हिंदी</option><option value="BN">বাংলা</option></select>
+      <button id="themeToggle" class="p-2 rounded-lg bg-slate-900 border border-slate-800 text-slate-300"><i class="fa-solid fa-sun"></i></button>
+      <button id="pwaBtn" class="hidden sm:flex items-center gap-1.5 btn-gradient text-white text-xs font-semibold px-3 py-1.5 rounded-lg"><i class="fa-solid fa-download"></i> Install</button>
     </div>
   </div>
 </header>
 
 <!-- MAIN -->
-<main class="flex-1 max-w-7xl w-full mx-auto px-4 py-8">
-  <section class="text-center max-w-3xl mx-auto mb-6">
-    <span class="text-xs bg-purple-500/10 text-purple-400 border-purple-500/20 px-3 py-1 rounded-full">World's #1 Ultra-Fast Client Side AI</span>
-    <h1 class="text-3xl sm:text-5xl font-black mt-3">Free Background Remover - <span class="text-purple-400">No Upload, 100% Private</span></h1>
-    <p class="text-slate-400 mt-2">No Upload. Your images never leave your browser. Remove background in 1 second. 100% Free, Unlimited, No Watermark & HD 4K</p>
+<main class="flex-1 max-w-7xl w-full mx-auto px-4 py-8 flex flex-col gap-8">
+  <!-- HERO -->
+  <section class="text-center max-w-3xl mx-auto space-y-4">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-indigo-500/10 via-purple-500/10 to-pink-500/10 border border-purple-500/20 text-purple-400 text-xs font-medium">
+      <i class="fa-solid fa-bolt text-amber-400"></i> World's #1 Ultra-Fast Client Side AI
+    </div>
+    <h1 class="text-3xl sm:text-5xl font-black tracking-tight text-white leading-tight" data-i18n="h1">Free Background Remover - <span class="bg-gradient-to-r from-purple-500 via-pink-400 to-rose-500 bg-clip-text text-transparent">No Upload, 100% Private</span></h1>
+    <p class="text-slate-400 text-sm sm:text-base" data-i18n="subtitle">No Upload. Your images never leave your browser. Remove image background instantly in 1 second. 100% Free, Unlimited, No Watermark & HD 4K Quality.</p>
   </section>
 
   <!-- TABS -->
-  <div class="flex justify-center gap-2 border-b border-slate-800 pb-3 mb-6">
-    <button class="tab-btn active bg-purple-600 px-4 py-2 rounded-xl text-sm" data-mode="single"><i class="fa-solid fa-image"></i> Single</button>
-    <button class="tab-btn bg-slate-900 px-4 py-2 rounded-xl text-sm" data-mode="batch"><i class="fa-solid fa-layer-group"></i> Batch 20</button>
-    <button class="tab-btn bg-slate-900 px-4 py-2 rounded-xl text-sm" data-mode="video"><i class="fa-solid fa-video"></i> Video</button>
+  <div class="flex items-center justify-center gap-2 flex-wrap border-b border-slate-800 pb-3">
+    <button class="tab-btn active btn-gradient text-white px-4 py-2 rounded-xl text-xs sm:text-sm font-medium flex items-center gap-2" data-target="modeSingle"><i class="fa-solid fa-image"></i> <span>Single Photo</span></button>
+    <button class="tab-btn bg-slate-900 hover:bg-slate-800 text-slate-300 px-4 py-2 rounded-xl text-xs sm:text-sm font-medium flex items-center gap-2" data-target="modeBatch"><i class="fa-solid fa-layer-group"></i> <span>Batch 20</span></button>
+    <button class="tab-btn bg-slate-900 hover:bg-slate-800 text-slate-300 px-4 py-2 rounded-xl text-xs sm:text-sm font-medium flex items-center gap-2" data-target="modeVideo"><i class="fa-solid fa-video"></i> <span>Video BG</span></button>
   </div>
 
-  <div class="grid lg:grid-cols-12 gap-6">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
     <!-- LEFT -->
-    <div class="lg:col-span-8">
-      <div id="dropzone" class="glass rounded-3xl border-2 border-dashed border-purple-500/30 p-12 text-center cursor-pointer">
-        <i class="fa-solid fa-cloud-arrow-up text-4xl text-purple-400"></i>
-        <h3 class="text-lg font-bold mt-3">Drag & Drop Image Here</h3>
-        <p class="text-xs text-slate-400">or paste URL below</p>
-        <input id="urlInput" placeholder="Paste image URL" class="mt-2 w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs">
+    <div class="lg:col-span-8 flex flex-col gap-6">
+      <div id="dropzone" class="glass rounded-3xl border-2 border-dashed border-slate-700 hover:border-purple-500 transition-all p-8 sm:p-12 text-center cursor-pointer flex flex-col items-center justify-center gap-4">
+        <div class="w-16 h-16 rounded-2xl bg-purple-600/10 text-purple-500 border-purple-500/20 flex items-center justify-center text-2xl"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+        <div class="space-y-1">
+          <h3 class="text-lg font-bold text-slate-100">Drag & Drop Image Here</h3>
+          <p class="text-xs text-slate-400">or click to browse / paste URL below</p>
+        </div>
+        <div class="flex items-center gap-2 max-w-md w-full mt-2">
+          <input type="text" id="urlInput" placeholder="Paste image URL here..." class="flex-1 bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs">
+          <button id="urlBtn" class="bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-1.5 rounded-lg text-xs font-semibold">Fetch</button>
+        </div>
         <input type="file" id="fileInput" accept="image/*" class="hidden">
         <input type="file" id="batchInput" accept="image/*" multiple class="hidden">
         <input type="file" id="videoInput" accept="video/*" class="hidden">
       </div>
 
-      <div id="loadingBox" class="hidden glass rounded-3xl p-8 text-center mt-4">
-        <div class="animate-spin text-3xl text-purple-400"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
-        <p class="mt-2">AI Removing Background in Browser...</p>
+      <div id="loadingBox" class="hidden glass rounded-3xl p-8 text-center flex flex-col items-center justify-center gap-4 min-h-[350px]">
+        <div class="relative w-20 h-20"><div class="absolute inset-0 rounded-full border-4 border-purple-500/20"></div><div class="absolute inset-0 rounded-full border-4 border-purple-500 border-t-transparent animate-spin"></div><i class="fa-solid fa-wand-magic-sparkles absolute inset-0 flex items-center justify-center text-purple-400 text-xl"></i></div>
+        <div><h4 class="text-base font-bold text-slate-200">AI Detecting Subject & Removing Background...</h4><p class="text-xs text-slate-400 mt-1">100% Browser Execution • background-removal-js</p></div>
+        <div class="w-full max-w-xs bg-slate-800 rounded-full h-2 overflow-hidden"><div id="progressBar" class="bg-purple-500 h-full w-0 transition-all duration-300"></div></div>
       </div>
 
-      <div id="editorBox" class="hidden glass rounded-3xl p-4 mt-4">
-        <div class="flex justify-between text-xs mb-2">
-          <button id="baSlider" class="px-2 py-1 bg-slate-800 rounded-lg"><i class="fa-solid fa-sliders"></i> Before/After</button>
-          <div><button id="undoBtn" class="px-2 py-1 bg-slate-800 rounded-lg"><i class="fa-rotate-left"></i></button> <button id="redoBtn" class="px-2 py-1 bg-slate-800 rounded-lg"><i class="fa-rotate-right"></i></button></div>
-        </div>
-        <div id="canvasWrap" class="relative checkerboard rounded-2xl flex justify-center">
-          <canvas id="mainCanvas" class="max-w-full max-h-[500px] rounded-lg"></canvas>
-          <div id="baOverlay" class="hidden absolute inset-0 overflow-hidden"></div>
-        </div>
-        <div class="flex gap-2 mt-3 flex-wrap text-xs">
-          <button id="brushErase" class="px-3 py-1.5 bg-purple-600 rounded-lg">Erase Brush</button>
-          <button id="brushRestore" class="px-3 py-1.5 bg-slate-800 rounded-lg">Restore</button>
-          <button id="lassoBtn" class="px-3 py-1.5 bg-slate-800 rounded-lg">Lasso Pen</button>
-          <button id="autoCrop" class="px-3 py-1.5 bg-slate-800 rounded-lg">Auto Crop</button>
-          <button id="hairRefine" class="px-3 py-1.5 bg-purple-600/30 rounded-lg">Hair Refine</button>
-          <button id="copyBtn" class="px-3 py-1.5 bg-emerald-600 rounded-lg">Copy PNG</button>
+      <div id="editorBox" class="hidden flex-col gap-4">
+        <div class="glass rounded-3xl p-4 overflow-hidden relative">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-3 text-xs flex-wrap gap-2">
+            <div class="flex items-center gap-2">
+              <button id="sliderToggleBtn" class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 rounded-lg"><i class="fa-solid fa-sliders"></i> Before/After</button>
+              <button id="undoBtn" class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 rounded-lg"><i class="fa-solid fa-rotate-left"></i></button>
+              <button id="redoBtn" class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 rounded-lg"><i class="fa-solid fa-rotate-right"></i></button>
+              <button id="autoCropBtn" class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 rounded-lg"><i class="fa-solid fa-crop-simple"></i> Auto Crop</button>
+            </div>
+            <div class="flex items-center gap-2">
+              <button id="copyClipboardBtn" class="px-2.5 py-1 bg-emerald-600/20 text-emerald-400 border border-emerald-500/30 rounded-lg"><i class="fa-regular fa-copy"></i> Copy</button>
+              <button id="resetImageBtn" class="px-2.5 py-1 bg-rose-600/20 text-rose-400 border border-rose-500/30 rounded-lg"><i class="fa-solid fa-xmark"></i> Close</button>
+            </div>
+          </div>
+          <div id="canvasViewport" class="relative min-h-[380px] max-h-[550px] w-full rounded-2xl overflow-hidden checkerboard flex items-center justify-center touch-none">
+            <canvas id="mainCanvas" class="max-w-full max-h-[500px] object-contain shadow-2xl rounded-lg"></canvas>
+            <div id="lassoBox" class="lasso-box hidden"></div>
+          </div>
+          <div class="flex items-center justify-between mt-3 px-2 text-xs flex-wrap gap-2">
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="text-slate-400 font-medium">Tools:</span>
+              <button id="brushEraseMode" class="px-2.5 py-1 bg-purple-600 text-white rounded-lg"><i class="fa-solid fa-eraser"></i> Erase</button>
+              <button id="brushRestoreMode" class="px-2.5 py-1 bg-slate-800 text-slate-300 rounded-lg"><i class="fa-solid fa-paintbrush"></i> Restore</button>
+              <button id="lassoToolMode" class="px-2.5 py-1 bg-slate-800 text-slate-300 rounded-lg"><i class="fa-solid fa-pen-nib"></i> Lasso Pen</button>
+              <input type="range" id="brushSize" min="5" max="100" value="20" class="w-20 custom-slider">
+            </div>
+            <button id="hairRefineBtn" class="px-2.5 py-1 bg-purple-600/20 text-purple-300 border border-purple-500/30 rounded-lg"><i class="fa-solid fa-scissors"></i> Hair Refine</button>
+          </div>
         </div>
       </div>
 
-      <div id="batchBox" class="hidden glass rounded-3xl p-6 mt-4">
-        <h3>Batch: <span id="batchCount">0</span>/20 <button id="zipBtn" class="float-right bg-emerald-600 px-3 py-1 rounded-lg text-xs">Download ZIP</button></h3>
-        <div id="batchGrid" class="grid grid-cols-4 gap-2 mt-2"></div>
+      <div id="batchBox" class="hidden glass rounded-3xl p-6 space-y-4">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-3"><h3 class="font-bold text-slate-200">Batch Images (<span id="batchCount">0</span>/20)</h3><button id="downloadBatchZipBtn" class="bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-1.5 rounded-xl text-xs font-semibold"><i class="fa-solid fa-file-zipper"></i> Download ZIP</button></div>
+        <div id="batchGrid" class="grid grid-cols-2 sm:grid-cols-4 gap-3 max-h-[400px] overflow-y-auto p-1 scrollbar-thin"></div>
       </div>
 
-      <div id="videoBox" class="hidden glass rounded-3xl p-6 mt-4">
-        <video id="videoEl" class="w-full rounded-lg hidden" autoplay muted></video>
-        <canvas id="videoCanvas" class="w-full rounded-lg checkerboard"></canvas>
-        <button id="processVideo" class="mt-2 bg-purple-600 px-4 py-2 rounded-lg text-sm">Process 10s Video</button>
+      <div id="videoBox" class="hidden glass rounded-3xl p-6 text-center space-y-4">
+        <h3 class="font-bold text-slate-200">10s Video Background Remover</h3>
+        <div class="relative max-w-md mx-auto rounded-xl overflow-hidden bg-black aspect-video flex items-center justify-center">
+          <video id="videoElement" class="w-full h-full object-contain hidden" autoplay loop muted></video>
+          <canvas id="videoCanvas" class="w-full h-full object-contain"></canvas>
+        </div>
+        <button id="processVideoBtn" class="btn-gradient text-white px-4 py-2 rounded-xl text-xs font-semibold">Start Video Process</button>
       </div>
     </div>
 
     <!-- RIGHT -->
-    <div class="lg:col-span-4">
-      <div class="glass rounded-3xl p-5 space-y-4">
-        <h3 class="font-bold"><i class="fa-solid fa-palette text-purple-400"></i> AI Background Changer</h3>
-        <div class="grid grid-cols-3 gap-2 text-xs">
-          <button class="bg-tab bg-purple-600 py-2 rounded-lg" data-bg="transparent">Transparent</button>
-          <button class="bg-tab bg-slate-800 py-2 rounded-lg" data-bg="color">Color</button>
-          <button class="bg-tab bg-slate-800 py-2 rounded-lg" data-bg="blur">Blur</button>
+    <div class="lg:col-span-4 flex flex-col gap-6">
+      <div class="glass rounded-3xl p-5 space-y-5">
+        <h3 class="text-sm font-bold text-slate-200 flex items-center gap-2"><i class="fa-solid fa-palette text-purple-400"></i><span>AI Background Changer</span></h3>
+        <div class="grid grid-cols-5 gap-1.5 p-1 bg-slate-900 rounded-xl text-xs">
+          <button class="bg-tab active py-1.5 rounded-lg text-white font-medium btn-gradient" data-bg="transparent">Transparent</button>
+          <button class="bg-tab py-1.5 rounded-lg text-slate-400 hover:text-white" data-bg="color">Color</button>
+          <button class="bg-tab py-1.5 rounded-lg text-slate-400 hover:text-white" data-bg="gradient">Gradient</button>
+          <button class="bg-tab py-1.5 rounded-lg text-slate-400 hover:text-white" data-bg="image">Image</button>
+          <button class="bg-tab py-1.5 rounded-lg text-slate-400 hover:text-white" data-bg="blur">Blur</button>
         </div>
-        <input type="color" id="colorPicker" value="#8B5CF6" class="w-full h-10 rounded-lg">
-
-        <div>
-          <p class="text-xs font-bold mb-2">30+ Presets</p>
-          <div class="grid grid-cols-4 gap-2">
-            <button class="preset h-10 rounded-lg bg-gradient-to-r from-blue-500 to-purple-600" data-preset="gradient"></button>
-            <button class="preset h-10 rounded-lg bg-cover" style="background-image:url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=100')" data-preset="office"></button>
-          </div>
-        </div>
-
-        <div>
-          <p class="text-xs">Realistic Shadow: <span id="shadowVal">0</span>%</p>
-          <input type="range" id="shadowSlider" min="0" max="100" value="0" class="w-full custom-slider">
-        </div>
-
-        <div>
-          <p class="text-xs font-bold mb-2">Smart Presets</p>
+        <div id="colorPickerContainer"><label class="text-xs text-slate-400">Pick Color:</label><input type="color" id="bgColorPicker" value="#8B5CF6" class="w-full h-10 rounded-lg"></div>
+        <div id="gradientPresetsContainer" class="hidden grid grid-cols-4 gap-2"><button class="grad-btn h-10 rounded-xl bg-gradient-to-r from-blue-500 to-purple-600"></button><button class="grad-btn h-10 rounded-xl bg-gradient-to-r from-pink-500 to-rose-500"></button></div>
+        <div id="imagePresetsContainer" class="hidden grid-cols-3 gap-2"><button class="preset-img-btn h-12 rounded-lg bg-cover" style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=150')"></button></div>
+        <div id="blurContainer" class="hidden space-y-2"><div class="flex justify-between text-xs"><span>Blur:</span><span id="blurValueText">10px</span></div><input type="range" id="blurSlider" min="0" max="30" value="10" class="w-full custom-slider"></div>
+        <hr class="border-slate-800">
+        <div class="space-y-2"><div class="flex justify-between text-xs"><span>Realistic Shadow:</span><span id="shadowVal">0%</span></div><input type="range" id="shadowSlider" min="0" max="100" value="0" class="w-full custom-slider"></div>
+        <hr class="border-slate-800">
+        <div class="space-y-3"><span class="text-xs font-bold text-slate-300 block">Smart Canvas Presets:</span>
           <div class="grid grid-cols-2 gap-2 text-xs">
-            <button id="passportBtn" class="p-2 bg-slate-800 rounded-lg">Passport 35x45</button>
-            <button id="amazonBtn" class="p-2 bg-slate-800 rounded-lg">Amazon 2000x2000</button>
-            <button id="instaBtn" class="p-2 bg-slate-800 rounded-lg">IG 1080x1920</button>
-            <button id="ytBtn" class="p-2 bg-slate-800 rounded-lg">YT 1280x720</button>
+            <button id="presetPassport" class="p-2 bg-slate-900 border border-slate-800 hover:border-purple-500 rounded-xl text-left"><i class="fa-solid fa-passport text-purple-400"></i> Passport</button>
+            <button id="presetAmazon" class="p-2 bg-slate-900 border-slate-800 hover:border-purple-500 rounded-xl text-left"><i class="fa-solid fa-cart-shopping text-amber-400"></i> Amazon</button>
+            <button id="presetInstagram" class="p-2 bg-slate-900 border border-slate-800 hover:border-purple-500 rounded-xl text-left"><i class="fa-brands fa-instagram text-pink-400"></i> IG Story</button>
+            <button id="presetYoutube" class="p-2 bg-slate-900 border border-slate-800 hover:border-purple-500 rounded-xl text-left"><i class="fa-brands fa-youtube text-rose-500"></i> YT Thumb</button>
           </div>
         </div>
-
-        <div>
-          <p class="text-xs">Quality: <span id="qualityVal">100</span>%</p>
-          <input type="range" id="qualitySlider" min="20" max="100" value="100" class="w-full custom-slider">
+        <hr class="border-slate-800">
+        <div class="space-y-4">
+          <div class="space-y-2"><div class="flex justify-between text-xs"><span>Quality:</span><span id="qualityText">100%</span></div><input type="range" id="qualitySlider" min="20" max="100" value="100" class="w-full custom-slider"></div>
+          <div class="grid grid-cols-2 gap-2">
+            <button id="downloadPngBtn" class="btn-gradient text-white py-3 rounded-2xl font-bold text-xs"><i class="fa-solid fa-download"></i> PNG</button>
+            <button id="downloadJpgBtn" class="bg-slate-800 text-slate-200 py-3 rounded-2xl font-bold text-xs"><i class="fa-solid fa-file-image"></i> JPG</button>
+          </div>
+          <button id="shareLinkBtn" class="w-full bg-slate-900 hover:bg-slate-800 border-slate-800 text-slate-300 py-2 rounded-xl text-xs"><i class="fa-solid fa-share-nodes text-purple-400"></i> Share Link</button>
         </div>
-
-        <div class="grid grid-cols-2 gap-2">
-          <button id="downloadPng" class="bg-gradient-to-r from-purple-600 to-pink-600 py-3 rounded-2xl font-bold text-sm">Download PNG</button>
-          <button id="downloadJpg" class="bg-slate-800 py-3 rounded-2xl font-bold text-sm">Download JPG</button>
-        </div>
-        <button id="shareBtn" class="w-full bg-slate-900 border-slate-800 py-2 rounded-xl text-sm">Share Result Link</button>
       </div>
     </div>
   </div>
 
+  <!-- HISTORY -->
+  <section class="glass rounded-3xl p-6 space-y-4">
+    <div class="flex items-center justify-between"><h3 class="text-base font-bold"><i class="fa-solid fa-clock-rotate-left text-purple-400"></i> Recent History</h3><button id="clearHistoryBtn" class="text-xs text-rose-400">Clear</button></div>
+    <div id="historyGrid" class="flex gap-3 overflow-x-auto pb-2 scrollbar-thin"></div>
+  </section>
+
   <!-- FEATURES -->
-  <section class="mt-12">
-    <h2 class="text-2xl font-black text-center">25+ Premium AI Features Built-In</h2>
-    <div class="grid md:grid-cols-4 gap-4 mt-4">
-      <div class="glass p-4 rounded-2xl"><i class="fa-solid fa-bolt text-purple-400"></i><p class="text-sm font-bold">1-Click Auto Remove</p></div>
-      <div class="glass p-4 rounded-2xl"><i class="fa-solid fa-shield text-emerald-400"></i><p class="text-sm font-bold">100% Privacy First</p></div>
-      <div class="glass p-4 rounded-2xl"><i class="fa-solid fa-layer-group text-pink-400"></i><p class="text-sm font-bold">Batch 20 Photos</p></div>
-      <div class="glass p-4 rounded-2xl"><i class="fa-solid fa-id-card text-blue-400"></i><p class="text-sm font-bold">Passport Maker</p></div>
+  <section class="space-y-6 pt-6"><div class="text-center"><h2 class="text-2xl sm:text-3xl font-black">25+ Premium AI Features Built-In</h2></div>
+    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div class="glass p-5 rounded-2xl"><i class="fa-solid fa-bolt text-purple-400 text-xl"></i><h3 class="font-bold text-sm mt-2">1-Click Auto Remove</h3></div>
+      <div class="glass p-5 rounded-2xl"><i class="fa-solid fa-shield-cat text-emerald-400 text-xl"></i><h3 class="font-bold text-sm mt-2">100% Privacy First</h3></div>
+      <div class="glass p-5 rounded-2xl"><i class="fa-solid fa-gem text-amber-400 text-xl"></i><h3 class="font-bold text-sm mt-2">HD 4K Export</h3></div>
+      <div class="glass p-5 rounded-2xl"><i class="fa-solid fa-layer-group text-purple-400 text-xl"></i><h3 class="font-bold text-sm mt-2">Batch Processing</h3></div>
     </div>
   </section>
 
   <!-- FAQ -->
-  <section class="glass rounded-3xl p-8 mt-8">
-    <h2 class="text-2xl font-black text-center">Frequently Asked Questions</h2>
-    <div class="space-y-3 mt-4">
-      <details class="bg-slate-900 p-4 rounded-2xl"><summary class="font-bold">Q1: Background Remover ki sotti free and unlimited?</summary><p class="text-sm text-slate-400 mt-2">Ha, 100% free abong unlimited. Kono hidden charge nei.</p></details>
-      <details class="bg-slate-900 p-4 rounded-2xl"><summary class="font-bold">Q2: Amar photo ki server e upload hobe?</summary><p class="text-sm text-slate-400 mt-2">Na. Sob processing apnar browser e hoi.</p></details>
-      <details class="bg-slate-900 p-4 rounded-2xl"><summary class="font-bold">Q3: HD 4K quality pabo?</summary><p class="text-sm text-slate-400 mt-2">Ha, original resolution preserve hoi.</p></details>
-      <details class="bg-slate-900 p-4 rounded-2xl"><summary class="font-bold">Q4: Batch e koto gulo photo?</summary><p class="text-sm text-slate-400 mt-2">Up to 20 ti eksathe.</p></details>
-      <details class="bg-slate-900 p-4 rounded-2xl"><summary class="font-bold">Q5: Passport size banano jabe?</summary><p class="text-sm text-slate-400 mt-2">Ha, 35x45mm preset ache.</p></details>
-      <details class="bg-slate-900 p-4 rounded-2xl"><summary class="font-bold">Q6: Video theke remove kora jabe?</summary><p class="text-sm text-slate-400 mt-2">Ha, 10s porjonto video support.</p></details>
-      <details class="bg-slate-900 p-4 rounded-2xl"><summary class="font-bold">Q7: Mobile e kaj korbe?</summary><p class="text-sm text-slate-400 mt-2">Ha, full responsive PWA.</p></details>
-      <details class="bg-slate-900 p-4 rounded-2xl"><summary class="font-bold">Q8: Watermark thakbe?</summary><p class="text-sm text-slate-400 mt-2">Kono watermark nei.</p></details>
+  <section class="glass rounded-3xl p-6 sm:p-8 space-y-6"><div class="text-center"><h2 class="text-2xl font-black">Frequently Asked Questions</h2></div>
+    <div class="space-y-3 max-w-3xl mx-auto">
+      <details class="border border-slate-800 rounded-2xl"><summary class="p-4 font-bold">Q1: Background Remover ki sotti free and unlimited?</summary><div class="p-4 text-xs text-slate-400">Ha, 100% free abong unlimited.</div></details>
+      <details class="border border-slate-800 rounded-2xl"><summary class="p-4 font-bold">Q2: Amar photo ki server e upload hobe?</summary><div class="p-4 text-xs text-slate-400">Na, sob processing browser e hoi.</div></details>
+      <details class="border border-slate-800 rounded-2xl"><summary class="p-4 font-bold">Q3: HD 4K quality pabo?</summary><div class="p-4 text-xs text-slate-400">Ha, original resolution preserve hoi.</div></details>
+      <details class="border border-slate-800 rounded-2xl"><summary class="p-4 font-bold">Q4: Batch e koto gulo photo?</summary><div class="p-4 text-xs text-slate-400">Up to 20 ti eksathe.</div></details>
+      <details class="border border-slate-800 rounded-2xl"><summary class="p-4 font-bold">Q5: Passport size banano jabe?</summary><div class="p-4 text-xs text-slate-400">Ha, 35x45mm preset ache.</div></details>
+      <details class="border border-slate-800 rounded-2xl"><summary class="p-4 font-bold">Q6: Video theke remove kora jabe?</summary><div class="p-4 text-xs text-slate-400">Ha, 10s porjonto.</div></details>
+      <details class="border border-slate-800 rounded-2xl"><summary class="p-4 font-bold">Q7: Mobile e kaj korbe?</summary><div class="p-4 text-xs text-slate-400">Ha, full responsive PWA.</div></details>
+      <details class="border border-slate-800 rounded-2xl"><summary class="p-4 font-bold">Q8: Watermark thakbe?</summary><div class="p-4 text-xs text-slate-400">Kono watermark nei.</div></details>
     </div>
   </section>
 
-  <!-- SEO CONTENT 600+ WORDS -->
-  <article class="glass rounded-3xl p-10 mt-8 text-sm leading-relaxed">
-    <h2 class="text-2xl font-bold">The Ultimate Free AI Background Remover Tool in 2025</h2>
-    <p class="mt-3">In today's digital era, having an efficient <strong>background remover</strong> is essential for content creators, e-commerce store owners, and designers. Whether you need to <strong>remove background from image</strong> for Amazon product listings or create a <strong>passport photo background</strong>, EraseAI is the solution.</p>
-    <h3 class="text-lg font-bold mt-4">Why Choose Client-Side No Upload Background Remover?</h3>
-    <p>Traditional tools upload your data to cloud. Our <strong>client side background remover</strong> runs 100% inside your browser using WebAssembly. This <strong>no upload background remover</strong> guarantees complete privacy.</p>
-    <h3 class="text-lg font-bold mt-4">Features for Ecommerce & Product Photography</h3>
-    <p>For Flipkart and Amazon sellers, our <strong>ecommerce background remover</strong> and <strong>product photo background remover</strong> provides 2000x2000 white background. Use <strong>batch background remover</strong> to process 20 images at once.</p>
-    <h3 class="text-lg font-bold mt-4">How to Remove Background from Image Free</h3>
-    <p>Wondering <strong>how to remove background from image free</strong>? Just drag, drop, and download. This <strong>ai background remover free</strong> tool also works as a <strong>background eraser tool</strong> and <strong>transparent background maker</strong>.</p>
-    <p class="mt-3">Experience the <strong>best background remover no login</strong> with <strong>hd background remover online</strong> today. Our <strong>background changer ai</strong> gives you 30+ presets. Try our <strong>video background remover</strong> for 10s clips.</p>
+  <!-- SEO 600 WORDS -->
+  <article class="glass rounded-3xl p-6 sm:p-10 space-y-6 text-slate-300 text-xs sm:text-sm leading-relaxed">
+    <h2 class="text-xl sm:text-2xl font-bold text-white">The Ultimate Free AI Background Remover Tool in 2025</h2>
+    <p>In today's digital era, having an efficient <strong>background remover</strong> is essential for content creators, e-commerce store owners, graphic designers, and casual social media users. Whether you need to <strong>remove background from image</strong> for Amazon product listings, create a professional passport size photo, or design high-converting YouTube thumbnails, amader <strong>ai background remover free</strong> web application steps in as the market leader.</p>
+    <h3 class="text-base font-bold text-white">Why Choose Client-Side No Upload Background Removal?</h3>
+    <p>Traditional online image editing tools require you to upload your personal photos to cloud servers. This poses severe data privacy risks. Amader <strong>client side background remover</strong> architecture runs 100% inside your browser using modern WebAssembly and WebWorker artificial intelligence models. Your sensitive assets never leave your computer, guaranteeing complete privacy and zero data leakage. This is why we are the best <strong>no upload background remover</strong>.</p>
+    <h3 class="text-base font-bold text-white">Features That Power E-Commerce & Product Photography</h3>
+    <p>For store owners running online shops on Flipkart, Amazon, or Shopify, high-quality visuals are crucial for sales conversions. Amader <strong>ecommerce background remover</strong> provides automated 2000x2000 white background presets and realistic drop shadow sliders. With our <strong>batch background remover</strong> feature, you can upload up to 20 product images at once, execute <strong>free background remover no watermark</strong> transformations in parallel, and export everything into a neat JSZip file within seconds. This makes us the top <strong>product photo background remover</strong>.</p>
+    <h3 class="text-base font-bold text-white">Passport Photo Maker & Social Media Presets</h3>
+    <p>Need an urgent visa or passport photo? The integrated <strong>passport photo background</strong> tool converts any portrait into official 35x45mm or 2x2 inch specifications with standard royal blue or clean white backgrounds in just one click. Furthermore, creators can leverage custom canvas dimensions for Instagram Stories and YouTube Thumbnails alongside an intuitive <strong>background changer ai</strong> featuring gradients, office environments, and beach scenery.</p>
+    <h3 class="text-base font-bold text-white">How to Remove Background from Image Free with HD 4K Precision</h3>
+    <p>If you are wondering <strong>how to remove background from image free</strong> without quality loss, the process is streamlined: Drag & drop your target image. The browser AI instantly segments the background. Utilize fine-tuning tools such as the manual erase/restore brush, hair refinement, or auto crop. Download your high-definition <strong>transparent background maker</strong> output in PNG or compressed JPG format. Experience the <strong>best background remover no login</strong> with <strong>hd background remover online</strong> processing today!</p>
   </article>
 </main>
 
-<footer class="glass border-t border-slate-800 text-center py-6 text-xs text-slate-500">© 2025 EraseAI by Mujahar - Privacy First • No Server Uploads</footer>
+<footer class="glass border-t border-slate-800 text-center py-6 px-4 text-xs text-slate-500">© 2025 EraseAI by Mujahar — World's #1 Free Client Side Background Remover. Privacy First • No Server Uploads</footer>
 
 <script>
-// CORE JS LOGIC
-let currentImage=null, originalData=null, history=[], redoStack=[];
-const canvas=document.getElementById('mainCanvas'), ctx=canvas.getContext('2d');
-
-function showToast(msg){const t=document.createElement('div');t.className='toast glass p-3 rounded-xl text-sm';t.innerText=msg;document.getElementById('toast-container').appendChild(t);setTimeout(()=>t.remove(),3000);}
-
-// 1. FILE UPLOAD
-document.getElementById('dropzone').onclick=()=>document.getElementById('fileInput').click();
-document.getElementById('fileInput').onchange=e=>handleFile(e.target.files[0]);
-document.getElementById('batchInput').onchange=e=>handleBatch(e.target.files);
-document.getElementById('videoInput').onchange=e=>handleVideo(e.target.files[0]);
-
-async function handleFile(file){
-  document.getElementById('dropzone').classList.add('hidden');
-  document.getElementById('loadingBox').classList.remove('hidden');
-  const img=new Image(); img.onload=()=>processImage(img); img.src=URL.createObjectURL(file);
+// ===== CORE APP LOGIC =====
+let currentImage=null, originalData=null, history=[], redoStack=[], brushMode='erase', isDrawing=false, lassoStart=null, activeBg='transparent', segmentation=null;
+const canvas=document.getElementById('mainCanvas'), ctx=canvas.getContext('2d', {willReadFrequently: true});
+const translations = {
+  EN:{h1:"Free Background Remover - <span class='bg-gradient-to-r from-purple-500 via-pink-400 to-rose-500 bg-clip-text text-transparent'>No Upload, 100% Private</span>", subtitle:"No Upload. Your images never leave your browser."},
+  HI:{h1:"फ्री बैकग्राउंड रिमूवर - <span class='text-purple-400'>नो अपलोड, 100% प्राइवेट</span>", subtitle:"नो अपलोड। आपकी इमेज कभी सर्वर पर नहीं जाएगी।"},
+  BN:{h1:"ফ্রি ব্যাকগ্রাউন্ড রিমুভার - <span class='text-purple-400'>নো আপলোড, ১০০% প্রাইভেট</span>", subtitle:"নো আপলোড। আপনার ছবি কখনো সার্ভারে যাবে না।"}
 }
 
-// 2. AI REMOVE USING background-removal-js
+function showToast(msg, type='info'){const c=document.getElementById('toast-container');const t=document.createElement('div');t.className=`toast pointer-events-auto px-4 py-2.5 rounded-xl text-xs font-semibold text-white shadow-xl ${type==='error'?'bg-rose-600':'bg-purple-600'}`;t.innerHTML=`<i class="fa-solid fa-circle-info"></i> ${msg}`;c.appendChild(t);setTimeout(()=>t.remove(),3000);}
+
+// 1. INIT
+document.addEventListener('DOMContentLoaded',()=>{setupTabs();setupUpload();setupTools();setupLang();loadHistory();});
+
+// 2. LANGUAGE
+function setupLang(){document.getElementById('langSelect').onchange=e=>{const d=translations[e.target.value];document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(d[k]) el.innerHTML=d[k]})};}
+
+// 3. TABS
+function setupTabs(){document.querySelectorAll('.tab-btn').forEach(btn=>{btn.onclick=()=>{document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('btn-gradient','text-white'));btn.classList.add('btn-gradient','text-white');document.getElementById('dropzone').classList.remove('hidden');document.getElementById('editorBox').classList.add('hidden');document.getElementById('batchBox').classList.add('hidden');document.getElementById('videoBox').classList.add('hidden');if(btn.dataset.target==='modeBatch') document.getElementById('batchInput').click(); if(btn.dataset.target==='modeVideo') document.getElementById('videoInput').click();}});}
+
+// 4. UPLOAD + AI REMOVE
+function setupUpload(){
+  document.getElementById('dropzone').onclick=()=>document.getElementById('fileInput').click();
+  document.getElementById('fileInput').onchange=e=>handleFile(e.target.files[0]);
+  document.getElementById('batchInput').onchange=e=>handleBatch(Array.from(e.target.files).slice(0,20));
+  document.getElementById('videoInput').onchange=e=>handleVideo(e.target.files[0]);
+  document.getElementById('urlBtn').onclick=()=>loadURL(document.getElementById('urlInput').value);
+}
+
+async function handleFile(file){if(!file) return; document.getElementById('dropzone').classList.add('hidden'); document.getElementById('loadingBox').classList.remove('hidden'); const img=new Image(); img.onload=()=>processImage(img); img.src=URL.createObjectURL(file);}
+async function loadURL(url){if(!url) return; const img=new Image(); img.crossOrigin="anonymous"; img.onload=()=>processImage(img); img.onerror=()=>showToast('Failed to load URL','error'); img.src=url;}
+
 async function processImage(img){
-  currentImage=img;
-  const blob=await backgroundRemoval(img, { model: 'isnet-general-use' }); // // EDIT HERE Ultra Fast 2MB model
-  const resultImg=new Image(); resultImg.onload=()=>{
-    canvas.width=resultImg.width; canvas.height=resultImg.height;
-    ctx.clearRect(0,0,canvas.width,canvas.height); ctx.drawImage(resultImg,0,0);
-    originalData=ctx.getImageData(0,0,canvas.width,canvas.height);
-    document.getElementById('loadingBox').classList.add('hidden');
-    document.getElementById('editorBox').classList.remove('hidden');
-    showToast('Background removed in <1 sec!');
-    saveHistory();
-  }; resultImg.src=URL.createObjectURL(blob);
+  currentImage=img; const progress=document.getElementById('progressBar');
+  try{
+    progress.style.width='30%';
+    // // EDIT HERE background-removal-js Ultra Fast 2MB model
+    const blob=await backgroundRemoval(img, {progress: p=>progress.style.width=p*100+'%'});
+    progress.style.width='80%';
+    const resultImg=new Image(); resultImg.onload=()=>{
+      canvas.width=resultImg.width; canvas.height=resultImg.height; ctx.clearRect(0,0,canvas.width,canvas.height); ctx.drawImage(resultImg,0,0);
+      originalData=ctx.getImageData(0,0,canvas.width,canvas.height); saveHistory(); render();
+      document.getElementById('loadingBox').classList.add('hidden'); document.getElementById('editorBox').classList.remove('flex'); document.getElementById('editorBox').classList.add('flex');
+      saveToHistory(canvas.toDataURL()); showToast('Background removed in <1 sec!','success');
+    }; resultImg.src=URL.createObjectURL(blob);
+  }catch(err){showToast('AI Error: '+err.message,'error'); document.getElementById('loadingBox').classList.add('hidden');}
 }
 
-// 3. BATCH PROCESSING
-async function handleBatch(files){
-  document.getElementById('batchBox').classList.remove('hidden');
-  document.getElementById('batchCount').innerText=files.length;
-  let zip=new JSZip();
-  for(let i=0;i<files.length;i++){
-    const img=new Image(); img.src=URL.createObjectURL(files[i]);
-    await img.decode();
-    const blob=await backgroundRemoval(img);
-    zip.file(`image-${i}.png`, blob);
+// 5. RENDER WITH BG
+function render(){
+  if(!currentImage) return;
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  if(activeBg==='color'){ctx.fillStyle=document.getElementById('bgColorPicker').value; ctx.fillRect(0,0,canvas.width,canvas.height);}
+  if(activeBg==='gradient'){let g=ctx.createLinearGradient(0,0,canvas.width,canvas.height); g.addColorStop(0,"#8B5CF6"); g.addColorStop(1,"#EC4899"); ctx.fillStyle=g; ctx.fillRect(0,0,canvas.width,canvas.height);}
+  if(activeBg==='blur'){ctx.filter=`blur(${document.getElementById('blurSlider').value}px)`; ctx.drawImage(currentImage,0,0,canvas.width,canvas.height); ctx.filter='none';}
+
+  const shadow=parseInt(document.getElementById('shadowSlider').value);
+  ctx.shadowColor=`rgba(0,0,0,${shadow/100})`; ctx.shadowBlur=shadow*0.5; ctx.shadowOffsetY=shadow*0.2;
+
+  ctx.putImageData(originalData,0,0);
+}
+
+// 6. TOOLS: BRUSH + LASSO + UNDO REDO
+function setupTools(){
+  const wrap=document.getElementById('canvasViewport');
+  canvas.onmousedown=e=>{isDrawing=true; const rect=canvas.getBoundingClientRect(); const x=(e.clientX-rect.left)*(canvas.width/rect.width); const y=(e.clientY-rect.top)*(canvas.height/rect.height); if(brushMode==='lasso') lassoStart={x,y};}
+  canvas.onmousemove=e=>{if(!isDrawing) return; const rect=canvas.getBoundingClientRect(); const x=(e.clientX-rect.left)*(canvas.width/rect.width); const y=(e.clientY-rect.top)*(canvas.height/rect.height);
+    if(brushMode==='erase'||brushMode==='restore'){ctx.globalCompositeOperation=brushMode==='erase'?'destination-out':'source-over'; ctx.lineWidth=document.getElementById('brushSize').value; ctx.lineCap='round'; ctx.lineTo(x,y); ctx.stroke(); ctx.beginPath(); ctx.moveTo(x,y);}
+    if(brushMode==='lasso'&&lassoStart){let box=document.getElementById('lassoBox'); box.classList.remove('hidden'); box.style.left=Math.min(lassoStart.x, x*(rect.width/canvas.width))+'px'; box.style.top=Math.min(lassoStart.y, y*(rect.height/canvas.height))+'px'; box.style.width=Math.abs(x*(rect.width/canvas.width)-lassoStart.x)+'px'; box.style.height=Math.abs(y*(rect.height/canvas.height)-lassoStart.y)+'px';}
   }
-  document.getElementById('zipBtn').onclick=()=>zip.generateAsync({type:"blob"}).then(c=>{let a=document.createElement('a');a.href=URL.createObjectURL(c);a.download='batch.zip';a.click();});
-}
-
-// 4. VIDEO BG REMOVE
-async function handleVideo(file){
-  document.getElementById('videoBox').classList.remove('hidden');
-  const video=document.getElementById('videoEl'); video.src=URL.createObjectURL(file); video.play();
-  const segmenter=await bodySegmentation.createSegmenter(bodySegmentation.SupportedModels.MediaPipeSelfieSegmentation);
-  document.getElementById('processVideo').onclick=async()=>{
-    const seg=await segmenter.segmentPeople(video);
-    // draw to canvas logic here
-    showToast('Video BG removed');
+  canvas.onmouseup=e=>{if(brushMode==='lasso'&&lassoStart){const rect=canvas.getBoundingClientRect(); const x=(e.clientX-rect.left)*(canvas.width/rect.width); const y=(e.clientY-rect.top)*(canvas.height/rect.height); ctx.globalCompositeOperation='destination-out'; ctx.fillRect(Math.min(lassoStart.x,x),Math.min(lassoStart.y,y),Math.abs(x-lassoStart.x),Math.abs(y-lassoStart.y)); document.getElementById('lassoBox').classList.add('hidden'); lassoStart=null; saveHistory();}
+    isDrawing=false; ctx.beginPath();
   }
+  document.getElementById('brushEraseMode').onclick=()=>{brushMode='erase'; setActiveTool('brushEraseMode')};
+  document.getElementById('brushRestoreMode').onclick=()=>{brushMode='restore'; setActiveTool('brushRestoreMode')};
+  document.getElementById('lassoToolMode').onclick=()=>{brushMode='lasso'; setActiveTool('lassoToolMode')};
+  document.getElementById('undoBtn').onclick=()=>{if(history.length>1){redoStack.push(history.pop()); originalData=history[history.length-1]; render();}};
+  document.getElementById('redoBtn').onclick=()=>{if(redoStack.length){let d=redoStack.pop();history.push(d);originalData=d;render();}};
+  document.getElementById('autoCropBtn').onclick=autoCrop;
+}
+function setActiveTool(id){['brushEraseMode','brushRestoreMode','lassoToolMode'].forEach(i=>document.getElementById(i).classList.remove('bg-purple-600','text-white')); document.getElementById(id).classList.add('bg-purple-600','text-white');}
+function saveHistory(){history.push(ctx.getImageData(0,0,canvas.width,canvas.height)); if(history.length>30) history.shift(); redoStack=[];}
+function autoCrop(){const data=ctx.getImageData(0,0,canvas.width,canvas.height).data; let minX=canvas.width,minY=canvas.height,maxX=0,maxY=0; for(let y=0;y<canvas.height;y++){for(let x=0;x<canvas.width;x++){if(data[(y*canvas.width+x)*4+3]>0){minX=Math.min(minX,x);minY=Math.min(minY,y);maxX=Math.max(maxX,x);maxY=Math.max(maxY,y);}}} canvas.width=maxX-minX; canvas.height=maxY-minY; ctx.putImageData(originalData,minX,minY); saveHistory(); render();}
+
+// 7. BATCH + VIDEO
+async function handleBatch(files){document.getElementById('batchBox').classList.remove('hidden'); document.getElementById('batchCount').innerText=files.length; const grid=document.getElementById('batchGrid'); grid.innerHTML=''; let zip=new JSZip();
+  for(let i=0;i<files.length;i++){const img=new Image(); img.src=URL.createObjectURL(files[i]); await img.decode(); const blob=await backgroundRemoval(img); zip.file(`image-${i+1}.png`,blob); const div=document.createElement('div'); div.className='glass p-2 rounded-lg'; div.innerHTML=`<img src="${URL.createObjectURL(blob)}" class="w-full rounded">`; grid.appendChild(div);}
+  document.getElementById('downloadBatchZipBtn').onclick=()=>zip.generateAsync({type:"blob"}).then(c=>{let a=document.createElement('a');a.href=URL.createObjectURL(c);a.download='eraseai-batch.zip';a.click();});
 }
 
-// 5. BRUSH + LASSO PEN
-let isDrawing=false, brushMode='erase';
-document.getElementById('brushErase').onclick=()=>brushMode='erase';
-document.getElementById('brushRestore').onclick=()=>brushMode='restore';
-document.getElementById('lassoBtn').onclick=()=>brushMode='lasso';
-
-canvas.onmousedown=e=>{isDrawing=true;};
-canvas.onmousemove=e=>{
-  if(!isDrawing) return;
-  const rect=canvas.getBoundingClientRect();
-  const x=e.clientX-rect.left, y=e.clientY-rect.top;
-  ctx.globalCompositeOperation= brushMode==='erase'?'destination-out':'source-over';
-  ctx.lineWidth=20; ctx.lineCap='round'; ctx.lineTo(x,y); ctx.stroke();
+async function handleVideo(file){document.getElementById('videoBox').classList.remove('hidden'); const video=document.getElementById('videoElement'); video.src=URL.createObjectURL(file); video.classList.remove('hidden'); const vCanvas=document.getElementById('videoCanvas'); const vCtx=vCanvas.getContext('2d'); const segmenter=await bodySegmentation.createSegmenter(bodySegmentation.SupportedModels.MediaPipeSelfieSegmentation);
+  document.getElementById('processVideoBtn').onclick=async()=>{video.play(); const process=async()=>{if(video.paused) return; vCanvas.width=video.videoWidth; vCanvas.height=video.videoHeight; const seg=await segmenter.segmentPeople(video); vCtx.clearRect(0,0,vCanvas.width,vCanvas.height); vCtx.drawImage(video,0,0); vCtx.globalCompositeOperation='destination-in'; vCtx.drawImage(seg.maskToCanvas(),0,0); vCtx.globalCompositeOperation='source-over'; requestAnimationFrame(process);}; process(); showToast('Video processing started');}
 }
-canvas.onmouseup=()=>{isDrawing=false; ctx.beginPath(); saveHistory();}
 
-// 6. UNDO REDO
-document.getElementById('undoBtn').onclick=()=>{if(history.length>1){redoStack.push(history.pop());ctx.putImageData(history[history.length-1],0,0);}};
-document.getElementById('redoBtn').onclick=()=>{if(redoStack.length){let d=redoStack.pop();history.push(d);ctx.putImageData(d,0,0);}};
-function saveHistory(){history.push(ctx.getImageData(0,0,canvas.width,canvas.height));}
+// 8. BG CHANGER + PRESETS + DOWNLOAD
+document.querySelectorAll('.bg-tab').forEach(btn=>{btn.onclick=()=>{document.querySelectorAll('.bg-tab').forEach(b=>b.classList.remove('btn-gradient','text-white')); btn.classList.add('btn-gradient','text-white'); activeBg=btn.dataset.bg; document.getElementById('colorPickerContainer').classList.toggle('hidden',activeBg!=='color'); document.getElementById('gradientPresetsContainer').classList.toggle('hidden',activeBg!=='gradient'); document.getElementById('blurContainer').classList.toggle('hidden',activeBg!=='blur'); render();}});
+document.getElementById('bgColorPicker').oninput=render; document.getElementById('blurSlider').oninput=e=>{document.getElementById('blurValueText').innerText=e.target.value+'px'; render();}
+document.getElementById('shadowSlider').oninput=e=>{document.getElementById('shadowVal').innerText=e.target.value+'%'; render();}
+document.getElementById('qualitySlider').oninput=e=>{document.getElementById('qualityText').innerText=e.target.value+'%';}
 
-// 7. PRESETS
-document.getElementById('passportBtn').onclick=()=>{canvas.width=413;canvas.height=531;ctx.fillStyle='#FFFFFF';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.drawImage(currentImage,0,0,canvas.width,canvas.height);};
-document.getElementById('amazonBtn').onclick=()=>{canvas.width=2000;canvas.height=2000;ctx.fillStyle='#FFFFFF';ctx.fillRect(0,0,canvas.width,canvas.height);};
+document.getElementById('presetPassport').onclick=()=>{canvas.width=413;canvas.height=531;ctx.fillStyle='#FFFFFF';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.drawImage(currentImage,0,0,canvas.width,canvas.height); originalData=ctx.getImageData(0,0,canvas.width,canvas.height);};
+document.getElementById('presetAmazon').onclick=()=>{canvas.width=2000;canvas.height=2000;activeBg='color';document.getElementById('bgColorPicker').value='#FFFFFF';render();};
+document.getElementById('presetInstagram').onclick=()=>{canvas.width=1080;canvas.height=1920;render();};
+document.getElementById('presetYoutube').onclick=()=>{canvas.width=1280;canvas.height=720;render();};
 
-// 8. DOWNLOAD
-document.getElementById('downloadPng').onclick=()=>{let a=document.createElement('a');a.download='eraseai.png';a.href=canvas.toDataURL('image/png', document.getElementById('qualitySlider').value/100);a.click();};
+document.getElementById('downloadPngBtn').onclick=()=>{let a=document.createElement('a');a.download='eraseai.png';a.href=canvas.toDataURL('image/png', document.getElementById('qualitySlider').value/100);a.click();};
+document.getElementById('downloadJpgBtn').onclick=()=>{let a=document.createElement('a');a.download='eraseai.jpg';a.href=canvas.toDataURL('image/jpeg', document.getElementById('qualitySlider').value/100);a.click();};
+document.getElementById('copyClipboardBtn').onclick=()=>{canvas.toBlob(b=>navigator.clipboard.write([new ClipboardItem({'image/png':b})])); showToast('Copied to clipboard');};
+document.getElementById('resetImageBtn').onclick=()=>{location.reload();};
 
-// 9. COPY TO CLIPBOARD
-document.getElementById('copyBtn').onclick=()=>{canvas.toBlob(b=>navigator.clipboard.write([new ClipboardItem({'image/png':b})])); showToast('Copied to clipboard');};
+// 9. HISTORY + PWA
+function saveToHistory(dataURL){let h=JSON.parse(localStorage.getItem('eraseai_history')||'[]'); h.unshift(dataURL); if(h.length>30) h.pop(); localStorage.setItem('eraseai_history',JSON.stringify(h)); loadHistory();}
+function loadHistory(){const grid=document.getElementById('historyGrid'); const h=JSON.parse(localStorage.getItem('eraseai_history')||'[]'); grid.innerHTML=h.length?h.map(i=>`<img src="${i}" class="w-16 h-16 rounded-lg object-cover">`).join(''):'<p class="text-xs text-slate-500">No history yet</p>';}
+document.getElementById('clearHistoryBtn').onclick=()=>{localStorage.removeItem('eraseai_history'); loadHistory();};
 
-// 10. PWA + HISTORY + OTHER FEATURES simplified for length
+if('serviceWorker' in navigator){navigator.serviceWorker.register('data:text/javascript,self.addEventListener("fetch",()=>{})');}
+document.getElementById('pwaBtn').onclick=()=>{showToast('Add to Home Screen from browser menu');};
+document.getElementById('shareLinkBtn').onclick=()=>{const url=location.href+'#state='+btoa(canvas.toDataURL()); navigator.clipboard.writeText(url); showToast('Link copied!');};
 </script>
 </body>
 </html>
