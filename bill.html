@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoiceTwin Pro - True AI Voice Cloner</title>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+        :root {
+            --bg: #0A0A0A;
+            --surface: #1A1A1A;
+            --primary: #8B5CF6;
+            --secondary: #ec4899;
+            --text: #ffffff;
+            --border: rgba(255,255,255,0.1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; transition: 0.3s; }
+        
+        body { background: var(--bg); color: var(--text); padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        
+        .glass-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        h1, h2 { text-align: center; margin-bottom: 10px; }
+        .gradient-text { background: linear-gradient(90deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+        input, textarea {
+            width: 100%; padding: 15px; margin: 10px 0; background: #000; border: 1px solid var(--border);
+            border-radius: 8px; color: white; outline: none; font-size: 1rem;
+        }
+        input:focus, textarea:focus { border-color: var(--primary); }
+
+        button {
+            width: 100%; padding: 15px; border: none; border-radius: 8px; font-weight: 600; font-size: 1.1rem;
+            cursor: pointer; background: var(--primary); color: white; margin-top: 10px;
+        }
+        button:hover { filter: brightness(1.2); transform: translateY(-2px); }
+        button:disabled { background: #555; cursor: not-allowed; transform: none; }
+
+        .btn-record { background: #ff4444; }
+        .btn-generate { background: linear-gradient(90deg, var(--primary), var(--secondary)); }
+
+        #visualizer { width: 100%; height: 60px; background: #000; border-radius: 8px; margin-bottom: 15px; }
+        
+        .status { text-align: center; font-size: 0.9rem; margin-top: 10px; color: #aaa; }
+        .loader { display: none; margin: 20px auto; border: 4px solid var(--border); border-top: 4px solid var(--primary); border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        audio { width: 100%; margin-top: 20px; outline: none; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1 class="gradient-text">VoiceTwin Pro</h1>
+    <p style="text-align: center; color: #888; margin-bottom: 30px;">Powered by Real AI (ElevenLabs Integration)</p>
+
+    <!-- API Key Section -->
+    <div class="glass-card">
+        <h3>1. API Setup ⚙️</h3>
+        <p style="font-size:0.8rem; color:#aaa;">(Get a free API key from elevenlabs.io. Required for real voice cloning)</p>
+        <input type="password" id="api-key" placeholder="Paste ElevenLabs API Key here (sk_...)">
+    </div>
+
+    <!-- Record Section -->
+    <div class="glass-card">
+        <h3>2. Record Voice 🎤</h3>
+        <p style="font-size:0.8rem; color:#aaa; margin-bottom: 10px;">(Record 5 to 10 seconds of clear audio)</p>
+        <canvas id="visualizer"></canvas>
+        <button id="record-btn" class="btn-record" onclick="toggleRecording()">🔴 Start Recording</button>
+        <div class="status" id="record-status">Waiting for audio...</div>
+    </div>
+
+    <!-- Clone & Generate Section -->
+    <div class="glass-card">
+        <h3>3. Type & Clone 🪄</h3>
+        <textarea id="text-input" rows="4" placeholder="Type what you want to hear in your cloned voice... (Supports English, Hindi, Bengali)"></textarea>
+        <button id="generate-btn" class="btn-generate" onclick="generateAIClone()">✨ Generate Real AI Voice</button>
+        
+        <div class="loader" id="loader"></div>
+        <div class="status" id="api-status"></div>
+        
+        <!-- Audio Output -->
+        <audio id="audio-player" controls style="display: none;"></audio>
+    </div>
+</div>
+
+<script>
+    // Audio Context & Recording Variables
+    let mediaRecorder;
+    let recordedChunks = [];
+    let audioBlob = null;
+    let isRecording = false;
+    let audioContext, analyser, canvasCtx;
+    let tempVoiceId = null; // Store ID to delete later if needed
+
+    const recordBtn = document.getElementById('record-btn');
+    const recordStatus = document.getElementById('record-status');
+    const visualizer = document.getElementById('visualizer');
+    const apiStatus = document.getElementById('api-status');
+    const loader = document.getElementById('loader');
+    const audioPlayer = document.getElementById('audio-player');
+    
+    // Set up canvas
+    canvasCtx = visualizer.getContext('2d');
+    function resizeCanvas() {
+        visualizer.width = visualizer.clientWidth;
+        visualizer.height = visualizer.clientHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    // 🎤 Recording Logic
+    async function toggleRecording() {
+        if (isRecording) {
+            mediaRecorder.stop();
+            return;
+        }
+
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            
+            // Visualizer setup
+            audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            analyser = audioContext.createAnalyser();
+            const source = audioContext.createMediaStreamSource(stream);
+            source.connect(analyser);
+            drawWaveform();
+
+            mediaRecorder = new MediaRecorder(stream);
+            recordedChunks = [];
+            
+            mediaRecorder.ondataavailable = e => { if (e.data.size > 0) recordedChunks.push(e.data); };
+            mediaRecorder.onstop = () => {
+                audioBlob = new Blob(recordedChunks, { type: 'audio/webm' }); // Capture audio blob
+                isRecording = false;
+                recordBtn.innerText = "🔴 Re-Record";
+                recordStatus.innerHTML = "<span style='color: #10b981'>✓ Voice captured! Size: " + (audioBlob.size / 1024).toFixed(2) + " KB</span>";
+                stream.getTracks().forEach(track => track.stop());
+            };
+
+            mediaRecorder.start();
+            isRecording = true;
+            recordBtn.innerText = "⏹️ Stop Recording";
+            recordStatus.innerText = "Recording... Read some text clearly!";
+            
+            // Auto stop after 10 seconds for good sample size
+            setTimeout(() => { if(isRecording) mediaRecorder.stop(); }, 10000);
+
+        } catch (err) {
+            alert("Microphone access is required!");
+            console.error(err);
+        }
+    }
+
+    // 🌊 Visualizer
+    function drawWaveform() {
+        if (!analyser || !isRecording) return;
+        requestAnimationFrame(drawWaveform);
+        const bufferLength = analyser.frequencyBinCount;
+        const dataArray = new Uint8Array(bufferLength);
+        analyser.getByteTimeDomainData(dataArray);
+
+        canvasCtx.fillStyle = '#000';
+        canvasCtx.fillRect(0, 0, visualizer.width, visualizer.height);
+        canvasCtx.lineWidth = 2;
+        canvasCtx.strokeStyle = '#ec4899';
+        canvasCtx.beginPath();
+
+        const sliceWidth = visualizer.width * 1.0 / bufferLength;
+        let x = 0;
+        for (let i = 0; i < bufferLength; i++) {
+            const v = dataArray[i] / 128.0;
+            const y = v * visualizer.height / 2;
+            if (i === 0) canvasCtx.moveTo(x, y); else canvasCtx.lineTo(x, y);
+            x += sliceWidth;
+        }
+        canvasCtx.stroke();
+    }
+
+    // ✨ True AI Voice Generation (ElevenLabs Integration)
+    async function generateAIClone() {
+        const apiKey = document.getElementById('api-key').value.trim();
+        const text = document.getElementById('text-input').value.trim();
+        const genBtn = document.getElementById('generate-btn');
+
+        if (!apiKey) return alert("Please enter your ElevenLabs API Key!");
+        if (!audioBlob) return alert("Please record your voice first!");
+        if (!text) return alert("Please type some text!");
+
+        try {
+            loader.style.display = "block";
+            genBtn.disabled = true;
+            audioPlayer.style.display = "none";
+
+            // STEP 1: Upload voice sample to ElevenLabs to create Instant Voice Clone
+            apiStatus.innerText = "Status: Uploading voice sample to AI...";
+            
+            let formData = new FormData();
+            formData.append('name', 'VoiceTwin_Temp_' + Date.now());
+            formData.append('description', 'Temporary voice clone');
+            formData.append('files', new File([audioBlob], 'sample.webm', { type: 'audio/webm' }));
+
+            const addVoiceRes = await fetch('https://api.elevenlabs.io/v1/voices/add', {
+                method: 'POST',
+                headers: { 'xi-api-key': apiKey },
+                body: formData
+            });
+
+            if (!addVoiceRes.ok) {
+                const err = await addVoiceRes.json();
+                throw new Error("Failed to clone voice: " + (err.detail?.message || err.message));
+            }
+
+            const voiceData = await addVoiceRes.json();
+            tempVoiceId = voiceData.voice_id;
+
+            // STEP 2: Generate TTS with the newly cloned voice
+            apiStatus.innerText = "Status: AI is generating speech... Please wait.";
+            
+            const ttsRes = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${tempVoiceId}`, {
+                method: 'POST',
+                headers: {
+                    'xi-api-key': apiKey,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    text: text,
+                    model_id: "eleven_multilingual_v2", // Best model for multiple languages
+                    voice_settings: { stability: 0.5, similarity_boost: 0.75 }
+                })
+            });
+
+            if (!ttsRes.ok) throw new Error("Failed to generate speech audio.");
+
+            // STEP 3: Play the audio
+            const audioResponseBlob = await ttsRes.blob();
+            const audioUrl = URL.createObjectURL(audioResponseBlob);
+            
+            audioPlayer.src = audioUrl;
+            audioPlayer.style.display = "block";
+            audioPlayer.play();
+            
+            apiStatus.innerHTML = "<span style='color: #10b981'>✓ Success! Playing your AI voice.</span>";
+
+            // STEP 4: Cleanup (Delete voice to save API limits - Optional)
+            // fetch(`https://api.elevenlabs.io/v1/voices/${tempVoiceId}`, { method: 'DELETE', headers: { 'xi-api-key': apiKey } });
+
+        } catch (error) {
+            console.error(error);
+            apiStatus.innerHTML = `<span style='color: #ff4444'>Error: ${error.message}</span>`;
+        } finally {
+            loader.style.display = "none";
+            genBtn.disabled = false;
+        }
+    }
+</script>
+</body>
+</html>
