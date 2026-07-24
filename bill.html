@@ -3,267 +3,791 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VoiceTwin Pro - True AI Voice Cloner</title>
-    
+    <!-- EDIT HERE: SEO Title Tag -->
+    <title>AnySite To App - Turn Any Website Into App Without Coding | Free PWA Maker 2026</title>
+    <!-- EDIT HERE: SEO Meta Description -->
+    <meta name="description" content="Create installable PWA app from any website in 10 seconds. No ads, No login, 100% Free. Works for YouTube, Instagram, Facebook.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://anysitetoapp.com" />
+
+    <!-- EDIT HERE: Open Graph Tags -->
+    <meta property="og:title" content="AnySite To App - Turn Any Website Into App Without Coding">
+    <meta property="og:description" content="Create installable PWA app from any website in 10 seconds. No ads, No login, 100% Free.">
+    <meta property="og:image" content="https://via.placeholder.com/1200x630.png?text=AnySite+To+App">
+    <meta property="og:url" content="https://anysitetoapp.com">
+    <meta property="og:type" content="website">
+
+    <!-- EDIT HERE: Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AnySite To App - Turn Any Website Into App Without Coding">
+    <meta name="twitter:description" content="Create installable PWA app from any website in 10 seconds. No ads, No login, 100% Free.">
+    <meta name="twitter:image" content="https://via.placeholder.com/1200x630.png?text=AnySite+To+App">
+
+    <!-- JSON-LD: SoftwareApplication Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "AnySite To App",
+      "operatingSystem": "All",
+      "applicationCategory": "DeveloperApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "Turn any website into a fully functional Progressive Web App (PWA) in 10 seconds. Free website to app converter."
+    }
+    </script>
+
+    <!-- JSON-LD: FAQPage Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type": "Question", "name": "What is a PWA?", "acceptedAnswer": {"@type": "Answer", "text": "A Progressive Web App is a website that looks and behaves like a native mobile app."}},
+        {"@type": "Question", "name": "Is it really free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, our tool is 100% free with no hidden charges, no login, and no ads."}},
+        {"@type": "Question", "name": "Do I need to know coding?", "acceptedAnswer": {"@type": "Answer", "text": "No! Just enter your URL and app name, and we generate the files automatically."}},
+        {"@type": "Question", "name": "Does it work on iOS and Android?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, generated PWAs are cross-platform and can be installed on iOS, Android, and Desktop."}},
+        {"@type": "Question", "name": "Can I publish this to the App Store?", "acceptedAnswer": {"@type": "Answer", "text": "PWAs bypass the App Store. Users install them directly from their mobile browsers."}},
+        {"@type": "Question", "name": "Does it work offline?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, the generated service worker caches the core files so the app shell loads offline."}},
+        {"@type": "Question", "name": "Will my app update automatically?", "acceptedAnswer": {"@type": "Answer", "text": "Yes! Because it pulls directly from your URL, any changes to your website instantly reflect in the app."}},
+        {"@type": "Question", "name": "What sites can I convert?", "acceptedAnswer": {"@type": "Answer", "text": "You can convert any valid URL, including YouTube channels, Shopify stores, WordPress blogs, and more."}},
+        {"@type": "Question", "name": "How do I host the files?", "acceptedAnswer": {"@type": "Answer", "text": "Extract the downloaded ZIP and upload the files to Netlify, Vercel, or any standard web host."}},
+        {"@type": "Question", "name": "Is my data secure?", "acceptedAnswer": {"@type": "Answer", "text": "Everything is generated locally in your browser. We do not store or track the apps you create."}}
+      ]
+    }
+    </script>
+
+    <!-- JSZip CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
-
+        /* EDIT HERE: Theme Variables */
         :root {
-            --bg: #0A0A0A;
-            --surface: #1A1A1A;
-            --primary: #8B5CF6;
-            --secondary: #ec4899;
-            --text: #ffffff;
-            --border: rgba(255,255,255,0.1);
+            --bg-color: #0A0A0A;
+            --accent-color: #00FF88;
+            --text-main: #FFFFFF;
+            --text-muted: #888888;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-blur: blur(30px);
+            --font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; transition: 0.3s; }
-        
-        body { background: var(--bg); color: var(--text); padding: 20px; }
-        .container { max-width: 800px; margin: 0 auto; }
-        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-family);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(0, 255, 136, 0.05), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(0, 255, 136, 0.08), transparent 25%);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Glassmorphism Class */
         .glass-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 25px;
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Gradient Border Animation */
+        .glass-card::before {
+            content: "";
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: conic-gradient(transparent, var(--accent-color), transparent 30%);
+            animation: rotate 4s linear infinite;
+            opacity: 0.15;
+            z-index: -1;
+        }
+
+        @keyframes rotate {
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Header */
+        header {
+            padding: 20px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 80px 0 40px;
+        }
+
+        /* EDIT HERE: H1 Style */
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #FFF, var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Typing Effect */
+        .typing-container {
+            display: inline-block;
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+        }
+        .typing-text {
+            border-right: 2px solid var(--accent-color);
+            white-space: nowrap;
+            overflow: hidden;
+            animation: typing 3s steps(40, end), blink-caret .75s step-end infinite;
+        }
+        @keyframes typing { from { width: 0 } to { width: 100% } }
+        @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: var(--accent-color); } }
+
+        /* Generator Layout */
+        .generator-layout {
+            display: flex;
+            gap: 50px;
+            align-items: flex-start;
+            margin-bottom: 80px;
+        }
+
+        @media (max-width: 900px) {
+            .generator-layout {
+                flex-direction: column;
+            }
+        }
+
+        /* Form Area */
+        .form-area {
+            flex: 1;
+            width: 100%;
+        }
+
+        .input-group {
             margin-bottom: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        h1, h2 { text-align: center; margin-bottom: 10px; }
-        .gradient-text { background: linear-gradient(90deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-
-        input, textarea {
-            width: 100%; padding: 15px; margin: 10px 0; background: #000; border: 1px solid var(--border);
-            border-radius: 8px; color: white; outline: none; font-size: 1rem;
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
         }
-        input:focus, textarea:focus { border-color: var(--primary); }
 
-        button {
-            width: 100%; padding: 15px; border: none; border-radius: 8px; font-weight: 600; font-size: 1.1rem;
-            cursor: pointer; background: var(--primary); color: white; margin-top: 10px;
+        .input-group input {
+            width: 100%;
+            padding: 15px 20px;
+            background: rgba(0,0,0,0.5);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            color: #FFF;
+            font-size: 1rem;
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.3s;
         }
-        button:hover { filter: brightness(1.2); transform: translateY(-2px); }
-        button:disabled { background: #555; cursor: not-allowed; transform: none; }
 
-        .btn-record { background: #ff4444; }
-        .btn-generate { background: linear-gradient(90deg, var(--primary), var(--secondary)); }
-
-        #visualizer { width: 100%; height: 60px; background: #000; border-radius: 8px; margin-bottom: 15px; }
+        .input-group input:focus {
+            border-color: var(--accent-color);
+        }
         
-        .status { text-align: center; font-size: 0.9rem; margin-top: 10px; color: #aaa; }
-        .loader { display: none; margin: 20px auto; border: 4px solid var(--border); border-top: 4px solid var(--primary); border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .input-group input[type="color"] {
+            padding: 5px;
+            height: 55px;
+            cursor: pointer;
+        }
 
-        audio { width: 100%; margin-top: 20px; outline: none; }
+        /* Button Glow */
+        .btn-generate {
+            width: 100%;
+            padding: 18px;
+            background: var(--accent-color);
+            color: #000;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
+        }
+
+        .btn-generate:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 40px rgba(0, 255, 136, 0.7);
+        }
+
+        .btn-share {
+            width: 100%;
+            padding: 15px;
+            background: transparent;
+            color: var(--accent-color);
+            border: 1px solid var(--accent-color);
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: all 0.3s;
+        }
+
+        .btn-share:hover {
+            background: rgba(0, 255, 136, 0.1);
+        }
+
+        /* Phone Preview */
+        .preview-area {
+            flex: 0 0 350px;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .phone-mockup {
+            width: 320px;
+            height: 650px;
+            border-radius: 40px;
+            border: 12px solid #222;
+            background: #000;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+        }
+
+        .phone-notch {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 25px;
+            background: #222;
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+            z-index: 10;
+        }
+
+        .phone-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: #fff;
+        }
+        
+        .preview-overlay {
+            position: absolute;
+            inset: 0;
+            background: #000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 5;
+            transition: opacity 0.5s;
+        }
+
+        .preview-icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+
+        .preview-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        /* Blog Section */
+        .content-section {
+            padding: 60px 0;
+            border-top: 1px solid var(--glass-border);
+        }
+        
+        .content-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            color: var(--accent-color);
+        }
+
+        .blog-content {
+            font-size: 1.1rem;
+            color: #ddd;
+        }
+
+        .blog-content h3 {
+            font-size: 1.5rem;
+            margin: 30px 0 15px;
+            color: #fff;
+        }
+
+        .blog-content p {
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        /* FAQ Section */
+        .faq-item {
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 15px;
+        }
+        .faq-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+        .faq-item p {
+            color: var(--text-muted);
+        }
+
+        /* Keywords Section */
+        .keywords-box {
+            background: rgba(0,0,0,0.5);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid var(--glass-border);
+            max-height: 250px;
+            overflow-y: auto;
+            font-size: 0.85rem;
+            color: #555;
+            line-height: 2;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid var(--glass-border);
+            margin-top: 50px;
+            color: var(--text-muted);
+        }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h1 class="gradient-text">VoiceTwin Pro</h1>
-    <p style="text-align: center; color: #888; margin-bottom: 30px;">Powered by Real AI (ElevenLabs Integration)</p>
+    <header>
+        <div class="container">
+            <a href="#" class="logo">⚡ AnySite<span>ToApp</span></a>
+        </div>
+    </header>
 
-    <!-- API Key Section -->
-    <div class="glass-card">
-        <h3>1. API Setup ⚙️</h3>
-        <p style="font-size:0.8rem; color:#aaa;">(Get a free API key from elevenlabs.io. Required for real voice cloning)</p>
-        <input type="password" id="api-key" placeholder="Paste ElevenLabs API Key here (sk_...)">
-    </div>
+    <main class="container">
+        <!-- EDIT HERE: Hero Content -->
+        <section class="hero">
+            <h1>Turn Any Website Into App.<br>No Ads. No Login. 10 Seconds.</h1>
+            <div class="typing-container">
+                <div class="typing-text">Create beautiful Progressive Web Apps (PWAs) instantly.</div>
+            </div>
+        </section>
 
-    <!-- Record Section -->
-    <div class="glass-card">
-        <h3>2. Record Voice 🎤</h3>
-        <p style="font-size:0.8rem; color:#aaa; margin-bottom: 10px;">(Record 5 to 10 seconds of clear audio)</p>
-        <canvas id="visualizer"></canvas>
-        <button id="record-btn" class="btn-record" onclick="toggleRecording()">🔴 Start Recording</button>
-        <div class="status" id="record-status">Waiting for audio...</div>
-    </div>
+        <!-- Generator Section -->
+        <section class="generator-layout">
+            <div class="form-area glass-card">
+                <!-- EDIT HERE: Form Inputs -->
+                <div class="input-group">
+                    <label>App Name</label>
+                    <input type="text" id="appName" placeholder="e.g. My Awesome App" value="My Web App">
+                </div>
+                <div class="input-group">
+                    <label>Website URL</label>
+                    <input type="url" id="appUrl" placeholder="https://yourwebsite.com" value="https://wikipedia.org">
+                </div>
+                <div class="input-group">
+                    <label>App Icon (Emoji)</label>
+                    <input type="text" id="appIcon" placeholder="e.g. 🚀" value="🚀" maxlength="2">
+                </div>
+                <div class="input-group">
+                    <label>Theme Color</label>
+                    <input type="color" id="appColor" value="#00FF88">
+                </div>
+                
+                <button class="btn-generate" onclick="generateApp()">🚀 Generate & Download Zip</button>
+                
+                <!-- EDIT HERE: Share Button -->
+                <button class="btn-share" onclick="copyShareLink()">🔗 Copy Viral Share Link</button>
+            </div>
 
-    <!-- Clone & Generate Section -->
-    <div class="glass-card">
-        <h3>3. Type & Clone 🪄</h3>
-        <textarea id="text-input" rows="4" placeholder="Type what you want to hear in your cloned voice... (Supports English, Hindi, Bengali)"></textarea>
-        <button id="generate-btn" class="btn-generate" onclick="generateAIClone()">✨ Generate Real AI Voice</button>
+            <div class="preview-area">
+                <div class="phone-mockup">
+                    <div class="phone-notch"></div>
+                    <div class="preview-overlay" id="previewSplash" style="background-color: #00FF88;">
+                        <div class="preview-icon" id="previewIcon">🚀</div>
+                        <div class="preview-title" id="previewTitle">My Web App</div>
+                    </div>
+                    <iframe class="phone-iframe" id="previewFrame" src="https://wikipedia.org" sandbox="allow-scripts allow-same-origin"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- EDIT HERE: Blog Section -->
+        <section class="content-section">
+            <h2>Ultimate Guide: How to Turn Any Website Into App in 2026</h2>
+            <div class="blog-content">
+                <p>In 2026, the digital landscape has fundamentally shifted. The barrier between web and native applications has dissolved completely, thanks to the massive advancements in Progressive Web App (PWA) technology. If you are wondering how to turn any website into an app without writing a single line of code, you are in the right place. Our 100% free tool empowers creators, business owners, and developers to convert their web presence into an installable mobile app instantly.</p>
+                
+                <h3>What is a PWA (Progressive Web App)?</h3>
+                <p>A Progressive Web App is a website that utilizes modern web capabilities to deliver an app-like experience to users. These apps deploy safely to any device—iOS, Android, Windows, or Mac—directly from the browser. They bypass the traditional app store monopolies, eliminating the 30% revenue cuts and the tedious weeks-long review processes. A PWA looks, feels, and operates exactly like a native app. It sits on the user's home screen, works offline, and supports advanced features like push notifications.</p>
+                
+                <h3>Why Convert Your Website to an App?</h3>
+                <p>The transition from a standard website to a mobile application carries immense benefits. First, it radically increases user retention. When your icon sits on a user's home screen, they are 300% more likely to return to your platform. Second, performance is unparalleled. By utilizing a Service Worker (which our tool automatically generates for you), your app caches essential assets. This means it loads instantaneously, even on terrible network connections or complete offline states.</p>
+                
+                <p>Furthermore, building a native iOS and Android app traditionally costs upwards of $50,000 and requires maintaining two separate codebases. By converting your existing responsive website into a PWA, you leverage your current web infrastructure. Updates are instant. Whenever you update your website, the app automatically reflects those changes without the user needing to download an update from an app store.</p>
+                
+                <h3>How Our Tool Works (No Coding Required)</h3>
+                <p>We've engineered the most robust, zero-configuration PWA generator on the market. Here is exactly what happens under the hood when you click "Generate & Download Zip":</p>
+                <p><strong>1. Manifest Generation:</strong> We dynamically create a <code>manifest.json</code> file tailored to your inputs. This file dictates how your app appears on the OS, defining the name, theme color, standalone display mode, and dynamically generating high-resolution SVG icons from your chosen emoji.</p>
+                <p><strong>2. Service Worker Creation:</strong> We write a custom <code>sw.js</code> file that registers background caching. This script acts as a network proxy, ensuring that if your user loses internet connection, they still see a beautifully rendered application shell instead of a browser dinosaur game.</p>
+                <p><strong>3. Smart Wrapper:</strong> We construct an <code>index.html</code> entry point. This file contains a native-feeling splash screen matching your theme color, dark-mode forcing CSS capabilities, and a secure iframe that beautifully embeds your target URL into the app frame. We even inject a floating download button for media-heavy sites.</p>
+                
+                <h3>Use Cases</h3>
+                <p>Who uses a website to app converter? E-commerce store owners on Shopify or WooCommerce use it to give loyal customers a direct shopping portal. Content creators wrap their YouTube channels or Instagram profiles into personal apps. News bloggers convert WordPress sites into fast-loading mobile readers. The possibilities are entirely limitless. No ads, no hidden fees, just pure technological empowerment.</p>
+                
+                <p>Stop paying thousands of dollars for simple web wrappers. Use the AnySite To App converter today and join the web revolution of 2026. Stand out, increase your conversions, and give your users the premium mobile experience they deserve.</p>
+            </div>
+        </section>
+
+        <!-- EDIT HERE: FAQ Section -->
+        <section class="content-section">
+            <h2>Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <h3>What is a PWA?</h3>
+                <p>A Progressive Web App is a website that looks and behaves like a native mobile app.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Is it really free?</h3>
+                <p>Yes, our tool is 100% free with no hidden charges, no login, and no ads.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Do I need to know coding?</h3>
+                <p>No! Just enter your URL and app name, and we generate the files automatically.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Does it work on iOS and Android?</h3>
+                <p>Yes, generated PWAs are cross-platform and can be installed on iOS, Android, and Desktop.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Can I publish this to the App Store?</h3>
+                <p>PWAs bypass the App Store. Users install them directly from their mobile browsers.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Does it work offline?</h3>
+                <p>Yes, the generated service worker caches the core files so the app shell loads offline.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Will my app update automatically?</h3>
+                <p>Yes! Because it pulls directly from your URL, any changes to your website instantly reflect.</p>
+            </div>
+            <div class="faq-item">
+                <h3>What sites can I convert?</h3>
+                <p>You can convert any valid URL, including YouTube, Shopify stores, WordPress, and more.</p>
+            </div>
+            <div class="faq-item">
+                <h3>How do I host the files?</h3>
+                <p>Extract the ZIP and upload the files to Netlify, Vercel, GitHub Pages, or any web host.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Is my data secure?</h3>
+                <p>Everything is generated locally in your browser. We do not store or track the apps.</p>
+            </div>
+        </section>
+
+        <!-- EDIT HERE: Viral Keywords Section -->
+        <section class="content-section">
+            <h2>We Rank For 1000+ Keywords</h2>
+            <div class="keywords-box" id="keywordsContainer">
+                <!-- Dynamically filled to prevent huge DOM bloat in source code, but executed immediately for bots -->
+                website to app converter, pwa generator, turn website into app, no code app maker, free app builder, convert website to android app, make website into app free, create app from url, web to app converter online, how to make website into app without coding, youtube to app converter, instagram to app maker, facebook pwa generator, blog to app converter, ecommerce website to app converter, business website to app, news website to app
+            </div>
+        </section>
+
+    </main>
+
+    <!-- EDIT HERE: Footer -->
+    <footer>
+        <div class="container">
+            <p>Made with ❤️ by Mujahar</p>
+            <p style="font-size: 0.8rem; margin-top: 10px; opacity: 0.5;">© 2026 AnySiteToApp. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- App Generation Logic -->
+    <script>
+        // Real-time Preview Updater
+        const appNameIn = document.getElementById('appName');
+        const appUrlIn = document.getElementById('appUrl');
+        const appIconIn = document.getElementById('appIcon');
+        const appColorIn = document.getElementById('appColor');
         
-        <div class="loader" id="loader"></div>
-        <div class="status" id="api-status"></div>
-        
-        <!-- Audio Output -->
-        <audio id="audio-player" controls style="display: none;"></audio>
-    </div>
-</div>
+        const previewTitle = document.getElementById('previewTitle');
+        const previewIcon = document.getElementById('previewIcon');
+        const previewSplash = document.getElementById('previewSplash');
+        const previewFrame = document.getElementById('previewFrame');
 
-<script>
-    // Audio Context & Recording Variables
-    let mediaRecorder;
-    let recordedChunks = [];
-    let audioBlob = null;
-    let isRecording = false;
-    let audioContext, analyser, canvasCtx;
-    let tempVoiceId = null; // Store ID to delete later if needed
-
-    const recordBtn = document.getElementById('record-btn');
-    const recordStatus = document.getElementById('record-status');
-    const visualizer = document.getElementById('visualizer');
-    const apiStatus = document.getElementById('api-status');
-    const loader = document.getElementById('loader');
-    const audioPlayer = document.getElementById('audio-player');
-    
-    // Set up canvas
-    canvasCtx = visualizer.getContext('2d');
-    function resizeCanvas() {
-        visualizer.width = visualizer.clientWidth;
-        visualizer.height = visualizer.clientHeight;
-    }
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-
-    // 🎤 Recording Logic
-    async function toggleRecording() {
-        if (isRecording) {
-            mediaRecorder.stop();
-            return;
+        function updatePreview() {
+            previewTitle.innerText = appNameIn.value || 'My Web App';
+            previewIcon.innerText = appIconIn.value || '🚀';
+            previewSplash.style.backgroundColor = appColorIn.value;
+            
+            // Re-trigger splash animation
+            previewSplash.style.opacity = '1';
+            setTimeout(() => {
+                previewSplash.style.opacity = '0';
+            }, 800);
         }
 
-        try {
-            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-            
-            // Visualizer setup
-            audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            analyser = audioContext.createAnalyser();
-            const source = audioContext.createMediaStreamSource(stream);
-            source.connect(analyser);
-            drawWaveform();
+        // Update iframe src only on blur to prevent constant reloading while typing
+        appUrlIn.addEventListener('blur', () => {
+            let url = appUrlIn.value;
+            if (url && !url.startsWith('http')) {
+                url = 'https://' + url;
+                appUrlIn.value = url;
+            }
+            previewFrame.src = url || 'https://wikipedia.org';
+        });
 
-            mediaRecorder = new MediaRecorder(stream);
-            recordedChunks = [];
-            
-            mediaRecorder.ondataavailable = e => { if (e.data.size > 0) recordedChunks.push(e.data); };
-            mediaRecorder.onstop = () => {
-                audioBlob = new Blob(recordedChunks, { type: 'audio/webm' }); // Capture audio blob
-                isRecording = false;
-                recordBtn.innerText = "🔴 Re-Record";
-                recordStatus.innerHTML = "<span style='color: #10b981'>✓ Voice captured! Size: " + (audioBlob.size / 1024).toFixed(2) + " KB</span>";
-                stream.getTracks().forEach(track => track.stop());
-            };
+        // Event listeners for instant preview
+        appNameIn.addEventListener('input', updatePreview);
+        appIconIn.addEventListener('input', updatePreview);
+        appColorIn.addEventListener('input', updatePreview);
 
-            mediaRecorder.start();
-            isRecording = true;
-            recordBtn.innerText = "⏹️ Stop Recording";
-            recordStatus.innerText = "Recording... Read some text clearly!";
-            
-            // Auto stop after 10 seconds for good sample size
-            setTimeout(() => { if(isRecording) mediaRecorder.stop(); }, 10000);
+        // Initial preview fade
+        setTimeout(() => {
+            previewSplash.style.opacity = '0';
+        }, 1500);
 
-        } catch (err) {
-            alert("Microphone access is required!");
-            console.error(err);
-        }
-    }
-
-    // 🌊 Visualizer
-    function drawWaveform() {
-        if (!analyser || !isRecording) return;
-        requestAnimationFrame(drawWaveform);
-        const bufferLength = analyser.frequencyBinCount;
-        const dataArray = new Uint8Array(bufferLength);
-        analyser.getByteTimeDomainData(dataArray);
-
-        canvasCtx.fillStyle = '#000';
-        canvasCtx.fillRect(0, 0, visualizer.width, visualizer.height);
-        canvasCtx.lineWidth = 2;
-        canvasCtx.strokeStyle = '#ec4899';
-        canvasCtx.beginPath();
-
-        const sliceWidth = visualizer.width * 1.0 / bufferLength;
-        let x = 0;
-        for (let i = 0; i < bufferLength; i++) {
-            const v = dataArray[i] / 128.0;
-            const y = v * visualizer.height / 2;
-            if (i === 0) canvasCtx.moveTo(x, y); else canvasCtx.lineTo(x, y);
-            x += sliceWidth;
-        }
-        canvasCtx.stroke();
-    }
-
-    // ✨ True AI Voice Generation (ElevenLabs Integration)
-    async function generateAIClone() {
-        const apiKey = document.getElementById('api-key').value.trim();
-        const text = document.getElementById('text-input').value.trim();
-        const genBtn = document.getElementById('generate-btn');
-
-        if (!apiKey) return alert("Please enter your ElevenLabs API Key!");
-        if (!audioBlob) return alert("Please record your voice first!");
-        if (!text) return alert("Please type some text!");
-
-        try {
-            loader.style.display = "block";
-            genBtn.disabled = true;
-            audioPlayer.style.display = "none";
-
-            // STEP 1: Upload voice sample to ElevenLabs to create Instant Voice Clone
-            apiStatus.innerText = "Status: Uploading voice sample to AI...";
-            
-            let formData = new FormData();
-            formData.append('name', 'VoiceTwin_Temp_' + Date.now());
-            formData.append('description', 'Temporary voice clone');
-            formData.append('files', new File([audioBlob], 'sample.webm', { type: 'audio/webm' }));
-
-            const addVoiceRes = await fetch('https://api.elevenlabs.io/v1/voices/add', {
-                method: 'POST',
-                headers: { 'xi-api-key': apiKey },
-                body: formData
-            });
-
-            if (!addVoiceRes.ok) {
-                const err = await addVoiceRes.json();
-                throw new Error("Failed to clone voice: " + (err.detail?.message || err.message));
+        // Generate Zip Logic using JSZip
+        async function generateApp() {
+            if (typeof JSZip === 'undefined') {
+                alert("JSZip library is still loading. Please try again in a second.");
+                return;
             }
 
-            const voiceData = await addVoiceRes.json();
-            tempVoiceId = voiceData.voice_id;
+            const name = appNameIn.value || 'My Web App';
+            const url = appUrlIn.value || 'https://wikipedia.org';
+            const icon = appIconIn.value || '🚀';
+            const color = appColorIn.value || '#00FF88';
 
-            // STEP 2: Generate TTS with the newly cloned voice
-            apiStatus.innerText = "Status: AI is generating speech... Please wait.";
-            
-            const ttsRes = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${tempVoiceId}`, {
-                method: 'POST',
-                headers: {
-                    'xi-api-key': apiKey,
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    text: text,
-                    model_id: "eleven_multilingual_v2", // Best model for multiple languages
-                    voice_settings: { stability: 0.5, similarity_boost: 0.75 }
-                })
+            const zip = new JSZip();
+
+            // 1. Generate index.html
+            const indexHtml = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>${name}</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="${color}">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <style>
+        body, html { margin: 0; padding: 0; height: 100%; width: 100%; background: #000; overflow: hidden; font-family: system-ui, sans-serif; }
+        
+        /* Force Dark Mode using CSS filters on iframe */
+        .force-dark { filter: invert(1) hue-rotate(180deg); background: #fff; }
+        
+        iframe { width: 100%; height: 100%; border: none; display: block; }
+        
+        .splash { position: fixed; inset: 0; background: ${color}; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 9999; transition: opacity 0.5s ease-out; }
+        .splash-icon { font-size: 100px; animation: bounce 2s infinite; }
+        .splash-title { color: #fff; font-size: 28px; font-weight: 800; margin-top: 20px; text-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+        
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+        
+        /* Floating Image Download Button */
+        .fab-download { position: fixed; bottom: 30px; right: 30px; background: rgba(255,255,255,0.9); color: #000; padding: 12px 24px; border-radius: 50px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.4); z-index: 1000; display: flex; align-items: center; gap: 8px; backdrop-filter: blur(10px); transition: transform 0.2s; }
+        .fab-download:active { transform: scale(0.95); }
+    </style>
+</head>
+<body>
+    <div class="splash" id="splashScreen">
+        <div class="splash-icon">${icon}</div>
+        <div class="splash-title">${name}</div>
+    </div>
+    
+    <iframe src="${url}" class="force-dark" sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
+    
+    <a href="javascript:void(0)" class="fab-download" onclick="alert('Long press images on the page to download, or use native share menu!')">
+        📥 Save
+    </a>
+
+    <script>
+        // Remove splash screen after load
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const splash = document.getElementById('splashScreen');
+                splash.style.opacity = '0';
+                setTimeout(() => splash.remove(), 500);
+            }, 1500);
+        });
+
+        // Register Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js').then(reg => {
+                    console.log('SW registered!', reg);
+                }).catch(err => console.log('SW registration failed', err));
             });
-
-            if (!ttsRes.ok) throw new Error("Failed to generate speech audio.");
-
-            // STEP 3: Play the audio
-            const audioResponseBlob = await ttsRes.blob();
-            const audioUrl = URL.createObjectURL(audioResponseBlob);
-            
-            audioPlayer.src = audioUrl;
-            audioPlayer.style.display = "block";
-            audioPlayer.play();
-            
-            apiStatus.innerHTML = "<span style='color: #10b981'>✓ Success! Playing your AI voice.</span>";
-
-            // STEP 4: Cleanup (Delete voice to save API limits - Optional)
-            // fetch(`https://api.elevenlabs.io/v1/voices/${tempVoiceId}`, { method: 'DELETE', headers: { 'xi-api-key': apiKey } });
-
-        } catch (error) {
-            console.error(error);
-            apiStatus.innerHTML = `<span style='color: #ff4444'>Error: ${error.message}</span>`;
-        } finally {
-            loader.style.display = "none";
-            genBtn.disabled = false;
         }
+    </script>
+</body>
+</html>`;
+
+            // 2. Generate manifest.json
+            const manifestJson = `{
+  "name": "${name}",
+  "short_name": "${name}",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "${color}",
+  "theme_color": "${color}",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>${icon}</text></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
     }
-</script>
+  ]
+}`;
+
+            // 3. Generate sw.js (Service Worker)
+            const swJs = `const CACHE_NAME = 'pwa-app-cache-v1';
+const urlsToCache = [
+  '/',
+  '/index.html',
+  '/manifest.json'
+];
+
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then(cache => cache.addAll(urlsToCache))
+  );
+  self.skipWaiting();
+});
+
+self.addEventListener('activate', event => {
+  event.waitUntil(self.clients.claim());
+});
+
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    caches.match(event.request)
+      .then(response => {
+        // Return cache hit or fetch from network
+        return response || fetch(event.request).catch(() => caches.match('/index.html'));
+      })
+  );
+});`;
+
+            // Add files to Zip
+            zip.file("index.html", indexHtml);
+            zip.file("manifest.json", manifestJson);
+            zip.file("sw.js", swJs);
+
+            // Generate and trigger download
+            const btn = document.querySelector('.btn-generate');
+            const originalText = btn.innerText;
+            btn.innerText = "⏳ Generating...";
+            
+            try {
+                const content = await zip.generateAsync({ type: "blob" });
+                const a = document.createElement("a");
+                a.href = URL.createObjectURL(content);
+                a.download = `${name.replace(/\s+/g, '_').toLowerCase()}_pwa.zip`;
+                a.click();
+                URL.revokeObjectURL(a.href);
+                btn.innerText = "✅ Downloaded Successfully!";
+                setTimeout(() => btn.innerText = originalText, 3000);
+            } catch (err) {
+                console.error(err);
+                alert("Error generating ZIP file.");
+                btn.innerText = originalText;
+            }
+        }
+
+        // Share Link function
+        function copyShareLink() {
+            const currentUrl = window.location.href.split('?')[0];
+            const text = `I made an app from any website in 10 seconds for FREE 🔥 Check it: ${currentUrl}`;
+            
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = document.querySelector('.btn-share');
+                const originalText = btn.innerText;
+                btn.innerText = "✅ Link Copied!";
+                setTimeout(() => btn.innerText = originalText, 2000);
+            }).catch(err => {
+                alert("Failed to copy link. " + text);
+            });
+        }
+
+        // Generate the 1000+ Viral Keywords algorithmically for SEO structure
+        window.addEventListener('DOMContentLoaded', () => {
+            const prefixes = ["turn", "convert", "make", "build", "create", "generate"];
+            const niches = ["website", "youtube", "shopify", "wordpress", "blog", "news", "forum", "store", "business", "facebook", "instagram", "tiktok", "twitter", "portfolio", "ecommerce", "directory", "landing page", "webapp"];
+            const suffixes = ["into app", "to app", "to pwa", "into pwa", "to android app", "to ios app", "app maker free", "without coding", "online tool"];
+            
+            let allKeywords = ["website to app converter", "pwa generator", "turn website into app", "no code app maker", "free app builder"];
+            
+            // Loop permutations until we hit massive amount
+            for(let p of prefixes) {
+                for(let n of niches) {
+                    for(let s of suffixes) {
+                        allKeywords.push(`${p} ${n} ${s}`);
+                    }
+                }
+            }
+            // Append massive text block to container
+            document.getElementById('keywordsContainer').innerText = allKeywords.join(', ') + ', and 1000+ more website to app conversion keywords in 2026.';
+        });
+    </script>
 </body>
 </html>
