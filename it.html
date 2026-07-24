@@ -1,1 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Gradient Generator 2026 | 20 Color, Animated, Mesh + PNG Export</title>
+    <meta name="description" content="World's fastest Free Gradient Generator. 20 colors, Animated, Mesh, AI Name, Image-to-gradient. CSS, Tailwind, React, Flutter 1-click copy + real 4K PNG, SVG & JPG export.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://gradientgod.com">
+    <meta property="og:title" content="Free Gradient Generator 2026 | 20 Color, Animated, Mesh + PNG">
+    <meta property="og:description" content="World's fastest Free Gradient Generator. 20 colors, Animated, Mesh, AI Name. Real 4K PNG, SVG, JPG export.">
+    <meta property="og:type" content="website">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type": "Question", "name": "Gradient Generator ki free?", "acceptedAnswer": {"@type": "Answer", "text": "Haa, amader gradient generator 100% free ebong kono login chara use kora jay."}},
+        {"@type": "Question", "name": "Mesh Gradient ki?", "acceptedAnswer": {"@type": "Answer", "text": "Mesh gradient holo multi-point color blending jeta modern design e khub popular."}},
+        {"@type": "Question", "name": "Image theke gradient kivabe banabo?", "acceptedAnswer": {"@type": "Answer", "text": "Apnar photo upload korun, amader tool auto color extract kore gradient baniye dibe."}},
+        {"@type": "Question", "name": "Animated gradient ki mobile e kaj korbe?", "acceptedAnswer": {"@type": "Answer", "text": "Haa, CSS keyframes er maddhome animated gradient shob modern browser ebong mobile e kaj kore."}},
+        {"@type": "Question", "name": "PNG koto resolution e download hobe?", "acceptedAnswer": {"@type": "Answer", "text": "Apni high-resolution 4K (3840×2160) PNG, SVG vector ebong JPG export korte parben."}},
+        {"@type": "Question", "name": "Code ki React/Tailwind er jonno pabo?", "acceptedAnswer": {"@type": "Answer", "text": "Haa, 1 click e CSS, Tailwind, React, ebong Flutter code copy korte parben."}},
+        {"@type": "Question", "name": "AI Name kivabe kaj kore?", "acceptedAnswer": {"@type": "Answer", "text": "Color code analyze kore smart AI algorithm sundor professional nam suggest kore."}},
+        {"@type": "Question", "name": "Save kora gradient ki delete hoye jabe?", "acceptedAnswer": {"@type": "Answer", "text": "Nah, apnar browser er LocalStorage e auto-save thakbe."}}
+      ]
+    }
+    </script>
+    <style>
+        :root {
+            --bg-main: #090d16;
+            --bg-panel: #111827;
+            --bg-card: #1f2937;
+            --border-color: #374151;
+            --text-main: #f9fafb;
+            --text-muted: #9ca3af;
+            --accent: #6366f1;
+            --accent-hover: #4f46e5;
+            --neon: #00ff88;
+            --font: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        .light-mode {
+            --bg-main: #f3f4f6;
+            --bg-panel: #ffffff;
+            --bg-card: #e5e7eb;
+            --border-color: #d1d5db;
+            --text-main: #111827;
+            --text-muted: #4b5563;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: var(--font); }
+        body { background: var(--bg-main); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; transition: background 0.3s, color 0.3s; }
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 12px 20px; background: var(--bg-panel); border-bottom: 1px solid var(--border-color);
+            position: sticky; top: 0; z-index: 100; flex-wrap: wrap; gap: 10px;
+        }
+        .logo { font-size: 1.35rem; font-weight: 800; display: flex; gap: 8px; align-items: center; }
+        .logo span { color: var(--neon); }
+        .header-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+        .btn { background: var(--accent); color: #fff; border: none; padding: 8px 14px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: 0.2s; font-size: 0.85rem; }
+        .btn:hover { background: var(--accent-hover); transform: translateY(-1px); }
+        .btn:focus-visible { outline: 2px solid var(--neon); outline-offset: 2px; }
+        .btn-outline { background: transparent; border: 1px solid var(--border-color); color: var(--text-main); }
+        .btn-outline:hover { background: var(--bg-card); }
+        .btn-sm { padding: 6px 10px; font-size: 0.78rem; }
+        .workspace {
+            display: grid; grid-template-columns: 400px 1fr; flex: 1; height: calc(100vh - 60px); overflow: hidden;
+        }
+        @media (max-width: 960px) {
+            .workspace { grid-template-columns: 1fr; height: auto; overflow: visible; }
+            .sidebar { max-height: none; border-right: none; border-bottom: 1px solid var(--border-color); }
+            .preview-box { max-height: 420px; min-height: 280px; }
+        }
+        .sidebar {
+            background: var(--bg-panel); border-right: 1px solid var(--border-color);
+            padding: 16px; overflow-y: auto; display: flex; flex-direction: column; gap: 16px;
+        }
+        .section-title { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 8px; font-weight: 700; }
+        .control-group { background: var(--bg-card); padding: 14px; border-radius: 12px; border: 1px solid var(--border-color); }
+        .color-list { display: flex; flex-direction: column; gap: 8px; max-height: 200px; overflow-y: auto; }
+        .color-item { display: flex; align-items: center; gap: 8px; background: var(--bg-panel); padding: 8px 10px; border-radius: 8px; border: 1px solid var(--border-color); flex-wrap: wrap; }
+        .color-item input[type="color"] { border: none; width: 32px; height: 32px; border-radius: 6px; cursor: pointer; background: none; }
+        .color-item input[type="text"] { background: transparent; border: 1px solid var(--border-color); color: var(--text-main); font-weight: 600; width: 78px; padding: 4px 6px; border-radius: 4px; font-size: 0.8rem; }
+        .color-item input[type="range"] { flex: 1; min-width: 60px; accent-color: var(--neon); }
+        .del-color { background: #ef4444; color: #fff; border: none; width: 24px; height: 24px; border-radius: 50%; cursor: pointer; font-size: 12px; }
+        .color-actions { display: flex; gap: 4px; }
+        .type-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 10px; }
+        .type-btn { background: var(--bg-panel); border: 1px solid var(--border-color); color: var(--text-main); padding: 8px; border-radius: 6px; font-size: 0.78rem; cursor: pointer; text-align: center; }
+        .type-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+        .type-btn:focus-visible { outline: 2px solid var(--neon); }
+        .direction-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-top: 8px; }
+        .dir-btn { background: var(--bg-panel); border: 1px solid var(--border-color); color: var(--text-main); padding: 6px; border-radius: 6px; cursor: pointer; font-size: 0.72rem; text-align: center; }
+        .dir-btn:hover { background: var(--border-color); }
+        .slider-row { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; font-size: 0.88rem; gap: 10px; }
+        .slider-row input[type="range"] { width: 55%; accent-color: var(--neon); }
+        .preview-dashboard {
+            position: relative; display: flex; flex-direction: column; justify-content: center; align-items: center;
+            padding: 24px; overflow: hidden; background-image: radial-gradient(var(--border-color) 1px, transparent 1px); background-size: 20px 20px;
+        }
+        .preview-box {
+            width: 100%; height: 100%; max-height: 580px; min-height: 320px; border-radius: 24px; border: 2px solid var(--border-color);
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); position: relative; overflow: hidden; transition: 0.3s;
+            display: flex; justify-content: center; align-items: center;
+        }
+        .preview-box.animated {
+            background-size: 200% 200% !important;
+            animation: gradientAnim 8s ease infinite;
+        }
+        @keyframes gradientAnim {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .noise-layer {
+            position: absolute; inset: 0; pointer-events: none; opacity: 0; mix-blend-mode: overlay;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+            background-size: 180px 180px;
+        }
+        .glass-card-preview {
+            background: rgba(255,255,255,0.12); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255,255,255,0.22); padding: 28px; border-radius: 20px; color: #fff; text-align: center;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.35); display: none; z-index: 2;
+        }
+        .glass-card-preview h2 { font-size: 1.7rem; margin-bottom: 6px; }
+        .preview-floating-bar {
+            position: absolute; bottom: 16px; display: flex; gap: 8px; background: rgba(0,0,0,0.65);
+            backdrop-filter: blur(10px); padding: 10px 14px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.12); flex-wrap: wrap; justify-content: center;
+        }
+        .ai-badge { background: linear-gradient(135deg, #6366f1, #a855f7); color: #fff; padding: 6px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; display: inline-block; margin-bottom: 6px; }
+        .code-tabs { display: flex; gap: 4px; margin-bottom: 8px; flex-wrap: wrap; }
+        .code-tab { background: var(--bg-panel); border: 1px solid var(--border-color); color: var(--text-muted); padding: 5px 10px; border-radius: 4px; font-size: 0.72rem; cursor: pointer; }
+        .code-tab.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+        .code-output { background: #0a0a0a; color: var(--neon); padding: 12px; border-radius: 8px; font-family: ui-monospace, monospace; font-size: 0.8rem; overflow-x: auto; white-space: pre-wrap; position: relative; min-height: 52px; }
+        .copy-code-btn { position: absolute; top: 8px; right: 8px; background: #333; color: #fff; border: none; padding: 4px 8px; border-radius: 4px; font-size: 0.7rem; cursor: pointer; }
+        .presets-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; max-height: 140px; overflow-y: auto; }
+        .preset-item { height: 34px; border-radius: 6px; cursor: pointer; border: 1px solid var(--border-color); transition: transform 0.15s; }
+        .preset-item:hover { transform: scale(1.06); }
+        .seo-section { max-width: 1000px; margin: 50px auto; padding: 0 20px; }
+        .seo-section h1 { font-size: 2.2rem; margin-bottom: 16px; }
+        .seo-section h2 { font-size: 1.6rem; margin: 28px 0 12px; color: var(--accent); }
+        .seo-section p { line-height: 1.75; color: var(--text-muted); margin-bottom: 14px; }
+        .faq-box { background: var(--bg-panel); border: 1px solid var(--border-color); border-radius: 12px; padding: 16px; margin-bottom: 12px; }
+        .faq-box h3 { margin-bottom: 6px; cursor: pointer; }
+        footer { text-align: center; padding: 24px; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.88rem; }
+        /* Toast */
+        #toastContainer { position: fixed; bottom: 24px; right: 24px; z-index: 9999; display: flex; flex-direction: column; gap: 8px; pointer-events: none; }
+        .toast {
+            background: #111827; color: #fff; padding: 12px 18px; border-radius: 10px; border: 1px solid #374151;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4); font-size: 0.88rem; opacity: 0; transform: translateY(12px);
+            transition: 0.3s; pointer-events: auto; max-width: 320px;
+        }
+        .toast.show { opacity: 1; transform: translateY(0); }
+        .toast.success { border-left: 4px solid var(--neon); }
+        .toast.info { border-left: 4px solid var(--accent); }
+        .export-menu { display: flex; gap: 6px; flex-wrap: wrap; }
+        .favorites-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+        .fav-chip { width: 36px; height: 28px; border-radius: 6px; cursor: pointer; border: 1px solid var(--border-color); }
+        .image-upload-wrap { display: flex; flex-direction: column; gap: 8px; }
+        .image-upload-wrap input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            background: var(--bg-panel);
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            cursor: pointer;
+        }
+        .image-upload-wrap input[type="file"]::file-selector-button {
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            margin-right: 10px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body id="bodyRoot">
+    <header>
+        <div class="logo" aria-label="GradientGod logo">🌈 Gradient<span>God</span></div>
+        <div class="header-actions">
+            <button class="btn btn-outline btn-sm" onclick="undoState()" aria-label="Undo last change">↩️ Undo</button>
+            <button class="btn btn-outline btn-sm" onclick="redoState()" aria-label="Redo">Redo ↪️</button>
+            <button class="btn btn-outline btn-sm" onclick="toggleTheme()" aria-label="Toggle light dark theme">☀️/🌙</button>
+            <div class="export-menu">
+                <button class="btn btn-sm" onclick="exportPNG()" aria-label="Export 4K PNG">📥 4K PNG</button>
+                <button class="btn btn-outline btn-sm" onclick="exportSVG()" aria-label="Export SVG">SVG</button>
+                <button class="btn btn-outline btn-sm" onclick="exportJPG()" aria-label="Export JPG">JPG</button>
+            </div>
+        </div>
+    </header>
 
+    <div class="workspace">
+        <aside class="sidebar" aria-label="Gradient controls">
+            <div>
+                <span class="ai-badge" id="aiNameBadge" role="status">✨ AI: Neon Sunset</span>
+                <div id="brandMatchText" style="font-size: 0.8rem; color: var(--text-muted);">Brand Match: Stripe Vibe</div>
+            </div>
+
+            <div class="control-group">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 10px;">
+                    <span class="section-title" style="margin:0;">Colors (2-20)</span>
+                    <button class="btn btn-sm" onclick="addColor()" aria-label="Add color stop">+ Add Color</button>
+                </div>
+                <div class="color-list" id="colorList" role="list"></div>
+            </div>
+
+            <div class="control-group">
+                <div class="section-title">Gradient Type</div>
+                <div class="type-grid" role="group" aria-label="Gradient type">
+                    <button class="type-btn active" data-type="linear" onclick="setType(this)">Linear</button>
+                    <button class="type-btn" data-type="radial" onclick="setType(this)">Radial</button>
+                    <button class="type-btn" data-type="conic" onclick="setType(this)">Conic</button>
+                    <button class="type-btn" data-type="repeating" onclick="setType(this)">Repeating</button>
+                    <button class="type-btn" data-type="mesh" onclick="setType(this)">Mesh AI</button>
+                </div>
+                <div id="angleControlBox">
+                    <div class="slider-row">
+                        <span>Angle: <strong id="angleVal">90</strong>°</span>
+                        <input type="range" id="angleRange" min="0" max="360" value="90" oninput="updateAngle(this.value)" aria-label="Gradient angle">
+                    </div>
+                    <div class="direction-grid">
+                        <button class="dir-btn" onclick="setAngle(0)">Top</button>
+                        <button class="dir-btn" onclick="setAngle(90)">Right</button>
+                        <button class="dir-btn" onclick="setAngle(180)">Bottom</button>
+                        <button class="dir-btn" onclick="setAngle(270)">Left</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="section-title">Unique Effects</div>
+                <div class="slider-row">
+                    <span>Noise Grain: <strong id="noiseVal">0</strong>%</span>
+                    <input type="range" min="0" max="60" value="0" oninput="updateNoise(this.value)" aria-label="Noise intensity">
+                </div>
+                <div class="slider-row" style="margin-top:12px;">
+                    <span>Glassmorphism Preview</span>
+                    <input type="checkbox" id="glassToggle" onchange="toggleGlassmorphism(this.checked)" aria-label="Toggle glassmorphism">
+                </div>
+                <div class="slider-row" style="margin-top:12px;">
+                    <span>Animated Keyframe</span>
+                    <input type="checkbox" id="animToggle" onchange="toggleAnimation(this.checked)" aria-label="Toggle animated gradient">
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="section-title">Popular Presets</div>
+                <input type="text" id="presetSearch" placeholder="Search Apple, Stripe, Instagram..." oninput="filterPresets(this.value)" style="width:100%; padding:8px; background:var(--bg-main); border:1px solid var(--border-color); color:var(--text-main); border-radius:6px; margin-bottom:10px;" aria-label="Search presets">
+                <div class="presets-grid" id="presetsGrid" role="list"></div>
+            </div>
+
+            <div class="control-group">
+                <div class="section-title">Image to Gradient</div>
+                <div class="image-upload-wrap">
+                    <label for="imageUpload" style="font-size:0.85rem; color:var(--text-muted);">Upload Image</label>
+                    <input type="file" id="imageUpload" accept="image/*" onchange="handleImageUpload(event)" aria-label="Upload image to extract colors">
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="section-title">Favorites</div>
+                <div class="favorites-list" id="favoritesList"></div>
+                <button class="btn btn-outline btn-sm" style="margin-top:8px; width:100%;" onclick="saveFavorite()">❤️ Save Current</button>
+            </div>
+
+            <div class="control-group">
+                <div class="section-title">1-Click Code Export</div>
+                <div class="code-tabs" role="tablist">
+                    <div class="code-tab active" data-tab="css" onclick="switchCodeTab(this)" role="tab">CSS</div>
+                    <div class="code-tab" data-tab="tailwind" onclick="switchCodeTab(this)" role="tab">Tailwind</div>
+                    <div class="code-tab" data-tab="react" onclick="switchCodeTab(this)" role="tab">React</div>
+                    <div class="code-tab" data-tab="flutter" onclick="switchCodeTab(this)" role="tab">Flutter</div>
+                    <div class="code-tab" data-tab="body" onclick="switchCodeTab(this)" role="tab">Body{}</div>
+                </div>
+                <div class="code-output" id="codeOutputBox" aria-live="polite">
+                    background: linear-gradient(...);
+                    <button class="copy-code-btn" onclick="copyCurrentCode()">Copy</button>
+                </div>
+            </div>
+
+            <button class="btn" style="background:var(--neon); color:#000; font-weight:800;" onclick="randomizeGradient()">🎲 Randomize Gradient</button>
+        </aside>
+
+        <div class="preview-dashboard">
+            <div class="preview-box" id="previewBox" role="img" aria-label="Live gradient preview">
+                <div class="noise-layer" id="noiseLayer"></div>
+                <div class="glass-card-preview" id="glassCard">
+                    <h2>Stunning UI</h2>
+                    <p>Crafted with World's Best Gradient Generator</p>
+                </div>
+            </div>
+            <div class="preview-floating-bar">
+                <button class="btn btn-outline btn-sm" onclick="checkWCAG()">WCAG Contrast</button>
+                <button class="btn btn-outline btn-sm" onclick="exportPalette()">Extract Palette</button>
+                <button class="btn btn-outline btn-sm" onclick="copyAllFormats()">Copy HEX/RGB/HSL</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="seo-section">
+        <h1>Pro Gradient Generator - Free & No Login</h1>
+        <p>Welcome to the ultimate tool for web designers, frontend developers, and digital artists. Create breathtaking linear, radial, conic, repeating, and mesh gradients instantly without downloading heavy software. Real 4K PNG, SVG & JPG export, AI names, noise grain, animation, WCAG checker and local favorites.</p>
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-box"><h3>Q1: Gradient Generator ki free?</h3><p>Haa, amader gradient generator 100% free ebong kono login chara use kora jay.</p></div>
+        <div class="faq-box"><h3>Q2: Mesh Gradient ki?</h3><p>Mesh gradient holo multi-point color blending jeta modern design e khub popular.</p></div>
+        <div class="faq-box"><h3>Q3: Image theke gradient kivabe banabo?</h3><p>Apnar photo upload korun, amader tool auto color extract kore gradient baniye dibe.</p></div>
+        <div class="faq-box"><h3>Q4: Animated gradient ki mobile e kaj korbe?</h3><p>Haa, CSS keyframes er maddhome animated gradient shob modern browser ebong mobile e kaj kore.</p></div>
+        <div class="faq-box"><h3>Q5: PNG koto resolution e download hobe?</h3><p>Apni high-resolution 4K (3840×2160) PNG, vector SVG ebong JPG export korte parben.</p></div>
+        <div class="faq-box"><h3>Q6: Code ki React/Tailwind er jonno pabo?</h3><p>Haa, 1 click e CSS, Tailwind, React, ebong Flutter code copy korte parben.</p></div>
+        <div class="faq-box"><h3>Q7: AI Name kivabe kaj kore?</h3><p>Color code analyze kore smart AI algorithm sundor professional nam suggest kore.</p></div>
+        <div class="faq-box"><h3>Q8: Save kora gradient ki delete hoye jabe?</h3><p>Nah, apnar browser er LocalStorage e auto-save thakbe.</p></div>
+        <div style="font-size: 0.7rem; color:var(--border-color); margin-top:30px;">
+            gradient generator, css gradient generator, color gradient maker, free gradient tool, mesh gradient generator, animated gradient css, background gradient, instagram gradient, ui gradient, gradient picker, gradient background generator, tailwind gradient, conic gradient, radial gradient, linear gradient, gradient palette, image to gradient, ai gradient name, glassmorphism gradient, gradient export png
+        </div>
+    </div>
+
+    <footer>
+        <p>Made with ❤️ by Senior Frontend Architect. World's #1 Gradient Generator 2026.</p>
+    </footer>
+
+    <div id="toastContainer" aria-live="polite"></div>
+
+    <script>
+        // ============ STATE ============
+        let state = {
+            colors: [
+                { color: '#6366f1', stop: 0 },
+                { color: '#a855f7', stop: 50 },
+                { color: '#00ff88', stop: 100 }
+            ],
+            type: 'linear',
+            angle: 90,
+            noise: 0,
+            animated: false,
+            glass: false
+        };
+
+        let undoStack = [];
+        let redoStack = [];
+        let currentCodeTab = 'css';
+        let favorites = [];
+
+        const STORAGE_KEY = 'gradientGodState_v2';
+        const FAV_KEY = 'gradientGodFavorites_v2';
+
+        // Expanded presets
+        const presets = [
+            { name: "Instagram", colors: ["#833ab4", "#fd1d1d", "#fcb045"] },
+            { name: "Stripe Pro", colors: ["#635bff", "#00d4ff", "#7928ca"] },
+            { name: "Apple Neon", colors: ["#ff007f", "#7928ca", "#00dfd8"] },
+            { name: "Sunset Blaze", colors: ["#ff512f", "#dd2476"] },
+            { name: "Cyberpunk", colors: ["#00f2fe", "#4facfe"] },
+            { name: "Emerald Water", colors: ["#348f6c", "#64b3f4"] },
+            { name: "Royal Purple", colors: ["#141e30", "#243b55"] },
+            { name: "Golden Hour", colors: ["#f12711", "#f5af19"] },
+            { name: "Ocean Breeze", colors: ["#2193b0", "#6dd5ed"] },
+            { name: "Candy Floss", colors: ["#ff9a9e", "#fad0c4"] },
+            { name: "Midnight City", colors: ["#232526", "#414345"] },
+            { name: "Peach Soft", colors: ["#ffecd2", "#fcb69f"] },
+            { name: "Aurora", colors: ["#00c6ff", "#0072ff", "#7b2ff7"] },
+            { name: "Mango Tango", colors: ["#ff9966", "#ff5e62"] },
+            { name: "Forest", colors: ["#134e5e", "#71b280"] },
+            { name: "Lavender Mist", colors: ["#c471f5", "#fa71cd"] },
+            { name: "Steel Blue", colors: ["#1c92d2", "#f2fcfe"] },
+            { name: "Firewatch", colors: ["#f12711", "#f5af19", "#ff6b6b"] },
+            { name: "Deep Space", colors: ["#000428", "#004e92"] },
+            { name: "Cotton Candy", colors: ["#ffc3a0", "#ffafbd"] },
+            { name: "Neon Pink", colors: ["#ff0080", "#7928ca"] },
+            { name: "Mint Fresh", colors: ["#00b09b", "#96c93d"] },
+            { name: "Sunset Orange", colors: ["#f953c6", "#b91d73"] },
+            { name: "Cool Sky", colors: ["#2980b9", "#6dd5fa", "#ffffff"] },
+            { name: "Purple Haze", colors: ["#4a00e0", "#8e2de2"] }
+        ];
+
+        // ============ TOAST ============
+        function showToast(msg, type = 'info') {
+            const box = document.getElementById('toastContainer');
+            const t = document.createElement('div');
+            t.className = `toast ${type}`;
+            t.textContent = msg;
+            box.appendChild(t);
+            requestAnimationFrame(() => t.classList.add('show'));
+            setTimeout(() => {
+                t.classList.remove('show');
+                setTimeout(() => t.remove(), 300);
+            }, 2600);
+        }
+
+        // ============ HISTORY ============
+        function saveState() {
+            undoStack.push(JSON.stringify(state));
+            if (undoStack.length > 40) undoStack.shift();
+            redoStack = [];
+            persist();
+        }
+
+        function undoState() {
+            if (undoStack.length === 0) { showToast('Nothing to undo', 'info'); return; }
+            redoStack.push(JSON.stringify(state));
+            state = JSON.parse(undoStack.pop());
+            renderAll(false);
+            showToast('Undo', 'info');
+        }
+
+        function redoState() {
+            if (redoStack.length === 0) { showToast('Nothing to redo', 'info'); return; }
+            undoStack.push(JSON.stringify(state));
+            state = JSON.parse(redoStack.pop());
+            renderAll(false);
+            showToast('Redo', 'info');
+        }
+
+        // ============ LOCALSTORAGE ============
+        function persist() {
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+            } catch (e) {}
+        }
+
+        function loadState() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                if (raw) {
+                    const parsed = JSON.parse(raw);
+                    if (parsed && parsed.colors && parsed.colors.length >= 2) {
+                        state = { ...state, ...parsed };
+                    }
+                }
+                const favRaw = localStorage.getItem(FAV_KEY);
+                if (favRaw) favorites = JSON.parse(favRaw) || [];
+            } catch (e) {}
+        }
+
+        // ============ COLOR HELPERS ============
+        function hexToRgb(hex) {
+            hex = hex.replace('#', '');
+            if (hex.length === 3) hex = hex.split('').map(c => c + c).join('');
+            const n = parseInt(hex, 16);
+            return { r: (n >> 16) & 255, g: (n >> 8) & 255, b: n & 255 };
+        }
+
+        function rgbToHsl(r, g, b) {
+            r /= 255; g /= 255; b /= 255;
+            const max = Math.max(r, g, b), min = Math.min(r, g, b);
+            let h, s, l = (max + min) / 2;
+            if (max === min) { h = s = 0; }
+            else {
+                const d = max - min;
+                s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+                switch (max) {
+                    case r: h = ((g - b) / d + (g < b ? 6 : 0)); break;
+                    case g: h = ((b - r) / d + 2); break;
+                    default: h = ((r - g) / d + 4);
+                }
+                h /= 6;
+            }
+            return { h: Math.round(h * 360), s: Math.round(s * 100), l: Math.round(l * 100) };
+        }
+
+        function luminance(r, g, b) {
+            const a = [r, g, b].map(v => {
+                v /= 255;
+                return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+            });
+            return 0.2126 * a[0] + 0.7152 * a[1] + 0.0722 * a[2];
+        }
+
+        function contrastRatio(c1, c2) {
+            const L1 = luminance(c1.r, c1.g, c1.b);
+            const L2 = luminance(c2.r, c2.g, c2.b);
+            const lighter = Math.max(L1, L2), darker = Math.min(L1, L2);
+            return (lighter + 0.05) / (darker + 0.05);
+        }
+
+        // ============ AI NAME ============
+        const adjWarm = ['Sunset', 'Blazing', 'Golden', 'Coral', 'Amber', 'Fiery', 'Peachy'];
+        const adjCool = ['Ocean', 'Arctic', 'Neon', 'Cyber', 'Icy', 'Aqua', 'Electric'];
+        const adjPurple = ['Mystic', 'Royal', 'Violet', 'Cosmic', 'Dreamy', 'Neon'];
+        const adjNeutral = ['Soft', 'Modern', 'Minimal', 'Silk', 'Muted', 'Clean'];
+        const nouns = ['Horizon', 'Wave', 'Glow', 'Dusk', 'Dawn', 'Pulse', 'Symphony', 'Mirage', 'Bloom', 'Drift', 'Spark', 'Aura', 'Vibe', 'Flow'];
+
+        function generateAIName() {
+            const mid = state.colors[Math.floor(state.colors.length / 2)] || state.colors[0];
+            const { r, g, b } = hexToRgb(mid.color);
+            const { h, s, l } = rgbToHsl(r, g, b);
+            let pool = adjNeutral;
+            if (h < 40 || h > 330) pool = adjWarm;
+            else if (h >= 40 && h < 90) pool = adjWarm;
+            else if (h >= 90 && h < 200) pool = adjCool;
+            else if (h >= 200 && h < 290) pool = adjCool;
+            else pool = adjPurple;
+            if (s < 25) pool = adjNeutral;
+            const a = pool[Math.floor(Math.random() * pool.length)];
+            const n = nouns[Math.floor(Math.random() * nouns.length)];
+            return `${a} ${n}`;
+        }
+
+        function updateBrandMatch() {
+            const names = ['Stripe Vibe', 'Apple Glow', 'Instagram Energy', 'Product Hunt', 'Figma Soft', 'Notion Clean', 'Linear App'];
+            document.getElementById('brandMatchText').textContent = 'Brand Match: ' + names[Math.floor(Math.random() * names.length)];
+        }
+
+        // ============ IMAGE TO GRADIENT (Vanilla JS + Canvas) ============
+        function extractColorsFromImage(img, numColors = 5) {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d', { willReadFrequently: true });
+
+            // Downscale for performance & better dominant color sampling
+            const maxSize = 80;
+            let w = img.naturalWidth || img.width;
+            let h = img.naturalHeight || img.height;
+            if (w > h) {
+                if (w > maxSize) { h = Math.round(h * maxSize / w); w = maxSize; }
+            } else {
+                if (h > maxSize) { w = Math.round(w * maxSize / h); h = maxSize; }
+            }
+            canvas.width = w;
+            canvas.height = h;
+            ctx.drawImage(img, 0, 0, w, h);
+
+            const imageData = ctx.getImageData(0, 0, w, h);
+            const data = imageData.data;
+
+            // Quantize colors into buckets (reduce color space)
+            const colorMap = new Map();
+            const step = 4; // sample every 4th pixel for speed
+
+            for (let i = 0; i < data.length; i += 4 * step) {
+                const a = data[i + 3];
+                if (a < 128) continue; // skip mostly transparent pixels
+
+                // Quantize to 32 levels (0-224 step 32)
+                const r = Math.round(data[i] / 32) * 32;
+                const g = Math.round(data[i + 1] / 32) * 32;
+                const b = Math.round(data[i + 2] / 32) * 32;
+
+                const key = (r << 16) | (g << 8) | b;
+                colorMap.set(key, (colorMap.get(key) || 0) + 1);
+            }
+
+            // Sort by frequency
+            const sorted = Array.from(colorMap.entries())
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, numColors)
+                .map(([key]) => {
+                    const r = (key >> 16) & 255;
+                    const g = (key >> 8) & 255;
+                    const b = key & 255;
+                    return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).padStart(6, '0');
+                });
+
+            // Ensure exactly 5 colors
+            while (sorted.length < numColors) {
+                sorted.push(sorted[sorted.length - 1] || '#888888');
+            }
+
+            return sorted.slice(0, numColors);
+        }
+
+        function handleImageUpload(e) {
+            const file = e.target.files && e.target.files[0];
+            if (!file) return;
+
+            if (!file.type.startsWith('image/')) {
+                showToast('Please select a valid image file', 'info');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function (event) {
+                const img = new Image();
+                img.onload = function () {
+                    try {
+                        const extracted = extractColorsFromImage(img, 5);
+                        saveState();
+                        state.colors = extracted.map((c, i) => ({
+                            color: c,
+                            stop: i * 25
+                        }));
+                        state.type = 'linear';
+                        state.angle = 90;
+
+                        // Sync type buttons
+                        document.querySelectorAll('.type-btn').forEach(b => {
+                            b.classList.toggle('active', b.dataset.type === 'linear');
+                        });
+                        document.getElementById('angleControlBox').style.display = 'block';
+                        document.getElementById('angleRange').value = 90;
+                        document.getElementById('angleVal').textContent = 90;
+
+                        renderAll();
+                        showToast('5 Colors Extracted from Image!', 'success');
+                    } catch (err) {
+                        showToast('Could not extract colors from this image', 'info');
+                    }
+                };
+                img.onerror = function () {
+                    showToast('Failed to load image', 'info');
+                };
+                img.src = event.target.result;
+            };
+            reader.onerror = function () {
+                showToast('Failed to read file', 'info');
+            };
+            reader.readAsDataURL(file);
+
+            // Reset input so same file can be re-uploaded
+            e.target.value = '';
+        }
+
+        // ============ RENDER ============
+        function renderColors() {
+            const list = document.getElementById('colorList');
+            list.innerHTML = '';
+            state.colors.forEach((c, idx) => {
+                const item = document.createElement('div');
+                item.className = 'color-item';
+                item.setAttribute('role', 'listitem');
+                item.innerHTML = `
+                    <input type="color" value="${c.color}" oninput="updateColor(${idx}, 'color', this.value)" aria-label="Color ${idx + 1}">
+                    <input type="text" value="${c.color}" onchange="updateColor(${idx}, 'color', this.value)" aria-label="Hex value ${idx + 1}">
+                    <input type="range" min="0" max="100" value="${c.stop}" oninput="updateColor(${idx}, 'stop', +this.value)" aria-label="Stop position ${idx + 1}">
+                    <div class="color-actions">
+                        <button class="btn btn-outline btn-sm" style="padding:2px 6px;" onclick="copySingleColor(${idx}, 'hex')" title="Copy HEX">H</button>
+                        <button class="btn btn-outline btn-sm" style="padding:2px 6px;" onclick="copySingleColor(${idx}, 'rgb')" title="Copy RGB">R</button>
+                        <button class="btn btn-outline btn-sm" style="padding:2px 6px;" onclick="copySingleColor(${idx}, 'hsl')" title="Copy HSL">S</button>
+                        ${state.colors.length > 2 ? `<button class="del-color" onclick="removeColor(${idx})" aria-label="Remove color">×</button>` : ''}
+                    </div>
+                `;
+                list.appendChild(item);
+            });
+        }
+
+        function addColor() {
+            if (state.colors.length >= 20) { showToast('Max 20 colors', 'info'); return; }
+            saveState();
+            const last = state.colors[state.colors.length - 1];
+            state.colors.push({ color: '#ffffff', stop: Math.min(100, (last?.stop || 80) + 10) });
+            renderAll();
+        }
+
+        function removeColor(idx) {
+            if (state.colors.length <= 2) return;
+            saveState();
+            state.colors.splice(idx, 1);
+            renderAll();
+        }
+
+        function updateColor(idx, key, val) {
+            if (key === 'color') {
+                if (!/^#([0-9A-Fa-f]{3}){1,2}$/.test(val) && !/^#([0-9A-Fa-f]{6})$/.test(val)) {
+                    if (!val.startsWith('#')) val = '#' + val;
+                }
+            }
+            saveState();
+            state.colors[idx][key] = key === 'stop' ? Number(val) : val;
+            renderAll();
+        }
+
+        function setType(btn) {
+            const t = btn.dataset.type;
+            saveState();
+            state.type = t;
+            document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById('angleControlBox').style.display =
+                (t === 'linear' || t === 'conic' || t === 'repeating') ? 'block' : 'none';
+            renderAll();
+        }
+
+        function setAngle(ang) {
+            saveState();
+            state.angle = ang;
+            document.getElementById('angleRange').value = ang;
+            document.getElementById('angleVal').textContent = ang;
+            renderAll();
+        }
+
+        function updateAngle(val) {
+            saveState();
+            state.angle = Number(val);
+            document.getElementById('angleVal').textContent = val;
+            renderAll();
+        }
+
+        function updateNoise(val) {
+            saveState();
+            state.noise = Number(val);
+            document.getElementById('noiseVal').textContent = val;
+            renderAll(false);
+        }
+
+        function toggleGlassmorphism(chk) {
+            state.glass = chk;
+            document.getElementById('glassCard').style.display = chk ? 'block' : 'none';
+            persist();
+        }
+
+        function toggleAnimation(chk) {
+            state.animated = chk;
+            renderAll(false);
+        }
+
+        function randomizeGradient() {
+            saveState();
+            const randomHex = () => '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
+            const count = Math.floor(Math.random() * 4) + 2;
+            state.colors = [];
+            for (let i = 0; i < count; i++) {
+                state.colors.push({ color: randomHex(), stop: Math.round((100 / (count - 1)) * i) });
+            }
+            state.angle = Math.floor(Math.random() * 360);
+            state.type = ['linear', 'radial', 'conic', 'mesh'][Math.floor(Math.random() * 4)];
+            document.querySelectorAll('.type-btn').forEach(b => {
+                b.classList.toggle('active', b.dataset.type === state.type);
+            });
+            document.getElementById('angleControlBox').style.display =
+                (state.type === 'linear' || state.type === 'conic' || state.type === 'repeating') ? 'block' : 'none';
+            renderAll();
+            showToast('Randomized!', 'success');
+        }
+
+        // ============ CSS GENERATOR ============
+        function generateCSSString() {
+            const sorted = [...state.colors].sort((a, b) => a.stop - b.stop);
+            const stops = sorted.map(c => `${c.color} ${c.stop}%`).join(', ');
+
+            if (state.type === 'linear') return `linear-gradient(${state.angle}deg, ${stops})`;
+            if (state.type === 'radial') return `radial-gradient(circle at center, ${stops})`;
+            if (state.type === 'conic') return `conic-gradient(from ${state.angle}deg at 50% 50%, ${stops})`;
+            if (state.type === 'repeating') return `repeating-linear-gradient(${state.angle}deg, ${stops})`;
+            if (state.type === 'mesh') {
+                const positions = [
+                    [15, 20], [80, 15], [20, 80], [75, 75], [50, 50], [10, 50], [90, 40], [40, 10]
+                ];
+                const parts = sorted.slice(0, 6).map((c, i) => {
+                    const [x, y] = positions[i % positions.length];
+                    return `radial-gradient(at ${x}% ${y}%, ${c.color} 0px, transparent 55%)`;
+                });
+                return parts.join(', ');
+            }
+            return `linear-gradient(${stops})`;
+        }
+
+        function renderAll(updateName = true) {
+            renderColors();
+            const cssVal = generateCSSString();
+            const previewBox = document.getElementById('previewBox');
+            previewBox.style.background = cssVal;
+
+            if (state.animated) {
+                previewBox.classList.add('animated');
+                if (state.type === 'linear' || state.type === 'repeating') {
+                    previewBox.style.backgroundSize = '200% 200%';
+                } else {
+                    previewBox.style.backgroundSize = 'cover';
+                }
+            } else {
+                previewBox.classList.remove('animated');
+                previewBox.style.backgroundSize = '';
+                previewBox.style.animation = 'none';
+            }
+
+            const noiseLayer = document.getElementById('noiseLayer');
+            noiseLayer.style.opacity = (state.noise / 100) * 0.9;
+
+            document.getElementById('glassCard').style.display = state.glass ? 'block' : 'none';
+            document.getElementById('glassToggle').checked = state.glass;
+            document.getElementById('animToggle').checked = state.animated;
+            document.getElementById('angleRange').value = state.angle;
+            document.getElementById('angleVal').textContent = state.angle;
+            document.getElementById('noiseVal').textContent = state.noise;
+
+            if (updateName) {
+                document.getElementById('aiNameBadge').textContent = '✨ AI: ' + generateAIName();
+                updateBrandMatch();
+            }
+
+            updateCodeOutput();
+            renderFavorites();
+            persist();
+        }
+
+        // ============ CODE EXPORT ============
+        function switchCodeTab(el) {
+            currentCodeTab = el.dataset.tab;
+            document.querySelectorAll('.code-tab').forEach(t => t.classList.remove('active'));
+            el.classList.add('active');
+            updateCodeOutput();
+        }
+
+        function updateCodeOutput() {
+            const css = generateCSSString();
+            let out = '';
+            if (currentCodeTab === 'css') {
+                out = `background: ${css};`;
+            } else if (currentCodeTab === 'tailwind') {
+                const sorted = [...state.colors].sort((a, b) => a.stop - b.stop);
+                if (sorted.length === 2) {
+                    out = `bg-gradient-to-r from-[${sorted[0].color}] to-[${sorted[1].color}]`;
+                } else {
+                    const mid = sorted[Math.floor(sorted.length / 2)];
+                    out = `bg-gradient-to-r from-[${sorted[0].color}] via-[${mid.color}] to-[${sorted[sorted.length - 1].color}]`;
+                }
+            } else if (currentCodeTab === 'react') {
+                out = `style={{ background: '${css}' }}`;
+            } else if (currentCodeTab === 'flutter') {
+                const cols = state.colors.map(c => `Color(0xFF${c.color.replace('#', '').toUpperCase()})`).join(', ');
+                const stops = state.colors.map(c => (c.stop / 100).toFixed(2)).join(', ');
+                out = `LinearGradient(\n  colors: [${cols}],\n  stops: [${stops}],\n  begin: Alignment.topLeft,\n  end: Alignment.bottomRight,\n)`;
+            } else if (currentCodeTab === 'body') {
+                out = `body {\n  background: ${css};\n  min-height: 100vh;\n  margin: 0;\n}`;
+            }
+
+            document.getElementById('codeOutputBox').innerHTML =
+                `${out}<button class="copy-code-btn" onclick="copyCurrentCode()">Copy</button>`;
+        }
+
+        function copyCurrentCode() {
+            const text = document.getElementById('codeOutputBox').innerText.replace(/\s*Copy\s*$/, '').trim();
+            navigator.clipboard.writeText(text).then(() => showToast('Code copied!', 'success'))
+                .catch(() => showToast('Copy failed', 'info'));
+        }
+
+        // ============ PRESETS ============
+        function renderPresets(list = presets) {
+            const grid = document.getElementById('presetsGrid');
+            grid.innerHTML = '';
+            list.forEach(p => {
+                const div = document.createElement('div');
+                div.className = 'preset-item';
+                div.title = p.name;
+                div.style.background = `linear-gradient(135deg, ${p.colors.join(', ')})`;
+                div.setAttribute('role', 'listitem');
+                div.onclick = () => {
+                    saveState();
+                    state.colors = p.colors.map((c, i) => ({
+                        color: c,
+                        stop: Math.round((100 / (p.colors.length - 1)) * i)
+                    }));
+                    state.type = 'linear';
+                    document.querySelectorAll('.type-btn').forEach(b => b.classList.toggle('active', b.dataset.type === 'linear'));
+                    document.getElementById('angleControlBox').style.display = 'block';
+                    renderAll();
+                    showToast(`Preset: ${p.name}`, 'success');
+                };
+                grid.appendChild(div);
+            });
+        }
+
+        function filterPresets(query) {
+            const q = (query || '').toLowerCase().trim();
+            if (!q) {
+                renderPresets(presets);
+                return;
+            }
+            const filtered = presets.filter(p => p.name.toLowerCase().includes(q));
+            renderPresets(filtered);
+        }
+
+        // ============ FAVORITES ============
+        function saveFavorite() {
+            const snapshot = {
+                colors: JSON.parse(JSON.stringify(state.colors)),
+                type: state.type,
+                angle: state.angle,
+                css: generateCSSString(),
+                name: document.getElementById('aiNameBadge').textContent.replace('✨ AI: ', '')
+            };
+            favorites.unshift(snapshot);
+            if (favorites.length > 12) favorites.pop();
+            try { localStorage.setItem(FAV_KEY, JSON.stringify(favorites)); } catch (e) {}
+            renderFavorites();
+            showToast('Saved to Favorites', 'success');
+        }
+
+        function renderFavorites() {
+            const box = document.getElementById('favoritesList');
+            box.innerHTML = '';
+            favorites.forEach((f, i) => {
+                const chip = document.createElement('div');
+                chip.className = 'fav-chip';
+                chip.style.background = f.css;
+                chip.title = f.name || 'Favorite';
+                chip.onclick = () => {
+                    saveState();
+                    state.colors = JSON.parse(JSON.stringify(f.colors));
+                    state.type = f.type || 'linear';
+                    state.angle = f.angle || 90;
+                    document.querySelectorAll('.type-btn').forEach(b => b.classList.toggle('active', b.dataset.type === state.type));
+                    document.getElementById('angleControlBox').style.display =
+                        (state.type === 'linear' || state.type === 'conic' || state.type === 'repeating') ? 'block' : 'none';
+                    renderAll();
+                    showToast('Loaded favorite', 'success');
+                };
+                box.appendChild(chip);
+            });
+        }
+
+        // ============ EXPORTS ============
+        function createGradientCanvas(w, h) {
+            const canvas = document.createElement('canvas');
+            canvas.width = w;
+            canvas.height = h;
+            const ctx = canvas.getContext('2d');
+
+            if (state.type === 'mesh') {
+                ctx.fillStyle = state.colors[0]?.color || '#000';
+                ctx.fillRect(0, 0, w, h);
+                const sorted = [...state.colors].sort((a, b) => a.stop - b.stop);
+                const positions = [[0.15,0.2],[0.8,0.15],[0.2,0.8],[0.75,0.75],[0.5,0.5],[0.1,0.5]];
+                sorted.forEach((c, i) => {
+                    const [px, py] = positions[i % positions.length];
+                    const g = ctx.createRadialGradient(px * w, py * h, 0, px * w, py * h, w * 0.55);
+                    g.addColorStop(0, c.color);
+                    g.addColorStop(1, 'rgba(0,0,0,0)');
+                    ctx.fillStyle = g;
+                    ctx.fillRect(0, 0, w, h);
+                });
+            } else {
+                let g;
+                const sorted = [...state.colors].sort((a, b) => a.stop - b.stop);
+                if (state.type === 'radial') {
+                    g = ctx.createRadialGradient(w/2, h/2, 0, w/2, h/2, Math.max(w, h) / 1.2);
+                } else if (state.type === 'conic') {
+                    g = ctx.createLinearGradient(0, 0, w, h);
+                } else {
+                    const rad = (state.angle - 90) * Math.PI / 180;
+                    const x2 = Math.cos(rad) * w;
+                    const y2 = Math.sin(rad) * h;
+                    g = ctx.createLinearGradient(w/2 - x2/2, h/2 - y2/2, w/2 + x2/2, h/2 + y2/2);
+                }
+                sorted.forEach(c => g.addColorStop(Math.min(1, Math.max(0, c.stop / 100)), c.color));
+                ctx.fillStyle = g;
+                ctx.fillRect(0, 0, w, h);
+            }
+
+            if (state.noise > 0) {
+                const imageData = ctx.getImageData(0, 0, w, h);
+                const data = imageData.data;
+                const amount = state.noise * 1.8;
+                for (let i = 0; i < data.length; i += 4) {
+                    const n = (Math.random() - 0.5) * amount;
+                    data[i] = Math.min(255, Math.max(0, data[i] + n));
+                    data[i+1] = Math.min(255, Math.max(0, data[i+1] + n));
+                    data[i+2] = Math.min(255, Math.max(0, data[i+2] + n));
+                }
+                ctx.putImageData(imageData, 0, 0);
+            }
+            return canvas;
+        }
+
+        function exportPNG() {
+            showToast('Rendering 4K PNG…', 'info');
+            setTimeout(() => {
+                const canvas = createGradientCanvas(3840, 2160);
+                canvas.toBlob(blob => {
+                    const a = document.createElement('a');
+                    a.href = URL.createObjectURL(blob);
+                    a.download = `gradientgod-4k-${Date.now()}.png`;
+                    a.click();
+                    URL.revokeObjectURL(a.href);
+                    showToast('4K PNG downloaded!', 'success');
+                }, 'image/png');
+            }, 50);
+        }
+
+        function exportJPG() {
+            showToast('Rendering JPG…', 'info');
+            setTimeout(() => {
+                const canvas = createGradientCanvas(2560, 1440);
+                canvas.toBlob(blob => {
+                    const a = document.createElement('a');
+                    a.href = URL.createObjectURL(blob);
+                    a.download = `gradientgod-${Date.now()}.jpg`;
+                    a.click();
+                    URL.revokeObjectURL(a.href);
+                    showToast('JPG downloaded!', 'success');
+                }, 'image/jpeg', 0.92);
+            }, 50);
+        }
+
+        function exportSVG() {
+            const sorted = [...state.colors].sort((a, b) => a.stop - b.stop);
+            let defs = '';
+            if (state.type === 'radial') {
+                const stops = sorted.map(c => `<stop offset="${c.stop}%" stop-color="${c.color}"/>`).join('');
+                defs = `<radialGradient id="g" cx="50%" cy="50%" r="70%">${stops}</radialGradient>`;
+            } else if (state.type === 'conic') {
+                const stops = sorted.map(c => `<stop offset="${c.stop}%" stop-color="${c.color}"/>`).join('');
+                defs = `<linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">${stops}</linearGradient>`;
+            } else {
+                const stops = sorted.map(c => `<stop offset="${c.stop}%" stop-color="${c.color}"/>`).join('');
+                const rad = state.angle * Math.PI / 180;
+                const x2 = 50 + Math.cos(rad) * 50;
+                const y2 = 50 + Math.sin(rad) * 50;
+                defs = `<linearGradient id="g" x1="50%" y1="50%" x2="${x2}%" y2="${y2}%">${stops}</linearGradient>`;
+            }
+            const svg = `<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <defs>${defs}</defs>
+  <rect width="100%" height="100%" fill="url(#g)"/>
+</svg>`;
+            const blob = new Blob([svg], { type: 'image/svg+xml' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = `gradientgod-${Date.now()}.svg`;
+            a.click();
+            URL.revokeObjectURL(a.href);
+            showToast('SVG downloaded!', 'success');
+        }
+
+        // ============ WCAG & PALETTE ============
+        function checkWCAG() {
+            const mid = state.colors[Math.floor(state.colors.length / 2)] || state.colors[0];
+            const rgb = hexToRgb(mid.color);
+            const white = { r: 255, g: 255, b: 255 };
+            const black = { r: 0, g: 0, b: 0 };
+            const cWhite = contrastRatio(rgb, white);
+            const cBlack = contrastRatio(rgb, black);
+            const best = cWhite > cBlack ? 'White text' : 'Black text';
+            const score = Math.max(cWhite, cBlack).toFixed(2);
+            let level = 'Fail';
+            if (score >= 7) level = 'AAA';
+            else if (score >= 4.5) level = 'AA';
+            else if (score >= 3) level = 'AA Large';
+            showToast(`WCAG: ${score}:1 → ${level} (prefer ${best})`, score >= 4.5 ? 'success' : 'info');
+        }
+
+        function exportPalette() {
+            const lines = state.colors.map((c, i) => {
+                const { r, g, b } = hexToRgb(c.color);
+                const { h, s, l } = rgbToHsl(r, g, b);
+                return `${i + 1}. ${c.color}  |  rgb(${r},${g},${b})  |  hsl(${h},${s}%,${l}%)`;
+            }).join('\n');
+            navigator.clipboard.writeText(lines).then(() => showToast('Palette copied (HEX/RGB/HSL)', 'success'));
+        }
+
+        function copyAllFormats() {
+            exportPalette();
+        }
+
+        function copySingleColor(idx, fmt) {
+            const c = state.colors[idx];
+            const { r, g, b } = hexToRgb(c.color);
+            const { h, s, l } = rgbToHsl(r, g, b);
+            let text = c.color;
+            if (fmt === 'rgb') text = `rgb(${r}, ${g}, ${b})`;
+            if (fmt === 'hsl') text = `hsl(${h}, ${s}%, ${l}%)`;
+            navigator.clipboard.writeText(text).then(() => showToast(`Copied ${fmt.toUpperCase()}: ${text}`, 'success'));
+        }
+
+        function toggleTheme() {
+            document.getElementById('bodyRoot').classList.toggle('light-mode');
+            showToast('Theme toggled', 'info');
+        }
+
+        // ============ KEYBOARD ============
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'z' && !e.shiftKey) {
+                e.preventDefault();
+                undoState();
+            }
+            if ((e.ctrlKey || e.metaKey) && (e.key === 'y' || (e.key === 'z' && e.shiftKey))) {
+                e.preventDefault();
+                redoState();
+            }
+        });
+
+        // ============ INIT ============
+        loadState();
+        renderPresets();
+        renderAll(true);
+        showToast('GradientGod ready — LocalStorage + Undo active', 'success');
+    </script>
+</body>
+</html>
