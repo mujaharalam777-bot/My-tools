@@ -1,1 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free GST Invoice Generator & Quotation Maker Online - No Signup | My-Tools</title>
+<meta name="description" content="Create professional GST Invoice & Quotation in 10 seconds. 100% Free, No Signup, PDF Download. HSN Code, Logo, Auto GST. For India.">
+<meta name="keywords" content="gst invoice generator, free invoice generator, quotation maker, gst bill generator, online invoice maker, tax invoice generator, proforma invoice, hsn code invoice, cgst sgst igst, free gst billing, invoice template india, digital invoice, pdf invoice download, gstin invoice maker, free billing software, invoice generator online india, quotation generator, estimate maker, tax invoice online, gst calculator invoice">
+<meta name="robots" content="index, follow">
+<meta name="author" content="My-Tools">
+<meta name="theme-color" content="#667eea">
+<link rel="canonical" href="https://mujaharalam777-bot.github.io/My-tools/invoice.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Is this Invoice Generator really free?","acceptedAnswer":{"@type":"Answer","text":"Yes. Completely free forever. No hidden charges, no watermark, no signup required."}},
+{"@type":"Question","name":"Do I need to signup or login?","acceptedAnswer":{"@type":"Answer","text":"No. You can start creating invoices immediately without any registration."}},
+{"@type":"Question","name":"Can I add my Logo and GSTIN?","acceptedAnswer":{"@type":"Answer","text":"Yes. Upload your company logo, add GSTIN, address, phone and email. Everything is saved in your browser."}},
+{"@type":"Question","name":"Does it calculate CGST, SGST, IGST automatically?","acceptedAnswer":{"@type":"Answer","text":"Yes. Select your state and customer state. The tool automatically applies CGST+SGST for intra-state or IGST for inter-state."}},
+{"@type":"Question","name":"Can I download invoice as PDF?","acceptedAnswer":{"@type":"Answer","text":"Yes. Click Download PDF. It opens a clean A4 print view that you can save as PDF from your browser."}},
+{"@type":"Question","name":"Is my data safe? Where is it stored?","acceptedAnswer":{"@type":"Answer","text":"100% safe. All data stays in your browser LocalStorage. Nothing is uploaded to any server."}},
+{"@type":"Question","name":"Can I use it offline?","acceptedAnswer":{"@type":"Answer","text":"Yes. After the first load the page works offline. It is fully client-side."}},
+{"@type":"Question","name":"Can I create Quotation also?","acceptedAnswer":{"@type":"Answer","text":"Yes. Toggle between Invoice, Quotation and Proforma Invoice with one click."}}
+]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Free GST Invoice Generator & Quotation Maker","applicationCategory":"BusinessApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"description":"Free online GST Invoice, Quotation and Proforma maker with auto CGST SGST IGST, HSN code, logo, signature, PDF download. No signup required."}
+</script>
+<style>
+:root{--primary:#667eea;--primary-dark:#5a67d8;--secondary:#764ba2;--bg:#f0f4ff;--card:#ffffff;--text:#1a202c;--muted:#718096;--border:#e2e8f0;--success:#48bb78;--danger:#f56565;--radius:12px;--shadow:0 10px 30px rgba(102,126,234,.15);--theme:#667eea}
+[data-theme=dark]{--bg:#0f172a;--card:#1e293b;--text:#f1f5f9;--muted:#94a3b8;--border:#334155;--shadow:0 10px 30px rgba(0,0,0,.4)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Poppins',system-ui,sans-serif;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);background-attachment:fixed;color:var(--text);min-height:100vh;line-height:1.5}
+a{color:var(--primary);text-decoration:none}
+.container{max-width:1200px;margin:0 auto;padding:0 16px}
+header{background:rgba(15,23,42,.92);backdrop-filter:blur(12px);position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(255,255,255,.08)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;padding:12px 0;gap:12px}
+.logo{font-weight:700;font-size:1.25rem;color:#fff;display:flex;align-items:center;gap:8px}
+.logo span{background:linear-gradient(90deg,#a5b4fc,#c4b5fd);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.theme-btn{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;width:40px;height:40px;border-radius:50%;cursor:pointer;font-size:1.1rem;display:grid;place-items:center}
+.hero{text-align:center;padding:28px 0 16px;color:#fff}
+.hero h1{font-size:clamp(1.45rem,4vw,2.05rem);font-weight:700;margin-bottom:8px;text-shadow:0 2px 8px rgba(0,0,0,.2)}
+.hero p{opacity:.93;max-width:620px;margin:0 auto;font-size:1rem}
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px;margin-bottom:18px;border:1px solid var(--border)}
+.card h2{font-size:1.1rem;margin-bottom:12px;color:var(--primary);display:flex;align-items:center;gap:8px}
+[data-theme=dark] .card h2{color:#a5b4fc}
+.main-grid{display:grid;grid-template-columns:1fr;gap:18px}
+@media(min-width:960px){.main-grid{grid-template-columns:1fr 1fr}}
+label{display:block;font-size:.78rem;font-weight:500;color:var(--muted);margin-bottom:3px}
+input,select,textarea{width:100%;padding:8px 11px;border:1px solid var(--border);border-radius:8px;font-size:.88rem;background:var(--card);color:var(--text);font-family:inherit}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--primary);border-color:transparent}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+@media(max-width:600px){.row,.row-3{grid-template-columns:1fr}}
+.btn{display:inline-flex;align-items:center;gap:5px;background:var(--primary);color:#fff;border:none;padding:9px 14px;border-radius:8px;font-weight:600;font-size:.88rem;cursor:pointer;transition:.15s;font-family:inherit}
+.btn:hover{background:var(--primary-dark);transform:translateY(-1px)}
+.btn-sec{background:#e2e8f0;color:#1a202c}[data-theme=dark] .btn-sec{background:#334155;color:#f1f5f9}
+.btn-danger{background:var(--danger)}.btn-success{background:var(--success)}
+.btn-sm{padding:5px 10px;font-size:.78rem}
+.btn-group{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
+.type-toggle{display:flex;gap:5px;margin-bottom:14px}
+.type-toggle button{flex:1;padding:9px;border:2px solid var(--border);background:transparent;border-radius:8px;cursor:pointer;font-weight:600;font-size:.85rem;color:var(--text)}
+.type-toggle button.active{border-color:var(--primary);background:rgba(102,126,234,.12);color:var(--primary)}
+.items-table{width:100%;border-collapse:collapse;font-size:.82rem;margin-top:8px}
+.items-table th{text-align:left;padding:7px 5px;background:rgba(102,126,234,.08);font-weight:600}
+.items-table td{padding:5px;border-bottom:1px solid var(--border);vertical-align:middle}
+.items-table input{padding:5px 7px;font-size:.82rem}
+.preview-wrap{background:#fff;color:#1a202c;border-radius:8px;box-shadow:0 4px 20px rgba(0,0,0,.08);overflow:hidden;font-size:.82rem}
+.preview-header{padding:18px;display:flex;justify-content:space-between;align-items:flex-start;gap:14px;border-bottom:3px solid var(--theme)}
+.preview-header img.logo{max-height:55px;max-width:130px;object-fit:contain}
+.preview-body{padding:18px}
+.preview-meta{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
+.preview-table{width:100%;border-collapse:collapse;margin:12px 0}
+.preview-table th{background:var(--theme);color:#fff;padding:7px;text-align:left;font-size:.75rem}
+.preview-table td{padding:7px;border-bottom:1px solid #e2e8f0}
+.preview-totals{margin-left:auto;width:250px}
+.preview-totals .row-t{display:flex;justify-content:space-between;padding:3px 0}
+.preview-totals .grand{font-weight:700;font-size:1.05rem;border-top:2px solid #1a202c;margin-top:5px;padding-top:7px}
+.preview-footer{padding:14px 18px;border-top:1px solid #e2e8f0;font-size:.78rem;color:#4a5568}
+.sig-area{display:flex;justify-content:flex-end;gap:36px;margin-top:24px}
+.sig-box{text-align:center}
+.sig-box img{max-height:48px;max-width:110px}
+#sigCanvas{border:1px dashed var(--border);border-radius:8px;cursor:crosshair;background:#fff;width:100%;max-width:280px;height:90px;touch-action:none}
+.history-item{padding:9px 11px;border:1px solid var(--border);border-radius:8px;margin-bottom:7px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:.82rem}
+.history-item:hover{border-color:var(--primary)}
+.tpl-btns{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.tpl-btns button{padding:6px 10px;border:1px solid var(--border);background:transparent;border-radius:6px;cursor:pointer;font-size:.78rem;color:var(--text)}
+.tpl-btns button.active{border-color:var(--primary);background:rgba(102,126,234,.15);color:var(--primary);font-weight:600}
+.faq-item{margin-bottom:13px}
+.faq-item h3{font-size:.95rem;margin-bottom:3px}
+.faq-item p{font-size:.88rem;color:var(--muted)}
+.related ul{list-style:none;display:flex;flex-wrap:wrap;gap:9px}
+.related a{background:rgba(102,126,234,.1);color:var(--primary);padding:7px 13px;border-radius:8px;font-weight:500;font-size:.88rem}
+.related a:hover{background:var(--primary);color:#fff}
+.seo-box{font-size:.9rem;color:var(--muted)}
+.seo-box h2{color:var(--text);margin:14px 0 8px;font-size:1.1rem}
+.seo-box p{margin-bottom:11px}
+.seo-box ul{margin:8px 0 12px 18px}
+footer{text-align:center;padding:26px 16px;color:rgba(255,255,255,.9);font-size:.88rem}
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--success);color:#fff;padding:11px 20px;border-radius:10px;font-weight:600;z-index:999;opacity:0;transition:.3s;pointer-events:none}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+@media print{body *{visibility:hidden}#printArea,#printArea *{visibility:visible}#printArea{position:absolute;left:0;top:0;width:100%;background:#fff}header,.no-print,.hero{display:none!important}}
+</style>
+</head>
+<body>
+<header class="no-print">
+  <div class="container header-inner">
+    <a href="index.html" class="logo">🛠️ <span>My-Tools</span></a>
+    <button class="theme-btn" id="themeToggle" title="Toggle dark mode" aria-label="Toggle dark mode">🌓</button>
+  </div>
+</header>
 
+<main class="container">
+  <section class="hero no-print">
+    <h1>Free Online GST Invoice Generator</h1>
+    <p>Create professional GST Invoice, Quotation & Proforma in seconds. Auto CGST/SGST/IGST • HSN Code • Logo • PDF Download. 100% Free • No Signup</p>
+  </section>
+
+  <div class="main-grid no-print">
+    <!-- FORM -->
+    <div>
+      <div class="card">
+        <div class="type-toggle" id="typeToggle">
+          <button class="active" data-type="Invoice">Invoice</button>
+          <button data-type="Quotation">Quotation</button>
+          <button data-type="Proforma">Proforma</button>
+        </div>
+
+        <div class="tpl-btns" id="tplBtns">
+          <button class="active" data-tpl="modern">Modern</button>
+          <button data-tpl="classic">Classic</button>
+          <button data-tpl="minimal">Minimal</button>
+          <button data-tpl="colorful">Colorful</button>
+          <button data-tpl="gst">GST</button>
+        </div>
+
+        <div class="row" style="margin-bottom:10px">
+          <div><label>Invoice / Quotation No.</label><input type="text" id="invNo" readonly></div>
+          <div><label>Date</label><input type="date" id="invDate"></div>
+        </div>
+
+        <h2 style="font-size:.95rem;margin:14px 0 8px">Your Company Profile</h2>
+        <div class="row">
+          <div><label>Company Name</label><input type="text" id="compName" placeholder="Your Company Pvt Ltd"></div>
+          <div><label>GSTIN</label><input type="text" id="compGstin" placeholder="22AAAAA0000A1Z5" maxlength="15"></div>
+        </div>
+        <div style="margin-top:8px"><label>Address</label><textarea id="compAddr" rows="2" placeholder="Full business address"></textarea></div>
+        <div class="row" style="margin-top:8px">
+          <div><label>Phone</label><input type="text" id="compPhone" placeholder="+91 98765 43210"></div>
+          <div><label>Email</label><input type="email" id="compEmail" placeholder="billing@company.com"></div>
+        </div>
+        <div class="row" style="margin-top:8px">
+          <div><label>State</label><select id="compState"></select></div>
+          <div><label>Logo Upload</label><input type="file" id="logoInput" accept="image/*"></div>
+        </div>
+        <div class="btn-group"><button class="btn btn-sec btn-sm" id="btnSaveCompany">💾 Save Company Profile</button></div>
+
+        <h2 style="font-size:.95rem;margin:16px 0 8px">Customer / Bill To</h2>
+        <div><label>Customer Name</label><input type="text" id="custName" placeholder="Type to auto-fill saved customers..." list="custList"><datalist id="custList"></datalist></div>
+        <div style="margin-top:8px"><label>Address</label><textarea id="custAddr" rows="2"></textarea></div>
+        <div class="row" style="margin-top:8px">
+          <div><label>GSTIN</label><input type="text" id="custGstin" maxlength="15"></div>
+          <div><label>State</label><select id="custState"></select></div>
+        </div>
+        <div class="btn-group"><button class="btn btn-sec btn-sm" id="btnSaveCustomer">💾 Save Customer</button></div>
+
+        <h2 style="font-size:.95rem;margin:16px 0 8px">Line Items (HSN / SAC)</h2>
+        <div style="overflow-x:auto">
+          <table class="items-table">
+            <thead><tr><th>Description</th><th>HSN/SAC</th><th>Qty</th><th>Rate</th><th>Disc%</th><th>GST%</th><th></th></tr></thead>
+            <tbody id="itemsBody"></tbody>
+          </table>
+        </div>
+        <button class="btn btn-sec btn-sm" id="btnAddItem" style="margin-top:7px">+ Add Item</button>
+
+        <div class="row" style="margin-top:12px">
+          <div><label>Shipping / Other (₹)</label><input type="number" id="shipping" value="0" min="0" step="0.01"></div>
+          <div><label>Theme Color</label><input type="color" id="themeColor" value="#667eea" style="height:38px;padding:2px"></div>
+        </div>
+        <div style="margin-top:10px"><label>Terms & Conditions</label><textarea id="terms" rows="3">1. Payment due within 15 days.
+2. Goods once sold will not be taken back.
+3. Subject to local jurisdiction.</textarea></div>
+
+        <h2 style="font-size:.95rem;margin:14px 0 6px">Signature & Seal</h2>
+        <canvas id="sigCanvas" width="280" height="90"></canvas>
+        <div class="btn-group">
+          <button class="btn btn-sec btn-sm" id="btnClearSig">Clear Signature</button>
+          <label class="btn btn-sec btn-sm" style="cursor:pointer">Upload Seal<input type="file" id="sealInput" accept="image/*" hidden></label>
+        </div>
+
+        <div class="btn-group" style="margin-top:16px">
+          <button class="btn" id="btnPdf">📄 Download PDF</button>
+          <button class="btn btn-success" id="btnWhatsApp">WhatsApp Share</button>
+          <button class="btn btn-sec" id="btnSaveInv">💾 Save</button>
+          <button class="btn btn-sec" id="btnDuplicate">Duplicate</button>
+          <button class="btn btn-sec" id="btnNew">New</button>
+        </div>
+        <div class="btn-group">
+          <button class="btn btn-sec btn-sm" id="btnBackup">Backup JSON</button>
+          <button class="btn btn-sec btn-sm" id="btnRestore">Restore</button>
+          <input type="file" id="restoreInput" accept=".json" hidden>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>📜 Invoice History</h2>
+        <input type="text" id="historySearch" placeholder="Search by number or customer..." style="margin-bottom:8px">
+        <div id="historyList"></div>
+      </div>
+    </div>
+
+    <!-- PREVIEW -->
+    <div>
+      <div class="card">
+        <h2 class="no-print">Live Preview</h2>
+        <div id="printArea"><div class="preview-wrap" id="preview"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card no-print">
+    <h2>Key Features</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;font-size:.9rem">
+      <div>✓ Auto CGST + SGST / IGST</div>
+      <div>✓ HSN / SAC Code support</div>
+      <div>✓ Logo + Signature + Seal</div>
+      <div>✓ 5 Professional Templates</div>
+      <div>✓ Customer Database</div>
+      <div>✓ PDF Download (A4)</div>
+      <div>✓ WhatsApp Share</div>
+      <div>✓ Offline + Dark Mode</div>
+      <div>✓ Invoice History + Backup</div>
+      <div>✓ 100% Free • No Signup</div>
+    </div>
+  </div>
+
+  <div class="card no-print">
+    <h2>How to Use</h2>
+    <ol style="padding-left:18px;color:var(--muted);font-size:.9rem">
+      <li>Enter Company Details (logo, GSTIN, address) and save profile</li>
+      <li>Add Customer & Items with HSN, rate, discount and GST %</li>
+      <li>Click Download PDF – save or print the professional A4 invoice</li>
+    </ol>
+  </div>
+
+  <div class="card no-print">
+    <h2>❓ Frequently Asked Questions</h2>
+    <div class="faq-item"><h3>Is this Invoice Generator really free?</h3><p>Yes. Completely free forever. No hidden charges, no watermark, no signup required.</p></div>
+    <div class="faq-item"><h3>Do I need to signup or login?</h3><p>No. You can start creating invoices immediately without any registration.</p></div>
+    <div class="faq-item"><h3>Can I add my Logo and GSTIN?</h3><p>Yes. Upload your company logo, add GSTIN, address, phone and email. Everything is saved in your browser.</p></div>
+    <div class="faq-item"><h3>Does it calculate CGST, SGST, IGST automatically?</h3><p>Yes. Select your state and customer state. The tool automatically applies CGST+SGST for intra-state or IGST for inter-state.</p></div>
+    <div class="faq-item"><h3>Can I download invoice as PDF?</h3><p>Yes. Click Download PDF. It opens a clean A4 print view that you can save as PDF from your browser.</p></div>
+    <div class="faq-item"><h3>Is my data safe? Where is it stored?</h3><p>100% safe. All data stays in your browser LocalStorage. Nothing is uploaded to any server.</p></div>
+    <div class="faq-item"><h3>Can I use it offline?</h3><p>Yes. After the first load the page works offline. It is fully client-side.</p></div>
+    <div class="faq-item"><h3>Can I create Quotation also?</h3><p>Yes. Toggle between Invoice, Quotation and Proforma Invoice with one click.</p></div>
+  </div>
+
+  <div class="card related no-print">
+    <h2>🔗 Related Tools</h2>
+    <ul>
+      <li><a href="emi.html">EMI Calculator</a></li>
+      <li><a href="pdf-to-jpg.html">PDF to JPG</a></li>
+      <li><a href="base64.html">Base64 Encoder</a></li>
+      <li><a href="hash.html">Hash Generator</a></li>
+      <li><a href="password.html">Password Strength</a></li>
+      <li><a href="unit.html">Unit Converter</a></li>
+    </ul>
+  </div>
+
+  <div class="card seo-box no-print">
+    <h2>Free GST Invoice Generator & Quotation Maker for Indian Businesses</h2>
+    <p>Create professional <strong>GST invoices</strong>, tax invoices, quotations and proforma invoices in seconds with this free online tool. Perfect for freelancers, small businesses, retailers and service providers across India who need a fast <strong>gst invoice generator</strong> without expensive billing software.</p>
+    <p>Our <strong>free invoice generator</strong> supports automatic CGST, SGST and IGST calculation based on place of supply. Add HSN or SAC codes, item-wise discounts, shipping charges, company logo, digital signature and company seal. Choose from Modern, Classic, Minimal, Colorful or GST-focused templates and download a clean A4 PDF instantly.</p>
+    <p>Key benefits of this <strong>online invoice maker</strong>:</p>
+    <ul>
+      <li>No signup, no login, no watermark – 100% free GST billing</li>
+      <li>Works offline after first load (PWA-ready)</li>
+      <li>Customer database with auto-fill + full invoice history</li>
+      <li>Backup and restore all data as JSON</li>
+      <li>WhatsApp share button for quick client communication</li>
+      <li>Mobile-friendly design with dark mode</li>
+    </ul>
+    <p>Whether you search for “gst bill generator”, “quotation maker”, “tax invoice generator”, “proforma invoice online”, “hsn code invoice”, “free gst billing software” or “invoice template india”, this tool covers every need. Generate digital invoices, estimates and quotations that look professional and stay completely private – all data remains in your browser.</p>
+    <p>Start creating your first GST invoice or quotation now. No credit card, no account, just open and bill.</p>
+  </div>
+</main>
+
+<footer class="no-print">
+  <div>Made with ❤️ by My-Tools. 100% Free Forever. No Data Uploaded.</div>
+  <div style="margin-top:5px">© 2026 My-Tools • Free GST Invoice Generator & Quotation Maker</div>
+</footer>
+
+<div class="toast" id="toast">Saved!</div>
+
+<script>
+(function(){
+'use strict';
+const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
+const toast=m=>{const t=$('#toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200)};
+
+const STATES=["Andhra Pradesh","Arunachal Pradesh","Assam","Bihar","Chhattisgarh","Goa","Gujarat","Haryana","Himachal Pradesh","Jharkhand","Karnataka","Kerala","Madhya Pradesh","Maharashtra","Manipur","Meghalaya","Mizoram","Nagaland","Odisha","Punjab","Rajasthan","Sikkim","Tamil Nadu","Telangana","Tripura","Uttar Pradesh","Uttarakhand","West Bengal","Delhi","Jammu and Kashmir","Ladakh","Puducherry","Chandigarh","Andaman and Nicobar Islands","Dadra and Nagar Haveli and Daman and Diu","Lakshadweep"];
+
+let state={
+  type:'Invoice', invNo:'', date:new Date().toISOString().slice(0,10),
+  company:{name:'',gstin:'',addr:'',phone:'',email:'',state:'Maharashtra',logo:''},
+  customer:{name:'',gstin:'',addr:'',state:'Maharashtra'},
+  items:[], shipping:0, terms:'', themeColor:'#667eea', signature:'', seal:'', template:'modern'
+};
+
+/* Theme */
+const st=localStorage.getItem('mt-theme');
+if(st) document.documentElement.setAttribute('data-theme',st);
+$('#themeToggle').onclick=()=>{
+  const n=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',n);
+  localStorage.setItem('mt-theme',n);
+};
+
+/* States */
+function fillStates(sel){sel.innerHTML=STATES.map(s=>`<option value="${s}">${s}</option>`).join('')}
+fillStates($('#compState')); fillStates($('#custState'));
+
+/* Invoice No */
+function nextInvNo(){
+  let n=parseInt(localStorage.getItem('inv-counter')||'0',10)+1;
+  localStorage.setItem('inv-counter',n);
+  return `INV-2026-${String(n).padStart(3,'0')}`;
+}
+function ensureInvNo(){
+  if(!state.invNo) state.invNo=nextInvNo();
+  $('#invNo').value=state.invNo;
+}
+
+/* Company */
+function loadCompany(){
+  try{
+    const c=JSON.parse(localStorage.getItem('inv-company')||'{}');
+    if(c.name){
+      Object.assign(state.company,c);
+      $('#compName').value=c.name||'';
+      $('#compGstin').value=c.gstin||'';
+      $('#compAddr').value=c.addr||'';
+      $('#compPhone').value=c.phone||'';
+      $('#compEmail').value=c.email||'';
+      if(c.state) $('#compState').value=c.state;
+    }
+  }catch(e){}
+}
+$('#btnSaveCompany').onclick=()=>{
+  state.company={
+    name:$('#compName').value.trim(), gstin:$('#compGstin').value.trim(),
+    addr:$('#compAddr').value.trim(), phone:$('#compPhone').value.trim(),
+    email:$('#compEmail').value.trim(), state:$('#compState').value,
+    logo:state.company.logo
+  };
+  localStorage.setItem('inv-company',JSON.stringify(state.company));
+  toast('Company profile saved');
+  renderPreview();
+};
+
+/* Customers */
+function loadCustomers(){
+  try{
+    const list=JSON.parse(localStorage.getItem('inv-customers')||'[]');
+    $('#custList').innerHTML=list.map(c=>`<option value="${c.name}">`).join('');
+  }catch(e){}
+}
+$('#btnSaveCustomer').onclick=()=>{
+  const cust={name:$('#custName').value.trim(),gstin:$('#custGstin').value.trim(),addr:$('#custAddr').value.trim(),state:$('#custState').value};
+  if(!cust.name) return toast('Enter customer name');
+  let list=[]; try{list=JSON.parse(localStorage.getItem('inv-customers')||'[]')}catch(e){}
+  const i=list.findIndex(c=>c.name.toLowerCase()===cust.name.toLowerCase());
+  if(i>=0) list[i]=cust; else list.push(cust);
+  localStorage.setItem('inv-customers',JSON.stringify(list));
+  loadCustomers(); toast('Customer saved');
+};
+$('#custName').addEventListener('change',()=>{
+  try{
+    const list=JSON.parse(localStorage.getItem('inv-customers')||'[]');
+    const f=list.find(c=>c.name===$('#custName').value);
+    if(f){$('#custGstin').value=f.gstin||'';$('#custAddr').value=f.addr||'';if(f.state)$('#custState').value=f.state;renderPreview()}
+  }catch(e){}
+});
+
+/* Logo / Seal */
+$('#logoInput').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=ev=>{state.company.logo=ev.target.result;renderPreview()};r.readAsDataURL(f)};
+$('#sealInput').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=ev=>{state.seal=ev.target.result;renderPreview()};r.readAsDataURL(f)};
+
+/* Signature */
+const canvas=$('#sigCanvas'), ctx=canvas.getContext('2d');
+let drawing=false;
+ctx.strokeStyle='#1a202c'; ctx.lineWidth=2; ctx.lineCap='round';
+function pos(e){const r=canvas.getBoundingClientRect();const x=e.touches?e.touches[0].clientX:e.clientX;const y=e.touches?e.touches[0].clientY:e.clientY;return{x:x-r.left,y:y-r.top}}
+function start(e){e.preventDefault();drawing=true;const p=pos(e);ctx.beginPath();ctx.moveTo(p.x,p.y)}
+function move(e){if(!drawing)return;e.preventDefault();const p=pos(e);ctx.lineTo(p.x,p.y);ctx.stroke()}
+function end(){drawing=false;state.signature=canvas.toDataURL('image/png');renderPreview()}
+canvas.addEventListener('mousedown',start);canvas.addEventListener('mousemove',move);canvas.addEventListener('mouseup',end);canvas.addEventListener('mouseleave',end);
+canvas.addEventListener('touchstart',start,{passive:false});canvas.addEventListener('touchmove',move,{passive:false});canvas.addEventListener('touchend',end);
+$('#btnClearSig').onclick=()=>{ctx.clearRect(0,0,canvas.width,canvas.height);state.signature='';renderPreview()};
+
+/* Items */
+function addItem(d={}){
+  state.items.push({desc:d.desc||'',hsn:d.hsn||'',qty:d.qty??1,rate:d.rate??0,disc:d.disc??0,gst:d.gst??18});
+  renderItems(); renderPreview();
+}
+function renderItems(){
+  const body=$('#itemsBody'); body.innerHTML='';
+  state.items.forEach((it,i)=>{
+    const tr=document.createElement('tr');
+    tr.innerHTML=`<td><input data-i="${i}" data-f="desc" value="${esc(it.desc)}" placeholder="Item"></td>
+      <td><input data-i="${i}" data-f="hsn" value="${esc(it.hsn)}" placeholder="HSN" style="width:70px"></td>
+      <td><input type="number" min="0" step="0.01" data-i="${i}" data-f="qty" value="${it.qty}" style="width:60px"></td>
+      <td><input type="number" min="0" step="0.01" data-i="${i}" data-f="rate" value="${it.rate}" style="width:70px"></td>
+      <td><input type="number" min="0" max="100" step="0.01" data-i="${i}" data-f="disc" value="${it.disc}" style="width:55px"></td>
+      <td><input type="number" min="0" max="28" step="0.01" data-i="${i}" data-f="gst" value="${it.gst}" style="width:55px"></td>
+      <td><button class="btn btn-danger btn-sm" data-del="${i}">×</button></td>`;
+    body.appendChild(tr);
+  });
+  body.querySelectorAll('input').forEach(inp=>{
+    inp.oninput=()=>{
+      const i=+inp.dataset.i,f=inp.dataset.f;
+      let v=inp.value; if(['qty','rate','disc','gst'].includes(f)) v=parseFloat(v)||0;
+      state.items[i][f]=v; renderPreview();
+    };
+  });
+  body.querySelectorAll('[data-del]').forEach(b=>b.onclick=()=>{state.items.splice(+b.dataset.del,1);renderItems();renderPreview()});
+}
+$('#btnAddItem').onclick=()=>addItem();
+function esc(s){return String(s).replace(/"/g,'&quot;')}
+
+/* Calc */
+function calc(){
+  const isInter=$('#compState').value!==$('#custState').value;
+  let sub=0,cgst=0,sgst=0,igst=0;
+  const lines=state.items.map(it=>{
+    const gross=it.qty*it.rate;
+    const discAmt=gross*(it.disc/100);
+    const taxable=gross-discAmt;
+    const tax=taxable*(it.gst/100);
+    sub+=taxable;
+    if(isInter) igst+=tax; else{cgst+=tax/2;sgst+=tax/2}
+    return{...it,taxable,tax};
+  });
+  const shipping=parseFloat($('#shipping').value)||0;
+  const grand=Math.round((sub+cgst+sgst+igst+shipping)*100)/100;
+  return{lines,sub,cgst,sgst,igst,shipping,grand,isInter};
+}
+
+/* Preview */
+function renderPreview(){
+  state.type=document.querySelector('#typeToggle .active').dataset.type;
+  state.date=$('#invDate').value||state.date;
+  state.company.name=$('#compName').value;
+  state.company.gstin=$('#compGstin').value;
+  state.company.addr=$('#compAddr').value;
+  state.company.phone=$('#compPhone').value;
+  state.company.email=$('#compEmail').value;
+  state.company.state=$('#compState').value;
+  state.customer={name:$('#custName').value,gstin:$('#custGstin').value,addr:$('#custAddr').value,state:$('#custState').value};
+  state.shipping=parseFloat($('#shipping').value)||0;
+  state.terms=$('#terms').value;
+  state.themeColor=$('#themeColor').value;
+  state.invNo=$('#invNo').value;
+  document.documentElement.style.setProperty('--theme',state.themeColor);
+
+  const c=calc();
+  const color=state.themeColor;
+  const rows=c.lines.map((l,i)=>`<tr>
+    <td>${i+1}</td><td>${escH(l.desc)}${l.hsn?`<br><small>HSN: ${escH(l.hsn)}</small>`:''}</td>
+    <td>${l.qty}</td><td>₹${l.rate.toFixed(2)}</td><td>${l.disc}%</td>
+    <td>₹${l.taxable.toFixed(2)}</td><td>${l.gst}%</td><td>₹${l.tax.toFixed(2)}</td></tr>`).join('');
+
+  const logo=state.company.logo?`<img class="logo" src="${state.company.logo}" alt="Logo">`:'';
+  const sig=state.signature?`<img src="${state.signature}" alt="Sign">`:'<div style="height:36px"></div>';
+  const seal=state.seal?`<img src="${state.seal}" alt="Seal" style="max-height:45px">`:'';
+
+  $('#preview').innerHTML=`
+    <div class="preview-header" style="border-color:${color}">
+      <div>${logo}<div style="font-weight:700;font-size:1.1rem;margin-top:4px">${escH(state.company.name)||'Your Company'}</div>
+        <div style="font-size:.78rem;color:#4a5568;white-space:pre-line">${escH(state.company.addr)}</div>
+        ${state.company.gstin?`<div style="font-size:.78rem">GSTIN: ${escH(state.company.gstin)}</div>`:''}
+        <div style="font-size:.78rem">${escH(state.company.phone)} ${state.company.email?'| '+escH(state.company.email):''}</div>
+      </div>
+      <div style="text-align:right">
+        <div style="font-size:1.3rem;font-weight:700;color:${color}">${state.type.toUpperCase()}</div>
+        <div><strong>No:</strong> ${escH(state.invNo)}</div>
+        <div><strong>Date:</strong> ${state.date}</div>
+      </div>
+    </div>
+    <div class="preview-body">
+      <div class="preview-meta">
+        <div><strong>Bill To:</strong><br>${escH(state.customer.name)||'Customer'}<br>
+          <span style="white-space:pre-line;font-size:.78rem">${escH(state.customer.addr)}</span><br>
+          ${state.customer.gstin?'GSTIN: '+escH(state.customer.gstin)+'<br>':''}State: ${escH(state.customer.state)}
+        </div>
+        <div><strong>Place of Supply:</strong> ${escH(state.customer.state)}<br>
+          <strong>Supply:</strong> ${c.isInter?'Inter-State (IGST)':'Intra-State (CGST+SGST)'}
+        </div>
+      </div>
+      <table class="preview-table">
+        <thead><tr style="background:${color}"><th>#</th><th>Description</th><th>Qty</th><th>Rate</th><th>Disc</th><th>Taxable</th><th>GST%</th><th>Tax</th></tr></thead>
+        <tbody>${rows||'<tr><td colspan="8" style="text-align:center">No items</td></tr>'}</tbody>
+      </table>
+      <div class="preview-totals">
+        <div class="row-t"><span>Sub Total</span><span>₹${c.sub.toFixed(2)}</span></div>
+        ${c.isInter?`<div class="row-t"><span>IGST</span><span>₹${c.igst.toFixed(2)}</span></div>`:
+          `<div class="row-t"><span>CGST</span><span>₹${c.cgst.toFixed(2)}</span></div>
+           <div class="row-t"><span>SGST</span><span>₹${c.sgst.toFixed(2)}</span></div>`}
+        ${c.shipping?`<div class="row-t"><span>Shipping</span><span>₹${c.shipping.toFixed(2)}</span></div>`:''}
+        <div class="row-t grand"><span>Grand Total</span><span>₹${c.grand.toFixed(2)}</span></div>
+      </div>
+      <div class="sig-area">
+        <div class="sig-box">${seal}<div style="margin-top:3px;font-size:.72rem">Company Seal</div></div>
+        <div class="sig-box">${sig}<div style="margin-top:3px;font-size:.72rem">Authorised Signatory</div></div>
+      </div>
+    </div>
+    <div class="preview-footer"><strong>Terms & Conditions</strong><br><div style="white-space:pre-line;margin-top:3px">${escH(state.terms)}</div></div>`;
+}
+function escH(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+
+/* Type & Template */
+$$('#typeToggle button').forEach(b=>b.onclick=()=>{$$('#typeToggle button').forEach(x=>x.classList.remove('active'));b.classList.add('active');state.type=b.dataset.type;renderPreview()});
+$$('#tplBtns button').forEach(b=>b.onclick=()=>{$$('#tplBtns button').forEach(x=>x.classList.remove('active'));b.classList.add('active');state.template=b.dataset.tpl;renderPreview()});
+
+/* Live update */
+['compName','compGstin','compAddr','compPhone','compEmail','compState','custName','custGstin','custAddr','custState','shipping','terms','themeColor','invDate']
+.forEach(id=>{const el=$('#'+id);if(el){el.addEventListener('input',renderPreview);el.addEventListener('change',renderPreview)}});
+
+/* PDF / WhatsApp */
+$('#btnPdf').onclick=()=>{renderPreview();window.print()};
+$('#btnWhatsApp').onclick=()=>{
+  const c=calc();
+  const t=`${state.type} ${state.invNo}\nDate: ${state.date}\nFrom: ${state.company.name}\nTo: ${state.customer.name}\nTotal: ₹${c.grand.toFixed(2)}\n\nVia My-Tools Free GST Invoice Generator`;
+  window.open(`https://wa.me/?text=${encodeURIComponent(t)}`,'_blank');
+};
+
+/* Save / History */
+function saveInvoice(){
+  renderPreview();
+  const c=calc();
+  const rec={id:Date.now(),type:state.type,invNo:state.invNo,date:state.date,company:{...state.company},customer:{...state.customer},items:[...state.items],shipping:state.shipping,terms:state.terms,themeColor:state.themeColor,signature:state.signature,seal:state.seal,grand:c.grand};
+  let h=[];try{h=JSON.parse(localStorage.getItem('inv-history')||'[]')}catch(e){}
+  h.unshift(rec); h=h.slice(0,100);
+  localStorage.setItem('inv-history',JSON.stringify(h));
+  toast('Invoice saved'); renderHistory();
+}
+$('#btnSaveInv').onclick=saveInvoice;
+
+function renderHistory(filter=''){
+  let h=[];try{h=JSON.parse(localStorage.getItem('inv-history')||'[]')}catch(e){}
+  if(filter){const q=filter.toLowerCase();h=h.filter(x=>(x.invNo+x.customer.name).toLowerCase().includes(q))}
+  const list=$('#historyList');
+  if(!h.length){list.innerHTML='<p style="color:var(--muted);font-size:.88rem">No invoices yet</p>';return}
+  list.innerHTML=h.map(x=>`<div class="history-item">
+    <div><strong>${escH(x.invNo)}</strong> · ${escH(x.customer.name||'—')}<br><small style="color:var(--muted)">${x.date} · ₹${(x.grand||0).toFixed(2)} · ${x.type}</small></div>
+    <button class="btn btn-sm btn-sec" data-load="${x.id}">Load</button></div>`).join('');
+  list.querySelectorAll('[data-load]').forEach(b=>b.onclick=e=>{e.stopPropagation();const rec=h.find(x=>x.id===+b.dataset.load);if(rec)loadRecord(rec)});
+}
+$('#historySearch').oninput=()=>renderHistory($('#historySearch').value);
+
+function loadRecord(rec){
+  state={type:rec.type||'Invoice',invNo:rec.invNo,date:rec.date,company:rec.company||state.company,customer:rec.customer||{},items:rec.items||[],shipping:rec.shipping||0,terms:rec.terms||'',themeColor:rec.themeColor||'#667eea',signature:rec.signature||'',seal:rec.seal||'',template:state.template};
+  $$('#typeToggle button').forEach(b=>b.classList.toggle('active',b.dataset.type===state.type));
+  $('#invNo').value=state.invNo; $('#invDate').value=state.date;
+  $('#compName').value=state.company.name||''; $('#compGstin').value=state.company.gstin||'';
+  $('#compAddr').value=state.company.addr||''; $('#compPhone').value=state.company.phone||'';
+  $('#compEmail').value=state.company.email||''; if(state.company.state)$('#compState').value=state.company.state;
+  $('#custName').value=state.customer.name||''; $('#custGstin').value=state.customer.gstin||'';
+  $('#custAddr').value=state.customer.addr||''; if(state.customer.state)$('#custState').value=state.customer.state;
+  $('#shipping').value=state.shipping; $('#terms').value=state.terms; $('#themeColor').value=state.themeColor;
+  if(state.signature){const img=new Image();img.onload=()=>{ctx.clearRect(0,0,canvas.width,canvas.height);ctx.drawImage(img,0,0)};img.src=state.signature}
+  else ctx.clearRect(0,0,canvas.width,canvas.height);
+  renderItems(); renderPreview(); toast('Loaded');
+}
+
+/* Duplicate / New */
+$('#btnDuplicate').onclick=()=>{state.invNo=nextInvNo();$('#invNo').value=state.invNo;state.date=new Date().toISOString().slice(0,10);$('#invDate').value=state.date;renderPreview();toast('Duplicated')};
+$('#btnNew').onclick=()=>{
+  state.items=[]; state.customer={name:'',gstin:'',addr:'',state:$('#compState').value};
+  state.shipping=0; state.signature=''; state.seal=''; state.invNo=nextInvNo();
+  $('#invNo').value=state.invNo; $('#invDate').value=new Date().toISOString().slice(0,10);
+  $('#custName').value=''; $('#custGstin').value=''; $('#custAddr').value=''; $('#shipping').value=0;
+  ctx.clearRect(0,0,canvas.width,canvas.height); renderItems(); addItem(); renderPreview(); toast('New invoice');
+};
+
+/* Backup */
+$('#btnBackup').onclick=()=>{
+  const data={company:JSON.parse(localStorage.getItem('inv-company')||'{}'),customers:JSON.parse(localStorage.getItem('inv-customers')||'[]'),history:JSON.parse(localStorage.getItem('inv-history')||'[]'),counter:localStorage.getItem('inv-counter')||'0'};
+  const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'})); a.download='mytools-invoice-backup.json'; a.click(); toast('Backup ready');
+};
+$('#btnRestore').onclick=()=>$('#restoreInput').click();
+$('#restoreInput').onchange=e=>{
+  const f=e.target.files[0]; if(!f)return;
+  const r=new FileReader();
+  r.onload=ev=>{try{
+    const d=JSON.parse(ev.target.result);
+    if(d.company)localStorage.setItem('inv-company',JSON.stringify(d.company));
+    if(d.customers)localStorage.setItem('inv-customers',JSON.stringify(d.customers));
+    if(d.history)localStorage.setItem('inv-history',JSON.stringify(d.history));
+    if(d.counter)localStorage.setItem('inv-counter',d.counter);
+    loadCompany(); loadCustomers(); renderHistory(); toast('Restored');
+  }catch(err){toast('Invalid file')}};
+  r.readAsText(f);
+};
+
+/* Init */
+$('#invDate').value=state.date;
+loadCompany(); loadCustomers(); ensureInvNo();
+addItem({desc:'Sample Product / Service',hsn:'9983',qty:1,rate:1000,disc:0,gst:18});
+renderPreview(); renderHistory();
+
+setInterval(()=>{
+  localStorage.setItem('inv-draft',JSON.stringify({
+    type:state.type,invNo:state.invNo,date:$('#invDate').value,
+    company:state.company,customer:{name:$('#custName').value,gstin:$('#custGstin').value,addr:$('#custAddr').value,state:$('#custState').value},
+    items:state.items,shipping:$('#shipping').value,terms:$('#terms').value,themeColor:$('#themeColor').value,
+    signature:state.signature,seal:state.seal
+  }));
+},30000);
+})();
+</script>
+</body>
+</html>
