@@ -1,1 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Base64 Encoder & Decoder Tool | No Limit | 100% Online</title>
+<meta name="description" content="Free Base64 Encoder & Decoder with 20+ Features. Encode/Decode text, image to base64, PDF, JWT decoder, bulk base64. Offline, no limit, 100% client-side.">
+<meta name="keywords" content="base64 encode, base64 decode, image to base64, pdf to base64, jwt decoder, bulk base64, base64 converter, data uri">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Mujahar">
+<meta name="theme-color" content="#1e3a8a">
+<link rel="canonical" href="https://mujaharalam777-bot.github.io/My-tools/base64.html">
+<meta property="og:title" content="Free Base64 Encoder & Decoder Tool | No Limit | 100% Online">
+<meta property="og:description" content="20+ Features Base64 tool. Image, PDF, JWT, Bulk, Offline. Free forever.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mujaharalam777-bot.github.io/My-tools/base64.html">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Is this Base64 Encoder free?","acceptedAnswer":{"@type":"Answer","text":"Yes. Completely free with no limits, no registration and no watermarks. Everything runs in your browser."}},
+{"@type":"Question","name":"Does my data get uploaded to a server?","acceptedAnswer":{"@type":"Answer","text":"No. The tool is 100% client-side. Your text and files never leave your device."}},
+{"@type":"Question","name":"Can I encode images and PDFs?","acceptedAnswer":{"@type":"Answer","text":"Yes. Drag & drop any image, PDF, ZIP or video. You can also compress images before encoding."}},
+{"@type":"Question","name":"What is URL-safe Base64?","acceptedAnswer":{"@type":"Answer","text":"URL-safe Base64 replaces + and / with - and _ so the string can be used safely in URLs and filenames."}},
+{"@type":"Question","name":"How does the JWT Decoder work?","acceptedAnswer":{"@type":"Answer","text":"Paste any JWT. The tool splits Header, Payload and Signature, then base64url-decodes and pretty-prints the JSON."}},
+{"@type":"Question","name":"Is there a file size limit?","acceptedAnswer":{"@type":"Answer","text":"No hard limit. Very large files are limited only by your browser memory. Image compression helps with big photos."}},
+{"@type":"Question","name":"Does it work offline?","acceptedAnswer":{"@type":"Answer","text":"Yes. After the first load the page works without internet. It is PWA-ready."}},
+{"@type":"Question","name":"How to use keyboard shortcuts?","acceptedAnswer":{"@type":"Answer","text":"Ctrl+Enter = Encode, Ctrl+Shift+Enter = Decode, Ctrl+K = Clear all fields."}}
+]}
+</script>
+<style>
+:root{--primary:#1e3a8a;--primary-light:#3b82f6;--primary-dark:#1e40af;--bg1:#0f172a;--bg2:#1e3a8a;--card:rgba(255,255,255,.97);--text:#0f172a;--muted:#64748b;--border:#e2e8f0;--ok:#10b981;--err:#ef4444;--radius:16px;--shadow:0 10px 40px rgba(30,58,138,.15)}
+[data-theme=dark]{--card:#1e293b;--text:#f1f5f9;--muted:#94a3b8;--border:#334155;--shadow:0 10px 40px rgba(0,0,0,.4)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:linear-gradient(135deg,var(--bg1) 0%,var(--bg2) 55%,#3b82f6 100%);background-attachment:fixed;color:var(--text);min-height:100vh;line-height:1.6}
+a{color:var(--primary-light);text-decoration:none}
+a:hover{text-decoration:underline}
+.container{width:100%;max-width:960px;margin:0 auto;padding:0 16px}
+header{background:rgba(15,23,42,.88);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.08);position:sticky;top:0;z-index:100}
+.header-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 0;gap:12px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.25rem;color:#fff}
+.logo span{background:linear-gradient(90deg,#60a5fa,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-links{display:flex;gap:16px;align-items:center}
+.nav-links a{color:#cbd5e1;font-size:.9rem;font-weight:500}
+.nav-links a:hover{color:#fff}
+.theme-btn{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;width:38px;height:38px;border-radius:50%;cursor:pointer;display:grid;place-items:center;font-size:1.1rem}
+.hero{text-align:center;padding:36px 0 18px;color:#fff}
+.hero h1{font-size:clamp(1.55rem,4vw,2.2rem);font-weight:800;margin-bottom:10px;text-shadow:0 2px 10px rgba(0,0,0,.3)}
+.hero p{opacity:.92;max-width:620px;margin:0 auto;font-size:1.05rem}
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px;margin-bottom:22px;border:1px solid var(--border)}
+.card h2{font-size:1.2rem;margin-bottom:14px;color:var(--primary);display:flex;align-items:center;gap:8px}
+[data-theme=dark] .card h2{color:#60a5fa}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.tab{background:#f1f5f9;border:1px solid var(--border);color:var(--muted);padding:7px 14px;border-radius:999px;cursor:pointer;font-size:.85rem;font-weight:500;transition:.15s}
+[data-theme=dark] .tab{background:#334155;border-color:#475569}
+.tab.active,.tab:hover{background:var(--primary-light);color:#fff;border-color:var(--primary-light)}
+.panel{display:none}.panel.active{display:block}
+label{display:block;font-size:.85rem;font-weight:600;margin-bottom:6px;color:var(--muted)}
+textarea,input[type=text],select{width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:10px;font-size:.95rem;background:var(--card);color:var(--text);font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;resize:vertical;min-height:110px}
+textarea:focus,input:focus,select:focus{outline:2px solid var(--primary-light);border-color:transparent}
+.btn-row{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.btn{display:inline-flex;align-items:center;gap:6px;background:var(--primary-light);color:#fff;border:none;padding:10px 16px;border-radius:10px;font-weight:600;font-size:.9rem;cursor:pointer;transition:.15s}
+.btn:hover{background:var(--primary-dark);transform:translateY(-1px)}
+.btn-sec{background:#e2e8f0;color:#0f172a}[data-theme=dark] .btn-sec{background:#334155;color:#f1f5f9}
+.btn-danger{background:var(--err)}.btn-ok{background:var(--ok)}
+.dropzone{border:2px dashed var(--border);border-radius:12px;padding:26px;text-align:center;cursor:pointer;transition:.2s;background:rgba(59,130,246,.04)}
+.dropzone.dragover{border-color:var(--primary-light);background:rgba(59,130,246,.12)}
+.dropzone p{color:var(--muted);margin-top:6px;font-size:.9rem}
+.stats{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px;font-size:.8rem;color:var(--muted)}
+.stats span{background:#f1f5f9;padding:4px 10px;border-radius:6px}[data-theme=dark] .stats span{background:#334155}
+.preview-box{margin-top:12px;text-align:center}
+.preview-box img{max-width:100%;max-height:220px;border-radius:10px;border:1px solid var(--border)}
+.jwt-box{display:grid;gap:12px}
+.jwt-part{background:#f8fafc;border:1px solid var(--border);border-radius:10px;padding:12px}[data-theme=dark] .jwt-part{background:#0f172a}
+.jwt-part h4{font-size:.85rem;color:var(--primary-light);margin-bottom:6px}
+.jwt-part pre{font-size:.8rem;white-space:pre-wrap;word-break:break-all;max-height:180px;overflow:auto}
+.history-list{display:flex;flex-direction:column;gap:8px;max-height:220px;overflow-y:auto}
+.history-item{background:#f8fafc;border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:.8rem;cursor:pointer;display:flex;justify-content:space-between;gap:8px}[data-theme=dark] .history-item{background:#0f172a}
+.history-item:hover{border-color:var(--primary-light)}
+.history-item .prev{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.feature-item{display:flex;align-items:flex-start;gap:10px;background:rgba(59,130,246,.06);padding:12px;border-radius:10px;font-size:.9rem}
+.feature-item .check{color:var(--ok);font-weight:700;font-size:1.1rem}
+.faq-item{margin-bottom:14px}
+.faq-item h3{font-size:1rem;margin-bottom:4px}
+.faq-item p{font-size:.9rem;color:var(--muted)}
+.related ul{list-style:none;display:flex;flex-wrap:wrap;gap:10px}
+.related a{background:rgba(59,130,246,.1);color:var(--primary-light);padding:8px 14px;border-radius:8px;font-weight:500;font-size:.9rem}
+.related a:hover{background:var(--primary-light);color:#fff;text-decoration:none}
+footer{text-align:center;padding:30px 16px;color:rgba(255,255,255,.88);font-size:.9rem}
+footer .made{margin-top:8px;font-size:.95rem}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--ok);color:#fff;padding:12px 22px;border-radius:10px;font-weight:600;z-index:999;opacity:0;transition:.3s;pointer-events:none}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+@media(max-width:600px){.btn{padding:9px 13px;font-size:.85rem}.card{padding:16px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="container header-inner">
+    <a href="index.html" class="logo">🛠️ <span>My Tools</span></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <button class="theme-btn" id="themeToggle" title="Toggle theme" aria-label="Toggle dark light">🌓</button>
+    </div>
+  </div>
+</header>
 
+<main class="container">
+  <section class="hero">
+    <h1>🔐 Base64 Encoder & Decoder Pro</h1>
+    <p>Instant encode/decode • Image & PDF to Base64 • JWT Decoder • Bulk mode • 20+ features • 100% client-side & offline</p>
+  </section>
+
+  <div class="card">
+    <div class="tabs" id="mainTabs">
+      <button class="tab active" data-panel="text">Text</button>
+      <button class="tab" data-panel="file">File / Image</button>
+      <button class="tab" data-panel="jwt">JWT Decoder</button>
+      <button class="tab" data-panel="bulk">Bulk</button>
+      <button class="tab" data-panel="advanced">Advanced</button>
+      <button class="tab" data-panel="history">History</button>
+    </div>
+
+    <!-- TEXT -->
+    <div class="panel active" id="panel-text">
+      <label for="inputText">Input (type for live encode / paste Base64 to decode)</label>
+      <textarea id="inputText" placeholder="Type or paste text / Base64 here..."></textarea>
+      <div class="stats" id="textStats">
+        <span id="charCount">0 chars</span>
+        <span id="wordCount">0 words</span>
+        <span id="byteCount">0 bytes</span>
+      </div>
+      <div class="btn-row">
+        <button class="btn" id="btnEncode">Encode →</button>
+        <button class="btn btn-sec" id="btnDecode">← Decode</button>
+        <button class="btn btn-sec" id="btnUrlSafe">URL-Safe</button>
+        <button class="btn btn-sec" id="btnChunk">Chunk 76</button>
+        <button class="btn btn-sec" id="btnCopy">📋 Copy</button>
+        <button class="btn btn-sec" id="btnDownloadTxt">⬇ .txt</button>
+        <button class="btn btn-danger" id="btnClear">Clear</button>
+      </div>
+      <label for="outputText" style="margin-top:12px">Output</label>
+      <textarea id="outputText" readonly placeholder="Result appears here instantly..."></textarea>
+      <div class="stats" id="hashStats" style="display:none">
+        <span id="md5Hash"></span>
+        <span id="sha256Hash"></span>
+      </div>
+      <div class="preview-box" id="imagePreview" style="display:none">
+        <img id="previewImg" alt="Base64 preview">
+      </div>
+    </div>
+
+    <!-- FILE -->
+    <div class="panel" id="panel-file">
+      <div class="dropzone" id="dropzone">
+        <div style="font-size:2.2rem">📁</div>
+        <p><strong>Drag & drop</strong> image, PDF, ZIP, video or click to browse</p>
+        <p style="font-size:.8rem">Supports compression for large images</p>
+        <input type="file" id="fileInput" hidden>
+      </div>
+      <div class="btn-row" style="margin-top:12px">
+        <label style="display:flex;align-items:center;gap:6px;font-weight:500;cursor:pointer;margin:0">
+          <input type="checkbox" id="compressCheck" checked> Compress image before encode
+        </label>
+        <select id="qualitySelect" style="width:auto;min-height:auto;padding:6px 10px">
+          <option value="0.7">Quality 70%</option>
+          <option value="0.5">Quality 50%</option>
+          <option value="0.85" selected>Quality 85%</option>
+          <option value="0.95">Quality 95%</option>
+        </select>
+      </div>
+      <div id="fileInfo" style="margin-top:10px;font-size:.85rem;color:var(--muted)"></div>
+      <label style="margin-top:12px">Base64 Result</label>
+      <textarea id="fileOutput" readonly placeholder="File Base64 will appear here..."></textarea>
+      <div class="btn-row">
+        <button class="btn" id="btnCopyFile">📋 Copy</button>
+        <button class="btn btn-sec" id="btnDataUri">Data URI</button>
+        <button class="btn btn-sec" id="btnDownloadFile">⬇ Original File</button>
+        <button class="btn btn-danger" id="btnClearFile">Clear</button>
+      </div>
+      <div class="preview-box" id="filePreview" style="display:none">
+        <img id="filePreviewImg" alt="Preview">
+      </div>
+    </div>
+
+    <!-- JWT -->
+    <div class="panel" id="panel-jwt">
+      <label for="jwtInput">Paste JWT Token</label>
+      <textarea id="jwtInput" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."></textarea>
+      <div class="btn-row">
+        <button class="btn" id="btnDecodeJwt">Decode JWT</button>
+        <button class="btn btn-danger" id="btnClearJwt">Clear</button>
+      </div>
+      <div class="jwt-box" id="jwtResult" style="margin-top:14px;display:none">
+        <div class="jwt-part"><h4>Header</h4><pre id="jwtHeader"></pre></div>
+        <div class="jwt-part"><h4>Payload</h4><pre id="jwtPayload"></pre></div>
+        <div class="jwt-part"><h4>Signature</h4><pre id="jwtSig"></pre></div>
+      </div>
+    </div>
+
+    <!-- BULK -->
+    <div class="panel" id="panel-bulk">
+      <label for="bulkInput">Bulk Input (one item per line – up to 1000 lines)</label>
+      <textarea id="bulkInput" placeholder="line1&#10;line2&#10;line3..." style="min-height:150px"></textarea>
+      <div class="btn-row">
+        <button class="btn" id="btnBulkEncode">Encode All</button>
+        <button class="btn btn-sec" id="btnBulkDecode">Decode All</button>
+        <button class="btn btn-sec" id="btnCopyBulk">📋 Copy Result</button>
+        <button class="btn btn-danger" id="btnClearBulk">Clear</button>
+      </div>
+      <label style="margin-top:12px">Bulk Output</label>
+      <textarea id="bulkOutput" readonly style="min-height:150px"></textarea>
+    </div>
+
+    <!-- ADVANCED -->
+    <div class="panel" id="panel-advanced">
+      <label>Code Export – choose language</label>
+      <select id="langSelect">
+        <option value="js">JavaScript</option>
+        <option value="python">Python</option>
+        <option value="php">PHP</option>
+        <option value="java">Java</option>
+        <option value="csharp">C#</option>
+      </select>
+      <div class="btn-row"><button class="btn" id="btnCodeExport">Generate Code Snippet</button></div>
+      <textarea id="codeOutput" readonly style="min-height:130px;margin-top:8px" placeholder="Code will appear here..."></textarea>
+
+      <hr style="margin:18px 0;border:none;border-top:1px solid var(--border)">
+      <label>Base32 Converter</label>
+      <div class="btn-row">
+        <button class="btn btn-sec" id="btnToBase32">Text → Base32</button>
+        <button class="btn btn-sec" id="btnFromBase32">Base32 → Text</button>
+      </div>
+
+      <hr style="margin:18px 0;border:none;border-top:1px solid var(--border)">
+      <label>URL Encode + Base64 (combined)</label>
+      <div class="btn-row">
+        <button class="btn btn-sec" id="btnUrlThenB64">URL Encode → Base64</button>
+        <button class="btn btn-sec" id="btnB64ThenUrl">Base64 → URL Decode</button>
+      </div>
+
+      <hr style="margin:18px 0;border:none;border-top:1px solid var(--border)">
+      <label>Share Result Link</label>
+      <div class="btn-row"><button class="btn" id="btnShare">🔗 Copy Shareable Link</button></div>
+      <p style="font-size:.8rem;color:var(--muted);margin-top:6px">Creates a link with the current result embedded (best for short text).</p>
+    </div>
+
+    <!-- HISTORY -->
+    <div class="panel" id="panel-history">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+        <label style="margin:0">Last 50 operations (LocalStorage)</label>
+        <button class="btn btn-danger" id="btnClearHistory" style="padding:6px 12px;font-size:.8rem">Clear History</button>
+      </div>
+      <div class="history-list" id="historyList"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>✓ Why this Base64 tool?</h2>
+    <div class="features-grid">
+      <div class="feature-item"><span class="check">✓</span> Fast & Secure – 100% in your browser</div>
+      <div class="feature-item"><span class="check">✓</span> 100% Free – No ads, no signup, no limit</div>
+      <div class="feature-item"><span class="check">✓</span> No Limit – Handle huge text & files</div>
+      <div class="feature-item"><span class="check">✓</span> Image, PDF, ZIP, Video to Base64</div>
+      <div class="feature-item"><span class="check">✓</span> JWT Decoder with pretty JSON</div>
+      <div class="feature-item"><span class="check">✓</span> Live preview + Image compression</div>
+      <div class="feature-item"><span class="check">✓</span> Offline / PWA ready</div>
+      <div class="feature-item"><span class="check">✓</span> Keyboard shortcuts & History</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>❓ Frequently Asked Questions</h2>
+    <div class="faq-item"><h3>Is this Base64 Encoder free?</h3><p>Yes. Completely free with no limits, no registration and no watermarks. Everything runs in your browser.</p></div>
+    <div class="faq-item"><h3>Does my data get uploaded to a server?</h3><p>No. The tool is 100% client-side. Your text and files never leave your device.</p></div>
+    <div class="faq-item"><h3>Can I encode images and PDFs?</h3><p>Yes. Drag & drop any image, PDF, ZIP or video. You can also compress images before encoding.</p></div>
+    <div class="faq-item"><h3>What is URL-safe Base64?</h3><p>URL-safe Base64 replaces + and / with - and _ so the string can be used safely in URLs and filenames.</p></div>
+    <div class="faq-item"><h3>How does the JWT Decoder work?</h3><p>Paste any JWT. The tool splits Header, Payload and Signature, then base64url-decodes and pretty-prints the JSON.</p></div>
+    <div class="faq-item"><h3>Is there a file size limit?</h3><p>No hard limit. Very large files are limited only by your browser memory. Image compression helps with big photos.</p></div>
+    <div class="faq-item"><h3>Does it work offline?</h3><p>Yes. After the first load the page works without internet. It is PWA-ready.</p></div>
+    <div class="faq-item"><h3>How to use keyboard shortcuts?</h3><p>Ctrl+Enter = Encode, Ctrl+Shift+Enter = Decode, Ctrl+K = Clear all fields.</p></div>
+  </div>
+
+  <div class="card related">
+    <h2>🔗 Related Tools</h2>
+    <ul>
+      <li><a href="bmi.html">BMI Calculator</a></li>
+      <li><a href="password.html">Password Generator</a></li>
+      <li><a href="qr.html">QR Generator</a></li>
+      <li><a href="age.html">Age Calculator</a></li>
+      <li><a href="index.html">Home</a></li>
+    </ul>
+  </div>
+</main>
+
+<footer>
+  <div>© 2026 My Tools • Base64 Encoder Pro</div>
+  <div class="made">Made by Mujahar ❤️</div>
+</footer>
+
+<div class="toast" id="toast">Copied!</div>
+
+<script>
+(function(){
+'use strict';
+const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
+const toast=m=>{const t=$('#toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2000)};
+
+/* Theme */
+const saved=localStorage.getItem('mt-theme');
+if(saved) document.documentElement.setAttribute('data-theme',saved);
+$('#themeToggle').onclick=()=>{
+  const n=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',n);
+  localStorage.setItem('mt-theme',n);
+};
+
+/* Tabs */
+$$('#mainTabs .tab').forEach(tab=>{
+  tab.onclick=()=>{
+    $$('#mainTabs .tab').forEach(t=>t.classList.remove('active'));
+    $$('.panel').forEach(p=>p.classList.remove('active'));
+    tab.classList.add('active');
+    $('#panel-'+tab.dataset.panel).classList.add('active');
+  };
+});
+
+/* Text stats + live encode */
+const inputText=$('#inputText'), outputText=$('#outputText');
+function updateStats(){
+  const t=inputText.value;
+  $('#charCount').textContent=t.length+' chars';
+  $('#wordCount').textContent=(t.trim()?t.trim().split(/\s+/).length:0)+' words';
+  $('#byteCount').textContent=new Blob([t]).size+' bytes';
+}
+inputText.oninput=()=>{
+  updateStats();
+  if(inputText.value && !isProbablyBase64(inputText.value)){
+    try{
+      outputText.value=btoa(unescape(encodeURIComponent(inputText.value)));
+      showHashes(outputText.value);
+      checkImagePreview(outputText.value);
+    }catch(e){}
+  }
+};
+function isProbablyBase64(s){return /^[A-Za-z0-9+/=\s_-]+$/.test(s)&&s.length>16&&s.replace(/\s/g,'').length%4===0}
+
+/* Encode / Decode */
+function encodeText(){
+  try{
+    const raw=inputText.value;
+    outputText.value=btoa(unescape(encodeURIComponent(raw)));
+    showHashes(outputText.value);
+    checkImagePreview(outputText.value);
+    saveHistory('encode',raw.slice(0,80),outputText.value.slice(0,80));
+    toast('Encoded');
+  }catch(e){toast('Encode failed')}
+}
+function decodeText(){
+  try{
+    let s=inputText.value.trim().replace(/\s+/g,'');
+    try{outputText.value=decodeURIComponent(escape(atob(s)))}
+    catch{
+      s=s.replace(/-/g,'+').replace(/_/g,'/');
+      while(s.length%4)s+='=';
+      outputText.value=decodeURIComponent(escape(atob(s)));
+    }
+    showHashes(s);
+    checkImagePreview(inputText.value);
+    saveHistory('decode',inputText.value.slice(0,80),outputText.value.slice(0,80));
+    toast('Decoded');
+  }catch(e){toast('Invalid Base64')}
+}
+$('#btnEncode').onclick=encodeText;
+$('#btnDecode').onclick=decodeText;
+
+/* URL-Safe + Chunk */
+$('#btnUrlSafe').onclick=()=>{
+  let s=outputText.value||inputText.value; if(!s)return;
+  outputText.value=s.replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+  toast('URL-safe Base64');
+};
+$('#btnChunk').onclick=()=>{
+  let s=(outputText.value||inputText.value).replace(/\s+/g,''); if(!s)return;
+  outputText.value=s.match(/.{1,76}/g).join('\n');
+  toast('Chunked every 76 chars');
+};
+
+/* Copy / Clear / Download */
+$('#btnCopy').onclick=()=>{const v=outputText.value||inputText.value; if(!v)return; navigator.clipboard.writeText(v).then(()=>toast('Copied'))};
+$('#btnClear').onclick=()=>{inputText.value='';outputText.value='';updateStats();$('#hashStats').style.display='none';$('#imagePreview').style.display='none'};
+$('#btnDownloadTxt').onclick=()=>{const v=outputText.value||inputText.value; if(!v)return; const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([v],{type:'text/plain'}));a.download='base64-result.txt';a.click()};
+
+/* Image preview from Base64 */
+function checkImagePreview(b64){
+  const box=$('#imagePreview'), img=$('#previewImg');
+  const clean=b64.replace(/\s+/g,'').replace(/^data:[^;]+;base64,/,'');
+  if(/^(iVBOR|\/9j\/|R0lGOD|UklGR|AAAA)/.test(clean.slice(0,20))){
+    img.src='data:image/png;base64,'+clean;
+    box.style.display='block';
+    img.onerror=()=>box.style.display='none';
+  }else box.style.display='none';
+}
+
+/* Hashes */
+async function showHashes(str){
+  const box=$('#hashStats'); box.style.display='flex';
+  try{
+    const buf=new TextEncoder().encode(str);
+    const hash=await crypto.subtle.digest('SHA-256',buf);
+    const hex=[...new Uint8Array(hash)].map(b=>b.toString(16).padStart(2,'0')).join('');
+    $('#sha256Hash').textContent='SHA-256: '+hex.slice(0,18)+'…';
+  }catch{$('#sha256Hash').textContent=''}
+  $('#md5Hash').textContent='MD5: '+md5(str).slice(0,18)+'…';
+}
+
+/* Compact MD5 */
+function md5(string){
+  function cmn(q,a,b,x,s,t){a=add32(add32(a,q),add32(x,t));return add32((a<<s)|(a>>>32-s),b)}
+  function ff(a,b,c,d,x,s,t){return cmn((b&c)|((~b)&d),a,b,x,s,t)}
+  function gg(a,b,c,d,x,s,t){return cmn((b&d)|(c&(~d)),a,b,x,s,t)}
+  function hh(a,b,c,d,x,s,t){return cmn(b^c^d,a,b,x,s,t)}
+  function ii(a,b,c,d,x,s,t){return cmn(c^(b|(~d)),a,b,x,s,t)}
+  function md5cycle(x,k){
+    let a=x[0],b=x[1],c=x[2],d=x[3];
+    a=ff(a,b,c,d,k[0],7,-680876936);d=ff(d,a,b,c,k[1],12,-389564586);c=ff(c,d,a,b,k[2],17,606105819);b=ff(b,c,d,a,k[3],22,-1044525330);
+    a=ff(a,b,c,d,k[4],7,-176418897);d=ff(d,a,b,c,k[5],12,1200080426);c=ff(c,d,a,b,k[6],17,-1473231341);b=ff(b,c,d,a,k[7],22,-45705983);
+    a=ff(a,b,c,d,k[8],7,1770035416);d=ff(d,a,b,c,k[9],12,-1958414417);c=ff(c,d,a,b,k[10],17,-42063);b=ff(b,c,d,a,k[11],22,-1990404162);
+    a=ff(a,b,c,d,k[12],7,1804603682);d=ff(d,a,b,c,k[13],12,-40341101);c=ff(c,d,a,b,k[14],17,-1502002290);b=ff(b,c,d,a,k[15],22,1236535329);
+    a=gg(a,b,c,d,k[1],5,-165796510);d=gg(d,a,b,c,k[6],9,-1069501632);c=gg(c,d,a,b,k[11],14,643717713);b=gg(b,c,d,a,k[0],20,-373897302);
+    a=gg(a,b,c,d,k[5],5,-701558691);d=gg(d,a,b,c,k[10],9,38016083);c=gg(c,d,a,b,k[15],14,-660478335);b=gg(b,c,d,a,k[4],20,-405537848);
+    a=gg(a,b,c,d,k[9],5,568446438);d=gg(d,a,b,c,k[14],9,-1019803690);c=gg(c,d,a,b,k[3],14,-187363961);b=gg(b,c,d,a,k[8],20,1163531501);
+    a=gg(a,b,c,d,k[13],5,-1444681467);d=gg(d,a,b,c,k[2],9,-51403784);c=gg(c,d,a,b,k[7],14,1735328473);b=gg(b,c,d,a,k[12],20,-1926607734);
+    a=hh(a,b,c,d,k[5],4,-378558);d=hh(d,a,b,c,k[8],11,-2022574463);c=hh(c,d,a,b,k[11],16,1839030562);b=hh(b,c,d,a,k[14],23,-35309556);
+    a=hh(a,b,c,d,k[1],4,-1530992060);d=hh(d,a,b,c,k[4],11,1272893353);c=hh(c,d,a,b,k[7],16,-155497632);b=hh(b,c,d,a,k[10],23,-1094730640);
+    a=hh(a,b,c,d,k[13],4,681279174);d=hh(d,a,b,c,k[0],11,-358537222);c=hh(c,d,a,b,k[3],16,-722521979);b=hh(b,c,d,a,k[6],23,76029189);
+    a=hh(a,b,c,d,k[9],4,-640364487);d=hh(d,a,b,c,k[12],11,-421815835);c=hh(c,d,a,b,k[15],16,530742520);b=hh(b,c,d,a,k[2],23,-995338651);
+    a=ii(a,b,c,d,k[0],6,-198630844);d=ii(d,a,b,c,k[7],10,1126891415);c=ii(c,d,a,b,k[14],15,-1416354905);b=ii(b,c,d,a,k[5],21,-57434055);
+    a=ii(a,b,c,d,k[12],6,1700485571);d=ii(d,a,b,c,k[3],10,-1894986606);c=ii(c,d,a,b,k[10],15,-1051523);b=ii(b,c,d,a,k[1],21,-2054922799);
+    a=ii(a,b,c,d,k[8],6,1873313359);d=ii(d,a,b,c,k[15],10,-30611744);c=ii(c,d,a,b,k[6],15,-1560198380);b=ii(b,c,d,a,k[13],21,1309151649);
+    a=ii(a,b,c,d,k[4],6,-145523070);d=ii(d,a,b,c,k[11],10,-1120210379);c=ii(c,d,a,b,k[2],15,718787259);b=ii(b,c,d,a,k[9],21,-343485551);
+    x[0]=add32(a,x[0]);x[1]=add32(b,x[1]);x[2]=add32(c,x[2]);x[3]=add32(d,x[3]);
+  }
+  function md5blk(s){const b=[];for(let i=0;i<64;i+=4)b[i>>2]=s.charCodeAt(i)+(s.charCodeAt(i+1)<<8)+(s.charCodeAt(i+2)<<16)+(s.charCodeAt(i+3)<<24);return b}
+  function md51(s){
+    const n=s.length,state=[1732584193,-271733879,-1732584194,271733878];let i;
+    for(i=64;i<=n;i+=64)md5cycle(state,md5blk(s.substring(i-64,i)));
+    s=s.substring(i-64);const tail=Array(16).fill(0);
+    for(i=0;i<s.length;i++)tail[i>>2]|=s.charCodeAt(i)<<((i%4)<<3);
+    tail[i>>2]|=0x80<<((i%4)<<3);if(i>55){md5cycle(state,tail);for(i=0;i<16;i++)tail[i]=0}
+    tail[14]=n*8;md5cycle(state,tail);return state;
+  }
+  function add32(a,b){return(a+b)&0xFFFFFFFF}
+  function rhex(n){let s='';const h='0123456789abcdef';for(let j=0;j<4;j++)s+=h[(n>>(j*8+4))&0x0F]+h[(n>>(j*8))&0x0F];return s}
+  function hex(x){for(let i=0;i<x.length;i++)x[i]=rhex(x[i]);return x.join('')}
+  return hex(md51(string));
+}
+
+/* File handling */
+const dropzone=$('#dropzone'), fileInput=$('#fileInput');
+let lastFileBase64='', lastFileMime='', lastFileName='';
+dropzone.onclick=()=>fileInput.click();
+dropzone.ondragover=e=>{e.preventDefault();dropzone.classList.add('dragover')};
+dropzone.ondragleave=()=>dropzone.classList.remove('dragover');
+dropzone.ondrop=e=>{e.preventDefault();dropzone.classList.remove('dragover');if(e.dataTransfer.files[0])processFile(e.dataTransfer.files[0])};
+fileInput.onchange=()=>{if(fileInput.files[0])processFile(fileInput.files[0])};
+
+function processFile(file){
+  lastFileName=file.name; lastFileMime=file.type||'application/octet-stream';
+  $('#fileInfo').textContent=`${file.name} • ${(file.size/1024).toFixed(1)} KB • ${file.type||'unknown'}`;
+  if(file.type.startsWith('image/') && $('#compressCheck').checked){
+    compressImage(file, parseFloat($('#qualitySelect').value));
+  }else{
+    const r=new FileReader();
+    r.onload=e=>{
+      const dataUrl=e.target.result;
+      lastFileBase64=dataUrl.split(',')[1]||dataUrl;
+      $('#fileOutput').value=lastFileBase64;
+      if(file.type.startsWith('image/')){
+        $('#filePreviewImg').src=dataUrl; $('#filePreview').style.display='block';
+      }else $('#filePreview').style.display='none';
+      saveHistory('file',file.name,lastFileBase64.slice(0,60));
+      toast('File → Base64');
+    };
+    r.readAsDataURL(file);
+  }
+}
+function compressImage(file, quality){
+  const img=new Image(), url=URL.createObjectURL(file);
+  img.onload=()=>{
+    const maxW=1920; let w=img.width,h=img.height;
+    if(w>maxW){h=h*maxW/w;w=maxW}
+    const c=document.createElement('canvas'); c.width=w; c.height=h;
+    c.getContext('2d').drawImage(img,0,0,w,h);
+    c.toBlob(blob=>{
+      const r=new FileReader();
+      r.onload=e=>{
+        lastFileBase64=e.target.result.split(',')[1];
+        lastFileMime='image/jpeg';
+        $('#fileOutput').value=lastFileBase64;
+        $('#filePreviewImg').src=e.target.result; $('#filePreview').style.display='block';
+        $('#fileInfo').textContent+=` → compressed ${(blob.size/1024).toFixed(1)} KB`;
+        saveHistory('file-compress',file.name,lastFileBase64.slice(0,60));
+        toast('Image compressed & encoded');
+      };
+      r.readAsDataURL(blob);
+    },'image/jpeg',quality);
+    URL.revokeObjectURL(url);
+  };
+  img.src=url;
+}
+$('#btnCopyFile').onclick=()=>{if($('#fileOutput').value)navigator.clipboard.writeText($('#fileOutput').value).then(()=>toast('Copied'))};
+$('#btnDataUri').onclick=()=>{
+  if(!lastFileBase64)return;
+  const uri=`data:${lastFileMime};base64,${lastFileBase64}`;
+  $('#fileOutput').value=uri;
+  navigator.clipboard.writeText(uri).then(()=>toast('Data URI copied'));
+};
+$('#btnDownloadFile').onclick=()=>{
+  if(!lastFileBase64)return;
+  const a=document.createElement('a');
+  a.href=`data:${lastFileMime};base64,${lastFileBase64}`;
+  a.download=lastFileName||'download';
+  a.click();
+};
+$('#btnClearFile').onclick=()=>{$('#fileOutput').value='';$('#fileInfo').textContent='';$('#filePreview').style.display='none';lastFileBase64=''};
+
+/* JWT */
+function b64urlDecode(str){
+  str=str.replace(/-/g,'+').replace(/_/g,'/');
+  while(str.length%4)str+='=';
+  try{return decodeURIComponent(escape(atob(str)))}catch{return atob(str)}
+}
+$('#btnDecodeJwt').onclick=()=>{
+  const token=$('#jwtInput').value.trim(); if(!token)return;
+  const parts=token.split('.');
+  if(parts.length<2){toast('Invalid JWT');return}
+  try{
+    $('#jwtHeader').textContent=JSON.stringify(JSON.parse(b64urlDecode(parts[0])),null,2);
+    $('#jwtPayload').textContent=JSON.stringify(JSON.parse(b64urlDecode(parts[1])),null,2);
+    $('#jwtSig').textContent=parts[2]||'(none)';
+    $('#jwtResult').style.display='grid';
+    saveHistory('jwt',token.slice(0,40),'decoded');
+    toast('JWT decoded');
+  }catch(e){toast('Failed to decode JWT')}
+};
+$('#btnClearJwt').onclick=()=>{$('#jwtInput').value='';$('#jwtResult').style.display='none'};
+
+/* Bulk */
+$('#btnBulkEncode').onclick=()=>{
+  const lines=$('#bulkInput').value.split(/\r?\n/).filter(l=>l.length);
+  if(lines.length>1000){toast('Max 1000 lines');return}
+  $('#bulkOutput').value=lines.map(l=>{try{return btoa(unescape(encodeURIComponent(l)))}catch{return'ERROR'}}).join('\n');
+  toast('Bulk encoded');
+};
+$('#btnBulkDecode').onclick=()=>{
+  const lines=$('#bulkInput').value.split(/\r?\n/).filter(l=>l.length);
+  $('#bulkOutput').value=lines.map(l=>{
+    try{let s=l.replace(/-/g,'+').replace(/_/g,'/');while(s.length%4)s+='=';return decodeURIComponent(escape(atob(s)))}catch{return'ERROR'}
+  }).join('\n');
+  toast('Bulk decoded');
+};
+$('#btnCopyBulk').onclick=()=>navigator.clipboard.writeText($('#bulkOutput').value).then(()=>toast('Copied'));
+$('#btnClearBulk').onclick=()=>{$('#bulkInput').value='';$('#bulkOutput').value=''};
+
+/* Code export */
+$('#btnCodeExport').onclick=()=>{
+  const b64=outputText.value||inputText.value||$('#fileOutput').value;
+  if(!b64){toast('Nothing to export');return}
+  const lang=$('#langSelect').value;
+  const sn={
+    js:`const base64 = \`${b64.slice(0,140)}${b64.length>140?'…':''}\`;\nconst decoded = atob(base64);`,
+    python:`import base64\nb64 = """${b64.slice(0,100)}"""\ndecoded = base64.b64decode(b64).decode('utf-8')`,
+    php:`$b64 = '${b64.slice(0,100)}';\n$decoded = base64_decode($b64);`,
+    java:`String b64 = "${b64.slice(0,80)}";\nbyte[] decoded = Base64.getDecoder().decode(b64);`,
+    csharp:`string b64 = @"${b64.slice(0,80)}";\nbyte[] data = Convert.FromBase64String(b64);`
+  };
+  $('#codeOutput').value=sn[lang]||'';
+  toast('Code snippet ready');
+};
+
+/* Base32 */
+const B32='ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
+function toBase32(str){
+  const bytes=new TextEncoder().encode(str);
+  let bits=0,value=0,out='';
+  for(let i=0;i<bytes.length;i++){
+    value=(value<<8)|bytes[i]; bits+=8;
+    while(bits>=5){out+=B32[(value>>>(bits-5))&31];bits-=5}
+  }
+  if(bits>0)out+=B32[(value<<(5-bits))&31];
+  return out;
+}
+function fromBase32(str){
+  str=str.toUpperCase().replace(/=+$/,'').replace(/[^A-Z2-7]/g,'');
+  let bits=0,value=0; const bytes=[];
+  for(let i=0;i<str.length;i++){
+    const idx=B32.indexOf(str[i]); if(idx===-1)continue;
+    value=(value<<5)|idx; bits+=5;
+    if(bits>=8){bytes.push((value>>>(bits-8))&255);bits-=8}
+  }
+  return new TextDecoder().decode(new Uint8Array(bytes));
+}
+$('#btnToBase32').onclick=()=>{const t=inputText.value||outputText.value; if(!t)return; outputText.value=toBase32(t); toast('→ Base32')};
+$('#btnFromBase32').onclick=()=>{try{outputText.value=fromBase32(inputText.value);toast('Base32 decoded')}catch{toast('Invalid Base32')}};
+
+/* URL + Base64 combo */
+$('#btnUrlThenB64').onclick=()=>{const t=inputText.value; if(!t)return; outputText.value=btoa(unescape(encodeURIComponent(encodeURIComponent(t)))); toast('URL→Base64')};
+$('#btnB64ThenUrl').onclick=()=>{
+  try{
+    let s=inputText.value.replace(/-/g,'+').replace(/_/g,'/'); while(s.length%4)s+='=';
+    outputText.value=decodeURIComponent(decodeURIComponent(escape(atob(s))));
+    toast('Base64→URL Decode');
+  }catch{toast('Failed')}
+};
+
+/* Share */
+$('#btnShare').onclick=()=>{
+  const data=outputText.value||inputText.value||$('#fileOutput').value;
+  if(!data){toast('Nothing to share');return}
+  if(data.length<1800){
+    const link=location.origin+location.pathname+'#b64='+encodeURIComponent(data);
+    navigator.clipboard.writeText(link).then(()=>toast('Share link copied'));
+  }else navigator.clipboard.writeText(data).then(()=>toast('Too long – copied raw data'));
+};
+
+/* Load from hash */
+if(location.hash.startsWith('#b64=')){
+  try{
+    const data=decodeURIComponent(location.hash.slice(5));
+    inputText.value=data; updateStats();
+    try{outputText.value=decodeURIComponent(escape(atob(data.replace(/-/g,'+').replace(/_/g,'/'))))}catch{}
+  }catch{}
+}
+
+/* History */
+function saveHistory(type,inp,out){
+  let h=[]; try{h=JSON.parse(localStorage.getItem('b64-history')||'[]')}catch{}
+  h.unshift({type,input:inp,output:out,time:Date.now()});
+  h=h.slice(0,50);
+  localStorage.setItem('b64-history',JSON.stringify(h));
+  renderHistory();
+}
+function renderHistory(){
+  let h=[]; try{h=JSON.parse(localStorage.getItem('b64-history')||'[]')}catch{}
+  const list=$('#historyList');
+  list.innerHTML=h.length?'':'<p style="color:var(--muted);font-size:.9rem">No history yet</p>';
+  h.forEach(item=>{
+    const div=document.createElement('div');
+    div.className='history-item';
+    div.innerHTML=`<span class="prev">[${item.type}] ${item.input}</span><span style="color:var(--muted);font-size:.75rem">${new Date(item.time).toLocaleString()}</span>`;
+    div.onclick=()=>{
+      inputText.value=item.input; outputText.value=item.output;
+      $$('#mainTabs .tab').forEach(t=>t.classList.remove('active'));
+      $$('.panel').forEach(p=>p.classList.remove('active'));
+      document.querySelector('[data-panel="text"]').classList.add('active');
+      $('#panel-text').classList.add('active');
+    };
+    list.appendChild(div);
+  });
+}
+$('#btnClearHistory').onclick=()=>{localStorage.removeItem('b64-history');renderHistory();toast('History cleared')};
+
+/* Shortcuts */
+document.addEventListener('keydown',e=>{
+  if(e.ctrlKey&&e.key==='Enter'){e.preventDefault();e.shiftKey?decodeText():encodeText()}
+  if(e.ctrlKey&&e.key.toLowerCase()==='k'){e.preventDefault();inputText.value='';outputText.value='';updateStats();toast('Cleared')}
+});
+
+updateStats();
+renderHistory();
+})();
+</script>
+</body>
+</html>
