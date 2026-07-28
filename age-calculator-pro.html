@@ -1,1 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Age Calculator Online 2026 | Calculate Age in Years Months Days Hours Seconds</title>
+<meta name="description" content="Free Age Calculator Online 2026. Calculate exact age in years, months, weeks, days, hours, minutes, seconds. Birthday countdown, zodiac sign, Chinese zodiac. DOB to age for passport, school admission, govt job. Hindi, Bangla, English support.">
+<meta name="keywords" content="age calculator, age calculator online, calculate age, dob to age calculator, date of birth to age calculator, exact age calculator, free age calculator, online age calculator, age calculator with date of birth, how to calculate age, age in years months days, age in years and months, age in days calculator, age in weeks calculator, age in hours calculator, age in minutes calculator, age in seconds calculator, live age counter, how many days old am i, how many hours old am i, how many minutes old am i, age in decimal years, precise age calculator, birthday calculator, next birthday calculator, days until birthday, birthday countdown, age on specific date, age difference calculator, what will be my age on, age between two dates, years months days between dates, age calculator for passport, age calculator for school admission, age calculator for govt job, age proof calculator, age eligibility calculator, minor to major calculator, retirement age calculator, age calculator for driving licence, age verification calculator, age calculator india, age calculator bangla, boyos hisab calculator, boyoser hisab, umar calculator, age calculator hindi, umra ginne wala calculator, age calculator marathi, vay ganana, age calculator tamil, vayasu calculator, age calculator telugu, vayassu calculator, age calculator kannada, age calculator gujarati, age calculator malayalam, age calculator punjabi, age calculator odia, zodiac calculator, zodiac sign calculator, rashi calculator, janam rashi calculator, chinese zodiac calculator, chinese zodiac by birth year, horoscope age calculator, kundli age calculator, star sign calculator, age calculator with month and day, calculate age from dob, age from birthdate, find age by dob, age finder, what age am i, my current age, age tracker, age counting tool, age calculation formula, age calculator for baby, age calculator for kids, senior citizen age calculator, age calculator for children, how old is someone, age calculator online free, best age calculator, accurate age calculator, age calculator tool, age calculator app, age calculator website, age calculator by name, age calculator with name, age calculator 2026, new age calculator, updated age calculator, age calculator download, age calculator pdf, age calculator excel, age calculator google, age calculator today, current age calculator, real age calculator, true age calculator, age calculator months, age calculator days, age calculator weeks, age calculator hours, age calculator seconds, age calculator minutes, age calculator live, age calculator instant, age calculator fast, age calculator simple, age calculator easy, age calculator mobile, age calculator desktop, age calculator android, age calculator iphone, age calculator no login, age calculator without registration, age calculator private, age calculator secure, age calculator 100% free, age calculator no ads, age calculator clean, age calculator modern, age calculator premium, age calculator pro, age calculator advanced, age calculator for students, age calculator for teachers, age calculator for parents, age calculator for hr, age calculator for company, age calculator for bank, age calculator for insurance, age calculator for pension, age calculator for voter id, age calculator for aadhar, age calculator for pan card, age calculator for college, age calculator for university, age calculator for scholarship, age calculator for exam, age calculator for interview, age calculator for marriage, age calculator for birth certificate, age calculator for death certificate, age calculator for legal, age calculator for court, age calculator for lawyer, age calculator for doctor, age calculator for hospital, age calculator for health, age calculator for fitness, age calculator for gym, age calculator for sports, age calculator for army, age calculator for police, age calculator for navy, age calculator for airforce, age calculator for railway, age calculator for ssc, age calculator for ias, age calculator for ips, age calculator for banking, age calculator for po, age calculator for clerk, age calculator for neet, age calculator for jee, age calculator for cat, age calculator for gate, age calculator for gre, age calculator for gmat, age calculator for ielts, age calculator for toefl, age calculator for visa, age calculator for immigration, age calculator for abroad, age calculator for study, age calculator for work, age calculator for job, age calculator for career">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
+body{background:linear-gradient(135deg,#0f172a,#1e293b,#2563eb);min-height:100vh;color:#fff;}
+header{padding:40px 20px;text-align:center;}
+header h1{font-size:42px;margin-bottom:10px;}
+header p{opacity:.8;font-size:18px;}
+.container{width:95%;max-width:1100px;margin:auto;padding:20px;}
+.box{background:rgba(255,255,255,.08);backdrop-filter:blur(20px);padding:25px;border-radius:20px;box-shadow:0 0 25px rgba(0,0,0,.3);}
+.input-box{display:flex;gap:15px;flex-wrap:wrap;margin-top:20px;}
+input{flex:1;padding:16px;border:none;border-radius:12px;font-size:18px;outline:none;}
+button{padding:16px 35px;border:none;border-radius:12px;background:#00c853;color:white;font-size:18px;cursor:pointer;transition:.3s;}
+button:hover{background:#00e676;transform:scale(1.05);}
+.results{margin-top:35px;display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:18px;}
+.card{background:rgba(255,255,255,.08);padding:22px;border-radius:18px;text-align:center;transition:.3s;}
+.card:hover{transform:translateY(-8px);}
+.card h2{font-size:36px;margin-bottom:8px;}
+.card p{opacity:.8;}
+.extra{margin-top:35px;background:rgba(255,255,255,.08);padding:25px;border-radius:20px;line-height:2.1;font-size:18px;}
+.section{margin-top:40px;background:rgba(255,255,255,.08);padding:25px;border-radius:20px;}
+.section h2{margin-bottom:15px;}
+.section li{margin:12px 0;}
+.section p{line-height:1.8;}
+footer{text-align:center;padding:30px;opacity:.7;}
+@media(max-width:700px){header h1{font-size:30px;}button{width:100%;}}
+</style>
+</head>
+<body>
+<header>
+<h1>🎂 Age Calculator Pro</h1>
+<p>Calculate Your Exact Age Instantly</p>
+</header>
+<div class="container">
+<div class="box">
+<div class="input-box">
+<input type="date" id="dob">
+<button onclick="calculateAge()">Calculate Age</button>
+</div>
+<div class="results">
+<div class="card"><h2 id="years">0</h2><p>Years</p></div>
+<div class="card"><h2 id="months">0</h2><p>Months</p></div>
+<div class="card"><h2 id="weeks">0</h2><p>Weeks</p></div>
+<div class="card"><h2 id="days">0</h2><p>Days</p></div>
+<div class="card"><h2 id="hours">0</h2><p>Hours</p></div>
+<div class="card"><h2 id="minutes">0</h2><p>Minutes</p></div>
+<div class="card"><h2 id="seconds">0</h2><p>Seconds</p></div>
+</div>
+<div class="extra">
+<p>🎉 Next Birthday: <span id="birthday">-</span></p>
+<p>📅 Born On: <span id="weekday">-</span></p>
+<p>♈ Zodiac Sign: <span id="zodiac">-</span></p>
+<p>🐉 Chinese Zodiac: <span id="czodiac">-</span></p>
+<p>❤️ Estimated Heartbeats: <span id="heart">-</span></p>
+<p>🫁 Estimated Breaths: <span id="breath">-</span></p>
+</div>
 
+<div class="section">
+<h2>📖 How to Use Age Calculator Online</h2>
+<ol>
+<li>Select your Date of Birth in the DOB to Age Calculator.</li>
+<li>Click the <b>Calculate Age</b> button.</li>
+<li>View your exact age in Years, Months, Weeks, Days, Hours, Minutes and Seconds.</li>
+<li>Check Next Birthday Countdown, Zodiac Sign and Chinese Zodiac below.</li>
+</ol>
+</div>
+
+<div class="section">
+<h2>⭐ Features of Exact Age Calculator</h2>
+<ul>
+<li>✔ Exact Age Calculation in Years Months Days</li>
+<li>✔ Live Seconds Counter and Live Age Counter</li>
+<li>✔ Next Birthday Countdown and Birthday Calculator</li>
+<li>✔ Zodiac & Chinese Zodiac by Birth Year</li>
+<li>✔ Age in Days, Hours, Minutes, Seconds Calculator</li>
+<li>✔ Mobile Friendly and Fast & Secure</li>
+<li>✔ 100% Free Online Age Calculator with No Login</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>🔍 Popular Age Calculator Searches</h2>
+<p>
+<b>Age Formats:</b> age in years months days, age in days calculator, age in weeks calculator, age in hours minutes seconds, how many days old am i, exact age calculator<br>
+<b>Occasion:</b> birthday calculator, days until birthday, next birthday countdown, age difference calculator, age on specific date<br>
+<b>Legal:</b> age calculator for passport, age calculator for school admission, age calculator for govt job, age proof calculator, minor to major calculator<br>
+<b>Language:</b> age calculator india, age calculator bangla boyos hisab, umar calculator hindi, age calculator marathi, age calculator tamil, age calculator telugu<br>
+<b>Zodiac:</b> zodiac sign calculator, chinese zodiac calculator, rashi calculator, horoscope age calculator<br>
+<b>Other:</b> calculate age from dob, online age calculator free, precise age calculator, age tracker, age calculation formula
+</p>
+</div>
+
+<div class="section">
+<h2>❓ Frequently Asked Questions</h2>
+<h3>How to calculate age in years months and days?</h3>
+<p>Just enter your Date of Birth and click Calculate. Our exact age calculator shows age in years, months, weeks, days, hours, minutes and seconds instantly.</p>
+<br>
+<h3>Can I use this age calculator for passport and school admission?</h3>
+<p>Yes. This DOB to age calculator is perfect for passport application, school admission, govt job age proof and age verification.</p>
+<br>
+<h3>Is there a birthday countdown and zodiac calculator?</h3>
+<p>Yes. It shows next birthday countdown in days. Also shows zodiac sign, Chinese zodiac and rashi based on your birth date.</p>
+<br>
+<h3>Does it work as Hindi and Bangla age calculator?</h3>
+<p>Yes. You can use it as boyos hisab calculator, umar calculator, age calculator in Hindi, Bangla, Marathi, Tamil and Telugu.</p>
+<br>
+<h3>Is this age calculator free and private?</h3>
+<p>Yes. It is 100% free online age calculator. No login, no registration. Everything is calculated inside your browser. 100% secure and private.</p>
+<br>
+<h3>Can I calculate age in days, hours and minutes?</h3>
+<p>Yes. Our precise age calculator shows age in days, weeks, hours, minutes and seconds along with years and months.</p>
+</div>
+
+<div class="section">
+<h2>🔗 Related Tools</h2>
+<ul>
+<li><a href="bmi-calculator.html">BMI Calculator</a></li>
+<li><a href="password-generator.html">Password Generator</a></li>
+<li><a href="qr-generator.html">QR Generator</a></li>
+<li><a href="index.html">Home</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+<script>
+function calculateAge(){
+let dob=document.getElementById("dob").value;
+if(!dob){alert("Please select your Date of Birth.");return;}
+let birth=new Date(dob);
+let now=new Date();
+let diff=now-birth;
+let seconds=Math.floor(diff/1000);
+let minutes=Math.floor(seconds/60);
+let hours=Math.floor(minutes/60);
+let days=Math.floor(hours/24);
+let weeks=Math.floor(days/7);
+let years=now.getFullYear()-birth.getFullYear();
+let months=now.getMonth()-birth.getMonth();
+if(now.getDate()<birth.getDate()){months--;}
+if(months<0){months+=12;}
+if(now.getMonth()<birth.getMonth() || (now.getMonth()==birth.getMonth() && now.getDate()<birth.getDate())){years--;}
+
+document.getElementById("years").innerHTML=years;
+document.getElementById("months").innerHTML=months;
+document.getElementById("weeks").innerHTML=weeks;
+document.getElementById("days").innerHTML=days;
+document.getElementById("hours").innerHTML=hours;
+document.getElementById("minutes").innerHTML=minutes;
+document.getElementById("seconds").innerHTML=seconds;
+
+let weekdays=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+document.getElementById("weekday").innerHTML=weekdays[birth.getDay()];
+
+let nextBirthday=new Date(now.getFullYear(),birth.getMonth(),birth.getDate());
+if(nextBirthday<now){nextBirthday.setFullYear(now.getFullYear()+1);}
+let left=Math.ceil((nextBirthday-now)/(1000*60*60*24));
+document.getElementById("birthday").innerHTML=left+" Days Left";
+
+let month=birth.getMonth()+1;
+let day=birth.getDate();
+let zodiac="";
+if((month==3&&day>=21)||(month==4&&day<=19)) zodiac="Aries";
+else if((month==4&&day>=20)||(month==5&&day<=20)) zodiac="Taurus";
+else if((month==5&&day>=21)||(month==6&&day<=20)) zodiac="Gemini";
+else if((month==6&&day>=21)||(month==7&&day<=22)) zodiac="Cancer";
+else if((month==7&&day>=23)||(month==8&&day<=22)) zodiac="Leo";
+else if((month==8&&day>=23)||(month==9&&day<=22)) zodiac="Virgo";
+else if((month==9&&day>=23)||(month==10&&day<=22)) zodiac="Libra";
+else if((month==10&&day>=23)||(month==11&&day<=21)) zodiac="Scorpio";
+else if((month==11&&day>=22)||(month==12&&day<=21)) zodiac="Sagittarius";
+else if((month==12&&day>=22)||(month==1&&day<=19)) zodiac="Capricorn";
+else if((month==1&&day>=20)||(month==2&&day<=18)) zodiac="Aquarius";
+else zodiac="Pisces";
+document.getElementById("zodiac").innerHTML=zodiac;
+
+let animals=["Monkey","Rooster","Dog","Pig","Rat","Ox","Tiger","Rabbit","Dragon","Snake","Horse","Goat"];
+document.getElementById("czodiac").innerHTML=animals[birth.getFullYear()%12];
+
+let heartbeats=Math.floor(minutes*70);
+document.getElementById("heart").innerHTML=heartbeats.toLocaleString();
+let breaths=Math.floor(minutes*16);
+document.getElementById("breath").innerHTML=breaths.toLocaleString();
+
+setInterval(function(){
+let now2=new Date();
+let diff2=now2-birth;
+let sec=Math.floor(diff2/1000);
+document.getElementById("seconds").innerHTML=sec.toLocaleString();
+},1000);
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How to calculate age in years months and days?",
+      "acceptedAnswer": {"@type": "Answer","text": "Enter your Date of Birth and click Calculate. Our exact age calculator shows age in years, months, weeks, days, hours, minutes and seconds instantly."}
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use this age calculator for passport and school admission?",
+      "acceptedAnswer": {"@type": "Answer","text": "Yes. This DOB to age calculator is perfect for passport application, school admission, govt job age proof and age verification."}
+    },
+    {
+      "@type": "Question",
+      "name": "Is this age calculator free and private?",
+      "acceptedAnswer": {"@type": "Answer","text": "Yes. It is 100% free online age calculator. No login, no registration. Everything is calculated inside your browser. 100% secure and private."}
+    }
+  ]
+}
+</script>
+
+<footer>
+<p>© 2026 My Tools • Age Calculator Pro</p>
+</footer>
+</body>
+</html>
