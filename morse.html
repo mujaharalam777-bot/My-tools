@@ -1,1 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Morse Code Tool Card</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden; /* Jate floating emoji er jonno scrollbar na ase */
+            position: relative;
+        }
 
+        /* 10 Floating Emojis Container */
+        .floating-emojis {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* Jate card click korte osubidha na hoy */
+            z-index: 1;
+        }
+
+        .emoji {
+            position: absolute;
+            opacity: 0;
+            animation: floatUp linear infinite;
+            filter: drop-shadow(0 0 10px rgba(0, 255, 65, 0.3));
+        }
+
+        /* Thik 10 ta emoji er alada alada position ar animation time */
+        .e1 { left: 10%; bottom: -50px; animation-duration: 8s; animation-delay: 0s; font-size: 28px; }
+        .e2 { left: 25%; bottom: -50px; animation-duration: 10s; animation-delay: 2s; font-size: 20px; }
+        .e3 { left: 15%; bottom: -50px; animation-duration: 12s; animation-delay: 4s; font-size: 32px; }
+        .e4 { left: 40%; bottom: -50px; animation-duration: 7s; animation-delay: 1s; font-size: 24px; }
+        .e5 { left: 70%; bottom: -50px; animation-duration: 11s; animation-delay: 3s; font-size: 30px; }
+        .e6 { left: 80%; bottom: -50px; animation-duration: 9s; animation-delay: 0.5s; font-size: 22px; }
+        .e7 { left: 85%; bottom: -50px; animation-duration: 13s; animation-delay: 5s; font-size: 26px; }
+        .e8 { left: 55%; bottom: -50px; animation-duration: 8.5s; animation-delay: 2.5s; font-size: 28px; }
+        .e9 { left: 35%; bottom: -50px; animation-duration: 14s; animation-delay: 1.5s; font-size: 20px; }
+        .e10 { left: 92%; bottom: -50px; animation-duration: 9.5s; animation-delay: 6s; font-size: 24px; }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0deg) scale(0.8);
+                opacity: 0;
+            }
+            15% { opacity: 0.6; }
+            85% { opacity: 0.6; }
+            100% {
+                transform: translateY(-120vh) rotate(360deg) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        /* The Card Container (Glassmorphism Dark) */
+        .morse-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 32px 24px;
+            width: 320px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            z-index: 10; /* Emojo er opore thakar jonno */
+        }
+
+        /* Header Section */
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        /* Glowing Dot */
+        .glow-dot {
+            width: 12px;
+            height: 12px;
+            background-color: #00ff41;
+            border-radius: 50%;
+            box-shadow: 0 0 12px #00ff41, 0 0 20px #00ff41;
+        }
+
+        /* Title Styling */
+        .card-title {
+            color: #ffffff;
+            font-size: 24px;
+            font-weight: 800;
+            margin: 0;
+            letter-spacing: 0.5px;
+        }
+
+        /* Description Text */
+        .card-desc {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+            line-height: 1.5;
+            margin: 0 0 28px 0;
+        }
+
+        /* Big Open Button */
+        .open-btn {
+            width: 100%;
+            background: #00ff41; 
+            color: #0d1117; 
+            border: none;
+            padding: 16px;
+            border-radius: 16px; 
+            font-size: 18px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(0, 255, 65, 0.3);
+        }
+
+        .open-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 255, 65, 0.5);
+            background: #00e63a;
+        }
+        
+        .open-btn:active {
+            transform: translateY(1px);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 10 Floating Emojis Background -->
+    <div class="floating-emojis">
+        <div class="emoji e1">📻</div>
+        <div class="emoji e2">📡</div>
+        <div class="emoji e3">🟢</div>
+        <div class="emoji e4">⚡</div>
+        <div class="emoji e5">📻</div>
+        <div class="emoji e6">📡</div>
+        <div class="emoji e7">🟢</div>
+        <div class="emoji e8">⚡</div>
+        <div class="emoji e9">📻</div>
+        <div class="emoji e10">📡</div>
+    </div>
+
+    <!-- Morse Code Card Wrapper -->
+    <div class="morse-card">
+        
+        <!-- Title with Glowing Dot -->
+        <div class="card-header">
+            <span class="glow-dot"></span>
+            <h2 class="card-title">Morse Translator</h2>
+        </div>
+        
+        <!-- Subtitle/Description -->
+        <p class="card-desc">Convert your text to Morse code signals (- . - .) instantly 📻</p>
+        
+        <!-- Big Action Button -->
+        <button class="open-btn">
+            📡 Open Morse Tool
+        </button>
+        
+    </div>
+
+</body>
+</html>
