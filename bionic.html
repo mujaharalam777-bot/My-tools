@@ -1,1 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Bionic Reader | My Tools</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
+overflow:hidden;
+position:relative;
+background:linear-gradient(-45deg,#0f172a,#134e4a,#0f766e,#155e75);
+background-size:400% 400%;
+animation:bg 12s ease infinite;
+}
+
+@keyframes bg{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+/* Floating Emoji */
+
+.emoji{
+position:absolute;
+font-size:30px;
+opacity:.85;
+pointer-events:none;
+animation:float 8s ease-in-out infinite;
+filter:drop-shadow(0 0 10px rgba(255,255,255,.45));
+}
+
+.e1{top:8%;left:8%;}
+.e2{top:18%;right:10%;animation-delay:1s;}
+.e3{top:68%;left:6%;animation-delay:2s;}
+.e4{bottom:8%;right:12%;animation-delay:3s;}
+.e5{top:42%;left:15%;animation-delay:4s;}
+.e6{top:55%;right:18%;animation-delay:5s;}
+.e7{top:25%;left:45%;animation-delay:2.5s;}
+.e8{bottom:25%;left:40%;animation-delay:1.5s;}
+.e9{top:12%;right:42%;animation-delay:3.5s;}
+.e10{bottom:15%;right:45%;animation-delay:5.5s;}
+
+@keyframes float{
+0%,100%{
+transform:translateY(0) rotate(0deg);
+}
+50%{
+transform:translateY(-25px) rotate(10deg) scale(1.15);
+}
+}
+
+/* Card */
+
+.card{
+
+width:100%;
+max-width:430px;
+
+padding:35px 28px;
+
+text-align:center;
+
+border-radius:30px;
+
+background:rgba(255,255,255,.12);
+
+backdrop-filter:blur(18px);
+
+border:1px solid rgba(255,255,255,.25);
+
+box-shadow:
+0 25px 60px rgba(0,0,0,.25),
+inset 0 1px 0 rgba(255,255,255,.25);
+
+position:relative;
+overflow:hidden;
+
+transition:.4s;
+
+}
+
+.card:hover{
+transform:translateY(-8px);
+}
+
+.card::before{
+
+content:"";
+
+position:absolute;
+
+top:-120%;
+left:-35%;
+
+width:70%;
+height:320%;
+
+background:rgba(255,255,255,.18);
+
+transform:rotate(25deg);
+
+transition:1.2s;
+
+}
+
+.card:hover::before{
+left:140%;
+}
+
+.icon{
+
+width:95px;
+height:95px;
+
+margin:auto;
+
+border-radius:50%;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+font-size:42px;
+
+background:linear-gradient(135deg,#06b6d4,#3b82f6);
+
+color:#fff;
+
+box-shadow:0 0 35px rgba(59,130,246,.55);
+
+animation:pulse 2s infinite;
+
+}
+
+@keyframes pulse{
+
+50%{
+transform:scale(1.08);
+box-shadow:0 0 55px rgba(59,130,246,.8);
+}
+
+}
+
+h1{
+
+margin-top:22px;
+
+font-size:34px;
+
+font-weight:800;
+
+color:#fff;
+
+}
+
+p{
+
+margin:18px 0 28px;
+
+line-height:1.8;
+
+color:#eef8ff;
+
+font-size:16px;
+
+}
+
+.btn{
+
+display:block;
+
+width:100%;
+
+padding:18px;
+
+border-radius:18px;
+
+text-decoration:none;
+
+font-size:20px;
+
+font-weight:700;
+
+margin-bottom:14px;
+
+transition:.3s;
+
+}
+
+.open{
+
+background:linear-gradient(135deg,#06b6d4,#2563eb);
+
+color:#fff;
+
+box-shadow:0 12px 30px rgba(37,99,235,.45);
+
+}
+
+.home{
+
+background:rgba(255,255,255,.18);
+
+border:1px solid rgba(255,255,255,.25);
+
+color:#fff;
+
+}
+
+.btn:hover{
+
+transform:translateY(-3px);
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- Floating Emojis -->
+<div class="emoji e1">📖</div>
+<div class="emoji e2">✨</div>
+<div class="emoji e3">🚀</div>
+<div class="emoji e4">💡</div>
+<div class="emoji e5">⭐</div>
+<div class="emoji e6">⚡</div>
+<div class="emoji e7">🌟</div>
+<div class="emoji e8">📚</div>
+<div class="emoji e9">📝</div>
+<div class="emoji e10">💻</div>
+
+<div class="card">
+
+    <div class="icon">📖</div>
+
+    <h1>Bionic Reader</h1>
+
+    <p>
+        Read smarter and faster with AI-powered Bionic Reading.
+        Transform ordinary text into a highly readable format in one click.
+    </p>
+
+    <a href="bionic-reader.html" class="btn open">
+        ⚡ Open Bionic Reader
+    </a>
+
+    <a href="index.html" class="btn home">
+        🏠 Back to Home
+    </a>
+
+</div>
+
+</body>
+</html>
