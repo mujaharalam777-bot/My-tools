@@ -3,18 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Morse Code Tool Card</title>
+    <title>Morse Code Tool Card - Final</title>
     <style>
+        /* Main Body Settings */
         body {
             margin: 0;
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); /* Dark hacker/terminal background */
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            overflow: hidden; /* Jate floating emoji er jonno scrollbar na ase */
+            overflow: hidden; /* Prevents scrollbars from floating emojis */
             position: relative;
+        }
+
+        /* Top Left Back Button */
+        .back-btn {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            z-index: 20; /* Keeps it above everything */
+            transition: color 0.3s ease;
+        }
+
+        .back-btn:hover {
+            color: #00ff41; /* Neon green glow on hover */
         }
 
         /* 10 Floating Emojis Container */
@@ -24,7 +45,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            pointer-events: none; /* Jate card click korte osubidha na hoy */
+            pointer-events: none; /* Allows clicking through emojis */
             z-index: 1;
         }
 
@@ -35,7 +56,7 @@
             filter: drop-shadow(0 0 10px rgba(0, 255, 65, 0.3));
         }
 
-        /* Thik 10 ta emoji er alada alada position ar animation time */
+        /* Exactly 10 emojis with different positions, sizes, and speeds */
         .e1 { left: 10%; bottom: -50px; animation-duration: 8s; animation-delay: 0s; font-size: 28px; }
         .e2 { left: 25%; bottom: -50px; animation-duration: 10s; animation-delay: 2s; font-size: 20px; }
         .e3 { left: 15%; bottom: -50px; animation-duration: 12s; animation-delay: 4s; font-size: 32px; }
@@ -71,7 +92,7 @@
             width: 320px;
             text-align: center;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            z-index: 10; /* Emojo er opore thakar jonno */
+            z-index: 10; /* Keeps card above emojis */
         }
 
         /* Header Section */
@@ -109,7 +130,7 @@
             margin: 0 0 28px 0;
         }
 
-        /* Big Open Button */
+        /* Big Open Button (Matches Screenshot Proportions) */
         .open-btn {
             width: 100%;
             background: #00ff41; 
@@ -137,9 +158,21 @@
         .open-btn:active {
             transform: translateY(1px);
         }
+
+        /* Mobile Adjustments for Back Button */
+        @media (max-width: 480px) {
+            .back-btn {
+                top: 20px;
+                left: 20px;
+                font-size: 14px;
+            }
+        }
     </style>
 </head>
 <body>
+
+    <!-- Top Left Back Button -->
+    <a href="#" class="back-btn">← Back to Home</a>
 
     <!-- 10 Floating Emojis Background -->
     <div class="floating-emojis">
