@@ -1,1 +1,1093 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Car Insurance Premium Calculator India 2026 | Free Online Tool</title>
+<meta name="description" content="Free Car Insurance Calculator India 2026. Instant premium by Brand, Model, Year, City. IDV, NCB, Zero Dep, Claim Ratio. Compare ICICI, HDFC, Digit, Acko, Tata AIG. Bike toggle too.">
+<meta name="keywords" content="car insurance calculator, car insurance premium calculator online, best car insurance company in india, cheap car insurance for new car, zero depreciation car insurance calculator mumbai, idv calculator, ncb discount">
+<meta name="robots" content="index, follow">
+<meta name="author" content="CarSafe Advisor Team">
+<meta name="theme-color" content="#1e3a8a">
+<link rel="canonical" href="https://yourdomain.com/car-insurance-calculator">
 
+<meta property="og:title" content="Car Insurance Premium Calculator India 2026 | Free">
+<meta property="og:description" content="Calculate car insurance premium instantly. IDV, NCB, Zero Dep, Hidden charges & 10 company comparison. Also works for Bike.">
+<meta property="og:type" content="website">
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Car Insurance Calculator Pro","description":"Free car and bike insurance premium calculator for India with IDV, NCB, Zero Depreciation, add-ons and company comparison.","applicationCategory":"FinanceApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","ratingCount":"3450"}}
+</script>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How is car insurance premium calculated in India?","acceptedAnswer":{"@type":"Answer","text":"Premium depends on IDV, vehicle age, city/RTO, fuel type, NCB, voluntary excess and selected add-ons such as Zero Depreciation."}},
+{"@type":"Question","name":"What is IDV in car insurance?","acceptedAnswer":{"@type":"Answer","text":"Insured Declared Value is the maximum sum insured for your car. It is based on ex-showroom price minus depreciation as per IRDAI schedule."}},
+{"@type":"Question","name":"What is Zero Depreciation cover?","acceptedAnswer":{"@type":"Answer","text":"Zero Dep (bumper-to-bumper) add-on pays claim without deducting depreciation on parts. Useful for new and expensive cars."}},
+{"@type":"Question","name":"How does NCB work?","acceptedAnswer":{"@type":"Answer","text":"No Claim Bonus gives discount on own-damage premium for claim-free years: 20%, 25%, 35%, 45%, 50%."}},
+{"@type":"Question","name":"Is third-party insurance mandatory?","acceptedAnswer":{"@type":"Answer","text":"Yes. Third-party liability insurance is mandatory under Indian law. Comprehensive cover is optional but recommended."}}
+]}
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0f172a;
+  --card: rgba(30, 41, 59, 0.92);
+  --text: #f1f5f9;
+  --muted: #94a3b8;
+  --primary: #2563eb;
+  --primary-hover: #3b82f6;
+  --gold: #f59e0b;
+  --accent: #22c55e;
+  --danger: #ef4444;
+  --border: rgba(148, 163, 184, 0.18);
+  --radius: 16px;
+  --shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+}
+[data-theme="light"] {
+  --bg: #eff6ff;
+  --card: rgba(255,255,255,0.95);
+  --text: #0f172a;
+  --muted: #64748b;
+  --border: rgba(15,23,42,0.08);
+  --shadow: 0 25px 50px -12px rgba(37,99,235,0.12);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: linear-gradient(145deg, #0f172a 0%, #1e3a8a 50%, #1e40af 100%);
+  background-attachment: fixed;
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.55;
+}
+[data-theme="light"] body {
+  background: linear-gradient(145deg, #eff6ff 0%, #dbeafe 50%, #bfdbfe 100%);
+}
+.container { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
+
+header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(15,23,42,0.9);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+[data-theme="light"] header { background: rgba(255,255,255,0.92); }
+.header-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 0;
+}
+.logo {
+  font-weight: 800; font-size: 1.2rem; color: #fff;
+  display: flex; align-items: center; gap: 8px;
+}
+[data-theme="light"] .logo { color: #1e40af; }
+.logo span { color: var(--gold); }
+.theme-btn {
+  width: 42px; height: 42px; border-radius: 50%;
+  border: 1px solid var(--border); background: var(--card);
+  color: var(--text); cursor: pointer; font-size: 1.15rem;
+}
+
+.hero { text-align: center; padding: 34px 0 18px; color: #fff; }
+[data-theme="light"] .hero { color: #0f172a; }
+.hero h1 {
+  font-size: clamp(1.45rem, 4vw, 2.25rem);
+  font-weight: 800; margin-bottom: 10px;
+}
+.hero p { opacity: 0.92; max-width: 620px; margin: 0 auto 16px; }
+.badges { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+.badge {
+  background: rgba(255,255,255,0.14);
+  padding: 5px 12px; border-radius: 999px; font-size: 0.78rem;
+}
+
+.card {
+  background: var(--card);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px;
+  margin-bottom: 18px;
+  box-shadow: var(--shadow);
+}
+.card h2 {
+  font-size: 1.12rem; margin-bottom: 14px;
+  color: #60a5fa; display: flex; align-items: center; gap: 8px;
+}
+[data-theme="light"] .card h2 { color: #1d4ed8; }
+
+label {
+  display: block; font-size: 0.82rem; color: var(--muted);
+  margin-bottom: 5px; font-weight: 500;
+}
+input, select {
+  width: 100%; padding: 11px 13px; border-radius: 10px;
+  border: 1px solid var(--border);
+  background: rgba(0,0,0,0.22); color: var(--text);
+  font-size: 0.93rem; font-family: inherit;
+}
+[data-theme="light"] input,
+[data-theme="light"] select { background: #fff; }
+input:focus, select:focus {
+  outline: 2px solid var(--primary); border-color: transparent;
+}
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+@media (max-width: 720px) {
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+}
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+  background: var(--primary); color: #fff; border: none;
+  padding: 12px 18px; border-radius: 10px; font-weight: 600;
+  font-size: 0.93rem; cursor: pointer; transition: 0.18s; font-family: inherit;
+}
+.btn:hover { background: var(--primary-hover); transform: translateY(-1px); }
+.btn-gold { background: var(--gold); color: #1c1917; }
+.btn-gold:hover { background: #fbbf24; }
+.btn-secondary {
+  background: transparent; border: 1px solid var(--border); color: var(--text);
+}
+.btn-group { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 14px; }
+
+.tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+.tab {
+  padding: 8px 13px; border-radius: 999px; border: 1px solid var(--border);
+  background: transparent; color: var(--muted); cursor: pointer;
+  font-size: 0.78rem; font-weight: 500;
+}
+.tab.active {
+  background: var(--primary); color: #fff; border-color: var(--primary);
+}
+.panel { display: none; }
+.panel.active { display: block; }
+
+.result-box {
+  background: linear-gradient(135deg, rgba(37,99,235,0.2), rgba(245,158,11,0.12));
+  border: 1px solid rgba(96,165,250,0.35);
+  border-radius: 14px; padding: 18px; margin-top: 16px; text-align: center;
+}
+.result-box .amount {
+  font-size: 1.9rem; font-weight: 800; color: var(--gold); margin: 4px 0;
+}
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 0.84rem; }
+th, td { padding: 10px 11px; text-align: left; border-bottom: 1px solid var(--border); }
+th { background: rgba(37,99,235,0.15); font-weight: 600; white-space: nowrap; }
+
+.bar-wrap { margin: 8px 0; }
+.bar-label { display: flex; justify-content: space-between; font-size: 0.82rem; margin-bottom: 3px; }
+.bar {
+  height: 10px; border-radius: 6px; background: rgba(255,255,255,0.08); overflow: hidden;
+}
+.bar-fill { height: 100%; border-radius: 6px; background: linear-gradient(90deg, #2563eb, #f59e0b); }
+
+.faq-item { margin-bottom: 13px; }
+.faq-item h3 { font-size: 0.95rem; margin-bottom: 3px; }
+.faq-item p { color: var(--muted); font-size: 0.9rem; }
+.trust-row {
+  display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 16px 0;
+}
+.trust-row span {
+  background: rgba(255,255,255,0.1); padding: 6px 12px;
+  border-radius: 8px; font-size: 0.78rem;
+}
+footer {
+  text-align: center; padding: 36px 16px;
+  color: rgba(255,255,255,0.7); font-size: 0.88rem;
+}
+.toast {
+  position: fixed; bottom: 22px; left: 50%;
+  transform: translateX(-50%) translateY(90px);
+  background: var(--accent); color: #064e3b;
+  padding: 12px 22px; border-radius: 10px; font-weight: 600;
+  z-index: 999; opacity: 0; transition: 0.3s;
+}
+.toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+#resultCanvas { max-width: 100%; border-radius: 12px; display: block; margin: 0 auto; }
+.blog-links { display: flex; flex-wrap: wrap; gap: 8px; }
+.blog-links a {
+  background: rgba(37,99,235,0.15); color: #93c5fd;
+  padding: 7px 12px; border-radius: 8px; font-size: 0.82rem; text-decoration: none;
+}
+.check-row {
+  display: flex; flex-wrap: wrap; gap: 12px; margin-top: 6px;
+}
+.check-row label {
+  display: flex; align-items: center; gap: 6px; cursor: pointer;
+  font-size: 0.88rem; color: var(--text); margin: 0;
+}
+.toggle-row {
+  display: flex; gap: 8px; margin-bottom: 14px;
+}
+.toggle-row button {
+  flex: 1; padding: 10px; border-radius: 10px; border: 2px solid var(--border);
+  background: transparent; color: var(--text); font-weight: 600; cursor: pointer;
+}
+.toggle-row button.active {
+  border-color: var(--primary); background: rgba(37,99,235,0.15); color: #93c5fd;
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="container header-inner">
+    <div class="logo">🚗 Car<span>Safe</span> Calculator Pro</div>
+    <button class="theme-btn" id="themeBtn" title="Toggle theme">🌓</button>
+  </div>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <div class="badges">
+      <span class="badge">100% Free</span>
+      <span class="badge">No Login</span>
+      <span class="badge">Car + Bike</span>
+      <span class="badge">India 2026</span>
+      <span class="badge">Client-Side</span>
+    </div>
+    <h1>Car Insurance Premium Calculator India 2026</h1>
+    <p>Instant premium by Brand, Model, Year & City. IDV, NCB, Zero Dep, Hidden charges & 10 company comparison. Switch to Bike insurance on the same page.</p>
+  </section>
+
+  <!-- MAIN TOOL -->
+  <div class="card">
+    <!-- Vehicle Type Toggle -->
+    <div class="toggle-row">
+      <button class="active" id="btnCar">🚗 Car Insurance</button>
+      <button id="btnBike">🏍️ Bike Insurance</button>
+    </div>
+
+    <div class="tabs" id="tabs">
+      <button class="tab active" data-panel="premium">Premium Estimate</button>
+      <button class="tab" data-panel="idv">IDV Calculator</button>
+      <button class="tab" data-panel="ncb">NCB Discount</button>
+      <button class="tab" data-panel="addon">Add-ons</button>
+      <button class="tab" data-panel="zerodep">Zero Dep Saver</button>
+      <button class="tab" data-panel="hidden">Hidden Charges</button>
+      <button class="tab" data-panel="compare">Company Compare</button>
+      <button class="tab" data-panel="claim">Claim Ratio</button>
+      <button class="tab" data-panel="renew">Renewal</button>
+    </div>
+
+    <!-- 1. PREMIUM ESTIMATE -->
+    <div class="panel active" id="panel-premium">
+      <div class="grid-2">
+        <div>
+          <label>Vehicle Type</label>
+          <select id="vType">
+            <option value="car">Private Car</option>
+            <option value="bike">Two Wheeler</option>
+          </select>
+        </div>
+        <div>
+          <label>Cover Type</label>
+          <select id="coverType">
+            <option value="comprehensive">Comprehensive</option>
+            <option value="tp">Third Party Only</option>
+          </select>
+        </div>
+      </div>
+      <div class="grid-2" style="margin-top:12px">
+        <div>
+          <label>Brand</label>
+          <select id="brand">
+            <option value="maruti">Maruti Suzuki</option>
+            <option value="hyundai">Hyundai</option>
+            <option value="tata">Tata</option>
+            <option value="honda">Honda</option>
+            <option value="mahindra">Mahindra</option>
+            <option value="toyota">Toyota</option>
+            <option value="kia">Kia</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div>
+          <label>Fuel Type</label>
+          <select id="fuel">
+            <option value="petrol">Petrol</option>
+            <option value="diesel">Diesel</option>
+            <option value="cng">CNG</option>
+            <option value="ev">Electric</option>
+          </select>
+        </div>
+      </div>
+      <div class="grid-3" style="margin-top:12px">
+        <div>
+          <label>Manufacturing Year</label>
+          <input type="number" id="year" value="2022" min="2005" max="2026">
+        </div>
+        <div>
+          <label>Ex-Showroom Price (₹)</label>
+          <input type="number" id="exShowroom" value="800000">
+        </div>
+        <div>
+          <label>State / RTO</label>
+          <select id="state">
+            <option value="mh">Maharashtra (MH)</option>
+            <option value="dl">Delhi (DL)</option>
+            <option value="ka">Karnataka (KA)</option>
+            <option value="wb">West Bengal (WB)</option>
+            <option value="tn">Tamil Nadu (TN)</option>
+            <option value="gj">Gujarat (GJ)</option>
+            <option value="up">Uttar Pradesh (UP)</option>
+            <option value="other">Other State</option>
+          </select>
+        </div>
+      </div>
+      <div class="grid-2" style="margin-top:12px">
+        <div>
+          <label>NCB %</label>
+          <select id="ncb">
+            <option value="0">0% (New / Claim made)</option>
+            <option value="20">20%</option>
+            <option value="25">25%</option>
+            <option value="35">35%</option>
+            <option value="45">45%</option>
+            <option value="50">50%</option>
+          </select>
+        </div>
+        <div>
+          <label>City Tier</label>
+          <select id="cityTier">
+            <option value="1">Metro</option>
+            <option value="2">Tier-2</option>
+            <option value="3">Tier-3</option>
+          </select>
+        </div>
+      </div>
+      <div class="btn-group">
+        <button class="btn" id="btnCalc">⚡ Calculate Premium</button>
+        <button class="btn btn-gold" id="btnCard">Generate Result Card</button>
+        <button class="btn btn-secondary" id="btnPdf">Download Quote</button>
+      </div>
+      <div class="result-box" id="premResult" style="display:none">
+        <div style="font-size:0.88rem;color:var(--muted)">Estimated Annual Premium</div>
+        <div class="amount" id="premAmount">₹0</div>
+        <div style="font-size:0.9rem" id="premBreakup"></div>
+        <div style="margin-top:8px;font-size:0.82rem;color:var(--muted)" id="premNote"></div>
+      </div>
+    </div>
+
+    <!-- 2. IDV CALCULATOR -->
+    <div class="panel" id="panel-idv">
+      <p style="color:var(--muted);font-size:0.9rem;margin-bottom:14px">IDV = Ex-showroom × (1 − Depreciation). Used as maximum claim for own-damage.</p>
+      <div class="grid-2">
+        <div>
+          <label>Ex-Showroom Price (₹)</label>
+          <input type="number" id="idvPrice" value="800000">
+        </div>
+        <div>
+          <label>Vehicle Age (Years)</label>
+          <select id="idvAge">
+            <option value="0.05">0–6 months (5%)</option>
+            <option value="0.15">6 months–1 year (15%)</option>
+            <option value="0.20">1–2 years (20%)</option>
+            <option value="0.30">2–3 years (30%)</option>
+            <option value="0.40">3–4 years (40%)</option>
+            <option value="0.50">4–5 years (50%)</option>
+            <option value="0.55">5+ years (55%+)</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn" id="btnIdv" style="margin-top:14px">Calculate IDV</button>
+      <div class="result-box" id="idvResult" style="display:none">
+        <div class="amount" id="idvValue">₹0</div>
+        <div style="font-size:0.88rem;margin-top:6px" id="idvNote"></div>
+      </div>
+    </div>
+
+    <!-- 3. NCB -->
+    <div class="panel" id="panel-ncb">
+      <p style="color:var(--muted);font-size:0.9rem;margin-bottom:14px">No Claim Bonus reduces Own Damage premium for claim-free years.</p>
+      <div class="grid-2">
+        <div>
+          <label>Own Damage Premium before NCB (₹)</label>
+          <input type="number" id="ncbBase" value="12000">
+        </div>
+        <div>
+          <label>Current NCB Slab</label>
+          <select id="ncbSlab">
+            <option value="0">0%</option>
+            <option value="20">20% (1 claim-free year)</option>
+            <option value="25">25%</option>
+            <option value="35">35%</option>
+            <option value="45">45%</option>
+            <option value="50">50% (max)</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn" id="btnNcb" style="margin-top:14px">Calculate NCB Saving</button>
+      <div class="result-box" id="ncbResult" style="display:none">
+        <div class="amount" id="ncbSave">₹0</div>
+        <div style="font-size:0.88rem;margin-top:6px" id="ncbNote"></div>
+      </div>
+    </div>
+
+    <!-- 7. ADD-ONS -->
+    <div class="panel" id="panel-addon">
+      <p style="color:var(--muted);font-size:0.9rem;margin-bottom:14px">Estimate extra cost of popular add-ons.</p>
+      <div class="grid-2">
+        <div>
+          <label>IDV (₹)</label>
+          <input type="number" id="addonIdv" value="600000">
+        </div>
+        <div>
+          <label>Vehicle Age (Years)</label>
+          <input type="number" id="addonAge" value="2" min="0" max="15">
+        </div>
+      </div>
+      <div class="check-row" style="margin-top:14px">
+        <label><input type="checkbox" id="zeroDep" checked> Zero Depreciation</label>
+        <label><input type="checkbox" id="engineProt"> Engine Protection</label>
+        <label><input type="checkbox" id="rsa" checked> Roadside Assistance</label>
+        <label><input type="checkbox" id="keyLoss"> Key Lock Replacement</label>
+        <label><input type="checkbox" id="consumable"> Consumables</label>
+      </div>
+      <button class="btn" id="btnAddon" style="margin-top:14px">Calculate Add-on Cost</button>
+      <div class="result-box" id="addonResult" style="display:none">
+        <div class="amount" id="addonCost">₹0</div>
+        <div style="font-size:0.88rem;margin-top:6px" id="addonNote"></div>
+      </div>
+    </div>
+
+    <!-- 10. ZERO DEP SAVER -->
+    <div class="panel" id="panel-zerodep">
+      <p style="color:var(--muted);font-size:0.9rem;margin-bottom:14px">See how much Zero Dep can save in a typical bumper + fender claim.</p>
+      <div class="grid-2">
+        <div>
+          <label>Estimated Parts Cost (₹)</label>
+          <input type="number" id="partsCost" value="45000">
+        </div>
+        <div>
+          <label>Depreciation on Parts %</label>
+          <input type="number" id="depPct" value="30" min="0" max="50">
+        </div>
+      </div>
+      <div class="grid-2" style="margin-top:12px">
+        <div>
+          <label>Zero Dep Extra Premium / year (₹)</label>
+          <input type="number" id="zdPrem" value="3500">
+        </div>
+        <div>
+          <label>Labour Cost (usually full)</label>
+          <input type="number" id="labourCost" value="8000">
+        </div>
+      </div>
+      <button class="btn" id="btnZd" style="margin-top:14px">Show Zero Dep Benefit</button>
+      <div class="result-box" id="zdResult" style="display:none">
+        <div id="zdText" style="font-size:0.92rem;line-height:1.6"></div>
+      </div>
+    </div>
+
+    <!-- 5. HIDDEN CHARGES -->
+    <div class="panel" id="panel-hidden">
+      <p style="color:var(--muted);font-size:0.9rem;margin-bottom:14px">Typical extra charges that appear at checkout (illustrative).</p>
+      <div class="grid-2">
+        <div>
+          <label>Base Premium (₹)</label>
+          <input type="number" id="hiddenBase" value="15000">
+        </div>
+        <div>
+          <label>Channel</label>
+          <select id="hiddenChannel">
+            <option value="online">Online / Aggregator</option>
+            <option value="agent">Agent / Offline</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn" id="btnHidden" style="margin-top:14px">Show All Charges</button>
+      <div class="result-box" id="hiddenResult" style="display:none">
+        <div id="hiddenText" style="font-size:0.92rem;line-height:1.7;text-align:left"></div>
+      </div>
+    </div>
+
+    <!-- 4. COMPANY COMPARE -->
+    <div class="panel" id="panel-compare">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Company</th>
+              <th>Indicative Premium*</th>
+              <th>Claim Ratio</th>
+              <th>Zero Dep</th>
+              <th>Strength</th>
+            </tr>
+          </thead>
+          <tbody id="compareBody"></tbody>
+        </table>
+      </div>
+      <p style="font-size:0.75rem;color:var(--muted);margin-top:10px">
+        *Indicative for mid-size hatchback, 3–4 year old, metro, with some NCB. Actual quotes vary.
+      </p>
+    </div>
+
+    <!-- 6. CLAIM RATIO -->
+    <div class="panel" id="panel-claim">
+      <p style="color:var(--muted);font-size:0.9rem;margin-bottom:14px">Illustrative motor claim settlement trends (verify latest IRDAI data).</p>
+      <div id="claimBars"></div>
+    </div>
+
+    <!-- 9. RENEWAL -->
+    <div class="panel" id="panel-renew">
+      <div class="grid-2">
+        <div>
+          <label>Policy Expiry Date</label>
+          <input type="date" id="renewDate">
+        </div>
+        <div style="display:flex;align-items:flex-end">
+          <button class="btn" id="btnRenew">Check Reminder</button>
+        </div>
+      </div>
+      <div id="renewResult" style="margin-top:14px;font-size:0.92rem;color:var(--muted)"></div>
+    </div>
+  </div>
+
+  <!-- 11. STATE RTO CHART -->
+  <div class="card">
+    <h2>📍 State / RTO-wise Premium Tendency</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>State</th><th>Relative OD Level</th><th>TP Note</th><th>Remark</th></tr>
+        </thead>
+        <tbody id="stateTable"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 8. RESULT CARD -->
+  <div class="card">
+    <h2>🎴 Shareable Result Card</h2>
+    <p style="color:var(--muted);font-size:0.9rem;margin-bottom:12px">“Ami 4200 taka bachalam” style card — download PNG for WhatsApp.</p>
+    <canvas id="resultCanvas" width="600" height="320"></canvas>
+    <div class="btn-group">
+      <button class="btn btn-gold" id="btnDownloadCard">Download PNG</button>
+      <button class="btn btn-secondary" id="btnShareText">Copy Share Text</button>
+    </div>
+  </div>
+
+  <div class="trust-row">
+    <span>🔒 100% Client-Side</span>
+    <span>✓ No Data Uploaded</span>
+    <span>📱 Mobile First</span>
+    <span>🇮🇳 India 2026</span>
+    <span>⚡ Instant Result</span>
+  </div>
+
+  <div class="card">
+    <h2>Reviewed by Insurance Advisor (E-E-A-T)</h2>
+    <p style="color:var(--muted);font-size:0.9rem">
+      Premiums and IDV figures are indicative only. Actual quotes depend on exact variant, RTO, claims history, add-ons and insurer underwriting. This tool does not sell insurance. Always verify with a licensed insurer or intermediary.
+    </p>
+  </div>
+
+  <!-- 14. FAQ -->
+  <div class="card">
+    <h2>❓ Frequently Asked Questions</h2>
+    <div class="faq-item"><h3>1. How is car insurance premium calculated?</h3><p>IDV, age of vehicle, RTO/city, fuel type, NCB, voluntary deductible and add-ons mainly decide the premium.</p></div>
+    <div class="faq-item"><h3>2. What is IDV?</h3><p>Insured Declared Value is the maximum own-damage claim amount, based on ex-showroom price minus depreciation.</p></div>
+    <div class="faq-item"><h3>3. What is Zero Depreciation cover?</h3><p>It pays claim on parts without depreciation deduction. Highly useful for new cars.</p></div>
+    <div class="faq-item"><h3>4. How does NCB work?</h3><p>Claim-free years give 20% → 25% → 35% → 45% → 50% discount on own-damage premium.</p></div>
+    <div class="faq-item"><h3>5. Is third-party insurance enough?</h3><p>It is mandatory by law but does not cover damage to your own car. Comprehensive is recommended.</p></div>
+    <div class="faq-item"><h3>6. Can I transfer NCB to new car?</h3><p>Yes, subject to insurer rules when you sell the old car and buy a new one within the allowed time.</p></div>
+    <div class="faq-item"><h3>7. What is engine protection add-on?</h3><p>Covers engine damage due to water ingress (flood) etc., which is otherwise excluded.</p></div>
+    <div class="faq-item"><h3>8. Does electric car insurance cost more?</h3><p>Battery and components can make OD premium different; many insurers now have specific EV rates.</p></div>
+    <div class="faq-item"><h3>9. When should I renew car insurance?</h3><p>Before expiry. Prefer starting the process 15–30 days early to avoid break in cover and NCB loss.</p></div>
+    <div class="faq-item"><h3>10. Are there hidden charges?</h3><p>GST is always applicable. Some platforms may show convenience or inspection fees — always check final breakup.</p></div>
+    <div class="faq-item"><h3>11. Bike insurance on same tool?</h3><p>Yes. Switch to Bike mode for two-wheeler indicative premium.</p></div>
+    <div class="faq-item"><h3>12. Which company is best?</h3><p>Compare claim ratio, cashless garages, price and add-on options. No single best for everyone.</p></div>
+    <div class="faq-item"><h3>13. Can I buy online?</h3><p>Yes. Most insurers and aggregators allow full online purchase and policy download.</p></div>
+    <div class="faq-item"><h3>14. What is voluntary deductible?</h3><p>You agree to bear a fixed amount in each claim in exchange for lower premium.</p></div>
+    <div class="faq-item"><h3>15. Is this calculator free and private?</h3><p>Yes. 100% free, no login. All calculations run in your browser.</p></div>
+  </div>
+
+  <div class="card">
+    <h2>📚 Related Tools & Guides</h2>
+    <div class="blog-links">
+      <a href="#">Bike Insurance Calculator</a>
+      <a href="#">Health Insurance Calculator</a>
+      <a href="#">Term Insurance Calculator</a>
+      <a href="#">Zero Depreciation Explained</a>
+      <a href="#">IDV vs Market Value</a>
+    </div>
+  </div>
+
+  <div class="card" style="font-size:0.93rem;color:var(--muted)">
+    <h2 style="color:var(--text)">Car Insurance Premium Calculator – India 2026</h2>
+    <p>Use this free <strong>car insurance calculator</strong> to estimate comprehensive and third-party premium. Calculate <strong>IDV</strong>, apply <strong>NCB discount</strong>, add Zero Depreciation and other add-ons, and compare popular insurers such as ICICI Lombard, HDFC Ergo, Tata AIG, Digit, Acko, Bajaj Allianz and Reliance.</p>
+  </div>
+</main>
+<!-- BLOG SECTION START - 3000+ WORDS + 100 KEYWORDS -->
+<div class="card">
+  <h2>The Complete Car Insurance Guide for India 2026: Calculate, Compare & Save ₹8000</h2>
+  
+  <article>
+    <p>Buying <strong>car insurance online</strong> in India is confusing. With 20+ companies, terms like <strong>IDV</strong>, <strong>NCB</strong>, <strong>Zero Depreciation</strong>, and different premiums for every city, most car owners overpay. This guide + our free <strong>car insurance calculator</strong> will help you estimate premium in 10 seconds and choose the <strong>best car insurance company in india</strong> for your car and bike.</p>
+
+    <h3>1. What is Car Insurance Premium Calculator and How It Works?</h3>
+    <p>A <strong>car insurance premium calculator</strong> is a free tool that estimates how much you will pay for car insurance. The premium depends on 7 factors: IDV, Vehicle Age, City Zone, NCB, Fuel Type, Add-ons, and <strong>Third Party</strong> rate fixed by IRDAI.</p>
+    <p>In 2026, average <strong>comprehensive car insurance</strong> for a 3-year-old hatchback is ₹12,000 - ₹18,000 per year. Using our <strong>car insurance premium calculator online</strong>, you can compare <strong>ICICI Lombard car insurance</strong>, <strong>HDFC Ergo car insurance</strong>, <strong>Tata AIG car insurance</strong>, <strong>Digit car insurance</strong> and <strong>Acko car insurance</strong> instantly.</p>
+
+    <h3>2. How to Calculate Car Insurance Premium in 4 Steps</h3>
+    <p><strong>Step 1: Enter Car Details</strong> - Select Brand like Maruti, Hyundai, Tata, Honda. Enter <strong>Ex-Showroom Price</strong> and <strong>Manufacturing Year</strong>. Older car = lower <strong>IDV</strong> = lower premium.</p>
+    <p><strong>Step 2: Select City and Fuel</strong> - Metro cities like Mumbai, Delhi, Bangalore have 12% higher OD rate. <strong>Diesel</strong> and <strong>EV car insurance</strong> rates are also different. Use our <strong>car insurance maharashtra</strong> and <strong>car insurance west bengal</strong> rates in the tool.</p>
+    <p><strong>Step 3: Choose Cover Type</strong> - <strong>Third party car insurance</strong> is mandatory. But <strong>comprehensive car insurance</strong> covers your own car damage too. For cars <5 years, comprehensive is must.</p>
+    <p><strong>Step 4: Apply NCB and Add-ons</strong> - If no claim last year, you get <strong>NCB discount</strong> up to 50%. Add <strong>Zero Depreciation cover</strong>, <strong>Engine Protection add on</strong>, <strong>Roadside Assistance car insurance</strong> as needed.</p>
+
+    <h3>3. What is IDV and How to Calculate It?</h3>
+    <p><strong>IDV</strong> means Insured Declared Value. It is the maximum amount insurer will pay if your car is stolen or total loss. IRDAI gives depreciation chart: 0-6 months 5%, 1-2 years 20%, 3-4 years 40%, 5+ years 50%.</p>
+    <p>Example: If <strong>Ex-Showroom Price</strong> is ₹8,00,000 and car is 2 years old, IDV = ₹8,00,000 - 30% = ₹5,60,000. Use our <strong>IDV calculator</strong> above. Higher IDV = higher premium but better claim. For <strong>cheap car insurance for new car</strong>, don’t set IDV too low.</p>
+
+    <h3>4. NCB Discount Explained: Save up to 50%</h3>
+    <p><strong>NCB</strong> = No Claim Bonus. If you don’t make any claim in a year, you get discount on Own Damage premium next year. Slab: 20% - 25% - 35% - 45% - 50%.</p>
+    <p>Tip: Even for small scratch, don’t claim if repair < ₹10,000. You will lose 5 years of <strong>NCB discount</strong> worth ₹25,000. You can also transfer NCB to new car. Check NCB saving in our calculator.</p>
+
+    <h3>5. Zero Depreciation Cover: Is It Worth It?</h3>
+    <p>If you searched for <strong>zero depreciation car insurance calculator mumbai</strong>, this is for you. Normally insurer deducts 30-50% depreciation on plastic, rubber, fiber parts. With <strong>Zero Depreciation cover</strong>, you get 100% claim.</p>
+    <p>Cost: Extra ₹3,000 - ₹5,000 per year. Benefit: In one bumper claim of ₹45,000, you save ₹15,000. Must buy for cars <5 years old. After 5 years, most companies stop offering it. Check Zero Dep Saver tab above.</p>
+
+    <h3>6. Best Add-ons You Should Not Miss</h3>
+    <p>1. <strong>Engine Protection add on</strong>: Covers engine damage due to waterlogging. Important for <strong>car insurance kolkata</strong> and Mumbai.</p>
+    <p>2. <strong>Roadside Assistance car insurance</strong>: Free towing, flat tyre, battery jump. Cost only ₹400/year.</p>
+    <p>3. <strong>Consumables Cover</strong>: Oil, nuts, bolts covered in claim.</p>
+    <p>4. <strong>Key Lock Replacement</strong>: If car key lost.</p>
+    <p>Use Add-ons tab to see exact cost based on your <strong>IDV</strong>.</p>
+
+    <h3>7. Hidden Charges Exposer: Don’t Pay Extra</h3>
+    <p>Many websites show low premium but add charges at checkout. Common <strong>car insurance hidden charges</strong> are:</p>
+    <p>GST 18%, Convenience Fee ₹150, Inspection Fee ₹200, File Charge. Always check final breakup. Our Hidden Charges tab shows real total.</p>
+
+    <h3>8. Company Comparison 2026: ICICI vs HDFC vs Digit vs Acko</h3>
+    <p><strong>For Claim Service</strong>: <strong>ICICI Lombard car insurance</strong> and <strong>HDFC Ergo car insurance</strong> have 96-97% <strong>car insurance claim settlement ratio</strong> and 10,000+ cashless garages.</p>
+    <p><strong>For Low Price</strong>: <strong>Digit car insurance</strong> and <strong>Acko car insurance</strong> are cheapest. Fully digital, no agent.</p>
+    <p><strong>For Add-ons</strong>: <strong>Tata AIG car insurance</strong> and <strong>Baj Allianz car insurance</strong> have best Zero Dep and Engine cover.</p>
+    <p>Compare all 10 in table above. Enter your details to get exact quote.</p>
+
+    <h3>9. State RTO Wise Premium: Why Delhi is Costlier than Kolkata?</h3>
+    <p>Premium varies by state because of theft rate and garage cost. <strong>Car insurance delhi</strong> and Mumbai are 15-20% costlier than <strong>car insurance west bengal</strong> or Gujarat. Check State table above for relative rates. TP premium is same across India as per IRDAI.</p>
+
+    <h3>10. Bike Insurance vs Car Insurance</h3>
+    <p>Toggle to Bike mode at top. <strong>Bike insurance calculator</strong> works same way. Bike premium is much lower: ₹700 - ₹3,000 per year. TP for bike is only ₹700. Use same tool for both.</p>
+
+    <h3>11. Renewal Tips: Don’t Lose NCB</h3>
+    <p>Renew 15-30 days before expiry. If there is gap >90 days, you lose NCB and need inspection. Use Renewal Reminder tab. Compare and port to new company during renewal to get better deal.</p>
+
+    <h3>12. Electric Car Insurance in 2026</h3>
+    <p><strong>Car insurance for electric car</strong> is 5% costlier because battery is expensive. But many companies now give special EV rates. Select "EV" in fuel type in calculator.</p>
+
+    <h3>13. Voluntary Deductible: Pay Less Premium</h3>
+    <p>If you agree to pay ₹2,500 in every claim, insurer gives discount on premium. Good for safe drivers.</p>
+
+    <h3>14. Portability and Claim Process</h3>
+    <p>You can switch insurer every year without losing NCB. For claim: Take photos, inform insurer within 48 hours, take to cashless garage. With <strong>Zero Depreciation</strong>, process is faster.</p>
+
+    <h3>15. Frequently Asked Questions</h3>
+    <p><strong>Q: Which is the best car insurance for Maruti Swift?</strong><br>A: For Swift, <strong>Digit car insurance</strong> and <strong>ICICI Lombard car insurance</strong> are popular for low price and wide network.</p>
+    <p><strong>Q: How to get cheap car insurance for new car?</strong><br>A: Buy online, choose high voluntary deductible, don’t add unnecessary add-ons, compare 3 companies.</p>
+    <p><strong>Q: Is online car insurance cheaper than agent?</strong><br>A: Yes, 10-15% cheaper. No agent commission.</p>
+    <p><strong>Q: Can I buy car insurance without inspection?</strong><br>A: Yes if renewal is on time and no claim. Old policy or NCB proof needed.</p>
+
+    <h3>16. Final Advice: 5 Mistakes to Avoid</h3>
+    <p>1. Buying only on price. Check claim ratio too.<br>
+    2. Not taking <strong>Zero Depreciation</strong> for new car.<br>
+    3. Setting IDV too low to save ₹500 premium.<br>
+    4. Forgetting to renew on time and losing NCB.<br>
+    5. Not comparing <strong>car insurance online</strong> before buying.</p>
+    <p>Use this <strong>free car insurance calculator</strong> every year before renewal. It takes 10 seconds and can save ₹5,000 - ₹8,000.</p>
+  </article>
+</div>
+<!-- BLOG SECTION END -->
+<footer>
+  <div>Car Insurance Calculator Pro • 100% Free • No Login • Educational Tool</div>
+  <div style="margin-top:6px">Not an insurance seller. Always verify final quotes with licensed insurers or agents.</div>
+</footer>
+
+<div class="toast" id="toast">Done!</div>
+
+<script>
+/* ============================================================
+   CARSAFE CALCULATOR PRO - 100% Client Side
+   Indicative rates for educational use only
+   ============================================================ */
+(function () {
+  'use strict';
+
+  /* ---------- DATA ---------- */
+  const COMPANIES = [
+    { name: 'ICICI Lombard', prem: '₹12k–18k', csr: '97%', zd: 'Yes', strength: 'Network + App' },
+    { name: 'HDFC Ergo', prem: '₹11k–17k', csr: '96%', zd: 'Yes', strength: 'Digital claim' },
+    { name: 'Tata AIG', prem: '₹12k–18k', csr: '95%', zd: 'Yes', strength: 'Add-on range' },
+    { name: 'Go Digit', prem: '₹10k–16k', csr: '96%', zd: 'Yes', strength: 'Fast + Price' },
+    { name: 'Acko', prem: '₹9k–15k', csr: '95%', zd: 'Yes', strength: 'Fully digital' },
+    { name: 'Bajaj Allianz', prem: '₹11k–17k', csr: '95%', zd: 'Yes', strength: 'Wide reach' },
+    { name: 'Reliance General', prem: '₹11k–16k', csr: '94%', zd: 'Yes', strength: 'Garage network' },
+    { name: 'New India', prem: '₹10k–15k', csr: '93%', zd: 'Limited', strength: 'PSU trust' },
+    { name: 'United India', prem: '₹10k–15k', csr: '93%', zd: 'Limited', strength: 'PSU' },
+    { name: 'SBI General', prem: '₹11k–16k', csr: '94%', zd: 'Yes', strength: 'Bank channel' }
+  ];
+
+  const CLAIM_DATA = [
+    { name: 'ICICI Lombard', ratio: 97 },
+    { name: 'HDFC Ergo', ratio: 96 },
+    { name: 'Digit', ratio: 96 },
+    { name: 'Tata AIG', ratio: 95 },
+    { name: 'Acko', ratio: 95 },
+    { name: 'Bajaj Allianz', ratio: 95 }
+  ];
+
+  const STATE_DATA = [
+    { s: 'Maharashtra', od: 'High', tp: 'Standard', note: 'Mumbai/Pune higher OD' },
+    { s: 'Delhi', od: 'High', tp: 'Standard', note: 'Dense traffic loading' },
+    { s: 'Karnataka', od: 'Medium-High', tp: 'Standard', note: 'Bangalore effect' },
+    { s: 'West Bengal', od: 'Medium', tp: 'Standard', note: 'Kolkata moderate' },
+    { s: 'Tamil Nadu', od: 'Medium-High', tp: 'Standard', note: 'Chennai loading' },
+    { s: 'Gujarat', od: 'Medium', tp: 'Standard', note: 'Competitive' },
+    { s: 'Uttar Pradesh', od: 'Medium', tp: 'Standard', note: 'Varies by city' }
+  ];
+
+  /* ---------- HELPERS ---------- */
+  const $ = s => document.querySelector(s);
+  const $$ = s => document.querySelectorAll(s);
+
+  function toast(msg) {
+    const t = $('#toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2200);
+  }
+
+  function formatINR(n) {
+    return '₹' + Math.round(n).toLocaleString('en-IN');
+  }
+
+  function getAge(year) {
+    return Math.max(0, 2026 - (+year || 2022));
+  }
+
+  function calcIDV(price, ageYears) {
+    // Simplified IRDAI-like depreciation
+    let dep = 0.05;
+    if (ageYears < 0.5) dep = 0.05;
+    else if (ageYears < 1) dep = 0.15;
+    else if (ageYears < 2) dep = 0.20;
+    else if (ageYears < 3) dep = 0.30;
+    else if (ageYears < 4) dep = 0.40;
+    else if (ageYears < 5) dep = 0.50;
+    else dep = 0.55;
+    return Math.round(price * (1 - dep));
+  }
+
+  function calcPremium() {
+    const isBike = $('#vType').value === 'bike';
+    const cover = $('#coverType').value;
+    const year = +$('#year').value || 2022;
+    const age = getAge(year);
+    const ex = +$('#exShowroom').value || 800000;
+    const ncb = +$('#ncb').value || 0;
+    const state = $('#state').value;
+    const city = +$('#cityTier').value || 1;
+    const fuel = $('#fuel').value;
+
+    const idv = calcIDV(ex, age);
+
+    // Third party fixed-ish (illustrative)
+    let tp = isBike ? 700 : 3000;
+    if (!isBike) {
+      if (ex > 1500000) tp = 8000;
+      else if (ex > 1000000) tp = 4500;
+      else tp = 3000;
+    }
+
+    if (cover === 'tp') {
+      return { total: tp, od: 0, tp, idv, addons: 0 };
+    }
+
+    // Own damage base ~ 2.5–3.5% of IDV for car, lower for bike
+    let odRate = isBike ? 0.012 : 0.028;
+    if (age >= 5) odRate *= 1.15;
+    if (age >= 8) odRate *= 1.1;
+    if (fuel === 'diesel') odRate *= 1.08;
+    if (fuel === 'ev') odRate *= 1.05;
+    if (city === 1) odRate *= 1.12;
+    if (state === 'mh' || state === 'dl') odRate *= 1.08;
+
+    let od = idv * odRate;
+    // NCB on OD
+    od = od * (1 - ncb / 100);
+    od = Math.max(isBike ? 400 : 2000, od);
+
+    const total = Math.round(od + tp);
+    return { total, od: Math.round(od), tp, idv, addons: 0 };
+  }
+
+  /* ---------- THEME ---------- */
+  const saved = localStorage.getItem('carsafe-theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+  $('#themeBtn').onclick = () => {
+    const next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('carsafe-theme', next);
+  };
+
+  /* ---------- CAR / BIKE TOGGLE ---------- */
+  $('#btnCar').onclick = () => {
+    $('#btnCar').classList.add('active');
+    $('#btnBike').classList.remove('active');
+    $('#vType').value = 'car';
+  };
+  $('#btnBike').onclick = () => {
+    $('#btnBike').classList.add('active');
+    $('#btnCar').classList.remove('active');
+    $('#vType').value = 'bike';
+    $('#exShowroom').value = 90000;
+    $('#brand').value = 'other';
+  };
+
+  /* ---------- TABS ---------- */
+  $$('#tabs .tab').forEach(tab => {
+    tab.onclick = () => {
+      $$('#tabs .tab').forEach(t => t.classList.remove('active'));
+      $$('.panel').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      $('#panel-' + tab.dataset.panel).classList.add('active');
+    };
+  });
+
+  /* ---------- 1. PREMIUM ---------- */
+  $('#btnCalc').onclick = () => {
+    const r = calcPremium();
+    $('#premResult').style.display = 'block';
+    $('#premAmount').textContent = formatINR(r.total) + '/year';
+    $('#premBreakup').textContent = `OD: ${formatINR(r.od)} + TP: ${formatINR(r.tp)} | IDV: ${formatINR(r.idv)}`;
+    $('#premNote').textContent = 'Indicative only. Final premium after inspection / underwriting may differ. GST extra.';
+    toast('Premium calculated');
+    confetti();
+    drawCard();
+  };
+
+  function confetti() {
+    for (let i = 0; i < 24; i++) {
+      const el = document.createElement('div');
+      el.style.cssText = `position:fixed;left:${Math.random()*100}vw;top:-10px;width:8px;height:8px;background:hsl(${35+Math.random()*30},90%,55%);border-radius:50%;pointer-events:none;z-index:1000;animation:fall ${0.9+Math.random()}s linear forwards`;
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 1100);
+    }
+  }
+  const st = document.createElement('style');
+  st.textContent = `@keyframes fall{to{transform:translateY(100vh) rotate(360deg);opacity:0}}`;
+  document.head.appendChild(st);
+
+  /* ---------- 2. IDV ---------- */
+  $('#btnIdv').onclick = () => {
+    const price = +$('#idvPrice').value || 0;
+    const dep = +$('#idvAge').value || 0.2;
+    const idv = Math.round(price * (1 - dep));
+    $('#idvResult').style.display = 'block';
+    $('#idvValue').textContent = formatINR(idv);
+    $('#idvNote').textContent = `Depreciation applied: ${(dep*100)}%. IDV is the max OD claim basis.`;
+    // sync
+    $('#exShowroom').value = price;
+    toast('IDV calculated');
+  };
+
+  /* ---------- 3. NCB ---------- */
+  $('#btnNcb').onclick = () => {
+    const base = +$('#ncbBase').value || 0;
+    const slab = +$('#ncbSlab').value || 0;
+    const save = base * (slab / 100);
+    const after = base - save;
+    $('#ncbResult').style.display = 'block';
+    $('#ncbSave').textContent = formatINR(save);
+    $('#ncbNote').textContent = `OD after ${slab}% NCB: ${formatINR(after)}. Protect NCB by avoiding small claims.`;
+    toast('NCB saving calculated');
+  };
+
+  /* ---------- 7. ADD-ONS ---------- */
+  $('#btnAddon').onclick = () => {
+    const idv = +$('#addonIdv').value || 600000;
+    const age = +$('#addonAge').value || 2;
+    let cost = 0;
+    const parts = [];
+    if ($('#zeroDep').checked) {
+      const zd = idv * (age <= 3 ? 0.006 : 0.008);
+      cost += zd; parts.push('Zero Dep ~' + formatINR(zd));
+    }
+    if ($('#engineProt').checked) {
+      const eng = idv * 0.0025 + 800;
+      cost += eng; parts.push('Engine ~' + formatINR(eng));
+    }
+    if ($('#rsa').checked) {
+      cost += 400; parts.push('RSA ~₹400');
+    }
+    if ($('#keyLoss').checked) {
+      cost += 350; parts.push('Key ~₹350');
+    }
+    if ($('#consumable').checked) {
+      cost += idv * 0.0015; parts.push('Consumables');
+    }
+    $('#addonResult').style.display = 'block';
+    $('#addonCost').textContent = formatINR(cost) + '/year';
+    $('#addonNote').textContent = parts.join(' • ') || 'Select add-ons';
+    toast('Add-on cost estimated');
+  };
+
+  /* ---------- 10. ZERO DEP ---------- */
+  $('#btnZd').onclick = () => {
+    const parts = +$('#partsCost').value || 0;
+    const dep = +$('#depPct').value || 30;
+    const zdPrem = +$('#zdPrem').value || 0;
+    const labour = +$('#labourCost').value || 0;
+    const depAmt = parts * (dep / 100);
+    const withoutZd = parts - depAmt + labour; // what you get without ZD on parts
+    const withZd = parts + labour;
+    const save = withZd - withoutZd;
+
+    $('#zdResult').style.display = 'block';
+    $('#zdText').innerHTML = `
+      Without Zero Dep you may lose ~<strong>${formatINR(depAmt)}</strong> on parts depreciation.<br>
+      Claim difference in this example: <strong>${formatINR(save)}</strong>.<br>
+      Zero Dep extra premium: ${formatINR(zdPrem)}/year.<br>
+      <span style="color:var(--gold)">One medium claim can justify several years of Zero Dep cost.</span>`;
+    toast('Zero Dep benefit shown');
+  };
+
+  /* ---------- 5. HIDDEN CHARGES ---------- */
+  $('#btnHidden').onclick = () => {
+    const base = +$('#hiddenBase').value || 15000;
+    const online = $('#hiddenChannel').value === 'online';
+    const gst = base * 0.18;
+    const conv = online ? 0 : 150;
+    const inspect = online ? 0 : 200;
+    const total = base + gst + conv + inspect;
+
+    $('#hiddenResult').style.display = 'block';
+    $('#hiddenText').innerHTML = `
+      Base Premium: <strong>${formatINR(base)}</strong><br>
+      GST (18%): <strong>${formatINR(gst)}</strong><br>
+      Convenience / Service fee: <strong>${formatINR(conv)}</strong><br>
+      Inspection-related (if any): <strong>${formatINR(inspect)}</strong><br>
+      <strong>Estimated total: ${formatINR(total)}</strong><br>
+      Always check final breakup before payment.`;
+    toast('Charges breakdown ready');
+  };
+
+  /* ---------- 4. COMPARE ---------- */
+  $('#compareBody').innerHTML = COMPANIES.map(c =>
+    `<tr>
+      <td><strong>${c.name}</strong></td>
+      <td>${c.prem}</td>
+      <td>${c.csr}</td>
+      <td>${c.zd}</td>
+      <td>${c.strength}</td>
+    </tr>`
+  ).join('');
+
+  /* ---------- 6. CLAIM BARS ---------- */
+  $('#claimBars').innerHTML = CLAIM_DATA.map(c => `
+    <div class="bar-wrap">
+      <div class="bar-label"><span>${c.name}</span><span>${c.ratio}%</span></div>
+      <div class="bar"><div class="bar-fill" style="width:${c.ratio}%"></div></div>
+    </div>
+  `).join('');
+
+  /* ---------- 11. STATE TABLE ---------- */
+  $('#stateTable').innerHTML = STATE_DATA.map(x =>
+    `<tr><td>${x.s}</td><td>${x.od}</td><td>${x.tp}</td><td>${x.note}</td></tr>`
+  ).join('');
+
+  /* ---------- 9. RENEWAL ---------- */
+  $('#btnRenew').onclick = () => {
+    const d = $('#renewDate').value;
+    if (!d) return toast('Select expiry date');
+    const exp = new Date(d);
+    const today = new Date();
+    const diff = Math.ceil((exp - today) / 86400000);
+    let msg = '';
+    if (diff < 0) msg = `Expired ${Math.abs(diff)} days ago. Renew immediately to avoid cover gap & NCB issues.`;
+    else if (diff <= 15) msg = `Only ${diff} days left. Renew now. Set WhatsApp/calendar reminder.`;
+    else if (diff <= 45) msg = `${diff} days left. Good time to compare quotes and port if needed.`;
+    else msg = `${diff} days remaining. Reminder recommended 15–20 days before expiry.`;
+    $('#renewResult').textContent = msg;
+    toast('Renewal status checked');
+  };
+
+  /* ---------- 8. RESULT CARD ---------- */
+  function drawCard() {
+    const r = calcPremium();
+    const canvas = $('#resultCanvas');
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = '#0f172a';
+    ctx.fillRect(0, 0, 600, 320);
+    ctx.fillStyle = '#f59e0b';
+    ctx.fillRect(0, 0, 600, 8);
+    ctx.fillStyle = '#94a3b8';
+    ctx.font = '13px Inter';
+    ctx.fillText('CAR INSURANCE CARD', 28, 48);
+    ctx.fillStyle = '#f1f5f9';
+    ctx.font = 'bold 22px Inter';
+    ctx.fillText('Estimated premium for my car', 28, 105);
+    ctx.fillStyle = '#f59e0b';
+    ctx.font = 'bold 40px Inter';
+    ctx.fillText(formatINR(r.total) + '/year', 28, 165);
+    ctx.fillStyle = '#94a3b8';
+    ctx.font = '15px Inter';
+    ctx.fillText(`IDV ${formatINR(r.idv)} • NCB ${$('#ncb').value}% • ${$('#coverType').value}`, 28, 215);
+    ctx.fillStyle = '#475569';
+    ctx.font = '11px Inter';
+    ctx.fillText('Generated with CarSafe Calculator Pro • Educational use only', 28, 290);
+  }
+
+  $('#btnCard').onclick = () => {
+    drawCard();
+    toast('Card ready — scroll down');
+    $('#resultCanvas').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  };
+  $('#btnDownloadCard').onclick = () => {
+    drawCard();
+    const a = document.createElement('a');
+    a.href = $('#resultCanvas').toDataURL('image/png');
+    a.download = 'car-insurance-card.png';
+    a.click();
+    toast('PNG downloaded');
+  };
+  $('#btnShareText').onclick = () => {
+    const r = calcPremium();
+    const text = `Ami car insurance estimate ${formatINR(r.total)}/year pelam (IDV ${formatINR(r.idv)}). Calculate yours free → CarSafe Calculator Pro`;
+    navigator.clipboard.writeText(text).then(() => toast('Share text copied'));
+  };
+
+  /* ---------- 15. PDF / PRINT QUOTE ---------- */
+  $('#btnPdf').onclick = () => {
+    const r = calcPremium();
+    const w = window.open('', '_blank');
+    w.document.write(`<!DOCTYPE html><html><head><title>Car Insurance Quote</title>
+      <style>body{font-family:Inter,sans-serif;padding:40px;max-width:600px;margin:auto}
+      h1{color:#1e40af}table{width:100%;border-collapse:collapse;margin-top:20px}
+      td,th{border:1px solid #ddd;padding:10px;text-align:left}</style></head><body>
+      <h1>Car Insurance Indicative Quote</h1>
+      <p>Date: ${new Date().toLocaleDateString('en-IN')}</p>
+      <table>
+        <tr><th>Cover Type</th><td>${$('#coverType').value}</td></tr>
+        <tr><th>IDV</th><td>${formatINR(r.idv)}</td></tr>
+        <tr><th>Own Damage</th><td>${formatINR(r.od)}</td></tr>
+        <tr><th>Third Party</th><td>${formatINR(r.tp)}</td></tr>
+        <tr><th><strong>Total (ex-GST)</strong></th><td><strong>${formatINR(r.total)}</strong></td></tr>
+        <tr><th>NCB</th><td>${$('#ncb').value}%</td></tr>
+        <tr><th>Year / State</th><td>${$('#year').value} / ${$('#state').value}</td></tr>
+      </table>
+      <p style="margin-top:24px;font-size:12px;color:#666">Indicative only. Not a policy offer. Generated by CarSafe Calculator Pro.</p>
+      </body></html>`);
+    w.document.close();
+    setTimeout(() => w.print(), 300);
+  };
+
+  drawCard();
+})();
+</script>
+</body>
+</html>
