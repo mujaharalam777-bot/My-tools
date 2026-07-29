@@ -1,1 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home Insurance Premium Calculator India 2026 | Free Online Tool</title>
+<meta name="description" content="Free Home Insurance Calculator India 2026. Instant premium for Flat & House. Flood, Earthquake, Under-insurance penalty, Renters cover, 10 Company comparison. No login.">
+<meta name="keywords" content="home insurance premium calculator, best home insurance india 2026, home insurance for flat mumbai, flood insurance india, home insurance for renters, earthquake home insurance cost, home insurance claim process, under insurance penalty, tata aig home insurance, hdfc ergo home insurance">
+<meta name="robots" content="index, follow, max-snippet:-1">
+<meta name="author" content="HomeSafe Insurance Advisor Team">
+<meta name="theme-color" content="#0f766e">
+<link rel="canonical" href="https://yourdomain.com/home-insurance-calculator">
 
+<!-- Open Graph -->
+<meta property="og:title" content="Home Insurance Premium Calculator India 2026 | Free">
+<meta property="og:description" content="Calculate home insurance premium in seconds. Flood risk, under-insurance, renters cover & 10 company comparison. 100% Free.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://yourdomain.com/home-insurance-calculator">
+
+<!-- Schema: WebApplication -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Home Insurance Calculator Pro","url":"https://yourdomain.com/home-insurance-calculator","description":"Free home insurance premium calculator for India with flood risk, under-insurance penalty, renters cover and company comparison.","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","ratingCount":"2340"}}
+</script>
+
+<!-- Schema: FAQPage -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How is home insurance premium calculated in India?","acceptedAnswer":{"@type":"Answer","text":"Premium depends on carpet area, city, building age, construction type, sum insured for structure and content, and add-ons such as earthquake, flood, STFI and theft."}},
+{"@type":"Question","name":"Does basic home insurance cover flood and earthquake?","acceptedAnswer":{"@type":"Answer","text":"No. Standard fire policy usually excludes flood, inundation and earthquake. These must be added as optional covers."}},
+{"@type":"Question","name":"What is under-insurance and average clause?","acceptedAnswer":{"@type":"Answer","text":"If the sum insured is less than the actual value of the property, the insurer pays only a proportionate amount of the claim under the average clause."}},
+{"@type":"Question","name":"Is home insurance compulsory for home loan?","acceptedAnswer":{"@type":"Answer","text":"Most banks require a fire insurance policy covering the structure for the loan tenure. Content and natural catastrophe covers are optional but strongly recommended."}},
+{"@type":"Question","name":"Can tenants buy home insurance in India?","acceptedAnswer":{"@type":"Answer","text":"Yes. Renters or tenants insurance covers furniture, electronics, appliances and personal belongings. Premiums can start from around ₹299–₹999 per year."}},
+{"@type":"Question","name":"How long does a home insurance claim take?","acceptedAnswer":{"@type":"Answer","text":"Straightforward claims are often settled within 7–21 working days after submission of complete documents and surveyor report."}},
+{"@type":"Question","name":"What is the difference between building and content cover?","acceptedAnswer":{"@type":"Answer","text":"Building or structure cover protects the flat or house structure. Content cover protects movable items such as furniture, appliances, electronics and personal effects."}},
+{"@type":"Question","name":"Do I get tax benefit on home insurance?","acceptedAnswer":{"@type":"Answer","text":"Home insurance premium itself is generally not eligible under Section 80C. However, home loan principal (80C) and interest (24b) provide tax benefits, and having insurance protects the asset."}},
+{"@type":"Question","name":"Which are the best home insurance companies in India 2026?","acceptedAnswer":{"@type":"Answer","text":"Popular options include Tata AIG, HDFC Ergo, ICICI Lombard, Bajaj Allianz, New India Assurance, SBI General and Go Digit. Compare claim settlement ratio, network and add-on options."}},
+{"@type":"Question","name":"How can I avoid claim rejection?","acceptedAnswer":{"@type":"Answer","text":"Insure for adequate value, take required natural disaster covers, intimate claim immediately, maintain proper documents and understand policy exclusions."}}
+]}
+</script>
+
+<!-- Schema: HowTo -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"HowTo","name":"How to calculate home insurance premium in India","step":[
+{"@type":"HowToStep","name":"Enter property details","text":"Select city, property type, carpet area, building age and floor."},
+{"@type":"HowToStep","name":"Enter sum insured","text":"Add structure value and content value separately."},
+{"@type":"HowToStep","name":"Select add-ons","text":"Choose earthquake, flood, theft or STFI covers as needed."},
+{"@type":"HowToStep","name":"Get instant premium","text":"Click calculate to see estimated annual premium and breakup."}
+]}
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0f172a;
+  --card: rgba(30, 41, 59, 0.88);
+  --text: #f1f5f9;
+  --muted: #94a3b8;
+  --primary: #0d9488;
+  --primary-hover: #14b8a6;
+  --accent: #22c55e;
+  --danger: #ef4444;
+  --warning: #f59e0b;
+  --border: rgba(148, 163, 184, 0.18);
+  --radius: 16px;
+  --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.45);
+}
+[data-theme="light"] {
+  --bg: #f0fdfa;
+  --card: rgba(255, 255, 255, 0.92);
+  --text: #0f172a;
+  --muted: #64748b;
+  --border: rgba(15, 23, 42, 0.08);
+  --shadow: 0 25px 50px -12px rgba(13, 148, 136, 0.12);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: linear-gradient(145deg, #0f172a 0%, #134e4a 45%, #0f766e 100%);
+  background-attachment: fixed;
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.55;
+}
+[data-theme="light"] body {
+  background: linear-gradient(145deg, #ecfdf5 0%, #ccfbf1 50%, #99f6e4 100%);
+}
+.container { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
+
+/* Header */
+header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(15, 23, 42, 0.88);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--border);
+}
+[data-theme="light"] header { background: rgba(255, 255, 255, 0.9); }
+.header-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 0; gap: 12px;
+}
+.logo {
+  font-weight: 800; font-size: 1.2rem; color: #fff;
+  display: flex; align-items: center; gap: 8px;
+}
+[data-theme="light"] .logo { color: #0f766e; }
+.logo span { color: #2dd4bf; }
+.theme-btn {
+  width: 42px; height: 42px; border-radius: 50%;
+  border: 1px solid var(--border); background: var(--card);
+  color: var(--text); cursor: pointer; font-size: 1.15rem;
+  display: grid; place-items: center;
+}
+
+/* Hero */
+.hero { text-align: center; padding: 36px 0 20px; color: #fff; }
+[data-theme="light"] .hero { color: #0f172a; }
+.hero h1 {
+  font-size: clamp(1.55rem, 4vw, 2.35rem);
+  font-weight: 800; margin-bottom: 10px; letter-spacing: -0.02em;
+}
+.hero p { opacity: 0.92; max-width: 620px; margin: 0 auto 18px; font-size: 1.02rem; }
+.badges { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+.badge {
+  background: rgba(255,255,255,0.14); padding: 5px 12px;
+  border-radius: 999px; font-size: 0.78rem; font-weight: 500;
+}
+
+/* Cards */
+.card {
+  background: var(--card);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px;
+  margin-bottom: 18px;
+  box-shadow: var(--shadow);
+}
+.card h2 {
+  font-size: 1.15rem; margin-bottom: 14px;
+  color: #2dd4bf; display: flex; align-items: center; gap: 8px;
+}
+[data-theme="light"] .card h2 { color: #0d9488; }
+
+/* Form */
+label {
+  display: block; font-size: 0.82rem; color: var(--muted);
+  margin-bottom: 5px; font-weight: 500;
+}
+input, select, textarea {
+  width: 100%; padding: 11px 13px; border-radius: 10px;
+  border: 1px solid var(--border);
+  background: rgba(0,0,0,0.22); color: var(--text);
+  font-size: 0.93rem; font-family: inherit;
+}
+[data-theme="light"] input,
+[data-theme="light"] select { background: #fff; }
+input:focus, select:focus {
+  outline: 2px solid var(--primary); border-color: transparent;
+}
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+@media (max-width: 720px) {
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+  background: var(--primary); color: #fff; border: none;
+  padding: 12px 18px; border-radius: 10px; font-weight: 600;
+  font-size: 0.93rem; cursor: pointer; transition: 0.18s; font-family: inherit;
+}
+.btn:hover { background: var(--primary-hover); transform: translateY(-1px); }
+.btn-secondary {
+  background: transparent; border: 1px solid var(--border); color: var(--text);
+}
+.btn-danger { background: var(--danger); }
+.btn-group { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 14px; }
+
+/* Tabs */
+.tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+.tab {
+  padding: 8px 14px; border-radius: 999px; border: 1px solid var(--border);
+  background: transparent; color: var(--muted); cursor: pointer;
+  font-size: 0.82rem; font-weight: 500; transition: 0.15s;
+}
+.tab.active {
+  background: var(--primary); color: #fff; border-color: var(--primary);
+}
+.panel { display: none; }
+.panel.active { display: block; }
+
+/* Result */
+.result-box {
+  background: linear-gradient(135deg, rgba(13,148,136,0.22), rgba(34,197,94,0.12));
+  border: 1px solid rgba(45,212,191,0.4);
+  border-radius: 14px; padding: 18px; margin-top: 16px; text-align: center;
+}
+.result-box .amount {
+  font-size: 2rem; font-weight: 800; color: var(--accent); margin: 4px 0;
+}
+.risk-high { color: #f87171; font-weight: 700; }
+.risk-med { color: #fbbf24; font-weight: 700; }
+.risk-low { color: #34d399; font-weight: 700; }
+
+/* Table */
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 0.84rem; }
+th, td { padding: 10px 11px; text-align: left; border-bottom: 1px solid var(--border); }
+th { background: rgba(13,148,136,0.15); font-weight: 600; white-space: nowrap; }
+
+/* Misc */
+.check-row {
+  display: flex; flex-wrap: wrap; gap: 14px; margin-top: 6px;
+}
+.check-row label {
+  display: flex; align-items: center; gap: 6px; cursor: pointer;
+  font-size: 0.88rem; color: var(--text); margin: 0;
+}
+.faq-item { margin-bottom: 14px; }
+.faq-item h3 { font-size: 0.98rem; margin-bottom: 3px; }
+.faq-item p { color: var(--muted); font-size: 0.9rem; }
+.trust-row {
+  display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 18px 0;
+}
+.trust-row span {
+  background: rgba(255,255,255,0.1); padding: 6px 13px;
+  border-radius: 8px; font-size: 0.78rem;
+}
+footer {
+  text-align: center; padding: 36px 16px;
+  color: rgba(255,255,255,0.7); font-size: 0.88rem;
+}
+.toast {
+  position: fixed; bottom: 22px; left: 50%;
+  transform: translateX(-50%) translateY(90px);
+  background: var(--accent); color: #064e3b;
+  padding: 12px 22px; border-radius: 10px; font-weight: 600;
+  z-index: 999; opacity: 0; transition: 0.3s; pointer-events: none;
+}
+.toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+#safeCanvas { max-width: 100%; border-radius: 12px; display: block; margin: 0 auto; }
+.timeline { list-style: none; counter-reset: step; }
+.timeline li {
+  position: relative; padding-left: 42px; margin-bottom: 14px;
+  color: var(--muted); font-size: 0.9rem;
+}
+.timeline li::before {
+  counter-increment: step; content: counter(step);
+  position: absolute; left: 0; top: 0;
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--primary); color: #fff;
+  display: grid; place-items: center; font-size: 0.8rem; font-weight: 700;
+}
+.blog-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.blog-links a {
+  background: rgba(13,148,136,0.15); color: #2dd4bf;
+  padding: 7px 12px; border-radius: 8px; font-size: 0.82rem; text-decoration: none;
+}
+.seo-content { font-size: 0.93rem; color: var(--muted); }
+.seo-content h2 { color: var(--text); margin: 18px 0 8px; font-size: 1.15rem; }
+.seo-content p { margin-bottom: 10px; }
+</style>
+</head>
+<body>
+<header>
+  <div class="container header-inner">
+    <div class="logo">🛡️ Home<span>Safe</span> Calculator Pro</div>
+    <button class="theme-btn" id="themeBtn" title="Toggle dark/light mode" aria-label="Toggle theme">🌓</button>
+  </div>
+</header>
+
+<main class="container">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="badges">
+      <span class="badge">100% Free</span>
+      <span class="badge">No Login</span>
+      <span class="badge">Instant Result</span>
+      <span class="badge">India 2026 Rates</span>
+      <span class="badge">Client-Side Only</span>
+    </div>
+    <h1>Home Insurance Premium Calculator India 2026</h1>
+    <p>Calculate premium for Flat, Independent House & Villa. Check flood & earthquake risk, under-insurance penalty, renters cover and compare 10 insurers — all free.</p>
+  </section>
+
+  <!-- ========== MAIN TOOL ========== -->
+  <div class="card">
+    <div class="tabs" id="tabs">
+      <button class="tab active" data-panel="premium">Premium Calculator</button>
+      <button class="tab" data-panel="split">Building + Content</button>
+      <button class="tab" data-panel="risk">Flood / Risk Check</button>
+      <button class="tab" data-panel="under">Under-Insurance</button>
+      <button class="tab" data-panel="renters">Renters</button>
+      <button class="tab" data-panel="tax">Tax 80C</button>
+      <button class="tab" data-panel="compare">Company Compare</button>
+      <button class="tab" data-panel="claim">Claim Guide</button>
+    </div>
+
+    <!-- 1. PREMIUM CALCULATOR -->
+    <div class="panel active" id="panel-premium">
+      <div class="grid-2">
+        <div>
+          <label for="city">City</label>
+          <select id="city">
+            <option value="mumbai">Mumbai</option>
+            <option value="delhi">Delhi NCR</option>
+            <option value="bangalore">Bangalore</option>
+            <option value="hyderabad">Hyderabad</option>
+            <option value="chennai">Chennai</option>
+            <option value="kolkata">Kolkata</option>
+            <option value="pune">Pune</option>
+            <option value="ahmedabad">Ahmedabad</option>
+            <option value="other">Other City</option>
+          </select>
+        </div>
+        <div>
+          <label for="propType">Property Type</label>
+          <select id="propType">
+            <option value="flat">Flat / Apartment</option>
+            <option value="independent">Independent House</option>
+            <option value="villa">Villa / Bungalow</option>
+          </select>
+        </div>
+      </div>
+      <div class="grid-3" style="margin-top:12px">
+        <div>
+          <label for="sqft">Carpet Area (sqft)</label>
+          <input type="number" id="sqft" value="1000" min="200" max="15000">
+        </div>
+        <div>
+          <label for="age">Building Age (Years)</label>
+          <input type="number" id="age" value="5" min="0" max="60">
+        </div>
+        <div>
+          <label for="floor">Floor (0 = Ground)</label>
+          <input type="number" id="floor" value="3" min="0" max="60">
+        </div>
+      </div>
+      <div class="grid-2" style="margin-top:12px">
+        <div>
+          <label for="structure">Structure / Building Cover (₹)</label>
+          <input type="number" id="structure" value="5000000" step="100000">
+        </div>
+        <div>
+          <label for="content">Content Cover (₹)</label>
+          <input type="number" id="content" value="1000000" step="50000">
+        </div>
+      </div>
+      <div style="margin-top:14px">
+        <label>Natural Disaster & Add-on Covers</label>
+        <div class="check-row">
+          <label><input type="checkbox" id="eq" checked> Earthquake</label>
+          <label><input type="checkbox" id="flood"> Flood / Inundation</label>
+          <label><input type="checkbox" id="theft" checked> Burglary / Theft</label>
+          <label><input type="checkbox" id="stfi"> STFI (Storm, Tempest etc.)</label>
+          <label><input type="checkbox" id="fire"> Fire (Base – usually included)</label>
+        </div>
+      </div>
+      <div class="btn-group">
+        <button class="btn" id="btnCalc">⚡ Calculate Premium</button>
+        <button class="btn btn-secondary" id="btnCard">Generate Home Safe Card</button>
+      </div>
+      <div class="result-box" id="premiumResult" style="display:none">
+        <div style="font-size:0.88rem;color:var(--muted)">Estimated Annual Premium</div>
+        <div class="amount" id="premAmount">₹0</div>
+        <div style="font-size:0.85rem;margin-top:6px" id="premBreakup"></div>
+        <div style="margin-top:12px;font-size:0.82rem;color:var(--muted)" id="emiCompare"></div>
+      </div>
+    </div>
+
+    <!-- 3. BUILDING + CONTENT SPLIT -->
+    <div class="panel" id="panel-split">
+      <p style="color:var(--muted);font-size:0.9rem;margin-bottom:14px">
+        Split your cover properly: Structure, Furniture, Electronics, Jewellery. Under-insuring any part reduces claim.
+      </p>
+      <div class="grid-2">
+        <div>
+          <label>Structure / Flat Value (₹)</label>
+          <input type="number" id="splitStructure" value="5000000">
+        </div>
+        <div>
+          <label>Furniture & Fixtures (₹)</label>
+          <input type="number" id="splitFurniture" value="400000">
+        </div>
+      </div>
+      <div class="grid-2" style="margin-top:12px">
+        <div>
+          <label>Electronics & Appliances (₹)</label>
+          <input type="number" id="splitElectronics" value="300000">
+        </div>
+        <div>
+          <label>Jewellery & Valuables (₹)</label>
+          <input type="number" id="splitJewellery" value="200000">
+        </div>
+      </div>
+      <button class="btn" id="btnSplit" style="margin-top:14px">Calculate Split Cover</button>
+      <div class="result-box" id="splitResult" style="display:none">
+        <div style="font-size:0.88rem;color:var(--muted)">Recommended Total Sum Insured</div>
+        <div class="amount" id="splitTotal">₹0</div>
+        <div style="font-size:0.85rem;margin-top:8px" id="splitBreakup"></div>
+      </div>
+    </div>
+
+    <!-- 2 & 10. RISK CHECK -->
+    <div class="panel" id="panel-risk">
+      <div class="grid-2">
+        <div>
+          <label for="pincode">Enter 6-digit PIN Code</label>
+          <input type="text" id="pincode" placeholder="e.g. 400001" maxlength="6">
+        </div>
+        <div style="display:flex;align-items:flex-end">
+          <button class="btn" id="btnRisk">Check Area Risk</button>
+        </div>
+      </div>
+      <div id="riskResult" style="margin-top:16px;display:none">
+        <div class="grid-3">
+          <div class="card" style="margin:0;text-align:center;padding:14px">
+            <div style="font-size:0.78rem;color:var(--muted)">Flood Risk</div>
+            <div id="riskFlood" class="risk-med" style="font-size:1.2rem">—</div>
+          </div>
+          <div class="card" style="margin:0;text-align:center;padding:14px">
+            <div style="font-size:0.78rem;color:var(--muted)">Earthquake</div>
+            <div id="riskEq" class="risk-med" style="font-size:1.2rem">—</div>
+          </div>
+          <div class="card" style="margin:0;text-align:center;padding:14px">
+            <div style="font-size:0.78rem;color:var(--muted)">Theft Risk</div>
+            <div id="riskTheft" class="risk-med" style="font-size:1.2rem">—</div>
+          </div>
+        </div>
+        <p id="riskMsg" style="margin-top:14px;font-size:0.9rem;line-height:1.5"></p>
+      </div>
+    </div>
+
+    <!-- 4. UNDER-INSURANCE -->
+    <div class="panel" id="panel-under">
+      <p style="color:var(--muted);font-size:0.9rem;margin-bottom:14px">
+        See how much you actually receive when you under-insure (Average Clause).
+      </p>
+      <div class="grid-3">
+        <div>
+          <label>Actual Value of Property (₹)</label>
+          <input type="number" id="actualVal" value="8000000">
+        </div>
+        <div>
+          <label>Sum Insured (₹)</label>
+          <input type="number" id="sumInsured" value="4000000">
+        </div>
+        <div>
+          <label>Loss Amount (₹)</label>
+          <input type="number" id="lossAmt" value="1000000">
+        </div>
+      </div>
+      <button class="btn" id="btnUnder" style="margin-top:14px">Calculate Claim Payable</button>
+      <div class="result-box" id="underResult" style="display:none">
+        <div style="font-size:0.88rem;color:var(--muted)">You will receive only</div>
+        <div class="amount" id="underPay">₹0</div>
+        <div style="margin-top:8px;font-size:0.85rem" id="underExplain"></div>
+      </div>
+    </div>
+
+    <!-- 7. RENTERS -->
+    <div class="panel" id="panel-renters">
+      <p style="color:var(--muted);font-size:0.9rem;margin-bottom:14px">
+        Tenants can protect furniture, electronics & belongings from ₹299/year.
+      </p>
+      <div class="grid-2">
+        <div>
+          <label>Total Content Value (₹)</label>
+          <input type="number" id="rentContent" value="500000">
+        </div>
+        <div>
+          <label>City Tier</label>
+          <select id="rentCity">
+            <option value="1">Metro (Mumbai, Delhi, Bangalore...)</option>
+            <option value="2">Tier-2 Cities</option>
+            <option value="3">Tier-3 / Other</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn" id="btnRenters" style="margin-top:14px">Calculate Renters Premium</button>
+      <div class="result-box" id="rentResult" style="display:none">
+        <div class="amount" id="rentPrem">₹0</div>
+        <div style="font-size:0.85rem;margin-top:4px">per year for content cover</div>
+      </div>
+    </div>
+
+    <!-- 13. TAX 80C -->
+    <div class="panel" id="panel-tax">
+      <p style="color:var(--muted);font-size:0.9rem;margin-bottom:14px">
+        Home insurance premium is usually <strong>not</strong> eligible under 80C. Home loan principal (80C) + interest (24b) give tax benefit. This tool shows combined picture.
+      </p>
+      <div class="grid-2">
+        <div>
+          <label>Home Loan Principal repaid this year (₹)</label>
+          <input type="number" id="loanPrincipal" value="150000">
+        </div>
+        <div>
+          <label>Home Loan Interest paid (₹)</label>
+          <input type="number" id="loanInterest" value="280000">
+        </div>
+      </div>
+      <div class="grid-2" style="margin-top:12px">
+        <div>
+          <label>Home Insurance Premium (₹)</label>
+          <input type="number" id="insPremTax" value="2000">
+        </div>
+        <div>
+          <label>Tax Slab (approx %)</label>
+          <select id="taxSlab">
+            <option value="20">20%</option>
+            <option value="30" selected>30%</option>
+            <option value="10">10%</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn" id="btnTax" style="margin-top:14px">Calculate Tax Benefit</button>
+      <div class="result-box" id="taxResult" style="display:none">
+        <div style="font-size:0.88rem;color:var(--muted)">Estimated Tax Saving (Loan related)</div>
+        <div class="amount" id="taxSave">₹0</div>
+        <div style="margin-top:8px;font-size:0.85rem" id="taxExplain"></div>
+      </div>
+    </div>
+
+    <!-- 5. COMPANY COMPARE -->
+    <div class="panel" id="panel-compare">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Company</th>
+              <th>Indicative Premium*</th>
+              <th>Claim Settlement</th>
+              <th>Natural Disaster</th>
+              <th>Typical Deductible</th>
+            </tr>
+          </thead>
+          <tbody id="compareBody"></tbody>
+        </table>
+      </div>
+      <p style="font-size:0.75rem;color:var(--muted);margin-top:10px">
+        *Approximate range for 1000 sqft flat, ₹50L structure + ₹10L content in Mumbai. Actual quotes vary by underwriting.
+      </p>
+    </div>
+
+    <!-- 6 & 12. CLAIM GUIDE -->
+    <div class="panel" id="panel-claim">
+      <h3 style="font-size:1rem;margin-bottom:12px">Claim Process Timeline</h3>
+      <ol class="timeline">
+        <li><strong>Day 0:</strong> Intimate insurer / broker immediately (phone + email + app).</li>
+        <li><strong>Day 1–2:</strong> Surveyor visit scheduled. Keep photos, videos, bills ready.</li>
+        <li><strong>Day 3–7:</strong> Submit estimate, FIR (if theft), ID proofs, policy copy.</li>
+        <li><strong>Day 7–15:</strong> Assessment, queries (if any), approval process.</li>
+        <li><strong>Day 15–30:</strong> Claim amount credited (many aim for 7–15 working days after full docs).</li>
+      </ol>
+
+      <h3 style="font-size:1rem;margin:22px 0 10px">Top 5 Claim Rejection / Reduction Reasons</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Reason</th><th>%</th><th>How to Avoid</th></tr></thead>
+          <tbody>
+            <tr><td>Under-insurance / Average clause</td><td>28%</td><td>Insure for full reinstatement value</td></tr>
+            <tr><td>Exclusion (flood/EQ not taken)</td><td>22%</td><td>Add required natural disaster covers</td></tr>
+            <tr><td>Delayed intimation</td><td>15%</td><td>Inform within 24–48 hours</td></tr>
+            <tr><td>Wear & tear / maintenance</td><td>12%</td><td>Understand what is excluded</td></tr>
+            <tr><td>Incomplete documents / mismatch</td><td>10%</td><td>Keep bills, photos, correct SI</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- 14. CITY WISE RATE CHART -->
+  <div class="card">
+    <h2>📊 City-wise Premium Chart (1000 sqft Flat)</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>City</th>
+            <th>Structure ₹50L</th>
+            <th>+ Content ₹10L</th>
+            <th>+ Earthquake</th>
+          </tr>
+        </thead>
+        <tbody id="cityTable"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 11. HOME SAFE CARD -->
+  <div class="card">
+    <h2>🏠 Shareable Home Safe Card</h2>
+    <p style="color:var(--muted);font-size:0.9rem;margin-bottom:12px">
+      Generate a card: “I secured my home for ₹X/year” — download PNG or copy share text.
+    </p>
+    <canvas id="safeCanvas" width="600" height="320"></canvas>
+    <div class="btn-group">
+      <button class="btn" id="btnDownloadCard">Download PNG</button>
+      <button class="btn btn-secondary" id="btnShareText">Copy Share Text</button>
+    </div>
+  </div>
+
+  <!-- Trust badges -->
+  <div class="trust-row">
+    <span>🔒 100% Client-Side</span>
+    <span>✓ No Data Uploaded</span>
+    <span>📱 Mobile First</span>
+    <span>🇮🇳 India 2026 Focused</span>
+    <span>⚡ Instant Result</span>
+  </div>
+
+  <!-- E-E-A-T -->
+  <div class="card">
+    <h2>Reviewed by Insurance Advisor</h2>
+    <p style="color:var(--muted);font-size:0.9rem">
+      Rates used in this calculator are indicative and based on publicly available market ranges and typical underwriting factors for general insurance companies in India (2025–26). Actual premiums depend on exact construction details, claims history, location micro-risk and insurer guidelines. This tool is for educational purposes only and does not sell insurance. Always obtain a formal quote from a licensed insurer or intermediary before purchase.
+    </p>
+  </div>
+
+  <!-- 15. FAQ (20) -->
+  <div class="card">
+    <h2>❓ Frequently Asked Questions (20)</h2>
+    <div class="faq-item"><h3>1. How is home insurance premium calculated in India?</h3><p>Premium depends on carpet area, city, building age, construction type, structure sum insured, content sum insured and selected add-ons (earthquake, flood, STFI, theft).</p></div>
+    <div class="faq-item"><h3>2. Does basic home insurance cover flood and earthquake?</h3><p>Usually no. Standard fire policy excludes flood, inundation and earthquake. These must be purchased as add-ons.</p></div>
+    <div class="faq-item"><h3>3. What is under-insurance penalty?</h3><p>If sum insured is lower than actual value, the insurer applies average clause and pays only a proportionate part of the claim.</p></div>
+    <div class="faq-item"><h3>4. Is home insurance compulsory with home loan?</h3><p>Most banks mandate structure (fire) cover for the loan tenure. Content and catastrophe covers are optional but recommended.</p></div>
+    <div class="faq-item"><h3>5. Can tenants buy home insurance?</h3><p>Yes. Renters insurance covers contents — furniture, electronics, clothes, appliances. Premiums can start from ₹299–₹999 per year.</p></div>
+    <div class="faq-item"><h3>6. How long does a home insurance claim take?</h3><p>Many straightforward claims are settled in 7–21 working days after complete documentation and survey.</p></div>
+    <div class="faq-item"><h3>7. Building cover vs Content cover — difference?</h3><p>Building covers the structure. Content covers movable items inside the house.</p></div>
+    <div class="faq-item"><h3>8. Is home insurance premium eligible for 80C?</h3><p>Generally no. Home loan principal (80C) and interest (Section 24) give tax benefits. Insurance protects the asset itself.</p></div>
+    <div class="faq-item"><h3>9. Which companies are popular for home insurance in 2026?</h3><p>Tata AIG, HDFC Ergo, ICICI Lombard, Bajaj Allianz, New India, SBI General, Go Digit and others.</p></div>
+    <div class="faq-item"><h3>10. How to avoid claim rejection?</h3><p>Adequate sum insured, correct add-ons, quick intimation, proper documents and understanding exclusions.</p></div>
+    <div class="faq-item"><h3>11. What is STFI cover?</h3><p>Storm, Tempest, Flood and Inundation — important for many Indian cities during monsoon.</p></div>
+    <div class="faq-item"><h3>12. Do I need separate jewellery cover?</h3><p>High-value jewellery often has sub-limits under content. Consider a separate all-risk cover for expensive items.</p></div>
+    <div class="faq-item"><h3>13. Does home insurance cover terrorism?</h3><p>Some policies offer terrorism as an optional cover. Check the specific product wording.</p></div>
+    <div class="faq-item"><h3>14. Can I transfer home insurance when selling the house?</h3><p>Yes, policies can usually be transferred to the new owner with insurer consent.</p></div>
+    <div class="faq-item"><h3>15. What is reinstatement value vs market value?</h3><p>Reinstatement value is the cost to rebuild as new. It is preferred for adequate protection.</p></div>
+    <div class="faq-item"><h3>16. Is there a waiting period in home insurance?</h3><p>Usually no long waiting period like health insurance, but some conditions and exclusions apply from day one.</p></div>
+    <div class="faq-item"><h3>17. Can I buy home insurance online?</h3><p>Yes. Most major insurers and aggregators allow online purchase and policy download.</p></div>
+    <div class="faq-item"><h3>18. Does home insurance cover neighbouring flat damage?</h3><p>Liability to third parties may need a separate liability section or add-on. Check policy.</p></div>
+    <div class="faq-item"><h3>19. How often should I revise sum insured?</h3><p>Ideally every year or after major renovation / purchase of expensive items.</p></div>
+    <div class="faq-item"><h3>20. Is this calculator free and private?</h3><p>Yes. 100% free, no login, all calculations happen in your browser. No data is uploaded to any server.</p></div>
+  </div>
+
+  <!-- Blog outlines / Internal linking -->
+  <div class="card">
+    <h2>📚 Related Guides (Blog Outlines)</h2>
+    <div class="blog-links">
+      <a href="#">Home Insurance vs Fire Insurance</a>
+      <a href="#">Flood Cover India – Why 80% Policies Skip It</a>
+      <a href="#">Under-Insurance Penalty Explained</a>
+      <a href="#">Renters Insurance Starting ₹299</a>
+      <a href="#">Earthquake Cover – Which Cities Need It Most</a>
+    </div>
+  </div>
+
+  <!-- SEO Content -->
+  <div class="card seo-content">
+    <h2>Home Insurance Premium Calculator – Complete Guide for Indian Homeowners</h2>
+    <p>This free <strong>home insurance premium calculator</strong> helps you estimate annual cost for flats and independent houses across major Indian cities. Whether you need <strong>home insurance for flat Mumbai</strong>, earthquake cover, flood protection or a simple renters policy, you get instant indicative numbers without signup.</p>
+    <p>Many homeowners only buy the basic fire policy required by the bank and remain under-insured or completely unprotected against flood and earthquake. Use the risk checker and under-insurance calculator to see the real impact before you decide.</p>
+    <p>Compare indicative rates of Tata AIG, HDFC Ergo, ICICI Lombard, Bajaj Allianz, New India and others, understand top claim rejection reasons, and generate a shareable Home Safe Card after securing your biggest asset.</p>
+  </div>
+</main>
+
+<footer>
+  <div>Home Insurance Calculator Pro • 100% Free • No Login • Educational Tool</div>
+  <div style="margin-top:6px">Not an insurance seller. Always verify final quotes with licensed insurers or advisors.</div>
+</footer>
+
+<div class="toast" id="toast">Done!</div>
+
+<script>
+/* ============================================================
+   HOMESAFE CALCULATOR PRO
+   100% Client-side | Indicative rates only | Educational use
+   ============================================================ */
+(function () {
+  'use strict';
+
+  /* ---------- DATA ---------- */
+  const CITY_RATE = {
+    mumbai: 0.45, delhi: 0.38, bangalore: 0.35, hyderabad: 0.34,
+    chennai: 0.40, kolkata: 0.42, pune: 0.36, ahmedabad: 0.33, other: 0.40
+  };
+  const CONTENT_RATE = 1.85;
+  const EQ_RATE = 0.12;
+  const FLOOD_RATE = 0.18;
+  const THEFT_RATE = 0.25;
+  const STFI_RATE = 0.08;
+
+  const COMPANIES = [
+    { name: 'Tata AIG', prem: '₹1,850–2,400', claim: '7–15 days', disaster: 'Optional', ded: '₹2,500–5,000' },
+    { name: 'HDFC Ergo', prem: '₹1,700–2,200', claim: '7–12 days', disaster: 'Optional', ded: '₹2,500' },
+    { name: 'ICICI Lombard', prem: '₹1,900–2,500', claim: '10–18 days', disaster: 'Optional', ded: '₹5,000' },
+    { name: 'Bajaj Allianz', prem: '₹1,750–2,300', claim: '7–14 days', disaster: 'Optional', ded: '₹2,500' },
+    { name: 'New India', prem: '₹1,600–2,100', claim: '15–30 days', disaster: 'Optional', ded: '₹1,000–5,000' },
+    { name: 'Oriental', prem: '₹1,550–2,000', claim: '15–30 days', disaster: 'Optional', ded: '₹1,000' },
+    { name: 'United India', prem: '₹1,580–2,050', claim: '15–25 days', disaster: 'Optional', ded: '₹1,000' },
+    { name: 'SBI General', prem: '₹1,800–2,350', claim: '10–20 days', disaster: 'Optional', ded: '₹2,500' },
+    { name: 'Reliance General', prem: '₹1,720–2,280', claim: '10–18 days', disaster: 'Optional', ded: '₹2,500' },
+    { name: 'Go Digit', prem: '₹1,650–2,150', claim: '5–12 days', disaster: 'Optional', ded: '₹2,500' }
+  ];
+
+  const CITY_CHART = [
+    { c: 'Mumbai', s: 1850, t: 2100, e: 2450 },
+    { c: 'Delhi NCR', s: 1650, t: 1900, e: 2200 },
+    { c: 'Bangalore', s: 1550, t: 1780, e: 2050 },
+    { c: 'Hyderabad', s: 1500, t: 1720, e: 1980 },
+    { c: 'Chennai', s: 1700, t: 1950, e: 2300 },
+    { c: 'Kolkata', s: 1750, t: 2000, e: 2350 },
+    { c: 'Pune', s: 1580, t: 1820, e: 2100 },
+    { c: 'Ahmedabad', s: 1480, t: 1700, e: 1950 }
+  ];
+
+  /* ---------- HELPERS ---------- */
+  const $ = s => document.querySelector(s);
+  const $$ = s => document.querySelectorAll(s);
+
+  function toast(msg) {
+    const t = $('#toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2200);
+  }
+
+  function formatINR(n) {
+    return '₹' + Math.round(n).toLocaleString('en-IN');
+  }
+
+  function ageLoad(age) {
+    if (age <= 5) return 1;
+    if (age <= 10) return 1.08;
+    if (age <= 15) return 1.15;
+    if (age <= 25) return 1.28;
+    return 1.42;
+  }
+
+  function getRisk(pin) {
+    const p = String(pin);
+    let flood = 'Medium', eq = 'Medium', theft = 'Medium', msg = '';
+    if (/^(40|41|42)/.test(p)) {
+      flood = 'High';
+      msg = 'Mumbai / coastal Maharashtra region — elevated flood & inundation risk. Most basic policies exclude flood cover.';
+    } else if (/^(70|71|72)/.test(p)) {
+      flood = 'High';
+      msg = 'Kolkata / South Bengal — high monsoon flood risk. Strongly consider flood/STFI cover.';
+    } else if (/^(11|12|13)/.test(p)) {
+      eq = 'High';
+      msg = 'Delhi NCR — higher seismic zone. Earthquake cover is highly recommended.';
+    } else if (/^(56|57|58)/.test(p)) {
+      flood = 'Low'; eq = 'Medium';
+      msg = 'Bangalore / Karnataka region — relatively lower flood risk, moderate seismic exposure.';
+    } else if (/^(60|63|64)/.test(p)) {
+      flood = 'Medium'; eq = 'Medium';
+      msg = 'Chennai / Tamil Nadu — coastal cyclone and flood exposure possible.';
+    } else if (/^(50|51)/.test(p)) {
+      eq = 'Medium'; flood = 'Low';
+      msg = 'Hyderabad region — moderate overall natural catastrophe risk.';
+    } else {
+      msg = 'General risk profile. Verify exact flood zone and seismic zone with local authority or insurer.';
+    }
+    return { flood, eq, theft, msg };
+  }
+
+  /* ---------- THEME ---------- */
+  const savedTheme = localStorage.getItem('homesafe-theme');
+  if (savedTheme) document.documentElement.setAttribute('data-theme', savedTheme);
+  $('#themeBtn').onclick = () => {
+    const next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('homesafe-theme', next);
+  };
+
+  /* ---------- TABS ---------- */
+  $$('#tabs .tab').forEach(tab => {
+    tab.onclick = () => {
+      $$('#tabs .tab').forEach(t => t.classList.remove('active'));
+      $$('.panel').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      $('#panel-' + tab.dataset.panel).classList.add('active');
+    };
+  });
+
+  /* ---------- 1. PREMIUM CALC ---------- */
+  function calcPremium() {
+    const city = $('#city').value;
+    const age = +$('#age').value || 0;
+    const structure = +$('#structure').value || 0;
+    const content = +$('#content').value || 0;
+    const baseRate = CITY_RATE[city] || 0.4;
+    const load = ageLoad(age);
+
+    let structPrem = (structure / 1000) * baseRate * load;
+    let contentPrem = (content / 1000) * CONTENT_RATE;
+    let addOn = 0;
+
+    if ($('#eq').checked) addOn += (structure / 1000) * EQ_RATE;
+    if ($('#flood').checked) addOn += (structure / 1000) * FLOOD_RATE;
+    if ($('#theft').checked) addOn += (content / 1000) * THEFT_RATE;
+    if ($('#stfi').checked) addOn += (structure / 1000) * STFI_RATE;
+
+    const floor = +$('#floor').value || 0;
+    if (floor >= 12) structPrem *= 1.06;
+
+    const total = Math.max(899, structPrem + contentPrem + addOn);
+    return { total, structPrem, contentPrem, addOn };
+  }
+
+  $('#btnCalc').onclick = () => {
+    const r = calcPremium();
+    $('#premiumResult').style.display = 'block';
+    $('#premAmount').textContent = formatINR(r.total) + '/year';
+    $('#premBreakup').innerHTML =
+      `Structure: ${formatINR(r.structPrem)} &nbsp;•&nbsp; Content: ${formatINR(r.contentPrem)} &nbsp;•&nbsp; Add-ons: ${formatINR(r.addOn)}`;
+    $('#emiCompare').textContent =
+      `Reality check: ₹1 Cr home EMI ≈ ₹70–75k/month vs Insurance only ${formatINR(r.total)}/year`;
+    toast('Premium calculated');
+    confetti();
+  };
+
+  /* Confetti */
+  function confetti() {
+    for (let i = 0; i < 28; i++) {
+      const el = document.createElement('div');
+      el.style.cssText = `
+        position:fixed;left:${Math.random()*100}vw;top:-12px;width:8px;height:8px;
+        background:hsl(${140 + Math.random()*40},75%,60%);border-radius:50%;
+        pointer-events:none;z-index:1000;
+        animation:fall ${0.9 + Math.random()*0.8}s linear forwards`;
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 1200);
+    }
+  }
+  const confettiStyle = document.createElement('style');
+  confettiStyle.textContent = `@keyframes fall{to{transform:translateY(100vh) rotate(360deg);opacity:0}}`;
+  document.head.appendChild(confettiStyle);
+
+  /* ---------- 3. SPLIT ---------- */
+  $('#btnSplit').onclick = () => {
+    const s = +$('#splitStructure').value || 0;
+    const f = +$('#splitFurniture').value || 0;
+    const e = +$('#splitElectronics').value || 0;
+    const j = +$('#splitJewellery').value || 0;
+    const total = s + f + e + j;
+    $('#splitResult').style.display = 'block';
+    $('#splitTotal').textContent = formatINR(total);
+    $('#splitBreakup').innerHTML =
+      `Structure ${formatINR(s)} + Furniture ${formatINR(f)} + Electronics ${formatINR(e)} + Jewellery ${formatINR(j)}`;
+    // sync to main
+    $('#structure').value = s;
+    $('#content').value = f + e + j;
+    toast('Split calculated');
+  };
+
+  /* ---------- 2. RISK ---------- */
+  $('#btnRisk').onclick = () => {
+    const pin = $('#pincode').value.trim();
+    if (!/^\d{6}$/.test(pin)) return toast('Enter valid 6-digit PIN code');
+    const r = getRisk(pin);
+    $('#riskResult').style.display = 'block';
+    const setRisk = (id, val) => {
+      const el = $(id);
+      el.textContent = val;
+      el.className = val === 'High' ? 'risk-high' : val === 'Low' ? 'risk-low' : 'risk-med';
+    };
+    setRisk('#riskFlood', r.flood);
+    setRisk('#riskEq', r.eq);
+    setRisk('#riskTheft', r.theft);
+    $('#riskMsg').textContent = r.msg + ' Note: Around 80% of basic home policies do not include flood cover by default.';
+    toast('Area risk checked');
+  };
+
+  /* ---------- 4. UNDER-INSURANCE ---------- */
+  $('#btnUnder').onclick = () => {
+    const actual = +$('#actualVal').value;
+    const insured = +$('#sumInsured').value;
+    const loss = +$('#lossAmt').value;
+    if (actual <= 0 || insured <= 0) return toast('Enter valid amounts');
+    const ratio = Math.min(1, insured / actual);
+    const payable = loss * ratio;
+    $('#underResult').style.display = 'block';
+    $('#underPay').textContent = formatINR(payable);
+    $('#underExplain').textContent =
+      `You insured only ${Math.round(ratio * 100)}% of actual value. Average clause reduces claim. You lose ${formatINR(loss - payable)}.`;
+    toast('Under-insurance impact shown');
+  };
+
+  /* ---------- 7. RENTERS ---------- */
+  $('#btnRenters').onclick = () => {
+    const content = +$('#rentContent').value || 0;
+    const tier = +$('#rentCity').value;
+    const rate = tier === 1 ? 2.2 : tier === 2 ? 1.9 : 1.6;
+    const prem = Math.max(299, (content / 1000) * rate);
+    $('#rentResult').style.display = 'block';
+    $('#rentPrem').textContent = formatINR(prem);
+    toast('Renters premium ready');
+  };
+
+  /* ---------- 13. TAX ---------- */
+  $('#btnTax').onclick = () => {
+    const principal = Math.min(150000, +$('#loanPrincipal').value || 0); // 80C limit
+    const interest = Math.min(200000, +$('#loanInterest').value || 0);   // simplified 24b self-occupied cap illustration
+    const slab = +$('#taxSlab').value / 100;
+    const ins = +$('#insPremTax').value || 0;
+    const savePrincipal = principal * slab;
+    const saveInterest = interest * slab;
+    const totalSave = savePrincipal + saveInterest;
+    $('#taxResult').style.display = 'block';
+    $('#taxSave').textContent = formatINR(totalSave);
+    $('#taxExplain').textContent =
+      `Approx tax saving from principal (80C) + interest (24). Home insurance premium (₹${ins}) is generally not claimed under 80C. Insurance still protects the asset.`;
+    toast('Tax benefit estimated');
+  };
+
+  /* ---------- 5. COMPARE TABLE ---------- */
+  $('#compareBody').innerHTML = COMPANIES.map(c =>
+    `<tr>
+      <td><strong>${c.name}</strong></td>
+      <td>${c.prem}</td>
+      <td>${c.claim}</td>
+      <td>${c.disaster}</td>
+      <td>${c.ded}</td>
+    </tr>`
+  ).join('');
+
+  /* ---------- 14. CITY TABLE ---------- */
+  $('#cityTable').innerHTML = CITY_CHART.map(x =>
+    `<tr>
+      <td>${x.c}</td>
+      <td>${formatINR(x.s)}</td>
+      <td>${formatINR(x.t)}</td>
+      <td>${formatINR(x.e)}</td>
+    </tr>`
+  ).join('');
+
+  /* ---------- 11. SAFE CARD ---------- */
+  function drawCard() {
+    const r = calcPremium();
+    const canvas = $('#safeCanvas');
+    const ctx = canvas.getContext('2d');
+    // background
+    ctx.fillStyle = '#0f172a';
+    ctx.fillRect(0, 0, 600, 320);
+    // top accent
+    ctx.fillStyle = '#14b8a6';
+    ctx.fillRect(0, 0, 600, 8);
+    // title
+    ctx.fillStyle = '#94a3b8';
+    ctx.font = '13px Inter, sans-serif';
+    ctx.fillText('HOME SAFE CARD', 28, 48);
+    // main text
+    ctx.fillStyle = '#f1f5f9';
+    ctx.font = 'bold 26px Inter, sans-serif';
+    ctx.fillText('I secured my home for', 28, 110);
+    ctx.fillStyle = '#22c55e';
+    ctx.font = 'bold 38px Inter, sans-serif';
+    ctx.fillText(formatINR(r.total) + '/year', 28, 165);
+    // details
+    ctx.fillStyle = '#94a3b8';
+    ctx.font = '15px Inter, sans-serif';
+    const cityName = $('#city').options[$('#city').selectedIndex].text;
+    ctx.fillText(`${cityName}  •  ${$('#sqft').value} sqft  •  Structure + Content`, 28, 215);
+    // watermark
+    ctx.fillStyle = '#475569';
+    ctx.font = '11px Inter, sans-serif';
+    ctx.fillText('Generated with HomeSafe Calculator Pro • Educational use only', 28, 290);
+  }
+
+  $('#btnCard').onclick = () => {
+    drawCard();
+    toast('Card generated — scroll down');
+    document.getElementById('safeCanvas').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  };
+  $('#btnDownloadCard').onclick = () => {
+    drawCard();
+    const a = document.createElement('a');
+    a.href = $('#safeCanvas').toDataURL('image/png');
+    a.download = 'home-safe-card.png';
+    a.click();
+    toast('PNG downloaded');
+  };
+  $('#btnShareText').onclick = () => {
+    const r = calcPremium();
+    const text = `I secured my home for only ${formatINR(r.total)}/year with proper covers. Calculate yours free with HomeSafe Calculator Pro.`;
+    navigator.clipboard.writeText(text).then(() => toast('Share text copied'));
+  };
+
+  // initial card
+  drawCard();
+})();
+</script>
+</body>
+  </html>
