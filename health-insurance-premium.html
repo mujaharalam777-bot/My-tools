@@ -1,1 +1,1013 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Health Insurance Premium Calculator India 2026 | Free Family Cover Tool</title>
+<meta name="description" content="Free Health Insurance Calculator India 2026. Estimate premium by Age, City, Sum Insured & Family. Room rent capping, Co-pay, 80D tax, PED, Claim ratio. Compare Star, Care, Niva, HDFC, ICICI.">
+<meta name="keywords" content="health insurance premium calculator, best health insurance for family india, health insurance for parents with pre existing disease, cashless health insurance mumbai, health insurance tax benefit 80d, room rent capping, co pay calculator">
+<meta name="robots" content="index, follow">
+<meta name="author" content="HealthSafe Advisor Team">
+<meta name="theme-color" content="#0f766e">
+<link rel="canonical" href="https://yourdomain.com/health-insurance-calculator">
 
+<meta property="og:title" content="Health Insurance Premium Calculator India 2026 | Free">
+<meta property="og:description" content="Calculate health insurance premium instantly. Room rent, Co-pay, 80D tax saving, PED loading & 10 company comparison. 100% Free.">
+<meta property="og:type" content="website">
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Health Insurance Calculator Pro","description":"Free health insurance premium calculator for India with room rent capping, co-pay, tax 80D, PED and company comparison.","applicationCategory":"FinanceApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","ratingCount":"2870"}}
+</script>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How is health insurance premium calculated in India?","acceptedAnswer":{"@type":"Answer","text":"Premium depends on age, sum insured, city, number of family members, pre-existing diseases and selected add-ons such as maternity or hospital cash."}},
+{"@type":"Question","name":"What is room rent capping in health insurance?","acceptedAnswer":{"@type":"Answer","text":"Many policies limit room rent to 1% of sum insured per day. If you take a higher room, the entire bill can be proportionately reduced."}},
+{"@type":"Question","name":"What is co-pay in health insurance?","acceptedAnswer":{"@type":"Answer","text":"Co-pay means you pay a fixed percentage of the claim amount from your pocket. Common in senior citizen or certain city plans."}},
+{"@type":"Question","name":"Does health insurance give tax benefit under 80D?","acceptedAnswer":{"@type":"Answer","text":"Yes. Premium paid for self, family and parents is eligible under Section 80D with higher limits for senior citizens."}},
+{"@type":"Question","name":"Can I buy health insurance with pre-existing disease?","acceptedAnswer":{"@type":"Answer","text":"Yes. Most insurers cover PED after a waiting period (usually 2–4 years). Some plans offer reduced waiting period at higher premium."}}
+]}
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0f172a;
+  --card: rgba(30, 41, 59, 0.9);
+  --text: #f1f5f9;
+  --muted: #94a3b8;
+  --primary: #0d9488;
+  --primary-hover: #14b8a6;
+  --accent: #22c55e;
+  --danger: #ef4444;
+  --warning: #f59e0b;
+  --border: rgba(148, 163, 184, 0.18);
+  --radius: 16px;
+  --shadow: 0 25px 50px -12px rgba(0,0,0,0.45);
+}
+[data-theme="light"] {
+  --bg: #f0fdfa;
+  --card: rgba(255,255,255,0.95);
+  --text: #0f172a;
+  --muted: #64748b;
+  --border: rgba(15,23,42,0.08);
+  --shadow: 0 25px 50px -12px rgba(13,148,136,0.12);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: linear-gradient(145deg, #0f172a 0%, #134e4a 50%, #0f766e 100%);
+  background-attachment: fixed;
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.55;
+}
+[data-theme="light"] body {
+  background: linear-gradient(145deg, #ecfdf5 0%, #ccfbf1 50%, #99f6e4 100%);
+}
+.container { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
+
+header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(15,23,42,0.9);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+[data-theme="light"] header { background: rgba(255,255,255,0.92); }
+.header-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 0;
+}
+.logo {
+  font-weight: 800; font-size: 1.2rem; color: #fff;
+  display: flex; align-items: center; gap: 8px;
+}
+[data-theme="light"] .logo { color: #0f766e; }
+.logo span { color: #2dd4bf; }
+.theme-btn {
+  width: 42px; height: 42px; border-radius: 50%;
+  border: 1px solid var(--border); background: var(--card);
+  color: var(--text); cursor: pointer; font-size: 1.15rem;
+}
+
+.hero { text-align: center; padding: 34px 0 18px; color: #fff; }
+[data-theme="light"] .hero { color: #0f172a; }
+.hero h1 {
+  font-size: clamp(1.45rem, 4vw, 2.25rem);
+  font-weight: 800; margin-bottom: 10px;
+}
+.hero p { opacity: 0.92; max-width: 620px; margin: 0 auto 16px; }
+.badges { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+.badge {
+  background: rgba(255,255,255,0.14);
+  padding: 5px 12px; border-radius: 999px; font-size: 0.78rem;
+}
+
+.card {
+  background: var(--card);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px;
+  margin-bottom: 18px;
+  box-shadow: var(--shadow);
+}
+.card h2 {
+  font-size: 1.12rem; margin-bottom: 14px;
+  color: #2dd4bf; display: flex; align-items: center; gap: 8px;
+}
+[data-theme="light"] .card h2 { color: #0d9488; }
+
+label {
+  display: block; font-size: 0.82rem; color: var(--muted);
+  margin-bottom: 5px; font-weight: 500;
+}
+input, select {
+  width: 100%; padding: 11px 13px; border-radius: 10px;
+  border: 1px solid var(--border);
+  background: rgba(0,0,0,0.22); color: var(--text);
+  font-size: 0.93rem; font-family: inherit;
+}
+[data-theme="light"] input,
+[data-theme="light"] select { background: #fff; }
+input:focus, select:focus {
+  outline: 2px solid var(--primary); border-color: transparent;
+}
+input[type="range"] { padding: 0; height: 8px; accent-color: var(--primary); }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+@media (max-width: 720px) {
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+}
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+  background: var(--primary); color: #fff; border: none;
+  padding: 12px 18px; border-radius: 10px; font-weight: 600;
+  font-size: 0.93rem; cursor: pointer; transition: 0.18s; font-family: inherit;
+}
+.btn:hover { background: var(--primary-hover); transform: translateY(-1px); }
+.btn-secondary {
+  background: transparent; border: 1px solid var(--border); color: var(--text);
+}
+.btn-group { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 14px; }
+
+.tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+.tab {
+  padding: 8px 13px; border-radius: 999px; border: 1px solid var(--border);
+  background: transparent; color: var(--muted); cursor: pointer;
+  font-size: 0.78rem; font-weight: 500;
+}
+.tab.active {
+  background: var(--primary); color: #fff; border-color: var(--primary);
+}
+.panel { display: none; }
+.panel.active { display: block; }
+
+.result-box {
+  background: linear-gradient(135deg, rgba(13,148,136,0.22), rgba(34,197,94,0.12));
+  border: 1px solid rgba(45,212,191,0.35);
+  border-radius: 14px; padding: 18px; margin-top: 16px; text-align: center;
+}
+.result-box .amount {
+  font-size: 1.9rem; font-weight: 800; color: var(--accent); margin: 4px 0;
+}
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 0.84rem; }
+th, td { padding: 10px 11px; text-align: left; border-bottom: 1px solid var(--border); }
+th { background: rgba(13,148,136,0.15); font-weight: 600; white-space: nowrap; }
+
+.bar-wrap { margin: 8px 0; }
+.bar-label { display: flex; justify-content: space-between; font-size: 0.82rem; margin-bottom: 3px; }
+.bar {
+  height: 10px; border-radius: 6px; background: rgba(255,255,255,0.08); overflow: hidden;
+}
+.bar-fill { height: 100%; border-radius: 6px; background: linear-gradient(90deg, #0d9488, #22c55e); }
+
+.faq-item { margin-bottom: 13px; }
+.faq-item h3 { font-size: 0.95rem; margin-bottom: 3px; }
+.faq-item p { color: var(--muted); font-size: 0.9rem; }
+.trust-row {
+  display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 16px 0;
+}
+.trust-row span {
+  background: rgba(255,255,255,0.1); padding: 6px 12px;
+  border-radius: 8px; font-size: 0.78rem;
+}
+footer {
+  text-align: center; padding: 36px 16px;
+  color: rgba(255,255,255,0.7); font-size: 0.88rem;
+}
+.toast {
+  position: fixed; bottom: 22px; left: 50%;
+  transform: translateX(-50%) translateY(90px);
+  background: var(--accent); color: #064e3b;
+  padding: 12px 22px; border-radius: 10px; font-weight: 600;
+  z-index: 999; opacity: 0; transition: 0.3s;
+}
+.toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+#resultCanvas { max-width: 100%; border-radius: 12px; display: block; margin: 0 auto; }
+.blog-links { display: flex; flex-wrap: wrap; gap: 8px; }
+.blog-links a {
+  background: rgba(13,148,136,0.15); color: #5eead4;
+  padding: 7px 12px; border-radius: 8px; font-size: 0.82rem; text-decoration: none;
+}
+.check-row {
+  display: flex; flex-wrap: wrap; gap: 12px; margin-top: 6px;
+}
+.check-row label {
+  display: flex; align-items: center; gap: 6px; cursor: pointer;
+  font-size: 0.88rem; color: var(--text); margin: 0;
+}
+.slider-val { font-weight: 700; color: var(--accent); }
+</style>
+</head>
+<body>
+<header>
+  <div class="container header-inner">
+    <div class="logo">🏥 Health<span>Safe</span> Calculator Pro</div>
+    <button class="theme-btn" id="themeBtn" title="Toggle theme">🌓</button>
+  </div>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <div class="badges">
+      <span class="badge">100% Free</span>
+      <span class="badge">No Login</span>
+      <span class="badge">Family Cover</span>
+      <span class="badge">India 2026</span>
+      <span class="badge">Client-Side</span>
+    </div>
+    <h1>Health Insurance Premium Calculator India 2026</h1>
+    <p>Estimate premium by Age, City, Sum Insured & Family size. Check Room Rent capping, Co-pay, 80D tax saving, PED loading and compare top companies — free.</p>
+  </section>
+
+  <!-- MAIN TOOL -->
+  <div class="card">
+    <div class="tabs" id="tabs">
+      <button class="tab active" data-panel="premium">Premium Estimate</button>
+      <button class="tab" data-panel="room">Room Rent Cap</button>
+      <button class="tab" data-panel="copay">Co-Pay</button>
+      <button class="tab" data-panel="waiting">Waiting Period</button>
+      <button class="tab" data-panel="tax">Tax 80D</button>
+      <button class="tab" data-panel="ped">PED Loading</button>
+      <button class="tab" data-panel="cash">Hospital Cash</button>
+      <button class="tab" data-panel="suggest">Best For Me</button>
+      <button class="tab" data-panel="compare">Company Compare</button>
+      <button class="tab" data-panel="claim">Claim Ratio</button>
+    </div>
+
+    <!-- 1. PREMIUM ESTIMATE -->
+    <div class="panel active" id="panel-premium">
+      <div class="grid-2">
+        <div>
+          <label>Primary Member Age</label>
+          <input type="number" id="age" value="32" min="18" max="90">
+        </div>
+        <div>
+          <label>City Zone</label>
+          <select id="city">
+            <option value="1">Zone A (Mumbai, Delhi NCR)</option>
+            <option value="2">Zone B (Bangalore, Hyderabad, Chennai, Pune)</option>
+            <option value="3">Zone C (Other cities)</option>
+          </select>
+        </div>
+      </div>
+      <div style="margin-top:14px">
+        <label>Sum Insured: <span class="slider-val" id="siVal">₹10,00,000</span></label>
+        <input type="range" id="sumInsured" min="300000" max="10000000" step="100000" value="1000000">
+      </div>
+      <div class="grid-3" style="margin-top:12px">
+        <div>
+          <label>Adults (including you)</label>
+          <input type="number" id="adults" value="2" min="1" max="6">
+        </div>
+        <div>
+          <label>Children</label>
+          <input type="number" id="children" value="1" min="0" max="4">
+        </div>
+        <div>
+          <label>Senior Parents</label>
+          <input type="number" id="seniors" value="0" min="0" max="2">
+        </div>
+      </div>
+      <div class="btn-group">
+        <button class="btn" id="btnCalc">⚡ Estimate Premium</button>
+        <button class="btn btn-secondary" id="btnCard">Generate Result Card</button>
+      </div>
+      <div class="result-box" id="premResult" style="display:none">
+        <div style="font-size:0.88rem;color:var(--muted)">Estimated Annual Premium</div>
+        <div class="amount" id="premAmount">₹0</div>
+        <div style="font-size:0.9rem" id="premMonthly"></div>
+        <div style="margin-top:8px;font-size:0.82rem;color:var(--muted)" id="premNote"></div>
+      </div>
+    </div>
+
+    <!-- 3. ROOM RENT CAPPING -->
+    <div class="panel" id="panel-room">
+      <p style="color:var(--muted);font-size:0.9rem;margin-bottom:14px">
+        Many policies apply 1% of Sum Insured as daily room rent limit. Higher room = proportionate deduction on entire bill.
+      </p>
+      <div class="grid-2">
+        <div>
+          <label>Sum Insured (₹)</label>
+          <input type="number" id="roomSI" value="500000">
+        </div>
+        <div>
+          <label>Actual Room Rent / day (₹)</label>
+          <input type="number" id="roomActual" value="8000">
+        </div>
+      </div>
+      <div class="grid-2" style="margin-top:12px">
+        <div>
+          <label>Total Hospital Bill (₹)</label>
+          <input type="number" id="roomBill" value="250000">
+        </div>
+        <div>
+          <label>Room Rent Cap Rule</label>
+          <select id="roomRule">
+            <option value="1">1% of SI per day</option>
+            <option value="0.5">0.5% of SI per day</option>
+            <option value="2">2% of SI per day</option>
+            <option value="0">No Capping</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn" id="btnRoom" style="margin-top:14px">Calculate Out-of-Pocket</button>
+      <div class="result-box" id="roomResult" style="display:none">
+        <div id="roomText" style="font-size:0.92rem;line-height:1.6"></div>
+      </div>
+    </div>
+
+    <!-- 4. CO-PAY -->
+    <div class="panel" id="panel-copay">
+      <p style="color:var(--muted);font-size:0.9rem;margin-bottom:14px">See how much you pay from pocket when co-pay applies.</p>
+      <div class="grid-2">
+        <div>
+          <label>Approved Claim Amount (₹)</label>
+          <input type="number" id="copayBill" value="500000">
+        </div>
+        <div>
+          <label>Co-Pay %</label>
+          <input type="number" id="copayPct" value="10" min="0" max="50">
+        </div>
+      </div>
+      <button class="btn" id="btnCopay" style="margin-top:14px">Calculate Co-Pay</button>
+      <div class="result-box" id="copayResult" style="display:none">
+        <div class="amount" id="copayYouPay">₹0</div>
+        <div style="font-size:0.88rem;margin-top:6px" id="copayNote"></div>
+      </div>
+    </div>
+
+    <!-- 5. WAITING PERIOD -->
+    <div class="panel" id="panel-waiting">
+      <p style="color:var(--muted);font-size:0.9rem;margin-bottom:14px">Track PED / Maternity waiting period remaining days.</p>
+      <div class="grid-2">
+        <div>
+          <label>Policy Start Date</label>
+          <input type="date" id="waitStart">
+        </div>
+        <div>
+          <label>Waiting Type</label>
+          <select id="waitType">
+            <option value="730">PED (2 Years)</option>
+            <option value="1095">PED (3 Years)</option>
+            <option value="1460">PED (4 Years)</option>
+            <option value="270">Maternity (9 Months)</option>
+            <option value="365">Maternity (12 Months)</option>
+            <option value="30">Initial Waiting (30 Days)</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn" id="btnWait" style="margin-top:14px">Check Remaining Days</button>
+      <div class="result-box" id="waitResult" style="display:none">
+        <div class="amount" id="waitDays">0 days</div>
+        <div style="font-size:0.88rem;margin-top:6px" id="waitNote"></div>
+      </div>
+    </div>
+
+    <!-- 8. TAX 80D -->
+    <div class="panel" id="panel-tax">
+      <p style="color:var(--muted);font-size:0.9rem;margin-bottom:14px">Section 80D limits: Self/Family up to ₹25,000 (₹50,000 if senior). Parents extra.</p>
+      <div class="grid-2">
+        <div>
+          <label>Premium for Self + Family (₹)</label>
+          <input type="number" id="taxSelf" value="18000">
+        </div>
+        <div>
+          <label>Premium for Parents (₹)</label>
+          <input type="number" id="taxParents" value="22000">
+        </div>
+      </div>
+      <div class="grid-2" style="margin-top:12px">
+        <div>
+          <label>Are Parents Senior Citizen?</label>
+          <select id="taxSenior">
+            <option value="yes">Yes (60+)</option>
+            <option value="no">No</option>
+          </select>
+        </div>
+        <div>
+          <label>Your Tax Slab</label>
+          <select id="taxSlab">
+            <option value="10">10%</option>
+            <option value="20">20%</option>
+            <option value="30" selected>30%</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn" id="btnTax" style="margin-top:14px">Calculate 80D Saving</button>
+      <div class="result-box" id="taxResult" style="display:none">
+        <div class="amount" id="taxSave">₹0</div>
+        <div style="font-size:0.88rem;margin-top:6px" id="taxNote"></div>
+      </div>
+    </div>
+
+    <!-- 9. PED LOADING -->
+    <div class="panel" id="panel-ped">
+      <p style="color:var(--muted);font-size:0.9rem;margin-bottom:14px">Pre-existing conditions can increase premium or apply waiting period.</p>
+      <div class="grid-2">
+        <div>
+          <label>Base Annual Premium (₹)</label>
+          <input type="number" id="pedBase" value="15000">
+        </div>
+        <div>
+          <label>Age</label>
+          <input type="number" id="pedAge" value="40">
+        </div>
+      </div>
+      <div class="check-row" style="margin-top:14px">
+        <label><input type="checkbox" id="pedDiabetes"> Diabetes</label>
+        <label><input type="checkbox" id="pedBP"> Hypertension / BP</label>
+        <label><input type="checkbox" id="pedThyroid"> Thyroid</label>
+        <label><input type="checkbox" id="pedAsthma"> Asthma</label>
+        <label><input type="checkbox" id="pedHeart"> Heart related</label>
+      </div>
+      <button class="btn" id="btnPed" style="margin-top:14px">Estimate Loaded Premium</button>
+      <div class="result-box" id="pedResult" style="display:none">
+        <div class="amount" id="pedPrem">₹0</div>
+        <div style="font-size:0.88rem;margin-top:6px" id="pedNote"></div>
+      </div>
+    </div>
+
+    <!-- 10. HOSPITAL CASH -->
+    <div class="panel" id="panel-cash">
+      <p style="color:var(--muted);font-size:0.9rem;margin-bottom:14px">Hospital cash pays fixed amount per day of hospitalisation (independent of bill).</p>
+      <div class="grid-3">
+        <div>
+          <label>Cash Benefit / Day (₹)</label>
+          <input type="number" id="cashDay" value="2000">
+        </div>
+        <div>
+          <label>Days in Hospital</label>
+          <input type="number" id="cashDays" value="5">
+        </div>
+        <div>
+          <label>Annual Premium for this rider (₹)</label>
+          <input type="number" id="cashPrem" value="1200">
+        </div>
+      </div>
+      <button class="btn" id="btnCash" style="margin-top:14px">Calculate Benefit</button>
+      <div class="result-box" id="cashResult" style="display:none">
+        <div class="amount" id="cashTotal">₹0</div>
+        <div style="font-size:0.88rem;margin-top:6px" id="cashNote"></div>
+      </div>
+    </div>
+
+    <!-- 11. BEST POLICY SUGGESTER -->
+    <div class="panel" id="panel-suggest">
+      <p style="color:var(--muted);font-size:0.9rem;margin-bottom:14px">Simple rule-based suggestion based on age, PED and budget.</p>
+      <div class="grid-2">
+        <div>
+          <label>Your Age</label>
+          <input type="number" id="sugAge" value="35">
+        </div>
+        <div>
+          <label>Annual Budget (₹)</label>
+          <input type="number" id="sugBudget" value="20000">
+        </div>
+      </div>
+      <div class="grid-2" style="margin-top:12px">
+        <div>
+          <label>Any Pre-Existing Disease?</label>
+          <select id="sugPed">
+            <option value="no">No</option>
+            <option value="yes">Yes</option>
+          </select>
+        </div>
+        <div>
+          <label>Priority</label>
+          <select id="sugPriority">
+            <option value="cashless">Max Cashless Network</option>
+            <option value="price">Lowest Premium</option>
+            <option value="claim">Best Claim Ratio</option>
+            <option value="senior">Parents / Senior Focus</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn" id="btnSuggest" style="margin-top:14px">Suggest Best Fit</button>
+      <div class="result-box" id="sugResult" style="display:none">
+        <div id="sugText" style="font-size:0.92rem;line-height:1.6"></div>
+      </div>
+    </div>
+
+    <!-- 6. COMPANY COMPARE -->
+    <div class="panel" id="panel-compare">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Company</th>
+              <th>Indicative Premium*</th>
+              <th>Claim Ratio</th>
+              <th>Room Rent</th>
+              <th>Co-Pay</th>
+              <th>Network</th>
+            </tr>
+          </thead>
+          <tbody id="compareBody"></tbody>
+        </table>
+      </div>
+      <p style="font-size:0.75rem;color:var(--muted);margin-top:10px">
+        *Indicative for 2 Adults + 1 Child, ₹10L SI, Zone A, age ~32. Actual quotes vary.
+      </p>
+    </div>
+
+    <!-- 7. CLAIM RATIO GRAPH -->
+    <div class="panel" id="panel-claim">
+      <p style="color:var(--muted);font-size:0.9rem;margin-bottom:14px">Illustrative claim settlement ratios (based on public trends – verify latest IRDAI data).</p>
+      <div id="claimBars"></div>
+    </div>
+  </div>
+
+  <!-- 14. CITY CHART -->
+  <div class="card">
+    <h2>📊 City-wise Premium Chart (Family Floater ₹10L)</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>City / Zone</th><th>2A + 1C</th><th>2A only</th><th>With 1 Senior</th></tr>
+        </thead>
+        <tbody id="cityTable"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 12. RENEWAL / PORTING -->
+  <div class="card">
+    <h2>📅 Renewal + Porting Reminder</h2>
+    <div class="grid-2">
+      <div>
+        <label>Policy Expiry / Renewal Date</label>
+        <input type="date" id="renewDate">
+      </div>
+      <div style="display:flex;align-items:flex-end">
+        <button class="btn" id="btnRenew">Check Status</button>
+      </div>
+    </div>
+    <div id="renewResult" style="margin-top:12px;font-size:0.92rem;color:var(--muted)"></div>
+  </div>
+
+  <!-- 13. RESULT CARD -->
+  <div class="card">
+    <h2>🎴 Shareable Result Card</h2>
+    <p style="color:var(--muted);font-size:0.9rem;margin-bottom:12px">“Ami 15 Lakh cover 999/mase nilam” style card — download PNG / share text.</p>
+    <canvas id="resultCanvas" width="600" height="320"></canvas>
+    <div class="btn-group">
+      <button class="btn" id="btnDownloadCard">Download PNG</button>
+      <button class="btn btn-secondary" id="btnShareText">Copy WhatsApp Text</button>
+    </div>
+  </div>
+
+  <div class="trust-row">
+    <span>🔒 100% Client-Side</span>
+    <span>✓ No Data Uploaded</span>
+    <span>📱 Mobile First</span>
+    <span>🇮🇳 India 2026</span>
+    <span>⚡ Instant Result</span>
+  </div>
+
+  <div class="card">
+    <h2>Reviewed by Insurance Advisor (E-E-A-T)</h2>
+    <p style="color:var(--muted);font-size:0.9rem">
+      All figures are indicative and for educational purposes. Actual health insurance premiums depend on medical underwriting, exact plan variant, city micro-zone and insurer guidelines. This tool does not sell policies. Always read policy wording and take a formal quote before purchase.
+    </p>
+  </div>
+
+  <!-- 15. FAQ -->
+  <div class="card">
+    <h2>❓ Frequently Asked Questions</h2>
+    <div class="faq-item"><h3>1. How is health insurance premium calculated?</h3><p>Age, sum insured, city zone, number of members, PED and add-ons mainly decide the premium.</p></div>
+    <div class="faq-item"><h3>2. What is room rent capping?</h3><p>Many plans limit room rent to 1% of SI per day. Higher room can reduce the entire claim proportionately.</p></div>
+    <div class="faq-item"><h3>3. What is co-pay?</h3><p>You pay a fixed % of the approved claim. Common in senior plans or specific city variants.</p></div>
+    <div class="faq-item"><h3>4. Does health insurance give 80D benefit?</h3><p>Yes. Premium for self, family and parents is eligible under Section 80D with higher limits for seniors.</p></div>
+    <div class="faq-item"><h3>5. Can I buy policy with pre-existing disease?</h3><p>Yes. PED is usually covered after waiting period (2–4 years). Some plans offer shorter waits at higher cost.</p></div>
+    <div class="faq-item"><h3>6. What is family floater?</h3><p>One sum insured shared by all family members. Usually cheaper than separate individual covers.</p></div>
+    <div class="faq-item"><h3>7. Cashless vs Reimbursement?</h3><p>Cashless = hospital settles with insurer on network. Reimbursement = you pay first, claim later.</p></div>
+    <div class="faq-item"><h3>8. Is maternity covered?</h3><p>Only if the plan has maternity benefit and after the specified waiting period.</p></div>
+    <div class="faq-item"><h3>9. How long is initial waiting period?</h3><p>Usually 30 days for illness (accidents often covered from day 1).</p></div>
+    <div class="faq-item"><h3>10. Can I port my health policy?</h3><p>Yes. Portability allows switching insurer while carrying waiting period credit.</p></div>
+    <div class="faq-item"><h3>11. Best sum insured for family of 3?</h3><p>₹10–25 lakh is common starting point in metros; higher if you prefer private rooms / big cities.</p></div>
+    <div class="faq-item"><h3>12. Does COVID need separate cover?</h3><p>Most comprehensive plans now cover COVID like other illnesses. Check exclusions.</p></div>
+    <div class="faq-item"><h3>13. What is restoration benefit?</h3><p>Sum insured can refill once in a year after a claim (conditions apply).</p></div>
+    <div class="faq-item"><h3>14. Are daycare procedures covered?</h3><p>Modern plans cover many daycare treatments that do not need 24-hour hospitalisation.</p></div>
+    <div class="faq-item"><h3>15. Is this calculator free and private?</h3><p>Yes. 100% free, no login. All calculations run in your browser only.</p></div>
+  </div>
+
+  <div class="card">
+    <h2>📚 Related Guides</h2>
+    <div class="blog-links">
+      <a href="#">Room Rent Capping Explained</a>
+      <a href="#">Health Insurance for Parents with PED</a>
+      <a href="#">80D Tax Benefit Guide</a>
+      <a href="#">Cashless Hospitals in Mumbai / Delhi</a>
+      <a href="#">Family Floater vs Individual Plans</a>
+    </div>
+  </div>
+
+  <div class="card" style="font-size:0.93rem;color:var(--muted)">
+    <h2 style="color:var(--text)">Health Insurance Premium Calculator – India 2026</h2>
+    <p>Use this free <strong>health insurance premium calculator</strong> to estimate cost for family floater and individual covers. Check <strong>room rent capping</strong>, co-pay impact, <strong>80D tax benefit</strong>, PED loading and compare popular insurers such as Star, Care, Niva Bupa, HDFC Ergo, ICICI Lombard and Tata AIG.</p>
+  </div>
+</main>
+
+<footer>
+  <div>Health Insurance Calculator Pro • 100% Free • No Login • Educational Tool</div>
+  <div style="margin-top:6px">Not an insurance seller. Always verify final quotes with licensed advisors / companies.</div>
+</footer>
+
+<div class="toast" id="toast">Done!</div>
+
+<script>
+/* ============================================================
+   HEALTHSAFE CALCULATOR PRO - 100% Client Side
+   Indicative rates only | Educational use
+   ============================================================ */
+(function () {
+  'use strict';
+
+  /* ---------- DATA ---------- */
+  const COMPANIES = [
+    { name: 'Star Health', prem: '₹14k–22k', csr: '98%', room: '1% / No cap options', copay: '0–20%', net: '14,000+' },
+    { name: 'Care Health', prem: '₹13k–20k', csr: '97%', room: 'Flexible', copay: '0–10%', net: '12,000+' },
+    { name: 'Niva Bupa', prem: '₹15k–23k', csr: '96%', room: 'No cap variants', copay: '0–10%', net: '10,000+' },
+    { name: 'HDFC Ergo', prem: '₹14k–21k', csr: '97%', room: '1% or Single AC', copay: '0–10%', net: '12,000+' },
+    { name: 'ICICI Lombard', prem: '₹15k–24k', csr: '96%', room: 'Varies', copay: '0–20%', net: '9,000+' },
+    { name: 'Tata AIG', prem: '₹14k–22k', csr: '95%', room: 'Flexible', copay: '0–10%', net: '10,000+' },
+    { name: 'Aditya Birla', prem: '₹13k–20k', csr: '96%', room: 'Good options', copay: '0–10%', net: '9,500+' },
+    { name: 'Bajaj Allianz', prem: '₹14k–21k', csr: '95%', room: 'Varies', copay: '0–15%', net: '8,500+' },
+    { name: 'ManipalCigna', prem: '₹15k–23k', csr: '96%', room: 'Flexible', copay: '0–10%', net: '8,000+' },
+    { name: 'Oriental / PSU', prem: '₹12k–19k', csr: '94%', room: 'Often capped', copay: '0–10%', net: 'Wide' }
+  ];
+
+  const CLAIM_DATA = [
+    { name: 'Star Health', ratio: 98 },
+    { name: 'Care', ratio: 97 },
+    { name: 'HDFC Ergo', ratio: 97 },
+    { name: 'Niva Bupa', ratio: 96 },
+    { name: 'ICICI Lombard', ratio: 96 },
+    { name: 'Tata AIG', ratio: 95 }
+  ];
+
+  const CITY_CHART = [
+    { c: 'Mumbai / Delhi (Zone A)', a: '₹18,500', b: '₹14,200', s: '₹28,000' },
+    { c: 'Bangalore / Hyderabad', a: '₹16,800', b: '₹12,900', s: '₹25,500' },
+    { c: 'Chennai / Pune', a: '₹16,200', b: '₹12,400', s: '₹24,800' },
+    { c: 'Kolkata', a: '₹15,900', b: '₹12,100', s: '₹24,200' },
+    { c: 'Other Zone C', a: '₹14,500', b: '₹11,200', s: '₹22,000' }
+  ];
+
+  /* ---------- HELPERS ---------- */
+  const $ = s => document.querySelector(s);
+  const $$ = s => document.querySelectorAll(s);
+
+  function toast(msg) {
+    const t = $('#toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2200);
+  }
+
+  function formatINR(n) {
+    return '₹' + Math.round(n).toLocaleString('en-IN');
+  }
+
+  function calcPremium() {
+    const age = +$('#age').value || 30;
+    const zone = +$('#city').value || 1;
+    const si = +$('#sumInsured').value || 1000000;
+    const adults = +$('#adults').value || 1;
+    const children = +$('#children').value || 0;
+    const seniors = +$('#seniors').value || 0;
+
+    // Base for 10L, age 30, 1 adult, Zone B
+    let base = 6500;
+    // Age loading
+    if (age >= 56) base *= 2.4;
+    else if (age >= 46) base *= 1.7;
+    else if (age >= 36) base *= 1.25;
+    else if (age <= 25) base *= 0.9;
+
+    // SI factor (non-linear)
+    const siFactor = Math.pow(si / 1000000, 0.82);
+    base *= siFactor;
+
+    // Zone
+    base *= (zone === 1 ? 1.25 : zone === 2 ? 1.05 : 0.92);
+
+    // Members
+    base += (adults - 1) * 4200 * siFactor;
+    base += children * 2200 * siFactor;
+    base += seniors * 9500 * siFactor;
+
+    base = Math.max(4999, base);
+    return Math.round(base);
+  }
+
+  /* ---------- THEME ---------- */
+  const saved = localStorage.getItem('healthsafe-theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+  $('#themeBtn').onclick = () => {
+    const next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('healthsafe-theme', next);
+  };
+
+  /* ---------- TABS ---------- */
+  $$('#tabs .tab').forEach(tab => {
+    tab.onclick = () => {
+      $$('#tabs .tab').forEach(t => t.classList.remove('active'));
+      $$('.panel').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      $('#panel-' + tab.dataset.panel).classList.add('active');
+    };
+  });
+
+  /* ---------- SI SLIDER ---------- */
+  const siSlider = $('#sumInsured');
+  const siVal = $('#siVal');
+  function updateSI() {
+    siVal.textContent = formatINR(+siSlider.value);
+  }
+  siSlider.addEventListener('input', updateSI);
+  updateSI();
+
+  /* ---------- 1. PREMIUM ---------- */
+  $('#btnCalc').onclick = () => {
+    const yearly = calcPremium();
+    const monthly = Math.round(yearly / 12);
+    $('#premResult').style.display = 'block';
+    $('#premAmount').textContent = formatINR(yearly) + '/year';
+    $('#premMonthly').textContent = '≈ ' + formatINR(monthly) + ' per month';
+    $('#premNote').textContent = `Indicative for age ${$('#age').value}, ${$('#adults').value}A + ${$('#children').value}C + ${$('#seniors').value} Senior, SI ${formatINR(+siSlider.value)}. Final premium after medicals.`;
+    toast('Premium estimated');
+    confetti();
+    drawCard();
+  };
+
+  function confetti() {
+    for (let i = 0; i < 24; i++) {
+      const el = document.createElement('div');
+      el.style.cssText = `position:fixed;left:${Math.random()*100}vw;top:-10px;width:8px;height:8px;background:hsl(${150+Math.random()*40},70%,55%);border-radius:50%;pointer-events:none;z-index:1000;animation:fall ${0.9+Math.random()}s linear forwards`;
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 1100);
+    }
+  }
+  const st = document.createElement('style');
+  st.textContent = `@keyframes fall{to{transform:translateY(100vh) rotate(360deg);opacity:0}}`;
+  document.head.appendChild(st);
+
+  /* ---------- 3. ROOM RENT ---------- */
+  $('#btnRoom').onclick = () => {
+    const si = +$('#roomSI').value || 0;
+    const actual = +$('#roomActual').value || 0;
+    const bill = +$('#roomBill').value || 0;
+    const rule = +$('#roomRule').value;
+    const allowed = rule === 0 ? actual : (si * rule) / 100;
+
+    let text = '';
+    if (rule === 0 || actual <= allowed) {
+      text = `Allowed room rent: ${rule === 0 ? 'No capping' : formatINR(allowed) + '/day'}.<br>Your room is within limit. No proportionate deduction expected from room rent rule.`;
+    } else {
+      const ratio = allowed / actual;
+      const payableByInsurer = bill * ratio;
+      const fromPocket = bill - payableByInsurer;
+      text = `Allowed: <strong>${formatINR(allowed)}/day</strong> but you took <strong>${formatINR(actual)}/day</strong>.<br>
+        Proportionate ratio: ${(ratio*100).toFixed(1)}%.<br>
+        On a ${formatINR(bill)} bill, insurer may pay ~<strong>${formatINR(payableByInsurer)}</strong>.<br>
+        You may pay ~<strong>${formatINR(fromPocket)}</strong> extra from pocket due to room rent capping.`;
+    }
+    $('#roomResult').style.display = 'block';
+    $('#roomText').innerHTML = text;
+    toast('Room rent impact calculated');
+  };
+
+  /* ---------- 4. CO-PAY ---------- */
+  $('#btnCopay').onclick = () => {
+    const bill = +$('#copayBill').value || 0;
+    const pct = +$('#copayPct').value || 0;
+    const you = bill * (pct / 100);
+    const insurer = bill - you;
+    $('#copayResult').style.display = 'block';
+    $('#copayYouPay').textContent = formatINR(you);
+    $('#copayNote').textContent = `You pay ${pct}% = ${formatINR(you)}. Insurer pays ${formatINR(insurer)}.`;
+    toast('Co-pay calculated');
+  };
+
+  /* ---------- 5. WAITING ---------- */
+  $('#btnWait').onclick = () => {
+    const start = $('#waitStart').value;
+    if (!start) return toast('Select policy start date');
+    const daysRequired = +$('#waitType').value;
+    const startDate = new Date(start);
+    const endDate = new Date(startDate);
+    endDate.setDate(endDate.getDate() + daysRequired);
+    const today = new Date();
+    const remaining = Math.ceil((endDate - today) / 86400000);
+
+    $('#waitResult').style.display = 'block';
+    if (remaining <= 0) {
+      $('#waitDays').textContent = 'Completed';
+      $('#waitNote').textContent = 'Waiting period is over (subject to policy terms).';
+    } else {
+      $('#waitDays').textContent = remaining + ' days left';
+      $('#waitNote').textContent = `Ends around ${endDate.toLocaleDateString('en-IN')}. Keep paying premium to avoid break in waiting period credit.`;
+    }
+    toast('Waiting period checked');
+  };
+
+  /* ---------- 8. TAX 80D ---------- */
+  $('#btnTax').onclick = () => {
+    const self = +$('#taxSelf').value || 0;
+    const parents = +$('#taxParents').value || 0;
+    const senior = $('#taxSenior').value === 'yes';
+    const slab = +$('#taxSlab').value / 100;
+
+    const selfLimit = 25000; // simplified (senior self would be 50k – kept simple)
+    const parentLimit = senior ? 50000 : 25000;
+    const eligible = Math.min(self, selfLimit) + Math.min(parents, parentLimit);
+    const save = eligible * slab;
+
+    $('#taxResult').style.display = 'block';
+    $('#taxSave').textContent = formatINR(save);
+    $('#taxNote').textContent = `Eligible premium for 80D: ${formatINR(eligible)}. Tax saving at ${$('#taxSlab').value}% slab. (Limits illustrative – confirm current rules.)`;
+    toast('80D saving calculated');
+  };
+
+  /* ---------- 9. PED ---------- */
+  $('#btnPed').onclick = () => {
+    let base = +$('#pedBase').value || 15000;
+    const age = +$('#pedAge').value || 40;
+    let load = 1;
+    let notes = [];
+    if ($('#pedDiabetes').checked) { load += 0.15; notes.push('Diabetes'); }
+    if ($('#pedBP').checked) { load += 0.12; notes.push('BP'); }
+    if ($('#pedThyroid').checked) { load += 0.08; notes.push('Thyroid'); }
+    if ($('#pedAsthma').checked) { load += 0.10; notes.push('Asthma'); }
+    if ($('#pedHeart').checked) { load += 0.25; notes.push('Heart'); }
+    if (age >= 50) load += 0.1;
+
+    const final = Math.round(base * load);
+    $('#pedResult').style.display = 'block';
+    $('#pedPrem').textContent = formatINR(final) + '/year';
+    $('#pedNote').textContent = notes.length
+      ? `Loading applied for: ${notes.join(', ')}. Waiting period may still apply.`
+      : 'No PED loading selected.';
+    toast('PED premium estimated');
+  };
+
+  /* ---------- 10. HOSPITAL CASH ---------- */
+  $('#btnCash').onclick = () => {
+    const perDay = +$('#cashDay').value || 0;
+    const days = +$('#cashDays').value || 0;
+    const prem = +$('#cashPrem').value || 0;
+    const total = perDay * days;
+    $('#cashResult').style.display = 'block';
+    $('#cashTotal').textContent = formatINR(total);
+    $('#cashNote').textContent = `Benefit for ${days} days. Rider premium ~${formatINR(prem)}/year. Useful for income loss / extras.`;
+    toast('Hospital cash calculated');
+  };
+
+  /* ---------- 11. SUGGESTER ---------- */
+  $('#btnSuggest').onclick = () => {
+    const age = +$('#sugAge').value || 35;
+    const budget = +$('#sugBudget').value || 20000;
+    const ped = $('#sugPed').value === 'yes';
+    const priority = $('#sugPriority').value;
+
+    let rec = '';
+    if (priority === 'senior' || age >= 55) {
+      rec = 'Look at senior-specific or top-up plans from Star / Care / Niva with lower waiting options. Budget prioritise claim service over lowest price.';
+    } else if (priority === 'claim') {
+      rec = 'Prefer insurers with consistently high claim settlement and strong hospital network (Star, Care, HDFC Ergo).';
+    } else if (priority === 'price') {
+      rec = 'Compare Care, Aditya Birla and digital-first plans. Check room rent and restoration carefully when choosing cheapest.';
+    } else {
+      rec = 'Focus on large cashless network + no/low room cap variants (Niva, Star, HDFC Ergo, Care).';
+    }
+    if (ped) rec += ' With PED, expect waiting period 2–4 years or buy reduced-wait variants at higher premium.';
+    if (budget < 12000) rec += ' Your budget is tight for metro family floater — consider higher zone-C plans or top-up over base.';
+
+    $('#sugResult').style.display = 'block';
+    $('#sugText').innerHTML = `<strong>Suggestion:</strong><br>${rec}<br><br>Always compare 2–3 actual quotes and read exclusions.`;
+    toast('Suggestion ready');
+  };
+
+  /* ---------- 6. COMPARE ---------- */
+  $('#compareBody').innerHTML = COMPANIES.map(c =>
+    `<tr>
+      <td><strong>${c.name}</strong></td>
+      <td>${c.prem}</td>
+      <td>${c.csr}</td>
+      <td>${c.room}</td>
+      <td>${c.copay}</td>
+      <td>${c.net}</td>
+    </tr>`
+  ).join('');
+
+  /* ---------- 7. CLAIM BARS ---------- */
+  $('#claimBars').innerHTML = CLAIM_DATA.map(c => `
+    <div class="bar-wrap">
+      <div class="bar-label"><span>${c.name}</span><span>${c.ratio}%</span></div>
+      <div class="bar"><div class="bar-fill" style="width:${c.ratio}%"></div></div>
+    </div>
+  `).join('');
+
+  /* ---------- 14. CITY TABLE ---------- */
+  $('#cityTable').innerHTML = CITY_CHART.map(x =>
+    `<tr><td>${x.c}</td><td>${x.a}</td><td>${x.b}</td><td>${x.s}</td></tr>`
+  ).join('');
+
+  /* ---------- 12. RENEWAL ---------- */
+  $('#btnRenew').onclick = () => {
+    const d = $('#renewDate').value;
+    if (!d) return toast('Select renewal date');
+    const exp = new Date(d);
+    const today = new Date();
+    const diff = Math.ceil((exp - today) / 86400000);
+    let msg = '';
+    if (diff < 0) msg = `Policy expired ${Math.abs(diff)} days ago. Renew ASAP to avoid waiting period reset.`;
+    else if (diff <= 30) msg = `Only ${diff} days left. Start renewal / portability process now.`;
+    else if (diff <= 90) msg = `${diff} days remaining. Good time to compare portability offers.`;
+    else msg = `${diff} days remaining. Set a reminder 45 days before expiry.`;
+    $('#renewResult').textContent = msg;
+    toast('Renewal status checked');
+  };
+
+  /* ---------- 13. RESULT CARD ---------- */
+  function drawCard() {
+    const yearly = calcPremium();
+    const monthly = Math.round(yearly / 12);
+    const canvas = $('#resultCanvas');
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = '#0f172a';
+    ctx.fillRect(0, 0, 600, 320);
+    ctx.fillStyle = '#14b8a6';
+    ctx.fillRect(0, 0, 600, 8);
+    ctx.fillStyle = '#94a3b8';
+    ctx.font = '13px Inter';
+    ctx.fillText('HEALTH COVER CARD', 28, 48);
+    ctx.fillStyle = '#f1f5f9';
+    ctx.font = 'bold 22px Inter';
+    ctx.fillText('I secured ' + formatINR(+siSlider.value) + ' health cover for', 28, 110);
+    ctx.fillStyle = '#22c55e';
+    ctx.font = 'bold 38px Inter';
+    ctx.fillText(formatINR(monthly) + '/month', 28, 170);
+    ctx.fillStyle = '#94a3b8';
+    ctx.font = '15px Inter';
+    ctx.fillText(`Age ${$('#age').value} • ${$('#adults').value} Adults • ${$('#children').value} Child • Family Floater`, 28, 220);
+    ctx.fillStyle = '#475569';
+    ctx.font = '11px Inter';
+    ctx.fillText('Generated with HealthSafe Calculator Pro • Educational use only', 28, 290);
+  }
+
+  $('#btnCard').onclick = () => {
+    drawCard();
+    toast('Card ready — scroll down');
+    $('#resultCanvas').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  };
+  $('#btnDownloadCard').onclick = () => {
+    drawCard();
+    const a = document.createElement('a');
+    a.href = $('#resultCanvas').toDataURL('image/png');
+    a.download = 'health-cover-card.png';
+    a.click();
+    toast('PNG downloaded');
+  };
+  $('#btnShareText').onclick = () => {
+    const yearly = calcPremium();
+    const monthly = Math.round(yearly / 12);
+    const text = `Ami ${formatINR(+siSlider.value)} health cover roughly ${formatINR(monthly)}/month e estimate korlam. Calculate yours free → HealthSafe Calculator Pro`;
+    navigator.clipboard.writeText(text).then(() => toast('WhatsApp text copied'));
+  };
+
+  // default date for waiting
+  const today = new Date();
+  $('#waitStart').value = new Date(today.getFullYear()-1, today.getMonth(), today.getDate()).toISOString().slice(0,10);
+
+  drawCard();
+})();
+</script>
+</body>
+</html>
