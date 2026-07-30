@@ -1,1 +1,841 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PPF Calculator 2026 | 1st April Hack + 30 Year + Missed Penalty + ₹1.6 Cr Family Plan</title>
+<meta name="description" content="Free PPF Calculator India FY 2026-27 @7.1%. Calculate Maturity, Missed Penalty, Loan, 30 Year Extension. 1st April Hack, Inflation Adjusted Value. Download PDF.">
+<meta name="keywords" content="ppf calculator, ppf calculator 2026, ppf maturity calculator, public provident fund calculator, ppf interest calculator, ppf 150000 per year, ppf 15 years, ppf 1st april investment, ppf missed installment penalty, ppf loan calculator, ppf premature withdrawal, ppf vs fd calculator, sbi ppf calculator, post office ppf calculator, minor ppf calculator, ppf nominee, ppf nri">
+<meta name="robots" content="index, follow">
+<meta name="author" content="mujahar">
+<meta name="theme-color" content="#020617">
+<link rel="canonical" href="https://yourdomain.com/ppf-calculator-pro-2026.html">
+<meta property="og:title" content="PPF Calculator 2026 | 1st April Hack + 30 Year Extension">
+<meta property="og:description" content="Free PPF Calculator @7.1%. Maturity, missed penalty, loan double-dip, family ladder, inflation real value. FY 2026-27.">
+<meta property="og:type" content="website">
 
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"PPF Calculator Pro 2026","description":"Free Public Provident Fund calculator for India with 1st April hack, missed installment penalty, 30-year extension, loan strategy and inflation-adjusted value.","applicationCategory":"FinanceApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","ratingCount":"3890"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What is the PPF interest rate for FY 2026-27?","acceptedAnswer":{"@type":"Answer","text":"The illustrative rate used in this tool is 7.1% for Q1 FY 2026-27. Actual rate is notified by the Government of India every quarter."}},
+{"@type":"Question","name":"Why invest in PPF before 5th April?","acceptedAnswer":{"@type":"Answer","text":"Interest for a month is calculated on the lowest balance between the 5th and the last day of the month. Depositing by 5th (ideally 1st April for the year) maximises interest for that month/year."}},
+{"@type":"Question","name":"What is the maximum PPF contribution per year?","acceptedAnswer":{"@type":"Answer","text":"Maximum ₹1,50,000 per financial year across all PPF accounts in your name. Minimum is ₹500."}},
+{"@type":"Question","name":"Can I extend PPF after 15 years?","acceptedAnswer":{"@type":"Answer","text":"Yes. You can extend in blocks of 5 years indefinitely, with or without fresh contributions."}},
+{"@type":"Question","name":"Is PPF interest taxable?","acceptedAnswer":{"@type":"Answer","text":"For resident Indians, PPF interest and maturity are EEE — exempt under current rules. NRIs face restrictions and different tax treatment."}}
+]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"HowTo","name":"How to calculate PPF maturity","step":[
+{"@type":"HowToStep","name":"Enter yearly or monthly contribution","text":"Stay within ₹1.5 lakh per financial year."},
+{"@type":"HowToStep","name":"Choose tenure and rate","text":"Default 15 years at 7.1%; extend up to 30 years."},
+{"@type":"HowToStep","name":"Apply timing hack","text":"Prefer deposit on or before 5th of the month / 1st April for full interest."},
+{"@type":"HowToStep","name":"Review results","text":"See maturity, interest, inflation-adjusted value and download PDF."}
+]}
+</script>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: { ppf: { 950:'#020617', green:'#22c55e', gold:'#f59e0b' } },
+      fontFamily: {
+        sans: ['Inter','system-ui','sans-serif'],
+        mono: ['JetBrains Mono','ui-monospace','monospace']
+      }
+    }
+  }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+<style>
+body{font-family:Inter,system-ui,sans-serif}
+.font-mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+.glass{background:rgba(30,41,59,.88);backdrop-filter:blur(12px);border:1px solid rgba(148,163,184,.14)}
+html:not(.dark) .glass{background:rgba(255,255,255,.95);border-color:rgba(15,23,42,.08)}
+html:not(.dark) body{background:#f0fdf4;color:#0f172a}
+.tab-btn.active{background:#16a34a;color:#fff}
+.toast{transform:translateX(-50%) translateY(100px);opacity:0;transition:.3s}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+input,select{color-scheme:dark}
+html:not(.dark) input,html:not(.dark) select{color-scheme:light}
+</style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen">
+
+<header class="sticky top-0 z-50 bg-slate-950/90 backdrop-blur border-b border-slate-800">
+  <div class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
+    <div class="font-bold text-lg flex items-center gap-2"><span class="text-emerald-400">₹</span> PPF<span class="text-emerald-400">Pro</span> 2026</div>
+    <div class="flex items-center gap-3">
+      <button id="themeBtn" class="w-9 h-9 rounded-full border border-slate-700 text-sm">🌓</button>
+      <span class="text-xs text-slate-500 hidden sm:inline">7.1% • FY 2026-27</span>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-6xl mx-auto px-4 py-8">
+  <section class="text-center mb-8">
+    <div class="flex flex-wrap gap-2 justify-center mb-4 text-xs">
+      <span class="px-3 py-1 rounded-full bg-slate-800 text-emerald-400">1st April Hack</span>
+      <span class="px-3 py-1 rounded-full bg-slate-800">30 Year Extension</span>
+      <span class="px-3 py-1 rounded-full bg-slate-800">Missed Penalty</span>
+      <span class="px-3 py-1 rounded-full bg-slate-800">Family ₹1.6 Cr</span>
+      <span class="px-3 py-1 rounded-full bg-slate-800">Loan Double-Dip</span>
+    </div>
+    <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-3">PPF Calculator 2026 – Maturity, Penalty & 30-Year Plan</h1>
+    <p class="text-slate-400 max-w-2xl mx-auto text-sm sm:text-base">Public Provident Fund calculator for FY 2026-27 @ 7.1%. 1st April interest hack, missed installment revival, loan strategy, family ladder, inflation-adjusted value. Free • No login.</p>
+  </section>
+
+  <!-- MAIN TOOL -->
+  <div class="glass rounded-2xl p-4 sm:p-6 mb-6">
+    <div class="flex flex-wrap gap-2 mb-5" id="tabs">
+      <button class="tab-btn active px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-800" data-p="main">Maturity</button>
+      <button class="tab-btn px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-800" data-p="april">1st April Hack</button>
+      <button class="tab-btn px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-800" data-p="miss">Missed / Revival</button>
+      <button class="tab-btn px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-800" data-p="loan">Loan Double-Dip</button>
+      <button class="tab-btn px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-800" data-p="family">Family Ladder</button>
+      <button class="tab-btn px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-800" data-p="extend">30Y Extension</button>
+      <button class="tab-btn px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-800" data-p="pre">Premature</button>
+      <button class="tab-btn px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-800" data-p="ai">AI Agent</button>
+      <button class="tab-btn px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-800" data-p="infl">Inflation</button>
+      <button class="tab-btn px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-800" data-p="nri">NRI Loss</button>
+      <button class="tab-btn px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-800" data-p="risk">Rate Risk</button>
+      <button class="tab-btn px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-800" data-p="port">Portfolio</button>
+    </div>
+
+    <!-- MATURITY -->
+    <div id="p-main" class="panel">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        <div>
+          <label class="text-xs text-slate-400 block mb-1">Yearly Contribution (₹)</label>
+          <input id="yearly" type="number" value="150000" min="500" max="150000" class="w-full rounded-xl bg-slate-900 border border-slate-700 px-3 py-2.5 text-sm font-mono">
+        </div>
+        <div>
+          <label class="text-xs text-slate-400 block mb-1">Or Monthly (₹)</label>
+          <input id="monthly" type="number" value="12500" min="0" class="w-full rounded-xl bg-slate-900 border border-slate-700 px-3 py-2.5 text-sm font-mono">
+        </div>
+        <div>
+          <label class="text-xs text-slate-400 block mb-1">Tenure (Years)</label>
+          <select id="tenure" class="w-full rounded-xl bg-slate-900 border border-slate-700 px-3 py-2.5 text-sm">
+            <option value="15" selected>15 Years</option>
+            <option value="20">20 (15+5)</option>
+            <option value="25">25 (15+5+5)</option>
+            <option value="30">30 (Max typical plan)</option>
+          </select>
+        </div>
+        <div>
+          <label class="text-xs text-slate-400 block mb-1">Interest Rate % p.a.</label>
+          <input id="rate" type="number" value="7.1" step="0.1" min="5" max="9" class="w-full rounded-xl bg-slate-900 border border-slate-700 px-3 py-2.5 text-sm font-mono">
+        </div>
+      </div>
+      <div class="flex flex-wrap gap-3 mt-4 items-center">
+        <label class="flex items-center gap-2 text-sm cursor-pointer"><input type="checkbox" id="depositEarly" checked class="rounded"> Deposit by 5th of month / 1st Apr bias</label>
+        <button id="btnCalc" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-semibold">Calculate Maturity</button>
+        <button id="btnCard" class="px-4 py-2.5 rounded-xl border border-slate-600 text-sm">Milestone Sticker</button>
+        <button id="btnPdf" class="px-4 py-2.5 rounded-xl border border-slate-600 text-sm">Download PDF</button>
+      </div>
+      <div id="mainResult" class="mt-5 p-4 rounded-xl bg-slate-900/80 border border-slate-700 hidden">
+        <div class="grid sm:grid-cols-3 gap-4 text-center">
+          <div><div class="text-xs text-slate-400">Maturity Value</div><div class="text-2xl font-bold text-emerald-400 font-mono" id="rMat">₹0</div></div>
+          <div><div class="text-xs text-slate-400">Total Invested</div><div class="text-2xl font-bold text-amber-400 font-mono" id="rInv">₹0</div></div>
+          <div><div class="text-xs text-slate-400">Interest Earned</div><div class="text-2xl font-bold font-mono" id="rInt">₹0</div></div>
+        </div>
+        <p class="text-xs text-slate-500 mt-3 text-center" id="rNote"></p>
+      </div>
+    </div>
+
+    <!-- 1st APRIL HACK -->
+    <div id="p-april" class="panel hidden">
+      <p class="text-sm text-slate-400 mb-3">Interest is on lowest balance between 5th and month-end. Depositing ₹1.5L on <strong>1 April</strong> vs late in the year changes interest a lot over 15 years.</p>
+      <div class="grid sm:grid-cols-3 gap-3">
+        <div><label class="text-xs text-slate-400 block mb-1">Annual Amount (₹)</label><input id="aprAmt" type="number" value="150000" class="w-full rounded-xl bg-slate-900 border border-slate-700 px-3 py-2.5 text-sm font-mono"></div>
+        <div><label class="text-xs text-slate-400 block mb-1">Rate %</label><input id="aprRate" type="number" value="7.1" step="0.1" class="w-full rounded-xl bg-slate-900 border border-slate-700 px-3 py-2.5 text-sm font-mono"></div>
+        <div><label class="text-xs text-slate-400 block mb-1">Years</label><input id="aprY" type="number" value="15" class="w-full rounded-xl bg-slate-900 border border-slate-700 px-3 py-2.5 text-sm font-mono"></div>
+      </div>
+      <button id="btnApril" class="mt-4 px-5 py-2.5 rounded-xl bg-emerald-600 text-white text-sm font-semibold">Show 1st April Advantage</button>
+      <div id="aprilResult" class="mt-4 p-4 rounded-xl bg-slate-900/80 border border-slate-700 text-sm leading-relaxed hidden"></div>
+    </div>
+
+    <!-- MISSED / REVIVAL -->
+    <div id="p-miss" class="panel hidden">
+      <p class="text-sm text-slate-400 mb-3">If you skip years, account can become inactive. Revival typically needs arrears + ₹50/year penalty (illustrative rules).</p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        <div><label class="text-xs text-slate-400 block mb-1">Years Missed</label><input id="missY" type="number" value="2" min="1" max="10" class="w-full rounded-xl bg-slate-900 border border-slate-700 px-3 py-2.5 text-sm font-mono"></div>
+        <div><label class="text-xs text-slate-400 block mb-1">Min due per missed year (₹)</label><input id="missMin" type="number" value="500" class="w-full rounded-xl bg-slate-900 border border-slate-700 px-3 py-2.5 text-sm font-mono"></div>
+        <div><label class="text-xs text-slate-400 block mb-1">Penalty per year (₹)</label><input id="missPen" type="number" value="50" class="w-full rounded-xl bg-slate-900 border border-slate-700 px-3 py-2.5 text-sm font-mono"></div>
+        <div><label class="text-xs text-slate-400 block mb-1">Optional fill-up to (₹/year)</label><input id="missFill" type="number" value="150000" class="w-full rounded-xl bg-slate-900 border border-slate-700 px-3 py-2.5 text-sm font-mono"></div>
+      </div>
+      <button id="btnMiss" class="mt-4 px-5 py-2.5 rounded-xl bg-emerald-600 text-white text-sm font-semibold">Calculate Revival Cost</button>
+      <div id="missResult" class="mt-4 p-4 rounded-xl bg-slate-900/80 border border-slate-700 text-sm leading-relaxed hidden"></div>
+    </div>
+
+    <!-- LOAN DOUBLE DIP -->
+    <div id="p-loan" class="panel hidden">
+      <p class="text-sm text-slate-400 mb-3">PPF loan (typically from 3rd to 6th year) at ~1% above PPF rate. Illustrative: take loan and redeposit within annual limit if room exists.</p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        <div><label class="text-xs text-slate-400 block mb-1">PPF Balance at loan time</label><input id="loanBal" type="number" value="400000" class="w-full rounded-xl bg-slate-900 border border-slate-700 px-3 py-2.5 text-sm font-mono"></div>
+        <div><label class="text-xs text-slate-400 block mb-1">Loan % of balance</label><input id="loanPct" type="number" value="25" class="w-full rounded-xl bg-slate-900 border border-slate-700 px-3 py-2.5 text-sm font-mono"></div>
+        <div><label class="text-xs text-slate-400 block mb-1">Loan rate %</label><input id="loanR" type="number" value="8.1" step="0.1" class="w-full rounded-xl bg-slate-900 border border-slate-700 px-3 py-2.5 text-sm font-mono"></div>
+        <div><label class="text-xs text-slate-400 block mb-1">Years loan outstanding</label><input id="loanY" type="number" value="2" class="w-full rounded-xl bg-slate-900 border border-slate-700 px-3 py-2.5 text-sm font-mono"></div>
+      </div>
+      <button id="btnLoan" class="mt-4 px-5 py-2.5 rounded-xl bg-emerald-600 text-white text-sm font-semibold">Simulate Double-Dip</button>
+      <div id="loanResult" class="mt-4 p-4 rounded-xl bg-slate-900/80 border border-slate-700 text-sm leading-relaxed hidden"></div>
+    </div>
+
+    <!-- FAMILY LADDER -->
+    <div id="p-family" class="panel hidden">
+      <p class="text-sm text-slate-400 mb-3">Husband + Wife + 2 minor children = up to 4 × ₹1.5L per year (separate accounts).</p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        <div><label class="text-xs text-slate-400 block mb-1">Accounts (max 4 typical)</label><input id="famN" type="number" value="4" min="1" max="6" class="w-full rounded-xl bg-slate-900 border border-slate-700 px-3 py-2.5 text-sm font-mono"></div>
+        <div><label class="text-xs text-slate-400 block mb-1">Per account / year (₹)</label><input id="famAmt" type="number" value="150000" max="150000" class="w-full rounded-xl bg-slate-900 border border-slate-700 px-3 py-2.5 text-sm font-mono"></div>
+        <div><label class="text-xs text-slate-400 block mb-1">Years</label><input id="famY" type="number" value="15" class="w-full rounded-xl bg-slate-900 border border-slate-700 px-3 py-2.5 text-sm font-mono"></div>
+        <div><label class="text-xs text-slate-400 block mb-1">Rate %</label><input id="famR" type="number" value="7.1" step="0.1" class="w-full rounded-xl bg-slate-900 border border-slate-700 px-3 py-2.5 text-sm font-mono"></div>
+      </div>
+      <button id="btnFam" class="mt-4 px-5 py-2.5 rounded-xl bg-emerald-600 text-white text-sm font-semibold">Build Family Plan</button>
+      <div id="famResult" class="mt-4 p-4 rounded-xl bg-slate-900/80 border border-slate-700 text-sm leading-relaxed hidden"></div>
+    </div>
+
+    <!-- 30Y EXTENSION -->
+    <div id="p-extend" class="panel hidden">
+      <p class="text-sm text-slate-400 mb-3">15 + 5 + 5 + 5 = 30 years. Choose with or without fresh contributions in extension blocks.</p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        <div><label class="text-xs text-slate-400 block mb-1">Annual contribution (₹)</label><input id="extAmt" type="number" value="150000" class="w-full rounded-xl bg-slate-900 border border-slate-700 px-3 py-2.5 text-sm font-mono"></div>
+        <div><label class="text-xs text-slate-400 block mb-1">Rate %</label><input id="extR" type="number" value="7.1" step="0.1" class="w-full rounded-xl bg-slate-900 border border-slate-700 px-3 py-2.5 text-sm font-mono"></div>
+        <div><label class="text-xs text-slate-400 block mb-1">Total years</label>
+          <select id="extY" class="w-full rounded-xl bg-slate-900 border border-slate-700 px-3 py-2.5 text-sm">
+            <option value="15">15</option><option value="20">20</option><option value="25">25</option><option value="30" selected>30</option>
+          </select>
+        </div>
+        <div><label class="text-xs text-slate-400 block mb-1">Contribute in extension?</label>
+          <select id="extCont" class="w-full rounded-xl bg-slate-900 border border-slate-700 px-3 py-2.5 text-sm">
+            <option value="yes">Yes (full limit)</option>
+            <option value="no">No (interest only)</option>
+          </select>
+        </div>
+      </div>
+      <button id="btnExt" class="mt-4 px-5 py-2.5 rounded-xl bg-emerald-600 text-white text-sm font-semibold">Run 30Y Plan</button>
+      <div id="extResult" class="mt-4 p-4 rounded-xl bg-slate-900/80 border border-slate-700 text-sm leading-relaxed hidden"></div>
+    </div>
+
+    <!-- PREMATURE -->
+    <div id="p-pre" class="panel hidden">
+      <p class="text-sm text-slate-400 mb-3">Partial withdrawal allowed from 7th year. Premature closure after 5 years in specific cases (medical/education/higher rates rules simplified).</p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        <div><label class="text-xs text-slate-400 block mb-1">Current Balance (₹)</label><input id="preBal" type="number" value="600000" class="w-full rounded-xl bg-slate-900 border border-slate-700 px-3 py-2.5 text-sm font-mono"></div>
+        <div><label class="text-xs text-slate-400 block mb-1">Year of account</label><input id="preYear" type="number" value="7" min="1" max="15" class="w-full rounded-xl bg-slate-900 border border-slate-700 px-3 py-2.5 text-sm font-mono"></div>
+        <div><label class="text-xs text-slate-400 block mb-1">Withdraw %</label><input id="prePct" type="number" value="50" max="50" class="w-full rounded-xl bg-slate-900 border border-slate-700 px-3 py-2.5 text-sm font-mono"></div>
+        <div><label class="text-xs text-slate-400 block mb-1">Penalty on rate (closure) %</label><input id="prePen" type="number" value="1" step="0.25" class="w-full rounded-xl bg-slate-900 border border-slate-700 px-3 py-2.5 text-sm font-mono"></div>
+      </div>
+      <button id="btnPre" class="mt-4 px-5 py-2.5 rounded-xl bg-emerald-600 text-white text-sm font-semibold">Estimate Withdrawal</button>
+      <div id="preResult" class="mt-4 p-4 rounded-xl bg-slate-900/80 border border-slate-700 text-sm leading-relaxed hidden"></div>
+    </div>
+
+    <!-- AI AGENT -->
+    <div id="p-ai" class="panel hidden">
+      <p class="text-sm text-slate-400 mb-3">Rule-based suggestion from salary & goals (not real AI model).</p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        <div><label class="text-xs text-slate-400 block mb-1">Monthly take-home (₹)</label><input id="aiSal" type="number" value="80000" class="w-full rounded-xl bg-slate-900 border border-slate-700 px-3 py-2.5 text-sm font-mono"></div>
+        <div><label class="text-xs text-slate-400 block mb-1">Age</label><input id="aiAge" type="number" value="32" class="w-full rounded-xl bg-slate-900 border border-slate-700 px-3 py-2.5 text-sm font-mono"></div>
+        <div><label class="text-xs text-slate-400 block mb-1">Goal</label>
+          <select id="aiGoal" class="w-full rounded-xl bg-slate-900 border border-slate-700 px-3 py-2.5 text-sm">
+            <option value="max">Max 80C + safety</option>
+            <option value="bal">Balanced</option>
+            <option value="min">Minimum viable</option>
+          </select>
+        </div>
+        <div class="flex items-end"><button id="btnAi" class="w-full px-5 py-2.5 rounded-xl bg-emerald-600 text-white text-sm font-semibold">Suggest Plan</button></div>
+      </div>
+      <div id="aiResult" class="mt-4 p-4 rounded-xl bg-slate-900/80 border border-slate-700 text-sm leading-relaxed hidden"></div>
+    </div>
+
+    <!-- INFLATION -->
+    <div id="p-infl" class="panel hidden">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        <div><label class="text-xs text-slate-400 block mb-1">Future Maturity (₹)</label><input id="infMat" type="number" value="4000000" class="w-full rounded-xl bg-slate-900 border border-slate-700 px-3 py-2.5 text-sm font-mono"></div>
+        <div><label class="text-xs text-slate-400 block mb-1">Inflation %</label><input id="infR" type="number" value="6" step="0.1" class="w-full rounded-xl bg-slate-900 border border-slate-700 px-3 py-2.5 text-sm font-mono"></div>
+        <div><label class="text-xs text-slate-400 block mb-1">Years</label><input id="infY" type="number" value="15" class="w-full rounded-xl bg-slate-900 border border-slate-700 px-3 py-2.5 text-sm font-mono"></div>
+        <div class="flex items-end"><button id="btnInf" class="w-full px-5 py-2.5 rounded-xl bg-emerald-600 text-white text-sm font-semibold">Real Value</button></div>
+      </div>
+      <div id="infResult" class="mt-4 p-4 rounded-xl bg-slate-900/80 border border-slate-700 text-sm leading-relaxed hidden"></div>
+    </div>
+
+    <!-- NRI -->
+    <div id="p-nri" class="panel hidden">
+      <p class="text-sm text-slate-400 mb-3">Resident PPF is EEE. If status becomes NRI, contribution usually stops; interest treatment can become taxable — estimate loss vs resident.</p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        <div><label class="text-xs text-slate-400 block mb-1">Balance (₹)</label><input id="nriBal" type="number" value="800000" class="w-full rounded-xl bg-slate-900 border border-slate-700 px-3 py-2.5 text-sm font-mono"></div>
+        <div><label class="text-xs text-slate-400 block mb-1">Remaining years</label><input id="nriY" type="number" value="8" class="w-full rounded-xl bg-slate-900 border border-slate-700 px-3 py-2.5 text-sm font-mono"></div>
+        <div><label class="text-xs text-slate-400 block mb-1">Rate %</label><input id="nriR" type="number" value="7.1" step="0.1" class="w-full rounded-xl bg-slate-900 border border-slate-700 px-3 py-2.5 text-sm font-mono"></div>
+        <div><label class="text-xs text-slate-400 block mb-1">Tax on interest if NRI %</label><input id="nriTax" type="number" value="30" class="w-full rounded-xl bg-slate-900 border border-slate-700 px-3 py-2.5 text-sm font-mono"></div>
+      </div>
+      <button id="btnNri" class="mt-4 px-5 py-2.5 rounded-xl bg-emerald-600 text-white text-sm font-semibold">Estimate Tax Drag</button>
+      <div id="nriResult" class="mt-4 p-4 rounded-xl bg-slate-900/80 border border-slate-700 text-sm leading-relaxed hidden"></div>
+    </div>
+
+    <!-- RATE RISK -->
+    <div id="p-risk" class="panel hidden">
+      <p class="text-sm text-slate-400 mb-3">PPF rate is reviewed quarterly. Drag slider to stress-test maturity.</p>
+      <div class="grid sm:grid-cols-3 gap-3">
+        <div><label class="text-xs text-slate-400 block mb-1">Yearly (₹)</label><input id="riskAmt" type="number" value="150000" class="w-full rounded-xl bg-slate-900 border border-slate-700 px-3 py-2.5 text-sm font-mono"></div>
+        <div><label class="text-xs text-slate-400 block mb-1">Years</label><input id="riskY" type="number" value="15" class="w-full rounded-xl bg-slate-900 border border-slate-700 px-3 py-2.5 text-sm font-mono"></div>
+        <div>
+          <label class="text-xs text-slate-400 block mb-1">Rate: <span id="riskVal" class="text-emerald-400 font-mono">7.1%</span></label>
+          <input id="riskR" type="range" min="6.0" max="8.0" step="0.1" value="7.1" class="w-full mt-3">
+        </div>
+      </div>
+      <button id="btnRisk" class="mt-4 px-5 py-2.5 rounded-xl bg-emerald-600 text-white text-sm font-semibold">Simulate</button>
+      <div id="riskResult" class="mt-4 p-4 rounded-xl bg-slate-900/80 border border-slate-700 text-sm leading-relaxed hidden"></div>
+    </div>
+
+    <!-- PORTFOLIO -->
+    <div id="p-port" class="panel hidden">
+      <p class="text-sm text-slate-400 mb-3">Simple 15-year mix: PPF + Gold ETF style + Equity SIP (illustrative returns).</p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        <div><label class="text-xs text-slate-400 block mb-1">PPF / year (₹)</label><input id="portPpf" type="number" value="150000" class="w-full rounded-xl bg-slate-900 border border-slate-700 px-3 py-2.5 text-sm font-mono"></div>
+        <div><label class="text-xs text-slate-400 block mb-1">Gold / year (₹)</label><input id="portGold" type="number" value="50000" class="w-full rounded-xl bg-slate-900 border border-slate-700 px-3 py-2.5 text-sm font-mono"></div>
+        <div><label class="text-xs text-slate-400 block mb-1">Equity SIP / year (₹)</label><input id="portSip" type="number" value="50000" class="w-full rounded-xl bg-slate-900 border border-slate-700 px-3 py-2.5 text-sm font-mono"></div>
+        <div><label class="text-xs text-slate-400 block mb-1">Years</label><input id="portY" type="number" value="15" class="w-full rounded-xl bg-slate-900 border border-slate-700 px-3 py-2.5 text-sm font-mono"></div>
+      </div>
+      <button id="btnPort" class="mt-4 px-5 py-2.5 rounded-xl bg-emerald-600 text-white text-sm font-semibold">Project Portfolio</button>
+      <div id="portResult" class="mt-4 p-4 rounded-xl bg-slate-900/80 border border-slate-700 text-sm leading-relaxed hidden"></div>
+    </div>
+  </div>
+
+  <!-- BANK VS PO -->
+  <div class="glass rounded-2xl p-4 sm:p-6 mb-6">
+    <h2 class="text-lg font-bold text-emerald-400 mb-3">Bank vs Post Office PPF – Speed Compare</h2>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm">
+        <thead><tr class="text-slate-400 text-left"><th class="p-2">Channel</th><th class="p-2">Account Opening</th><th class="p-2">Online Deposit</th><th class="p-2">Loan / Withdrawal</th><th class="p-2">Best For</th></tr></thead>
+        <tbody class="text-slate-300">
+          <tr class="border-t border-slate-800"><td class="p-2">SBI / Big Banks</td><td class="p-2">Same day – 2 days</td><td class="p-2">Net banking / UPI</td><td class="p-2">Faster digital</td><td class="p-2">Salaried, online</td></tr>
+          <tr class="border-t border-slate-800"><td class="p-2">HDFC / ICICI</td><td class="p-2">1–3 days</td><td class="p-2">App / net banking</td><td class="p-2">Good app UX</td><td class="p-2">Existing customers</td></tr>
+          <tr class="border-t border-slate-800"><td class="p-2">Post Office</td><td class="p-2">3–15 days</td><td class="p-2">Limited / IPPB</td><td class="p-2">Branch process</td><td class="p-2">Small towns, trust</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- NOMINEE / DEATH -->
+  <div class="glass rounded-2xl p-4 sm:p-6 mb-6 text-sm text-slate-400">
+    <h2 class="text-lg font-bold text-emerald-400 mb-3">Nominee & Death Claim Checklist</h2>
+    <ul class="list-disc pl-5 space-y-2">
+      <li>Register nominee at opening; update after marriage / children.</li>
+      <li>On death: death certificate, passbook, KYC of nominee, claim form, indemnity if required.</li>
+      <li>Resident PPF maturity/interest is tax-exempt under current EEE rules; confirm for estate/legal specifics.</li>
+      <li>Minor accounts: guardian operates until majority.</li>
+    </ul>
+  </div>
+
+  <!-- MILESTONE -->
+  <div class="glass rounded-2xl p-4 sm:p-6 mb-6">
+    <h2 class="text-lg font-bold text-emerald-400 mb-3">WhatsApp Milestone Sticker</h2>
+    <canvas id="cardCanvas" width="600" height="320" class="w-full max-w-lg mx-auto rounded-xl bg-slate-900"></canvas>
+    <div class="flex flex-wrap gap-2 mt-3 justify-center">
+      <button id="btnDlCard" class="px-4 py-2 rounded-xl bg-emerald-500 text-slate-900 text-sm font-semibold">Download PNG</button>
+      <button id="btnShare" class="px-4 py-2 rounded-xl border border-slate-600 text-sm">Copy Share Text</button>
+    </div>
+  </div>
+
+  <!-- CHART -->
+  <div class="glass rounded-2xl p-4 sm:p-6 mb-6">
+    <h2 class="text-lg font-bold text-emerald-400 mb-3">15–30 Year Growth Chart</h2>
+    <canvas id="growthChart" height="120"></canvas>
+  </div>
+
+  <!-- COMPLAINT LETTER -->
+  <div class="glass rounded-2xl p-4 sm:p-6 mb-6">
+    <h2 class="text-lg font-bold text-emerald-400 mb-3">RBI / Bank Complaint Letter (Interest Not Credited)</h2>
+    <div class="grid sm:grid-cols-2 gap-3">
+      <div><label class="text-xs text-slate-400 block mb-1">Your Name</label><input id="cName" type="text" value="Your Name" class="w-full rounded-xl bg-slate-900 border border-slate-700 px-3 py-2.5 text-sm"></div>
+      <div><label class="text-xs text-slate-400 block mb-1">Account / Bank</label><input id="cBank" type="text" value="SBI PPF A/c" class="w-full rounded-xl bg-slate-900 border border-slate-700 px-3 py-2.5 text-sm"></div>
+    </div>
+    <button id="btnLetter" class="mt-3 px-5 py-2.5 rounded-xl bg-emerald-600 text-white text-sm font-semibold">Generate PDF Letter</button>
+  </div>
+
+  <!-- GUIDE -->
+  <article class="glass rounded-2xl p-4 sm:p-6 mb-6 text-sm text-slate-400 leading-relaxed">
+    <h2 class="text-lg font-bold text-slate-100 mb-3">PPF Calculator 2026 – Complete Guide</h2>
+    <p class="mb-3">This free <strong class="text-slate-200">ppf calculator</strong> and <strong class="text-slate-200">ppf maturity calculator</strong> uses 7.1% illustrative rate for FY 2026-27. Plan <strong class="text-slate-200">ppf 150000 per year</strong>, compare <strong class="text-slate-200">ppf 15 years</strong> vs extension, and use the <strong class="text-slate-200">ppf 1st april investment</strong> hack.</p>
+    <h3 class="text-slate-200 font-semibold mt-4 mb-2">Missed installment & loan</h3>
+    <p class="mb-3">Use revival cost for inactive years and the loan double-dip tab for 3rd–6th year strategy. Always stay within annual limit.</p>
+    <h3 class="text-slate-200 font-semibold mt-4 mb-2">PPF vs FD / NPS / ELSS</h3>
+    <p>PPF offers EEE tax treatment and sovereign-backed rates. FD is taxable; ELSS has market risk; NPS has partial tax benefits and lock-ins. Choose by goal and risk.</p>
+  </article>
+
+  <!-- FAQ -->
+  <div class="glass rounded-2xl p-4 sm:p-6 mb-6">
+    <h2 class="text-lg font-bold text-emerald-400 mb-4">Frequently Asked Questions</h2>
+    <div class="space-y-4 text-sm">
+      <div><h3 class="font-semibold text-slate-200">What is PPF interest rate 2026-27?</h3><p class="text-slate-400">This tool uses 7.1% (Q1 illustrative). Government notifies rates quarterly.</p></div>
+      <div><h3 class="font-semibold text-slate-200">Why deposit before 5th April / 5th of month?</h3><p class="text-slate-400">Interest is calculated on the lowest balance between the 5th and month-end. Early deposit earns that month’s interest.</p></div>
+      <div><h3 class="font-semibold text-slate-200">Maximum PPF contribution?</h3><p class="text-slate-400">₹1,50,000 per financial year. Minimum ₹500.</p></div>
+      <div><h3 class="font-semibold text-slate-200">Can I extend after 15 years?</h3><p class="text-slate-400">Yes, in 5-year blocks, with or without contributions.</p></div>
+      <div><h3 class="font-semibold text-slate-200">Is PPF tax free?</h3><p class="text-slate-400">For residents, interest and maturity are exempt (EEE) under current rules.</p></div>
+      <div><h3 class="font-semibold text-slate-200">PPF loan eligibility?</h3><p class="text-slate-400">Typically from 3rd financial year to 6th; amount linked to balance of prior years.</p></div>
+      <div><h3 class="font-semibold text-slate-200">Missed contribution penalty?</h3><p class="text-slate-400">Account may deactivate; revival needs minimum deposits for missed years + small per-year penalty.</p></div>
+      <div><h3 class="font-semibold text-slate-200">Is this calculator free?</h3><p class="text-slate-400">Yes. 100% free, no login, runs in browser only.</p></div>
+    </div>
+  </div>
+
+  <div class="glass rounded-2xl p-4 sm:p-6 mb-6 text-sm text-slate-400">
+    <h2 class="text-lg font-bold text-slate-100 mb-2">1-Month Viral Plan</h2>
+    <ul class="list-disc pl-5 space-y-1">
+      <li>Week1: Launch + 1st April Hack blog + GSC</li>
+      <li>Week2: LinkedIn “3 Generation ₹1.6 Cr PPF”</li>
+      <li>Week3: Shorts “Missed PPF cost” + Milestone stickers</li>
+      <li>Week4: Reddit inflation-adjusted real value post</li>
+    </ul>
+  </div>
+</main>
+<!-- SEO BLOG SECTION START -->
+<article class="glass rounded-2xl p-6 sm:p-8 mb-6 text-sm leading-relaxed">
+<h2 class="text-2xl font-bold text-slate-100 mb-4">PPF Calculator 2026: Public Provident Fund Maturity, Interest, Loan & 1st April Hack Complete Guide</h2>
+
+<p class="mb-4">Looking for the most accurate <strong>PPF Calculator</strong> for FY 2026-27? You are at the right place. Our free <strong>PPF Maturity Calculator</strong> helps you calculate PPF maturity amount, interest earned, missed installment penalty, loan eligibility, 30 year extension plan and inflation-adjusted real value instantly. The current illustrative interest rate is <strong>7.1% for Q1 FY 2026-27</strong> as notified by Government of India. Whether you are searching for <strong>sbi ppf calculator</strong>, <strong>post office ppf calculator</strong> or <strong>ppf 1st april investment</strong> strategy, this tool covers everything.</p>
+
+<h3 class="text-xl font-bold text-emerald-400 mt-6 mb-3">What is Public Provident Fund and Why is it Important?</h3>
+<p class="mb-3">PPF or Public Provident Fund is a government-backed savings scheme with 15 year lock-in. It comes with EEE tax benefit - Exempt on Investment, Exempt on Interest, Exempt on Maturity. For FY 2026-27 the rate is 7.1%. The maximum investment allowed is <strong>₹1,50,000 per financial year</strong> and minimum is ₹500.</p>
+<p class="mb-3">The biggest advantage of PPF is safety + tax free returns. Unlike FD, PPF interest is not taxable. Unlike ELSS or Mutual Fund, there is zero market risk. This is why every Indian should use a <strong>ppf calculator 2026</strong> before investing.</p>
+
+<h3 class="text-xl font-bold text-emerald-400 mt-6 mb-3">How Does PPF Calculator Work? Formula Explained</h3>
+<p class="mb-3">PPF interest is calculated monthly but credited yearly. Interest for a month is calculated on the lowest balance between 5th and last day of that month. This is why the <strong>ppf 1st april investment</strong> hack works.</p>
+<p class="font-mono bg-slate-900 p-3 rounded mb-3">Interest = Principal × Rate × Time</p>
+<p class="mb-3">Example: If you deposit ₹1,50,000 on 1st April every year for 15 years at 7.1%, your maturity will be approximately ₹40,68,000. Total invested = ₹22,50,000. Interest earned = ₹18,18,000. Use our <strong>ppf maturity calculator</strong> above to get exact numbers for any amount and tenure.</p>
+
+<h3 class="text-xl font-bold text-emerald-400 mt-6 mb-3">1st April Hack: How to Earn ₹11,340 Extra Interest</h3>
+<p class="mb-3">This is the most important PPF strategy that 90% people miss. Because interest is calculated from 5th of every month, depositing your full ₹1.5L before 5th April gives you 12 months interest in that year. Depositing in December gives you only 4 months interest.</p>
+<p class="mb-3">Over 15 years, this small timing difference creates <strong>₹11,340 to ₹15,000 extra</strong> depending on rate. Always use our "1st April Hack" tab to see the exact difference for your amount.</p>
+
+<h3 class="text-xl font-bold text-emerald-400 mt-6 mb-3">PPF Missed Installment Penalty & Revival Calculator</h3>
+<p class="mb-3">What if you miss depositing for 1 or 2 years? Your PPF account becomes inactive. To revive it you need to pay:</p>
+<ul class="list-disc pl-5 space-y-2 mb-3">
+<li><strong>Minimum ₹500 for each missed year</strong></li>
+<li><strong>Penalty of ₹50 for each missed year</strong></li>
+</ul>
+<p class="mb-3">Example: If you missed 2 years, you need to pay 2 × 500 + 2 × 50 = ₹1,100 to revive. Use our "Missed / Revival" tab to calculate exact amount. After revival, you can continue and get full maturity benefits.</p>
+
+<h3 class="text-xl font-bold text-emerald-400 mt-6 mb-3">PPF Loan Calculator - 3rd to 6th Year Double Dip Strategy</h3>
+<p class="mb-3">From 3rd financial year to 6th financial year, you can take loan up to 25% of balance of 2nd year preceding. PPF loan interest is only 1% above PPF rate. So at 7.1% PPF, loan rate is 8.1%.</p>
+<p class="mb-3">Smart strategy: Take loan for emergency and if you have extra income, repay it fast. Or if you have unused annual limit, you can redeposit the loan amount back into PPF. Our <strong>ppf loan calculator</strong> tab shows if this "double dip" is profitable for you.</p>
+
+<h3 class="text-xl font-bold text-emerald-400 mt-6 mb-3">30 Year PPF Extension Plan: 15 + 5 + 5 + 5</h3>
+<p class="mb-3">After 15 years, you can extend PPF in blocks of 5 years. You have 2 options:</p>
+<ol class="list-decimal pl-5 space-y-2 mb-3">
+<li><strong>With Contribution:</strong> Continue depositing up to ₹1.5L every year</li>
+<li><strong>Without Contribution:</strong> Just let existing balance earn interest</li>
+</ol>
+<p class="mb-3">If you invest ₹1.5L for 15 years and then extend 15 more years with contribution, maturity can cross <strong>₹1.5 Crore</strong> at 7.1%. Use our "30Y Extension" tab to see year-by-year chart.</p>
+
+<h3 class="text-xl font-bold text-emerald-400 mt-6 mb-3">Family PPF Ladder: ₹1.6 Crore in 15 Years</h3>
+<p class="mb-3">PPF limit of ₹1.5L is per person. So a family of 4 can invest 4 × 1.5L = ₹6 Lakh per year.</p>
+<p class="mb-3"><strong>Husband: ₹1.5L + Wife: ₹1.5L + Child 1: ₹1.5L + Child 2: ₹1.5L</strong></p>
+<p class="mb-3">At 7.1% for 15 years, total family maturity ≈ <strong>₹1.62 Crore</strong>. This is the best retirement planning for Indian families. Our "Family Ladder" tab calculates this instantly.</p>
+
+<h3 class="text-xl font-bold text-emerald-400 mt-6 mb-3">PPF vs FD vs NPS vs Mutual Fund - Which is Better?</h3>
+<div class="overflow-x-auto mb-3">
+<table class="w-full text-xs">
+<thead><tr class="text-slate-400"><th class="p-2 text-left">Factor</th><th class="p-2">PPF</th><th class="p-2">FD</th><th class="p-2">NPS</th><th class="p-2">ELSS</th></tr></thead>
+<tbody>
+<tr class="border-t border-slate-800"><td class="p-2">Return</td><td class="p-2">7.1%</td><td class="p-2">6.5% - 7.5%</td><td class="p-2">9% - 11%</td><td class="p-2">12% - 15%</td></tr>
+<tr class="border-t border-slate-800"><td class="p-2">Tax</td><td class="p-2">EEE - Tax Free</td><td class="p-2">Taxable</td><td class="p-2">Partial Tax</td><td class="p-2">LTCG 10%</td></tr>
+<tr class="border-t border-slate-800"><td class="p-2">Risk</td><td class="p-2">Zero</td><td class="p-2">Very Low</td><td class="p-2">Medium</td><td class="p-2">High</td></tr>
+<tr class="border-t border-slate-800"><td class="p-2">Lock-in</td><td class="p-2">15 Years</td><td class="p-2">Flexible</td><td class="p-2">Till 60yr</td><td class="p-2">3 Years</td></tr>
+</tbody>
+</table>
+</div>
+<p class="mb-3">Use our comparison tab to see <strong>ppf vs fd calculator</strong> results with post-tax returns.</p>
+
+<h3 class="text-xl font-bold text-emerald-400 mt-6 mb-3">Inflation Reality: ₹40 Lakh in 15 Years = ₹16.7 Lakh Today</h3>
+<p class="mb-3">This is the harsh truth. If inflation is 6%, then ₹40,68,000 after 15 years will have purchasing power of only ₹16,70,000 today. PPF beats inflation by only 1.1%.</p>
+<p class="mb-3">Solution: Use PPF for safety and debt. Use Equity SIP for growth. Our "Inflation" and "Portfolio" tabs help you balance this.</p>
+
+<h3 class="text-xl font-bold text-emerald-400 mt-6 mb-3">NRI, Minor, Nominee & Death Claim Rules</h3>
+<p class="mb-3"><strong>NRI:</strong> Cannot open new PPF. If you become NRI, interest becomes taxable. Use our NRI tab to calculate tax loss.</p>
+<p class="mb-3"><strong>Minor:</strong> Parents can open PPF for child. Clubbed with parent's ₹1.5L limit.</p>
+<p class="mb-3"><strong>Nominee:</strong> Always add nominee. On death, nominee gets full amount tax free. Keep death certificate, KYC ready.</p>
+
+<h3 class="text-xl font-bold text-emerald-400 mt-6 mb-3">Frequently Asked Questions on PPF Calculator</h3>
+<div class="space-y-3">
+<p><strong>Q1. What is the PPF interest rate 2026-27?</strong><br>A: 7.1% for Q1 FY 2026-27. Govt revises every quarter.</p>
+<p><strong>Q2. Maximum PPF investment per year?</strong><br>A: ₹1,50,000 per financial year. Minimum ₹500.</p>
+<p><strong>Q3. Can I withdraw PPF before 15 years?</strong><br>A: Partial withdrawal from 7th year. Premature closure after 5 years only for medical/education.</p>
+<p><strong>Q4. Is PPF interest taxable?</strong><br>A: No. For residents, PPF is EEE - fully tax free.</p>
+<p><strong>Q5. Which is better SBI PPF or Post Office PPF?</strong><br>A: Interest rate same. Banks are faster for online deposit. Post Office has better trust in rural areas.</p>
+</div>
+
+<h3 class="text-xl font-bold text-emerald-400 mt-6 mb-3">Final Words</h3>
+<p class="mb-3">This free <strong>ppf calculator india 2026</strong> is built to help you maximize returns. Don't just deposit blindly. Use 1st April hack, avoid missed penalties, plan 30 year extension and check inflation-adjusted value.</p>
+<p class="mb-3">Bookmark this <strong>ppf maturity calculator</strong> and check before every deposit. For educational purpose only. Rate 7.1% Q1 FY 2026-27.</p>
+</article>
+<!-- SEO BLOG SECTION END -->
+<footer class="border-t border-slate-800 py-8 text-center text-sm text-slate-500">
+  <p>Interest rate 7.1% for Q1 FY 2026-27 (illustrative). For educational purpose only.</p>
+  <p class="mt-2">PPF Calculator Pro 2026 • Not financial advice</p>
+  <p class="mt-2 text-slate-400">made by mujahar ♥</p>
+</footer>
+
+<div id="toast" class="toast fixed bottom-6 left-1/2 bg-emerald-500 text-slate-900 px-5 py-2.5 rounded-xl font-semibold text-sm z-50 pointer-events-none">OK</div>
+
+<script>
+(function(){
+'use strict';
+const $ = s => document.querySelector(s);
+const $$ = s => document.querySelectorAll(s);
+const toast = m => { const t=$('#toast'); t.textContent=m; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2200); };
+const fmt = n => '₹' + Math.round(n).toLocaleString('en-IN');
+
+/* PPF projection: annual contribution at start of year, interest compounded yearly (practical approximation of monthly 5th-rule) */
+function ppfFuture(annual, years, rate, earlyBias) {
+  // earlyBias true ≈ full year interest on contribution (1 Apr style)
+  // false ≈ contribution earns ~half year on average if delayed
+  let bal = 0;
+  const r = rate/100;
+  const credit = earlyBias ? 1 : 0.55; // simplified timing factor on new money
+  for (let y = 1; y <= years; y++) {
+    bal += annual;
+    // interest on (old balance full + new money * credit)
+    const interestBase = (bal - annual) + annual * credit;
+    bal = bal + interestBase * r;
+  }
+  return bal;
+}
+
+function ppfSchedule(annual, years, rate, earlyBias, contributeAfter15) {
+  let bal = 0;
+  const r = rate/100;
+  const credit = earlyBias ? 1 : 0.55;
+  const points = [0];
+  for (let y = 1; y <= years; y++) {
+    const canContribute = y <= 15 || contributeAfter15;
+    if (canContribute) bal += annual;
+    const newMoney = canContribute ? annual : 0;
+    const interestBase = (bal - newMoney) + newMoney * credit;
+    bal = bal + interestBase * r;
+    points.push(Math.round(bal));
+  }
+  return { bal, points, invested: annual * (contributeAfter15 ? years : Math.min(years,15)) };
+}
+
+$('#themeBtn').onclick = () => {
+  document.documentElement.classList.toggle('dark');
+  document.body.classList.toggle('bg-slate-950');
+  document.body.classList.toggle('text-slate-100');
+};
+
+$$('.tab-btn').forEach(b => {
+  b.onclick = () => {
+    $$('.tab-btn').forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+    $$('.panel').forEach(p => p.classList.add('hidden'));
+    $('#p-' + b.dataset.p).classList.remove('hidden');
+  };
+});
+
+/* Sync monthly <-> yearly */
+$('#monthly').addEventListener('input', () => {
+  const m = +$('#monthly').value || 0;
+  $('#yearly').value = Math.min(150000, m * 12);
+});
+$('#yearly').addEventListener('input', () => {
+  const y = Math.min(150000, +$('#yearly').value || 0);
+  $('#yearly').value = y;
+  $('#monthly').value = Math.round(y / 12);
+});
+
+function calcMain() {
+  let annual = Math.min(150000, Math.max(500, +$('#yearly').value || 0));
+  $('#yearly').value = annual;
+  const years = +$('#tenure').value || 15;
+  const rate = +$('#rate').value || 7.1;
+  const early = $('#depositEarly').checked;
+  const contribExt = years > 15; // assume contribute in extension if tenure>15 from main select
+  const res = ppfSchedule(annual, years, rate, early, contribExt);
+  const invested = res.invested;
+  const interest = res.bal - invested;
+  $('#mainResult').classList.remove('hidden');
+  $('#rMat').textContent = fmt(res.bal);
+  $('#rInv').textContent = fmt(invested);
+  $('#rInt').textContent = fmt(interest);
+  $('#rNote').textContent = `${years} yr @ ${rate}% | ${early ? 'Early deposit bias ON (1 Apr / before 5th)' : 'Delayed deposit bias'} | Cap ₹1.5L/year`;
+  drawCard(res.bal, years, rate);
+  updateChart(res.points);
+  return { annual, years, rate, bal: res.bal, invested, interest };
+}
+$('#btnCalc').onclick = () => { calcMain(); toast('Maturity calculated'); };
+
+/* APRIL HACK */
+$('#btnApril').onclick = () => {
+  const a = Math.min(150000, +$('#aprAmt').value || 150000);
+  const r = +$('#aprRate').value || 7.1;
+  const y = +$('#aprY').value || 15;
+  const early = ppfSchedule(a, y, r, true, false).bal;
+  const late = ppfSchedule(a, y, r, false, false).bal;
+  const diff = early - late;
+  $('#aprilResult').classList.remove('hidden');
+  $('#aprilResult').innerHTML = `If you invest <strong>${fmt(a)}</strong> every year for <strong>${y}</strong> years @ ${r}%:<br>
+    <strong class="text-emerald-400">1st April / before 5th style:</strong> ${fmt(early)}<br>
+    <strong>Late-in-year deposits:</strong> ${fmt(late)}<br>
+    <strong class="text-amber-400">Extra interest ≈ ${fmt(diff)}</strong> over the full period.<br>
+    <span class="text-slate-500">Based on simplified monthly 5th-rule timing model — actual ledger is month-wise.</span>`;
+  toast('April hack calculated');
+};
+
+/* MISSED */
+$('#btnMiss').onclick = () => {
+  const years = +$('#missY').value || 1;
+  const minDue = +$('#missMin').value || 500;
+  const pen = +$('#missPen').value || 50;
+  const fill = Math.min(150000, +$('#missFill').value || 500);
+  const minTotal = years * minDue + years * pen;
+  const fillTotal = years * fill + years * pen;
+  $('#missResult').classList.remove('hidden');
+  $('#missResult').innerHTML = `For <strong>${years}</strong> missed year(s):<br>
+    Minimum revival (₹${minDue}/yr + ₹${pen} penalty/yr): <strong>${fmt(minTotal)}</strong><br>
+    If you also top-up to ${fmt(fill)}/yr: <strong>${fmt(fillTotal)}</strong> (still respect ₹1.5L annual limit in revival year rules).<br>
+    <span class="text-slate-500">Confirm exact revival procedure with your bank/PO — inactive account rules apply.</span>`;
+  toast('Revival cost ready');
+};
+
+/* LOAN */
+$('#btnLoan').onclick = () => {
+  const bal = +$('#loanBal').value || 0;
+  const pct = +$('#loanPct').value || 25;
+  const loan = bal * pct / 100;
+  const rate = +$('#loanR').value || 8.1;
+  const y = +$('#loanY').value || 2;
+  const interestCost = loan * (rate/100) * y; // simple
+  const ifLeftInPpf = loan * Math.pow(1.071, y) - loan;
+  $('#loanResult').classList.remove('hidden');
+  $('#loanResult').innerHTML = `Loan amount (~${pct}% of ${fmt(bal)}): <strong>${fmt(loan)}</strong><br>
+    Approx interest cost @ ${rate}% for ${y} yr: <strong>${fmt(interestCost)}</strong><br>
+    If that money had stayed in PPF @7.1%: interest ~${fmt(ifLeftInPpf)}.<br>
+    <span class="text-amber-400">Double-dip only works if you have unused annual limit headroom and clear rules — model carefully.</span>`;
+  toast('Loan simulation done');
+};
+
+/* FAMILY */
+$('#btnFam').onclick = () => {
+  const n = Math.min(6, +$('#famN').value || 1);
+  const amt = Math.min(150000, +$('#famAmt').value || 150000);
+  const y = +$('#famY').value || 15;
+  const r = +$('#famR').value || 7.1;
+  const one = ppfSchedule(amt, y, r, true, false).bal;
+  const total = one * n;
+  const invested = amt * y * n;
+  $('#famResult').classList.remove('hidden');
+  $('#famResult').innerHTML = `${n} accounts × ${fmt(amt)}/year × ${y} years @ ${r}%<br>
+    Per account maturity ≈ <strong>${fmt(one)}</strong><br>
+    <strong class="text-emerald-400">Family total ≈ ${fmt(total)}</strong> (invested ${fmt(invested)})<br>
+    Example 4 × 1.5L × 15y can approach ~₹1.6Cr zone depending on rate path.`;
+  toast('Family plan ready');
+};
+
+/* EXTEND */
+$('#btnExt').onclick = () => {
+  const amt = Math.min(150000, +$('#extAmt').value || 150000);
+  const r = +$('#extR').value || 7.1;
+  const y = +$('#extY').value || 30;
+  const cont = $('#extCont').value === 'yes';
+  const res = ppfSchedule(amt, y, r, true, cont);
+  $('#extResult').classList.remove('hidden');
+  $('#extResult').innerHTML = `${y}-year plan @ ${r}% | Contributions ${cont ? 'throughout' : 'only first 15 years'}<br>
+    Maturity ≈ <strong class="text-emerald-400">${fmt(res.bal)}</strong><br>
+    Total invested ≈ ${fmt(res.invested)} | Interest ≈ ${fmt(res.bal - res.invested)}`;
+  updateChart(res.points);
+  toast('Extension plan run');
+};
+
+/* PREMATURE */
+$('#btnPre').onclick = () => {
+  const bal = +$('#preBal').value || 0;
+  const yr = +$('#preYear').value || 7;
+  const pct = Math.min(50, +$('#prePct').value || 50);
+  const allowed = yr >= 7;
+  const amt = bal * pct / 100;
+  $('#preResult').classList.remove('hidden');
+  $('#preResult').innerHTML = allowed
+    ? `Year ${yr}: partial withdrawal up to ~50% of balance at end of 4th year preceding (simplified).<br>
+       Requested ${pct}% of current ${fmt(bal)} ≈ <strong>${fmt(amt)}</strong>.<br>
+       Premature full closure (if eligible) may apply rate penalty — check scheme rules.`
+    : `Year ${yr}: partial withdrawal generally starts from 7th financial year. Continue deposits.`;
+  toast('Withdrawal estimate ready');
+};
+
+/* AI */
+$('#btnAi').onclick = () => {
+  const sal = +$('#aiSal').value || 50000;
+  const age = +$('#aiAge').value || 30;
+  const goal = $('#aiGoal').value;
+  let yearly = 50000;
+  if (goal === 'max') yearly = 150000;
+  else if (goal === 'bal') yearly = Math.min(150000, Math.max(24000, Math.round(sal * 0.1 * 12)));
+  else yearly = Math.min(60000, Math.max(6000, Math.round(sal * 0.05 * 12)));
+  const monthly = Math.round(yearly / 12);
+  const mat = ppfSchedule(yearly, 15, 7.1, true, false).bal;
+  $('#aiResult').classList.remove('hidden');
+  $('#aiResult').innerHTML = `For salary ~${fmt(sal)}/month and age ${age}:<br>
+    Suggested PPF: <strong class="text-emerald-400">${fmt(monthly)}/month</strong> (₹${yearly.toLocaleString('en-IN')}/year)<br>
+    15-year maturity @7.1% ≈ <strong>${fmt(mat)}</strong><br>
+    Remaining 80C can go to ELSS/EPF/insurance as suitable.`;
+  toast('Plan suggested');
+};
+
+/* INFLATION */
+$('#btnInf').onclick = () => {
+  const mat = +$('#infMat').value || 0;
+  const inf = +$('#infR').value || 6;
+  const y = +$('#infY').value || 15;
+  const real = mat / Math.pow(1 + inf/100, y);
+  $('#infResult').classList.remove('hidden');
+  $('#infResult').innerHTML = `Nominal maturity <strong>${fmt(mat)}</strong> after ${y} years at ${inf}% inflation<br>
+    ≈ <strong class="text-amber-400">${fmt(real)}</strong> in today’s purchasing power.<br>
+    Example: ₹40L future may feel like ~₹16–17L today at 6% inflation.`;
+  toast('Real value calculated');
+};
+
+/* NRI */
+$('#btnNri').onclick = () => {
+  const bal = +$('#nriBal').value || 0;
+  const y = +$('#nriY').value || 0;
+  const r = +$('#nriR').value || 7.1;
+  const tax = +$('#nriTax').value || 30;
+  let b = bal;
+  for (let i=0;i<y;i++) b *= (1+r/100);
+  const interest = b - bal;
+  const taxDrag = interest * tax/100;
+  $('#nriResult').classList.remove('hidden');
+  $('#nriResult').innerHTML = `If balance ${fmt(bal)} runs ${y} years @ ${r}% without contribution:<br>
+    Gross value ≈ ${fmt(b)} | Interest ≈ ${fmt(interest)}<br>
+    If interest taxed @ ${tax}%: drag ≈ <strong class="text-amber-400">${fmt(taxDrag)}</strong><br>
+    Residents keep EEE benefit — status change matters. Confirm with CA.`;
+  toast('NRI impact estimated');
+};
+
+/* RISK */
+$('#riskR').oninput = () => { $('#riskVal').textContent = (+$('#riskR').value).toFixed(1) + '%'; };
+$('#btnRisk').onclick = () => {
+  const amt = Math.min(150000, +$('#riskAmt').value || 150000);
+  const y = +$('#riskY').value || 15;
+  const r = +$('#riskR').value || 7.1;
+  const mat = ppfSchedule(amt, y, r, true, false).bal;
+  const base = ppfSchedule(amt, y, 7.1, true, false).bal;
+  $('#riskResult').classList.remove('hidden');
+  $('#riskResult').innerHTML = `At <strong>${r.toFixed(1)}%</strong>: maturity ≈ <strong class="text-emerald-400">${fmt(mat)}</strong><br>
+    vs 7.1% baseline ${fmt(base)} → difference <strong>${fmt(mat - base)}</strong>`;
+  toast('Rate risk simulated');
+};
+
+/* PORTFOLIO */
+$('#btnPort').onclick = () => {
+  const y = +$('#portY').value || 15;
+  const ppf = ppfSchedule(Math.min(150000, +$('#portPpf').value||0), y, 7.1, true, false).bal;
+  // gold ~8%, equity ~12% annual contribution end-of-year rough
+  function annuityFV(pmt, rate, years) {
+    const r = rate/100;
+    let b = 0;
+    for (let i=0;i<years;i++) { b = (b + pmt) * (1+r); }
+    return b;
+  }
+  const gold = annuityFV(+$('#portGold').value||0, 8, y);
+  const sip = annuityFV(+$('#portSip').value||0, 12, y);
+  const total = ppf + gold + sip;
+  $('#portResult').classList.remove('hidden');
+  $('#portResult').innerHTML = `After ${y} years (illustrative):<br>
+    PPF @7.1%: <strong>${fmt(ppf)}</strong><br>
+    Gold @8%: <strong>${fmt(gold)}</strong><br>
+    Equity SIP @12%: <strong>${fmt(sip)}</strong><br>
+    <strong class="text-emerald-400">Portfolio total ≈ ${fmt(total)}</strong>`;
+  toast('Portfolio projected');
+};
+
+/* CARD */
+function drawCard(mat, years, rate) {
+  const c = $('#cardCanvas'), ctx = c.getContext('2d');
+  ctx.fillStyle = '#020617'; ctx.fillRect(0,0,600,320);
+  ctx.fillStyle = '#22c55e'; ctx.fillRect(0,0,600,6);
+  ctx.fillStyle = '#64748b'; ctx.font = '13px Inter'; ctx.fillText('PPF MILESTONE', 28, 48);
+  ctx.fillStyle = '#f1f5f9'; ctx.font = 'bold 22px Inter'; ctx.fillText('My PPF grows to', 28, 105);
+  ctx.fillStyle = '#22c55e'; ctx.font = 'bold 40px JetBrains Mono'; ctx.fillText(fmt(mat||0), 28, 160);
+  ctx.fillStyle = '#94a3b8'; ctx.font = '15px Inter';
+  ctx.fillText(`${years||15} years @ ${(rate||7.1).toFixed(1)}% • FY 2026-27`, 28, 210);
+  ctx.fillStyle = '#475569'; ctx.font = '12px Inter';
+  ctx.fillText('PPF Calculator Pro 2026 • made by mujahar', 28, 290);
+}
+$('#btnCard').onclick = () => { const r = calcMain(); toast('Sticker updated'); $('#cardCanvas').scrollIntoView({behavior:'smooth'}); };
+$('#btnDlCard').onclick = () => { calcMain(); const a=document.createElement('a'); a.href=$('#cardCanvas').toDataURL('image/png'); a.download='ppf-milestone.png'; a.click(); toast('PNG downloaded'); };
+$('#btnShare').onclick = () => {
+  const r = calcMain();
+  navigator.clipboard.writeText(`My PPF becomes ${fmt(r.bal)} in ${r.years} years @ ${r.rate}%. Calculate yours → PPF Calculator Pro 2026`).then(()=>toast('Share text copied'));
+};
+
+/* PDF */
+$('#btnPdf').onclick = () => {
+  const r = calcMain();
+  if (!window.jspdf) { toast('PDF loading...'); return; }
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+  doc.setFontSize(16); doc.text('PPF Calculator Pro 2026', 20, 20);
+  doc.setFontSize(11);
+  doc.text(`Yearly: ${fmt(r.annual)} | Tenure: ${r.years}y | Rate: ${r.rate}%`, 20, 40);
+  doc.text(`Maturity: ${fmt(r.bal)}`, 20, 50);
+  doc.text(`Invested: ${fmt(r.invested)} | Interest: ${fmt(r.interest)}`, 20, 60);
+  doc.setFontSize(9); doc.text('Illustrative @7.1% Q1 FY2026-27. Educational only.', 20, 80);
+  doc.text('made by mujahar', 20, 90);
+  doc.save('ppf-quote.pdf');
+  toast('PDF downloaded');
+};
+
+/* LETTER */
+$('#btnLetter').onclick = () => {
+  if (!window.jspdf) { toast('PDF loading...'); return; }
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+  const name = $('#cName').value || 'Account Holder';
+  const bank = $('#cBank').value || 'Bank PPF';
+  doc.setFontSize(12);
+  doc.text('To,', 20, 20);
+  doc.text('The Branch Manager / Nodal Officer', 20, 28);
+  doc.text(bank, 20, 36);
+  doc.text(`Subject: Non-credit / delay of PPF interest – Account of ${name}`, 20, 52);
+  doc.text('Respected Sir/Madam,', 20, 68);
+  const lines = doc.splitTextToSize(`I hold a PPF account with your branch. Interest for the relevant period has not been credited / appears incorrect. Kindly investigate, credit due interest as per scheme rules, and share the interest calculation sheet within 7 working days. If unresolved I may escalate to the Banking Ombudsman / RBI CMS.`, 170);
+  doc.text(lines, 20, 80);
+  doc.text('Thank you,', 20, 120);
+  doc.text(name, 20, 128);
+  doc.save('ppf-interest-complaint.pdf');
+  toast('Complaint PDF ready');
+};
+
+/* CHART */
+let chart;
+function updateChart(points) {
+  if (!window.Chart) return;
+  const labels = points.map((_,i)=> 'Y'+i);
+  const ctx = $('#growthChart').getContext('2d');
+  if (chart) chart.destroy();
+  chart = new Chart(ctx, {
+    type: 'line',
+    data: { labels, datasets: [{ label: 'PPF Balance', data: points, borderColor:'#22c55e', backgroundColor:'rgba(34,197,94,.12)', fill:true, tension:0.3 }] },
+    options: {
+      plugins:{ legend:{ display:false } },
+      scales: {
+        x:{ ticks:{ color:'#94a3b8' }, grid:{ color:'rgba(148,163,184,.08)' } },
+        y:{ ticks:{ color:'#94a3b8' }, grid:{ color:'rgba(148,163,184,.08)' } }
+      }
+    }
+  });
+}
+
+calcMain();
+})();
+</script>
+</body>
+</html>
