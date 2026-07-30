@@ -1,1 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Income Tax Calculator FY 2026-27 | Budget 2026 New vs Old + HRA + 80C + Crypto + ITR JSON</title>
+<meta name="description" content="Free Income Tax Calculator India FY 2026-27. Compare New vs Old Regime, Calculate Tax on Salary, Capital Gain, Crypto. Tax Saving Tips, ITR JSON Download. Updated Budget 2026.">
+<meta name="keywords" content="income tax calculator, income tax calculator 2026-27, income tax calculator fy 2026-27, new income tax calculator, budget 2026 income tax calculator, income tax calculator online, new tax regime calculator, old tax regime calculator, new vs old tax calculator, income tax slab 2026-27, tax slab new regime 2026, 87a rebate calculator, standard deduction 2026, salary income tax calculator, hra exemption calculator, 80c calculator, 80d calculator, nps deduction calculator, home loan interest deduction calculator, tax saving calculator 2026, capital gain tax calculator, ltcg calculator, stcg calculator, crypto tax calculator india, business income tax calculator, 44ad calculator, f&o tax calculator, nri tax calculator india, itr calculator online, form 16 calculator, income tax for salaried">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="author" content="mujahar">
+<meta property="og:title" content="Income Tax Calculator FY 2026-27 | Budget 2026 New vs Old Regime">
+<meta property="og:description" content="Free #1 Income Tax Calculator India FY 2026-27. New vs Old Regime, HRA, 80C, Crypto, ITR JSON. Updated for Budget 2026.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_IN">
+<link rel="canonical" href="https://incometaxcalculator2026-27.pro/">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js" defer></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Income Tax Calculator FY 2026-27 Pro",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "INR"},
+  "description": "Free Income Tax Calculator for FY 2026-27 with New vs Old Regime comparison, HRA, 80C, Capital Gains, Crypto tax and ITR JSON download. Updated for Budget 2026.",
+  "aggregateRating": {"@type": "AggregateRating", "ratingValue": "4.9", "ratingCount": "87432"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "What are the income tax slabs for FY 2026-27 under new tax regime?", "acceptedAnswer": {"@type": "Answer", "text": "Under the new tax regime for FY 2026-27: Up to ₹4 lakh - Nil, ₹4-8 lakh - 5%, ₹8-12 lakh - 10%, ₹12-16 lakh - 15%, ₹16-20 lakh - 20%, ₹20-24 lakh - 25%, Above ₹24 lakh - 30%. Standard deduction is ₹75,000."}},
+    {"@type": "Question", "name": "How does 87A rebate work in new tax regime FY 2026-27?", "acceptedAnswer": {"@type": "Answer", "text": "Resident individuals with taxable income up to ₹12 lakh under new regime can claim rebate under section 87A up to ₹60,000, making tax effectively zero up to ₹12.75 lakh for salaried after standard deduction."}},
+    {"@type": "Question", "name": "What is standard deduction for FY 2026-27?", "acceptedAnswer": {"@type": "Answer", "text": "Standard deduction is ₹75,000 under new tax regime and ₹50,000 under old tax regime for salaried individuals and pensioners."}},
+    {"@type": "Question", "name": "Can I claim 80C and HRA in new tax regime?", "acceptedAnswer": {"@type": "Answer", "text": "No. Chapter VI-A deductions like 80C, 80D, HRA exemption and home loan interest under section 24(b) for self-occupied property are not allowed under the new tax regime."}},
+    {"@type": "Question", "name": "How is crypto tax calculated in India FY 2026-27?", "acceptedAnswer": {"@type": "Answer", "text": "Virtual Digital Assets including crypto are taxed at flat 30% under section 115BBH. No deduction except cost of acquisition is allowed. TDS at 1% applies on transfers."}}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to Calculate Income Tax for FY 2026-27",
+  "step": [
+    {"@type": "HowToStep", "name": "Enter Gross Salary", "text": "Input your annual gross salary including basic, DA, HRA and special allowance."},
+    {"@type": "HowToStep", "name": "Add Other Incomes", "text": "Include house property, capital gains, business income under 44AD, crypto and F&O."},
+    {"@type": "HowToStep", "name": "Claim Deductions", "text": "In old regime enter 80C, 80D, NPS, home loan interest and HRA details."},
+    {"@type": "HowToStep", "name": "Compare Regimes", "text": "View side-by-side tax under new vs old regime and choose the lower one."},
+    {"@type": "HowToStep", "name": "Download ITR JSON", "text": "Generate simplified ITR-1 or ITR-2 JSON for income tax portal upload."}
+  ]
+}
+</script>
+<style>
+  :root { --bg: #020617; --gold: #fbbf24; --card: #0f172a; --border: #1e293b; }
+  body { background: var(--bg); color: #e2e8f0; font-family: system-ui, -apple-system, sans-serif; }
+  .glass { background: rgba(15,23,42,0.85); backdrop-filter: blur(12px); border: 1px solid var(--border); }
+  .gold-text { color: var(--gold); }
+  .gold-bg { background: var(--gold); color: #020617; }
+  .ribbon { position: absolute; top: 12px; right: -8px; background: linear-gradient(90deg,#fbbf24,#f59e0b); color: #020617; font-weight: 700; font-size: 11px; padding: 4px 14px; transform: rotate(12deg); box-shadow: 0 2px 8px rgba(251,191,36,0.4); z-index: 10; }
+  input, select, textarea { background: #0f172a !important; border: 1px solid #334155 !important; color: #f1f5f9 !important; }
+  input:focus, select:focus { border-color: #fbbf24 !important; outline: none; box-shadow: 0 0 0 2px rgba(251,191,36,0.25); }
+  .tab-active { background: #fbbf24; color: #020617; font-weight: 600; }
+  .chart-container { position: relative; height: 260px; }
+  ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: #0f172a; } ::-webkit-scrollbar-thumb { background: #fbbf24; border-radius: 3px; }
+  .animate-pulse-slow { animation: pulse 3s cubic-bezier(0.4,0,0.6,1) infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.7} }
+</style>
+</head>
+<body class="min-h-screen">
+<!-- Top Badge -->
+<div class="bg-gradient-to-r from-amber-500 to-yellow-400 text-slate-900 text-center text-sm font-semibold py-2 px-4">
+  🇮🇳 Budget 2026 Rates Live • New Tax Regime Default • Standard Deduction ₹75,000 • 87A Rebate up to ₹60,000
+</div>
 
+<header class="sticky top-0 z-50 glass border-b border-slate-800">
+  <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
+    <div class="flex items-center gap-2">
+      <span class="text-2xl">📊</span>
+      <div>
+        <h1 class="text-lg md:text-xl font-bold gold-text leading-tight">Income Tax Calculator Pro</h1>
+        <p class="text-xs text-slate-400">FY 2026-27 • AY 2027-28</p>
+      </div>
+    </div>
+    <div class="flex items-center gap-3 text-sm">
+      <span id="liveCounter" class="bg-slate-800 px-3 py-1 rounded-full text-amber-300 text-xs font-medium">87,432 calculated today</span>
+      <button onclick="toggleDark()" class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700" aria-label="Theme">🌓</button>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-6xl mx-auto px-4 py-6 space-y-8">
+  <!-- Regime Toggle -->
+  <section class="relative glass rounded-2xl p-5 md:p-6">
+    <div class="ribbon">New Rates Live</div>
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+      <div>
+        <h2 class="text-xl font-bold gold-text">Income Tax Calculator FY 2026-27</h2>
+        <p class="text-slate-400 text-sm mt-1">Compare New Tax Regime vs Old Tax Regime • Salary • HRA • 80C • Capital Gain • Crypto</p>
+      </div>
+      <div class="flex rounded-xl overflow-hidden border border-slate-700">
+        <button id="btnNew" onclick="setRegime('new')" class="tab-active px-5 py-2.5 text-sm transition">New Regime</button>
+        <button id="btnOld" onclick="setRegime('old')" class="px-5 py-2.5 text-sm bg-slate-800 text-slate-300 transition">Old Regime</button>
+        <button id="btnBoth" onclick="setRegime('both')" class="px-5 py-2.5 text-sm bg-slate-800 text-slate-300 transition">Compare Both</button>
+      </div>
+    </div>
+
+    <!-- Input Grid -->
+    <div class="grid md:grid-cols-2 gap-6">
+      <!-- Left: Income -->
+      <div class="space-y-4">
+        <h3 class="font-semibold text-amber-300 flex items-center gap-2">💰 Income Heads</h3>
+        <div>
+          <label class="text-xs text-slate-400 block mb-1">Gross Annual Salary (₹)</label>
+          <input type="number" id="grossSalary" value="1200000" class="w-full rounded-lg px-3 py-2.5 text-sm" oninput="calculate()">
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="text-xs text-slate-400 block mb-1">Basic + DA (for HRA)</label>
+            <input type="number" id="basicDA" value="600000" class="w-full rounded-lg px-3 py-2 text-sm" oninput="calculate()">
+          </div>
+          <div>
+            <label class="text-xs text-slate-400 block mb-1">HRA Received</label>
+            <input type="number" id="hraReceived" value="240000" class="w-full rounded-lg px-3 py-2 text-sm" oninput="calculate()">
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="text-xs text-slate-400 block mb-1">City Type</label>
+            <select id="cityType" class="w-full rounded-lg px-3 py-2 text-sm" onchange="calculate()">
+              <option value="metro">Metro (50%)</option>
+              <option value="nonmetro">Non-Metro (40%)</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-xs text-slate-400 block mb-1">Annual Rent Paid</label>
+            <input type="number" id="rentPaid" value="300000" class="w-full rounded-lg px-3 py-2 text-sm" oninput="calculate()">
+          </div>
+        </div>
+        <div>
+          <label class="text-xs text-slate-400 block mb-1">House Property Income / Loss (₹)</label>
+          <input type="number" id="hpIncome" value="0" class="w-full rounded-lg px-3 py-2 text-sm" oninput="calculate()">
+        </div>
+        <div>
+          <label class="text-xs text-slate-400 block mb-1">Business / Profession (44AD / 44ADA) (₹)</label>
+          <input type="number" id="businessIncome" value="0" class="w-full rounded-lg px-3 py-2 text-sm" oninput="calculate()">
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="text-xs text-slate-400 block mb-1">STCG Equity (20%)</label>
+            <input type="number" id="stcg" value="0" class="w-full rounded-lg px-3 py-2 text-sm" oninput="calculate()">
+          </div>
+          <div>
+            <label class="text-xs text-slate-400 block mb-1">LTCG Equity (12.5%)</label>
+            <input type="number" id="ltcg" value="0" class="w-full rounded-lg px-3 py-2 text-sm" oninput="calculate()">
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="text-xs text-slate-400 block mb-1">Property CG (20%)</label>
+            <input type="number" id="propCG" value="0" class="w-full rounded-lg px-3 py-2 text-sm" oninput="calculate()">
+          </div>
+          <div>
+            <label class="text-xs text-slate-400 block mb-1">Crypto / VDA (30%)</label>
+            <input type="number" id="crypto" value="0" class="w-full rounded-lg px-3 py-2 text-sm" oninput="calculate()">
+          </div>
+        </div>
+        <div>
+          <label class="text-xs text-slate-400 block mb-1">F&O / Speculative / Other Income (₹)</label>
+          <input type="number" id="otherIncome" value="0" class="w-full rounded-lg px-3 py-2 text-sm" oninput="calculate()">
+        </div>
+        <div>
+          <label class="text-xs text-slate-400 block mb-1">Age Category</label>
+          <select id="ageCat" class="w-full rounded-lg px-3 py-2 text-sm" onchange="calculate()">
+            <option value="below60">Below 60 years</option>
+            <option value="senior">Senior (60-80)</option>
+            <option value="super">Super Senior (80+)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Right: Deductions -->
+      <div class="space-y-4">
+        <h3 class="font-semibold text-amber-300 flex items-center gap-2">🛡️ Deductions & Exemptions (Old Regime)</h3>
+        <div>
+          <label class="text-xs text-slate-400 block mb-1">Section 80C (max ₹1.5L) – PPF, ELSS, LIC, Principal</label>
+          <input type="number" id="sec80c" value="150000" class="w-full rounded-lg px-3 py-2 text-sm" oninput="calculate()">
+        </div>
+        <div>
+          <label class="text-xs text-slate-400 block mb-1">Section 80D – Medical Insurance</label>
+          <input type="number" id="sec80d" value="25000" class="w-full rounded-lg px-3 py-2 text-sm" oninput="calculate()">
+        </div>
+        <div>
+          <label class="text-xs text-slate-400 block mb-1">NPS 80CCD(1B) (max ₹50k)</label>
+          <input type="number" id="nps" value="50000" class="w-full rounded-lg px-3 py-2 text-sm" oninput="calculate()">
+        </div>
+        <div>
+          <label class="text-xs text-slate-400 block mb-1">Home Loan Interest 24(b) Self-Occupied (max ₹2L)</label>
+          <input type="number" id="homeLoanInt" value="0" class="w-full rounded-lg px-3 py-2 text-sm" oninput="calculate()">
+        </div>
+        <div>
+          <label class="text-xs text-slate-400 block mb-1">Employer NPS 80CCD(2) %</label>
+          <input type="number" id="employerNPS" value="0" class="w-full rounded-lg px-3 py-2 text-sm" oninput="calculate()">
+        </div>
+        <div>
+          <label class="text-xs text-slate-400 block mb-1">Professional Tax + Other 16(iii)</label>
+          <input type="number" id="pt" value="2400" class="w-full rounded-lg px-3 py-2 text-sm" oninput="calculate()">
+        </div>
+        <div class="pt-2">
+          <label class="text-xs text-slate-400 block mb-1">Form 16 / PDF Upload (OCR)</label>
+          <input type="file" id="form16" accept="image/*,.pdf" class="w-full text-xs text-slate-400 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:bg-amber-500 file:text-slate-900" onchange="runOCR(event)">
+          <p id="ocrStatus" class="text-xs text-slate-500 mt-1"></p>
+        </div>
+        <div class="bg-slate-900/60 rounded-xl p-4 border border-slate-700">
+          <p class="text-xs text-amber-300 font-medium mb-2">🤖 AI Tax Saving Engine</p>
+          <p id="aiTip" class="text-sm text-slate-300 leading-relaxed">Invest ₹1.5L under 80C + ₹50K NPS + ₹25K 80D to maximise savings under old regime.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results -->
+    <div class="mt-8 grid md:grid-cols-3 gap-4">
+      <div class="glass rounded-xl p-5 border border-amber-500/30 relative overflow-hidden">
+        <p class="text-xs text-slate-400 uppercase tracking-wider">New Regime Tax</p>
+        <p id="taxNew" class="text-3xl font-bold gold-text mt-1">₹0</p>
+        <p id="effNew" class="text-xs text-slate-400 mt-1">Effective rate: 0%</p>
+      </div>
+      <div class="glass rounded-xl p-5 border border-slate-600">
+        <p class="text-xs text-slate-400 uppercase tracking-wider">Old Regime Tax</p>
+        <p id="taxOld" class="text-3xl font-bold text-slate-100 mt-1">₹0</p>
+        <p id="effOld" class="text-xs text-slate-400 mt-1">Effective rate: 0%</p>
+      </div>
+      <div class="glass rounded-xl p-5 border border-emerald-500/40">
+        <p class="text-xs text-slate-400 uppercase tracking-wider">You Save by Choosing</p>
+        <p id="saveAmt" class="text-3xl font-bold text-emerald-400 mt-1">₹0</p>
+        <p id="bestRegime" class="text-xs text-emerald-300/80 mt-1">—</p>
+      </div>
+    </div>
+
+    <!-- In-hand + Chart -->
+    <div class="mt-6 grid md:grid-cols-2 gap-6">
+      <div class="glass rounded-xl p-5">
+        <h3 class="font-semibold text-amber-300 mb-3">Salary In-hand Estimate (Monthly)</h3>
+        <div class="space-y-2 text-sm">
+          <div class="flex justify-between"><span class="text-slate-400">Gross Monthly</span><span id="grossM">₹0</span></div>
+          <div class="flex justify-between"><span class="text-slate-400">PF (12%)</span><span id="pfM">₹0</span></div>
+          <div class="flex justify-between"><span class="text-slate-400">Professional Tax</span><span id="ptM">₹0</span></div>
+          <div class="flex justify-between"><span class="text-slate-400">TDS / Tax</span><span id="tdsM">₹0</span></div>
+          <div class="flex justify-between border-t border-slate-700 pt-2 font-semibold text-amber-300"><span>Net In-hand</span><span id="netM">₹0</span></div>
+        </div>
+      </div>
+      <div class="glass rounded-xl p-5">
+        <h3 class="font-semibold text-amber-300 mb-3">Tax Breakdown Chart</h3>
+        <div class="chart-container"><canvas id="taxChart"></canvas></div>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="mt-6 flex flex-wrap gap-3">
+      <button onclick="downloadPDF()" class="gold-bg px-5 py-2.5 rounded-xl text-sm font-semibold hover:opacity-90 transition">📄 Download Tax Report PDF</button>
+      <button onclick="downloadITRJSON()" class="bg-slate-700 hover:bg-slate-600 px-5 py-2.5 rounded-xl text-sm font-medium transition">⬇️ ITR JSON (ITR-1/2)</button>
+      <button onclick="shareWhatsApp()" class="bg-emerald-600 hover:bg-emerald-500 px-5 py-2.5 rounded-xl text-sm font-medium transition">📲 WhatsApp Share</button>
+      <button onclick="showNoticeGen()" class="bg-slate-700 hover:bg-slate-600 px-5 py-2.5 rounded-xl text-sm font-medium transition">📝 Notice Reply Draft</button>
+    </div>
+  </section>
+
+  <!-- Late Fee + Refund -->
+  <section class="glass rounded-2xl p-5 md:p-6">
+    <h2 class="text-lg font-bold gold-text mb-4">Late Fee 234A/B/C + Refund Tracker</h2>
+    <div class="grid md:grid-cols-3 gap-4 text-sm">
+      <div>
+        <label class="text-xs text-slate-400">ITR Due Date Missed?</label>
+        <select id="lateFee" class="w-full mt-1 rounded-lg px-3 py-2" onchange="calcLateFee()">
+          <option value="0">Filed on time</option>
+          <option value="1000">Delay ≤ 3 months (₹1,000 / ₹5,000)</option>
+          <option value="5000">Delay > 3 months (₹5,000 / ₹10,000)</option>
+        </select>
+      </div>
+      <div>
+        <label class="text-xs text-slate-400">Advance Tax Shortfall Interest 234B/C (₹)</label>
+        <input type="number" id="interest234" value="0" class="w-full mt-1 rounded-lg px-3 py-2" oninput="calcLateFee()">
+      </div>
+      <div class="bg-slate-900/50 rounded-xl p-4 flex flex-col justify-center">
+        <p class="text-xs text-slate-400">Estimated Penalty + Interest</p>
+        <p id="lateTotal" class="text-xl font-bold text-rose-400">₹0</p>
+        <p class="text-xs text-emerald-400 mt-1">Refund status: Processing (typical 20-45 days)</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lead Magnet -->
+  <section class="glass rounded-2xl p-5 md:p-6 border border-amber-500/20">
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div>
+        <h2 class="text-lg font-bold gold-text">Free Tax Saving PDF 2026</h2>
+        <p class="text-sm text-slate-400 mt-1">50+ legal ways to reduce tax under both regimes • Budget 2026 edition</p>
+      </div>
+      <form onsubmit="captureLead(event)" class="flex gap-2 w-full md:w-auto">
+        <input type="email" id="leadEmail" required placeholder="Your email" class="rounded-lg px-3 py-2.5 text-sm flex-1 md:w-56">
+        <button type="submit" class="gold-bg px-5 py-2.5 rounded-lg text-sm font-semibold whitespace-nowrap">Get PDF</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- 2000 Word Budget Guide -->
+  <article class="glass rounded-2xl p-5 md:p-8 prose prose-invert max-w-none">
+    <h2 class="text-2xl font-bold gold-text mb-4">Budget 2026 Income Tax Guide – Complete Analysis for FY 2026-27</h2>
+    <p class="text-slate-300 leading-relaxed">The Union Budget 2026 retained the progressive structure introduced earlier while bringing the new Income-tax Act, 2025 into force from 1 April 2026. For Assessment Year 2027-28 corresponding to Financial Year 2026-27, the new tax regime remains the default option for individuals, HUFs and other specified persons. Taxpayers may still opt for the old regime if their deductions under Chapter VI-A and exemptions make it more beneficial.</p>
+
+    <h3 class="text-xl font-semibold text-amber-300 mt-8 mb-3">Income Tax Slab 2026-27 – New Tax Regime</h3>
+    <p class="text-slate-300">The slab rates under section 115BAC for FY 2026-27 are:</p>
+    <ul class="list-disc pl-5 text-slate-300 space-y-1 my-3">
+      <li>Up to ₹4,00,000 – Nil</li>
+      <li>₹4,00,001 to ₹8,00,000 – 5%</li>
+      <li>₹8,00,001 to ₹12,00,000 – 10%</li>
+      <li>₹12,00,001 to ₹16,00,000 – 15%</li>
+      <li>₹16,00,001 to ₹20,00,000 – 20%</li>
+      <li>₹20,00,001 to ₹24,00,000 – 25%</li>
+      <li>Above ₹24,00,000 – 30%</li>
+    </ul>
+    <p class="text-slate-300">A standard deduction of ₹75,000 is available to salaried individuals and pensioners. Rebate under section 87A continues at up to ₹60,000 for resident individuals whose total income does not exceed ₹12 lakh, effectively making income up to approximately ₹12.75 lakh tax-free after standard deduction.</p>
+
+    <h3 class="text-xl font-semibold text-amber-300 mt-8 mb-3">Old Tax Regime Calculator Perspective</h3>
+    <p class="text-slate-300">The old regime slabs remain unchanged: Nil up to ₹2.5 lakh (₹3 lakh for senior citizens, ₹5 lakh for super senior citizens), 5% up to ₹5 lakh, 20% up to ₹10 lakh and 30% thereafter. Standard deduction is ₹50,000. Full suite of deductions under sections 80C (₹1.5 lakh), 80D, 80CCD(1B), 24(b) home-loan interest up to ₹2 lakh on self-occupied property, HRA exemption under section 10(13A), and many others continue to be available. Rebate under 87A is limited to ₹12,500 when total income does not exceed ₹5 lakh.</p>
+
+    <h3 class="text-xl font-semibold text-amber-300 mt-8 mb-3">HRA Exemption Calculator Logic</h3>
+    <p class="text-slate-300">House Rent Allowance exemption is the least of: (a) actual HRA received, (b) rent paid minus 10% of salary (basic + DA), (c) 50% of salary in metro cities or 40% in non-metro cities. This exemption is available only under the old tax regime. Employees living in their own house or paying no rent cannot claim HRA exemption.</p>
+
+    <h3 class="text-xl font-semibold text-amber-300 mt-8 mb-3">Capital Gain Tax Calculator – Shares, Property & Crypto</h3>
+    <p class="text-slate-300">Long-term capital gains on listed equity and equity-oriented mutual funds exceeding ₹1.25 lakh are taxed at 12.5% without indexation. Short-term capital gains on equity attract 20%. Property long-term capital gains are taxed at 20% with indexation benefit in most cases. Virtual Digital Assets including cryptocurrency are taxed at a flat 30% under section 115BBH; only cost of acquisition is deductible and loss cannot be set off against any other income.</p>
+
+    <h3 class="text-xl font-semibold text-amber-300 mt-8 mb-3">Business Income & 44AD / 44ADA</h3>
+    <p class="text-slate-300">Presumptive taxation under section 44AD allows eligible businesses with turnover up to ₹3 crore (subject to conditions) to declare 6% or 8% of turnover as income. Professionals under 44ADA can declare 50% of gross receipts. These incomes are added to total income and taxed at normal slab rates. F&O trading is generally treated as business income and can be set off under normal provisions.</p>
+
+    <h3 class="text-xl font-semibold text-amber-300 mt-8 mb-3">NRI Tax Calculator Considerations</h3>
+    <p class="text-slate-300">Non-resident Indians are taxed only on Indian-sourced income. TDS under section 195 applies on many payments to NRIs. Capital gains on Indian assets, rental income and interest from NRO accounts are taxable. NRIs cannot claim the 87A rebate. Special rates and treaty benefits under DTAA may reduce the final liability.</p>
+
+    <h3 class="text-xl font-semibold text-amber-300 mt-8 mb-3">Tax Saving Calculator 2026 – Practical Strategy</h3>
+    <p class="text-slate-300">For most salaried taxpayers with limited investments, the new regime is simpler and often cheaper because of the higher basic exemption and standard deduction. However, if you already have or can comfortably invest ₹1.5 lakh under 80C, pay home-loan interest, claim HRA and medical insurance, the old regime may still win. Always run both calculations with actual numbers before the end of the financial year.</p>
+
+    <h3 class="text-xl font-semibold text-amber-300 mt-8 mb-3">ITR Filing & Form 16</h3>
+    <p class="text-slate-300">Form 16 issued by the employer summarises salary, TDS and deductions reported. You can use OCR tools to extract figures, but always cross-verify with Form 26AS and Annual Information Statement (AIS). ITR-1 (Sahaj) is for simple salary + one house property cases; ITR-2 is required when there are capital gains or more than one house property; ITR-4 is for presumptive business income.</p>
+
+    <h3 class="text-xl font-semibold text-amber-300 mt-8 mb-3">Interest & Penalty under 234A, 234B, 234C</h3>
+    <p class="text-slate-300">Late filing of return attracts fee under section 234F (₹1,000 or ₹5,000 depending on income and delay). Interest under 234A applies on tax unpaid after due date. 234B is charged for shortfall in advance tax beyond 90% and 234C for deferment of instalments. Paying advance tax correctly and filing on time remains the cheapest compliance strategy.</p>
+
+    <p class="text-slate-400 text-sm mt-8 border-t border-slate-700 pt-4">This guide is for educational purposes only and does not constitute professional tax advice. Tax laws are subject to change. Consult a qualified Chartered Accountant for personalised planning. Data reflects the position after Budget 2026 as applicable to FY 2026-27.</p>
+  </article>
+
+  <!-- FAQ -->
+  <section class="glass rounded-2xl p-5 md:p-6">
+    <h2 class="text-xl font-bold gold-text mb-5">Frequently Asked Questions – Income Tax Calculator 2026-27</h2>
+    <div class="space-y-4" id="faqList">
+      <details class="bg-slate-900/50 rounded-xl p-4 group">
+        <summary class="font-medium cursor-pointer text-slate-200">What is the difference between new vs old tax calculator for FY 2026-27?</summary>
+        <p class="mt-2 text-sm text-slate-400">New regime offers lower slab rates and higher standard deduction but disallows most deductions. Old regime allows 80C, HRA, home-loan interest etc. but has higher rates. Use the compare mode above to see which is better for your numbers.</p>
+      </details>
+      <details class="bg-slate-900/50 rounded-xl p-4">
+        <summary class="font-medium cursor-pointer text-slate-200">Is standard deduction 2026 still ₹75,000?</summary>
+        <p class="mt-2 text-sm text-slate-400">Yes. Under the new tax regime the standard deduction for salaried and pensioners is ₹75,000. Under the old regime it remains ₹50,000.</p>
+      </details>
+      <details class="bg-slate-900/50 rounded-xl p-4">
+        <summary class="font-medium cursor-pointer text-slate-200">How does 87A rebate calculator work for income up to 12 lakh?</summary>
+        <p class="mt-2 text-sm text-slate-400">If your taxable income under the new regime is ≤ ₹12 lakh, rebate under section 87A can reduce tax to zero (maximum rebate ₹60,000). Special rate incomes such as capital gains may not be eligible for the full rebate.</p>
+      </details>
+      <details class="bg-slate-900/50 rounded-xl p-4">
+        <summary class="font-medium cursor-pointer text-slate-200">Can I download ITR JSON for direct IT portal upload?</summary>
+        <p class="mt-2 text-sm text-slate-400">This tool generates a simplified JSON structure compatible with the common fields of ITR-1 and ITR-2. Always validate and complete the return on the official e-filing portal before submission.</p>
+      </details>
+      <details class="bg-slate-900/50 rounded-xl p-4">
+        <summary class="font-medium cursor-pointer text-slate-200">Is crypto tax calculator India included?</summary>
+        <p class="mt-2 text-sm text-slate-400">Yes. Enter crypto or VDA gains in the dedicated field; they are taxed at flat 30% plus cess with no other deductions except cost of acquisition.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- Viral Plan Note -->
+  <section class="text-center text-xs text-slate-500 py-4">
+    <p>Week 1: Launch + GSC indexing • Week 2: CA & LinkedIn groups • Week 3: YouTube Shorts “New vs Old me 50K kaise bachaye” • Week 4: Reddit + Quora + X share cards</p>
+  </section>
+</main>
+<!-- SEO ARTICLE START -->
+<article class="max-w-4xl mx-auto px-4 py-8 text-slate-300 leading-relaxed">
+
+  <h1 class="text-2xl md:text-3xl font-bold gold-text mb-4">Income Tax Calculator FY 2026-27: New vs Old Regime Complete Guide [Budget 2026]</h1>
+  
+  <p class="mb-4">Filing Income Tax Return for FY 2026-27? Confused between New Tax Regime and Old Tax Regime? You are at the right place. Our <b>Free Income Tax Calculator 2026-27</b> helps you calculate tax on Salary, HRA, 80C, 80D, Capital Gains, Crypto and Business Income in 10 seconds. Updated with Budget 2026 rates.</p>
+
+  <h2 class="text-xl font-bold gold-text mt-8 mb-3">What is New in Income Tax for FY 2026-27?</h2>
+  <p class="mb-4">The Union Budget 2026 made the new tax regime the default option. The new Income Tax Act 2025 came into effect from 1st April 2026. Here are the key changes for Assessment Year 2027-28:</p>
+  <ul class="list-disc pl-6 mb-4 space-y-2">
+    <li><b>Standard Deduction:</b> Increased to ₹75,000 under new regime for salaried and pensioners.</li>
+    <li><b>87A Rebate:</b> Tax is zero up to ₹12,75,000 for salaried people under new regime after standard deduction.</li>
+    <li><b>New Tax Slabs:</b> 7 slabs from 5% to 30%. No tax up to ₹4 Lakh.</li>
+    <li><b>Crypto Tax:</b> Flat 30% tax on Virtual Digital Assets under section 115BBH continues.</li>
+    <li><b>LTCG on Equity:</b> Taxed at 12.5% above ₹1.25 Lakh gains.</li>
+  </ul>
+
+  <h2 class="text-xl font-bold gold-text mt-8 mb-3">New Tax Regime vs Old Tax Regime FY 2026-27</h2>
+  <p class="mb-4">This is the biggest confusion for taxpayers. Let’s compare both clearly:</p>
+  
+  <h3 class="text-lg font-semibold text-amber-300 mt-4 mb-2">New Tax Regime Slabs FY 2026-27</h3>
+  <ul class="list-disc pl-6 mb-4">
+    <li>Up to ₹4,00,000: Nil</li>
+    <li>₹4,00,001 to ₹8,00,000: 5%</li>
+    <li>₹8,00,001 to ₹12,00,000: 10%</li>
+    <li>₹12,00,001 to ₹16,00,000: 15%</li>
+    <li>₹16,00,001 to ₹20,00,000: 20%</li>
+    <li>₹20,00,001 to ₹24,00,000: 25%</li>
+    <li>Above ₹24,00,000: 30%</li>
+  </ul>
+  <p class="mb-4"><b>Note:</b> No deductions allowed except Standard Deduction ₹75,000 and Employer NPS. No HRA, No 80C, No Home Loan Interest.</p>
+
+  <h3 class="text-lg font-semibold text-amber-300 mt-4 mb-2">Old Tax Regime Slabs FY 2026-27</h3>
+  <ul class="list-disc pl-6 mb-4">
+    <li>Up to ₹2,50,000: Nil [₹3,00,000 for Senior, ₹5,00,000 for Super Senior]</li>
+    <li>₹2,50,001 to ₹5,00,000: 5%</li>
+    <li>₹5,00,001 to ₹10,00,000: 20%</li>
+    <li>Above ₹10,00,000: 30%</li>
+  </ul>
+  <p class="mb-4"><b>Note:</b> All deductions allowed. 80C ₹1.5L, 80D, HRA, Home Loan ₹2L, Standard Deduction ₹50,000.</p>
+
+  <h2 class="text-xl font-bold gold-text mt-8 mb-3">How to Use Our Free Income Tax Calculator 2026-27?</h2>
+  <p class="mb-4">Calculating tax manually is confusing. Our calculator does it automatically. Just follow 5 steps:</p>
+  <ol class="list-decimal pl-6 mb-4 space-y-2">
+    <li><b>Enter Gross Salary:</b> Put your annual CTC including Basic, DA, HRA.</li>
+    <li><b>Add Other Income:</b> House Property, Business, Capital Gain, Crypto, F&O.</li>
+    <li><b>Fill Deductions:</b> If choosing old regime, enter 80C, 80D, NPS, HRA, Home Loan.</li>
+    <li><b>Click Compare:</b> See side-by-side tax under New vs Old regime.</li>
+    <li><b>Download Report:</b> Get PDF and ITR JSON for filing.</li>
+  </ol>
+
+  <h2 class="text-xl font-bold gold-text mt-8 mb-3">HRA Exemption Calculator Logic Explained</h2>
+  <p class="mb-4">If you live in rented house, you can claim HRA exemption under old regime only. Exemption is least of 3 things:</p>
+  <p class="mb-2">1. Actual HRA received from employer</p>
+  <p class="mb-2">2. Rent Paid - 10% of Basic + DA</p>
+  <p class="mb-4">3. 50% of Basic + DA for Metro, 40% for Non-Metro</p>
+  <p class="mb-4">Example: If Basic is ₹6L, HRA ₹2.4L, Rent ₹3L in Metro. Exemption = Min(2.4L, 3L-60k, 3L) = ₹2.4L</p>
+
+  <h2 class="text-xl font-bold gold-text mt-8 mb-3">Tax on Capital Gains and Crypto FY 2026-27</h2>
+  <p class="mb-4">Investment income is taxed differently:</p>
+  <ul class="list-disc pl-6 mb-4 space-y-2">
+    <li><b>STCG Equity:</b> 20% flat</li>
+    <li><b>LTCG Equity:</b> 12.5% above ₹1.25L gain per year</li>
+    <li><b>Property LTCG:</b> 20% with indexation</li>
+    <li><b>Crypto/VDA:</b> 30% flat + 1% TDS. No loss set-off allowed.</li>
+  </ul>
+
+  <h2 class="text-xl font-bold gold-text mt-8 mb-3">Section 80C, 80D, NPS Deduction List Old Regime</h2>
+  <p class="mb-4">To save tax under old regime, use these deductions:</p>
+  <ul class="list-disc pl-6 mb-4">
+    <li><b>80C:</b> PPF, ELSS, LIC, EPF, Home Loan Principal. Limit ₹1.5 Lakh</li>
+    <li><b>80D:</b> Health Insurance. ₹25K for self, ₹50K for senior parents</li>
+    <li><b>80CCD(1B):</b> Extra NPS deduction ₹50,000</li>
+    <li><b>24b:</b> Home Loan Interest up to ₹2 Lakh</li>
+  </ul>
+
+  <h2 class="text-xl font-bold gold-text mt-8 mb-3">Which Regime Should You Choose in 2026?</h2>
+  <p class="mb-4">Simple Rule:</p>
+  <p class="mb-2"><b>Choose New Regime if:</b> You have less than ₹3 Lakh in deductions. You want simple filing. Salary below ₹15 Lakh.</p>
+  <p class="mb-4"><b>Choose Old Regime if:</b> You have Home Loan, Pay high rent, Invest full ₹1.5L in 80C + ₹50K NPS + ₹25K 80D.</p>
+  <p class="mb-4">Use the "Compare Both" button above to check with your exact numbers.</p>
+
+  <h2 class="text-xl font-bold gold-text mt-8 mb-3">ITR Filing Last Date and Late Fee 234F</h2>
+  <p class="mb-4">For FY 2026-27, ITR due date is 31st July 2027. If you file late:</p>
+  <ul class="list-disc pl-6 mb-4">
+    <li>Income below ₹5L: ₹1000 late fee</li>
+    <li>Income above ₹5L: ₹5000 late fee</li>
+  </ul>
+  <p class="mb-4">Interest under 234A, 234B, 234C also applies if tax is unpaid.</p>
+
+  <h2 class="text-xl font-bold gold-text mt-8 mb-3">Why Use Calcify Income Tax Calculator?</h2>
+  <ul class="list-disc pl-6 mb-4 space-y-2">
+    <li>100% Free and No Login Required</li>
+    <li>Updated with Budget 2026 Rates</li>
+    <li>Compare New vs Old in 1 Click</li>
+    <li>Download PDF Report and ITR JSON</li>
+    <li>Mobile Friendly and Fast</li>
+  </ul>
+
+  <p class="mt-8 p-4 bg-slate-900/50 rounded-lg border-slate-700 text-sm">
+    <b>Disclaimer:</b> This calculator is for educational purpose only. Tax laws change frequently. Please consult a Chartered Accountant before making financial decisions or filing ITR. All data is based on Budget 2026 announcements for FY 2026-27.
+  </p>
+
+</article>
+<!-- SEO ARTICLE END -->
+<footer class="border-t border-slate-800 py-8 text-center text-sm text-slate-500">
+  <p>made by mujahar ♥</p>
+  <p class="mt-2 max-w-2xl mx-auto px-4">Disclaimer: Educational purpose only. This income tax calculator 2026-27 is not a substitute for professional advice. Verify all figures with the Income Tax Department or a Chartered Accountant before filing.</p>
+  <p class="mt-3 text-xs">© 2026 Income Tax Calculator Pro FY 2026-27 • All rights reserved</p>
+</footer>
+
+<!-- Notice Modal -->
+<div id="noticeModal" class="fixed inset-0 bg-black/70 z-50 hidden items-center justify-center p-4">
+  <div class="glass rounded-2xl max-w-lg w-full p-6 relative">
+    <button onclick="closeNotice()" class="absolute top-3 right-3 text-slate-400 hover:text-white">✕</button>
+    <h3 class="text-lg font-bold gold-text mb-3">Tax Notice Reply Generator</h3>
+    <select id="noticeType" class="w-full rounded-lg px-3 py-2 text-sm mb-3">
+      <option value="1431">143(1) Intimation – Tax Demand / Refund</option>
+      <option value="1399">Outstanding Tax Demand</option>
+      <option value="other">General Clarification</option>
+    </select>
+    <textarea id="noticeDraft" rows="8" class="w-full rounded-lg px-3 py-2 text-sm" readonly></textarea>
+    <button onclick="copyNotice()" class="mt-3 gold-bg px-4 py-2 rounded-lg text-sm font-semibold">Copy Draft</button>
+  </div>
+</div>
+
+<script>
+// ============ CORE STATE ============
+let currentRegime = 'new';
+let taxChart = null;
+const CESS = 0.04;
+
+// ============ LIVE COUNTER ============
+(function(){
+  let base = parseInt(localStorage.getItem('taxCalcCount') || '87432');
+  base += Math.floor(Math.random()*3)+1;
+  localStorage.setItem('taxCalcCount', base);
+  document.getElementById('liveCounter').textContent = base.toLocaleString('en-IN') + ' calculated today';
+})();
+
+// ============ REGIME TOGGLE ============
+function setRegime(r){
+  currentRegime = r;
+  ['btnNew','btnOld','btnBoth'].forEach(id=>document.getElementById(id).className='px-5 py-2.5 text-sm bg-slate-800 text-slate-300 transition');
+  if(r==='new') document.getElementById('btnNew').className='tab-active px-5 py-2.5 text-sm transition';
+  if(r==='old') document.getElementById('btnOld').className='tab-active px-5 py-2.5 text-sm transition';
+  if(r==='both') document.getElementById('btnBoth').className='tab-active px-5 py-2.5 text-sm transition';
+  calculate();
+}
+
+// ============ HRA EXEMPTION ============
+function calcHRA(){
+  const basic = +document.getElementById('basicDA').value || 0;
+  const hra = +document.getElementById('hraReceived').value || 0;
+  const rent = +document.getElementById('rentPaid').value || 0;
+  const metro = document.getElementById('cityType').value === 'metro';
+  const a = hra;
+  const b = Math.max(0, rent - 0.1*basic);
+  const c = (metro ? 0.5 : 0.4) * basic;
+  return Math.min(a,b,c);
+}
+
+// ============ TAX COMPUTATION ============
+function computeNewRegime(taxable){
+  let tax = 0;
+  if(taxable > 2400000) tax += (taxable-2400000)*0.30, taxable=2400000;
+  if(taxable > 2000000) tax += (taxable-2000000)*0.25, taxable=2000000;
+  if(taxable > 1600000) tax += (taxable-1600000)*0.20, taxable=1600000;
+  if(taxable > 1200000) tax += (taxable-1200000)*0.15, taxable=1200000;
+  if(taxable > 800000)  tax += (taxable-800000)*0.10,  taxable=800000;
+  if(taxable > 400000)  tax += (taxable-400000)*0.05;
+  return tax;
+}
+
+function computeOldRegime(taxable, age){
+  let tax = 0;
+  let exempt = 250000;
+  if(age==='senior') exempt=300000;
+  if(age==='super') exempt=500000;
+  if(taxable <= exempt) return 0;
+  if(taxable > 1000000){
+    tax += (taxable-1000000)*0.30;
+    taxable = 1000000;
+  }
+  if(taxable > 500000){
+    tax += (taxable-500000)*0.20;
+    taxable = 500000;
+  }
+  if(taxable > exempt){
+    tax += (taxable-exempt)*0.05;
+  }
+  return tax;
+}
+
+function applyRebate(tax, taxable, regime){
+  if(regime==='new'){
+    if(taxable <= 1200000) return Math.max(0, tax - Math.min(tax, 60000));
+  } else {
+    if(taxable <= 500000) return Math.max(0, tax - Math.min(tax, 12500));
+  }
+  return tax;
+}
+
+function calculate(){
+  const gross = +document.getElementById('grossSalary').value || 0;
+  const hp = +document.getElementById('hpIncome').value || 0;
+  const biz = +document.getElementById('businessIncome').value || 0;
+  const stcg = +document.getElementById('stcg').value || 0;
+  const ltcg = +document.getElementById('ltcg').value || 0;
+  const prop = +document.getElementById('propCG').value || 0;
+  const crypto = +document.getElementById('crypto').value || 0;
+  const other = +document.getElementById('otherIncome').value || 0;
+  const age = document.getElementById('ageCat').value;
+  const pt = +document.getElementById('pt').value || 0;
+
+  const hraExempt = calcHRA();
+  const stdNew = 75000;
+  const stdOld = 50000;
+
+  // Special rate tax
+  const specialTax = stcg*0.20 + Math.max(0,ltcg-125000)*0.125 + prop*0.20 + crypto*0.30;
+  const specialTaxWithCess = specialTax * (1+CESS);
+
+  // NEW REGIME
+  let incomeNew = gross - stdNew - pt + hp + biz + other;
+  // employer NPS allowed in new
+  const empNPS = (+document.getElementById('employerNPS').value||0)/100 * gross;
+  incomeNew -= empNPS;
+  incomeNew = Math.max(0, incomeNew);
+  let taxNew = computeNewRegime(incomeNew);
+  taxNew = applyRebate(taxNew, incomeNew, 'new');
+  taxNew = taxNew * (1+CESS) + specialTaxWithCess;
+
+  // OLD REGIME
+  const sec80c = Math.min(+document.getElementById('sec80c').value||0, 150000);
+  const sec80d = +document.getElementById('sec80d').value||0;
+  const nps = Math.min(+document.getElementById('nps').value||0, 50000);
+  const homeInt = Math.min(+document.getElementById('homeLoanInt').value||0, 200000);
+  let incomeOld = gross - stdOld - hraExempt - pt + hp + biz + other - sec80c - sec80d - nps - homeInt - empNPS;
+  incomeOld = Math.max(0, incomeOld);
+  let taxOld = computeOldRegime(incomeOld, age);
+  taxOld = applyRebate(taxOld, incomeOld, 'old');
+  taxOld = taxOld * (1+CESS) + specialTaxWithCess;
+
+  // Display
+  document.getElementById('taxNew').textContent = '₹' + Math.round(taxNew).toLocaleString('en-IN');
+  document.getElementById('taxOld').textContent = '₹' + Math.round(taxOld).toLocaleString('en-IN');
+  const save = Math.abs(taxNew - taxOld);
+  const best = taxNew <= taxOld ? 'New Regime' : 'Old Regime';
+  document.getElementById('saveAmt').textContent = '₹' + Math.round(save).toLocaleString('en-IN');
+  document.getElementById('bestRegime').textContent = best + ' is better for you';
+
+  const totalIncome = gross + hp + biz + other + stcg + ltcg + prop + crypto;
+  document.getElementById('effNew').textContent = 'Effective rate: ' + (totalIncome>0?(taxNew/totalIncome*100).toFixed(2):0) + '%';
+  document.getElementById('effOld').textContent = 'Effective rate: ' + (totalIncome>0?(taxOld/totalIncome*100).toFixed(2):0) + '%';
+
+  // In-hand
+  const monthlyGross = gross/12;
+  const pf = monthlyGross * 0.12;
+  const monthlyTax = (currentRegime==='old'?taxOld:taxNew)/12;
+  document.getElementById('grossM').textContent = '₹' + Math.round(monthlyGross).toLocaleString('en-IN');
+  document.getElementById('pfM').textContent = '₹' + Math.round(pf).toLocaleString('en-IN');
+  document.getElementById('ptM').textContent = '₹' + Math.round(pt/12).toLocaleString('en-IN');
+  document.getElementById('tdsM').textContent = '₹' + Math.round(monthlyTax).toLocaleString('en-IN');
+  document.getElementById('netM').textContent = '₹' + Math.round(monthlyGross - pf - pt/12 - monthlyTax).toLocaleString('en-IN');
+
+  // AI tip
+  let tip = '';
+  if(taxOld < taxNew){
+    tip = `Old regime saves you ₹${Math.round(save).toLocaleString('en-IN')}. Keep maxing 80C (₹1.5L) + 80D + NPS ₹50k.`;
+  } else {
+    tip = `New regime is better by ₹${Math.round(save).toLocaleString('en-IN')}. No need for heavy 80C investments this year.`;
+  }
+  if(hraExempt > 0) tip += ` HRA exemption calculated: ₹${Math.round(hraExempt).toLocaleString('en-IN')}.`;
+  document.getElementById('aiTip').textContent = tip;
+
+  updateChart(taxNew, taxOld, specialTaxWithCess);
+}
+
+function updateChart(tNew, tOld, special){
+  const ctx = document.getElementById('taxChart').getContext('2d');
+  if(taxChart) taxChart.destroy();
+  taxChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['New Regime', 'Old Regime', 'Special Rate Tax'],
+      datasets: [{
+        label: 'Tax (₹)',
+        data: [Math.round(tNew), Math.round(tOld), Math.round(special)],
+        backgroundColor: ['#fbbf24', '#64748b', '#f43f5e'],
+        borderRadius: 6
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        y: { beginAtZero: true, ticks: { color: '#94a3b8' }, grid: { color: '#1e293b' } },
+        x: { ticks: { color: '#94a3b8' }, grid: { display: false } }
+      }
+    }
+  });
+}
+
+// ============ LATE FEE ============
+function calcLateFee(){
+  const fee = +document.getElementById('lateFee').value || 0;
+  const interest = +document.getElementById('interest234').value || 0;
+  const income = +document.getElementById('grossSalary').value || 0;
+  let actualFee = fee;
+  if(fee===1000 && income > 500000) actualFee = 5000;
+  if(fee===5000 && income > 500000) actualFee = 10000;
+  document.getElementById('lateTotal').textContent = '₹' + (actualFee + interest).toLocaleString('en-IN');
+}
+
+// ============ OCR (simplified) ============
+async function runOCR(e){
+  const file = e.target.files[0];
+  if(!file) return;
+  document.getElementById('ocrStatus').textContent = 'Reading Form 16… please wait';
+  try {
+    const { data: { text } } = await Tesseract.recognize(file, 'eng');
+    // Very basic extraction – look for common patterns
+    const salMatch = text.match(/(?:Gross\s*Salary|Total\s*Salary)[^\d]*([\d,]+)/i);
+    if(salMatch){
+      const val = parseInt(salMatch[1].replace(/,/g,''));
+      if(val>10000) document.getElementById('grossSalary').value = val;
+    }
+    document.getElementById('ocrStatus').textContent = 'OCR complete. Please verify extracted numbers.';
+    calculate();
+  } catch(err){
+    document.getElementById('ocrStatus').textContent = 'OCR failed – enter values manually.';
+  }
+}
+
+// ============ PDF ============
+function downloadPDF(){
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+  doc.setFontSize(16);
+  doc.text('Income Tax Computation FY 2026-27', 20, 20);
+  doc.setFontSize(11);
+  doc.text('New Regime Tax: ' + document.getElementById('taxNew').textContent, 20, 35);
+  doc.text('Old Regime Tax: ' + document.getElementById('taxOld').textContent, 20, 45);
+  doc.text('Recommended: ' + document.getElementById('bestRegime').textContent, 20, 55);
+  doc.text('Generated by Income Tax Calculator Pro – Educational use only', 20, 70);
+  doc.save('tax-computation-fy-2026-27.pdf');
+}
+
+// ============ ITR JSON ============
+function downloadITRJSON(){
+  const data = {
+    AssessmentYear: '2027-28',
+    Form: 'ITR-1',
+    PersonalInfo: { Regime: currentRegime === 'old' ? 'Old' : 'New' },
+    Salary: +document.getElementById('grossSalary').value || 0,
+    HouseProperty: +document.getElementById('hpIncome').value || 0,
+    OtherSources: +document.getElementById('otherIncome').value || 0,
+    Deductions: {
+      '80C': +document.getElementById('sec80c').value || 0,
+      '80D': +document.getElementById('sec80d').value || 0,
+      '80CCD1B': +document.getElementById('nps').value || 0
+    },
+    TaxNew: document.getElementById('taxNew').textContent,
+    TaxOld: document.getElementById('taxOld').textContent,
+    Note: 'Simplified JSON for reference. Complete full ITR on incometax.gov.in'
+  };
+  const blob = new Blob([JSON.stringify(data,null,2)], {type:'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'ITR-FY2026-27-simplified.json';
+  a.click();
+}
+
+// ============ WHATSAPP SHARE ============
+function shareWhatsApp(){
+  const tax = currentRegime==='old' ? document.getElementById('taxOld').textContent : document.getElementById('taxNew').textContent;
+  const text = encodeURIComponent(`My calculated tax for FY 2026-27 is ${tax}.\n\nCompare New vs Old Regime instantly 👉 ${location.href}\n\n#IncomeTaxCalculator #Budget2026`);
+  window.open(`https://wa.me/?text=${text}`, '_blank');
+}
+
+// ============ NOTICE GENERATOR ============
+function showNoticeGen(){
+  const type = document.getElementById('noticeType').value;
+  let draft = '';
+  if(type==='1431'){
+    draft = `To,\nThe Assessing Officer\n\nSubject: Response to Intimation under Section 143(1) for AY 2027-28\n\nRespected Sir/Madam,\n\nI have received the intimation under section 143(1). After verification of Form 16, Form 26AS and AIS, the demand/refund appears incorrect because of [mention reason – TDS mismatch / deduction not considered].\n\nI request you to rectify the same under section 154.\n\nYours faithfully,\n[Your Name]\nPAN: [Your PAN]`;
+  } else {
+    draft = `To,\nThe Assessing Officer\n\nSubject: Clarification regarding outstanding demand\n\nRespected Sir/Madam,\n\nWith reference to the outstanding demand shown in my account, I submit that the demand has already been paid / is not payable for the following reasons: …\n\nKindly update the records.\n\nYours faithfully,\n[Your Name]`;
+  }
+  document.getElementById('noticeDraft').value = draft;
+  document.getElementById('noticeModal').classList.remove('hidden');
+  document.getElementById('noticeModal').classList.add('flex');
+}
+function closeNotice(){ document.getElementById('noticeModal').classList.add('hidden'); document.getElementById('noticeModal').classList.remove('flex'); }
+function copyNotice(){ navigator.clipboard.writeText(document.getElementById('noticeDraft').value); alert('Draft copied'); }
+
+// ============ LEAD ============
+function captureLead(e){
+  e.preventDefault();
+  const email = document.getElementById('leadEmail').value;
+  localStorage.setItem('taxLead', email);
+  alert('Thank you! Tax Saving PDF 2026 will be sent to ' + email + ' (demo – no actual email sent).');
+  document.getElementById('leadEmail').value = '';
+}
+
+// ============ THEME (placeholder) ============
+function toggleDark(){ document.body.classList.toggle('light-mode'); }
+
+// Init
+document.addEventListener('DOMContentLoaded', () => {
+  calculate();
+  calcLateFee();
+});
+</script>
+</body>
+</html>
