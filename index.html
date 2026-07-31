@@ -6,34 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>100FreeTools - 100+ Free Online Tools</title>
 <link rel="stylesheet" href="style.css">
-    <script type="text/javascript">
-  // Old and New Base URLs configuration
-  const oldRepoPath = "/My-tools";
-  const newDomain = "https://my-tools-muja.vercel.app";
-
-  // Capture current URL paths and parameters
-  let currentPath = window.location.pathname;
-  let currentSearch = window.location.search;
-  let currentHash = window.location.hash;
-
-  // Clean the old repository sub-folder path from the route
-  if (currentPath.startsWith(oldRepoPath)) {
-    currentPath = currentPath.substring(oldRepoPath.length);
-  }
-
-  // Ensure proper slash formatting
-  if (!currentPath.startsWith("/")) {
-    currentPath = "/" + currentPath;
-  }
-
-  // Construct the absolute final destination on Vercel
-  const destinationUrl = newDomain + currentPath + currentSearch + currentHash;
-
-  // Execute immediate client-side redirection without saving old page to history
-  window.location.replace(destinationUrl);
-</script>
-
-<!-- Google tag (gtag.js) -->
+    <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-NPKEQVJYP8"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
