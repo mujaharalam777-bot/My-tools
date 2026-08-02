@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
   <script>
-    // Loop atkanor jonno check
     if(window.location.hostname.includes("github.io")) {
-      var path = window.location.pathname.replace("/My-tools/", "/");
-      window.location.replace("https://my-tools-muja.vercel.app" + path);
+      // /My-tools/ ke / diye replace kore debe
+      var newPath = window.location.pathname.replace("/My-tools/", "/");
+      window.location.replace("https://my-tools-muja.vercel.app" + newPath);
     }
   </script>
 </head>
-<body>Redirecting to new site...</body>
+<body style="text-align:center; padding:50px;">Redirecting to new site...</body>
 </html>
