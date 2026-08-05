@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PDF Text Editor - Agun Version</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<style>
+    body { font-family: 'Nirmala UI', sans-serif; background: #1a1a1a; color: #fff; text-align: center; padding: 20px; }
+    h1 { color: #00ff88; }
+    #upload { padding: 10px; background: #333; border: 2px dashed #00ff88; border-radius: 10px; cursor: pointer; }
+    #pdf-canvas { border: 2px solid #00ff88; margin-top: 20px; max-width: 90%; }
+   .text-overlay { position: absolute; border: 1px dashed #ffaa00; background: rgba(255,255,255,0.1); cursor: text; color: #000; padding: 2px; }
+    #editor-area { position: relative; display: inline-block; }
+    button { background: #00ff88; color: #000; border: none; padding: 12px 25px; font-size: 16px; border-radius: 8px; cursor: pointer; margin: 10px; font-weight: bold; }
+    button:hover { background: #00cc6a; }
+</style>
+</head>
+<body>
+
+<h1>🔥 PDF Text Editor</h1>
+<p>PDF Upload করো > লেখার উপর ক্লিক করে Edit করো > Download</p>
+
+<input type="file" id="upload" accept=".pdf">
+
+<div id="editor-area"></div>
+<br>
+<button id="downloadBtn" style="display:none;">✅ Edited PDF Download</button>
+
+<script>
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+let pdfDoc = null;
+let editedTexts = [];
+
+document.getElementById('upload').addEventListener('change', async function(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const fileReader = new FileReader();
+    fileReader.onload = async function() {
+        const typedarray = new Uint8Array(this.result);
+        pdfDoc = await pdfjsLib.getDocument(typedarray).promise;
+        renderPage(1);
+        document.getElementById('downloadBtn').style.display = 'inline-block';
+    };
+    fileReader.readAsArrayBuffer(file);
+});
+
+async function renderPage(num) {
+    const page = await pdfDoc.getPage(num);
+    const viewport = page.getViewport({scale: 1.5});
+
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.height = viewport.height;
+    canvas.width = viewport.width;
+
+    const editorArea = document.getElementById('editor-area');
+    editorArea.innerHTML = '';
+    editorArea.appendChild(canvas);
+
+    await page.render({canvasContext: ctx, viewport: viewport}).promise;
+
+    // Text gulo ber kore overlay banabo
+    const textContent = await page.getTextContent();
+    textContent.items.forEach((item, i) => {
+        const tx = pdfjsLib.Util.transform(viewport.transform, item.transform);
+        const div = document.createElement('div');
+        div.className = 'text-overlay';
+        div.style.left = tx[4] + 'px';
+        div.style.top = (viewport.height - tx[5]) + 'px';
+        div.style.fontSize = item.height * 1.5 + 'px';
+        div.contentEditable = true; // Eitai magic
+        div.innerText = item.str;
+        div.dataset.index = i;
+
+        div.oninput = (e) => {
+            editedTexts[i] = e.target.innerText;
+        }
+        editorArea.appendChild(div);
+    });
+}
+
+// Notun PDF banano
+document.getElementById('downloadBtn').addEventListener('click', async () => {
+    if (!pdfDoc) return;
+    const { PDFDocument, rgb } = PDFLib;
+
+    const pdfBytes = await fetch(URL.createObjectURL(new Blob([await pdfDoc.getData()]))).then(res => res.arrayBuffer());
+    const newPdfDoc = await PDFDocument.load(pdfBytes);
+    const pages = newPdfDoc.getPages();
+
+    // User ja edit koreche seta bosiye dao
+    document.querySelectorAll('.text-overlay').forEach((el, i) => {
+        if(editedTexts[i]){
+            const page = pages[0]; // prothom page er jonno
+            page.drawRectangle({
+                x: parseFloat(el.style.left),
+                y: parseFloat(el.style.top),
+                width: el.offsetWidth,
+                height: el.offsetHeight,
+                color: rgb(1,1,1), // White diye dhaka
+            });
+            page.drawText(editedTexts[i], {
+                x: parseFloat(el.style.left),
+                y: parseFloat(el.style.top),
+                size: parseFloat(el.style.fontSize),
+                color: rgb(0,0,0),
+            });
+        }
+    });
+
+    const newPdfBytes = await newPdfDoc.save();
+    const blob = new Blob([newPdfBytes], {type: 'application/pdf'});
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'edited_agun.pdf';
+    link.click();
+});
+
+</script>
+</body>
+</html>
