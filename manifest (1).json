@@ -1,0 +1,26 @@
+{
+  "background_color": "#ffffff",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "FOLYO-All -In-One-Tools",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "FOLYO-Tools",
+  "start_url": "/",
+  "theme_color": "#0a1a2f",
+  "id": "folyo-all-in-one",
+  "description": "FOLYO - All in One Tools. 50+ Free Online Tools. 100% Client Side &amp; Secure.\nPopular Tools: Age Calculator, BMI Calculator, QR Code Generator, Password Generator, Insurance Calculator, Love Calculator, BG Remover, Photo Editor, Hash Generator, Favicon Generator, PDF Tools.\nAll data stays on your device. No server upload. No Login. No Ads. Plus 50+ more tools for Calculator, PDF, Image, Text, SEO &amp; Web.",
+  "lang": "en",
+  "categories": [
+    "business",
+    "developer",
+    "developer tools",
+    "education",
+    "finance",
+    "fitness",
+    "health",
+    "health &amp; fitness",
+    "productivity",
+    "reference"
+  ]
+}
