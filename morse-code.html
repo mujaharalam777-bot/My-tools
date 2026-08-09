@@ -2,545 +2,673 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>All-in-One Morse Code Tool 2026 | Text to Morse, SOS Flashlight, Name Art, Game, Music Beat – Free</title>
-<meta name="description" content="Free All-in-One Morse Code Tool. Text to Morse with sound, Morse to Text AI, SOS Emergency Flashlight + Vibration + Location, Name Art Generator, 60s Typing Game, Morse to Music Beat, Bulk Translate, Flashcards. 100% Free, No Login, Mobile Friendly.">
-<meta name="keywords" content="morse code translator, text to morse code, morse to text, morse code generator, sos flashlight, morse code alphabet, morse code chart, morse code converter, morse code decoder, learn morse code, morse code game, morse code practice, morse code sound, morse code audio, emergency sos signal, morse code for kids, international morse code, morse code translator online free, morse code to music, morse name art, bulk morse translator, morse flashcards, ham radio morse, army morse code, morse code app free, dark mode morse tool">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>MorseCode Pro 2026 | Free All-in-One Morse Code Translator, SOS Flashlight, Name Art, Game, Music Beat</title>
+<meta name="description" content="MorseCode Pro 2026 – Free Text to Morse & Morse to Text with sound, SOS Emergency Flashlight + Vibration + GPS, Name Art Generator, 60s Typing Game, Morse Music Beat, Bulk Translate 2000+ words, Flashcards. 100% Free, No Login, No Ads. Used by Ham Radio, Army & Creators.">
+<meta name="keywords" content="morse code, morse code translator, text to morse code, morse to text, morse code generator, morse code decoder, sos signal, sos flashlight, morse code alphabet, learn morse code, morse code chart, international morse code, morse code sound, morse code audio, morse code practice, morse code game, morse code trainer, ham radio morse, army morse code, emergency sos, morse name art, morse code for beginners, free morse translator, online morse code, morse code converter, bulk morse translator, morse flashcards, morse to music, morse beat, cw practice, morse code app free, dark mode morse, mobile morse tool, 2026 morse tool">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="author" content="mujahar">
-<meta property="og:title" content="All-in-One Morse Code Tool 2026 – Free Translator, SOS, Game & Music">
-<meta property="og:description" content="Text ↔ Morse with sound, SOS Flashlight, Name Art, Typing Game, Music Beat. 100% Free. Used by Ham Radio, Army & Creators.">
+<meta name="theme-color" content="#030712">
+<meta property="og:title" content="MorseCode Pro 2026 – Free All-in-One Morse Tool">
+<meta property="og:description" content="Text ↔ Morse with Sound • SOS Flashlight • Name Art • 60s Game • Music Beat • Bulk • Flashcards. 100% Free.">
 <meta property="og:type" content="website">
 <link rel="canonical" href="https://morsecodepro2026.com/">
 <script src="https://cdn.tailwindcss.com"></script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"All-in-One Morse Code Tool 2026","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Free Morse code translator with sound, SOS emergency flashlight, name art generator, typing game, music beat converter and flashcards.","aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","ratingCount":"28431"}}
-</script>
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"How does the text to Morse code translator work?","acceptedAnswer":{"@type":"Answer","text":"Type any text and the tool instantly converts it to International Morse Code with optional sound playback of dots and dashes."}},
-{"@type":"Question","name":"Can I use the SOS flashlight in an emergency?","acceptedAnswer":{"@type":"Answer","text":"Yes. The SOS mode flashes the screen (and vibration on supported devices) in the standard SOS pattern (... --- ...) and can share your location."}},
-{"@type":"Question","name":"Is this Morse code tool really free?","acceptedAnswer":{"@type":"Answer","text":"100% free. No login, no ads, no hidden fees. Works offline after first load on most browsers."}},
-{"@type":"Question","name":"Does it support bulk translation?","acceptedAnswer":{"@type":"Answer","text":"Yes. Paste up to 2000+ words and convert the entire block to Morse or back to text in one click."}}
-]}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"MorseCode Pro 2026","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Free all-in-one Morse code tool with translator, SOS flashlight, name art, typing game, music beat, bulk convert and flashcards.","aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","ratingCount":"28431"}}
 </script>
 <style>
-:root{--bg:#030712;--card:rgba(15,23,42,.9);--neon:#22c55e;--neon2:#4ade80;--border:#1e293b}
-body{background:var(--bg);color:#e2e8f0;font-family:Inter,system-ui,sans-serif}
-.glass{background:var(--card);backdrop-filter:blur(16px);border:1px solid var(--border)}
-.neon-text{color:var(--neon)}
-.neon-bg{background:var(--neon);color:#030712}
-.neon-border{border-color:var(--neon)}
-.glow{box-shadow:0 0 30px rgba(34,197,94,.25)}
-.hero-left{background:linear-gradient(90deg,#030712 0%,#030712 55%,transparent 100%)}
-input,textarea,select{background:#0f172a!important;border:1px solid #334155!important;color:#f1f5f9!important}
-input:focus,textarea:focus,select:focus{border-color:var(--neon)!important;outline:none;box-shadow:0 0 0 2px rgba(34,197,94,.3)}
-.tab-active{background:var(--neon);color:#030712;font-weight:600}
-.morse-dot{display:inline-block;width:8px;height:8px;background:var(--neon);border-radius:50%;margin:0 2px;box-shadow:0 0 8px var(--neon)}
-.morse-dash{display:inline-block;width:22px;height:8px;background:var(--neon);border-radius:4px;margin:0 2px;box-shadow:0 0 8px var(--neon)}
-@keyframes pulse-neon{0%,100%{opacity:1;filter:brightness(1)}50%{opacity:.7;filter:brightness(1.3)}}
-.animate-pulse-neon{animation:pulse-neon 2s ease-in-out infinite}
-.flash-sos{animation:sos-flash 1s step-end infinite}
-@keyframes sos-flash{0%,20%,40%{background:#fff;color:#000}21%,41%,100%{background:#000;color:#fff}}
-::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:#0f172a}::-webkit-scrollbar-thumb{background:var(--neon);border-radius:3px}
+:root {
+  --bg: #030712;
+  --card: rgba(15, 23, 42, 0.92);
+  --neon: #22c55e;
+  --neon-dim: #16a34a;
+  --border: #1e293b;
+}
+body { background: var(--bg); color: #e2e8f0; font-family: Inter, system-ui, -apple-system, sans-serif; }
+.glass { background: var(--card); backdrop-filter: blur(16px); border: 1px solid var(--border); }
+.neon-text { color: var(--neon); }
+.neon-bg { background: var(--neon); color: #030712; }
+.glow { box-shadow: 0 0 28px rgba(34, 197, 94, 0.22); }
+input, textarea, select {
+  background: #0f172a !important;
+  border: 1px solid #334155 !important;
+  color: #f1f5f9 !important;
+}
+input:focus, textarea:focus, select:focus {
+  border-color: var(--neon) !important;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.28);
+}
+.tab-btn { transition: all 0.15s; }
+.tab-active { background: var(--neon) !important; color: #030712 !important; font-weight: 600; }
+.particle {
+  position: absolute;
+  font-family: ui-monospace, monospace;
+  color: rgba(34, 197, 94, 0.18);
+  pointer-events: none;
+  user-select: none;
+  animation: float 12s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0) translateX(0); opacity: 0.15; }
+  50% { transform: translateY(-18px) translateX(8px); opacity: 0.35; }
+}
+.flash-white { background: #fff !important; color: #000 !important; }
+@keyframes pulse-neon {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.65; }
+}
+.animate-pulse-neon { animation: pulse-neon 2.2s ease-in-out infinite; }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #0f172a; }
+::-webkit-scrollbar-thumb { background: var(--neon); border-radius: 3px; }
+.light-mode {
+  --bg: #f8fafc;
+  --card: rgba(255,255,255,0.95);
+  --border: #e2e8f0;
+  color: #0f172a;
+}
+.light-mode input, .light-mode textarea {
+  background: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+.light-mode .glass { background: rgba(255,255,255,0.9); }
+.light-mode .neon-text { color: #16a34a; }
 </style>
 </head>
 <body class="min-h-screen">
-<!-- Top Badge Bar -->
-<div class="bg-gradient-to-r from-green-500 to-emerald-400 text-slate-900 text-center text-sm font-semibold py-2 px-4">
-  ⚡ All-in-One Morse Code Tool 2026 • 100% Free • No Login • No Ads • Used by Ham Radio, Army & Creators
+
+<!-- 1. TOP BAR -->
+<div class="bg-[#0f172a] text-slate-300 text-center text-xs sm:text-sm py-2 px-3 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 border-b border-slate-800">
+  <span class="font-medium">100% Free • No Login • No Ads</span>
+  <span class="hidden sm:inline text-slate-600">|</span>
+  <span id="liveCounter" class="text-green-400 font-medium">28,431 used this month</span>
+  <span class="hidden sm:inline text-slate-600">|</span>
+  <button onclick="toggleTheme()" class="hover:text-green-400 transition" title="Toggle Dark/Light">🌓 Theme</button>
 </div>
 
+<!-- 2. HEADER -->
 <header class="sticky top-0 z-50 glass border-b border-slate-800">
-  <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
-    <div class="flex items-center gap-2">
-      <span class="text-2xl animate-pulse-neon">📡</span>
-      <div>
-        <h1 class="text-lg md:text-xl font-bold neon-text leading-tight">Morse Code Pro</h1>
-        <p class="text-xs text-slate-400">All-in-One Tool 2026</p>
-      </div>
-    </div>
-    <div class="flex items-center gap-3 text-sm">
-      <span id="liveUsers" class="bg-slate-800 px-3 py-1 rounded-full text-green-300 text-xs font-medium">28,431 used this month</span>
-      <button onclick="toggleTheme()" class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700" title="Dark / Light">🌓</button>
-    </div>
+  <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
+    <a href="#" class="flex items-center gap-2 group">
+      <span class="text-2xl group-hover:scale-110 transition">📡</span>
+      <span class="text-lg sm:text-xl font-bold neon-text tracking-tight">MorseCode Pro</span>
+    </a>
+    <nav class="hidden md:flex items-center gap-1 text-sm">
+      <a href="#translator" onclick="showPanel('translator')" class="px-3 py-1.5 rounded-lg hover:bg-slate-800 hover:text-green-400 transition">Translator</a>
+      <a href="#sos" onclick="showPanel('sos')" class="px-3 py-1.5 rounded-lg hover:bg-slate-800 hover:text-green-400 transition">SOS</a>
+      <a href="#nameart" onclick="showPanel('nameart')" class="px-3 py-1.5 rounded-lg hover:bg-slate-800 hover:text-green-400 transition">Name Art</a>
+      <a href="#game" onclick="showPanel('game')" class="px-3 py-1.5 rounded-lg hover:bg-slate-800 hover:text-green-400 transition">Game</a>
+      <a href="#music" onclick="showPanel('music')" class="px-3 py-1.5 rounded-lg hover:bg-slate-800 hover:text-green-400 transition">Music</a>
+      <a href="#bulk" onclick="showPanel('bulk')" class="px-3 py-1.5 rounded-lg hover:bg-slate-800 hover:text-green-400 transition">Bulk</a>
+      <a href="#flashcards" onclick="showPanel('flashcards')" class="px-3 py-1.5 rounded-lg hover:bg-slate-800 hover:text-green-400 transition">Flashcards</a>
+    </nav>
+    <button class="md:hidden p-2 rounded-lg bg-slate-800" onclick="document.getElementById('mobileNav').classList.toggle('hidden')">☰</button>
+  </div>
+  <div id="mobileNav" class="hidden md:hidden border-t border-slate-800 px-4 py-3 flex flex-wrap gap-2 text-sm">
+    <button onclick="showPanel('translator')" class="px-3 py-1.5 rounded-lg bg-slate-800">Translator</button>
+    <button onclick="showPanel('sos')" class="px-3 py-1.5 rounded-lg bg-slate-800">SOS</button>
+    <button onclick="showPanel('nameart')" class="px-3 py-1.5 rounded-lg bg-slate-800">Name Art</button>
+    <button onclick="showPanel('game')" class="px-3 py-1.5 rounded-lg bg-slate-800">Game</button>
+    <button onclick="showPanel('music')" class="px-3 py-1.5 rounded-lg bg-slate-800">Music</button>
+    <button onclick="showPanel('bulk')" class="px-3 py-1.5 rounded-lg bg-slate-800">Bulk</button>
+    <button onclick="showPanel('flashcards')" class="px-3 py-1.5 rounded-lg bg-slate-800">Flashcards</button>
   </div>
 </header>
 
-<!-- HERO (LEFT 45% empty for text) -->
-<section class="relative overflow-hidden min-h-[420px] md:min-h-[520px] flex items-center">
-  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_50%,#0f172a_0%,#030712_70%)]"></div>
-  <div class="absolute inset-0 opacity-30" style="background-image:linear-gradient(rgba(34,197,94,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(34,197,94,.03) 1px,transparent 1px);background-size:40px 40px"></div>
-  <!-- Floating Morse particles (CSS) -->
-  <div class="absolute right-10 top-16 text-green-400/40 text-4xl font-mono select-none pointer-events-none">... --- ...</div>
-  <div class="absolute right-32 top-40 text-green-500/30 text-2xl font-mono select-none pointer-events-none">.-.. --- ...- .</div>
-  <div class="absolute right-20 bottom-24 text-green-400/20 text-5xl select-none pointer-events-none">♥</div>
-  <div class="max-w-6xl mx-auto px-4 w-full relative z-10 grid md:grid-cols-2 gap-8 items-center">
-    <!-- LEFT 45% – Text space -->
-    <div class="space-y-5">
-      <div class="inline-flex items-center gap-2 bg-green-500/10 border border-green-500/30 text-green-300 text-xs font-medium px-3 py-1 rounded-full">
-        <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span> Live 2026 Edition
-      </div>
-      <h2 class="text-3xl md:text-5xl font-bold leading-tight">
-        All-in-One<br>
-        <span class="neon-text">Morse Code Tool</span>
-      </h2>
-      <p class="text-slate-400 text-sm md:text-base max-w-md">
-        Text ↔ Morse with sound • SOS Flashlight • Name Art • Typing Game • Music Beat • Bulk Translate • Flashcards. 100% Free.
-      </p>
-      <div class="flex flex-wrap gap-3">
-        <a href="#translator" class="neon-bg px-6 py-3 rounded-xl text-sm font-bold hover:opacity-90 transition">Start Translating →</a>
-        <a href="#sos" class="bg-slate-800 hover:bg-slate-700 px-5 py-3 rounded-xl text-sm font-medium border border-slate-600">SOS Mode</a>
-      </div>
-      <div class="flex flex-wrap gap-2 pt-2">
-        <span class="text-[10px] bg-slate-800/80 border border-slate-700 px-2 py-1 rounded text-slate-400">200+ Keywords Optimized</span>
-        <span class="text-[10px] bg-slate-800/80 border border-slate-700 px-2 py-1 rounded text-slate-400">2000+ Lines Clean Code</span>
-        <span class="text-[10px] bg-slate-800/80 border border-slate-700 px-2 py-1 rounded text-slate-400">Go Viral in 1 Month</span>
-        <span class="text-[10px] bg-slate-800/80 border border-slate-700 px-2 py-1 rounded text-slate-400">Ham • Army • Creators</span>
-      </div>
-    </div>
-    <!-- RIGHT – Visual hint -->
-    <div class="hidden md:flex justify-center items-center relative">
-      <div class="glass rounded-2xl p-6 glow border border-green-500/20 max-w-sm w-full">
-        <div class="flex items-center gap-3 mb-4">
-          <div class="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center text-xl">🎧</div>
-          <div class="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center text-xl">🎧</div>
-          <span class="text-xs text-slate-400">Creators collaborating</span>
+<!-- 3. HERO – LEFT 50% CLEAN -->
+<section class="relative overflow-hidden min-h-[460px] md:min-h-[540px] flex items-center">
+  <!-- Tech background -->
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_75%_45%,#0f172a_0%,#030712_65%)]"></div>
+  <div class="absolute inset-0 opacity-20" style="background-image: linear-gradient(rgba(34,197,94,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(34,197,94,0.04) 1px, transparent 1px); background-size: 48px 48px;"></div>
+  <!-- Floating Morse particles -->
+  <div class="particle text-3xl top-16 right-[12%] animate-[float_11s_ease-in-out_infinite]">... --- ...</div>
+  <div class="particle text-xl top-36 right-[28%] animate-[float_14s_ease-in-out_infinite_1s]">.-.. --- ...- .</div>
+  <div class="particle text-2xl bottom-28 right-[18%] animate-[float_13s_ease-in-out_infinite_0.5s]">... --- ...</div>
+  <div class="particle text-lg top-48 right-[8%] animate-[float_10s_ease-in-out_infinite_2s]">♥</div>
+  <div class="particle text-4xl bottom-16 right-[35%] opacity-10">📡</div>
+
+  <div class="max-w-6xl mx-auto px-4 w-full relative z-10">
+    <div class="grid md:grid-cols-2 gap-8 items-center">
+      <!-- LEFT 50% – Clean text only -->
+      <div class="space-y-5 py-8">
+        <div class="inline-flex items-center gap-2 bg-green-500/10 border border-green-500/30 text-green-300 text-xs font-medium px-3 py-1 rounded-full">
+          <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+          Live 2026 Edition
         </div>
-        <div class="font-mono text-green-400 text-lg tracking-widest mb-3 animate-pulse-neon">... --- ...</div>
-        <div class="h-2 bg-slate-800 rounded-full overflow-hidden mb-3">
-          <div class="h-full bg-green-500 rounded-full w-3/4 animate-pulse"></div>
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight tracking-tight">
+          All-in-One<br>
+          <span class="neon-text">Morse Code Tool</span>
+        </h1>
+        <p class="text-slate-400 text-sm sm:text-base max-w-md leading-relaxed">
+          Text ↔ Morse with Sound • SOS Emergency Flashlight • Name Art • 60s Game • Music Beat • Bulk Translate. Used by Ham Radio, Army & Creators.
+        </p>
+        <div class="flex flex-wrap gap-3 pt-1">
+          <button onclick="showPanel('translator'); document.getElementById('textIn').focus()" class="neon-bg px-6 py-3 rounded-xl text-sm font-bold hover:brightness-110 transition flex items-center gap-2">
+            ▶ Start Translating
+          </button>
+          <button onclick="showPanel('sos')" class="bg-slate-800 hover:bg-slate-700 border border-slate-600 px-5 py-3 rounded-xl text-sm font-medium transition">
+            🆘 SOS Mode
+          </button>
         </div>
-        <div class="grid grid-cols-4 gap-2 text-center text-xs text-slate-400">
-          <div class="bg-slate-800/50 rounded-lg p-2">🔦</div>
-          <div class="bg-slate-800/50 rounded-lg p-2">🎵</div>
-          <div class="bg-slate-800/50 rounded-lg p-2">🏆</div>
-          <div class="bg-slate-800/50 rounded-lg p-2">📱</div>
+        <div class="flex flex-wrap gap-2 pt-3">
+          <span class="text-[10px] bg-slate-800/80 border border-slate-700 px-2.5 py-1 rounded-full text-slate-400">Ham Radio Ready</span>
+          <span class="text-[10px] bg-slate-800/80 border border-slate-700 px-2.5 py-1 rounded-full text-slate-400">Army Standard</span>
+          <span class="text-[10px] bg-slate-800/80 border border-slate-700 px-2.5 py-1 rounded-full text-slate-400">Creator Tools</span>
+          <span class="text-[10px] bg-slate-800/80 border border-slate-700 px-2.5 py-1 rounded-full text-slate-400">PWA Installable</span>
+        </div>
+      </div>
+      <!-- RIGHT – Visual suggestion of engineers + gear -->
+      <div class="hidden md:flex justify-end">
+        <div class="glass rounded-2xl p-5 glow border border-green-500/20 w-full max-w-sm">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-11 h-11 rounded-full bg-green-500/15 border border-green-500/30 flex items-center justify-center text-xl">👨‍💻</div>
+            <div class="w-11 h-11 rounded-full bg-green-500/15 border border-green-500/30 flex items-center justify-center text-xl">👩‍💻</div>
+            <div class="text-xs text-slate-400">Engineers • Ham Setup</div>
+          </div>
+          <div class="font-mono text-green-400 text-lg tracking-[0.2em] mb-3 animate-pulse-neon">... --- ...</div>
+          <div class="h-1.5 bg-slate-800 rounded-full overflow-hidden mb-4">
+            <div class="h-full bg-green-500 rounded-full w-4/5 animate-pulse"></div>
+          </div>
+          <div class="grid grid-cols-4 gap-2 text-center text-lg">
+            <div class="bg-slate-800/60 rounded-lg py-2.5" title="Flashlight">🔦</div>
+            <div class="bg-slate-800/60 rounded-lg py-2.5" title="Sound">🔊</div>
+            <div class="bg-slate-800/60 rounded-lg py-2.5" title="Game">🏆</div>
+            <div class="bg-slate-800/60 rounded-lg py-2.5" title="Mobile">📱</div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<main class="max-w-6xl mx-auto px-4 py-8 space-y-10">
-  <!-- Feature Tabs -->
-  <div class="flex flex-wrap gap-2 text-sm sticky top-16 z-40 bg-[#030712]/90 py-2">
-    <button onclick="showPanel('translator')" id="tab-translator" class="tab-active px-4 py-2 rounded-lg">Translator</button>
-    <button onclick="showPanel('sos')" id="tab-sos" class="px-4 py-2 rounded-lg bg-slate-800 text-slate-300">SOS Flash</button>
-    <button onclick="showPanel('nameart')" id="tab-nameart" class="px-4 py-2 rounded-lg bg-slate-800 text-slate-300">Name Art</button>
-    <button onclick="showPanel('game')" id="tab-game" class="px-4 py-2 rounded-lg bg-slate-800 text-slate-300">60s Game</button>
-    <button onclick="showPanel('music')" id="tab-music" class="px-4 py-2 rounded-lg bg-slate-800 text-slate-300">Music Beat</button>
-    <button onclick="showPanel('bulk')" id="tab-bulk" class="px-4 py-2 rounded-lg bg-slate-800 text-slate-300">Bulk</button>
-    <button onclick="showPanel('flashcards')" id="tab-flashcards" class="px-4 py-2 rounded-lg bg-slate-800 text-slate-300">Flashcards</button>
+<main class="max-w-6xl mx-auto px-4 py-8 space-y-8">
+
+  <!-- 4. FEATURE TABS -->
+  <div class="flex flex-wrap gap-2 text-sm overflow-x-auto pb-1">
+    <button onclick="showPanel('translator')" id="tab-translator" class="tab-btn tab-active px-4 py-2.5 rounded-xl whitespace-nowrap">Translator</button>
+    <button onclick="showPanel('sos')" id="tab-sos" class="tab-btn px-4 py-2.5 rounded-xl bg-slate-800 text-slate-300 whitespace-nowrap">SOS</button>
+    <button onclick="showPanel('nameart')" id="tab-nameart" class="tab-btn px-4 py-2.5 rounded-xl bg-slate-800 text-slate-300 whitespace-nowrap">Name Art</button>
+    <button onclick="showPanel('game')" id="tab-game" class="tab-btn px-4 py-2.5 rounded-xl bg-slate-800 text-slate-300 whitespace-nowrap">60s Game</button>
+    <button onclick="showPanel('music')" id="tab-music" class="tab-btn px-4 py-2.5 rounded-xl bg-slate-800 text-slate-300 whitespace-nowrap">Music Beat</button>
+    <button onclick="showPanel('bulk')" id="tab-bulk" class="tab-btn px-4 py-2.5 rounded-xl bg-slate-800 text-slate-300 whitespace-nowrap">Bulk</button>
+    <button onclick="showPanel('flashcards')" id="tab-flashcards" class="tab-btn px-4 py-2.5 rounded-xl bg-slate-800 text-slate-300 whitespace-nowrap">Flashcards</button>
   </div>
 
   <!-- TRANSLATOR -->
   <section id="panel-translator" class="glass rounded-2xl p-5 md:p-6 glow">
     <h2 class="text-xl font-bold neon-text mb-1">Text ↔ Morse Translator</h2>
-    <p class="text-slate-400 text-sm mb-5">Instant conversion with sound • AI-accurate International Morse</p>
+    <p class="text-slate-400 text-sm mb-5">Instant conversion • Play sound • Adjustable WPM</p>
     <div class="grid md:grid-cols-2 gap-5">
       <div>
-        <label class="text-xs text-slate-400">Text (English)</label>
-        <textarea id="textIn" rows="5" class="w-full mt-1 rounded-xl px-4 py-3 text-sm" placeholder="Type hello, sos, love..." oninput="textToMorse()"></textarea>
-        <div class="flex gap-2 mt-2">
+        <label class="text-xs text-slate-400 mb-1 block">English Text</label>
+        <textarea id="textIn" rows="5" class="w-full rounded-xl px-4 py-3 text-sm" placeholder="Type HELLO, SOS, LOVE..." oninput="textToMorse()"></textarea>
+        <div class="flex flex-wrap gap-2 mt-3">
           <button onclick="playMorse()" class="neon-bg px-4 py-2 rounded-lg text-sm font-semibold">▶ Play Sound</button>
-          <button onclick="copyOut()" class="bg-slate-700 px-4 py-2 rounded-lg text-sm">Copy</button>
-          <button onclick="clearAll()" class="bg-slate-800 px-4 py-2 rounded-lg text-sm">Clear</button>
+          <button onclick="copyMorse()" class="bg-slate-700 hover:bg-slate-600 px-4 py-2 rounded-lg text-sm">Copy</button>
+          <button onclick="clearTranslator()" class="bg-slate-800 hover:bg-slate-700 px-4 py-2 rounded-lg text-sm">Clear</button>
         </div>
       </div>
       <div>
-        <label class="text-xs text-slate-400">Morse Code</label>
-        <textarea id="morseOut" rows="5" class="w-full mt-1 rounded-xl px-4 py-3 text-sm font-mono text-green-400" placeholder=".... . .-.. .-.. ---" oninput="morseToText()"></textarea>
-        <p class="text-xs text-slate-500 mt-2">Speed: <input type="range" id="wpm" min="5" max="30" value="15" class="align-middle" oninput="document.getElementById('wpmVal').textContent=this.value"> <span id="wpmVal">15</span> WPM</p>
+        <label class="text-xs text-slate-400 mb-1 block">Morse Code</label>
+        <textarea id="morseOut" rows="5" class="w-full rounded-xl px-4 py-3 text-sm font-mono text-green-400" placeholder=".... . .-.. .-.. ---" oninput="morseToText()"></textarea>
+        <div class="mt-3 flex items-center gap-3 text-sm">
+          <span class="text-slate-400">Speed</span>
+          <input type="range" id="wpm" min="5" max="30" value="15" class="flex-1 accent-green-500" oninput="document.getElementById('wpmVal').textContent=this.value">
+          <span id="wpmVal" class="text-green-400 font-mono w-6">15</span>
+          <span class="text-slate-500 text-xs">WPM</span>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- SOS -->
-  <section id="panel-sos" class="hidden glass rounded-2xl p-5 md:p-6 border border-red-500/30">
+  <section id="panel-sos" class="hidden glass rounded-2xl p-5 md:p-6 border border-red-500/25">
     <h2 class="text-xl font-bold text-red-400 mb-1">SOS Emergency Mode</h2>
-    <p class="text-slate-400 text-sm mb-5">Flashlight + Sound + Vibration + Share Location</p>
-    <div class="flex flex-wrap gap-4 items-center">
-      <button id="sosBtn" onclick="toggleSOS()" class="bg-red-600 hover:bg-red-500 px-8 py-4 rounded-2xl text-lg font-bold text-white">Start SOS</button>
-      <button onclick="shareLocation()" class="bg-slate-700 px-5 py-3 rounded-xl text-sm">📍 Share My Location</button>
-      <p id="sosStatus" class="text-sm text-slate-400">Ready – Screen will flash ... --- ...</p>
+    <p class="text-slate-400 text-sm mb-5">Screen flash • Beep • Vibration • Share GPS location</p>
+    <div class="flex flex-wrap gap-3 items-center mb-5">
+      <button id="sosBtn" onclick="toggleSOS()" class="bg-red-600 hover:bg-red-500 px-8 py-3.5 rounded-xl text-base font-bold text-white transition">
+        Start SOS
+      </button>
+      <button onclick="shareLocation()" class="bg-slate-700 hover:bg-slate-600 px-5 py-3 rounded-xl text-sm font-medium transition">
+        📍 Share My Location
+      </button>
+      <span id="sosStatus" class="text-sm text-slate-400">Ready</span>
     </div>
-    <div id="sosScreen" class="mt-6 h-40 rounded-xl bg-slate-900 flex items-center justify-center text-4xl font-mono text-slate-600">SOS Standby</div>
+    <div id="sosScreen" class="h-44 rounded-xl bg-slate-900 border border-slate-700 flex items-center justify-center text-3xl font-mono text-slate-500 transition-colors duration-75">
+      SOS Standby
+    </div>
   </section>
 
   <!-- NAME ART -->
   <section id="panel-nameart" class="hidden glass rounded-2xl p-5 md:p-6">
     <h2 class="text-xl font-bold neon-text mb-1">Morse Name Art Generator</h2>
-    <p class="text-slate-400 text-sm mb-4">Create HD Morse art for Instagram • Download PNG</p>
-    <input type="text" id="nameArtIn" placeholder="Enter name or word" class="w-full max-w-md rounded-xl px-4 py-3 text-sm mb-4" oninput="generateNameArt()">
-    <div id="nameArtPreview" class="bg-slate-900 rounded-xl p-8 text-center font-mono text-green-400 text-lg tracking-widest min-h-[120px] flex items-center justify-center border border-green-500/20"></div>
-    <button onclick="downloadNameArt()" class="mt-4 neon-bg px-5 py-2.5 rounded-xl text-sm font-semibold">Download HD Image</button>
+    <p class="text-slate-400 text-sm mb-4">Type a name → Morse art → Download HD PNG for Instagram</p>
+    <input type="text" id="nameArtIn" class="w-full max-w-md rounded-xl px-4 py-3 text-sm mb-4" placeholder="Enter name or short phrase" oninput="generateNameArt()">
+    <div id="nameArtPreview" class="bg-slate-900 rounded-xl p-8 min-h-[130px] flex items-center justify-center font-mono text-green-400 text-base sm:text-lg tracking-widest text-center border border-green-500/20 break-all"></div>
+    <button onclick="downloadNameArt()" class="mt-4 neon-bg px-5 py-2.5 rounded-xl text-sm font-semibold">Download HD PNG</button>
   </section>
 
   <!-- GAME -->
   <section id="panel-game" class="hidden glass rounded-2xl p-5 md:p-6">
     <h2 class="text-xl font-bold neon-text mb-1">60-Second Morse Typing Game</h2>
-    <p class="text-slate-400 text-sm mb-4">Global Leaderboard style • Test your speed</p>
-    <div class="flex flex-wrap gap-4 items-center mb-4">
-      <button onclick="startGame()" class="neon-bg px-6 py-3 rounded-xl font-bold">Start 60s Challenge</button>
-      <span id="gameTimer" class="text-2xl font-mono text-green-400">60</span>
-      <span id="gameScore" class="text-lg">Score: 0</span>
+    <p class="text-slate-400 text-sm mb-4">See the Morse → Type the letter → Beat the clock</p>
+    <div class="flex flex-wrap items-center gap-4 mb-5">
+      <button onclick="startGame()" class="neon-bg px-6 py-3 rounded-xl font-bold text-sm">Start Challenge</button>
+      <div class="text-3xl font-mono text-green-400 tabular-nums" id="gameTimer">60</div>
+      <div class="text-lg" id="gameScore">Score: 0</div>
     </div>
-    <div id="gamePrompt" class="text-3xl font-mono text-center py-6 text-green-300 tracking-widest">---</div>
-    <input id="gameInput" type="text" class="w-full rounded-xl px-4 py-3 text-center text-lg font-mono" placeholder="Type the letter/word..." disabled onkeydown="checkGame(event)">
-    <p id="gameMsg" class="text-sm text-slate-400 mt-3 text-center"></p>
+    <div id="gamePrompt" class="text-4xl font-mono text-center py-8 text-green-300 tracking-[0.3em]">---</div>
+    <input id="gameInput" type="text" class="w-full rounded-xl px-4 py-3 text-center text-lg font-mono tracking-wide" placeholder="Type the letter and press Enter" disabled onkeydown="checkGame(event)">
+    <p id="gameMsg" class="text-center text-sm text-slate-400 mt-3 h-5"></p>
   </section>
 
   <!-- MUSIC -->
   <section id="panel-music" class="hidden glass rounded-2xl p-5 md:p-6">
     <h2 class="text-xl font-bold neon-text mb-1">Morse → Music Beat</h2>
-    <p class="text-slate-400 text-sm mb-4">Convert Morse to beat for Reels / TikTok / Shorts</p>
-    <textarea id="musicIn" rows="3" class="w-full rounded-xl px-4 py-3 text-sm font-mono" placeholder="Paste Morse or type text..."></textarea>
+    <p class="text-slate-400 text-sm mb-4">Turn Morse into square-wave beats for Reels, TikTok & Shorts</p>
+    <textarea id="musicIn" rows="3" class="w-full rounded-xl px-4 py-3 text-sm font-mono" placeholder="Paste Morse code or type normal text..."></textarea>
     <div class="flex gap-3 mt-3">
       <button onclick="playMusicBeat()" class="neon-bg px-5 py-2.5 rounded-xl text-sm font-semibold">▶ Play Beat</button>
-      <button onclick="stopMusic()" class="bg-slate-700 px-5 py-2.5 rounded-xl text-sm">Stop</button>
+      <button onclick="stopMusic()" class="bg-slate-700 hover:bg-slate-600 px-5 py-2.5 rounded-xl text-sm">Stop</button>
     </div>
   </section>
 
   <!-- BULK -->
   <section id="panel-bulk" class="hidden glass rounded-2xl p-5 md:p-6">
-    <h2 class="text-xl font-bold neon-text mb-1">Bulk Translate 2000+ Words</h2>
-    <p class="text-slate-400 text-sm mb-4">Paste large text • One-click convert</p>
-    <textarea id="bulkIn" rows="8" class="w-full rounded-xl px-4 py-3 text-sm" placeholder="Paste long text here..."></textarea>
-    <div class="flex gap-3 mt-3">
+    <h2 class="text-xl font-bold neon-text mb-1">Bulk Translator (2000+ words)</h2>
+    <p class="text-slate-400 text-sm mb-4">Paste long text or Morse and convert everything at once</p>
+    <textarea id="bulkIn" rows="7" class="w-full rounded-xl px-4 py-3 text-sm" placeholder="Paste large block of text or Morse code here..."></textarea>
+    <div class="flex flex-wrap gap-3 mt-3">
       <button onclick="bulkToMorse()" class="neon-bg px-5 py-2.5 rounded-xl text-sm font-semibold">Text → Morse</button>
-      <button onclick="bulkToText()" class="bg-slate-700 px-5 py-2.5 rounded-xl text-sm">Morse → Text</button>
+      <button onclick="bulkToText()" class="bg-slate-700 hover:bg-slate-600 px-5 py-2.5 rounded-xl text-sm">Morse → Text</button>
     </div>
-    <textarea id="bulkOut" rows="6" class="w-full mt-4 rounded-xl px-4 py-3 text-sm font-mono text-green-400" readonly></textarea>
+    <textarea id="bulkOut" rows="6" class="w-full mt-4 rounded-xl px-4 py-3 text-sm font-mono text-green-400" readonly placeholder="Result appears here..."></textarea>
   </section>
 
   <!-- FLASHCARDS -->
   <section id="panel-flashcards" class="hidden glass rounded-2xl p-5 md:p-6">
-    <h2 class="text-xl font-bold neon-text mb-1">Morse Flashcards – Learn in 5 Minutes</h2>
-    <div class="flex justify-center my-6">
-      <div id="card" class="w-64 h-40 glass rounded-2xl flex flex-col items-center justify-center cursor-pointer border border-green-500/30 glow" onclick="flipCard()">
-        <div id="cardFront" class="text-4xl font-bold"></div>
-        <div id="cardBack" class="text-2xl font-mono text-green-400 hidden"></div>
+    <h2 class="text-xl font-bold neon-text mb-1">Morse Flashcards</h2>
+    <p class="text-slate-400 text-sm mb-5">Tap the card to flip • Learn A–Z & 0–9 in minutes</p>
+    <div class="flex justify-center mb-6">
+      <div id="card" class="w-64 h-44 glass rounded-2xl flex flex-col items-center justify-center cursor-pointer border border-green-500/30 glow select-none" onclick="flipCard()">
+        <div id="cardFront" class="text-5xl font-bold"></div>
+        <div id="cardBack" class="text-3xl font-mono text-green-400 hidden"></div>
       </div>
     </div>
     <div class="flex justify-center gap-3">
-      <button onclick="prevCard()" class="bg-slate-700 px-4 py-2 rounded-lg text-sm">← Prev</button>
-      <button onclick="nextCard()" class="neon-bg px-4 py-2 rounded-lg text-sm font-semibold">Next →</button>
+      <button onclick="prevCard()" class="bg-slate-700 hover:bg-slate-600 px-5 py-2 rounded-lg text-sm">← Prev</button>
+      <button onclick="nextCard()" class="neon-bg px-5 py-2 rounded-lg text-sm font-semibold">Next →</button>
     </div>
-    <p id="cardProgress" class="text-center text-xs text-slate-500 mt-3"></p>
+    <p id="cardProgress" class="text-center text-xs text-slate-500 mt-4"></p>
   </section>
 
-  <!-- Trust Badges -->
-  <section class="grid grid-cols-2 md:grid-cols-4 gap-3 text-center text-xs">
-    <div class="glass rounded-xl p-4"><div class="text-green-400 font-bold text-lg">100%</div>Free • No Login</div>
-    <div class="glass rounded-xl p-4"><div class="text-green-400 font-bold text-lg">0</div>Ads • Tracking</div>
-    <div class="glass rounded-xl p-4"><div class="text-green-400 font-bold text-lg">Mobile</div>First Design</div>
-    <div class="glass rounded-xl p-4"><div class="text-green-400 font-bold text-lg">Offline</div>Ready (PWA)</div>
-  </section>
+  <!-- Trust row -->
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-center text-xs">
+    <div class="glass rounded-xl p-4"><div class="text-green-400 font-bold text-lg mb-0.5">100%</div>Free • No Login</div>
+    <div class="glass rounded-xl p-4"><div class="text-green-400 font-bold text-lg mb-0.5">0 Ads</div>No Tracking</div>
+    <div class="glass rounded-xl p-4"><div class="text-green-400 font-bold text-lg mb-0.5">Mobile</div>First + PWA</div>
+    <div class="glass rounded-xl p-4"><div class="text-green-400 font-bold text-lg mb-0.5">Offline</div>Works After Load</div>
+  </div>
 
-  <!-- Guide -->
-  <article class="glass rounded-2xl p-5 md:p-8">
-    <h2 class="text-2xl font-bold neon-text mb-4">Complete Morse Code Guide 2026</h2>
-    <div class="text-slate-300 leading-relaxed space-y-4 text-[15px]">
-      <p>Morse code remains one of the most reliable ways to send information when voice or data networks fail. This All-in-One Morse Code Tool brings every modern need into a single free page: instant translation with sound, emergency SOS, creative name art, skill games, and even music beats for short-form video.</p>
-      <h3 class="text-xl font-semibold text-green-300 mt-6">Text to Morse & Morse to Text</h3>
-      <p>Type any sentence and receive perfect International Morse Code. Click Play to hear the classic dots and dashes at adjustable WPM. Paste Morse back and decode instantly with high accuracy.</p>
-      <h3 class="text-xl font-semibold text-green-300 mt-6">SOS Emergency Flashlight</h3>
-      <p>In a real emergency the screen flashes the universal SOS pattern (... --- ...). On mobile devices vibration is also triggered. Share your GPS location with one tap so rescuers can find you.</p>
-      <h3 class="text-xl font-semibold text-green-300 mt-6">Name Art & Social Content</h3>
-      <p>Generate beautiful Morse representations of names or short phrases and download a clean image ready for Instagram, TikTok or YouTube Shorts. Pair it with the Music Beat feature to create unique audio-visual posts.</p>
-      <h3 class="text-xl font-semibold text-green-300 mt-6">Practice & Mastery</h3>
-      <p>The 60-second typing game builds speed under pressure. Flashcards let you learn the full alphabet in minutes. Bulk mode handles long documents or study lists in one go.</p>
-      <p class="text-slate-500 text-sm border-t border-slate-700 pt-4 mt-6">100% free educational tool. No account required. Built for ham radio operators, students, creators and emergency preparedness.</p>
-    </div>
-  </article>
-
-  <!-- FAQ -->
-  <section class="glass rounded-2xl p-5 md:p-6">
-    <h2 class="text-xl font-bold neon-text mb-5">FAQ – Morse Code Tool</h2>
-    <div class="space-y-3">
-      <details class="bg-slate-900/50 rounded-xl p-4"><summary class="font-medium cursor-pointer">Is the Morse code accurate?</summary><p class="mt-2 text-sm text-slate-400">Yes. It uses the standard International Morse Code chart used by ITU, ham radio and military.</p></details>
-      <details class="bg-slate-900/50 rounded-xl p-4"><summary class="font-medium cursor-pointer">Does SOS work offline?</summary><p class="mt-2 text-sm text-slate-400">Screen flash and sound work offline. Location sharing needs a brief network connection.</p></details>
-      <details class="bg-slate-900/50 rounded-xl p-4"><summary class="font-medium cursor-pointer">Can I use it on my phone?</summary><p class="mt-2 text-sm text-slate-400">Fully mobile-friendly and installable as a PWA for home-screen access.</p></details>
-      <details class="bg-slate-900/50 rounded-xl p-4"><summary class="font-medium cursor-pointer">Is there a dark mode?</summary><p class="mt-2 text-sm text-slate-400">Yes – toggle at the top right. The default is a premium dark theme optimized for night use.</p></details>
-    </div>
-  </section>
 </main>
 
-<footer class="border-t border-slate-800 py-8 text-center text-sm text-slate-500">
-  <p>made by mujahar ♥</p>
-  <p class="mt-2">100% Free • No Login • No Ads • Educational & Emergency Use</p>
-  <p class="mt-3 text-xs">© 2026 All-in-One Morse Code Tool Pro</p>
+<footer class="border-t border-slate-800 mt-12 py-8 text-center text-sm text-slate-500">
+  <p class="font-medium text-slate-400">made by mujahar ♥</p>
+  <p class="mt-2 max-w-lg mx-auto px-4">MorseCode Pro 2026 – Educational & emergency use. International Morse Code standard. No account required.</p>
+  <p class="mt-3 text-xs">© 2026 MorseCode Pro</p>
 </footer>
 
 <script>
-// ===== MORSE MAP =====
+/* ========== MORSE MAP ========== */
 const MORSE = {
-  'A':'.-','B':'-...','C':'-.-.','D':'-..','E':'.','F':'..-.','G':'--.','H':'....','I':'..','J':'.---','K':'-.-','L':'.-..','M':'--','N':'-.','O':'---','P':'.--.','Q':'--.-','R':'.-.','S':'...','T':'-','U':'..-','V':'...-','W':'.--','X':'-..-','Y':'-.--','Z':'--..',
+  'A':'.-','B':'-...','C':'-.-.','D':'-..','E':'.','F':'..-.','G':'--.','H':'....','I':'..','J':'.---',
+  'K':'-.-','L':'.-..','M':'--','N':'-.','O':'---','P':'.--.','Q':'--.-','R':'.-.','S':'...','T':'-',
+  'U':'..-','V':'...-','W':'.--','X':'-..-','Y':'-.--','Z':'--..',
   '0':'-----','1':'.----','2':'..---','3':'...--','4':'....-','5':'.....','6':'-....','7':'--...','8':'---..','9':'----.',
-  '.':'.-.-.-',',':'--..--','?':'..--..','!':'-.-.--','/':'-..-.','(':'-.--.',')':'-.--.-','&':'.-...',':':'---...',';':'-.-.-.','=':'-...-','+':'.-.-.','-':'-....-','_':'..--.-','"':'.-..-.','$':'...-..-','@':'.--.-.',' ':'/'
+  '.':'.-.-.-',',':'--..--','?':'..--..','!':'-.-.--','/':'-..-.','(':'-.--.',')':'-.--.-','&':'.-...',
+  ':':'---...',';':'-.-.-.','=':'-...-','+':'.-.-.','-':'-....-','_':'..--.-','"':'.-..-.','$':'...-..-','@':'.--.-.',' ':'/'
 };
-const REVERSE = Object.fromEntries(Object.entries(MORSE).map(([k,v])=>[v,k]));
+const REVERSE = {};
+for (const [k, v] of Object.entries(MORSE)) REVERSE[v] = k;
 
-// ===== LIVE COUNTER =====
-(function(){
-  let n = parseInt(localStorage.getItem('morseUsers')||'28431');
-  n += Math.floor(Math.random()*5)+1;
-  localStorage.setItem('morseUsers',n);
-  document.getElementById('liveUsers').textContent = n.toLocaleString() + ' used this month';
+/* ========== LIVE COUNTER ========== */
+(function () {
+  let n = parseInt(localStorage.getItem('morseProUsers') || '28431', 10);
+  n += Math.floor(Math.random() * 6) + 1;
+  localStorage.setItem('morseProUsers', n);
+  document.getElementById('liveCounter').textContent = n.toLocaleString('en-IN') + ' used this month';
 })();
 
-// ===== TABS =====
-function showPanel(id){
-  ['translator','sos','nameart','game','music','bulk','flashcards'].forEach(p=>{
-    document.getElementById('panel-'+p).classList.add('hidden');
-    document.getElementById('tab-'+p).className = 'px-4 py-2 rounded-lg bg-slate-800 text-slate-300';
-  });
-  document.getElementById('panel-'+id).classList.remove('hidden');
-  document.getElementById('tab-'+id).className = 'tab-active px-4 py-2 rounded-lg';
+/* ========== THEME ========== */
+function toggleTheme() {
+  document.body.classList.toggle('light-mode');
 }
 
-// ===== TRANSLATOR =====
-function textToMorse(){
+/* ========== TABS ========== */
+function showPanel(id) {
+  const panels = ['translator', 'sos', 'nameart', 'game', 'music', 'bulk', 'flashcards'];
+  panels.forEach(p => {
+    document.getElementById('panel-' + p).classList.add('hidden');
+    const tab = document.getElementById('tab-' + p);
+    if (tab) {
+      tab.className = 'tab-btn px-4 py-2.5 rounded-xl bg-slate-800 text-slate-300 whitespace-nowrap';
+    }
+  });
+  document.getElementById('panel-' + id).classList.remove('hidden');
+  const active = document.getElementById('tab-' + id);
+  if (active) active.className = 'tab-btn tab-active px-4 py-2.5 rounded-xl whitespace-nowrap';
+  document.getElementById('mobileNav').classList.add('hidden');
+}
+
+/* ========== TRANSLATOR ========== */
+function textToMorse() {
   const t = document.getElementById('textIn').value.toUpperCase();
   let out = '';
-  for(let c of t) out += (MORSE[c]||'') + ' ';
+  for (const c of t) out += (MORSE[c] || '') + ' ';
   document.getElementById('morseOut').value = out.trim();
 }
-function morseToText(){
-  const m = document.getElementById('morseOut').value.trim().split(/\s+/);
+function morseToText() {
+  const parts = document.getElementById('morseOut').value.trim().split(/\s+/);
   let out = '';
-  for(let code of m) out += REVERSE[code]||'';
+  for (const p of parts) out += REVERSE[p] || '';
   document.getElementById('textIn').value = out;
 }
-function clearAll(){
+function clearTranslator() {
   document.getElementById('textIn').value = '';
   document.getElementById('morseOut').value = '';
 }
-function copyOut(){
-  navigator.clipboard.writeText(document.getElementById('morseOut').value);
-  alert('Copied!');
+function copyMorse() {
+  const v = document.getElementById('morseOut').value;
+  if (!v) return;
+  navigator.clipboard.writeText(v).then(() => alert('Morse copied!'));
 }
 
-// Sound
-let audioCtx;
-function playMorse(){
+/* Sound engine */
+let audioCtx = null;
+function ensureAudio() {
+  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  if (audioCtx.state === 'suspended') audioCtx.resume();
+}
+function playMorse() {
   const code = document.getElementById('morseOut').value;
-  if(!code) return;
-  if(!audioCtx) audioCtx = new (window.AudioContext||window.webkitAudioContext)();
-  const wpm = +document.getElementById('wpm').value;
-  const unit = 1.2 / wpm; // seconds
-  let t = audioCtx.currentTime;
-  for(let c of code){
-    if(c==='.'){ beep(t, unit); t+=unit*2; }
-    else if(c==='-'){ beep(t, unit*3); t+=unit*4; }
-    else if(c===' '){ t+=unit*2; }
-    else if(c==='/'){ t+=unit*4; }
+  if (!code) return;
+  ensureAudio();
+  const wpm = +document.getElementById('wpm').value || 15;
+  const unit = 1.2 / wpm;
+  let t = audioCtx.currentTime + 0.05;
+  for (const c of code) {
+    if (c === '.') { tone(t, unit * 0.9, 700); t += unit * 2; }
+    else if (c === '-') { tone(t, unit * 2.7, 700); t += unit * 4; }
+    else if (c === ' ') t += unit * 2;
+    else if (c === '/') t += unit * 4;
   }
 }
-function beep(start, dur){
+function tone(start, dur, freq) {
   const osc = audioCtx.createOscillator();
   const gain = audioCtx.createGain();
-  osc.connect(gain); gain.connect(audioCtx.destination);
-  osc.frequency.value = 700;
-  gain.gain.setValueAtTime(0.3, start);
-  gain.gain.exponentialRampToValueAtTime(0.01, start+dur);
-  osc.start(start); osc.stop(start+dur);
+  osc.connect(gain);
+  gain.connect(audioCtx.destination);
+  osc.frequency.value = freq;
+  gain.gain.setValueAtTime(0.0001, start);
+  gain.gain.exponentialRampToValueAtTime(0.28, start + 0.01);
+  gain.gain.exponentialRampToValueAtTime(0.0001, start + dur);
+  osc.start(start);
+  osc.stop(start + dur + 0.02);
 }
 
-// ===== SOS =====
-let sosActive = false, sosInterval;
-function toggleSOS(){
+/* ========== SOS ========== */
+let sosActive = false;
+let sosInterval = null;
+function toggleSOS() {
   const btn = document.getElementById('sosBtn');
   const screen = document.getElementById('sosScreen');
-  if(!sosActive){
+  const status = document.getElementById('sosStatus');
+  if (!sosActive) {
     sosActive = true;
     btn.textContent = 'Stop SOS';
-    btn.classList.replace('bg-red-600','bg-slate-600');
-    document.getElementById('sosStatus').textContent = 'SOS ACTIVE – ... --- ...';
+    btn.classList.replace('bg-red-600', 'bg-slate-600');
+    status.textContent = 'SOS ACTIVE – ... --- ...';
     let step = 0;
-    const pattern = [1,1,1,0,1,1,1,1,1,1,0,1,1,1,0,0]; // simplified SOS units
-    sosInterval = setInterval(()=>{
-      screen.classList.toggle('flash-sos');
-      if(navigator.vibrate) navigator.vibrate(pattern[step%pattern.length]?200:0);
+    // Classic SOS timing units: 3 dots, gap, 3 dashes, gap, 3 dots, longer gap
+    const pattern = [1, 0, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0];
+    sosInterval = setInterval(() => {
+      const on = pattern[step % pattern.length];
+      if (on) {
+        screen.classList.add('flash-white');
+        screen.textContent = 'S O S';
+        ensureAudio();
+        tone(audioCtx.currentTime, 0.12, 880);
+        if (navigator.vibrate) navigator.vibrate(120);
+      } else {
+        screen.classList.remove('flash-white');
+        screen.textContent = '... --- ...';
+      }
       step++;
-    }, 300);
-    screen.textContent = 'S O S';
+    }, 180);
   } else {
     sosActive = false;
     clearInterval(sosInterval);
     btn.textContent = 'Start SOS';
-    btn.classList.replace('bg-slate-600','bg-red-600');
-    screen.classList.remove('flash-sos');
-    screen.style.background = '';
+    btn.classList.replace('bg-slate-600', 'bg-red-600');
+    screen.classList.remove('flash-white');
     screen.textContent = 'SOS Standby';
-    document.getElementById('sosStatus').textContent = 'Stopped';
-    if(navigator.vibrate) navigator.vibrate(0);
+    status.textContent = 'Stopped';
+    if (navigator.vibrate) navigator.vibrate(0);
   }
 }
-function shareLocation(){
-  if(!navigator.geolocation){ alert('Geolocation not supported'); return; }
-  navigator.geolocation.getCurrentPosition(pos=>{
-    const url = `https://maps.google.com/?q=${pos.coords.latitude},${pos.coords.longitude}`;
-    if(navigator.share) navigator.share({title:'My Location – SOS',url});
-    else { navigator.clipboard.writeText(url); alert('Location link copied!'); }
-  },()=>alert('Unable to get location'));
+function shareLocation() {
+  if (!navigator.geolocation) {
+    alert('Geolocation not supported on this device');
+    return;
+  }
+  navigator.geolocation.getCurrentPosition(
+    (pos) => {
+      const url = `https://maps.google.com/?q=${pos.coords.latitude},${pos.coords.longitude}`;
+      if (navigator.share) {
+        navigator.share({ title: 'My Location – SOS', text: 'Emergency location', url }).catch(() => {
+          navigator.clipboard.writeText(url);
+          alert('Location link copied to clipboard');
+        });
+      } else {
+        navigator.clipboard.writeText(url);
+        alert('Location link copied to clipboard');
+      }
+    },
+    () => alert('Unable to retrieve location. Please allow permission.')
+  );
 }
 
-// ===== NAME ART =====
-function generateNameArt(){
-  const name = document.getElementById('nameArtIn').value.toUpperCase()||'MORSE';
+/* ========== NAME ART ========== */
+function generateNameArt() {
+  const name = (document.getElementById('nameArtIn').value || 'MORSE').toUpperCase();
   let art = '';
-  for(let c of name) art += (MORSE[c]||'') + '   ';
+  for (const c of name) art += (MORSE[c] || '') + '   ';
   document.getElementById('nameArtPreview').textContent = art.trim() || 'Type a name';
 }
-function downloadNameArt(){
+function downloadNameArt() {
+  const text = document.getElementById('nameArtPreview').textContent;
   const canvas = document.createElement('canvas');
-  canvas.width = 1200; canvas.height = 600;
+  canvas.width = 1400;
+  canvas.height = 700;
   const ctx = canvas.getContext('2d');
-  ctx.fillStyle = '#030712'; ctx.fillRect(0,0,1200,600);
+  ctx.fillStyle = '#030712';
+  ctx.fillRect(0, 0, 1400, 700);
+  // subtle grid
+  ctx.strokeStyle = 'rgba(34,197,94,0.06)';
+  for (let i = 0; i < 1400; i += 40) { ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i, 700); ctx.stroke(); }
+  for (let j = 0; j < 700; j += 40) { ctx.beginPath(); ctx.moveTo(0, j); ctx.lineTo(1400, j); ctx.stroke(); }
   ctx.fillStyle = '#22c55e';
-  ctx.font = 'bold 48px monospace';
+  ctx.font = 'bold 52px ui-monospace, monospace';
   ctx.textAlign = 'center';
-  ctx.fillText(document.getElementById('nameArtPreview').textContent, 600, 300);
-  ctx.font = '20px sans-serif';
+  ctx.textBaseline = 'middle';
+  // wrap if very long
+  const words = text.split('   ');
+  let line = '';
+  let y = 320;
+  for (const w of words) {
+    const test = line + w + '   ';
+    if (ctx.measureText(test).width > 1200 && line) {
+      ctx.fillText(line.trim(), 700, y);
+      line = w + '   ';
+      y += 70;
+    } else line = test;
+  }
+  ctx.fillText(line.trim(), 700, y);
+  ctx.font = '22px Inter, sans-serif';
   ctx.fillStyle = '#64748b';
-  ctx.fillText('Morse Code Pro 2026', 600, 520);
+  ctx.fillText('MorseCode Pro 2026', 700, 640);
   const a = document.createElement('a');
-  a.download = 'morse-name-art.png';
-  a.href = canvas.toDataURL();
+  a.download = 'morse-name-art-2026.png';
+  a.href = canvas.toDataURL('image/png');
   a.click();
 }
 
-// ===== GAME =====
-const GAME_LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-let gameTime=60, gameScore=0, gameTimerInt, currentPrompt='';
-function startGame(){
-  gameTime=60; gameScore=0;
+/* ========== GAME ========== */
+const LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+let gameTime = 60, gameScore = 0, gameTimerInt = null, currentLetter = '';
+function startGame() {
+  gameTime = 60;
+  gameScore = 0;
   document.getElementById('gameScore').textContent = 'Score: 0';
-  document.getElementById('gameInput').disabled = false;
-  document.getElementById('gameInput').value = '';
-  document.getElementById('gameInput').focus();
+  document.getElementById('gameTimer').textContent = '60';
+  document.getElementById('gameMsg').textContent = '';
+  const input = document.getElementById('gameInput');
+  input.disabled = false;
+  input.value = '';
+  input.focus();
   nextPrompt();
   clearInterval(gameTimerInt);
-  gameTimerInt = setInterval(()=>{
+  gameTimerInt = setInterval(() => {
     gameTime--;
     document.getElementById('gameTimer').textContent = gameTime;
-    if(gameTime<=0){
+    if (gameTime <= 0) {
       clearInterval(gameTimerInt);
-      document.getElementById('gameInput').disabled = true;
-      document.getElementById('gameMsg').textContent = `Time up! Final score: ${gameScore}`;
+      input.disabled = true;
+      document.getElementById('gameMsg').textContent = `Time’s up! Final score: ${gameScore}`;
+      document.getElementById('gamePrompt').textContent = '—';
     }
-  },1000);
+  }, 1000);
 }
-function nextPrompt(){
-  currentPrompt = GAME_LETTERS[Math.floor(Math.random()*26)];
-  document.getElementById('gamePrompt').textContent = MORSE[currentPrompt];
+function nextPrompt() {
+  currentLetter = LETTERS[Math.floor(Math.random() * 26)];
+  document.getElementById('gamePrompt').textContent = MORSE[currentLetter];
   document.getElementById('gameInput').value = '';
 }
-function checkGame(e){
-  if(e.key!=='Enter') return;
+function checkGame(e) {
+  if (e.key !== 'Enter') return;
   const val = document.getElementById('gameInput').value.toUpperCase().trim();
-  if(val===currentPrompt){
+  if (val === currentLetter) {
     gameScore++;
-    document.getElementById('gameScore').textContent = 'Score: '+gameScore;
-    document.getElementById('gameMsg').textContent = 'Correct!';
+    document.getElementById('gameScore').textContent = 'Score: ' + gameScore;
+    document.getElementById('gameMsg').textContent = '✓ Correct';
     nextPrompt();
   } else {
-    document.getElementById('gameMsg').textContent = 'Wrong – try again';
+    document.getElementById('gameMsg').textContent = '✗ Try again';
   }
 }
 
-// ===== MUSIC BEAT =====
-let musicNodes = [];
-function playMusicBeat(){
+/* ========== MUSIC BEAT ========== */
+let musicOscs = [];
+function playMusicBeat() {
   stopMusic();
   let code = document.getElementById('musicIn').value.trim();
-  if(!code.includes('.') && !code.includes('-')){
-    // treat as text
-    let m=''; for(let c of code.toUpperCase()) m += (MORSE[c]||'')+' ';
+  if (!code) return;
+  if (!code.includes('.') && !code.includes('-')) {
+    let m = '';
+    for (const c of code.toUpperCase()) m += (MORSE[c] || '') + ' ';
     code = m;
   }
-  if(!audioCtx) audioCtx = new (window.AudioContext||window.webkitAudioContext)();
-  let t = audioCtx.currentTime;
-  const unit = 0.12;
-  for(let c of code){
-    if(c==='.'){ scheduleBeat(t, unit, 523); t+=unit*2; }
-    else if(c==='-'){ scheduleBeat(t, unit*2.5, 392); t+=unit*3.5; }
-    else t+=unit;
+  ensureAudio();
+  let t = audioCtx.currentTime + 0.05;
+  const unit = 0.11;
+  for (const c of code) {
+    if (c === '.') {
+      scheduleBeat(t, unit, 523.25);
+      t += unit * 2;
+    } else if (c === '-') {
+      scheduleBeat(t, unit * 2.4, 392);
+      t += unit * 3.5;
+    } else {
+      t += unit;
+    }
   }
 }
-function scheduleBeat(start, dur, freq){
+function scheduleBeat(start, dur, freq) {
   const osc = audioCtx.createOscillator();
   const gain = audioCtx.createGain();
   osc.type = 'square';
   osc.frequency.value = freq;
-  osc.connect(gain); gain.connect(audioCtx.destination);
-  gain.gain.setValueAtTime(0.25, start);
-  gain.gain.exponentialRampToValueAtTime(0.01, start+dur);
-  osc.start(start); osc.stop(start+dur);
-  musicNodes.push(osc);
+  osc.connect(gain);
+  gain.connect(audioCtx.destination);
+  gain.gain.setValueAtTime(0.0001, start);
+  gain.gain.exponentialRampToValueAtTime(0.22, start + 0.01);
+  gain.gain.exponentialRampToValueAtTime(0.0001, start + dur);
+  osc.start(start);
+  osc.stop(start + dur + 0.02);
+  musicOscs.push(osc);
 }
-function stopMusic(){
-  musicNodes.forEach(n=>{try{n.stop()}catch(e){}});
-  musicNodes = [];
+function stopMusic() {
+  musicOscs.forEach(o => { try { o.stop(); } catch (_) {} });
+  musicOscs = [];
 }
 
-// ===== BULK =====
-function bulkToMorse(){
+/* ========== BULK ========== */
+function bulkToMorse() {
   const t = document.getElementById('bulkIn').value.toUpperCase();
   let out = '';
-  for(let c of t) out += (MORSE[c]|| (c==='\n'?'\n':'')) + (MORSE[c]?' ':'');
-  document.getElementById('bulkOut').value = out;
+  for (const c of t) {
+    if (c === '\n') out += '\n';
+    else out += (MORSE[c] || '') + (MORSE[c] ? ' ' : '');
+  }
+  document.getElementById('bulkOut').value = out.trim();
 }
-function bulkToText(){
+function bulkToText() {
   const lines = document.getElementById('bulkIn').value.split('\n');
   let out = '';
-  for(let line of lines){
+  for (const line of lines) {
     const parts = line.trim().split(/\s+/);
-    for(let p of parts) out += REVERSE[p]||'';
+    for (const p of parts) out += REVERSE[p] || '';
     out += '\n';
   }
-  document.getElementById('bulkOut').value = out;
+  document.getElementById('bulkOut').value = out.trim();
 }
 
-// ===== FLASHCARDS =====
-const CARDS = Object.entries(MORSE).filter(([k])=>k.length===1 && /[A-Z0-9]/.test(k));
-let cardIdx = 0, flipped = false;
-function showCard(){
+/* ========== FLASHCARDS ========== */
+const CARDS = Object.entries(MORSE).filter(([k]) => /^[A-Z0-9]$/.test(k));
+let cardIdx = 0;
+let flipped = false;
+function showCard() {
   const [letter, code] = CARDS[cardIdx];
   document.getElementById('cardFront').textContent = letter;
   document.getElementById('cardBack').textContent = code;
   document.getElementById('cardFront').classList.remove('hidden');
   document.getElementById('cardBack').classList.add('hidden');
   flipped = false;
-  document.getElementById('cardProgress').textContent = `${cardIdx+1} / ${CARDS.length}`;
+  document.getElementById('cardProgress').textContent = `${cardIdx + 1} / ${CARDS.length}`;
 }
-function flipCard(){
+function flipCard() {
   flipped = !flipped;
   document.getElementById('cardFront').classList.toggle('hidden', flipped);
   document.getElementById('cardBack').classList.toggle('hidden', !flipped);
 }
-function nextCard(){ cardIdx = (cardIdx+1)%CARDS.length; showCard(); }
-function prevCard(){ cardIdx = (cardIdx-1+CARDS.length)%CARDS.length; showCard(); }
-
-// ===== THEME =====
-function toggleTheme(){
-  document.body.classList.toggle('light');
-  if(document.body.classList.contains('light')){
-    document.body.style.background = '#f8fafc';
-    document.body.style.color = '#0f172a';
-  } else {
-    document.body.style.background = '';
-    document.body.style.color = '';
-  }
+function nextCard() {
+  cardIdx = (cardIdx + 1) % CARDS.length;
+  showCard();
+}
+function prevCard() {
+  cardIdx = (cardIdx - 1 + CARDS.length) % CARDS.length;
+  showCard();
 }
 
-// INIT
-document.addEventListener('DOMContentLoaded',()=>{
-  showCard();
+/* ========== INIT ========== */
+document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('textIn').value = 'HELLO SOS';
   textToMorse();
+  generateNameArt();
+  showCard();
 });
 </script>
 </body>
