@@ -1,1 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MorseCode Pro 2026 – Free Morse Translator, SOS, Name Art, Game</title>
+  <meta name="description" content="MorseCode Pro 2026 - Free All-in-One Morse Code Tool. Text to Morse, SOS Flashlight, Name Art Generator, 60s Game, Music Beat, Bulk Translate.">
+  <meta name="keywords" content="morse code translator, text to morse code, morse to text, morse code generator, sos flashlight, morse code alphabet, morse code chart, morse code converter, morse code decoder, learn morse code, morse code game, morse code practice, morse code sound, morse code audio, emergency sos signal, morse code for kids, international morse code, morse code translator online free, morse code to music, morse name art, bulk morse translator, morse flashcards, ham radio morse, army morse code, morse code app free, dark mode morse tool, morse code 2026">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --primary:#22c55e; --primary-dark:#16a34a; --primary-light:#dcfce7;
+      --accent:#0ea5e9; --dark:#0f172a; --text:#4a5568; --light:#f7fafc;
+      --white:#ffffff; --shadow:0 10px 30px rgba(34,197,94,.12);
+      --shadow-hover:0 15px 40px rgba(34,197,94,.2); --radius:12px;
+      --transition:.35s cubic-bezier(.4,0,.2,1);
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:'Poppins',sans-serif;color:var(--text);line-height:1.7;background:#030712;overflow-x:hidden}
+    img{max-width:100%;display:block}
+    a{text-decoration:none;color:inherit;transition:var(--transition)}
+   .container{width:100%;max-width:1140px;margin:0 auto;padding:0 20px}
+   .section{padding:90px 0}
+   .section-title{text-align:center;margin-bottom:50px}
+   .section-title h2{font-size:2.2rem;font-weight:700;color:#fff;margin-bottom:12px}
+   .section-title p{color:#94a3b8;max-width:560px;margin:0 auto;font-size:.95rem}
+   .section-title.badge{display:inline-block;background:rgba(34,197,94,.1);color:var(--primary);font-size:.8rem;font-weight:600;padding:6px 16px;border-radius:50px;margin-bottom:14px}
+   .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:50px;font-weight:600;font-size:.95rem;border:none;cursor:pointer;transition:var(--transition)}
+   .btn-primary{background:linear-gradient(135deg,var(--primary),var(--accent));color:var(--dark);box-shadow:0 8px 25px rgba(34,197,94,.35)}
+   .btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(34,197,94,.45)}
+   .btn-outline{background:transparent;border:2px solid var(--white);color:var(--white)}
+   .btn-outline:hover{background:var(--white);color:var(--dark)}
+   .btn-white{background:var(--white);color:var(--dark)}
+   .btn-white:hover{transform:translateY(-3px);box-shadow:var(--shadow-hover)}
 
+    /* TOP BAR */
+   .top-bar{background:var(--dark);color:rgba(255,255,255,.85);font-size:.85rem;padding:10px 0;border-bottom:1px solid #1e293b}
+   .top-bar.container{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+   .top-bar a{color:rgba(255,255,255,.85)}
+   .top-bar a:hover{color:var(--primary)}
+   .top-bar.left{display:flex;gap:24px;flex-wrap:wrap}
+   .top-bar.left i{margin-right:6px;color:var(--primary)}
+   .top-bar.social{display:flex;gap:14px}
+   .top-bar.social a{width:30px;height:30px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(255,255,255,.08)}
+   .top-bar.social a:hover{background:var(--primary);color:#000}
+
+    /* NAVBAR */
+   .navbar{position:sticky;top:0;background:#0f172a;box-shadow:0 2px 20px rgba(0,0,0,.3);z-index:1000}
+   .navbar.container{display:flex;align-items:center;justify-content:space-between;padding:16px 20px}
+   .logo{font-size:1.6rem;font-weight:800;color:var(--primary);display:flex;align-items:center;gap:8px}
+   .nav-links{display:flex;align-items:center;gap:28px}
+   .nav-links a{font-weight:500;font-size:.92rem;color:#e2e8f0;position:relative}
+   .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--primary);transition:var(--transition)}
+   .nav-links a:hover::after,.nav-links a.active::after{width:100%}
+   .nav-links a:hover{color:var(--primary)}
+   .nav-cta{padding:10px 24px;font-size:.88rem}
+
+    /* HERO SLIDER */
+   .hero{position:relative;height:92vh;min-height:560px;overflow:hidden}
+   .hero-slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity.8s,visibility.8s;background-size:cover;background-position:center}
+   .hero-slide.active{opacity:1;visibility:visible}
+   .hero-slide::before{content:'';position:absolute;inset:0;background:linear-gradient(105deg,rgba(14,165,233,.85) 0%,rgba(34,197,94,.55) 100%)}
+   .hero-content{position:relative;z-index:2;height:100%;display:flex;align-items:center}
+   .hero-content.container{color:var(--white)}
+   .hero-content h1{font-size:clamp(2rem,5vw,3.4rem);font-weight:800;line-height:1.25;margin-bottom:18px;max-width:620px}
+   .hero-content p{font-size:1.05rem;opacity:.9;max-width:500px;margin-bottom:32px}
+   .hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+   .hero-nav{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);display:flex;gap:10px;z-index:5}
+   .hero-dot{width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,.4);border:none;cursor:pointer;transition:var(--transition)}
+   .hero-dot.active{background:var(--white);width:32px;border-radius:6px}
+   .hero-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:5;width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.15);border:none;color:#fff;font-size:1.1rem;cursor:pointer;transition:var(--transition);backdrop-filter:blur(4px)}
+   .hero-arrow:hover{background:var(--primary)}
+   .hero-prev{left:20px}.hero-next{right:20px}
+
+    /* FEATURES */
+   .features{margin-top:-60px;position:relative;z-index:10}
+   .features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+   .feature-card{background:#0f172a;padding:36px 28px;border-radius:var(--radius);box-shadow:var(--shadow);text-align:center;transition:var(--transition);border:1px solid #1e293b}
+   .feature-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-hover)}
+   .feature-card.icon{width:70px;height:70px;margin:0 auto 20px;border-radius:50%;background:rgba(34,197,94,.1);display:flex;align-items:center;justify-content:center;font-size:1.6rem;color:var(--primary);transition:var(--transition)}
+   .feature-card:hover.icon{background:var(--primary);color:#000}
+   .feature-card h3{font-size:1.15rem;color:#fff;margin-bottom:8px}
+   .feature-card p{font-size:.9rem;color:#94a3b8}
+
+    /* TOOL PANELS */
+   .tools{background:#0f172a}
+   .tool-panel{display:none}
+   .tool-panel.active{display:block}
+   .tool-tabs{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:40px}
+   .tab-btn{padding:12px 24px;background:#1e293b;color:#e2e8f0;border:none;border-radius:50px;font-weight:600;cursor:pointer;transition:var(--transition)}
+   .tab-btn.active{background:var(--primary);color:#000}
+   .tool-box{background:#0f172a;padding:40px;border-radius:var(--radius);border:1px solid #1e293b}
+   .tool-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+    textarea,input{width:100%;padding:14px 16px;background:#1e293b;border:1.5px solid #334155;border-radius:8px;color:#fff;font-family:inherit;font-size:.95rem}
+    textarea:focus,input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(34,197,94,.12)}
+   .tool-actions{display:flex;gap:12px;margin-top:16px;flex-wrap:wrap}
+
+    /* SOS */
+    #sosScreen{height:200px;background:#1e293b;border-radius:var(--radius);display:flex;align-items:center;justify-content:center;font-size:2rem;font-family:monospace;color:var(--primary);border:2px dashed #334155;transition:.1s}
+   .flash{background:#fff!important;color:#000!important}
+
+    /* CTA */
+   .cta-banner{background:linear-gradient(135deg,var(--primary) 0%,var(--accent) 100%);padding:70px 0;text-align:center;color:#000;position:relative}
+   .cta-banner h2{font-size:2rem;margin-bottom:12px;color:#000}
+   .cta-banner p{opacity:.9;margin-bottom:28px;max-width:500px;margin:0 auto 28px}
+
+    /* FOOTER */
+   .footer{background:#020617;color:rgba(255,255,255,.75);padding:70px 0 0}
+   .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:36px;margin-bottom:50px}
+   .footer-col h3{color:#fff;font-size:1.1rem;margin-bottom:20px}
+   .footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding:20px 0;text-align:center;font-size:.85rem}
+
+    @media(max-width:992px){
+     .features-grid{grid-template-columns:1fr 1fr}
+     .tool-grid{grid-template-columns:1fr}
+     .footer-grid{grid-template-columns:1fr 1fr}
+    }
+    @media(max-width:768px){
+     .nav-links{display:none}
+     .features-grid{grid-template-columns:1fr}
+     .footer-grid{grid-template-columns:1fr}
+     .hero-arrow{display:none}
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div class="container">
+    <div class="left">
+      <a href="tel:+1234567890"><i class="fas fa-phone-alt"></i> +1 (234) 567-890</a>
+      <a href="mailto:info@morsecodepro.com"><i class="fas fa-envelope"></i> info@morsecodepro.com</a>
+      <span><i class="fas fa-clock"></i> 24/7 Online Tool</span>
+    </div>
+    <div class="social">
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-github"></i></a>
+    </div>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="container">
+    <a href="#" class="logo"><i class="fas fa-satellite-dish"></i> MorseCode Pro</a>
+    <div class="nav-links">
+      <a href="#home" class="active">Home</a>
+      <a href="#tools">Tools</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a href="#tools" class="btn btn-primary nav-cta">Start Now</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO SLIDER -->
+<section class="hero" id="home">
+  <!-- Slide 1 -->
+  <div class="hero-slide active" style="background-image:url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1600&q=80')">
+    <div class="hero-content">
+      <div class="container">
+        <h1>Your Communication is Our Top Priority</h1>
+        <p>Experience world-class Morse Code tools with instant translation, SOS Emergency, Name Art and modern features dedicated to Ham Radio, Army and Creators.</p>
+        <div class="hero-btns">
+          <a href="#tools" class="btn btn-primary"><i class="fas fa-play"></i> Start Translating</a>
+          <a href="#about" class="btn btn-outline">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Slide 2 -->
+  <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=1600&q=80')">
+    <div class="hero-content">
+      <div class="container">
+        <h1>Expert Team, Global Communication</h1>
+        <p>From text to sound to SOS, we provide personalized communication solutions for everyone. 100% Free, No Login, No Ads.</p>
+        <div class="hero-btns">
+          <a href="#tools" class="btn btn-primary"><i class="fas fa-tools"></i> Our Features</a>
+          <a href="#tools" class="btn btn-outline">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="hero-arrow hero-prev"><i class="fas fa-chevron-left"></i></button>
+  <button class="hero-arrow hero-next"><i class="fas fa-chevron-right"></i></button>
+  <div class="hero-nav">
+    <button class="hero-dot active" data-slide="0"></button>
+    <button class="hero-dot" data-slide="1"></button>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+  <div class="container">
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="icon"><i class="fas fa-bolt"></i></div>
+        <h3>Instant Translation</h3>
+        <p>Text ↔ Morse in real-time with adjustable WPM and sound playback.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon"><i class="fas fa-exclamation-triangle"></i></div>
+        <h3>SOS Emergency</h3>
+        <p>Screen flash, beep sound, vibration and GPS location sharing.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon"><i class="fas fa-gamepad"></i></div>
+        <h3>60s Typing Game</h3>
+        <p>Learn Morse fast with interactive typing challenges and scoring.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS SECTION -->
+<section class="section tools" id="tools">
+  <div class="container">
+    <div class="section-title">
+      <span class="badge">All-in-One Tools</span>
+      <h2>Everything You Need for Morse Code</h2>
+      <p>Professional tools used by Ham Radio operators, Army personnel and Content Creators worldwide.</p>
+    </div>
+
+    <div class="tool-tabs">
+      <button class="tab-btn active" onclick="showTool('translator')">Translator</button>
+      <button class="tab-btn" onclick="showTool('sos')">SOS Mode</button>
+      <button class="tab-btn" onclick="showTool('nameart')">Name Art</button>
+      <button class="tab-btn" onclick="showTool('game')">60s Game</button>
+      <button class="tab-btn" onclick="showTool('music')">Music Beat</button>
+      <button class="tab-btn" onclick="showTool('bulk')">Bulk</button>
+    </div>
+
+    <!-- TRANSLATOR -->
+    <div id="tool-translator" class="tool-panel active">
+      <div class="tool-box">
+        <h3 style="color:#fff;margin-bottom:20px">Text ↔ Morse Translator</h3>
+        <div class="tool-grid">
+          <div>
+            <label style="color:#94a3b8;font-size:.85rem">English Text</label>
+            <textarea id="textIn" rows="6" placeholder="HELLO WORLD SOS" oninput="toMorse()"></textarea>
+          </div>
+          <div>
+            <label style="color:#94a3b8;font-size:.85rem">Morse Code</label>
+            <textarea id="morseOut" rows="6" placeholder="......-...-.. --- /.-- ---.-..-.. -.. /... ---..." oninput="toText()"></textarea>
+          </div>
+        </div>
+        <div class="tool-actions">
+          <button class="btn btn-primary" onclick="playSound()"><i class="fas fa-volume-up"></i> Play Sound</button>
+          <button class="btn btn-outline" onclick="copyMorse()">Copy</button>
+          <div style="display:flex;align-items:center;gap:8px;color:#94a3b8">
+            <span>WPM:</span><input type="range" id="wpm" min="5" max="30" value="15" style="width:100px">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SOS -->
+    <div id="tool-sos" class="tool-panel">
+      <div class="tool-box">
+        <h3 style="color:#ff4444;margin-bottom:20px">SOS Emergency Mode</h3>
+        <button id="sosBtn" class="btn" style="background:#dc2626;color:#fff;padding:16px 40px;font-size:1.1rem" onclick="toggleSOS()">Start SOS</button>
+        <div id="sosScreen" class="mt-4">SOS Standby</div>
+      </div>
+    </div>
+
+    <!-- NAME ART -->
+    <div id="tool-nameart" class="tool-panel">
+      <div class="tool-box">
+        <h3 style="color:#fff;margin-bottom:20px">Morse Name Art Generator</h3>
+        <input id="nameIn" type="text" placeholder="Enter your name" oninput="genArt()">
+        <div id="artBox" style="margin-top:20px;padding:30px;background:#1e293b;border-radius:8px;text-align:center;font-family:monospace;color:var(--primary);font-size:1.2rem"></div>
+        <button class="btn btn-primary mt-3" onclick="downloadArt()"><i class="fas fa-download"></i> Download PNG</button>
+      </div>
+    </div>
+
+    <!-- GAME -->
+    <div id="tool-game" class="tool-panel">
+      <div class="tool-box">
+        <h3 style="color:#fff;margin-bottom:20px">60-Second Morse Game</h3>
+        <div style="display:flex;gap:20px;align-items:center;margin-bottom:20px">
+          <button class="btn btn-primary" onclick="startGame()">Start</button>
+          <span id="timer" style="font-size:2rem;color:var(--primary)">60</span>
+          <span id="score" style="color:#fff">Score: 0</span>
+        </div>
+        <div id="gameCode" style="text-align:center;font-size:3rem;font-family:monospace;color:var(--primary);padding:40px">---</div>
+        <input id="gameInput" placeholder="Type letter + Enter" disabled>
+      </div>
+    </div>
+
+    <!-- MUSIC -->
+    <div id="tool-music" class="tool-panel">
+      <div class="tool-box">
+        <h3 style="color:#fff;margin-bottom:20px">Morse to Music Beat</h3>
+        <textarea id="musicIn" rows="3" placeholder="Paste Morse or Text"></textarea>
+        <button class="btn btn-primary mt-3" onclick="playBeat()"><i class="fas fa-music"></i> Play Beat</button>
+      </div>
+    </div>
+
+    <!-- BULK -->
+    <div id="tool-bulk" class="tool-panel">
+      <div class="tool-box">
+        <h3 style="color:#fff;margin-bottom:20px">Bulk Translator</h3>
+        <textarea id="bulkIn" rows="6" placeholder="Paste 2000+ words here"></textarea>
+        <div class="tool-actions">
+          <button class="btn btn-primary" onclick="bulkMorse()">Text → Morse</button>
+          <button class="btn btn-outline" onclick="bulkText()">Morse → Text</button>
+        </div>
+        <textarea id="bulkOut" rows="6" readonly style="margin-top:16px"></textarea>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="section-title">
+      <span class="badge">About Us</span>
+      <h2>The Most Advanced Morse Code Platform</h2>
+      <p>Trusted by 28,000+ Ham Radio operators, students and emergency responders worldwide.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-banner">
+  <div class="container">
+    <h2>Start Using MorseCode Pro Today</h2>
+    <p>100% Free. No signup required. Works offline after first load.</p>
+    <a href="#tools" class="btn btn-white"><i class="fas fa-rocket"></i> Launch Tool</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer" id="contact">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <a href="#" class="logo"><i class="fas fa-satellite-dish"></i> MorseCode Pro</a>
+        <p style="margin-top:16px">Free, fast and powerful Morse Code tools for everyone.</p>
+      </div>
+      <div class="footer-col">
+        <h3>Tools</h3>
+        <ul><li><a href="#tools">Translator</a></li><li><a href="#tools">SOS</a></li><li><a href="#tools">Name Art</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <h3>Resources</h3>
+        <ul><li><a href="#">Morse Chart</a></li><li><a href="#">Tutorial</a></li><li><a href="#">API</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <h3>Contact</h3>
+        <ul><li><i class="fas fa-envelope"></i> info@morsecodepro.com</li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 MorseCode Pro. Made with ❤️ by mujahar</p>
+  </div>
+</footer>
+
+<script>
+/* HERO SLIDER */
+const slides = document.querySelectorAll('.hero-slide');
+const dots = document.querySelectorAll('.hero-dot');
+let currentSlide = 0;
+function goToSlide(n){ slides[currentSlide].classList.remove('active'); dots[currentSlide].classList.remove('active'); currentSlide=(n+slides.length)%slides.length; slides[currentSlide].classList.add('active'); dots[currentSlide].classList.add('active'); }
+document.querySelector('.hero-next').onclick=()=>goToSlide(currentSlide+1);
+document.querySelector('.hero-prev').onclick=()=>goToSlide(currentSlide-1);
+dots.forEach((d,i)=>d.onclick=()=>goToSlide(i));
+setInterval(()=>goToSlide(currentSlide+1),5000);
+
+/* TABS */
+function showTool(id){
+  document.querySelectorAll('.tool-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tool-'+id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+/* MORSE MAP */
+const M={'A':'.-','B':'-...','C':'-.-.','D':'-..','E':'.','F':'..-.','G':'--.','H':'....','I':'..','J':'.---','K':'-.-','L':'.-..','M':'--','N':'-.','O':'---','P':'.--.','Q':'--.-','R':'.-.','S':'...','T':'-','U':'..-','V':'...-','W':'.--','X':'-..-','Y':'-.--','Z':'--..','0':'-----','1':'.----','2':'..---','3':'...--','4':'....-','5':'.....','6':'-....','7':'--...','8':'---..','9':'----.',' ':'/'};
+const R={}; for(let k in M) R[M[k]]=k;
+
+/* TRANSLATOR */
+function toMorse(){let t=document.getElementById('textIn').value.toUpperCase();let o='';for(let c of t)o+=(M[c]||'')+' ';document.getElementById('morseOut').value=o.trim();}
+function toText(){let t=document.getElementById('morseOut').value.split(' ');let o='';for(let c of t)o+=R[c]||'';document.getElementById('textIn').value=o;}
+function copyMorse(){navigator.clipboard.writeText(document.getElementById('morseOut').value);alert('Copied!')}
+let ctx; function playSound(){if(!ctx)ctx=new AudioContext();let code=document.getElementById('morseOut').value;let wpm=+document.getElementById('wpm').value;let unit=1.2/wpm;let t=ctx.currentTime;for(let c of code){if(c=='.'){osc(t,unit*.8);t+=unit*2;}if(c=='-'){osc(t,unit*2.5);t+=unit*3.5;}if(c==' ')t+=unit*2;}}
+function osc(s,d){let o=ctx.createOscillator();let g=ctx.createGain();o.connect(g);g.connect(ctx.destination);o.frequency.value=700;g.gain.setValueAtTime(.2,s);g.gain.exponentialRampToValueAtTime(.001,s+d);o.start(s);o.stop(s+d);}
+
+/* SOS */
+let sos=false,sosInt;function toggleSOS(){sos=!sos;let btn=document.getElementById('sosBtn');let scr=document.getElementById('sosScreen');if(sos){btn.textContent='Stop SOS';let i=0;let pat=[1,0,1,0,1,0,0,1,1,1,0,1,1,1,0,1,1,1,0,0,1,0,1,0,1,0,0,0,0];sosInt=setInterval(()=>{if(pat[i%pat.length]){scr.classList.add('flash');scr.textContent='S O S';playSound()}else{scr.classList.remove('flash');scr.textContent='... ---...'}i++;},180);}else{clearInterval(sosInt);btn.textContent='Start SOS';scr.classList.remove('flash');scr.textContent='SOS Standby';}}
+
+/* NAME ART */
+function genArt(){let n=document.getElementById('nameIn').value.toUpperCase();let o='';for(let c of n)o+=(M[c]||'')+' ';document.getElementById('artBox').textContent=o;}
+function downloadArt(){let c=document.createElement('canvas');c.width=1200;c.height=600;let x=c.getContext('2d');x.fillStyle='#030712';x.fillRect(0,0,1200,600);x.fillStyle='#22c55e';x.font='48px monospace';x.textAlign='center';x.fillText(document.getElementById('artBox').textContent,600,300);let a=document.createElement('a');a.download='name-art.png';a.href=c.toDataURL();a.click();}
+
+/* GAME */
+let letters='ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');let gScore=0,gTime=60,gInt,gLetter;
+function startGame(){gScore=0;gTime=60;document.getElementById('score').textContent='Score: 0';document.getElementById('gameInput').disabled=false;nextQ();gInt=setInterval(()=>{gTime--;document.getElementById('timer').textContent=gTime;if(gTime<=0){clearInterval(gInt);document.getElementById('gameInput').disabled=true;}},1000);}
+function nextQ(){gLetter=letters[Math.floor(Math.random()*26)];document.getElementById('gameCode').textContent=M[gLetter];}
+document.getElementById('gameInput').onkeydown=function(e){if(e.key=='Enter'&&this.value.toUpperCase()==gLetter){gScore++;document.getElementById('score').textContent='Score: '+gScore;this.value='';nextQ();}}
+
+/* MUSIC */
+function playBeat(){if(!ctx)ctx=new AudioContext();let code=document.getElementById('musicIn').value;let t=ctx.currentTime;for(let c of code){if(c=='.'){beat(t,.1,523);t+=.2;}if(c=='-'){beat(t,.25,392);t+=.35;}}}
+function beat(s,d,f){let o=ctx.createOscillator();let g=ctx.createGain();o.type='square';o.frequency.value=f;o.connect(g);g.connect(ctx.destination);g.gain.setValueAtTime(.15,s);g.gain.exponentialRampToValueAtTime(.001,s+d);o.start(s);o.stop(s+d);}
+
+/* BULK */
+function bulkMorse(){let t=document.getElementById('bulkIn').value.toUpperCase();let o='';for(let c of t)o+=(M[c]||'')+' ';document.getElementById('bulkOut').value=o;}
+function bulkText(){let t=document.getElementById('bulkIn').value.split(' ');let o='';for(let c of t)o+=R[c]||'';document.getElementById('bulkOut').value=o;}
+</script>
+</body>
+</html>
