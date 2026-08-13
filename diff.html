@@ -1,1 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diff Checker | Next-Gen Code Comparison Tool</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', 'Fira Code', monospace, Arial, sans-serif;
+    }
 
+    body {
+      background: linear-gradient(135deg, #0a0e27 0%, #1a1a3e 50%, #0f1729 100%);
+      color: #fff;
+      min-height: 100vh;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Animated background elements */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -50%;
+      right: -50%;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%);
+      animation: float 20s ease-in-out infinite;
+      z-index: -1;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(30px, 30px); }
+    }
+
+    .back {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      color: #10b981;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 600;
+      transition: 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .back:hover {
+      transform: translateX(-5px);
+      color: #6ee7b7;
+    }
+
+    .header {
+      margin-bottom: 40px;
+      padding-top: 50px;
+      animation: slideDown 0.6s ease-out;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .header .icon {
+      font-size: 60px;
+      margin-bottom: 15px;
+      display: inline-block;
+      animation: bounce 2s ease-in-out infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .header h1 {
+      font-size: 32px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #10b981, #6ee7b7, #a7f3d0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+    }
+
+    .header p {
+      font-size: 16px;
+      opacity: 0.7;
+      color: #cbd5e1;
+    }
+
+    .cards-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+      gap: 25px;
+      margin: 40px auto;
+      max-width: 900px;
+      padding: 0 20px;
+    }
+
+    .card {
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 20px;
+      padding: 35px 25px;
+      border: 1px solid rgba(16, 185, 129, 0.2);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      overflow: hidden;
+      animation: fadeInUp 0.7s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.5), transparent);
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(16, 185, 129, 0.5);
+      box-shadow: 0 20px 50px rgba(16, 185, 129, 0.15);
+    }
+
+    .free-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      background: rgba(16, 185, 129, 0.2);
+      color: #10b981;
+      padding: 8px 16px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .badge-dot {
+      width: 10px;
+      height: 10px;
+      background: #10b981;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #10b981;
+    }
+
+    .pro-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      background: rgba(168, 85, 247, 0.2);
+      color: #d8b4fe;
+      padding: 8px 16px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .pro-dot {
+      width: 10px;
+      height: 10px;
+      background: #d8b4fe;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #d8b4fe;
+    }
+
+    .card h2 {
+      font-size: 26px;
+      margin-bottom: 8px;
+      font-weight: 800;
+    }
+
+    .card p.subtitle {
+      opacity: 0.75;
+      margin-bottom: 20px;
+      font-size: 14px;
+      color: #cbd5e1;
+    }
+
+    .card p.description {
+      opacity: 0.7;
+      margin-bottom: 25px;
+      font-size: 14px;
+      line-height: 1.6;
+      color: #cbd5e1;
+    }
+
+    .features {
+      list-style: none;
+      text-align: left;
+      margin: 25px 0 30px 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    .features li {
+      font-size: 14px;
+      opacity: 0.85;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .features li::before {
+      content: '→';
+      color: #10b981;
+      font-weight: bold;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .pro-features li::before {
+      content: '✨';
+      font-size: 14px;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 14px 20px;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      display: block;
+      transition: all 0.3s;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.2);
+      transition: left 0.3s;
+      z-index: -1;
+    }
+
+    .btn:hover::before {
+      left: 100%;
+    }
+
+    .btn-free {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: #fff;
+      box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+    }
+
+    .btn-free:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(16, 185, 129, 0.5);
+    }
+
+    .btn-locked {
+      background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+      color: #fff;
+      box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+    }
+
+    .btn-locked:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(139, 92, 246, 0.5);
+    }
+
+    .lock-icon {
+      font-size: 50px;
+      margin-bottom: 15px;
+      display: inline-block;
+    }
+
+    .comparison-table {
+      margin-top: 30px;
+      text-align: left;
+      border-collapse: collapse;
+      width: 100%;
+      font-size: 13px;
+    }
+
+    .comparison-table th {
+      background: rgba(16, 185, 129, 0.1);
+      padding: 10px;
+      border-bottom: 1px solid rgba(16, 185, 129, 0.2);
+      font-weight: 600;
+    }
+
+    .comparison-table td {
+      padding: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .comparison-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .check {
+      color: #10b981;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    .cross {
+      color: #ef4444;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    .star {
+      color: #fbbf24;
+      font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+      .header h1 {
+        font-size: 24px;
+      }
+
+      .cards-container {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        padding: 25px 20px;
+      }
+    }
+
+    .highlight {
+      color: #10b981;
+      font-weight: 600;
+    }
+
+    .footer {
+      margin-top: 50px;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      opacity: 0.6;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <a href="/" class="back">← Back to Home</a>
+
+  <div class="header">
+    <div class="icon">🔍</div>
+    <h1>Diff Checker Pro</h1>
+    <p>Compare code, text, and files with advanced AI insights</p>
+  </div>
+
+  <div class="cards-container">
+    <!-- FREE VERSION -->
+    <div class="card">
+      <div class="free-badge">
+        <span class="badge-dot"></span>
+        Free Version
+      </div>
+      <h2>Diff Checker</h2>
+      <p class="subtitle">100% Local • Zero Server</p>
+      <p class="description">
+        Powerful diff comparison tool that works entirely in your browser. Your data never leaves your device.
+      </p>
+
+      <ul class="features">
+        <li>Side-by-side comparison</li>
+        <li>Syntax highlighting</li>
+        <li>File upload support</li>
+        <li>Ignore whitespace filter</li>
+        <li>Export as HTML</li>
+        <li>Local storage history</li>
+      </ul>
+
+      <a href="diff-checker.html" class="btn btn-free">🚀 Open Free Tool</a>
+    </div>
+
+    <!-- PRO VERSION -->
+    <div class="card">
+      <div class="pro-badge">
+        <span class="pro-dot"></span>
+        Coming Soon
+      </div>
+      <div class="lock-icon">🔐</div>
+      <h2>Diff Checker <span class="star">★</span> Pro</h2>
+      <p class="subtitle">Premium Features Unlocked</p>
+      <p class="description">
+        Advanced comparison engine with AI-powered insights, multi-file diffing, and collaboration tools.
+      </p>
+
+      <ul class="features pro-features">
+        <li>3-way merge editor</li>
+        <li>AI-powered code analysis</li>
+        <li>Moved block detection</li>
+        <li>Batch file processing</li>
+        <li>PDF export reports</li>
+        <li>Cloud sync & sharing</li>
+        <li>Priority support</li>
+      </ul>
+
+      <button class="btn btn-locked" disabled>
+        🔒 Unlock Soon (Free Forever)
+      </button>
+    </div>
+  </div>
+
+  <!-- COMPARISON TABLE -->
+  <div style="max-width: 900px; margin: 50px auto; padding: 0 20px;">
+    <h2 style="margin-bottom: 25px; font-size: 22px;">Feature Comparison</h2>
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Free</th>
+          <th>Pro</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Side-by-side view</td>
+          <td><span class="check">✓</span></td>
+          <td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Unified diff view</td>
+          <td><span class="check">✓</span></td>
+          <td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>File uploads</td>
+          <td><span class="check">✓</span></td>
+          <td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Text paste</td>
+          <td><span class="check">✓</span></td>
+          <td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Local history</td>
+          <td><span class="check">✓</span></td>
+          <td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>3-way merge</td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>AI code insights</td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Moved block detection</td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Batch processing</td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>PDF export</td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Cloud sync</td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Priority support</td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="check">✓</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="footer">
+    <p>🔒 All comparisons stay local • No data collection • No ads • Free forever</p>
+  </div>
+
+</body>
+</html>
