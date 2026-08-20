@@ -1,1 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RomanX Pro - Roman Numeral Toolkit</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  *{font-family: 'Poppins', sans-serif;}
+  body{
+    background: linear-gradient(135deg, #0A0A0A 0%, #1a1a2e 50%, #0A0A0A 100%);
+    overflow: hidden;
+  }
+  /* Floating Roman Numerals Background */
+  .roman-bg span{
+    position: absolute;
+    color: rgba(139, 92, 246, 0.15);
+    font-weight: 900;
+    font-size: 80px;
+    animation: float 20s infinite linear;
+    user-select: none;
+  }
+  @keyframes float{
+    0%{transform: translateY(100vh) rotate(0deg);}
+    100%{transform: translateY(-100vh) rotate(360deg);}
+  }
+  /* Glass Card */
+  .glass-card{
+    background: rgba(30, 30, 50, 0.3);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(139, 92, 246, 0.2);
+  }
+  /* Gradient Text */
+  .gradient-text{
+    background: linear-gradient(135deg, #8B5CF6, #EC4899);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  /* Neon Glow */
+  .neon-glow{
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+  }
+  .btn-primary{
+    background: linear-gradient(135deg, #8B5CF6, #EC4899);
+    transition: all 0.3s ease;
+  }
+  .btn-primary:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(139, 92, 246, 0.5);
+  }
+</style>
+</head>
+<body class="min-h-screen flex-col items-center justify-center text-white px-4">
 
+<!-- Floating Roman Numerals -->
+<div class="roman-bg">
+  <span style="left:10%; animation-delay:0s;">X</span>
+  <span style="left:20%; animation-delay:2s; font-size:60px;">V</span>
+  <span style="left:35%; animation-delay:4s;">M</span>
+  <span style="left:50%; animation-delay:1s; font-size:100px;">L</span>
+  <span style="left:65%; animation-delay:3s;">C</span>
+  <span style="left:80%; animation-delay:5s; font-size:70px;">D</span>
+  <span style="left:90%; animation-delay:2.5s;">I</span>
+</div>
+
+<!-- Back Button -->
+<a href="#" class="absolute top-6 left-6 text-gray-300 hover:text-white">← Back to Home</a>
+
+<!-- Main Icon -->
+<div class="text-6xl mb-4 animate-pulse">Ⅹ</div>
+
+<!-- Title -->
+<h1 class="text-4xl md:text-5xl font-black mb-2 gradient-text">RomanX Pro</h1>
+<p class="text-gray-400 mb-8">Premium Roman Numeral Toolkit</p>
+
+<!-- Card -->
+<div class="glass-card rounded-2xl p-6 md:p-8 w-full max-w-md neon-glow">
+  
+  <div class="flex items-center gap-2 mb-3">
+    <span class="w-3 h-3 rounded-full bg-purple-500"></span>
+    <h2 class="text-2xl font-bold">Convert Instantly</h2>
+  </div>
+  
+  <p class="text-gray-300 mb-6">
+    Convert your Birth Date, Name, and Images to beautiful Roman numerals ✨
+  </p>
+  
+  <button class="btn-primary w-full py-4 rounded-xl font-bold text-lg">
+    ⚡ Open Roman Tools
+  </button>
+  
+</div>
+
+<p class="mt-6 text-xs text-gray-500">100% Free • No Server Upload • Mobile Friendly</p>
+
+</body>
+</html>
