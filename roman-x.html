@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="RomanX Pro - The World's Most Viral Roman Numeral Toolkit. Convert dates, names, images to Roman numerals instantly. Premium tools for Roman numeral conversion, watermarking, and more.">
+  <meta name="keywords" content="roman numerals, roman numeral converter, date to roman, name to roman, roman numeral generator, birth date roman, roman numeral clock, watermark tool, bulk converter, roman numeral toolkit, convert to roman, roman numerals chart, how to convert roman numerals, roman numeral symbols, ancient rome, latin numbers, roman numeral meanings, viral roman tool, premium roman converter, share roman cards">
+  <meta name="author" content="Mujahar">
+  <meta name="theme-color" content="#0A0A0A">
+  <meta property="og:title" content="RomanX Pro - Premium Roman Numeral Toolkit">
+  <meta property="og:description" content="Convert your birth date, name, and images to beautiful Roman numerals. Download stunning share cards instantly.">
+  <meta property="og:type" content="website">
+  <title>RomanX Pro | Premium Roman Numeral Converter & Toolkit - Free Online</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      font-family: 'Poppins', sans-serif;
+    }
+
+    :root {
+      --primary: #8B5CF6;
+      --secondary: #EC4899;
+      --dark-bg: #0A0A0A;
+      --card-bg: rgba(30, 30, 50, 0.3);
+      --border: rgba(139, 92, 246, 0.2);
+    }
+
+    body {
+      background: linear-gradient(135deg, var(--dark-bg) 0%, #1a1a2e 50%, var(--dark-bg) 100%);
+      color: #e5e7eb;
+    }
+
+    /* Glassmorphism Cards */
+    .glass-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+    }
+
+    /* Gradient Text */
+    .gradient-text {
+      background: linear-gradient(135deg, #8B5CF6, #EC4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Neon Glow Effect */
+    .neon-glow {
+      box-shadow: 0 0 20px rgba(139, 92, 246, 0.3), 0 0 40px rgba(236, 72, 153, 0.2);
+    }
+
+    .neon-glow:hover {
+      box-shadow: 0 0 30px rgba(139, 92, 246, 0.5), 0 0 60px rgba(236, 72, 153, 0.3);
+    }
+
+    /* Smooth Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes glow {
+      0%, 100% {
+        text-shadow: 0 0 5px rgba(139, 92, 246, 0.5);
+      }
+      50% {
+        text-shadow: 0 0 20px rgba(236, 72, 153, 0.5);
+      }
+    }
+
+    .fade-in {
+      animation: fadeInUp 0.6s ease-out;
+    }
+
+    .glow-text {
+      animation: glow 2s ease-in-out infinite;
+    }
+
+    /* Tab Styling */
+    .tab-btn {
+      position: relative;
+      padding: 12px 24px;
+      background: transparent;
+      color: #9ca3af;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .tab-btn.active {
+      color: #8B5CF6;
+    }
+
+    .tab-btn.active::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #8B5CF6, #EC4899);
+      border-radius: 2px;
+    }
+
+    /* Input Styling */
+    input, textarea, select {
+      background: rgba(30, 30, 50, 0.5) !important;
+      border: 1px solid var(--border) !important;
+      color: #e5e7eb !important;
+    }
+
+    input::placeholder, textarea::placeholder {
+      color: #6b7280 !important;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: #8B5CF6 !important;
+      box-shadow: 0 0 15px rgba(139, 92, 246, 0.3) !important;
+    }
+
+    /* Button Styling */
+    .btn-primary {
+      background: linear-gradient(135deg, #8B5CF6, #EC4899);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(139, 92, 246, 0.4);
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: rgba(30, 30, 50, 0.5);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(135deg, #8B5CF6, #EC4899);
+      border-radius: 4px;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      .glass-card {
+        border-radius: 12px;
+      }
+      
+      .tab-btn {
+        padding: 10px 16px;
+        font-size: 14px;
+      }
+    }
+
+    .card-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    /* Table Styling */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    table th, table td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    table th {
+      background: rgba(139, 92, 246, 0.1);
+      color: #8B5CF6;
+      font-weight: 700;
+    }
+
+    table tr:hover {
+      background: rgba(139, 92, 246, 0.05);
+    }
+
+    /* Letter Card */
+    .letter-card {
+      glass-card;
+      padding: 20px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .letter-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
+    }
+
+    /* Clock Display */
+    .roman-clock {
+      font-size: 48px;
+      font-weight: 900;
+      letter-spacing: 8px;
+      color: #8B5CF6;
+      text-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Loader Animation */
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .spinner {
+      border: 3px solid rgba(139, 92, 246, 0.2);
+      border-top-color: #8B5CF6;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      animation: spin 0.8s linear infinite;
+    }
+  </style>
+</head>
+<body class="overflow-x-hidden">
+
+  <!-- Navigation -->
+  <nav class="glass-card sticky top-4 mx-4 md:mx-auto md:max-w-6xl z-50 mb-8 mt-4">
+    <div class="flex items-center justify-between px-4 py-3">
+      <div class="flex items-center gap-2">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
+          <span class="text-white font-black text-xl">Ⅹ</span>
+        </div>
+        <h1 class="text-xl md:text-2xl font-black gradient-text">RomanX Pro</h1>
+      </div>
+      <p class="text-xs md:text-sm text-gray-400">Premium Roman Numeral Toolkit</p>
+    </div>
+  </nav>
+
+  <!-- Main Container -->
+  <div class="max-w-6xl mx-auto px-4 pb-20">
+
+    <!-- Hero Section -->
+    <section class="fade-in text-center mb-12">
+      <h1 class="text-4xl md:text-6xl font-black mb-4 gradient-text">Convert to Roman Numerals</h1>
+      <p class="text-gray-400 text-lg mb-6">The world's most viral Roman numeral toolkit. Convert dates, names, images, and more instantly.</p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <span class="glass-card px-4 py-2 text-sm">✨ 100% Free</span>
+        <span class="glass-card px-4 py-2 text-sm">⚡ Instant Results</span>
+        <span class="glass-card px-4 py-2 text-sm">🔒 No Server Upload</span>
+        <span class="glass-card px-4 py-2 text-sm">📱 Mobile Friendly</span>
+      </div>
+    </section>
+
+    <!-- Tabs Navigation -->
+    <div class="glass-card mb-8 overflow-x-auto">
+      <div class="flex gap-2 px-4 py-3 whitespace-nowrap" id="tabsContainer">
+        <button class="tab-btn active" onclick="switchTab('birth')">🎂 Birth Date</button>
+        <button class="tab-btn" onclick="switchTab('watermark')">🖼️ Watermark</button>
+        <button class="tab-btn" onclick="switchTab('bulk')">📊 Bulk List</button>
+        <button class="tab-btn" onclick="switchTab('name')">✨ Name Art</button>
+        <button class="tab-btn" onclick="switchTab('clock')">⏰ Live Clock</button>
+      </div>
+    </div>
+
+    <!-- Tab 1: Birth Date to Roman -->
+    <div id="birth" class="tab-content fade-in">
+      <div class="glass-card p-6 md:p-8 mb-8 neon-glow">
+        <h2 class="text-2xl md:text-3xl font-bold mb-6 gradient-text">Birth Date to Roman</h2>
+        
+        <div class="grid md:grid-cols-2 gap-6">
+          <!-- Input Section -->
+          <div>
+            <label class="block text-sm font-semibold mb-3">Select Your Birth Date</label>
+            <input type="date" id="birthDate" class="w-full px-4 py-3 rounded-lg mb-4">
+            <button class="btn-primary w-full" onclick="convertBirthDate()">Convert & Generate Card</button>
+          </div>
+
+          <!-- Output Section -->
+          <div id="birthOutput" style="display: none;">
+            <label class="block text-sm font-semibold mb-3">Your Birth Date in Roman</label>
+            <div class="glass-card p-4 rounded-lg text-center mb-4">
+              <p id="romanDate" class="text-3xl font-black gradient-text break-words"></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Share Card Canvas -->
+        <div id="cardPreview" style="display: none;" class="mt-8">
+          <canvas id="shareCanvas" width="1080" height="1920" class="w-full max-w-sm mx-auto rounded-lg border border-purple-500/30"></canvas>
+          <div class="flex gap-3 mt-4 justify-center flex-wrap">
+            <button class="btn-primary" onclick="downloadShareCard()">📥 Download Card</button>
+            <button class="btn-primary" onclick="copyRomanDate()">📋 Copy Text</button>
+            <button class="btn-primary" onclick="shareOnTwitterBirth()">𝕏 Share on Twitter</button>
+            <button class="btn-primary" onclick="shareOnFacebook()">f Share on Facebook</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 2: Photo Watermark Tool -->
+    <div id="watermark" class="tab-content fade-in" style="display: none;">
+      <div class="glass-card p-6 md:p-8 mb-8 neon-glow">
+        <h2 class="text-2xl md:text-3xl font-bold mb-6 gradient-text">Roman Watermark Tool</h2>
+        
+        <div class="grid md:grid-cols-2 gap-6">
+          <!-- Input Section -->
+          <div>
+            <label class="block text-sm font-semibold mb-3">Upload Your Image</label>
+            <input type="file" id="imageInput" accept="image/*" class="w-full px-4 py-3 rounded-lg mb-4" onchange="previewImage()">
+            
+            <label class="block text-sm font-semibold mb-3">Year (Auto: Current Year)</label>
+            <input type="number" id="watermarkYear" value="2026" min="1" max="3999" class="w-full px-4 py-3 rounded-lg mb-4">
+            
+            <button class="btn-primary w-full" onclick="applyWatermark()">Add Watermark</button>
+          </div>
+
+          <!-- Preview Section -->
+          <div id="watermarkPreview" style="display: none;">
+            <label class="block text-sm font-semibold mb-3">Preview</label>
+            <div class="glass-card p-4 rounded-lg">
+              <canvas id="watermarkCanvas" class="w-full rounded-lg border border-purple-500/30"></canvas>
+            </div>
+            <button class="btn-primary w-full mt-4" onclick="downloadWatermarkedImage()">📥 Download Image</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 3: Bulk Chapter List -->
+    <div id="bulk" class="tab-content fade-in" style="display: none;">
+      <div class="glass-card p-6 md:p-8 mb-8 neon-glow">
+        <h2 class="text-2xl md:text-3xl font-bold mb-6 gradient-text">Bulk Chapter List Converter</h2>
+        
+        <div class="mb-6">
+          <label class="block text-sm font-semibold mb-3">Generate List: 1 to</label>
+          <div class="flex gap-3 flex-wrap">
+            <input type="number" id="bulkUpTo" value="20" min="1" max="1000" class="flex-1 min-w-32 px-4 py-3 rounded-lg">
+            <button class="btn-primary" onclick="generateBulkList()">Generate List</button>
+          </div>
+        </div>
+
+        <!-- Table Container -->
+        <div id="bulkTableContainer" style="display: none;" class="overflow-x-auto">
+          <table>
+            <thead>
+              <tr>
+                <th>Number</th>
+                <th>Roman Numeral</th>
+              </tr>
+            </thead>
+            <tbody id="bulkTableBody"></tbody>
+          </table>
+
+          <div class="flex gap-3 mt-6 flex-wrap">
+            <button class="btn-primary" onclick="copyBulkList()">📋 Copy All</button>
+            <button class="btn-primary" onclick="window.print()">🖨️ Print / Save as PDF</button>
+            <button class="btn-primary" onclick="downloadBulkListCSV()">📊 Download CSV</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 4: Name to Roman Art -->
+    <div id="name" class="tab-content fade-in" style="display: none;">
+      <div class="glass-card p-6 md:p-8 mb-8 neon-glow">
+        <h2 class="text-2xl md:text-3xl font-bold mb-6 gradient-text">Name to Roman Art Generator</h2>
+        
+        <div class="mb-8">
+          <label class="block text-sm font-semibold mb-3">Enter Your Name</label>
+          <input type="text" id="nameInput" placeholder="e.g., RAHUL" maxlength="50" class="w-full px-4 py-3 rounded-lg mb-4 uppercase" oninput="generateNameArt()">
+        </div>
+
+        <!-- Letter Cards -->
+        <div id="nameArtContainer" class="card-container mb-8"></div>
+
+        <!-- Download Button -->
+        <button class="btn-primary w-full" id="downloadNameArt" style="display: none;" onclick="downloadNameArtImage()">📥 Download as Image</button>
+      </div>
+    </div>
+
+    <!-- Tab 5: Live Roman Clock -->
+    <div id="clock" class="tab-content fade-in" style="display: none;">
+      <div class="glass-card p-6 md:p-8 mb-8 neon-glow">
+        <h2 class="text-2xl md:text-3xl font-bold mb-6 gradient-text">Live Roman Clock</h2>
+        
+        <div class="glass-card p-8 rounded-lg text-center mb-6 neon-glow">
+          <div id="romanClock" class="roman-clock mb-4">XII : XXV : XXX</div>
+          <p class="text-gray-400 text-sm">Updates every second • Roman Numeral Time</p>
+        </div>
+
+        <div class="flex gap-3 flex-wrap justify-center">
+          <button class="btn-primary" onclick="copyClockCode()">📋 Copy Embed Code</button>
+          <button class="btn-primary" onclick="downloadClockWidget()">📥 Download Widget</button>
+          <button class="btn-primary" onclick="shareClockTwitter()">𝕏 Share Clock</button>
+        </div>
+
+        <!-- Embed Code Display -->
+        <div id="embedCodeContainer" style="display: none;" class="mt-8">
+          <label class="block text-sm font-semibold mb-3">Embed This on Your Website</label>
+          <textarea id="embedCode" readonly class="w-full px-4 py-3 rounded-lg text-xs h-24" onclick="this.select()"></textarea>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FAQ Section -->
+  <section class="max-w-6xl mx-auto px-4 py-12 mb-12">
+    <h2 class="text-3xl md:text-4xl font-black mb-8 text-center gradient-text">Frequently Asked Questions</h2>
+    
+    <div class="space-y-4">
+      <details class="glass-card p-6 rounded-lg cursor-pointer group">
+        <summary class="font-bold text-lg flex justify-between items-center">
+          What are Roman Numerals?
+          <span class="group-open:rotate-180 transition">▼</span>
+        </summary>
+        <p class="text-gray-400 mt-4">Roman numerals are a numeral system originating in ancient Rome that uses combinations of letters from the Latin alphabet (I, V, X, L, C, D, M) to represent numbers. Each letter has a specific value: I=1, V=5, X=10, L=50, C=100, D=500, M=1000.</p>
+      </details>
+
+      <details class="glass-card p-6 rounded-lg cursor-pointer group">
+        <summary class="font-bold text-lg flex justify-between items-center">
+          How do I convert a number to Roman numerals?
+          <span class="group-open:rotate-180 transition">▼</span>
+        </summary>
+        <p class="text-gray-400 mt-4">Use our free converter tools! Simply enter your number, date, or name, and we'll instantly convert it to Roman numerals. Our advanced algorithm handles all values from 1 to 3999 accurately.</p>
+      </details>
+
+      <details class="glass-card p-6 rounded-lg cursor-pointer group">
+        <summary class="font-bold text-lg flex justify-between items-center">
+          What's the largest number in Roman numerals?
+          <span class="group-open:rotate-180 transition">▼</span>
+        </summary>
+        <p class="text-gray-400 mt-4">In standard Roman numeral notation, the largest commonly used number is 3,999 (MMMCMXCIX). However, ancient Romans used a vinculum (overline) to multiply numbers by 1,000, allowing for larger values.</p>
+      </details>
+
+      <details class="glass-card p-6 rounded-lg cursor-pointer group">
+        <summary class="font-bold text-lg flex justify-between items-center">
+          Can I download the converted images?
+          <span class="group-open:rotate-180 transition">▼</span>
+        </summary>
+        <p class="text-gray-400 mt-4">Yes! All our tools allow you to download high-quality images of your conversions. Share cards, watermarked images, and name art can all be downloaded as PNG files. No watermark, no limitations!</p>
+      </details>
+
+      <details class="glass-card p-6 rounded-lg cursor-pointer group">
+        <summary class="font-bold text-lg flex justify-between items-center">
+          Is my data uploaded to servers?
+          <span class="group-open:rotate-180 transition">▼</span>
+        </summary>
+        <p class="text-gray-400 mt-4">Absolutely not! RomanX Pro is 100% client-side. All conversions, image processing, and watermarking happen directly in your browser. We never upload, store, or track your data.</p>
+      </details>
+
+      <details class="glass-card p-6 rounded-lg cursor-pointer group">
+        <summary class="font-bold text-lg flex justify-between items-center">
+          What makes Roman numerals special?
+          <span class="group-open:rotate-180 transition">▼</span>
+        </summary>
+        <p class="text-gray-400 mt-4">Roman numerals are iconic symbols of ancient civilization. They're used in formal documents, clock faces, movie credits, and more. Converting your birth date or name to Roman numerals creates a timeless, elegant representation that's perfect for sharing!</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-purple-500/20 mt-16 pt-8 pb-4">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="grid md:grid-cols-3 gap-8 mb-8">
+        <!-- About -->
+        <div>
+          <h3 class="font-bold text-lg mb-4 gradient-text">About RomanX</h3>
+          <p class="text-gray-400 text-sm">The world's most viral Roman numeral toolkit. Convert dates, names, and images to beautiful Roman numerals instantly. Premium quality, completely free.</p>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h3 class="font-bold text-lg mb-4 gradient-text">Quick Links</h3>
+          <ul class="text-gray-400 text-sm space-y-2">
+            <li><a href="#" onclick="switchTab('birth')" class="hover:text-purple-400">Birth Date Converter</a></li>
+            <li><a href="#" onclick="switchTab('watermark')" class="hover:text-purple-400">Photo Watermark</a></li>
+            <li><a href="#" onclick="switchTab('bulk')" class="hover:text-purple-400">Bulk List Generator</a></li>
+            <li><a href="#" onclick="switchTab('name')" class="hover:text-purple-400">Name Art Generator</a></li>
+            <li><a href="#" onclick="switchTab('clock')" class="hover:text-purple-400">Roman Clock</a></li>
+          </ul>
+        </div>
+
+        <!-- Resources -->
+        <div>
+          <h3 class="font-bold text-lg mb-4 gradient-text">Resources</h3>
+          <ul class="text-gray-400 text-sm space-y-2">
+            <li><a href="#" class="hover:text-purple-400">Roman Numerals Guide</a></li>
+            <li><a href="#" class="hover:text-purple-400">Chart & Reference</a></li>
+            <li><a href="#" class="hover:text-purple-400">API Documentation</a></li>
+            <li><a href="#" class="hover:text-purple-400">Contact Support</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-purple-500/20 pt-6 text-center text-gray-500 text-sm">
+        <p>Made with ❤️ by <span class="text-purple-400 font-bold">Mujahar</span> | © MMXXVI RomanX Pro. All Rights Reserved.</p>
+        <p class="mt-2">✨ 100% Free • No Server Upload • All Client-Side • Premium Quality</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Hidden File Input for Download -->
+  <input type="file" id="downloadInput" style="display: none;">
+
+  <script>
+    // ==========================================
+    // ROMAN NUMERAL CONVERSION LOGIC
+    // ==========================================
+
+    /**
+     * Converts a number to Roman numerals
+     * @param {number} num - Number to convert
+     * @returns {string} Roman numeral representation
+     */
+    function toRoman(num) {
+      if (num <= 0 || num >= 4000) return '';
+      
+      const romanMap = [
+        { value: 1000, numeral: 'M' },
+        { value: 900, numeral: 'CM' },
+        { value: 500, numeral: 'D' },
+        { value: 400, numeral: 'CD' },
+        { value: 100, numeral: 'C' },
+        { value: 90, numeral: 'XC' },
+        { value: 50, numeral: 'L' },
+        { value: 40, numeral: 'XL' },
+        { value: 10, numeral: 'X' },
+        { value: 9, numeral: 'IX' },
+        { value: 5, numeral: 'V' },
+        { value: 4, numeral: 'IV' },
+        { value: 1, numeral: 'I' }
+      ];
+
+      let roman = '';
+      for (let { value, numeral } of romanMap) {
+        while (num >= value) {
+          roman += numeral;
+          num -= value;
+        }
+      }
+      return roman;
+    }
+
+    /**
+     * Converts a date string to Roman numerals format
+     * @param {string} dateStr - Date string in YYYY-MM-DD format
+     * @returns {string} Date in Roman format (DD.MM.YYYY)
+     */
+    function dateToRoman(dateStr) {
+      if (!dateStr) return '';
+      const [year, month, day] = dateStr.split('-');
+      return `${toRoman(parseInt(day))}.${toRoman(parseInt(month))}.${toRoman(parseInt(year))}`;
+    }
+
+    // ==========================================
+    // TAB SWITCHING LOGIC
+    // ==========================================
+
+    /**
+     * Switches between tabs
+     * @param {string} tabName - Name of the tab to switch to
+     */
+    function switchTab(tabName) {
+      // Hide all tabs
+      document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.style.display = 'none';
+        tab.classList.remove('fade-in');
+      });
+
+      // Show selected tab
+      const selectedTab = document.getElementById(tabName);
+      selectedTab.style.display = 'block';
+      selectedTab.classList.add('fade-in');
+
+      // Update active tab button
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      event.target.classList.add('active');
+
+      // Special handling for clock
+      if (tabName === 'clock') {
+        updateRomanClock();
+        setInterval(updateRomanClock, 1000);
+      }
+    }
+
+    // ==========================================
+    // FEATURE 1: BIRTH DATE TO ROMAN
+    // ==========================================
+
+    /**
+     * Converts birth date and generates share card
+     */
+    function convertBirthDate() {
+      const dateInput = document.getElementById('birthDate');
+      if (!dateInput.value) {
+        alert('Please select a date');
+        return;
+      }
+
+      const romanDate = dateToRoman(dateInput.value);
+      document.getElementById('romanDate').textContent = romanDate;
+      document.getElementById('birthOutput').style.display = 'block';
+      
+      // Generate share card
+      generateShareCard(romanDate, dateInput.value);
+      document.getElementById('cardPreview').style.display = 'block';
+    }
+
+    /**
+     * Generates a beautiful share card using Canvas
+     */
+    function generateShareCard(romanDate, dateStr) {
+      const canvas = document.getElementById('shareCanvas');
+      const ctx = canvas.getContext('2d');
+
+      // Clear canvas
+      ctx.fillStyle = 'linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Add gradient background
+      const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+      gradient.addColorStop(0, 'rgba(139, 92, 246, 0.2)');
+      gradient.addColorStop(1, 'rgba(236, 72, 153, 0.2)');
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Title
+      ctx.fillStyle = '#8B5CF6';
+      ctx.font = 'bold 60px Poppins';
+      ctx.textAlign = 'center';
+      ctx.fillText('My Birth Date', canvas.width / 2, 400);
+
+      // Roman date
+      ctx.fillStyle = '#EC4899';
+      ctx.font = 'bold 120px Poppins';
+      ctx.fillText(romanDate, canvas.width / 2, 800);
+
+      // Gregorian date
+      ctx.fillStyle = '#9ca3af';
+      ctx.font = '30px Poppins';
+      ctx.fillText(dateStr, canvas.width / 2, 950);
+
+      // Footer
+      ctx.fillStyle = '#6b7280';
+      ctx.font = 'italic 24px Poppins';
+      ctx.fillText('✨ Generated by RomanX Pro', canvas.width / 2, 1850);
+    }
+
+    /**
+     * Downloads the share card
+     */
+    function downloadShareCard() {
+      const canvas = document.getElementById('shareCanvas');
+      const link = document.createElement('a');
+      link.href = canvas.toDataURL('image/png');
+      link.download = 'my-birth-date-roman.png';
+      link.click();
+    }
+
+    /**
+     * Copies Roman date to clipboard
+     */
+    function copyRomanDate() {
+      const romanDate = document.getElementById('romanDate').textContent;
+      navigator.clipboard.writeText(romanDate);
+      alert('✅ Copied to clipboard: ' + romanDate);
+    }
+
+    // ==========================================
+    // FEATURE 2: PHOTO WATERMARK TOOL
+    // ==========================================
+
+    let uploadedImage = null;
+
+    /**
+     * Previews uploaded image
+     */
+    function previewImage() {
+      const fileInput = document.getElementById('imageInput');
+      const file = fileInput.files[0];
+      
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        uploadedImage = new Image();
+        uploadedImage.onload = () => {
+          document.getElementById('watermarkPreview').style.display = 'block';
+        };
+        uploadedImage.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    /**
+     * Applies Roman numeral watermark to image
+     */
+    function applyWatermark() {
+      if (!uploadedImage) {
+        alert('Please upload an image first');
+        return;
+      }
+
+      const year = parseInt(document.getElementById('watermarkYear').value) || new Date().getFullYear();
+      const romanYear = toRoman(year);
+
+      const canvas = document.getElementById('watermarkCanvas');
+      const ctx = canvas.getContext('2d');
+
+      canvas.width = uploadedImage.width;
+      canvas.height = uploadedImage.height;
+
+      ctx.drawImage(uploadedImage, 0, 0);
+
+      // Add semi-transparent background for text
+      const textSize = canvas.width * 0.06;
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.6)';
+      ctx.fillRect(canvas.width - textSize * 10, canvas.height - textSize * 2, textSize * 10, textSize * 2);
+
+      // Add watermark text
+      ctx.fillStyle = '#8B5CF6';
+      ctx.font = `bold ${textSize}px Poppins`;
+      ctx.textAlign = 'right';
+      ctx.fillText(`© ${romanYear}`, canvas.width - 20, canvas.height - 20);
+    }
+
+    /**
+     * Downloads watermarked image
+     */
+    function downloadWatermarkedImage() {
+      const canvas = document.getElementById('watermarkCanvas');
+      const link = document.createElement('a');
+      link.href = canvas.toDataURL('image/png');
+      link.download = 'watermarked-image.png';
+      link.click();
+    }
+
+    // ==========================================
+    // FEATURE 3: BULK CHAPTER LIST CONVERTER
+    // ==========================================
+
+    /**
+     * Generates bulk conversion table
+     */
+    function generateBulkList() {
+      const upTo = parseInt(document.getElementById('bulkUpTo').value) || 20;
+      const tableBody = document.getElementById('bulkTableBody');
+      tableBody.innerHTML = '';
+
+      for (let i = 1; i <= upTo; i++) {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${i}</td>
+          <td class="text-purple-400 font-bold">${toRoman(i)}</td>
+        `;
+        tableBody.appendChild(row);
+      }
+
+      document.getElementById('bulkTableContainer').style.display = 'block';
+    }
+
+    /**
+     * Copies bulk list to clipboard
+     */
+    function copyBulkList() {
+      const upTo = parseInt(document.getElementById('bulkUpTo').value) || 20;
+      let text = '';
+      for (let i = 1; i <= upTo; i++) {
+        text += `${i} = ${toRoman(i)}\n`;
+      }
+      navigator.clipboard.writeText(text);
+      alert('✅ Copied to clipboard!');
+    }
+
+    /**
+     * Downloads bulk list as CSV
+     */
+    function downloadBulkListCSV() {
+      const upTo = parseInt(document.getElementById('bulkUpTo').value) || 20;
+      let csv = 'Number,Roman Numeral\n';
+      for (let i = 1; i <= upTo; i++) {
+        csv += `${i},${toRoman(i)}\n`;
+      }
+
+      const link = document.createElement('a');
+      link.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
+      link.download = 'roman-numerals.csv';
+      link.click();
+    }
+
+    // ==========================================
+    // FEATURE 4: NAME TO ROMAN ART GENERATOR
+    // ==========================================
+
+    /**
+     * Converts each letter of name to Roman numeral art
+     */
+    function generateNameArt() {
+      const nameInput = document.getElementById('nameInput').value.toUpperCase().trim();
+      const container = document.getElementById('nameArtContainer');
+      container.innerHTML = '';
+
+      if (!nameInput) {
+        document.getElementById('downloadNameArt').style.display = 'none';
+        return;
+      }
+
+      for (let i = 0; i < nameInput.length; i++) {
+        const char = nameInput[i];
+        const charCode = char.charCodeAt(0) - 64; // A=1, B=2, etc.
+
+        if (charCode > 0 && charCode <= 26) {
+          const roman = toRoman(charCode);
+          
+          const card = document.createElement('div');
+          card.className = 'glass-card p-6 rounded-lg text-center letter-card';
+          card.innerHTML = `
+            <div class="text-5xl font-black gradient-text mb-2">${char}</div>
+            <div class="text-2xl text-purple-400 font-bold mb-2">${charCode}</div>
+            <div class="text-3xl text-pink-400 font-black">${roman}</div>
+          `;
+          container.appendChild(card);
+        }
+      }
+
+      document.getElementById('downloadNameArt').style.display = 'block';
+    }
+
+    /**
+     * Downloads name art as image
+     */
+    function downloadNameArtImage() {
+      const name = document.getElementById('nameInput').value.toUpperCase();
+      const canvas = document.createElement('canvas');
+      canvas.width = 1200;
+      canvas.height = 600;
+      const ctx = canvas.getContext('2d');
+
+      // Background
+      const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+      gradient.addColorStop(0, '#1a1a2e');
+      gradient.addColorStop(1, '#16213e');
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Title
+      ctx.fillStyle = '#8B5CF6';
+      ctx.font = 'bold 60px Poppins';
+      ctx.textAlign = 'center';
+      ctx.fillText(`${name} in Roman Numerals`, canvas.width / 2, 80);
+
+      // Draw each letter
+      const charWidth = canvas.width / name.length;
+      for (let i = 0; i < name.length; i++) {
+        const char = name[i];
+        const charCode = char.charCodeAt(0) - 64;
+
+        if (charCode > 0 && charCode <= 26) {
+          const roman = toRoman(charCode);
+          const xPos = (i + 0.5) * charWidth;
+
+          ctx.fillStyle = '#EC4899';
+          ctx.font = 'bold 80px Poppins';
+          ctx.fillText(char, xPos, 250);
+
+          ctx.fillStyle = '#8B5CF6';
+          ctx.font = 'bold 40px Poppins';
+          ctx.fillText(roman, xPos, 350);
+        }
+      }
+
+      // Footer
+      ctx.fillStyle = '#6b7280';
+      ctx.font = '20px Poppins';
+      ctx.fillText('✨ Generated by RomanX Pro', canvas.width / 2, 550);
+
+      // Download
+      const link = document.createElement('a');
+      link.href = canvas.toDataURL('image/png');
+      link.download = `${name}-roman-art.png`;
+      link.click();
+    }
+
+    // ==========================================
+    // FEATURE 5: LIVE ROMAN CLOCK
+    // ==========================================
+
+    /**
+     * Updates live Roman numeral clock
+     */
+    function updateRomanClock() {
+      const now = new Date();
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+
+      const romanHours = toRoman(parseInt(hours) || 24);
+      const romanMinutes = toRoman(parseInt(minutes) || 60);
+      const romanSeconds = toRoman(parseInt(seconds) || 60);
+
+      document.getElementById('romanClock').textContent = 
+        `${romanHours} : ${romanMinutes} : ${romanSeconds}`;
+    }
+
+    /**
+     * Copies embed code for Roman clock
+     */
+    function copyClockCode() {
+      const embedCode = document.getElementById('embedCode');
+      if (!embedCode.value) {
+        const code = `<iframe src="${window.location.href}" width="300" height="150" frameborder="0" style="border: 1px solid #8B5CF6; border-radius: 10px;"></iframe>`;
+        embedCode.value = code;
+        document.getElementById('embedCodeContainer').style.display = 'block';
+      }
+      embedCode.select();
+      navigator.clipboard.writeText(embedCode.value);
+      alert('✅ Embed code copied!');
+    }
+
+    /**
+     * Downloads clock widget
+     */
+    function downloadClockWidget() {
+      const htmlContent = `
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Roman Numeral Clock</title>
+  <style>
+    body { background: #0A0A0A; font-family: Poppins; text-align: center; padding: 20px; }
+    .clock { font-size: 48px; font-weight: 900; color: #8B5CF6; text-shadow: 0 0 20px rgba(139, 92, 246, 0.5); }
+  </style>
+</head>
+<body>
+  <div class="clock" id="romanClock">XII : XXV : XXX</div>
+  <script>
+    function updateClock() {
+      const now = new Date();
+      const h = String(now.getHours()).padStart(2, '0');
+      const m = String(now.getMinutes()).padStart(2, '0');
+      const s = String(now.getSeconds()).padStart(2, '0');
+      const romanNumerals = (n) => {
+        const map = [[1000,'M'],[900,'CM'],[500,'D'],[400,'CD'],[100,'C'],[90,'XC'],[50,'L'],[40,'XL'],[10,'X'],[9,'IX'],[5,'V'],[4,'IV'],[1,'I']];
+        let r = ''; for (let [v, s] of map) while (n >= v) { r += s; n -= v; } return r;
+      };
+      document.getElementById('romanClock').textContent = romanNumerals(parseInt(h)) + ' : ' + romanNumerals(parseInt(m)) + ' : ' + romanNumerals(parseInt(s));
+    }
+    updateClock();
+    setInterval(updateClock, 1000);
+  </script>
+</body>
+</html>`;
+
+      const link = document.createElement('a');
+      link.href = 'data:text/html;charset=utf-8,' + encodeURIComponent(htmlContent);
+      link.download = 'roman-clock.html';
+      link.click();
+    }
+
+    /**
+     * Shares clock on Twitter
+     */
+    function shareClockTwitter() {
+      const text = "Check out this live Roman Numeral Clock! ⏰ ✨ #RomanNumerals #RomanXPro";
+      window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${window.location.href}`);
+    }
+
+    // ==========================================
+    // SOCIAL SHARING FUNCTIONS
+    // ==========================================
+
+    /**
+     * Share birth date on Twitter
+     */
+    function shareOnTwitterBirth() {
+      const romanDate = document.getElementById('romanDate').textContent;
+      const text = `My birth date in Roman numerals is ${romanDate}! 🎂 ✨ Convert yours with @RomanXPro #RomanNumerals`;
+      window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${window.location.href}`);
+    }
+
+    /**
+     * Share on Facebook
+     */
+    function shareOnFacebook() {
+      window.open(`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`);
+    }
+
+    // ==========================================
+    // INITIALIZATION
+    // ==========================================
+
+    document.addEventListener('DOMContentLoaded', function() {
+      updateRomanClock();
+      
+      // Set today's date as default
+      const today = new Date().toISOString().split('T')[0];
+      document.getElementById('birthDate').value = today;
+      document.getElementById('watermarkYear').value = new Date().getFullYear();
+    });
+  </script>
+</body>
+</html>
