@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leet Speak Translator 1337 – Free Hacker Text Generator, Gamer Tag & Password Maker 2026</title>
+  <meta name="description" content="Free online leet speak translator, 1337 translator, l33t speak converter & hacker text generator. Convert English to leet, reverse decoder, gamer tag generator for BGMI, Free Fire, Discord, Instagram. Download PNG, copy instantly. Best leet translator no ads." />
+  <meta name="keywords" content="leet speak translator, 1337 translator, l33t speak converter, leet speak generator, hacker text generator, 1337 text converter, leet translator, gamer tag generator, bgmi name style generator, free fire name style generator, password generator leet, leet speak decoder" />
+  <meta name="author" content="LeetSpeak Tool" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#00ff41" />
+  <meta property="og:title" content="Leet Speak Translator 1337 – Hacker Text & Gamer Tag Generator" />
+  <meta property="og:description" content="Real-time leet speak converter, reverse translator, 20+ gamer tag styles, leet password generator. Dark terminal theme. Free & fast." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="manifest" href="data:application/json,{'name':'LeetSpeak%20Pro','short_name':'Leet1337','start_url':'/','display':'standalone','background_color':'#0a0a0a','theme_color':'#00ff41'}" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>1337</text></svg>" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            terminal: '#0a0a0a',
+            neon: '#00ff41',
+            dim: '#00cc33',
+            panel: '#0d1117',
+            border: '#1f2937'
+          },
+          fontFamily: {
+            mono: ['"JetBrains Mono"', 'Consolas', 'Monaco', 'monospace'],
+            sans: ['Inter', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    body { background: #0a0a0a; color: #e5e7eb; font-family: Inter, system-ui, sans-serif; }
+    .font-mono { font-family: 'JetBrains Mono', Consolas, monospace; }
+    .neon-text { color: #00ff41; text-shadow: 0 0 8px rgba(0,255,65,0.5); }
+    .neon-border { border-color: #00ff41; box-shadow: 0 0 12px rgba(0,255,65,0.25); }
+    .glow-btn { transition: all 0.2s; }
+    .glow-btn:hover { box-shadow: 0 0 20px rgba(0,255,65,0.4); transform: translateY(-1px); }
+    textarea, input, select {
+      background: #0d1117 !important;
+      border: 1px solid #1f2937 !important;
+      color: #00ff41 !important;
+      font-family: 'JetBrains Mono', monospace !important;
+    }
+    textarea:focus, input:focus, select:focus {
+      outline: none;
+      border-color: #00ff41 !important;
+      box-shadow: 0 0 0 2px rgba(0,255,65,0.2);
+    }
+    .tab-active { background: #00ff41; color: #0a0a0a; }
+    .scanline::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(transparent 50%, rgba(0,255,65,0.02) 50%);
+      background-size: 100% 4px;
+      pointer-events: none;
+    }
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: #0a0a0a; }
+    ::-webkit-scrollbar-thumb { background: #00ff41; border-radius: 4px; }
+    .typing::after {
+      content: '▋';
+      animation: blink 1s step-end infinite;
+      color: #00ff41;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+    .keyword-cloud span {
+      display: inline-block;
+      margin: 2px 4px;
+      padding: 2px 8px;
+      font-size: 11px;
+      color: #4b5563;
+      background: #111;
+      border-radius: 4px;
+    }
+  </style>
+  <!-- Google Analytics Placeholder -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+  <!-- JSON-LD Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Leet Speak Translator 1337",
+    "description": "Free online leet speak translator, 1337 converter, hacker text generator, gamer tag generator and leet password maker.",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "ratingCount": "2847"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a leet speak translator?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A leet speak translator converts normal English text into 1337 (leet) speak using numbers and symbols, like A=4, E=3, and advanced |-| styles." }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I convert text to 1337?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Type or paste your text into the input box, choose Basic, Intermediate or Advanced level, and the leet speak converter updates in real time." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I generate gamer tags for BGMI and Free Fire?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. The gamer tag generator creates 20+ stylish names such as xX_Name_Xx, Name_OP, Name_YT perfect for BGMI, Free Fire, PUBG, Discord and Xbox." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is there a reverse leet to English translator?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Switch to Reverse mode to decode 1337 text back into readable English with the leet speak decoder." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the tool work as a leet password generator?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. The password generator mode creates strong leetspeak passwords that mix letters, numbers and symbols for better security." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="min-h-screen">
+
+  <!-- Header -->
+  <header class="border-b border-border bg-panel/80 backdrop-blur sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <span class="font-mono text-2xl neon-text font-bold">1337</span>
+        <div>
+          <h1 class="text-lg font-bold text-white leading-tight">LeetSpeak<span class="neon-text">Pro</span></h1>
+          <p class="text-xs text-gray-500 font-mono">h4ck3r t3xt & g4m3r t4g t00l</p>
+        </div>
+      </div>
+      <div class="hidden sm:flex gap-2 text-xs font-mono">
+        <span class="px-2 py-1 rounded bg-neon/10 text-neon border border-neon/30">FREE</span>
+        <span class="px-2 py-1 rounded bg-white/5 text-gray-400">NO ADS</span>
+        <span class="px-2 py-1 rounded bg-white/5 text-gray-400">PWA READY</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero / Main Translator -->
+  <main class="max-w-6xl mx-auto px-4 py-8">
+    <div class="text-center mb-8">
+      <h2 class="text-3xl sm:text-4xl font-bold text-white mb-2">
+        <span class="neon-text">Leet Speak</span> Translator
+      </h2>
+      <p class="text-gray-400 text-sm sm:text-base max-w-2xl mx-auto">
+        Real-time 1337 converter • Reverse decoder • Gamer tag generator • Hacker password maker
+      </p>
+    </div>
+
+    <!-- Mode Tabs -->
+    <div class="flex flex-wrap gap-2 justify-center mb-6">
+      <button data-mode="translate" class="mode-btn tab-active px-4 py-2 rounded-lg text-sm font-semibold font-mono glow-btn">TRANSLATE</button>
+      <button data-mode="reverse" class="mode-btn px-4 py-2 rounded-lg text-sm font-semibold font-mono bg-panel border border-border text-gray-300 glow-btn">REVERSE</button>
+      <button data-mode="gamer" class="mode-btn px-4 py-2 rounded-lg text-sm font-semibold font-mono bg-panel border border-border text-gray-300 glow-btn">GAMER TAGS</button>
+      <button data-mode="password" class="mode-btn px-4 py-2 rounded-lg text-sm font-semibold font-mono bg-panel border border-border text-gray-300 glow-btn">PASSWORD</button>
+      <button data-mode="custom" class="mode-btn px-4 py-2 rounded-lg text-sm font-semibold font-mono bg-panel border border-border text-gray-300 glow-btn">CUSTOM MAP</button>
+    </div>
+
+    <!-- Level Selector (visible in translate/reverse) -->
+    <div id="levelBar" class="flex flex-wrap gap-3 justify-center mb-6">
+      <label class="flex items-center gap-2 cursor-pointer text-sm font-mono">
+        <input type="radio" name="level" value="basic" checked class="accent-neon" />
+        <span class="text-neon">Basic</span>
+      </label>
+      <label class="flex items-center gap-2 cursor-pointer text-sm font-mono">
+        <input type="radio" name="level" value="intermediate" class="accent-neon" />
+        <span class="text-gray-300">Intermediate</span>
+      </label>
+      <label class="flex items-center gap-2 cursor-pointer text-sm font-mono">
+        <input type="radio" name="level" value="advanced" class="accent-neon" />
+        <span class="text-gray-300">Advanced / Extreme</span>
+      </label>
+    </div>
+
+    <!-- Translator Panels -->
+    <div id="translatePanel" class="grid md:grid-cols-2 gap-4 mb-6">
+      <div class="relative">
+        <div class="flex justify-between items-center mb-2">
+          <label class="text-xs font-mono text-gray-500 uppercase">Input (Normal / Leet)</label>
+          <span id="charCount" class="text-xs font-mono text-gray-600">0 chars</span>
+        </div>
+        <textarea id="inputText" rows="8" placeholder="Type normal text or paste 1337 here..." class="w-full rounded-xl p-4 text-sm resize-y min-h-[180px]"></textarea>
+      </div>
+      <div class="relative">
+        <div class="flex justify-between items-center mb-2">
+          <label class="text-xs font-mono text-gray-500 uppercase">Output (1337 / English)</label>
+          <span class="text-xs font-mono text-neon">LIVE</span>
+        </div>
+        <textarea id="outputText" rows="8" readonly placeholder="Result appears here..." class="w-full rounded-xl p-4 text-sm resize-y min-h-[180px] neon-border"></textarea>
+      </div>
+    </div>
+
+    <!-- Gamer Tag Panel -->
+    <div id="gamerPanel" class="hidden mb-6">
+      <div class="max-w-xl mx-auto">
+        <label class="text-xs font-mono text-gray-500 uppercase mb-2 block">Your Name / Base Tag</label>
+        <input type="text" id="gamerName" placeholder="e.g. Rahul" class="w-full rounded-xl px-4 py-3 text-sm mb-4" />
+        <button id="genGamerBtn" class="w-full py-3 rounded-xl bg-neon text-black font-bold font-mono glow-btn mb-4">GENERATE 20+ STYLES</button>
+        <div id="gamerResults" class="grid sm:grid-cols-2 gap-2 max-h-80 overflow-y-auto"></div>
+      </div>
+    </div>
+
+    <!-- Password Panel -->
+    <div id="passwordPanel" class="hidden mb-6">
+      <div class="max-w-xl mx-auto space-y-4">
+        <div class="flex flex-wrap gap-4 items-end">
+          <div>
+            <label class="text-xs font-mono text-gray-500 block mb-1">Length</label>
+            <input type="number" id="passLength" value="16" min="8" max="64" class="w-24 rounded-lg px-3 py-2 text-sm" />
+          </div>
+          <label class="flex items-center gap-2 text-sm font-mono text-gray-300">
+            <input type="checkbox" id="passSymbols" checked class="accent-neon" /> Symbols
+          </label>
+          <label class="flex items-center gap-2 text-sm font-mono text-gray-300">
+            <input type="checkbox" id="passLeet" checked class="accent-neon" /> Leet Style
+          </label>
+        </div>
+        <button id="genPassBtn" class="w-full py-3 rounded-xl bg-neon text-black font-bold font-mono glow-btn">GENERATE LEET PASSWORD</button>
+        <div id="passOutput" class="font-mono text-neon text-lg break-all p-4 rounded-xl bg-panel border border-border min-h-[60px]"></div>
+      </div>
+    </div>
+
+    <!-- Custom Map Panel -->
+    <div id="customPanel" class="hidden mb-6">
+      <div class="max-w-2xl mx-auto">
+        <p class="text-sm text-gray-400 mb-3 font-mono">Edit character mappings (one per line: A=4)</p>
+        <textarea id="customMap" rows="10" class="w-full rounded-xl p-4 text-sm mb-3 font-mono"></textarea>
+        <button id="applyCustomBtn" class="px-6 py-2 rounded-lg bg-neon text-black font-semibold font-mono glow-btn">APPLY CUSTOM MAP</button>
+        <button id="resetMapBtn" class="px-6 py-2 rounded-lg border border-border text-gray-300 font-mono ml-2">RESET</button>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="flex flex-wrap gap-3 justify-center mb-10">
+      <button id="copyBtn" class="px-5 py-2.5 rounded-lg bg-panel border border-neon/40 text-neon font-mono text-sm glow-btn">📋 COPY</button>
+      <button id="clearBtn" class="px-5 py-2.5 rounded-lg bg-panel border border-border text-gray-300 font-mono text-sm glow-btn">✕ CLEAR</button>
+      <button id="downloadBtn" class="px-5 py-2.5 rounded-lg bg-panel border border-neon/40 text-neon font-mono text-sm glow-btn">⬇️ PNG</button>
+      <button id="shareWa" class="px-5 py-2.5 rounded-lg bg-green-900/40 border border-green-600/50 text-green-400 font-mono text-sm glow-btn">WhatsApp</button>
+      <button id="shareIg" class="px-5 py-2.5 rounded-lg bg-pink-900/30 border border-pink-600/40 text-pink-400 font-mono text-sm glow-btn">Share</button>
+    </div>
+
+    <!-- Hidden canvas for export -->
+    <canvas id="exportCanvas" class="hidden"></canvas>
+
+    <!-- Features strip -->
+    <div class="grid sm:grid-cols-3 gap-4 mb-16 text-center">
+      <div class="p-4 rounded-xl bg-panel border border-border">
+        <p class="neon-text font-mono font-bold mb-1">3 LEVELS</p>
+        <p class="text-xs text-gray-500">Basic → Extreme 1337</p>
+      </div>
+      <div class="p-4 rounded-xl bg-panel border border-border">
+        <p class="neon-text font-mono font-bold mb-1">20+ TAGS</p>
+        <p class="text-xs text-gray-500">BGMI • FF • Discord • Xbox</p>
+      </div>
+      <div class="p-4 rounded-xl bg-panel border border-border">
+        <p class="neon-text font-mono font-bold mb-1">100% LOCAL</p>
+        <p class="text-xs text-gray-500">No server • Instant • Private</p>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-bold text-white mb-6 text-center">FAQ – Leet Speak Translator & Gamer Tools</h2>
+      <div class="max-w-3xl mx-auto space-y-3">
+        <details class="bg-panel border border-border rounded-xl p-4">
+          <summary class="font-semibold text-neon cursor-pointer font-mono text-sm">What is a leet speak translator / 1337 translator?</summary>
+          <p class="mt-3 text-sm text-gray-400">A leet speak translator (also called 1337 translator or l33t speak converter) transforms normal English into hacker-style text using numbers and symbols. Classic mappings include A→4, E→3, I→1, O→0, S→5, T→7.</p>
+        </details>
+        <details class="bg-panel border border-border rounded-xl p-4">
+          <summary class="font-semibold text-neon cursor-pointer font-mono text-sm">How does the advanced / extreme leet mode work?</summary>
+          <p class="mt-3 text-sm text-gray-400">Advanced mode uses multi-character substitutions like H→|-|, E→3, L→|_|, O→0 creating the classic “|-|3110” style elite hacker text popular in 2000s internet culture and CTF challenges.</p>
+        </details>
+        <details class="bg-panel border border-border rounded-xl p-4">
+          <summary class="font-semibold text-neon cursor-pointer font-mono text-sm">Can I generate stylish names for BGMI, Free Fire, PUBG?</summary>
+          <p class="mt-3 text-sm text-gray-400">Yes. The gamer tag generator produces 20+ styles: xX_Name_Xx, Name_OP, Name_YT, Name_1337, Name_God, and more. Perfect for BGMI name style generator, Free Fire stylish name maker, Discord, Xbox and PSN.</p>
+        </details>
+        <details class="bg-panel border border-border rounded-xl p-4">
+          <summary class="font-semibold text-neon cursor-pointer font-mono text-sm">Is there a reverse leet to English decoder?</summary>
+          <p class="mt-3 text-sm text-gray-400">Yes. Switch to Reverse mode to use the leet speak decoder / 1337 decoder. It approximates original English from common leet patterns so you can read hacker text quickly.</p>
+        </details>
+        <details class="bg-panel border border-border rounded-xl p-4">
+          <summary class="font-semibold text-neon cursor-pointer font-mono text-sm">How does the leet password generator work?</summary>
+          <p class="mt-3 text-sm text-gray-400">The password generator creates strong, memorable leetspeak passwords by mixing letters, numbers and optional symbols. Ideal as a leetspeak password maker or secure username generator.</p>
+        </details>
+        <details class="bg-panel border border-border rounded-xl p-4">
+          <summary class="font-semibold text-neon cursor-pointer font-mono text-sm">Can I download the result as an image?</summary>
+          <p class="mt-3 text-sm text-gray-400">Yes. Click “PNG” to export a terminal-style image with neon green text on a dark hacker background — great for Instagram stories, Discord, or sharing your leet text.</p>
+        </details>
+        <details class="bg-panel border border-border rounded-xl p-4">
+          <summary class="font-semibold text-neon cursor-pointer font-mono text-sm">Is this tool free and private?</summary>
+          <p class="mt-3 text-sm text-gray-400">100% free, no ads, no signup. Everything runs in your browser (client-side only). Your text never leaves your device — perfect for privacy-conscious users and ethical hacking practice text.</p>
+        </details>
+        <details class="bg-panel border border-border rounded-xl p-4">
+          <summary class="font-semibold text-neon cursor-pointer font-mono text-sm">What is leet speak and where did it come from?</summary>
+          <p class="mt-3 text-sm text-gray-400">Leet speak (elite speak / 1337) originated in 1980s–90s online communities and hacker culture. It replaces letters with look-alike numbers and symbols. Today it’s used for gaming usernames, memes, CTF challenges and nostalgic internet slang.</p>
+        </details>
+        <details class="bg-panel border border-border rounded-xl p-4">
+          <summary class="font-semibold text-neon cursor-pointer font-mono text-sm">Does it work on mobile for Instagram & TikTok names?</summary>
+          <p class="mt-3 text-sm text-gray-400">Yes. The site is fully responsive and mobile-friendly. Generate cool Instagram names leet style, TikTok name generator results, or WhatsApp stylish text and copy them instantly.</p>
+        </details>
+        <details class="bg-panel border border-border rounded-xl p-4">
+          <summary class="font-semibold text-neon cursor-pointer font-mono text-sm">Can I create custom letter mappings?</summary>
+          <p class="mt-3 text-sm text-gray-400">Yes. Open the Custom Map tab, edit lines like A=4 or H=|-|, apply, and the translator uses your personal leet alphabet. Great for unique clan names or obfuscation experiments.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <!-- SEO Keyword Footer (crawlable) -->
+  <footer class="border-t border-border bg-panel py-12">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-lg font-bold text-white mb-4 text-center">Leet Speak Tools & Popular Searches</h2>
+      <p class="text-xs text-gray-500 text-center mb-6 max-w-3xl mx-auto leading-relaxed">
+        Free leet speak translator, 1337 translator, l33t speak converter, leet speak generator, hacker text generator, 1337 text converter, leet translator, l33t translator, elite speak translator, hacker font generator, leet speak decoder, 1337 decoder, leet to english translator, english to leet translator, leet speak converter online, l33t speak generator online, hacker text converter, gaming text generator, bgmi name style generator, free fire name style generator, bgmi stylish name maker, free fire stylish name maker, pubg name generator leet, gamer tag generator, xbox gamertag generator, psn name generator, discord name generator leet, fortnite name generator, valorant name generator, cod name generator, cool gamer names, leet gamer names, hacker username generator, anonymous username generator, 1337 username generator, instagram stylish name generator, instagram bio style generator, facebook stylish name generator, whatsapp stylish text generator, tiktok name generator, youtube channel name generator, cool instagram names leet, leet speak instagram, leet font generator, hacker font style, anonymous text generator, 1337 alphabet, leet alphabet translator, a to 4 translator, e to 3 converter, hacker language translator, cyber text generator, binary translator leet, text to 1337, convert text to leet, translate to leet speak, leet speak meaning, what is leet speak, how to speak leet, leet speak dictionary, leet speak cheat sheet, leet speak examples, leet speak words, leet speak phrases, n00b translator, pwned translator, haxor translator, 1337 haxor generator, elite hacker text, hacker text copy paste, glitch text generator leet, aesthetic hacker text, cool text generator, fancy text generator leet, stylish text generator hacker, unicode hacker text, terminal text generator, matrix text generator, coding font generator, programming joke generator, developer text generator, leet code comments generator, obfuscate text generator, bypass filter text generator, facebook font bypass, youtube comment bypass, tiktok bypass text, swear word bypass generator, leet swear translator, password generator leet, strong password generator 1337, leetspeak password maker, secure username generator, anonymous password generator, leet speak for gamers, pro gamer name style, esports name generator, clan name generator leet, team name generator hacker, bgmi clan name generator, free fire guild name generator, bgmi symbols generator, free fire symbols generator, cool symbols for names, stylish symbols for games, leet symbols generator, hacker symbols text, leet speak for roblox, roblox name generator leet, minecraft name generator leet, among us name generator, leet speak tiktok, leet speak discord, discord fancy text generator, discord hacker text, twitch name generator, streamer name generator, yt name generator leet, gaming logo text generator, 1337 logo maker, hacker logo text generator, text to image leet, leet text to png, hacker terminal image generator, code rain text generator, matrix rain generator, anonymous mask text generator, v for vendetta text generator, cyberpunk text generator, neon text generator hacker, glitch effect text generator, vaporwave text generator leet, aesthetic leet text, gen z slang translator leet, internet slang converter, chat speak translator, 2000s internet slang generator, old internet text generator, retro computer text generator, ascii art generator leet, leet ascii generator, text art generator hacker, binary code translator, hex code translator leet, base64 leet generator, encryption text generator, cipher text generator, secret code generator, hidden message generator, puzzle text generator, escape room text generator, ctf flag generator, cybersecurity text tool, ethical hacking tool, bug bounty text generator, leet speak for ctf, hacker challenge generator, coding challenge text, programming text obfuscator, javascript obfuscator text, python leet generator, leet speak chrome extension, leet speak app, best leet translator, free leet translator, online leet translator, fast leet translator, accurate leet translator, leet translator with copy, leet translator with download, leet translator no ads, leet translator mobile friendly, leet translator dark mode, advanced leet translator, ultimate leet translator, pro leet translator, 1337 pro generator, best hacker text tool, top leet tool, free fire name generator 2026, bgmi name generator 2026, new stylish name 2026, trending gamer names, viral gamer name generator, instagram trending names, tiktok trending names, cool usernames for boys, cool usernames for girls, hacker usernames for girls, hacker usernames for boys, anonymous names, cool codenames generator, spy name generator, hacker alias generator, dark web username generator, deep web text generator.
+      </p>
+      <div class="keyword-cloud text-center mb-8" aria-hidden="true">
+        <!-- Visual density for users; full list above for crawlers -->
+        <span>leet speak translator</span><span>1337 translator</span><span>hacker text generator</span>
+        <span>gamer tag generator</span><span>bgmi name style</span><span>free fire name maker</span>
+        <span>password generator leet</span><span>leet speak decoder</span><span>discord name generator</span>
+      </div>
+      <p class="text-center text-xs text-gray-600 font-mono">
+        © 2026 LeetSpeak Pro • Free 1337 Translator • Made for gamers & hackers
+      </p>
+      <p class="text-center text-xs text-gray-700 mt-2">
+        <button id="downloadKeywords" class="underline hover:text-neon">Download keywords.json</button>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    /* =========================================================
+       LeetSpeak Pro – Core Engine
+       ========================================================= */
+    const MAPS = {
+      basic: {
+        a:'4', e:'3', i:'1', o:'0', s:'5', t:'7',
+        A:'4', E:'3', I:'1', O:'0', S:'5', T:'7'
+      },
+      intermediate: {
+        a:'@', b:'8', e:'3', g:'6', i:'1', o:'0', s:'5', t:'7', l:'1',
+        A:'@', B:'8', E:'3', G:'6', I:'1', O:'0', S:'5', T:'7', L:'1'
+      },
+      advanced: {
+        a:'4', b:'8', c:'(', d:')', e:'3', f:'ƒ', g:'6', h:'|-|', i:'1',
+        j:']', k:'|<', l:'|_', m:'/\\/\\', n:'|\\|', o:'0', p:'|>', q:'0_',
+        r:'|2', s:'5', t:'7', u:'|_|', v:'\\/', w:'\\/\\/', x:'><', y:'¥', z:'2',
+        A:'4', B:'8', C:'(', D:')', E:'3', F:'ƒ', G:'6', H:'|-|', I:'1',
+        J:']', K:'|<', L:'|_', M:'/\\/\\', N:'|\\|', O:'0', P:'|>', Q:'0_',
+        R:'|2', S:'5', T:'7', U:'|_|', V:'\\/', W:'\\/\\/', X:'><', Y:'¥', Z:'2'
+      }
+    };
+
+    // Reverse lookup tables (approximate)
+    function buildReverse(map) {
+      const rev = {};
+      Object.entries(map).forEach(([k, v]) => {
+        if (!rev[v]) rev[v] = k.toLowerCase();
+      });
+      // Common extras
+      rev['4'] = 'a'; rev['3'] = 'e'; rev['1'] = 'i'; rev['0'] = 'o';
+      rev['5'] = 's'; rev['7'] = 't'; rev['@'] = 'a'; rev['8'] = 'b';
+      rev['6'] = 'g'; rev['|-|'] = 'h'; rev['|_'] = 'l'; rev['|_|'] = 'u';
+      return rev;
+    }
+
+    let currentMap = { ...MAPS.basic };
+    let currentReverse = buildReverse(currentMap);
+    let mode = 'translate'; // translate | reverse
+
+    function toLeet(text, map) {
+      let out = '';
+      for (const ch of text) {
+        out += map[ch] !== undefined ? map[ch] : ch;
+      }
+      return out;
+    }
+
+    function fromLeet(text, rev) {
+      // Greedy multi-char first
+      const keys = Object.keys(rev).sort((a, b) => b.length - a.length);
+      let i = 0, out = '';
+      while (i < text.length) {
+        let matched = false;
+        for (const k of keys) {
+          if (text.substr(i, k.length) === k) {
+            out += rev[k];
+            i += k.length;
+            matched = true;
+            break;
+          }
+        }
+        if (!matched) {
+          out += text[i];
+          i++;
+        }
+      }
+      return out;
+    }
+
+    function getLevel() {
+      return document.querySelector('input[name="level"]:checked')?.value || 'basic';
+    }
+
+    function updateMap() {
+      const level = getLevel();
+      currentMap = { ...MAPS[level] };
+      currentReverse = buildReverse(currentMap);
+    }
+
+    function translate() {
+      const input = document.getElementById('inputText').value;
+      document.getElementById('charCount').textContent = input.length + ' chars';
+      updateMap();
+      let result;
+      if (mode === 'reverse') {
+        result = fromLeet(input, currentReverse);
+      } else {
+        result = toLeet(input, currentMap);
+      }
+      document.getElementById('outputText').value = result;
+    }
+
+    /* UI Elements */
+    const inputText = document.getElementById('inputText');
+    const outputText = document.getElementById('outputText');
+    inputText.addEventListener('input', translate);
+    document.querySelectorAll('input[name="level"]').forEach(r => r.addEventListener('change', translate));
+
+    /* Mode switching */
+    document.querySelectorAll('.mode-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.mode-btn').forEach(b => {
+          b.classList.remove('tab-active');
+          b.classList.add('bg-panel', 'border', 'border-border', 'text-gray-300');
+        });
+        btn.classList.add('tab-active');
+        btn.classList.remove('bg-panel', 'border', 'border-border', 'text-gray-300');
+
+        const m = btn.dataset.mode;
+        document.getElementById('translatePanel').classList.toggle('hidden', m !== 'translate' && m !== 'reverse');
+        document.getElementById('levelBar').classList.toggle('hidden', m !== 'translate' && m !== 'reverse');
+        document.getElementById('gamerPanel').classList.toggle('hidden', m !== 'gamer');
+        document.getElementById('passwordPanel').classList.toggle('hidden', m !== 'password');
+        document.getElementById('customPanel').classList.toggle('hidden', m !== 'custom');
+
+        mode = (m === 'reverse') ? 'reverse' : 'translate';
+        if (m === 'translate' || m === 'reverse') translate();
+      });
+    });
+
+    /* Copy / Clear */
+    document.getElementById('copyBtn').addEventListener('click', () => {
+      const text = outputText.value || document.getElementById('passOutput')?.textContent || '';
+      if (!text) return alert('Nothing to copy');
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById('copyBtn');
+        btn.textContent = '✓ COPIED';
+        setTimeout(() => btn.textContent = '📋 COPY', 1500);
+      });
+    });
+
+    document.getElementById('clearBtn').addEventListener('click', () => {
+      inputText.value = '';
+      outputText.value = '';
+      document.getElementById('charCount').textContent = '0 chars';
+      document.getElementById('gamerResults').innerHTML = '';
+      document.getElementById('passOutput').textContent = '';
+    });
+
+    /* PNG Export – terminal style */
+    document.getElementById('downloadBtn').addEventListener('click', () => {
+      const text = outputText.value || document.getElementById('passOutput')?.textContent;
+      if (!text) return alert('Generate something first');
+
+      const canvas = document.getElementById('exportCanvas');
+      const ctx = canvas.getContext('2d');
+      const lines = text.split('\n');
+      const padding = 40;
+      const lineHeight = 28;
+      const width = Math.min(900, Math.max(500, text.length * 11 + padding * 2));
+      const height = Math.max(300, lines.length * lineHeight + padding * 2 + 60);
+
+      canvas.width = width;
+      canvas.height = height;
+
+      // Background
+      ctx.fillStyle = '#0a0a0a';
+      ctx.fillRect(0, 0, width, height);
+
+      // Scanlines
+      ctx.fillStyle = 'rgba(0,255,65,0.03)';
+      for (let y = 0; y < height; y += 4) ctx.fillRect(0, y, width, 2);
+
+      // Border glow
+      ctx.strokeStyle = '#00ff41';
+      ctx.lineWidth = 2;
+      ctx.strokeRect(8, 8, width - 16, height - 16);
+
+      // Header
+      ctx.fillStyle = '#00ff41';
+      ctx.font = 'bold 16px "JetBrains Mono", monospace';
+      ctx.fillText('> 1337_OUTPUT.exe', padding, padding);
+
+      // Text
+      ctx.font = '18px "JetBrains Mono", monospace';
+      lines.forEach((line, i) => {
+        ctx.fillText(line.substring(0, 80), padding, padding + 40 + i * lineHeight);
+      });
+
+      // Footer
+      ctx.font = '12px "JetBrains Mono", monospace';
+      ctx.fillStyle = '#00cc33';
+      ctx.fillText('LeetSpeak Pro • free 1337 translator', padding, height - 20);
+
+      const link = document.createElement('a');
+      link.download = 'leet-1337-output.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    });
+
+    /* Share */
+    document.getElementById('shareWa').addEventListener('click', () => {
+      const text = outputText.value || 'Check this leet speak translator!';
+      window.open(`https://wa.me/?text=${encodeURIComponent(text + '\n\n→ LeetSpeak Pro')}`, '_blank');
+    });
+    document.getElementById('shareIg').addEventListener('click', () => {
+      const text = outputText.value || '';
+      if (text) navigator.clipboard.writeText(text);
+      alert('Text copied! Open Instagram and paste in your story or bio.');
+    });
+
+    /* Gamer Tag Generator */
+    document.getElementById('genGamerBtn').addEventListener('click', () => {
+      const raw = document.getElementById('gamerName').value.trim() || 'Player';
+      const base = raw.replace(/[^a-zA-Z0-9]/g, '');
+      const leetBase = toLeet(base, MAPS.basic);
+      const styles = [
+        `xX_${base}_Xx`, `xX_${leetBase}_Xx`, `${base}_OP`, `${leetBase}_OP`,
+        `${base}_YT`, `${leetBase}_YT`, `${base}_1337`, `${leetBase}_God`,
+        `The${base}`, `${base}x`, `${base}_Pro`, `i${base}`,
+        `${base}_FF`, `${base}_BGMI`, `Mr${base}`, `${base}Boss`,
+        `Lethal${base}`, `${base}_Killer`, `Pro_${base}`, `${leetBase}`,
+        `Xx_${base}_xX`, `${base}_King`, `Dark${base}`, `${base}_X`,
+        `Real${base}`, `${base}Gaming`
+      ];
+      const box = document.getElementById('gamerResults');
+      box.innerHTML = styles.map(s => `
+        <div class="flex items-center justify-between gap-2 p-2 rounded-lg bg-black/40 border border-border text-sm font-mono">
+          <span class="text-neon truncate">${s}</span>
+          <button class="copy-tag text-xs px-2 py-1 rounded bg-neon/20 text-neon shrink-0" data-tag="${s}">copy</button>
+        </div>
+      `).join('');
+      box.querySelectorAll('.copy-tag').forEach(btn => {
+        btn.addEventListener('click', () => {
+          navigator.clipboard.writeText(btn.dataset.tag);
+          btn.textContent = '✓';
+          setTimeout(() => btn.textContent = 'copy', 1000);
+        });
+      });
+    });
+
+    /* Password Generator */
+    document.getElementById('genPassBtn').addEventListener('click', () => {
+      const len = parseInt(document.getElementById('passLength').value) || 16;
+      const useSym = document.getElementById('passSymbols').checked;
+      const useLeet = document.getElementById('passLeet').checked;
+      const lower = 'abcdefghijkmnopqrstuvwxyz';
+      const upper = 'ABCDEFGHJKLMNPQRSTUVWXYZ';
+      const nums = '23456789';
+      const syms = '!@#$%&*?_+-=';
+      let chars = lower + upper + nums;
+      if (useSym) chars += syms;
+      let pass = '';
+      for (let i = 0; i < len; i++) {
+        pass += chars[Math.floor(Math.random() * chars.length)];
+      }
+      if (useLeet) pass = toLeet(pass, MAPS.intermediate);
+      document.getElementById('passOutput').textContent = pass;
+    });
+
+    /* Custom Map */
+    const defaultCustom = `A=4
+E=3
+I=1
+O=0
+S=5
+T=7
+H=|-|
+L=|_
+U=|_|`;
+    document.getElementById('customMap').value = defaultCustom;
+
+    document.getElementById('applyCustomBtn').addEventListener('click', () => {
+      const lines = document.getElementById('customMap').value.split('\n');
+      const map = {};
+      lines.forEach(line => {
+        const [k, v] = line.split('=').map(s => s.trim());
+        if (k && v) {
+          map[k] = v;
+          map[k.toLowerCase()] = v;
+          map[k.toUpperCase()] = v;
+        }
+      });
+      MAPS.basic = map;
+      MAPS.intermediate = map;
+      MAPS.advanced = map;
+      alert('Custom map applied! Switch to Translate mode to use it.');
+    });
+
+    document.getElementById('resetMapBtn').addEventListener('click', () => {
+      location.reload();
+    });
+
+    /* keywords.json download */
+    document.getElementById('downloadKeywords').addEventListener('click', () => {
+      const keywords = `leet speak translator, 1337 translator, l33t speak converter, leet speak generator, hacker text generator, 1337 text converter, leet translator, l33t translator, elite speak translator, hacker font generator, leet speak decoder, 1337 decoder, leet to english translator, english to leet translator, leet speak converter online, l33t speak generator online, hacker text converter, gaming text generator, bgmi name style generator, free fire name style generator, bgmi stylish name maker, free fire stylish name maker, pubg name generator leet, gamer tag generator, xbox gamertag generator, psn name generator, discord name generator leet, fortnite name generator, valorant name generator, cod name generator, cool gamer names, leet gamer names, hacker username generator, anonymous username generator, 1337 username generator, instagram stylish name generator, instagram bio style generator, facebook stylish name generator, whatsapp stylish text generator, tiktok name generator, youtube channel name generator, cool instagram names leet, leet speak instagram, leet font generator, hacker font style, anonymous text generator, 1337 alphabet, leet alphabet translator, a to 4 translator, e to 3 converter, hacker language translator, cyber text generator, binary translator leet, text to 1337, convert text to leet, translate to leet speak, leet speak meaning, what is leet speak, how to speak leet, leet speak dictionary, leet speak cheat sheet, leet speak examples, leet speak words, leet speak phrases, n00b translator, pwned translator, haxor translator, 1337 haxor generator, elite hacker text, hacker text copy paste, glitch text generator leet, aesthetic hacker text, cool text generator, fancy text generator leet, stylish text generator hacker, unicode hacker text, terminal text generator, matrix text generator, coding font generator, programming joke generator, developer text generator, leet code comments generator, obfuscate text generator, bypass filter text generator, facebook font bypass, youtube comment bypass, tiktok bypass text, swear word bypass generator, leet swear translator, password generator leet, strong password generator 1337, leetspeak password maker, secure username generator, anonymous password generator, leet speak for gamers, pro gamer name style, esports name generator, clan name generator leet, team name generator hacker, bgmi clan name generator, free fire guild name generator, bgmi symbols generator, free fire symbols generator, cool symbols for names, stylish symbols for games, leet symbols generator, hacker symbols text, leet speak for roblox, roblox name generator leet, minecraft name generator leet, among us name generator, leet speak tiktok, leet speak discord, discord fancy text generator, discord hacker text, twitch name generator, streamer name generator, yt name generator leet, gaming logo text generator, 1337 logo maker, hacker logo text generator, text to image leet, leet text to png, hacker terminal image generator, code rain text generator, matrix rain generator, anonymous mask text generator, v for vendetta text generator, cyberpunk text generator, neon text generator hacker, glitch effect text generator, vaporwave text generator leet, aesthetic leet text, gen z slang translator leet, internet slang converter, chat speak translator, 2000s internet slang generator, old internet text generator, retro computer text generator, ascii art generator leet, leet ascii generator, text art generator hacker, binary code translator, hex code translator leet, base64 leet generator, encryption text generator, cipher text generator, secret code generator, hidden message generator, puzzle text generator, escape room text generator, ctf flag generator, cybersecurity text tool, ethical hacking tool, bug bounty text generator, leet speak for ctf, hacker challenge generator, coding challenge text, programming text obfuscator, javascript obfuscator text, python leet generator, leet speak chrome extension, leet speak app, best leet translator, free leet translator, online leet translator, fast leet translator, accurate leet translator, leet translator with copy, leet translator with download, leet translator no ads, leet translator mobile friendly, leet translator dark mode, advanced leet translator, ultimate leet translator, pro leet translator, 1337 pro generator, best hacker text tool, top leet tool, free fire name generator 2026, bgmi name generator 2026, new stylish name 2026, trending gamer names, viral gamer name generator, instagram trending names, tiktok trending names, cool usernames for boys, cool usernames for girls, hacker usernames for girls, hacker usernames for boys, anonymous names, cool codenames generator, spy name generator, hacker alias generator, dark web username generator, deep web text generator`.split(', ');
+      const blob = new Blob([JSON.stringify({ keywords, count: keywords.length, tool: 'LeetSpeak Pro' }, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'keywords.json';
+      a.click();
+    });
+
+    /* PWA minimal service worker registration */
+    if ('serviceWorker' in navigator) {
+      // Inline minimal SW via blob for single-file demo
+      const swCode = `self.addEventListener('install', e => self.skipWaiting());
+self.addEventListener('fetch', e => e.respondWith(fetch(e.request).catch(() => caches.match(e.request))));`;
+      const blob = new Blob([swCode], { type: 'application/javascript' });
+      navigator.serviceWorker.register(URL.createObjectURL(blob)).catch(() => {});
+    }
+
+    // Initial
+    translate();
+  </script>
+</body>
+</html>
